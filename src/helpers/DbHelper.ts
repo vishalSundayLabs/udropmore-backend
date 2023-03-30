@@ -4,6 +4,7 @@ import * as tracer from "tracer";
 
 const logger = tracer.colorConsole();
 const DB_URI: string = config.DBURI;
+console.log(DB_URI)
 
 export async function connect() {
   return new Promise((resolve, reject) => {
