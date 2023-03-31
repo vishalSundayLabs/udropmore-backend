@@ -1,6 +1,5 @@
 // external libraries
 import { Response, Request } from "express";
-import * as Sentry from "@sentry/node";
 
 // utils
 import {
@@ -103,8 +102,6 @@ export let getUser = async (req: RequestWithUser, res: Response) => {
       user: { ...userInfo.toJSON() },
     });
   } catch (error) {
-    Sentry.captureException(error);
-
     let response = new ResponseError({
       message: "Something went wrong",
       error: error.message,

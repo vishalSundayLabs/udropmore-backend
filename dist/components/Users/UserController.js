@@ -10,7 +10,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUser = exports.createUser = void 0;
-const Sentry = require("@sentry/node");
 // utils
 const utility_1 = require("../../utils/utility");
 // helpers
@@ -95,7 +94,6 @@ let getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
     }
     catch (error) {
-        Sentry.captureException(error);
         let response = new ResponseClass_1.ResponseError({
             message: "Something went wrong",
             error: error.message,

@@ -1,6 +1,5 @@
 // external libraries
 import { Response, Request } from "express";
-import * as Sentry from "@sentry/node";
 
 // interfaces
 import MulterFile from "./UploadInterface";
@@ -29,7 +28,6 @@ export let uploadSingleFile = async (
     });
     return res.status(200).json(response);
   } catch (error) {
-    Sentry.captureException(error);
     let response = new ResponseError({
       message: "Something went wrong",
       error: error.message,
@@ -54,7 +52,6 @@ export let uploadMultiFiles = async (
     let response = new MultipleFileResponseSuccess({ location: locations });
     return res.status(200).json(response);
   } catch (error) {
-    Sentry.captureException(error);
     let response = new ResponseError({
       message: "Something went wrong",
       error: error.message,

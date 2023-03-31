@@ -10,7 +10,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.uploadMultiFiles = exports.uploadSingleFile = void 0;
-const Sentry = require("@sentry/node");
 // classes
 const UploadClass_1 = require("./UploadClass");
 const ResponseClass_1 = require("../../utils/ResponseClass");
@@ -29,7 +28,6 @@ let uploadSingleFile = (req, res) => __awaiter(void 0, void 0, void 0, function*
         return res.status(200).json(response);
     }
     catch (error) {
-        Sentry.captureException(error);
         let response = new ResponseClass_1.ResponseError({
             message: "Something went wrong",
             error: error.message,
@@ -52,7 +50,6 @@ let uploadMultiFiles = (req, res) => __awaiter(void 0, void 0, void 0, function*
         return res.status(200).json(response);
     }
     catch (error) {
-        Sentry.captureException(error);
         let response = new ResponseClass_1.ResponseError({
             message: "Something went wrong",
             error: error.message,
