@@ -44,14 +44,11 @@ if (config.NODE_ENV === "development") {
 
 app.use(router);
 
-app.use((req, res, next) => {
-  res.status(404).end();
-});
 
 DB.connect()
   .then((result) => {
     app.listen(app.get("port"), () => {
-      logger.info(`CRR Web App backend listening on port ${app.get("port")}.`);
+      logger.info(` Web App backend listening on port ${app.get("port")}.`);
     });
   })
   .catch((err) => {
