@@ -1,7 +1,6 @@
 // external libraries
 import * as bcrypt from "bcryptjs";
 import { Request, Response } from "express";
-import * as Sentry from "@sentry/node";
 
 // utils
 import {
