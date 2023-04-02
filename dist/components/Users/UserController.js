@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUser = exports.createUser = void 0;
+exports.getUser = exports.SignUp = void 0;
 // utils
 const utility_1 = require("../../utils/utility");
 // helpers
@@ -22,7 +22,7 @@ const UserClass_1 = require("./UserClass");
 // validation
 const UserValidate_1 = require("./UserValidate");
 const ValidatorHelper_1 = require("../../helpers/ValidatorHelper");
-let createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+let SignUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let user = yield UserModel_1.default.findOne({ email: req.body.email });
         if (user) {
@@ -46,6 +46,8 @@ let createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     userValidate.lastName = req.body.lastName;
     userValidate.email = req.body.email;
     userValidate.password = req.body.password;
+    userValidate.userType = req.body.userType;
+    userValidate.phoneNumber = req.body.phoneNumber;
     try {
         let result = yield (0, ValidatorHelper_1.validateJson)(userValidate);
     }
@@ -75,7 +77,7 @@ let createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return res.status(500).send(response);
     }
 });
-exports.createUser = createUser;
+exports.SignUp = SignUp;
 let getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let uid = req.user._id;

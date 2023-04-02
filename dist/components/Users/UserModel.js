@@ -19,7 +19,6 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         unique: true,
-        required: [true, "Missing 'email' field."],
         trim: true,
         lowercase: true,
         match: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
@@ -44,8 +43,26 @@ const userSchema = new mongoose.Schema({
             return !!this.password;
         },
     },
-    phoneNumber: { type: String },
+    phoneNumber: {
+        type: String,
+        unique: true,
+        require: [true, "Missing 'phoneNumber' field."],
+    },
+    userType: {
+        type: String,
+        enum: ['DOCTOR', 'MOTHER', 'HOSPITAL_ADMIN', 'NURSES', 'ONI_ADMIN']
+    },
     isActive: { type: Boolean, default: true },
+    isDeleted: {
+        type: Boolean,
+        default: false
+    },
+    createdBy: {
+        type: mongoose.SchemaTypes.ObjectId
+    },
+    updatedBy: {
+        type: mongoose.SchemaTypes.ObjectId
+    }
 }, {
     timestamps: true,
     toObject: { virtuals: true },

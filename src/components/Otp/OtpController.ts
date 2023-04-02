@@ -39,7 +39,6 @@ export let confirmOtp = async (req: Request, res: Response) => {
       "uid",
       "email ssn"
     );
-
     if (record) {
       let info = JSON.parse(JSON.stringify(record.uid));
       const token: ILogin = await createToken(info);

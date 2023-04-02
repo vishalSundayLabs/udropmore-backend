@@ -25,7 +25,7 @@ function createToken(payload) {
         const expiryStamp = Date.now() + expiry * 1000;
         const token = jwt.sign(payload, Config_1.default.JWTSECRET, {
             algorithm: "HS384",
-            expiresIn: expiry,
+            expiresIn: '1d',
             issuer: Config_1.default.ISSUER,
         });
         return { access_token: token, expirOn: expiryStamp };

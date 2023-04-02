@@ -2,16 +2,16 @@ import {
   ResponseSuccess,
   ResponseSuccessOptions,
 } from "../../utils/ResponseClass";
-interface UserResponse {
+import { commanFields } from "./UserInterface";
+interface UserResponse extends commanFields{
   emailVerified: boolean;
-  isActive: boolean;
   _id?: string;
   firstName: string;
   lastName: string;
   email: string;
-  createdAt: Date;
-  updatedAt: Date;
+  phoneNumber:string;
   shortSSN: string;
+  userType:string;
   id?: string;
 }
 interface UserCreateOptions extends ResponseSuccessOptions {

@@ -9,24 +9,24 @@ export interface IAddress {
   state: string;
   countryCode: string;
 }
-export default interface IUser extends mongoose.Document {
+export interface commanFields extends mongoose.Document{
+  isActive: boolean;
+  isDeleted:boolean;
+  createdBy:mongoose.Schema.Types.ObjectId;
+  updatedBy:mongoose.Schema.Types.ObjectId;
+  createdAt: Date;
+  updatedAt: Date;
+}
+export default interface IUser extends commanFields {
   firstName: string;
   lastName: string;
   email: string;
   emailVerified: boolean;
   password: string;
   phoneNumber: string;
-  dateOfBirth: string;
-  address: IAddress;
-  ssn: string;
-  isActive: boolean;
-  isBankLink: boolean;
+  userType:string;
   status: string;
-  managedTenant: boolean;
-  createdAt: Date;
-  updatedAt: Date;
   shortSSN: string;
-  rentPaymentsPlaid: boolean;
 }
 
 export interface AuthUser {

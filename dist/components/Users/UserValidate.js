@@ -30,6 +30,13 @@ __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.MinLength)(8)
 ], Create.prototype, "password", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)()
+], Create.prototype, "userType", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)({ message: "email should not be empty" })
+], Create.prototype, "phoneNumber", void 0);
 exports.Create = Create;
 class PersonalInfo {
 }

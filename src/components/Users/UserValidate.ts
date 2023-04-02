@@ -28,6 +28,14 @@ export class Create {
   @IsString()
   @MinLength(8)
   password: string;
+
+  @IsNotEmpty()
+  @IsString()
+  userType:string;
+
+  @IsNotEmpty({ message: "email should not be empty" })
+  phoneNumber:string;
+
 }
 
 export class PersonalInfo {

@@ -25,7 +25,7 @@ import {
 } from "./UserValidate";
 import { validateJson } from "../../helpers/ValidatorHelper";
 
-export let createUser = async (req: Request, res: Response) => {
+export let SignUp = async (req: Request, res: Response) => {
   try {
     let user: IUser = await UserModel.findOne({ email: req.body.email });
     if (user) {
@@ -49,6 +49,9 @@ export let createUser = async (req: Request, res: Response) => {
   userValidate.lastName = req.body.lastName;
   userValidate.email = req.body.email;
   userValidate.password = req.body.password;
+  userValidate.userType = req.body.userType; 
+  userValidate.phoneNumber = req.body.phoneNumber              
+  
 
   try {
     let result = await validateJson(userValidate);
@@ -59,7 +62,6 @@ export let createUser = async (req: Request, res: Response) => {
 
   try {
     let userDb: IUser = new UserModel(userValidate);
-
     let userRecord: IUser = await userDb.save();
     let otpDb = new OtpModel({
       uid: userRecord._id,
@@ -79,8 +81,6 @@ export let createUser = async (req: Request, res: Response) => {
     return res.status(500).send(response);
   }
 };
-
-
 
 export let getUser = async (req: RequestWithUser, res: Response) => {
   try {
