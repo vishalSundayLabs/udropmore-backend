@@ -34,6 +34,12 @@ __decorate([
 __decorate([
     (0, class_validator_1.IsNotEmpty)({ message: "phone number should not be empty" })
 ], Create.prototype, "phoneNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)()
+], Create.prototype, "waId", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)()
+], Create.prototype, "waToken", void 0);
 exports.Create = Create;
 class PersonalInfo {
 }

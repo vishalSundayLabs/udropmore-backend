@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema(
       lowercase: true,
       match: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     },
-    phoneVerified: { type: Boolean, default: false },
+    emailVerified: { type: Boolean, default: false },
     phoneNumber: { 
       type: String,
       unique:true,
@@ -35,6 +35,14 @@ const userSchema = new mongoose.Schema(
       enum:['DOCTOR','MOTHER','HOSPITAL_ADMIN','NURSES','ONI_ADMIN']
     },
     isActive: { type: Boolean, default: true },
+    waId:{
+      type:String,
+      require:true
+    },
+    waToken:{
+      type:String,
+      require:true
+    },
     isDeleted:{
       type:Boolean,
       default:false

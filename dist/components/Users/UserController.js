@@ -22,7 +22,7 @@ const UserClass_1 = require("./UserClass");
 const UserValidate_1 = require("./UserValidate");
 let SignUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let user = yield UserModel_1.default.findOne({ phoneNumber: req.body.phoneNumber });
+        let user = yield UserModel_1.default.findOne({ phoneNumber: req.body.waNumber });
         if (user) {
             let response = new ResponseClass_1.ResponseError({
                 error: "phone Number already exists.",
@@ -41,14 +41,15 @@ let SignUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
     const code = (0, utility_1.createOtp)();
     let userValidate = new UserValidate_1.Create();
-    userValidate.firstName = req.body.firstName;
+    userValidate.firstName = req.body.waName;
     userValidate.lastName = req.body.lastName;
     if (req.body.email) {
         userValidate.email = req.body.email;
     }
-    // userValidate.password = req.body.password;
     userValidate.userType = req.body.userType;
-    userValidate.phoneNumber = req.body.phoneNumber;
+    userValidate.phoneNumber = req.body.waNumber;
+    userValidate.waId = req.body.waId;
+    userValidate.waToken = req.body.token;
     if (userValidate.userType == 'ONI_ADMIN' || userValidate.userType == 'MOTHER') {
         userValidate.isActive = true;
     }

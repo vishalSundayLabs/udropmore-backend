@@ -9,7 +9,7 @@ export interface IAddress {
   state: string;
   countryCode: string;
 }
-export interface commanFields extends mongoose.Document{
+export interface commonFields extends mongoose.Document{
   isActive: boolean;
   isDeleted:boolean;
   createdBy:mongoose.Schema.Types.ObjectId;
@@ -17,7 +17,7 @@ export interface commanFields extends mongoose.Document{
   createdAt: Date;
   updatedAt: Date;
 }
-export default interface IUser extends commanFields {
+export default interface IUser extends commonFields {
   firstName: string;
   lastName: string;
   email: string;
@@ -25,7 +25,10 @@ export default interface IUser extends commanFields {
   password: string;
   phoneNumber: string;
   userType:string;
+  waToken:string;
+  waId:string;
   status: string;
+  userId:string;
   shortSSN: string;
 }
 

@@ -3,7 +3,7 @@
  */
 
 import * as mongoose from "mongoose";
-import IOtp from "./OtpInterface";
+import IOtp from "./AuthInterface";
 
 const otpSchema = new mongoose.Schema(
   {

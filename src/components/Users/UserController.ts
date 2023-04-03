@@ -10,8 +10,7 @@ import {
 
 // models
 import UserModel from "./UserModel";
-import OtpModel from "../Otp/OtpModel";
-
+import OtpModel from "../Auth/AuthModel"
 // interfaces
 import IUser, { RequestWithUser } from "./UserInterface";
 
@@ -27,7 +26,7 @@ import { validateJson } from "../../helpers/ValidatorHelper";
 
 export let SignUp = async (req: Request, res: Response) => {
   try {
-    let user: IUser = await UserModel.findOne({ phoneNumber: req.body.phoneNumber });
+    let user: IUser = await UserModel.findOne({ phoneNumber: req.body.waNumber });
     if (user) {
       let response = new ResponseError({
         error: "phone Number already exists.",
@@ -46,21 +45,21 @@ export let SignUp = async (req: Request, res: Response) => {
 
   const code = createOtp();
   let userValidate: UserCreate = new UserCreate();
-  userValidate.firstName = req.body.firstName;
+  userValidate.firstName = req.body.waName;
   userValidate.lastName = req.body.lastName;
 
   if(req.body.email){
     userValidate.email = req.body.email;
   }
-  // userValidate.password = req.body.password;
   userValidate.userType = req.body.userType; 
-  userValidate.phoneNumber = req.body.phoneNumber              
+  userValidate.phoneNumber = req.body.waNumber  
+  userValidate.waId = req.body.waId;
+  userValidate.waToken = req.body.token;       
   if(userValidate.userType=='ONI_ADMIN' || userValidate.userType=='MOTHER'){
     userValidate.isActive = true;
   }else{
     userValidate.isActive = false;
   }
-
   // try {
   //   // let result = await validateJson(userValidate);
   // } catch (e) {
@@ -80,6 +79,7 @@ export let SignUp = async (req: Request, res: Response) => {
     let response = new UserResponseSuccess({
       user: userRecord,
     });
+
     return res.status(201).json(response);
   } catch (error) {
     let response = new ResponseError({

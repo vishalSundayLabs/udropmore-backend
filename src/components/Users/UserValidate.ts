@@ -32,13 +32,19 @@ export class Create {
   @IsBoolean()
   isActive:boolean
 
-  
+
   @IsNotEmpty()
   @IsString()
   userType:string;
 
   @IsNotEmpty({ message: "phone number should not be empty" })
   phoneNumber:string;
+
+  @IsNotEmpty()
+  waId:string;
+
+  @IsNotEmpty()
+  waToken:string;
 
 }
 

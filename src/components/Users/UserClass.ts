@@ -2,8 +2,8 @@ import {
   ResponseSuccess,
   ResponseSuccessOptions,
 } from "../../utils/ResponseClass";
-import { commanFields } from "./UserInterface";
-interface UserResponse extends commanFields{
+import { commonFields } from "./UserInterface";
+interface UserResponse extends commonFields{
   emailVerified: boolean;
   _id?: string;
   firstName: string;
@@ -12,7 +12,8 @@ interface UserResponse extends commanFields{
   phoneNumber:string;
   shortSSN: string;
   userType:string;
-  id?: string;
+  userId?: string;
+  waToken:string;
 }
 interface UserCreateOptions extends ResponseSuccessOptions {
   user: UserResponse;
