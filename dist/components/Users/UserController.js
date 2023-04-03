@@ -10,9 +10,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUser = exports.SignUp = void 0;
-// utils
-const utility_1 = require("../../utils/utility");
-// helpers
 // models
 const UserModel_1 = require("./UserModel");
 // classes
@@ -39,38 +36,25 @@ let SignUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
         return res.status(500).send(response);
     }
-    const code = (0, utility_1.createOtp)();
     let userValidate = new UserValidate_1.Create();
     userValidate.firstName = req.body.waName;
     userValidate.lastName = req.body.lastName;
-    if (req.body.email) {
-        userValidate.email = req.body.email;
-    }
     userValidate.userType = req.body.userType;
     userValidate.phoneNumber = req.body.waNumber;
     userValidate.waId = req.body.waId;
     userValidate.waToken = req.body.token;
+    if (req.body.email) {
+        userValidate.email = req.body.email;
+    }
     if (userValidate.userType == 'ONI_ADMIN' || userValidate.userType == 'MOTHER') {
         userValidate.isActive = true;
     }
     else {
         userValidate.isActive = false;
     }
-    // try {
-    //   // let result = await validateJson(userValidate);
-    // } catch (e) {
-    //   let response = new ResponseError(e);
-    //   return res.status(404).send(response);
-    // }
     try {
         let userDb = new UserModel_1.default(userValidate);
         let userRecord = yield userDb.save();
-        // let otpDb = new OtpModel({
-        //   uid: userRecord._id,
-        //   phoneNumber: req.body.phoneNumber,
-        //   code: code,
-        // });
-        // await otpDb.save();
         let response = new UserClass_1.UserResponseSuccess({
             user: userRecord,
         });

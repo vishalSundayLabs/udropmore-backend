@@ -9,7 +9,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PasswordReset = exports.OptIn = exports.AddressInfo = exports.PersonalInfo = exports.Create = void 0;
+exports.Create = void 0;
 const class_validator_1 = require("class-validator");
 class Create {
 }
@@ -41,52 +41,3 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)()
 ], Create.prototype, "waToken", void 0);
 exports.Create = Create;
-class PersonalInfo {
-}
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.MinLength)(9)
-], PersonalInfo.prototype, "ssn", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.MinLength)(10)
-], PersonalInfo.prototype, "phoneNumber", void 0);
-__decorate([
-    (0, class_validator_1.IsString)()
-], PersonalInfo.prototype, "dateOfBirth", void 0);
-exports.PersonalInfo = PersonalInfo;
-class AddressInfo {
-}
-__decorate([
-    (0, class_validator_1.IsString)()
-], AddressInfo.prototype, "line1", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsOptional)()
-], AddressInfo.prototype, "line2", void 0);
-__decorate([
-    (0, class_validator_1.IsString)()
-], AddressInfo.prototype, "city", void 0);
-__decorate([
-    (0, class_validator_1.IsString)()
-], AddressInfo.prototype, "postalCode", void 0);
-__decorate([
-    (0, class_validator_1.IsString)()
-], AddressInfo.prototype, "state", void 0);
-exports.AddressInfo = AddressInfo;
-class OptIn {
-}
-__decorate([
-    (0, class_validator_1.IsMongoId)()
-], OptIn.prototype, "_id", void 0);
-exports.OptIn = OptIn;
-class PasswordReset {
-}
-__decorate([
-    (0, class_validator_1.IsEmail)()
-], PasswordReset.prototype, "email", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.MinLength)(8)
-], PasswordReset.prototype, "password", void 0);
-exports.PasswordReset = PasswordReset;

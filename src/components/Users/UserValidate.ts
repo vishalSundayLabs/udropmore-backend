@@ -21,74 +21,24 @@ export class Create {
   @IsString()
   lastName: string;
 
-  // @IsNotEmpty({ message: "email should not be empty" })
   @IsEmail()
   email: string;
 
-  // @IsNotEmpty()
-  // @IsString()
-  // @MinLength(8)
-  // password: string;
   @IsBoolean()
-  isActive:boolean
+  isActive: boolean
 
 
   @IsNotEmpty()
   @IsString()
-  userType:string;
+  userType: string;
 
   @IsNotEmpty({ message: "phone number should not be empty" })
-  phoneNumber:string;
-
-  @IsNotEmpty()
-  waId:string;
-
-  @IsNotEmpty()
-  waToken:string;
-
-}
-
-export class PersonalInfo {
-  @IsString()
-  @MinLength(9)
-  ssn: string;
-
-  @IsString()
-  @MinLength(10)
   phoneNumber: string;
 
-  @IsString()
-  dateOfBirth: string;
-}
+  @IsNotEmpty()
+  waId: string;
 
-export class AddressInfo {
-  @IsString()
-  line1: string;
+  @IsNotEmpty()
+  waToken: string;
 
-  @IsString()
-  @IsOptional()
-  line2: string;
-
-  @IsString()
-  city: string;
-
-  @IsString()
-  postalCode: string;
-
-  @IsString()
-  state: string;
-}
-
-export class OptIn {
-  @IsMongoId()
-  _id: string;
-}
-
-export class PasswordReset {
-  @IsEmail()
-  email: string;
-
-  @IsString()
-  @MinLength(8)
-  password: string;
 }

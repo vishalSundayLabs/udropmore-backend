@@ -8,6 +8,4 @@ import * as otpController from "./AuthController";
 
 const router = Router();
 
-router.post("/resend", otpController.resendOtp);
-
 export default router;

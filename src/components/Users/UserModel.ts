@@ -2,7 +2,6 @@
  * UserModel.ts
  */
 
-import * as bcrypt from "bcryptjs";
 import * as mongoose from "mongoose";
 import IUser from "./UserInterface";
 

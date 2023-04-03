@@ -1,16 +1,8 @@
 // external libraries
 import { Response, Request } from "express";
-
-// utils
-import {
-  createOtp,
-} from "../../utils/utility";
-
-// helpers
-
 // models
 import UserModel from "./UserModel";
-import OtpModel from "../Auth/AuthModel"
+
 // interfaces
 import IUser, { RequestWithUser } from "./UserInterface";
 
@@ -22,7 +14,6 @@ import { UserResponseSuccess } from "./UserClass";
 import {
   Create as UserCreate,
 } from "./UserValidate";
-import { validateJson } from "../../helpers/ValidatorHelper";
 
 export let SignUp = async (req: Request, res: Response) => {
   try {
@@ -31,7 +22,7 @@ export let SignUp = async (req: Request, res: Response) => {
       let response = new ResponseError({
         error: "phone Number already exists.",
         message: "phone Number already exists.",
-        isActive:user.isActive
+        isActive: user.isActive
       });
       return res.status(409).send(response);
     }
@@ -43,39 +34,27 @@ export let SignUp = async (req: Request, res: Response) => {
     return res.status(500).send(response);
   }
 
-  const code = createOtp();
   let userValidate: UserCreate = new UserCreate();
   userValidate.firstName = req.body.waName;
   userValidate.lastName = req.body.lastName;
+  userValidate.userType = req.body.userType;
+  userValidate.phoneNumber = req.body.waNumber
+  userValidate.waId = req.body.waId;
+  userValidate.waToken = req.body.token;
 
-  if(req.body.email){
+  if (req.body.email) {
     userValidate.email = req.body.email;
   }
-  userValidate.userType = req.body.userType; 
-  userValidate.phoneNumber = req.body.waNumber  
-  userValidate.waId = req.body.waId;
-  userValidate.waToken = req.body.token;       
-  if(userValidate.userType=='ONI_ADMIN' || userValidate.userType=='MOTHER'){
+
+  if (userValidate.userType == 'ONI_ADMIN' || userValidate.userType == 'MOTHER') {
     userValidate.isActive = true;
-  }else{
+  } else {
     userValidate.isActive = false;
   }
-  // try {
-  //   // let result = await validateJson(userValidate);
-  // } catch (e) {
-  //   let response = new ResponseError(e);
-  //   return res.status(404).send(response);
-  // }
 
   try {
     let userDb: IUser = new UserModel(userValidate);
     let userRecord: IUser = await userDb.save();
-    // let otpDb = new OtpModel({
-    //   uid: userRecord._id,
-    //   phoneNumber: req.body.phoneNumber,
-    //   code: code,
-    // });
-    // await otpDb.save();
     let response = new UserResponseSuccess({
       user: userRecord,
     });

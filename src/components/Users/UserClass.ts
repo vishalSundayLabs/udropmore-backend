@@ -2,7 +2,9 @@ import {
   ResponseSuccess,
   ResponseSuccessOptions,
 } from "../../utils/ResponseClass";
+
 import { commonFields } from "./UserInterface";
+
 interface UserResponse extends commonFields{
   emailVerified: boolean;
   _id?: string;
@@ -15,9 +17,11 @@ interface UserResponse extends commonFields{
   userId?: string;
   waToken:string;
 }
+
 interface UserCreateOptions extends ResponseSuccessOptions {
   user: UserResponse;
 }
+
 export class UserResponseSuccess extends ResponseSuccess {
   message: string = "User account created successfully.";
   user: UserResponse;
