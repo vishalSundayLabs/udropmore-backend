@@ -14,6 +14,6 @@ __decorate([
     (0, class_validator_1.IsString)()
 ], OtpValidate.prototype, "code", void 0);
 __decorate([
-    (0, class_validator_1.IsEmail)()
-], OtpValidate.prototype, "email", void 0);
+    (0, class_validator_1.IsNumber)()
+], OtpValidate.prototype, "phoneNumber", void 0);
 exports.OtpValidate = OtpValidate;

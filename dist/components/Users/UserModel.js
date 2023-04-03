@@ -3,7 +3,6 @@
  * UserModel.ts
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema({
     firstName: {
@@ -12,9 +11,7 @@ const userSchema = new mongoose.Schema({
         dafault: "",
     },
     lastName: {
-        type: String,
-        required: [true, "Missing 'lastName' field."],
-        dafault: "",
+        type: String
     },
     email: {
         type: String,
@@ -23,26 +20,7 @@ const userSchema = new mongoose.Schema({
         lowercase: true,
         match: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     },
-    emailVerified: { type: Boolean, default: false },
-    password: {
-        type: String,
-        required: true,
-        minlength: 8,
-        set: function (value) {
-            if (value.length < 8) {
-                return undefined;
-            }
-            // check if the password contains a number
-            let numberTest = /[0-9]/;
-            if (!numberTest.test(value)) {
-                return undefined;
-            }
-            return bcrypt.hashSync(value, bcrypt.genSaltSync(9));
-        },
-        validate: function () {
-            return !!this.password;
-        },
-    },
+    phoneVerified: { type: Boolean, default: false },
     phoneNumber: {
         type: String,
         unique: true,

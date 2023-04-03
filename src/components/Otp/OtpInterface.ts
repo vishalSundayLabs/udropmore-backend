@@ -3,7 +3,7 @@ import IUser from "../Users/UserInterface";
 
 export interface IOtpValidate {
   uid: string;
-  email: string;
+  phoneNumber: string;
   code: string;
 }
 

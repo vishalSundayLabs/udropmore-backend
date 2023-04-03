@@ -25,7 +25,7 @@ const LoginClass_1 = require("../Login/LoginClass");
 const OtpValidate_1 = require("./OtpValidate");
 let confirmOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let otpValidate = new OtpValidate_1.OtpValidate();
-    otpValidate.email = req.body.email;
+    otpValidate.phoneNumber = req.body.phoneNumber;
     otpValidate.code = req.body.code;
     try {
         let result = yield (0, ValidatorHelper_1.validateJson)(otpValidate);

@@ -8,7 +8,7 @@ import IOtp from "./OtpInterface";
 const otpSchema = new mongoose.Schema(
   {
     uid: { type: mongoose.Types.ObjectId, ref: "user" },
-    email: { type: String, lowercase: true, trim: true },
+    phoneNumber: { type: Number},
     code: { type: Number },
   },
   {

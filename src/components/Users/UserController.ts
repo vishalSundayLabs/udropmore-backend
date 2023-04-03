@@ -27,11 +27,12 @@ import { validateJson } from "../../helpers/ValidatorHelper";
 
 export let SignUp = async (req: Request, res: Response) => {
   try {
-    let user: IUser = await UserModel.findOne({ email: req.body.email });
+    let user: IUser = await UserModel.findOne({ phoneNumber: req.body.phoneNumber });
     if (user) {
       let response = new ResponseError({
-        error: "Email already exists.",
-        message: "Email already exists.",
+        error: "phone Number already exists.",
+        message: "phone Number already exists.",
+        isActive:user.isActive
       });
       return res.status(409).send(response);
     }
@@ -47,28 +48,35 @@ export let SignUp = async (req: Request, res: Response) => {
   let userValidate: UserCreate = new UserCreate();
   userValidate.firstName = req.body.firstName;
   userValidate.lastName = req.body.lastName;
-  userValidate.email = req.body.email;
-  userValidate.password = req.body.password;
+
+  if(req.body.email){
+    userValidate.email = req.body.email;
+  }
+  // userValidate.password = req.body.password;
   userValidate.userType = req.body.userType; 
   userValidate.phoneNumber = req.body.phoneNumber              
-  
-
-  try {
-    let result = await validateJson(userValidate);
-  } catch (e) {
-    let response = new ResponseError(e);
-    return res.status(404).send(response);
+  if(userValidate.userType=='ONI_ADMIN' || userValidate.userType=='MOTHER'){
+    userValidate.isActive = true;
+  }else{
+    userValidate.isActive = false;
   }
+
+  // try {
+  //   // let result = await validateJson(userValidate);
+  // } catch (e) {
+  //   let response = new ResponseError(e);
+  //   return res.status(404).send(response);
+  // }
 
   try {
     let userDb: IUser = new UserModel(userValidate);
     let userRecord: IUser = await userDb.save();
-    let otpDb = new OtpModel({
-      uid: userRecord._id,
-      email: req.body.email,
-      code: code,
-    });
-    await otpDb.save();
+    // let otpDb = new OtpModel({
+    //   uid: userRecord._id,
+    //   phoneNumber: req.body.phoneNumber,
+    //   code: code,
+    // });
+    // await otpDb.save();
     let response = new UserResponseSuccess({
       user: userRecord,
     });

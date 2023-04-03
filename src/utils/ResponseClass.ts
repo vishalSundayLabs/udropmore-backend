@@ -2,12 +2,14 @@ export interface ResponseErrorOptions {
   success?: boolean;
   error?: string;
   message?: string;
+  isActive?:boolean;
 }
 
 export class ResponseError {
   success: boolean = false;
   error: string = "An error occured";
   message: string = "An error occured";
+  isActive:boolean = false;
   constructor(options: ResponseErrorOptions) {
     if (options.success) {
       this.success = options.success;
@@ -17,6 +19,9 @@ export class ResponseError {
     }
     if (options.message) {
       this.message = options.message;
+    }
+    if (options.isActive) {
+      this.isActive = options.isActive;
     }
   }
 }

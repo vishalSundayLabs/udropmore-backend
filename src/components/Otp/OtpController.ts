@@ -25,7 +25,7 @@ import { OtpValidate } from "./OtpValidate";
 
 export let confirmOtp = async (req: Request, res: Response) => {
   let otpValidate: OtpValidate = new OtpValidate();
-  otpValidate.email = req.body.email;
+  otpValidate.phoneNumber = req.body.phoneNumber;
   otpValidate.code = req.body.code;
 
   try {

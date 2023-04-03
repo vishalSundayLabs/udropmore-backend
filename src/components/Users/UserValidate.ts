@@ -9,6 +9,7 @@ import {
   IsMongoId,
   IsNotEmpty,
   IsOptional,
+  IsBoolean,
 } from "class-validator";
 
 export class Create {
@@ -20,20 +21,23 @@ export class Create {
   @IsString()
   lastName: string;
 
-  @IsNotEmpty({ message: "email should not be empty" })
+  // @IsNotEmpty({ message: "email should not be empty" })
   @IsEmail()
   email: string;
 
-  @IsNotEmpty()
-  @IsString()
-  @MinLength(8)
-  password: string;
+  // @IsNotEmpty()
+  // @IsString()
+  // @MinLength(8)
+  // password: string;
+  @IsBoolean()
+  isActive:boolean
 
+  
   @IsNotEmpty()
   @IsString()
   userType:string;
 
-  @IsNotEmpty({ message: "email should not be empty" })
+  @IsNotEmpty({ message: "phone number should not be empty" })
   phoneNumber:string;
 
 }

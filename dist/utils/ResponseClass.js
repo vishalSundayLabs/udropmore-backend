@@ -6,6 +6,7 @@ class ResponseError {
         this.success = false;
         this.error = "An error occured";
         this.message = "An error occured";
+        this.isActive = false;
         if (options.success) {
             this.success = options.success;
         }
@@ -14,6 +15,9 @@ class ResponseError {
         }
         if (options.message) {
             this.message = options.message;
+        }
+        if (options.isActive) {
+            this.isActive = options.isActive;
         }
     }
 }

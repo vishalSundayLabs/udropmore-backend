@@ -15,20 +15,19 @@ const utility_1 = require("../../utils/utility");
 // helpers
 // models
 const UserModel_1 = require("./UserModel");
-const OtpModel_1 = require("../Otp/OtpModel");
 // classes
 const ResponseClass_1 = require("../../utils/ResponseClass");
 const UserClass_1 = require("./UserClass");
 // validation
 const UserValidate_1 = require("./UserValidate");
-const ValidatorHelper_1 = require("../../helpers/ValidatorHelper");
 let SignUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let user = yield UserModel_1.default.findOne({ email: req.body.email });
+        let user = yield UserModel_1.default.findOne({ phoneNumber: req.body.phoneNumber });
         if (user) {
             let response = new ResponseClass_1.ResponseError({
-                error: "Email already exists.",
-                message: "Email already exists.",
+                error: "phone Number already exists.",
+                message: "phone Number already exists.",
+                isActive: user.isActive
             });
             return res.status(409).send(response);
         }
@@ -44,26 +43,33 @@ let SignUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let userValidate = new UserValidate_1.Create();
     userValidate.firstName = req.body.firstName;
     userValidate.lastName = req.body.lastName;
-    userValidate.email = req.body.email;
-    userValidate.password = req.body.password;
+    if (req.body.email) {
+        userValidate.email = req.body.email;
+    }
+    // userValidate.password = req.body.password;
     userValidate.userType = req.body.userType;
     userValidate.phoneNumber = req.body.phoneNumber;
-    try {
-        let result = yield (0, ValidatorHelper_1.validateJson)(userValidate);
+    if (userValidate.userType == 'ONI_ADMIN' || userValidate.userType == 'MOTHER') {
+        userValidate.isActive = true;
     }
-    catch (e) {
-        let response = new ResponseClass_1.ResponseError(e);
-        return res.status(404).send(response);
+    else {
+        userValidate.isActive = false;
     }
+    // try {
+    //   // let result = await validateJson(userValidate);
+    // } catch (e) {
+    //   let response = new ResponseError(e);
+    //   return res.status(404).send(response);
+    // }
     try {
         let userDb = new UserModel_1.default(userValidate);
         let userRecord = yield userDb.save();
-        let otpDb = new OtpModel_1.default({
-            uid: userRecord._id,
-            email: req.body.email,
-            code: code,
-        });
-        yield otpDb.save();
+        // let otpDb = new OtpModel({
+        //   uid: userRecord._id,
+        //   phoneNumber: req.body.phoneNumber,
+        //   code: code,
+        // });
+        // await otpDb.save();
         let response = new UserClass_1.UserResponseSuccess({
             user: userRecord,
         });
