@@ -44,27 +44,22 @@ exports.getUser = getUser;
 const userUpdate = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     const reqData = {};
-    if (body.firstName) {
+    if (body.firstName)
         reqData.firstName = body.firstName;
-    }
-    if (body.lastName) {
+    if (body.lastName)
         reqData.lastName = body.lastName;
-    }
-    if (body.email) {
+    if (body.email)
         reqData.email = body.email;
-    }
-    if (body.userType) {
+    if (body.userType)
         reqData.userType = body.userType;
-    }
-    if (body.isActive) {
+    if (body.isActive)
         reqData.isActive = body.isActive;
-    }
     try {
         reqData.updatedBy = req.userId;
         yield UserModel_1.default.findOneAndUpdate({ phoneNumber: body.phoneNumber }, { $set: reqData });
         return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
-            message: "User Update successfully"
+            message: "User Update successfully",
         }));
     }
     catch (error) {

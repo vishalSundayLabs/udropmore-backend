@@ -8,7 +8,7 @@ const tokenVerify_1 = require("../../middleware/tokenVerify");
 const AuthController = require("./AuthController");
 const router = (0, express_1.Router)();
 //send otp
-router.post("/sendotp", AuthController.loginByOtp);
+router.post("/sendotp", AuthController.sendOtp);
 //verify the otp
 router.post('/verifyOtp', AuthController.validateOtp);
 //logout

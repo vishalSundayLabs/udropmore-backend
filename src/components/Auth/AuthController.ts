@@ -18,8 +18,10 @@ import { compareObjectKeys } from "../../utils/CompareObjectKeys";
 import { HTTP_BAD_REQUEST, HTTP_INTERNAL_SERVER_ERROR, HTTP_NOT_FOUND, HTTP_OK, INCORRECT_BODY_FORMAT_MESSAGE } from "../../utils/Constants";
 import { createOtp } from "../../utils/CreateOtp";
 import { validateOtpBody } from "./req_body/ValidateOtp";
+import AuthSession from "./AuthSession";
 
-export const loginByOtp = async (req: Request, res: Response) => {
+
+export const sendOtp = async (req: Request, res: Response) => {
 
     const body = req.body;
 
@@ -33,10 +35,6 @@ export const loginByOtp = async (req: Request, res: Response) => {
     try {
 
         var user = await UserModel.findOne({ phoneNumber: body.phoneNumber, platform: body.platform }).exec();
-        if (!user && body.platform == 'MOTHER') {
-            const newUser = await UserModel.create({ phoneNumber: body.phoneNumber, userType: "MOTHER", platform: body.platform })
-            user = newUser
-        }
 
         if (!user || user.platform != 'MOTHER') {
             return res.status(HTTP_NOT_FOUND).send(new ResponseError({
@@ -89,12 +87,23 @@ export const validateOtp = async (req: Request, res: Response) => {
 
         //create jwt token
 
-        const user = await UserModel.findOne({ _id: otp[0].userId, phoneNumber: otp[0].phoneNumber });
+        var user = await UserModel.findOne({ _id: otp[0].userId, phoneNumber: otp[0].phoneNumber });
+        if (!user && body.platform == 'MOTHER') {
+            const newUser = await UserModel.create({ phoneNumber: body.phoneNumber, userType: "MOTHER", platform: body.platform })
+            user = newUser
+        }
+
         const jwtToken = jwt.sign({ userId: user._id, userType: user.userType, platform: user.platform }, process.env.JWTSECRET, {
             expiresIn: process.env.JWTEXPIRESIN
         })
+
         user.jwtToken = jwtToken;
+
         await user.save()
+
+        // create the auth session with token
+        await AuthSession.create({ userId: user._id, jwtToken: jwtToken, isActive: true })
+
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: "Login successful",
@@ -108,7 +117,8 @@ export const validateOtp = async (req: Request, res: Response) => {
         console.log(error)
         return res.status(HTTP_INTERNAL_SERVER_ERROR).send(new ResponseError({
             success: false,
-            message: "Internal server error!"
+            message: "Internal server error!",
+            error: error
         }))
     }
 
@@ -120,6 +130,9 @@ export const logout = async (req, res) => {
         const user = await UserModel.findOne({ _id: req.userId, platform: req.platform, userType: req.userType })
         user.jwtToken = null;
         await user.save()
+        
+        await AuthSession.findOneAndUpdate({ userId: user._id, jwtToken: user.jwtToken, isActive: true }, { $set: { isActive: false } })
+        
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: "Logout successful"
@@ -128,7 +141,8 @@ export const logout = async (req, res) => {
         console.log(error)
         return res.status(HTTP_INTERNAL_SERVER_ERROR).send(new ResponseError({
             success: false,
-            message: "Internal server error!"
+            message: "Internal server error!",
+            error: error
         }))
     }
 

@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.logout = exports.validateOtp = exports.loginByOtp = void 0;
+exports.logout = exports.validateOtp = exports.sendOtp = void 0;
 // models
 const UserModel_1 = require("../Users/UserModel");
 const OtpModel_1 = require("../Otp/OtpModel");
@@ -22,7 +22,8 @@ const CompareObjectKeys_1 = require("../../utils/CompareObjectKeys");
 const Constants_1 = require("../../utils/Constants");
 const CreateOtp_1 = require("../../utils/CreateOtp");
 const ValidateOtp_1 = require("./req_body/ValidateOtp");
-const loginByOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const AuthSession_1 = require("./AuthSession");
+const sendOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     if ((0, CompareObjectKeys_1.compareObjectKeys)(body, LoginOtp_1.loginOtpBody)) {
         return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseBodyFormatError({
@@ -32,10 +33,6 @@ const loginByOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
     try {
         var user = yield UserModel_1.default.findOne({ phoneNumber: body.phoneNumber, platform: body.platform }).exec();
-        if (!user && body.platform == 'MOTHER') {
-            const newUser = yield UserModel_1.default.create({ phoneNumber: body.phoneNumber, userType: "MOTHER", platform: body.platform });
-            user = newUser;
-        }
         if (!user || user.platform != 'MOTHER') {
             return res.status(Constants_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
                 message: "User Not found. Please contact your admin"
@@ -64,7 +61,7 @@ const loginByOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         }));
     }
 });
-exports.loginByOtp = loginByOtp;
+exports.sendOtp = sendOtp;
 const validateOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     if ((0, CompareObjectKeys_1.compareObjectKeys)(body, ValidateOtp_1.validateOtpBody)) {
@@ -83,12 +80,18 @@ const validateOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             }));
         }
         //create jwt token
-        const user = yield UserModel_1.default.findOne({ _id: otp[0].userId, phoneNumber: otp[0].phoneNumber });
+        var user = yield UserModel_1.default.findOne({ _id: otp[0].userId, phoneNumber: otp[0].phoneNumber });
+        if (!user && body.platform == 'MOTHER') {
+            const newUser = yield UserModel_1.default.create({ phoneNumber: body.phoneNumber, userType: "MOTHER", platform: body.platform });
+            user = newUser;
+        }
         const jwtToken = jwt.sign({ userId: user._id, userType: user.userType, platform: user.platform }, process.env.JWTSECRET, {
             expiresIn: process.env.JWTEXPIRESIN
         });
         user.jwtToken = jwtToken;
         yield user.save();
+        // create the auth session with token
+        yield AuthSession_1.default.create({ userId: user._id, jwtToken: jwtToken, isActive: true });
         return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "Login successful",
@@ -102,7 +105,8 @@ const validateOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         console.log(error);
         return res.status(Constants_1.HTTP_INTERNAL_SERVER_ERROR).send(new ResponseClass_1.ResponseError({
             success: false,
-            message: "Internal server error!"
+            message: "Internal server error!",
+            error: error
         }));
     }
 });
@@ -112,6 +116,7 @@ const logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const user = yield UserModel_1.default.findOne({ _id: req.userId, platform: req.platform, userType: req.userType });
         user.jwtToken = null;
         yield user.save();
+        yield AuthSession_1.default.findOneAndUpdate({ userId: user._id, jwtToken: user.jwtToken, isActive: true }, { $set: { isActive: false } });
         return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "Logout successful"
@@ -121,7 +126,8 @@ const logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         console.log(error);
         return res.status(Constants_1.HTTP_INTERNAL_SERVER_ERROR).send(new ResponseClass_1.ResponseError({
             success: false,
-            message: "Internal server error!"
+            message: "Internal server error!",
+            error: error
         }));
     }
 });

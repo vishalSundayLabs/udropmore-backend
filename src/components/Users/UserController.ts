@@ -19,7 +19,6 @@ import { HTTP_OK } from "../../utils/Constants";
 export let getUser = async (req: RequestWithUser, res: Response) => {
   try {
     let uid: string = req.userId;
-
     let userInfo: IUser = await UserModel.findOne({ _id: uid });
 
     if (!userInfo) {
@@ -35,7 +34,9 @@ export let getUser = async (req: RequestWithUser, res: Response) => {
       message: "Success",
       user: { ...userInfo.toJSON() },
     });
+
   } catch (error) {
+
     let response = new ResponseError({
       message: "Something went wrong",
       error: error.message,
@@ -46,29 +47,26 @@ export let getUser = async (req: RequestWithUser, res: Response) => {
 };
 
 export const userUpdate = async (req, res) => {
+
   const body = req.body
   const reqData: any | string = {}
-  if (body.firstName) {
-    reqData.firstName = body.firstName
-  }
-  if (body.lastName) {
-    reqData.lastName = body.lastName
-  }
-  if (body.email) {
-    reqData.email = body.email
-  }
-  if (body.userType) {
-    reqData.userType = body.userType
-  }
-  if (body.isActive) {
-    reqData.isActive = body.isActive
-  }
+
+  if (body.firstName) reqData.firstName = body.firstName
+
+  if (body.lastName) reqData.lastName = body.lastName
+
+  if (body.email) reqData.email = body.email
+
+  if (body.userType) reqData.userType = body.userType
+  
+  if (body.isActive) reqData.isActive = body.isActive
+
   try {
     reqData.updatedBy = req.userId;
     await UserModel.findOneAndUpdate({ phoneNumber: body.phoneNumber }, { $set: reqData })
     return res.status(HTTP_OK).send(new ResponseSuccess({
       success: true,
-      message: "User Update successfully"
+      message: "User Update successfully",
     }))
   } catch (error) {
     console.log(error.message)

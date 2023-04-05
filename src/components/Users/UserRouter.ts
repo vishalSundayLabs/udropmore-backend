@@ -8,7 +8,7 @@ import * as userController from "./UserController";
 
 const router = Router();
 
-router.get('/find',verifyToken,userController.getUser)
-router.put('/update',userController.userUpdate)
+router.get('/find', verifyToken, userController.getUser)
+router.put('/update', verifyToken, userController.userUpdate)
 
 export default router;
