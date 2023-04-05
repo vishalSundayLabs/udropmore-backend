@@ -10,7 +10,6 @@ const userSchema = new mongoose.Schema(
   {
     firstName: {
       type: String,
-      required: [true, "Missing 'firstName' field."],
       dafault: "",
     },
     lastName: {
@@ -26,25 +25,25 @@ const userSchema = new mongoose.Schema(
     emailVerified: { type: Boolean, default: false },
     phoneNumber: { 
       type: String,
-      unique:true,
-      require:[true,"Missing 'phoneNumber' field."],
+      unique: true,
+      require: [true,"Missing 'phone number' field."],
     },
-    userType:{
-      type:String,
-      enum:['DOCTOR','MOTHER','HOSPITAL_ADMIN','NURSES','ONI_ADMIN']
+    userType: {
+      type: String,
+      enum: ['DOCTOR','MOTHER','HOSPITAL_ADMIN','NURSES','ONI_ADMIN'],
+      default:"MOTHER"
+    },
+    platform: {
+      type: String,
+      enum: ['DOCTOR', 'MOTHER', 'ADMIN'],
     },
     isActive: { type: Boolean, default: true },
-    waId:{
-      type:String,
-      require:true
+    isDeleted: {
+      type: Boolean,
+      default: false
     },
-    waToken:{
+    jwtToken:{
       type:String,
-      require:true
-    },
-    isDeleted:{
-      type:Boolean,
-      default:false
     },
     createdBy:{
       type:mongoose.SchemaTypes.ObjectId
@@ -64,4 +63,4 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model<IUser>("user", userSchema);
+export default mongoose.model<IUser>("User", userSchema);

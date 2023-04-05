@@ -7,71 +7,18 @@ import UserModel from "./UserModel";
 import IUser, { RequestWithUser } from "./UserInterface";
 
 // classes
-import { ResponseError } from "../../utils/ResponseClass";
+import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass";
 import { UserResponseSuccess } from "./UserClass";
-
+import { SaveOptions } from 'mongoose'
 // validation
 import {
   Create as UserCreate,
 } from "./UserValidate";
-
-export let SignUp = async (req: Request, res: Response) => {
-  try {
-    let user: IUser = await UserModel.findOne({ phoneNumber: req.body.waNumber });
-    if (user) {
-      let response = new ResponseError({
-        error: "phone Number already exists.",
-        message: "phone Number already exists.",
-        isActive: user.isActive
-      });
-      return res.status(409).send(response);
-    }
-  } catch (error) {
-    let response = new ResponseError({
-      message: "Something went wrong",
-      error: error.message,
-    });
-    return res.status(500).send(response);
-  }
-
-  let userValidate: UserCreate = new UserCreate();
-  userValidate.firstName = req.body.waName;
-  userValidate.lastName = req.body.lastName;
-  userValidate.userType = req.body.userType;
-  userValidate.phoneNumber = req.body.waNumber
-  userValidate.waId = req.body.waId;
-  userValidate.waToken = req.body.token;
-
-  if (req.body.email) {
-    userValidate.email = req.body.email;
-  }
-
-  if (userValidate.userType == 'ONI_ADMIN' || userValidate.userType == 'MOTHER') {
-    userValidate.isActive = true;
-  } else {
-    userValidate.isActive = false;
-  }
-
-  try {
-    let userDb: IUser = new UserModel(userValidate);
-    let userRecord: IUser = await userDb.save();
-    let response = new UserResponseSuccess({
-      user: userRecord,
-    });
-
-    return res.status(201).json(response);
-  } catch (error) {
-    let response = new ResponseError({
-      message: "Something went wrong",
-      error: error.message,
-    });
-    return res.status(500).send(response);
-  }
-};
+import { HTTP_OK } from "../../utils/Constants";
 
 export let getUser = async (req: RequestWithUser, res: Response) => {
   try {
-    let uid: string = req.user._id;
+    let uid: string = req.userId;
 
     let userInfo: IUser = await UserModel.findOne({ _id: uid });
 
@@ -98,3 +45,38 @@ export let getUser = async (req: RequestWithUser, res: Response) => {
   }
 };
 
+export const userUpdate = async (req, res) => {
+  const body = req.body
+  const reqData: any | string = {}
+  if (body.firstName) {
+    reqData.firstName = body.firstName
+  }
+  if (body.lastName) {
+    reqData.lastName = body.lastName
+  }
+  if (body.email) {
+    reqData.email = body.email
+  }
+  if (body.userType) {
+    reqData.userType = body.userType
+  }
+  if (body.isActive) {
+    reqData.isActive = body.isActive
+  }
+  try {
+    reqData.updatedBy = req.userId;
+    await UserModel.findOneAndUpdate({ phoneNumber: body.phoneNumber }, { $set: reqData })
+    return res.status(HTTP_OK).send(new ResponseSuccess({
+      success: true,
+      message: "User Update successfully"
+    }))
+  } catch (error) {
+    console.log(error.message)
+    let response = new ResponseError({
+      message: "Something went wrong",
+      error: error.message,
+    });
+
+    return res.status(500).json(response);
+  }
+}

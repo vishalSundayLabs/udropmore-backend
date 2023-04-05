@@ -4,8 +4,14 @@
 
 import { Router } from "express";
 import * as path from "path";
-import * as otpController from "./AuthController";
+import { verifyToken } from "../../middleware/tokenVerify";
+import * as AuthController from "./AuthController";
 
 const router = Router();
-
+//send otp
+router.post("/sendotp", AuthController.loginByOtp);
+//verify the otp
+router.post('/verifyOtp', AuthController.validateOtp);
+//logout
+router.put("/logout", verifyToken, AuthController.logout)
 export default router;

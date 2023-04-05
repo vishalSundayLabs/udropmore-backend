@@ -9,69 +9,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUser = exports.SignUp = void 0;
+exports.userUpdate = exports.getUser = void 0;
 // models
 const UserModel_1 = require("./UserModel");
 // classes
 const ResponseClass_1 = require("../../utils/ResponseClass");
-const UserClass_1 = require("./UserClass");
-// validation
-const UserValidate_1 = require("./UserValidate");
-let SignUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        let user = yield UserModel_1.default.findOne({ phoneNumber: req.body.waNumber });
-        if (user) {
-            let response = new ResponseClass_1.ResponseError({
-                error: "phone Number already exists.",
-                message: "phone Number already exists.",
-                isActive: user.isActive
-            });
-            return res.status(409).send(response);
-        }
-    }
-    catch (error) {
-        let response = new ResponseClass_1.ResponseError({
-            message: "Something went wrong",
-            error: error.message,
-        });
-        return res.status(500).send(response);
-    }
-    let userValidate = new UserValidate_1.Create();
-    userValidate.firstName = req.body.waName;
-    userValidate.lastName = req.body.lastName;
-    userValidate.userType = req.body.userType;
-    userValidate.phoneNumber = req.body.waNumber;
-    userValidate.waId = req.body.waId;
-    userValidate.waToken = req.body.token;
-    if (req.body.email) {
-        userValidate.email = req.body.email;
-    }
-    if (userValidate.userType == 'ONI_ADMIN' || userValidate.userType == 'MOTHER') {
-        userValidate.isActive = true;
-    }
-    else {
-        userValidate.isActive = false;
-    }
-    try {
-        let userDb = new UserModel_1.default(userValidate);
-        let userRecord = yield userDb.save();
-        let response = new UserClass_1.UserResponseSuccess({
-            user: userRecord,
-        });
-        return res.status(201).json(response);
-    }
-    catch (error) {
-        let response = new ResponseClass_1.ResponseError({
-            message: "Something went wrong",
-            error: error.message,
-        });
-        return res.status(500).send(response);
-    }
-});
-exports.SignUp = SignUp;
+const Constants_1 = require("../../utils/Constants");
 let getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let uid = req.user._id;
+        let uid = req.userId;
         let userInfo = yield UserModel_1.default.findOne({ _id: uid });
         if (!userInfo) {
             return res.status(404).json({
@@ -95,3 +41,39 @@ let getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getUser = getUser;
+const userUpdate = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const body = req.body;
+    const reqData = {};
+    if (body.firstName) {
+        reqData.firstName = body.firstName;
+    }
+    if (body.lastName) {
+        reqData.lastName = body.lastName;
+    }
+    if (body.email) {
+        reqData.email = body.email;
+    }
+    if (body.userType) {
+        reqData.userType = body.userType;
+    }
+    if (body.isActive) {
+        reqData.isActive = body.isActive;
+    }
+    try {
+        reqData.updatedBy = req.userId;
+        yield UserModel_1.default.findOneAndUpdate({ phoneNumber: body.phoneNumber }, { $set: reqData });
+        return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "User Update successfully"
+        }));
+    }
+    catch (error) {
+        console.log(error.message);
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.userUpdate = userUpdate;

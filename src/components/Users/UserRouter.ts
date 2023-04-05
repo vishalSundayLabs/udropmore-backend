@@ -3,10 +3,12 @@
  */
 
 import { Router } from "express";
+import { verifyToken } from "../../middleware/tokenVerify";
 import * as userController from "./UserController";
 
 const router = Router();
 
-router.post("/SignUp", userController.SignUp);
+router.get('/find',verifyToken,userController.getUser)
+router.put('/update',userController.userUpdate)
 
 export default router;

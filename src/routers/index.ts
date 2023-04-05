@@ -5,12 +5,11 @@
 
 import { Router } from "express";
 import userRouter from "../components/Users/UserRouter";
-import otpRouter from "../components/Auth/AuthRouter";
-
+import authRouter from "../components/Auth/AuthRouter"
 
 const router = Router();
 
 router.use("/v1/users", userRouter);
-router.use("/v1/otp", otpRouter);
+router.use('/v1/auth',authRouter)
 
 export default router;
