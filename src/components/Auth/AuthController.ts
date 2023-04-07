@@ -99,7 +99,7 @@ export const validateOtp = async (req: Request, res: Response) => {
 
         user.jwtToken = jwtToken;
 
-        await user.save()
+        await user.save()  
 
         // create the auth session with token
         await AuthSession.create({ userId: user._id, jwtToken: jwtToken, isActive: true })
