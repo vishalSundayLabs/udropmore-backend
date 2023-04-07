@@ -36,7 +36,7 @@ export const sendOtp = async (req: Request, res: Response) => {
 
         var user = await UserModel.findOne({ phoneNumber: body.phoneNumber, platform: body.platform }).exec();
 
-        if (!user && user.platform != 'MOTHER') {
+        if (!user && body.platform != 'MOTHER') {
             return res.status(HTTP_NOT_FOUND).send(new ResponseError({
                 message: "User Not found. Please contact your admin"
             }))
