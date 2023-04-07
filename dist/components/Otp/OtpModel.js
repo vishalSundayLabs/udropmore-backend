@@ -2,15 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require("mongoose");
 const OtpSchema = new mongoose.Schema({
-    userId: {
-        type: mongoose.SchemaTypes.ObjectId,
-    },
     otp: {
         type: Number,
         required: true
     },
     phoneNumber: {
-        type: Number
+        type: String
     },
     isExpired: {
         type: Boolean,

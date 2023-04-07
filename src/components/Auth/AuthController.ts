@@ -45,7 +45,7 @@ export const sendOtp = async (req: Request, res: Response) => {
         const otp = createOtp()
         const text = `Dear customer, use this One Time Password (${otp}) to log in to your Onicare account. This OTP will be valid for the next 30 Sec.`
         //create otp 
-        await OtpModel.create({ userId: user._id, phoneNumber: user.phoneNumber, otp: otp });
+        await OtpModel.create({ phoneNumber: body.phoneNumber, otp: otp });
         //send otp
         sendWaOtp(body.phoneNumber, text)
             .then((response) => {
@@ -60,7 +60,7 @@ export const sendOtp = async (req: Request, res: Response) => {
     } catch (error) {
         return res.status(HTTP_INTERNAL_SERVER_ERROR).send(new ResponseError({
             message: "Something went wrong",
-            error: error
+            error: error.message
         }))
     }
 }
@@ -85,10 +85,10 @@ export const validateOtp = async (req: Request, res: Response) => {
             }))
         }
 
-        //create jwt token
+        //create jwt token  
 
-        var user = await UserModel.findOne({ _id: otp[0].userId, phoneNumber: otp[0].phoneNumber });
-        if (!user && body.platform == 'MOTHER') {
+        var user = await UserModel.findOne({ phoneNumber: otp[0].phoneNumber });
+        if (!user || body.platform == 'MOTHER') {
             const newUser = await UserModel.create({ phoneNumber: body.phoneNumber, userType: "MOTHER", platform: body.platform })
             user = newUser
         }

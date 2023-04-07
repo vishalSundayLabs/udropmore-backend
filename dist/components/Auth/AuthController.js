@@ -41,7 +41,7 @@ const sendOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const otp = (0, CreateOtp_1.createOtp)();
         const text = `Dear customer, use this One Time Password (${otp}) to log in to your Onicare account. This OTP will be valid for the next 30 Sec.`;
         //create otp 
-        yield OtpModel_1.default.create({ userId: user._id, phoneNumber: user.phoneNumber, otp: otp });
+        yield OtpModel_1.default.create({ phoneNumber: body.phoneNumber, otp: otp });
         //send otp
         (0, TpiServices_1.sendWaOtp)(body.phoneNumber, text)
             .then((response) => {
@@ -57,7 +57,7 @@ const sendOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     catch (error) {
         return res.status(Constants_1.HTTP_INTERNAL_SERVER_ERROR).send(new ResponseClass_1.ResponseError({
             message: "Something went wrong",
-            error: error
+            error: error.message
         }));
     }
 });
@@ -79,9 +79,9 @@ const validateOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
                 message: message
             }));
         }
-        //create jwt token
-        var user = yield UserModel_1.default.findOne({ _id: otp[0].userId, phoneNumber: otp[0].phoneNumber });
-        if (!user && body.platform == 'MOTHER') {
+        //create jwt token  
+        var user = yield UserModel_1.default.findOne({ phoneNumber: otp[0].phoneNumber });
+        if (!user || body.platform == 'MOTHER') {
             const newUser = yield UserModel_1.default.create({ phoneNumber: body.phoneNumber, userType: "MOTHER", platform: body.platform });
             user = newUser;
         }

@@ -1,15 +1,12 @@
 import * as mongoose from 'mongoose'
 
 const OtpSchema = new mongoose.Schema({
-    userId:{
-        type:mongoose.SchemaTypes.ObjectId,
-    },
     otp:{
         type:Number,
         required:true
     },
     phoneNumber:{
-        type:Number
+        type:String
     },
     isExpired:{
         type:Boolean,
