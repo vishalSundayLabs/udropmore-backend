@@ -33,7 +33,7 @@ const sendOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
     try {
         var user = yield UserModel_1.default.findOne({ phoneNumber: body.phoneNumber, platform: body.platform }).exec();
-        if (!user && user.platform != 'MOTHER') {
+        if (!user && body.platform != 'MOTHER') {
             return res.status(Constants_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
                 message: "User Not found. Please contact your admin"
             }));
