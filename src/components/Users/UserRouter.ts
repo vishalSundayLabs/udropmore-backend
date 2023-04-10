@@ -11,7 +11,9 @@ const router = Router();
 //find all user 
 router.get('/find', verifyToken, userController.getUser)
 //update user
-router.put('/update', verifyToken, userController.userUpdate)
+router.put('/update/:id', verifyToken, isAdmin, userController.userUpdate)
+//update mother
+router.put('/updateMother', userController.updateMother)
 //create new user
 router.post('/createuser', verifyToken, isAdmin, userController.createUser)
 //delete user

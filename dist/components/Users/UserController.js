@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteUser = exports.userUpdate = exports.createUser = exports.getUser = void 0;
+exports.deleteUser = exports.userUpdate = exports.updateMother = exports.createUser = exports.getUser = void 0;
 // models
 const UserModel_1 = require("./UserModel");
 // classes
@@ -95,7 +95,7 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.createUser = createUser;
-const userUpdate = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const updateMother = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     const reqData = {};
     if (body.firstName)
@@ -114,6 +114,91 @@ const userUpdate = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "User Update successfully",
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.updateMother = updateMother;
+const userUpdate = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const userId = req.params.id;
+    const body = req.body;
+    try {
+        const user = yield UserModel_1.default.findOne({ _id: userId, isDeleted: false });
+        if (!user) {
+            return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+                success: false,
+                message: "user does not exist!"
+            }));
+        }
+        if (body.firstName) {
+            user.firstName = body.firstName;
+        }
+        if (body.lastName) {
+            user.lastName = body.lastName;
+        }
+        if (body.middleName) {
+            user.middleName = body.middleName;
+        }
+        if (body.email) {
+            user.email = body.email;
+        }
+        if (body.phoneNumber) {
+            user.phoneNumber = body.phoneNumber;
+        }
+        if (body.userType) {
+            user.userType = body.userType;
+        }
+        if (body.platform) {
+            user.platform = body.platform;
+        }
+        if (body.registrationDetails) {
+            user.registrationDetails = body.registrationDetails;
+        }
+        if (body.degree) {
+            user.degree = body.degree;
+        }
+        if (body.speciality) {
+            user.speciality = body.speciality;
+        }
+        if (body.awards) {
+            user.awards = body.awards;
+        }
+        if (body.experience) {
+            user.experience = body.experience;
+        }
+        if (body.consultationFeeDetails) {
+            user.consultationFeeDetails = body.consultationFeeDetails;
+        }
+        if (body.clinic) {
+            user.clinic = body.clinic;
+        }
+        if (body.memberships) {
+            user.memberships = body.memberships;
+        }
+        if (body.gallery) {
+            user.gallery = body.gallery;
+        }
+        if (body.services) {
+            user.services = body.services;
+        }
+        if (body.availability) {
+            user.availability = body.availability;
+        }
+        if (body.status) {
+            user.status = body.status;
+        }
+        user.updatedBy = req.userId;
+        yield user.save();
+        return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "User Update successfully",
+            result: user
         }));
     }
     catch (error) {

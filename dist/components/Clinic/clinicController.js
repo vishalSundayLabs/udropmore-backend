@@ -21,7 +21,8 @@ const createClinic = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         longitude: body.longitude,
         address: body.address,
         googleMapLink: body.googleMapLink,
-        status: body.status
+        status: body.status,
+        createdBy: req.userId
     };
     try {
         const clinic = yield clinicModel_1.ClinicModel.create(reqData);
@@ -69,6 +70,7 @@ const updateClinic = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         if (body.status) {
             clinic.status = body.status;
         }
+        clinic.updatedBy = req.userId;
         yield clinic.save();
         return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,

@@ -10,11 +10,12 @@ export const createClinic = async (req, res) => {
         longitude: body.longitude,
         address: body.address,
         googleMapLink: body.googleMapLink,
-        status: body.status
+        status: body.status,
+        createdBy:req.userId
     }
     try {
         const clinic = await ClinicModel.create(reqData)
-
+  
         return res.status(HTTP_CREATED).send(new ResponseSuccess({
             success: true,
             message: "Clinic created successfully.",
@@ -60,6 +61,7 @@ export const updateClinic = async (req, res) => {
         if (body.status) {
             clinic.status = body.status
         }
+        clinic.updatedBy = req.userId
         await clinic.save()
 
         return res.status(HTTP_OK).send(new ResponseSuccess({

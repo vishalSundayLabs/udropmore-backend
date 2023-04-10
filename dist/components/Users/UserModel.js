@@ -51,7 +51,6 @@ const userSchema = new mongoose.Schema({
     },
     speciality: {
         type: [String],
-        // enum:['sp1','sp2','sp3']
     },
     awards: [{
             name: String,
@@ -122,12 +121,3 @@ const userSchema = new mongoose.Schema({
     },
 });
 exports.default = mongoose.model("User", userSchema);
-// availability : [
-//   {
-//     clinic:'clinic1',
-//     slots:[{
-//       day:"MONDAY",
-//       Slots: ["9-12",'14-16','17-18']
-//     }]
-//   }
-// ]

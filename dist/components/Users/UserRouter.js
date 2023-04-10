@@ -11,7 +11,9 @@ const router = (0, express_1.Router)();
 //find all user 
 router.get('/find', tokenVerify_1.verifyToken, userController.getUser);
 //update user
-router.put('/update', tokenVerify_1.verifyToken, userController.userUpdate);
+router.put('/update/:id', tokenVerify_1.verifyToken, isAdmin_1.isAdmin, userController.userUpdate);
+//update mother
+router.put('/updateMother', userController.updateMother);
 //create new user
 router.post('/createuser', tokenVerify_1.verifyToken, isAdmin_1.isAdmin, userController.createUser);
 //delete user
