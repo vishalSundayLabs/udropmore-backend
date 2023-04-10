@@ -66,7 +66,7 @@ export const sendOtp = async (req: Request, res: Response) => {
 }
 
 export const validateOtp = async (req: Request, res: Response) => {
-
+    
     const body = req.body;
     if (compareObjectKeys(body, validateOtpBody)) {
         return res.status(HTTP_BAD_REQUEST).send(new ResponseBodyFormatError({
@@ -74,7 +74,12 @@ export const validateOtp = async (req: Request, res: Response) => {
             bodyFormat: process.env.SHOW_BODY_FORMAT ? validateOtpBody : null
         }))
     }
-
+    if(!body.platform){
+        return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+            success:false,
+            message:"Platform is required!"
+        }))
+    }
     try {
         const otp = await OtpModel.find({ phoneNumber: body.phoneNumber }).sort({ $natural: -1 }).limit(1);
         const message = otp[0] ? otp[0].otp != body.otp ? "Invalid OTP" : isExpiredOtp(otp[0].createdAt) ? "OTP Expired. Please try again!" : null : "Invalid Phone number";
@@ -88,7 +93,7 @@ export const validateOtp = async (req: Request, res: Response) => {
         //create jwt token  
 
         var user = await UserModel.findOne({ phoneNumber: otp[0].phoneNumber });
-        if (!user || body.platform == 'MOTHER') {
+        if (!user && body.platform == 'MOTHER') {
             const newUser = await UserModel.create({ phoneNumber: body.phoneNumber, userType: "MOTHER", platform: body.platform })
             user = newUser
         }

@@ -70,6 +70,12 @@ const validateOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             bodyFormat: process.env.SHOW_BODY_FORMAT ? ValidateOtp_1.validateOtpBody : null
         }));
     }
+    if (!body.platform) {
+        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: "Platform is required!"
+        }));
+    }
     try {
         const otp = yield OtpModel_1.default.find({ phoneNumber: body.phoneNumber }).sort({ $natural: -1 }).limit(1);
         const message = otp[0] ? otp[0].otp != body.otp ? "Invalid OTP" : isExpiredOtp(otp[0].createdAt) ? "OTP Expired. Please try again!" : null : "Invalid Phone number";
@@ -81,7 +87,7 @@ const validateOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         }
         //create jwt token  
         var user = yield UserModel_1.default.findOne({ phoneNumber: otp[0].phoneNumber });
-        if (!user || body.platform == 'MOTHER') {
+        if (!user && body.platform == 'MOTHER') {
             const newUser = yield UserModel_1.default.create({ phoneNumber: body.phoneNumber, userType: "MOTHER", platform: body.platform });
             user = newUser;
         }

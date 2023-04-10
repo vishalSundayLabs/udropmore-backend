@@ -40,3 +40,11 @@ export interface RequestWithUser extends Request {
   user: AuthUser;
   userId: string;
 }
+export interface ISlots {
+     day:string,
+     timeSlots:[string]
+}
+export interface IAvailability {
+  clinic : string,
+  slots : [ISlots]
+}

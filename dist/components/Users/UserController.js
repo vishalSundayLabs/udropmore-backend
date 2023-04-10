@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userUpdate = exports.getUser = void 0;
+exports.userUpdate = exports.createUser = exports.getUser = void 0;
 // models
 const UserModel_1 = require("./UserModel");
 // classes
@@ -41,6 +41,52 @@ let getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getUser = getUser;
+//this controller use only admin
+const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const body = req.body;
+    if (!body.phoneNumber || !body.userType || !body.platform) {
+        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: "Bad request! , phone number , userType , platform must be provide!"
+        }));
+    }
+    const reqData = {
+        firstName: body.firstName,
+        lastName: body.lastName,
+        middleName: body.middleName,
+        email: body.email,
+        phoneNumber: body.phoneNumber,
+        userType: body.userType,
+        platform: body.platform,
+        degree: body.degree,
+        speciality: body.speciality,
+        experience: body.experience,
+        consultationFeeDetails: body.consultationFeeDetails,
+        clinic: body.clinic,
+        memberships: body.memberships,
+        gallary: body.gallary,
+        services: body.services,
+        availability: body.availability,
+        status: body.status
+    };
+    try {
+        const user = yield UserModel_1.default.create(reqData);
+        return res.status(Constants_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: 'User created successfully!',
+            result: user
+        }));
+    }
+    catch (error) {
+        console.log(error.message);
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.createUser = createUser;
 const userUpdate = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     const reqData = {};

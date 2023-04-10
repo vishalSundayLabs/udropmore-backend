@@ -12,6 +12,9 @@ const userSchema = new mongoose.Schema({
     lastName: {
         type: String
     },
+    middleName: {
+        type: String
+    },
     email: {
         type: String,
         trim: true,
@@ -32,6 +35,46 @@ const userSchema = new mongoose.Schema({
     platform: {
         type: String,
         enum: ['DOCTOR', 'MOTHER', 'ADMIN'],
+    },
+    degree: {
+        type: [String],
+        // enum:['deg1','deg2']
+    },
+    speciality: {
+        type: [String],
+        // enum:['sp1','sp2','sp3']
+    },
+    experience: {
+        type: Number
+    },
+    consultationFeeDetails: {
+        type: Number
+    },
+    clinic: {
+        type: [mongoose.SchemaTypes.ObjectId],
+        //add refs after creating the clinic schema
+    },
+    memberships: {
+        type: String
+    },
+    gallery: {
+        type: [String]
+    },
+    services: {
+        type: String
+    },
+    availability: {
+        type: [{
+                type: Object,
+                slots: [{
+                        day: String,
+                        timeSlots: [String]
+                    }]
+            }],
+    },
+    status: {
+        type: String,
+        enum: ['ACTIVE', 'INACTIVE']
     },
     isActive: { type: Boolean, default: true },
     isDeleted: {
@@ -57,3 +100,12 @@ const userSchema = new mongoose.Schema({
     },
 });
 exports.default = mongoose.model("User", userSchema);
+// availability : [
+//   {
+//     clinic:'clinic1',
+//     slots:[{
+//       day:"MONDAY",
+//       Slots: ["9-12",'14-16','17-18']
+//     }]
+//   }
+// ]
