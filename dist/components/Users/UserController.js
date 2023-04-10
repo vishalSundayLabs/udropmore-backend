@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userUpdate = exports.createUser = exports.getUser = void 0;
+exports.deleteUser = exports.userUpdate = exports.createUser = exports.getUser = void 0;
 // models
 const UserModel_1 = require("./UserModel");
 // classes
@@ -18,7 +18,7 @@ const Constants_1 = require("../../utils/Constants");
 let getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let uid = req.userId;
-        let userInfo = yield UserModel_1.default.findOne({ _id: uid });
+        let userInfo = yield UserModel_1.default.findOne({ _id: uid, isDeleted: false });
         if (!userInfo) {
             return res.status(404).json({
                 success: false,
@@ -44,10 +44,10 @@ exports.getUser = getUser;
 //this controller use only admin
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
-    if (!body.phoneNumber || !body.userType || !body.platform) {
+    if (!body.phoneNumber || !body.userType || !body.platform || !body.firstName) {
         return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
-            message: "Bad request! , phone number , userType , platform must be provide!"
+            message: "Bad request! ,first name  , phone number , userType , platform must be provide!"
         }));
     }
     const reqData = {
@@ -58,8 +58,10 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         phoneNumber: body.phoneNumber,
         userType: body.userType,
         platform: body.platform,
+        registrationDetails: body.registrationDetails,
         degree: body.degree,
         speciality: body.speciality,
+        awards: body.awards,
         experience: body.experience,
         consultationFeeDetails: body.consultationFeeDetails,
         clinic: body.clinic,
@@ -70,6 +72,13 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         status: body.status
     };
     try {
+        const oldUser = yield UserModel_1.default.findOne({ phoneNumber: body.phoneNumber });
+        if (oldUser) {
+            return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+                success: false,
+                message: "This phone number is already register!",
+            }));
+        }
         const user = yield UserModel_1.default.create(reqData);
         return res.status(Constants_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
             success: true,
@@ -78,7 +87,6 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         }));
     }
     catch (error) {
-        console.log(error.message);
         let response = new ResponseClass_1.ResponseError({
             message: "Something went wrong",
             error: error.message,
@@ -102,14 +110,13 @@ const userUpdate = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         reqData.isActive = body.isActive;
     try {
         reqData.updatedBy = req.userId;
-        yield UserModel_1.default.findOneAndUpdate({ phoneNumber: body.phoneNumber }, { $set: reqData });
+        yield UserModel_1.default.findOneAndUpdate({ phoneNumber: body.phoneNumber, isDeleted: false }, { $set: reqData });
         return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "User Update successfully",
         }));
     }
     catch (error) {
-        console.log(error.message);
         let response = new ResponseClass_1.ResponseError({
             message: "Something went wrong",
             error: error.message,
@@ -118,3 +125,35 @@ const userUpdate = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.userUpdate = userUpdate;
+const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const userId = req.params.id;
+    if (!userId) {
+        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: "Bad Request! , user id required!"
+        }));
+    }
+    try {
+        const user = yield UserModel_1.default.findOne({ _id: userId, isDeleted: false });
+        if (!user) {
+            return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+                success: false,
+                message: "user already deleted ."
+            }));
+        }
+        user.isDeleted = true;
+        yield user.save();
+        return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "User deleted successfully."
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.deleteUser = deleteUser;

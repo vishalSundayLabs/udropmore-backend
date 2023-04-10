@@ -36,39 +36,61 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ['DOCTOR', 'MOTHER', 'ADMIN'],
     },
+    registrationDetails: {
+        type: Object,
+        medicalCouncil: String,
+        number: String,
+        year: String
+    },
     degree: {
-        type: [String],
-        // enum:['deg1','deg2']
+        type: [{
+                name: String,
+                year: String,
+                institute: String
+            }]
     },
     speciality: {
         type: [String],
         // enum:['sp1','sp2','sp3']
     },
+    awards: [{
+            name: String,
+            year: String
+        }],
     experience: {
         type: Number
     },
     consultationFeeDetails: {
-        type: Number
+        type: {
+            inPerson: Number,
+            videoCall: Number,
+            teleCall: Number
+        }
     },
     clinic: {
         type: [mongoose.SchemaTypes.ObjectId],
         //add refs after creating the clinic schema
     },
     memberships: {
-        type: String
+        type: [{
+                name: String,
+                year: String
+            }]
     },
     gallery: {
         type: [String]
     },
     services: {
-        type: String
+        type: [String]
     },
     availability: {
         type: [{
                 type: Object,
+                clinic: mongoose.SchemaTypes.ObjectId,
                 slots: [{
                         day: String,
-                        timeSlots: [String]
+                        timeSlots: [String],
+                        type: String
                     }]
             }],
     },

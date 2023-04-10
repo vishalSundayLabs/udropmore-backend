@@ -39,45 +39,67 @@ const userSchema = new mongoose.Schema(
       type: String,
       enum: ['DOCTOR', 'MOTHER', 'ADMIN'],
     },
-    degree: {
-      type:[String],
-      // enum:['deg1','deg2']
+    registrationDetails: {
+      type: Object,
+      medicalCouncil: String,
+      number: String,
+      year: String
     },
-    speciality:{
-      type:[String],
+    degree: {
+      type: [{
+        name: String,
+        year: String,
+        institute: String
+      }]
+    },
+    speciality: {
+      type: [String],
       // enum:['sp1','sp2','sp3']
     },
-    experience:{
-      type:Number
+    awards: [{
+      name: String,
+      year: String
+    }],
+    experience: {
+      type: Number
     },
-    consultationFeeDetails:{
-     type:Number
+    consultationFeeDetails: {
+      type: {
+        inPerson: Number,
+        videoCall: Number,
+        teleCall: Number
+      }
     },
-    clinic:{
-      type:[mongoose.SchemaTypes.ObjectId],
+    clinic: {
+      type: [mongoose.SchemaTypes.ObjectId],
       //add refs after creating the clinic schema
     },
-    memberships:{
-      type:String
+    memberships: {
+      type: [{
+        name: String,
+        year: String
+      }]
     },
-    gallery:{
-      type:[String]
+    gallery: {
+      type: [String]
     },
-    services:{
-      type:String
+    services: {
+      type: [String]
     },
-    availability:{
-      type:[{
-          type:Object,
-          slots:[{
-            day:String,
-            timeSlots:[String]
-          }]
+    availability: {
+      type: [{
+        type: Object,
+        clinic:mongoose.SchemaTypes.ObjectId,
+        slots: [{
+          day: String,
+          timeSlots: [String],
+          type:String
+        }]
       }],
     },
-    status:{
-      type:String,
-      enum:['ACTIVE','INACTIVE']
+    status: {
+      type: String,
+      enum: ['ACTIVE', 'INACTIVE']
     },
     isActive: { type: Boolean, default: true },
     isDeleted: {

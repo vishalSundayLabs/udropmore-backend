@@ -19,7 +19,7 @@ import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_OK } from "../../utils/Constants";
 export let getUser = async (req: RequestWithUser, res: Response) => {
   try {
     let uid: string = req.userId;
-    let userInfo: IUser = await UserModel.findOne({ _id: uid });
+    let userInfo: IUser = await UserModel.findOne({ _id: uid , isDeleted:false});
 
     if (!userInfo) {
       return res.status(404).json({
@@ -48,10 +48,10 @@ export let getUser = async (req: RequestWithUser, res: Response) => {
 //this controller use only admin
 export const createUser = async (req, res) => {
   const body = req.body
-  if (!body.phoneNumber || !body.userType || !body.platform) {
+  if (!body.phoneNumber || !body.userType || !body.platform || !body.firstName) {
     return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
       success: false,
-      message: "Bad request! , phone number , userType , platform must be provide!"
+      message: "Bad request! ,first name  , phone number , userType , platform must be provide!"
     }))
   }
   const reqData = {
@@ -62,8 +62,10 @@ export const createUser = async (req, res) => {
     phoneNumber: body.phoneNumber,
     userType: body.userType,
     platform: body.platform,
+    registrationDetails: body.registrationDetails,
     degree: body.degree,
     speciality: body.speciality,
+    awards: body.awards,
     experience: body.experience,
     consultationFeeDetails: body.consultationFeeDetails,
     clinic: body.clinic,
@@ -75,6 +77,13 @@ export const createUser = async (req, res) => {
   }
 
   try {
+    const oldUser = await UserModel.findOne({ phoneNumber: body.phoneNumber })
+    if (oldUser) {
+      return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+        success: false,
+        message: "This phone number is already register!",
+      }))
+    }
     const user = await UserModel.create(reqData);
 
     return res.status(HTTP_CREATED).send(new ResponseSuccess({
@@ -84,7 +93,6 @@ export const createUser = async (req, res) => {
     }))
 
   } catch (error) {
-    console.log(error.message)
     let response = new ResponseError({
       message: "Something went wrong",
       error: error.message,
@@ -110,18 +118,50 @@ export const userUpdate = async (req, res) => {
 
   try {
     reqData.updatedBy = req.userId;
-    await UserModel.findOneAndUpdate({ phoneNumber: body.phoneNumber }, { $set: reqData })
+    await UserModel.findOneAndUpdate({ phoneNumber: body.phoneNumber, isDeleted: false }, { $set: reqData })
     return res.status(HTTP_OK).send(new ResponseSuccess({
       success: true,
       message: "User Update successfully",
     }))
   } catch (error) {
-    console.log(error.message)
+
     let response = new ResponseError({
       message: "Something went wrong",
       error: error.message,
     });
 
+    return res.status(500).json(response);
+  }
+}
+
+export const deleteUser = async (req, res) => {
+  const userId = req.params.id
+  if (!userId) {
+    return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+      success: false,
+      message: "Bad Request! , user id required!"
+    }))
+  }
+
+  try {
+    const user = await UserModel.findOne({ _id: userId, isDeleted: false });
+    if (!user) {
+      return res.status(HTTP_OK).send(new ResponseSuccess({
+          success: false,
+          message: "user already deleted ."
+      }))
+  }
+    user.isDeleted = true
+    await user.save()
+    return res.status(HTTP_OK).send(new ResponseSuccess({
+      success: true,
+      message: "User deleted successfully."
+    }))
+  } catch (error) {
+    let response = new ResponseError({
+      message: "Something went wrong",
+      error: error.message,
+    });
     return res.status(500).json(response);
   }
 }
