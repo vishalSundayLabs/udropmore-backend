@@ -247,11 +247,13 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 const bookedSlot = getDayOrTimeFromDate(BookedSlot[j].appointmentDateAndTime);
                 for (let i = 0; i < finalSlot.length; i++) {
                     const singleSlot = finalSlot[i];
+                    console.log(bookedSlot, singleSlot);
                     if (singleSlot.day == bookedSlot.day && singleSlot.time == bookedSlot.time) {
                         bookedSlotIndex = i;
                         break;
                     }
                 }
+                console.log('index', bookedSlotIndex);
                 if (bookedSlotIndex != -1) {
                     finalSlot[bookedSlotIndex].status = "BOOKED";
                     console.log("book section entred", finalSlot[bookedSlotIndex]);
