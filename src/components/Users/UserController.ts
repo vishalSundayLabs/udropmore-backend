@@ -15,6 +15,7 @@ import {
   Create as UserCreate,
 } from "./UserValidate";
 import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_NOT_FOUND, HTTP_OK } from "../../utils/Constants";
+import AppointmentModel from "../Appointment/AppointmentModel";
 
 export let getUser = async (req: RequestWithUser, res: Response) => {
   try {
@@ -249,12 +250,26 @@ export const getSolts = async (req, res) => {
     const slots = doctor.availability.map(ele => {
       if (ele.clinic == body.clinic) return ele;
     })
-    const finalSlots = MakeSlotesFormat(slots[0].slots)
-    console.log(slots)
+    const finalSlot = MakeSlotesFormat(slots[0].slots)
+    const BookedSlot = await AppointmentModel.findOne({ appointmentDateAndTime: body.date, clinicId: body.clinic, doctorId: body.doctor, isDeleted: false });
+    const dateData = getDayOrTimeFromDate(body.date)
+    if (BookedSlot) {
+      let bookedSlotIndex = -1
+      for (let i = 0; i < finalSlot.length; i++) {
+        const singleSlot = finalSlot[i]
+        if (singleSlot.day == dateData.day && singleSlot.time == dateData.time) {
+          bookedSlotIndex = i;
+          break;
+        }
+      }
+      if (bookedSlotIndex != -1) {
+        finalSlot[bookedSlotIndex].status = "BOOKED"
+      }
+    }
     return res.status(HTTP_OK).send(new ResponseSuccess({
       success: true,
       message: "get all slots successfully.",
-      result: finalSlots
+      result: finalSlot
     }))
   } catch (error) {
     let response = new ResponseError({
@@ -267,9 +282,9 @@ export const getSolts = async (req, res) => {
 
 export const getAllUsers = async (req, res) => {
   const body = req.body;
-  let findReqData ;
-  if(body.userType) {
-    findReqData = { userType: body.userType }
+  let findReqData;
+  if (body.userType) {
+    findReqData = { userType: body.userType, isDeleted: false }
   }
   try {
     const users = await UserModel.find(findReqData)
@@ -291,7 +306,6 @@ export const getAllUsers = async (req, res) => {
 const MakeSlotesFormat = (slots) => {
   const slotsTime = +process.env.SLOT_TIME;
   const newSlots = [];
-  console.log(typeof slotsTime)
   for (let i = 0; i < slots.length; i++) {
     const timeSlots = slots[i].timeSlots;
     for (let j = 0; j < timeSlots.length; j++) {
@@ -304,9 +318,9 @@ const MakeSlotesFormat = (slots) => {
         if (mintCount % 60 == 0 && mintCount != 0) {
           startTime++;
         }
-        startTime = startTime.toString().length == 1 ? '0' + startTime : startTime
-        // let minutes = mintCount.toString().length == 1 ? '0' + mintCount : mintCount
+        // startTime = startTime.toString().length == 1 ? '0' + startTime : startTime
         newSlots.push({
+          day: slots[i].day,
           time: `${startTime}:${mintCount % 60}`,
           status: "AVAILABLE",
         });
@@ -316,3 +330,15 @@ const MakeSlotesFormat = (slots) => {
   }
   return newSlots;
 };
+
+const getDayOrTimeFromDate = (date) => {
+  date = new Date(date);
+  const days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"]
+  const dayInNumber = date.getDay()
+  const hours = date.getHours()
+  const minutes = date.getMinutes()
+  return {
+    day: days[dayInNumber],
+    time: `${hours}:${minutes}`
+  }
+}

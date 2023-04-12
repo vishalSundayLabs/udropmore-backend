@@ -9,20 +9,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllAppointments = exports.bookAppointment = void 0;
+exports.getAllAppointments = exports.createAppointment = void 0;
 const Constants_1 = require("../../utils/Constants");
 const ResponseClass_1 = require("../../utils/ResponseClass");
 const AppointmentModel_1 = require("./AppointmentModel");
-const bookAppointment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const createAppointment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     const reqData = {
-        appointmentDate: body.appointmentDate,
-        appointmentTime: body.appointmentTime,
+        appointmentDateAndTime: body.appointmentDate,
         appointmentType: body.appointmentType,
         motherId: body.motherId,
         doctorId: body.doctorId,
         clinicId: body.clinicId,
-        status: body.status
     };
     try {
         const appointment = yield AppointmentModel_1.default.create(reqData);
@@ -40,10 +38,10 @@ const bookAppointment = (req, res) => __awaiter(void 0, void 0, void 0, function
         return res.status(500).json(response);
     }
 });
-exports.bookAppointment = bookAppointment;
+exports.createAppointment = createAppointment;
 const getAllAppointments = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const appointment = yield AppointmentModel_1.default.find();
+        const appointment = yield AppointmentModel_1.default.find({ isDeleted: false });
         return res.status(Constants_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "get All appointemnt successfully",

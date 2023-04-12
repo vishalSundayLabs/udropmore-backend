@@ -15,6 +15,7 @@ const UserModel_1 = require("./UserModel");
 // classes
 const ResponseClass_1 = require("../../utils/ResponseClass");
 const Constants_1 = require("../../utils/Constants");
+const AppointmentModel_1 = require("../Appointment/AppointmentModel");
 let getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let uid = req.userId;
@@ -237,12 +238,26 @@ const getSolts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             if (ele.clinic == body.clinic)
                 return ele;
         });
-        const finalSlots = MakeSlotesFormat(slots[0].slots);
-        console.log(slots);
+        const finalSlot = MakeSlotesFormat(slots[0].slots);
+        const BookedSlot = yield AppointmentModel_1.default.findOne({ appointmentDateAndTime: body.date, clinicId: body.clinic, doctorId: body.doctor, isDeleted: false });
+        const dateData = getDayOrTimeFromDate(body.date);
+        if (BookedSlot) {
+            let bookedSlotIndex = -1;
+            for (let i = 0; i < finalSlot.length; i++) {
+                const singleSlot = finalSlot[i];
+                if (singleSlot.day == dateData.day && singleSlot.time == dateData.time) {
+                    bookedSlotIndex = i;
+                    break;
+                }
+            }
+            if (bookedSlotIndex != -1) {
+                finalSlot[bookedSlotIndex].status = "BOOKED";
+            }
+        }
         return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "get all slots successfully.",
-            result: finalSlots
+            result: finalSlot
         }));
     }
     catch (error) {
@@ -258,7 +273,7 @@ const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     const body = req.body;
     let findReqData;
     if (body.userType) {
-        findReqData = { userType: body.userType };
+        findReqData = { userType: body.userType, isDeleted: false };
     }
     try {
         const users = yield UserModel_1.default.find(findReqData);
@@ -280,7 +295,6 @@ exports.getAllUsers = getAllUsers;
 const MakeSlotesFormat = (slots) => {
     const slotsTime = +process.env.SLOT_TIME;
     const newSlots = [];
-    console.log(typeof slotsTime);
     for (let i = 0; i < slots.length; i++) {
         const timeSlots = slots[i].timeSlots;
         for (let j = 0; j < timeSlots.length; j++) {
@@ -293,9 +307,9 @@ const MakeSlotesFormat = (slots) => {
                 if (mintCount % 60 == 0 && mintCount != 0) {
                     startTime++;
                 }
-                startTime = startTime.toString().length == 1 ? '0' + startTime : startTime;
-                // let minutes = mintCount.toString().length == 1 ? '0' + mintCount : mintCount
+                // startTime = startTime.toString().length == 1 ? '0' + startTime : startTime
                 newSlots.push({
+                    day: slots[i].day,
                     time: `${startTime}:${mintCount % 60}`,
                     status: "AVAILABLE",
                 });
@@ -304,4 +318,15 @@ const MakeSlotesFormat = (slots) => {
         }
     }
     return newSlots;
+};
+const getDayOrTimeFromDate = (date) => {
+    date = new Date(date);
+    const days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
+    const dayInNumber = date.getDay();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    return {
+        day: days[dayInNumber],
+        time: `${hours}:${minutes}`
+    };
 };

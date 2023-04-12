@@ -2,16 +2,14 @@ import { HTTP_CREATED } from "../../utils/Constants"
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
 import AppointmentModel from "./AppointmentModel"
 
-export const bookAppointment = async (req, res) => {
+export const createAppointment = async (req, res) => {
     const body = req.body
     const reqData = {
-        appointmentDate: body.appointmentDate,
-        appointmentTime: body.appointmentTime,
+        appointmentDateAndTime: body.appointmentDate,
         appointmentType: body.appointmentType,
         motherId: body.motherId,
         doctorId: body.doctorId,
         clinicId: body.clinicId,
-        status: body.status
     }
 
     try {
@@ -32,7 +30,7 @@ export const bookAppointment = async (req, res) => {
 }
 export const getAllAppointments = async (req, res) => {
     try {
-        const appointment = await AppointmentModel.find()
+        const appointment = await AppointmentModel.find({isDeleted:false})
         return res.status(HTTP_CREATED).send(new ResponseSuccess({
             success: true,
             message: "get All appointemnt successfully",
