@@ -244,7 +244,6 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             for (let j = 0; j < BookedSlot.length; j++) {
                 let bookedSlotIndex = -1;
                 const bookedSlot = getDayOrTimeFromDate(BookedSlot[j].appointmentDateAndTime);
-                console.log(bookedSlot, finalSlot);
                 for (let i = 0; i < finalSlot.length; i++) {
                     const singleSlot = finalSlot[i];
                     if (singleSlot.day == bookedSlot.day && singleSlot.time == bookedSlot.time) {
@@ -254,7 +253,6 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 }
                 if (bookedSlotIndex != -1) {
                     finalSlot[bookedSlotIndex].status = "BOOKED";
-                    console.log("book section entred", finalSlot[bookedSlotIndex]);
                 }
             }
         }
@@ -324,9 +322,7 @@ const MakeSlotesFormat = (slots) => {
     return newSlots;
 };
 const getDayOrTimeFromDate = (date) => {
-    console.log('before', date);
     const newDate = new Date(date);
-    console.log('date after', newDate);
     const days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
     const dayInNumber = newDate.getDay();
     const hours = newDate.getHours();
