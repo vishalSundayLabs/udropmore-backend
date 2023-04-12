@@ -240,8 +240,8 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
         const finalSlot = MakeSlotesFormat(slots[0].slots);
         const BookedSlot = yield AppointmentModel_1.default.find({ clinicId: body.clinic, doctorId: body.doctor, isDeleted: false });
-        console.log(BookedSlot);
         if (BookedSlot.length > 0) {
+            console.log("entred");
             for (let j = 0; j < BookedSlot.length; j++) {
                 let bookedSlotIndex = -1;
                 const bookedSlot = getDayOrTimeFromDate(BookedSlot[j].appointmentDateAndTime);
@@ -254,6 +254,7 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 }
                 if (bookedSlotIndex != -1) {
                     finalSlot[bookedSlotIndex].status = "BOOKED";
+                    console.log("book section entred", finalSlot[bookedSlotIndex]);
                 }
             }
         }
