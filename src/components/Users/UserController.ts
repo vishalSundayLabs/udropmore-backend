@@ -252,7 +252,6 @@ export const getSlots = async (req, res) => {
     })
     const finalSlot = MakeSlotesFormat(slots[0].slots)
     const BookedSlot = await AppointmentModel.find({ clinicId: body.clinic, doctorId: body.doctor, isDeleted: false });
-    const dateData = getDayOrTimeFromDate(body.date)
     if (BookedSlot.length > 0) {
          for(let j=0;j<BookedSlot.length;j++){
           let bookedSlotIndex = -1

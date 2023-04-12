@@ -240,7 +240,6 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
         const finalSlot = MakeSlotesFormat(slots[0].slots);
         const BookedSlot = yield AppointmentModel_1.default.find({ clinicId: body.clinic, doctorId: body.doctor, isDeleted: false });
-        const dateData = getDayOrTimeFromDate(body.date);
         if (BookedSlot.length > 0) {
             for (let j = 0; j < BookedSlot.length; j++) {
                 let bookedSlotIndex = -1;
