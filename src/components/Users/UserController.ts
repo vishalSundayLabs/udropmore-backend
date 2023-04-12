@@ -14,7 +14,7 @@ import { SaveOptions } from 'mongoose'
 import {
   Create as UserCreate,
 } from "./UserValidate";
-import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_OK } from "../../utils/Constants";
+import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_NOT_FOUND, HTTP_OK } from "../../utils/Constants";
 
 export let getUser = async (req: RequestWithUser, res: Response) => {
   try {
@@ -140,70 +140,50 @@ export const userUpdate = async (req, res) => {
 
   try {
     const user = await UserModel.findOne({ _id: userId, isDeleted: false })
-    if(!user) {
+    if (!user) {
       return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
-        success:false,
-        message:"user does not exist!"
+        success: false,
+        message: "user does not exist!"
       }))
     }
 
-    if (body.firstName) {
-      user.firstName = body.firstName
-    }
-    if (body.lastName) {
-      user.lastName = body.lastName
-    }
-    if (body.middleName) {
-      user.middleName = body.middleName
-    }
-    if (body.email) {
-      user.email = body.email
-    }
-    if (body.phoneNumber) {
-      user.phoneNumber = body.phoneNumber
-    }
-    if (body.userType) {
-      user.userType = body.userType
-    }
-    if (body.platform) {
-      user.platform = body.platform
-    }
-    if (body.registrationDetails) {
-      user.registrationDetails = body.registrationDetails
-    }
-    if (body.degree) {
-      user.degree = body.degree
-    }
-    if (body.speciality) {
-      user.speciality = body.speciality
-    }
-    if(body.awards) {
-      user.awards = body.awards
-    }
-    if(body.experience){
-      user.experience = body.experience
-    }
-    if(body.consultationFeeDetails) {
-      user.consultationFeeDetails  = body.consultationFeeDetails
-    }
-    if(body.clinic) {
-      user.clinic = body.clinic
-    }
-    if(body.memberships) {
-      user.memberships = body.memberships
-    }
-    if(body.gallery) {
-      user.gallery = body.gallery
-    }
-    if(body.services) {
-      user.services = body.services
-    }
-    if(body.availability) {
-      user.availability = body.availability
-    }
-    if(body.status) {
-      user.status = body.status
-    }
+    if (body.firstName) user.firstName = body.firstName
+
+    if (body.lastName) user.lastName = body.lastName
+
+    if (body.middleName) user.middleName = body.middleName
+
+    if (body.email) user.email = body.email
+
+    if (body.phoneNumber) user.phoneNumber = body.phoneNumber
+
+    if (body.userType) user.userType = body.userType
+
+    if (body.platform) user.platform = body.platform
+
+    if (body.registrationDetails) user.registrationDetails = body.registrationDetails
+
+    if (body.degree) user.degree = body.degree
+
+    if (body.speciality) user.speciality = body.speciality
+
+    if (body.awards) user.awards = body.awards
+
+    if (body.experience) user.experience = body.experience
+
+    if (body.consultationFeeDetails) user.consultationFeeDetails = body.consultationFeeDetails
+
+    if (body.clinic) user.clinic = body.clinic
+
+    if (body.memberships) user.memberships = body.memberships
+
+    if (body.gallery) user.gallery = body.gallery
+
+    if (body.services) user.services = body.services
+
+    if (body.availability) user.availability = body.availability
+
+    if (body.status) user.status = body.status
 
     user.updatedBy = req.userId
 
@@ -211,7 +191,7 @@ export const userUpdate = async (req, res) => {
     return res.status(HTTP_OK).send(new ResponseSuccess({
       success: true,
       message: "User Update successfully",
-      result:user
+      result: user
     }))
   } catch (error) {
 
@@ -255,3 +235,84 @@ export const deleteUser = async (req, res) => {
     return res.status(500).json(response);
   }
 }
+
+export const getSolts = async (req, res) => {
+  const body = req.body
+  try {
+    const doctor = await UserModel.findOne({ _id: body.doctor })
+    if (!doctor) {
+      return res.status(HTTP_OK).send(new ResponseSuccess({
+        success: false,
+        message: "Slots not avaliable!"
+      }))
+    }
+    const slots = doctor.availability.map(ele => {
+      if (ele.clinic == body.clinic) return ele;
+    })
+    const finalSlots = MakeSlotesFormat(slots[0].slots)
+    console.log(slots)
+    return res.status(HTTP_OK).send(new ResponseSuccess({
+      success: true,
+      message: "get all slots successfully.",
+      result: finalSlots
+    }))
+  } catch (error) {
+    let response = new ResponseError({
+      message: "Something went wrong",
+      error: error.message,
+    });
+    return res.status(500).json(response);
+  }
+}
+
+export const getAllUsers = async (req, res) => {
+  const body = req.body;
+  let findReqData ;
+  if(body.userType) {
+    findReqData = { userType: body.userType }
+  }
+  try {
+    const users = await UserModel.find(findReqData)
+    return res.status(HTTP_OK).send(new ResponseSuccess({
+      success: true,
+      message: "all users fetch successfully.",
+      result: users
+    }))
+  } catch (error) {
+    let response = new ResponseError({
+      message: "Something went wrong",
+      error: error.message,
+    });
+    return res.status(500).json(response);
+  }
+}
+
+
+const MakeSlotesFormat = (slots) => {
+  const slotsTime = +process.env.SLOT_TIME;
+  const newSlots = [];
+  console.log(typeof slotsTime)
+  for (let i = 0; i < slots.length; i++) {
+    const timeSlots = slots[i].timeSlots;
+    for (let j = 0; j < timeSlots.length; j++) {
+      let newTime = timeSlots[j].split("-");
+      let startTime = newTime[0];
+      let endTime = newTime[1];
+      let timeDiff = (Math.floor(endTime) - Math.floor(startTime)) * 60;
+      let mintCount: any = 0;
+      while (timeDiff != mintCount) {
+        if (mintCount % 60 == 0 && mintCount != 0) {
+          startTime++;
+        }
+        startTime = startTime.toString().length == 1 ? '0' + startTime : startTime
+        // let minutes = mintCount.toString().length == 1 ? '0' + mintCount : mintCount
+        newSlots.push({
+          time: `${startTime}:${mintCount % 60}`,
+          status: "AVAILABLE",
+        });
+        mintCount = mintCount + slotsTime;
+      }
+    }
+  }
+  return newSlots;
+};

@@ -13,9 +13,13 @@ router.get('/find', tokenVerify_1.verifyToken, userController.getUser);
 //update user
 router.put('/update/:id', tokenVerify_1.verifyToken, isAdmin_1.isAdmin, userController.userUpdate);
 //update mother
-router.put('/updateMother', userController.updateMother);
+router.put('/updateMother', tokenVerify_1.verifyToken, userController.updateMother);
 //create new user
 router.post('/createuser', tokenVerify_1.verifyToken, isAdmin_1.isAdmin, userController.createUser);
 //delete user
 router.delete('/delete/:id', tokenVerify_1.verifyToken, isAdmin_1.isAdmin, userController.deleteUser);
+//get slots
+router.post('/slots', tokenVerify_1.verifyToken, userController.getSolts);
+//get all users
+router.post('/getAllUsers', tokenVerify_1.verifyToken, userController.getAllUsers);
 exports.default = router;

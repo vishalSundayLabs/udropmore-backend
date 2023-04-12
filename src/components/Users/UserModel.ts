@@ -71,7 +71,7 @@ const userSchema = new mongoose.Schema(
     },
     clinic: {
       type: [mongoose.SchemaTypes.ObjectId],
-      //add refs after creating the clinic schema
+      refs:'clinics'
     },
     memberships: {
       type: [{
@@ -92,7 +92,10 @@ const userSchema = new mongoose.Schema(
         slots: [{
           day: String,
           timeSlots: [String],
-          type:String
+          type:{
+            type:String,
+            enum:["INPERSON","VIDEOCALL","TELECALL"]
+          }
         }]
       }],
     },

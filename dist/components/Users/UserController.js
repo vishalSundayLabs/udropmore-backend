@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteUser = exports.userUpdate = exports.updateMother = exports.createUser = exports.getUser = void 0;
+exports.getAllUsers = exports.getSolts = exports.deleteUser = exports.userUpdate = exports.updateMother = exports.createUser = exports.getUser = void 0;
 // models
 const UserModel_1 = require("./UserModel");
 // classes
@@ -136,63 +136,44 @@ const userUpdate = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                 message: "user does not exist!"
             }));
         }
-        if (body.firstName) {
+        if (body.firstName)
             user.firstName = body.firstName;
-        }
-        if (body.lastName) {
+        if (body.lastName)
             user.lastName = body.lastName;
-        }
-        if (body.middleName) {
+        if (body.middleName)
             user.middleName = body.middleName;
-        }
-        if (body.email) {
+        if (body.email)
             user.email = body.email;
-        }
-        if (body.phoneNumber) {
+        if (body.phoneNumber)
             user.phoneNumber = body.phoneNumber;
-        }
-        if (body.userType) {
+        if (body.userType)
             user.userType = body.userType;
-        }
-        if (body.platform) {
+        if (body.platform)
             user.platform = body.platform;
-        }
-        if (body.registrationDetails) {
+        if (body.registrationDetails)
             user.registrationDetails = body.registrationDetails;
-        }
-        if (body.degree) {
+        if (body.degree)
             user.degree = body.degree;
-        }
-        if (body.speciality) {
+        if (body.speciality)
             user.speciality = body.speciality;
-        }
-        if (body.awards) {
+        if (body.awards)
             user.awards = body.awards;
-        }
-        if (body.experience) {
+        if (body.experience)
             user.experience = body.experience;
-        }
-        if (body.consultationFeeDetails) {
+        if (body.consultationFeeDetails)
             user.consultationFeeDetails = body.consultationFeeDetails;
-        }
-        if (body.clinic) {
+        if (body.clinic)
             user.clinic = body.clinic;
-        }
-        if (body.memberships) {
+        if (body.memberships)
             user.memberships = body.memberships;
-        }
-        if (body.gallery) {
+        if (body.gallery)
             user.gallery = body.gallery;
-        }
-        if (body.services) {
+        if (body.services)
             user.services = body.services;
-        }
-        if (body.availability) {
+        if (body.availability)
             user.availability = body.availability;
-        }
-        if (body.status) {
+        if (body.status)
             user.status = body.status;
-        }
         user.updatedBy = req.userId;
         yield user.save();
         return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
@@ -242,3 +223,85 @@ const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.deleteUser = deleteUser;
+const getSolts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const body = req.body;
+    try {
+        const doctor = yield UserModel_1.default.findOne({ _id: body.doctor });
+        if (!doctor) {
+            return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+                success: false,
+                message: "Slots not avaliable!"
+            }));
+        }
+        const slots = doctor.availability.map(ele => {
+            if (ele.clinic == body.clinic)
+                return ele;
+        });
+        const finalSlots = MakeSlotesFormat(slots[0].slots);
+        console.log(slots);
+        return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "get all slots successfully.",
+            result: finalSlots
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.getSolts = getSolts;
+const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const body = req.body;
+    let findReqData;
+    if (body.userType) {
+        findReqData = { userType: body.userType };
+    }
+    try {
+        const users = yield UserModel_1.default.find(findReqData);
+        return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "all users fetch successfully.",
+            result: users
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.getAllUsers = getAllUsers;
+const MakeSlotesFormat = (slots) => {
+    const slotsTime = +process.env.SLOT_TIME;
+    const newSlots = [];
+    console.log(typeof slotsTime);
+    for (let i = 0; i < slots.length; i++) {
+        const timeSlots = slots[i].timeSlots;
+        for (let j = 0; j < timeSlots.length; j++) {
+            let newTime = timeSlots[j].split("-");
+            let startTime = newTime[0];
+            let endTime = newTime[1];
+            let timeDiff = (Math.floor(endTime) - Math.floor(startTime)) * 60;
+            let mintCount = 0;
+            while (timeDiff != mintCount) {
+                if (mintCount % 60 == 0 && mintCount != 0) {
+                    startTime++;
+                }
+                startTime = startTime.toString().length == 1 ? '0' + startTime : startTime;
+                // let minutes = mintCount.toString().length == 1 ? '0' + mintCount : mintCount
+                newSlots.push({
+                    time: `${startTime}:${mintCount % 60}`,
+                    status: "AVAILABLE",
+                });
+                mintCount = mintCount + slotsTime;
+            }
+        }
+    }
+    return newSlots;
+};
