@@ -337,12 +337,12 @@ const MakeSlotesFormat = (slots) => {
 
 const getDayOrTimeFromDate = (date) => {
   console.log('before',date)
-  date = new Date(date);
-  console.log('date after',date)
+  const newDate = new Date(date);
+  console.log('date after',newDate)
   const days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"]
-  const dayInNumber = date.getDay()
-  const hours = date.getHours()
-  const minutes = date.getMinutes()
+  const dayInNumber = newDate.getDay()
+  const hours = newDate.getHours()
+  const minutes = newDate.getMinutes()
   return {
     day: days[dayInNumber],
     time: `${hours}:${minutes}`
