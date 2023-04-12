@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllUsers = exports.getSolts = exports.deleteUser = exports.userUpdate = exports.updateMother = exports.createUser = exports.getUser = void 0;
+exports.getAllUsers = exports.getSlots = exports.deleteUser = exports.userUpdate = exports.updateMother = exports.createUser = exports.getUser = void 0;
 // models
 const UserModel_1 = require("./UserModel");
 // classes
@@ -224,7 +224,7 @@ const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.deleteUser = deleteUser;
-const getSolts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     try {
         const doctor = yield UserModel_1.default.findOne({ _id: body.doctor });
@@ -239,19 +239,22 @@ const getSolts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 return ele;
         });
         const finalSlot = MakeSlotesFormat(slots[0].slots);
-        const BookedSlot = yield AppointmentModel_1.default.findOne({ appointmentDateAndTime: body.date, clinicId: body.clinic, doctorId: body.doctor, isDeleted: false });
+        const BookedSlot = yield AppointmentModel_1.default.find({ clinicId: body.clinic, doctorId: body.doctor, isDeleted: false });
         const dateData = getDayOrTimeFromDate(body.date);
-        if (BookedSlot) {
-            let bookedSlotIndex = -1;
-            for (let i = 0; i < finalSlot.length; i++) {
-                const singleSlot = finalSlot[i];
-                if (singleSlot.day == dateData.day && singleSlot.time == dateData.time) {
-                    bookedSlotIndex = i;
-                    break;
+        if (BookedSlot.length > 0) {
+            for (let j = 0; j < BookedSlot.length; j++) {
+                let bookedSlotIndex = -1;
+                const bookedSlot = getDayOrTimeFromDate(BookedSlot[j].appointmentDateAndTime);
+                for (let i = 0; i < finalSlot.length; i++) {
+                    const singleSlot = finalSlot[i];
+                    if (singleSlot.day == bookedSlot.day && singleSlot.time == bookedSlot.time) {
+                        bookedSlotIndex = i;
+                        break;
+                    }
                 }
-            }
-            if (bookedSlotIndex != -1) {
-                finalSlot[bookedSlotIndex].status = "BOOKED";
+                if (bookedSlotIndex != -1) {
+                    finalSlot[bookedSlotIndex].status = "BOOKED";
+                }
             }
         }
         return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
@@ -268,7 +271,7 @@ const getSolts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return res.status(500).json(response);
     }
 });
-exports.getSolts = getSolts;
+exports.getSlots = getSlots;
 const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     let findReqData;

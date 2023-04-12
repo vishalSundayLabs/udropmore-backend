@@ -19,7 +19,7 @@ router.post('/createuser', verifyToken, isAdmin, userController.createUser)
 //delete user
 router.delete('/delete/:id', verifyToken, isAdmin, userController.deleteUser)
 //get slots
-router.post('/slots', userController.getSolts)
+router.post('/slots', userController.getSlots)
 //get all users
 router.post('/getAllUsers', verifyToken, userController.getAllUsers)
 export default router;
