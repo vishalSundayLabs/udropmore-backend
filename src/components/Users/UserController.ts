@@ -238,35 +238,54 @@ export const deleteUser = async (req, res) => {
 }
 
 export const getSlots = async (req, res) => {
+  
   const body = req.body
+  
   try {
     const doctor = await UserModel.findOne({ _id: body.doctor })
+
     if (!doctor) {
       return res.status(HTTP_OK).send(new ResponseSuccess({
         success: false,
-        message: "Slots not avaliable!"
+        message: "Doctor not found!"
       }))
     }
-    const slots = doctor.availability.map(ele => {
+
+    let slots = doctor.availability.map(ele => {
       if (ele.clinic == body.clinic) return ele;
     })
-    const finalSlot = MakeSlotesFormat(slots[0].slots)
-    const BookedSlot = await AppointmentModel.find({ clinicId: body.clinic, doctorId: body.doctor, isDeleted: false });
+
+    const bodyDate = getDayOrTimeFromDate(body.date)
+    const newSlots = [];
+
+    for (let i = 0; i < slots[0].slots.length; i++) {
+      console.log(slots[0].slots[i])
+      if (slots[0].slots[i].type == body.appointmentType && slots[0].slots[i].day == bodyDate.day) {
+        newSlots.push(slots[0].slots[i])
+      }
+    }
+
+    const finalSlot = MakeSlotesFormat(newSlots)
+    
+    const BookedSlot = await AppointmentModel.find({ clinicId: body.clinic, doctorId: body.doctor, status: { $ne: "CANCELLED" }, isDeleted: false });
+    
     if (BookedSlot.length > 0) {
-         for(let j=0;j<BookedSlot.length;j++){
-          let bookedSlotIndex = -1
-          const bookedSlot  = getDayOrTimeFromDate(BookedSlot[j].appointmentDateAndTime)
-          for (let i = 0; i < finalSlot.length; i++) {
-            const singleSlot = finalSlot[i]
-            if (singleSlot.day == bookedSlot.day && singleSlot.time == bookedSlot.time) {
-              bookedSlotIndex = i;
-              break;
-            }
+      for (let j = 0; j < BookedSlot.length; j++) {
+        let bookedSlotIndex = -1
+        
+        const bookedSlot = getDayOrTimeFromDate(BookedSlot[j].appointmentDateAndTime)
+        
+        for (let i = 0; i < finalSlot.length; i++) {
+          const singleSlot = finalSlot[i]
+          if (singleSlot.day == bookedSlot.day && singleSlot.time == bookedSlot.time) {
+            bookedSlotIndex = i;
+            break;
           }
-          if (bookedSlotIndex != -1) {
-            finalSlot[bookedSlotIndex].status = "BOOKED"
-          }
-         }
+        }
+        if (bookedSlotIndex != -1) {
+          finalSlot[bookedSlotIndex].status = "BOOKED"
+        }
+      }
     }
     return res.status(HTTP_OK).send(new ResponseSuccess({
       success: true,
@@ -305,7 +324,7 @@ export const getAllUsers = async (req, res) => {
 }
 
 
-const MakeSlotesFormat = (slots) => {
+export const MakeSlotesFormat = (slots) => {
   const slotsTime = +process.env.SLOT_TIME;
   const newSlots = [];
   for (let i = 0; i < slots.length; i++) {
@@ -333,7 +352,7 @@ const MakeSlotesFormat = (slots) => {
   return newSlots;
 };
 
-const getDayOrTimeFromDate = (date) => {
+export const getDayOrTimeFromDate = (date) => {
   const newDate = new Date(date);
   const days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"]
   const dayInNumber = newDate.getDay()

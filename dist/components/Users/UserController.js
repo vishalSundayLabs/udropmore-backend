@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllUsers = exports.getSlots = exports.deleteUser = exports.userUpdate = exports.updateMother = exports.createUser = exports.getUser = void 0;
+exports.getDayOrTimeFromDate = exports.MakeSlotesFormat = exports.getAllUsers = exports.getSlots = exports.deleteUser = exports.userUpdate = exports.updateMother = exports.createUser = exports.getUser = void 0;
 // models
 const UserModel_1 = require("./UserModel");
 // classes
@@ -231,19 +231,27 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         if (!doctor) {
             return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
                 success: false,
-                message: "Slots not avaliable!"
+                message: "Doctor not found!"
             }));
         }
-        const slots = doctor.availability.map(ele => {
+        let slots = doctor.availability.map(ele => {
             if (ele.clinic == body.clinic)
                 return ele;
         });
-        const finalSlot = MakeSlotesFormat(slots[0].slots);
-        const BookedSlot = yield AppointmentModel_1.default.find({ clinicId: body.clinic, doctorId: body.doctor, isDeleted: false });
+        const bodyDate = (0, exports.getDayOrTimeFromDate)(body.date);
+        const newSlots = [];
+        for (let i = 0; i < slots[0].slots.length; i++) {
+            console.log(slots[0].slots[i]);
+            if (slots[0].slots[i].type == body.appointmentType && slots[0].slots[i].day == bodyDate.day) {
+                newSlots.push(slots[0].slots[i]);
+            }
+        }
+        const finalSlot = (0, exports.MakeSlotesFormat)(newSlots);
+        const BookedSlot = yield AppointmentModel_1.default.find({ clinicId: body.clinic, doctorId: body.doctor, status: { $ne: "CANCELLED" }, isDeleted: false });
         if (BookedSlot.length > 0) {
             for (let j = 0; j < BookedSlot.length; j++) {
                 let bookedSlotIndex = -1;
-                const bookedSlot = getDayOrTimeFromDate(BookedSlot[j].appointmentDateAndTime);
+                const bookedSlot = (0, exports.getDayOrTimeFromDate)(BookedSlot[j].appointmentDateAndTime);
                 for (let i = 0; i < finalSlot.length; i++) {
                     const singleSlot = finalSlot[i];
                     if (singleSlot.day == bookedSlot.day && singleSlot.time == bookedSlot.time) {
@@ -321,6 +329,7 @@ const MakeSlotesFormat = (slots) => {
     }
     return newSlots;
 };
+exports.MakeSlotesFormat = MakeSlotesFormat;
 const getDayOrTimeFromDate = (date) => {
     const newDate = new Date(date);
     const days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
@@ -332,3 +341,4 @@ const getDayOrTimeFromDate = (date) => {
         time: `${hours}:${minutes}`
     };
 };
+exports.getDayOrTimeFromDate = getDayOrTimeFromDate;
