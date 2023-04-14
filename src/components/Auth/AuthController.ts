@@ -66,7 +66,7 @@ export const sendOtp = async (req: Request, res: Response) => {
 }
 
 export const validateOtp = async (req: Request, res: Response) => {
-    
+
     const body = req.body;
     if (compareObjectKeys(body, validateOtpBody)) {
         return res.status(HTTP_BAD_REQUEST).send(new ResponseBodyFormatError({
@@ -74,10 +74,10 @@ export const validateOtp = async (req: Request, res: Response) => {
             bodyFormat: process.env.SHOW_BODY_FORMAT ? validateOtpBody : null
         }))
     }
-    if(!body.platform){
+    if (!body.platform) {
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
-            success:false,
-            message:"Platform is required!"
+            success: false,
+            message: "Platform is required!"
         }))
     }
     try {
@@ -97,14 +97,19 @@ export const validateOtp = async (req: Request, res: Response) => {
             const newUser = await UserModel.create({ phoneNumber: body.phoneNumber, userType: "MOTHER", platform: body.platform })
             user = newUser
         }
-
+        if (body.platform == 'DOCTOR' && user.userType == 'DOCTOR' &&  !user.clinic[0]) {
+            return res.status(HTTP_OK).send(new ResponseSuccess({
+                success: false,
+                message: 'Doctor not mapped to any clinic . Please contact your admin!'
+            }))
+        }
         const jwtToken = jwt.sign({ userId: user._id, userType: user.userType, platform: user.platform }, process.env.JWTSECRET, {
             expiresIn: process.env.JWTEXPIRESIN
         })
 
         user.jwtToken = jwtToken;
 
-        await user.save()  
+        await user.save()
 
         // create the auth session with token
         await AuthSession.create({ userId: user._id, jwtToken: jwtToken, isActive: true })
@@ -135,9 +140,9 @@ export const logout = async (req, res) => {
         const user = await UserModel.findOne({ _id: req.userId, platform: req.platform, userType: req.userType })
         user.jwtToken = null;
         await user.save()
-        
+
         await AuthSession.findOneAndUpdate({ userId: user._id, jwtToken: user.jwtToken, isActive: true }, { $set: { isActive: false } })
-        
+
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: "Logout successful"

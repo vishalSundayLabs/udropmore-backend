@@ -1,10 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
+const tokenVerify_1 = require("../../middleware/tokenVerify");
 const AppointmentController_1 = require("./AppointmentController");
 const router = (0, express_1.Router)();
-router.post('/create', AppointmentController_1.createAppointment);
-router.post('/appointments', AppointmentController_1.getAllAppointments);
-router.put('/update', AppointmentController_1.updateAppointment);
-router.post('/reschedule', AppointmentController_1.rescheduleAppointment);
+router.post('/create', tokenVerify_1.verifyToken, AppointmentController_1.createAppointment);
+router.post('/appointments', tokenVerify_1.verifyToken, AppointmentController_1.getAllAppointments);
+router.put('/update', tokenVerify_1.verifyToken, AppointmentController_1.updateAppointment);
+router.post('/reschedule', tokenVerify_1.verifyToken, AppointmentController_1.rescheduleAppointment);
+router.post('/getAllAppointments', AppointmentController_1.getAllAppointmentsOfADay);
+router.post('/getappointments/mother', AppointmentController_1.getAllAppointmentOfMother);
 exports.default = router;

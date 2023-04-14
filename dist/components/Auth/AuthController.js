@@ -91,6 +91,12 @@ const validateOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             const newUser = yield UserModel_1.default.create({ phoneNumber: body.phoneNumber, userType: "MOTHER", platform: body.platform });
             user = newUser;
         }
+        if (body.platform == 'DOCTOR' && user.userType == 'DOCTOR' && !user.clinic[0]) {
+            return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+                success: false,
+                message: 'Doctor not mapped to any clinic . Please contact your admin!'
+            }));
+        }
         const jwtToken = jwt.sign({ userId: user._id, userType: user.userType, platform: user.platform }, process.env.JWTSECRET, {
             expiresIn: process.env.JWTEXPIRESIN
         });

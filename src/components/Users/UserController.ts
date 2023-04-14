@@ -238,9 +238,9 @@ export const deleteUser = async (req, res) => {
 }
 
 export const getSlots = async (req, res) => {
-  
+
   const body = req.body
-  
+
   try {
     const doctor = await UserModel.findOne({ _id: body.doctor })
 
@@ -266,15 +266,15 @@ export const getSlots = async (req, res) => {
     }
 
     const finalSlot = MakeSlotesFormat(newSlots)
-    
+
     const BookedSlot = await AppointmentModel.find({ clinicId: body.clinic, doctorId: body.doctor, status: { $ne: "CANCELLED" }, isDeleted: false });
-    
+
     if (BookedSlot.length > 0) {
       for (let j = 0; j < BookedSlot.length; j++) {
         let bookedSlotIndex = -1
-        
+
         const bookedSlot = getDayOrTimeFromDate(BookedSlot[j].appointmentDateAndTime)
-        
+
         for (let i = 0; i < finalSlot.length; i++) {
           const singleSlot = finalSlot[i]
           if (singleSlot.day == bookedSlot.day && singleSlot.time == bookedSlot.time) {
@@ -351,6 +351,28 @@ export const MakeSlotesFormat = (slots) => {
   }
   return newSlots;
 };
+
+// export const addPatient = async (req, res) => {
+//   const body = req.body
+//   if (!body.platform || !body.PhoneNumber) {
+//     return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+//       success: false,
+//       message: "Bad Request! Platform and phoneNumber must be provide",
+//     }))
+//   }
+
+//   try {
+
+//     const user = await UserModel.findOne({ phoneNumber: body.phoneNumber })
+    
+//   } catch (error) {
+//     let response = new ResponseError({
+//       message: "Something went wrong",
+//       error: error.message,
+//     });
+//     return res.status(500).json(response);
+//   }
+// }
 
 export const getDayOrTimeFromDate = (date) => {
   const newDate = new Date(date);

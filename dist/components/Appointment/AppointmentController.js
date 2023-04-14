@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.appointmentBookValidations = exports.rescheduleAppointment = exports.updateAppointment = exports.getAllAppointments = exports.createAppointment = void 0;
+exports.appointmentBookValidations = exports.rescheduleAppointment = exports.updateAppointment = exports.getAllAppointmentOfMother = exports.getAllAppointmentsOfADay = exports.getAllAppointments = exports.createAppointment = void 0;
 const Constants_1 = require("../../utils/Constants");
 const ResponseClass_1 = require("../../utils/ResponseClass");
 const UserController_1 = require("../Users/UserController");
@@ -73,6 +73,101 @@ const getAllAppointments = (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
 });
 exports.getAllAppointments = getAllAppointments;
+const getAllAppointmentsOfADay = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const body = req.body;
+    if (!body.doctorId || !body.clinicId || !body.date) {
+        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            message: "Bad Request! doctor id , clinic id or date must be provide."
+        }));
+    }
+    try {
+        const appointments = yield AppointmentModel_1.default.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentType: { $ne: "TELECALL" }, appointmentDateAndTime: { $regex: `${body.date}` }, status: { $ne: "CANCELLED" } });
+        let patientList = [];
+        const patientMap = new Map();
+        let videoAppointmentCount = 0;
+        for (let i = 0; i < appointments.length; i++) {
+            const item = appointments[i];
+            if (item.appointmentType == 'VIDEOCALL') {
+                videoAppointmentCount++;
+            }
+            const motherId = item.motherId.toString();
+            if (!patientMap.has(motherId)) {
+                patientMap.set(motherId, 0);
+            }
+            else {
+                patientMap.set(motherId, patientMap.get(motherId) + 1);
+            }
+            const mother = yield UserModel_1.default.findOne({ _id: item.motherId });
+            const { day, time } = (0, UserController_1.getDayOrTimeFromDate)(item.appointmentDateAndTime);
+            patientList.push({ motherId: item.motherId, name: mother.firstName, phoneNumber: mother.phoneNumber, appointmentTime: time, appointmentType: item.appointmentType });
+        }
+        let newPatient = 0;
+        for (let [key, val] of patientMap) {
+            if (val == 0) {
+                newPatient++;
+            }
+        }
+        const responseObj = {
+            RequestedDate: body.date,
+            totalAppointment: appointments.length,
+            totalVideoAppointment: videoAppointmentCount,
+            totalNewPatient: newPatient,
+            patientList: patientList
+        };
+        return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: `All Appointments of ${body.date} .`,
+            result: responseObj
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.getAllAppointmentsOfADay = getAllAppointmentsOfADay;
+const getAllAppointmentOfMother = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const body = req.body;
+    if (!body.motherId || !body.clinicId) {
+        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            message: "Bad Request! mother id , clinic id must be provide."
+        }));
+    }
+    let reqBody;
+    if (body.doctorId) {
+        reqBody = {
+            motherId: body.motherId,
+            clinicId: body.clinicId,
+            doctorId: body.doctorId
+        };
+    }
+    else {
+        reqBody = {
+            motherId: body.motherId,
+            clinicId: body.clinicId
+        };
+    }
+    try {
+        const appointemnts = yield AppointmentModel_1.default.find(reqBody);
+        const mother = yield UserModel_1.default.findOne();
+        return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "Get all appointment of mother.",
+            result: appointemnts
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.getAllAppointmentOfMother = getAllAppointmentOfMother;
 const updateAppointment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     try {

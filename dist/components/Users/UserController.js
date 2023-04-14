@@ -330,6 +330,24 @@ const MakeSlotesFormat = (slots) => {
     return newSlots;
 };
 exports.MakeSlotesFormat = MakeSlotesFormat;
+// export const addPatient = async (req, res) => {
+//   const body = req.body
+//   if (!body.platform || !body.PhoneNumber) {
+//     return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+//       success: false,
+//       message: "Bad Request! Platform and phoneNumber must be provide",
+//     }))
+//   }
+//   try {
+//     const user = await UserModel.findOne({ phoneNumber: body.phoneNumber })
+//   } catch (error) {
+//     let response = new ResponseError({
+//       message: "Something went wrong",
+//       error: error.message,
+//     });
+//     return res.status(500).json(response);
+//   }
+// }
 const getDayOrTimeFromDate = (date) => {
     const newDate = new Date(date);
     const days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
