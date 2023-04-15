@@ -243,7 +243,7 @@ export const getSlots = async (req, res) => {
 
   try {
     const doctor = await UserModel.findOne({ _id: body.doctor })
-
+    console.log('doctor',doctor)
     if (!doctor) {
       return res.status(HTTP_OK).send(new ResponseSuccess({
         success: false,
@@ -254,7 +254,7 @@ export const getSlots = async (req, res) => {
     let slots = doctor.availability.map(ele => {
       if (ele.clinic == body.clinic) return ele;
     })
-
+   console.log('clinic',slots)
     const bodyDate = getDayOrTimeFromDate(body.date)
     const newSlots = [];
 

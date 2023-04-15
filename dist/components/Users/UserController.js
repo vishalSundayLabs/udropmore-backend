@@ -238,6 +238,7 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             if (ele.clinic == body.clinic)
                 return ele;
         });
+        console.log('clinic', slots);
         const bodyDate = (0, exports.getDayOrTimeFromDate)(body.date);
         const newSlots = [];
         for (let i = 0; i < slots[0].slots.length; i++) {
