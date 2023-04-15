@@ -228,13 +228,14 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     try {
         const doctor = yield UserModel_1.default.findOne({ _id: body.doctor });
+        console.log('doctor', doctor);
         if (!doctor) {
             return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
                 success: false,
                 message: "Doctor not found!"
             }));
         }
-        let slots = doctor.availability.map(ele => {
+        let slots = doctor.availability.filter(ele => {
             if (ele.clinic == body.clinic)
                 return ele;
         });

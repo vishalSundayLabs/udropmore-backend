@@ -251,7 +251,7 @@ export const getSlots = async (req, res) => {
       }))
     }
 
-    let slots = doctor.availability.map(ele => {
+    let slots = doctor.availability.filter(ele => {
       if (ele.clinic == body.clinic) return ele;
     })
    console.log('clinic',slots)
