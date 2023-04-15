@@ -264,9 +264,9 @@ export const getSlots = async (req, res) => {
         newSlots.push(slots[0].slots[i])
       }
     }
-
+    console.log(newSlots)
     const finalSlot = MakeSlotesFormat(newSlots)
-
+    console.log(finalSlot)
     const BookedSlot = await AppointmentModel.find({ clinicId: body.clinic, doctorId: body.doctor, status: { $ne: "CANCELLED" }, isDeleted: false });
 
     if (BookedSlot.length > 0) {
