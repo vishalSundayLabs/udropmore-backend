@@ -260,6 +260,7 @@ export const getSlots = async (req, res) => {
 
     for (let i = 0; i < slots[0].slots.length; i++) {
       console.log('for loop se aaya',slots[0].slots[i])
+      console.log(slots[0].slots[i].type == body.appointmentType ,slots[0].slots[i].type ,body.appointmentType,slots[0].slots[i].day == bodyDate.day,slots[0].slots[i].day,bodyDate.day)
       if (slots[0].slots[i].type == body.appointmentType && slots[0].slots[i].day == bodyDate.day) {
         newSlots.push(slots[0].slots[i])
         console.log('ye select hua',slots[0].slots[i],newSlots)
