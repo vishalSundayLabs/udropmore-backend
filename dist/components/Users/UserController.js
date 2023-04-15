@@ -241,12 +241,14 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const bodyDate = (0, exports.getDayOrTimeFromDate)(body.date);
         const newSlots = [];
         for (let i = 0; i < slots[0].slots.length; i++) {
-            console.log(slots[0].slots[i]);
+            console.log('for loop se aaya', slots[0].slots[i]);
             if (slots[0].slots[i].type == body.appointmentType && slots[0].slots[i].day == bodyDate.day) {
                 newSlots.push(slots[0].slots[i]);
             }
         }
+        console.log('new solt mila hai', newSlots);
         const finalSlot = (0, exports.MakeSlotesFormat)(newSlots);
+        console.log(finalSlot, 'final slot hai');
         const BookedSlot = yield AppointmentModel_1.default.find({ clinicId: body.clinic, doctorId: body.doctor, status: { $ne: "CANCELLED" }, isDeleted: false });
         if (BookedSlot.length > 0) {
             for (let j = 0; j < BookedSlot.length; j++) {

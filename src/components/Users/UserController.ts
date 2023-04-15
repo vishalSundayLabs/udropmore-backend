@@ -259,14 +259,14 @@ export const getSlots = async (req, res) => {
     const newSlots = [];
 
     for (let i = 0; i < slots[0].slots.length; i++) {
-      console.log(slots[0].slots[i])
+      console.log('for loop se aaya',slots[0].slots[i])
       if (slots[0].slots[i].type == body.appointmentType && slots[0].slots[i].day == bodyDate.day) {
         newSlots.push(slots[0].slots[i])
       }
     }
-    console.log(newSlots)
+    console.log('new solt mila hai',newSlots)
     const finalSlot = MakeSlotesFormat(newSlots)
-    console.log(finalSlot)
+    console.log(finalSlot,'final slot hai')
     const BookedSlot = await AppointmentModel.find({ clinicId: body.clinic, doctorId: body.doctor, status: { $ne: "CANCELLED" }, isDeleted: false });
 
     if (BookedSlot.length > 0) {
@@ -287,6 +287,7 @@ export const getSlots = async (req, res) => {
         }
       }
     }
+    console.log('response return se phele aaya hai ',finalSlot)
     return res.status(HTTP_OK).send(new ResponseSuccess({
       success: true,
       message: "get all slots successfully.",
