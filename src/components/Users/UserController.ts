@@ -243,7 +243,6 @@ export const getSlots = async (req, res) => {
 
   try {
     const doctor = await UserModel.findOne({ _id: body.doctor })
-    console.log('doctor',doctor)
     if (!doctor) {
       return res.status(HTTP_OK).send(new ResponseSuccess({
         success: false,
@@ -254,21 +253,15 @@ export const getSlots = async (req, res) => {
     let slots = doctor.availability.filter(ele => {
       if (ele.clinic == body.clinic) return ele;
     })
-   console.log('clinic',slots)
     const bodyDate = getDayOrTimeFromDate(body.date)
     const newSlots = [];
 
     for (let i = 0; i < slots[0].slots.length; i++) {
-      console.log('for loop se aaya',slots[0].slots[i])
-      console.log(slots[0].slots[i].type == body.appointmentType ,slots[0].slots[i].type ,body.appointmentType,slots[0].slots[i].day == bodyDate.day,slots[0].slots[i].day,bodyDate.day)
       if (slots[0].slots[i].type == body.appointmentType && slots[0].slots[i].day == bodyDate.day) {
         newSlots.push(slots[0].slots[i])
-        console.log('ye select hua',slots[0].slots[i],newSlots)
       }
     }
-    console.log('new solt mila hai',newSlots)
     const finalSlot = MakeSlotesFormat(newSlots)
-    console.log(finalSlot,'final slot hai')
     const BookedSlot = await AppointmentModel.find({ clinicId: body.clinic, doctorId: body.doctor, status: { $ne: "CANCELLED" }, isDeleted: false });
 
     if (BookedSlot.length > 0) {
@@ -289,7 +282,6 @@ export const getSlots = async (req, res) => {
         }
       }
     }
-    console.log('response return se phele aaya hai ',finalSlot)
     return res.status(HTTP_OK).send(new ResponseSuccess({
       success: true,
       message: "get all slots successfully.",
