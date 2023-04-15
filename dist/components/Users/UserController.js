@@ -241,15 +241,11 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const bodyDate = (0, exports.getDayOrTimeFromDate)(body.date);
         const newSlots = [];
         for (let i = 0; i < slots[0].slots.length; i++) {
-            console.log(slots[0].slots[i].type == body.appointmentType, slots[0].slots[i].type, body.appointmentType, slots[0].slots[i].day == bodyDate.day, slots[0].slots[i].day, bodyDate.day);
             if (slots[0].slots[i].type == body.appointmentType && slots[0].slots[i].day == bodyDate.day) {
                 newSlots.push(slots[0].slots[i]);
-                console.log('ye select hua', slots[0].slots[i], newSlots);
             }
         }
-        console.log('new solt mila hai', newSlots);
         const finalSlot = (0, exports.MakeSlotesFormat)(newSlots);
-        console.log(finalSlot, 'final slot hai');
         const BookedSlot = yield AppointmentModel_1.default.find({ clinicId: body.clinic, doctorId: body.doctor, status: { $ne: "CANCELLED" }, isDeleted: false });
         if (BookedSlot.length > 0) {
             for (let j = 0; j < BookedSlot.length; j++) {
@@ -267,7 +263,12 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 }
             }
         }
-        console.log('response return se phele aaya hai ', finalSlot);
+        if (!finalSlot[0]) {
+            return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+                success: false,
+                message: "Invalid Date with Respect to Day."
+            }));
+        }
         return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "get all slots successfully.",

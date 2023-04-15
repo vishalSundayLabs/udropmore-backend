@@ -282,6 +282,12 @@ export const getSlots = async (req, res) => {
         }
       }
     }
+    if(!finalSlot[0]) {
+      return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+        success:false,
+        message:"Invalid Date with Respect to Day."
+      }))
+    }
     return res.status(HTTP_OK).send(new ResponseSuccess({
       success: true,
       message: "get all slots successfully.",
