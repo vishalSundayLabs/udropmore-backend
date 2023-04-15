@@ -262,6 +262,7 @@ export const getSlots = async (req, res) => {
       console.log('for loop se aaya',slots[0].slots[i])
       if (slots[0].slots[i].type == body.appointmentType && slots[0].slots[i].day == bodyDate.day) {
         newSlots.push(slots[0].slots[i])
+        console.log('ye select hua',slots[0].slots[i],newSlots)
       }
     }
     console.log('new solt mila hai',newSlots)

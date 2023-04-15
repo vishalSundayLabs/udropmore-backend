@@ -244,6 +244,7 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             console.log('for loop se aaya', slots[0].slots[i]);
             if (slots[0].slots[i].type == body.appointmentType && slots[0].slots[i].day == bodyDate.day) {
                 newSlots.push(slots[0].slots[i]);
+                console.log('ye select hua', slots[0].slots[i], newSlots);
             }
         }
         console.log('new solt mila hai', newSlots);
@@ -266,6 +267,7 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 }
             }
         }
+        console.log('response return se phele aaya hai ', finalSlot);
         return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "get all slots successfully.",
