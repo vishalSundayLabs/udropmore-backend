@@ -93,7 +93,7 @@ export const getAllAppointmentsOfADay = async (req, res) => {
             }
             const mother = await UserModel.findOne({ _id: item.motherId })
             const { day, time } = getDayOrTimeFromDate(item.appointmentDateAndTime)
-            patientList.push({ motherId: item.motherId, name: mother.firstName, phoneNumber: mother.phoneNumber, appointmentTime: time, appointmentType: item.appointmentType })
+            patientList.push({ motherId: item.motherId, name: mother.firstName, phoneNumber: mother.phoneNumber, appointmentTime: time, appointmentType: item.appointmentType , appointmentStatus:item.status })
         }
         let newPatient = 0;
         for (let [key, val] of patientMap) {

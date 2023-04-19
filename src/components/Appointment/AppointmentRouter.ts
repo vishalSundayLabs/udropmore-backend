@@ -7,6 +7,6 @@ router.post('/create', verifyToken, createAppointment);
 router.post('/appointments', verifyToken, getAllAppointments)
 router.put('/update', verifyToken, updateAppointment)
 router.post('/reschedule', verifyToken, rescheduleAppointment)
-router.post('/getAllAppointments',getAllAppointmentsOfADay)
-router.post('/getappointments/mother',getAllAppointmentOfMother)
+router.post('/getAllAppointments', verifyToken, getAllAppointmentsOfADay)
+router.post('/getappointments/mother', verifyToken, getAllAppointmentOfMother)
 export default router;

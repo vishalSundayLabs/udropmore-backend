@@ -8,6 +8,6 @@ router.post('/create', tokenVerify_1.verifyToken, AppointmentController_1.create
 router.post('/appointments', tokenVerify_1.verifyToken, AppointmentController_1.getAllAppointments);
 router.put('/update', tokenVerify_1.verifyToken, AppointmentController_1.updateAppointment);
 router.post('/reschedule', tokenVerify_1.verifyToken, AppointmentController_1.rescheduleAppointment);
-router.post('/getAllAppointments', AppointmentController_1.getAllAppointmentsOfADay);
-router.post('/getappointments/mother', AppointmentController_1.getAllAppointmentOfMother);
+router.post('/getAllAppointments', tokenVerify_1.verifyToken, AppointmentController_1.getAllAppointmentsOfADay);
+router.post('/getappointments/mother', tokenVerify_1.verifyToken, AppointmentController_1.getAllAppointmentOfMother);
 exports.default = router;

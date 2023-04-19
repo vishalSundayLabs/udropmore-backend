@@ -99,7 +99,7 @@ const getAllAppointmentsOfADay = (req, res) => __awaiter(void 0, void 0, void 0,
             }
             const mother = yield UserModel_1.default.findOne({ _id: item.motherId });
             const { day, time } = (0, UserController_1.getDayOrTimeFromDate)(item.appointmentDateAndTime);
-            patientList.push({ motherId: item.motherId, name: mother.firstName, phoneNumber: mother.phoneNumber, appointmentTime: time, appointmentType: item.appointmentType });
+            patientList.push({ motherId: item.motherId, name: mother.firstName, phoneNumber: mother.phoneNumber, appointmentTime: time, appointmentType: item.appointmentType, appointmentStatus: item.status });
         }
         let newPatient = 0;
         for (let [key, val] of patientMap) {

@@ -27,11 +27,11 @@ let getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 error: "User does not exist.",
             });
         }
-        return res.status(200).json({
+        return res.status(200).json(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "Success",
-            user: Object.assign({}, userInfo.toJSON()),
-        });
+            result: userInfo
+        }));
     }
     catch (error) {
         let response = new ResponseClass_1.ResponseError({
@@ -98,23 +98,36 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 exports.createUser = createUser;
 const updateMother = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
-    const reqData = {};
-    if (body.firstName)
-        reqData.firstName = body.firstName;
-    if (body.lastName)
-        reqData.lastName = body.lastName;
-    if (body.email)
-        reqData.email = body.email;
-    if (body.userType)
-        reqData.userType = body.userType;
-    if (body.isActive)
-        reqData.isActive = body.isActive;
+    if (!body.phoneNumber) {
+        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: "Bad Request! Phone number must be provide."
+        }));
+    }
     try {
-        reqData.updatedBy = req.userId;
-        yield UserModel_1.default.findOneAndUpdate({ phoneNumber: body.phoneNumber, isDeleted: false }, { $set: reqData });
+        const mother = yield UserModel_1.default.findOne({ phoneNumber: body.phoneNumber, isDeleted: false, userType: "MOTHER" });
+        if (!mother) {
+            return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+                success: false,
+                message: "Bad Request! Invalid Mobile Number!"
+            }));
+        }
+        if (body.firstName)
+            mother.firstName = body.firstName;
+        if (body.lastName)
+            mother.lastName = body.lastName;
+        if (body.email)
+            mother.email = body.email;
+        if (body.userType)
+            mother.userType = body.userType;
+        if (body.isActive)
+            mother.isActive = body.isActive;
+        mother.updatedBy = req.userId;
+        yield mother.save();
         return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "User Update successfully",
+            result: mother
         }));
     }
     catch (error) {

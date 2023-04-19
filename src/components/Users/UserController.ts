@@ -30,11 +30,11 @@ export let getUser = async (req: RequestWithUser, res: Response) => {
       });
     }
 
-    return res.status(200).json({
+    return res.status(200).json(new ResponseSuccess({
       success: true,
       message: "Success",
-      user: { ...userInfo.toJSON() },
-    });
+      result:userInfo
+    }));
 
   } catch (error) {
 
@@ -105,24 +105,41 @@ export const createUser = async (req, res) => {
 export const updateMother = async (req, res) => {
 
   const body = req.body
-  const reqData: any | string = {}
-
-  if (body.firstName) reqData.firstName = body.firstName
-
-  if (body.lastName) reqData.lastName = body.lastName
-
-  if (body.email) reqData.email = body.email
-
-  if (body.userType) reqData.userType = body.userType
-
-  if (body.isActive) reqData.isActive = body.isActive
+   
+  if(!body.phoneNumber) {
+      return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+        success:false,
+        message:"Bad Request! Phone number must be provide."
+      }))
+  }
 
   try {
-    reqData.updatedBy = req.userId;
-    await UserModel.findOneAndUpdate({ phoneNumber: body.phoneNumber, isDeleted: false }, { $set: reqData })
+
+    const mother = await UserModel.findOne({ phoneNumber: body.phoneNumber, isDeleted: false, userType: "MOTHER" })
+
+    if (!mother) {
+      return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+        success: false,
+        message: "Bad Request! Invalid Mobile Number!"
+      }))
+    }
+
+    if (body.firstName) mother.firstName = body.firstName
+
+    if (body.lastName) mother.lastName = body.lastName
+
+    if (body.email) mother.email = body.email
+
+    if (body.userType) mother.userType = body.userType
+
+    if (body.isActive) mother.isActive = body.isActive
+ 
+    mother.updatedBy = req.userId;
+    await mother.save()
     return res.status(HTTP_OK).send(new ResponseSuccess({
       success: true,
       message: "User Update successfully",
+      result: mother
     }))
   } catch (error) {
 
@@ -282,10 +299,10 @@ export const getSlots = async (req, res) => {
         }
       }
     }
-    if(!finalSlot[0]) {
+    if (!finalSlot[0]) {
       return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
-        success:false,
-        message:"Invalid Date with Respect to Day."
+        success: false,
+        message: "Invalid Date with Respect to Day."
       }))
     }
     return res.status(HTTP_OK).send(new ResponseSuccess({
@@ -365,7 +382,7 @@ export const MakeSlotesFormat = (slots) => {
 //   try {
 
 //     const user = await UserModel.findOne({ phoneNumber: body.phoneNumber })
-    
+
 //   } catch (error) {
 //     let response = new ResponseError({
 //       message: "Something went wrong",
