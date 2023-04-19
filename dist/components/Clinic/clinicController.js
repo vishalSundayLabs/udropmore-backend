@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllClinic = exports.deleteClinic = exports.updateClinic = exports.createClinic = void 0;
+exports.getClinicByLatitudeAndLongitude = exports.getAllClinic = exports.deleteClinic = exports.updateClinic = exports.createClinic = void 0;
 const Constants_1 = require("../../utils/Constants");
 const ResponseClass_1 = require("../../utils/ResponseClass");
 const clinicModel_1 = require("./clinicModel");
@@ -132,3 +132,28 @@ const getAllClinic = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 exports.getAllClinic = getAllClinic;
+const getClinicByLatitudeAndLongitude = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const body = req.body;
+    if (!body.longitude || !body.latitude) {
+        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: "Bad request! latitude and longitude must be provide."
+        }));
+    }
+    try {
+        const clinic = yield clinicModel_1.ClinicModel.find({ isDeleted: false });
+        return res.status(Constants_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "find all Clinic successfully.",
+            result: clinic
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.getClinicByLatitudeAndLongitude = getClinicByLatitudeAndLongitude;

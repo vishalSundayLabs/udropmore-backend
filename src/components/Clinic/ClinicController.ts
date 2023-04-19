@@ -1,4 +1,4 @@
-import { HTTP_CREATED, HTTP_OK } from "../../utils/Constants"
+import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_OK } from "../../utils/Constants"
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
 import { ClinicModel } from "./clinicModel"
 
@@ -11,11 +11,11 @@ export const createClinic = async (req, res) => {
         address: body.address,
         googleMapLink: body.googleMapLink,
         status: body.status,
-        createdBy:req.userId
+        createdBy: req.userId
     }
     try {
         const clinic = await ClinicModel.create(reqData)
-  
+
         return res.status(HTTP_CREATED).send(new ResponseSuccess({
             success: true,
             message: "Clinic created successfully.",
@@ -117,6 +117,38 @@ export const getAllClinic = async (req, res) => {
             message: "find all Clinic successfully.",
             result: clinic
         }))
+
+    } catch (error) {
+        let response = new ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+
+}
+
+export const getClinicByLatitudeAndLongitude = async (req, res) => {
+
+    const body = req.body
+
+    if (!body.longitude || !body.latitude) {
+        
+        return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+            success:false,
+            message:"Bad request! latitude and longitude must be provide."
+        }))
+    }
+
+    try {
+        const clinic = await ClinicModel.find({ isDeleted: false })
+
+        return res.status(HTTP_CREATED).send(new ResponseSuccess({
+            success: true,
+            message: "find all Clinic successfully.",
+            result: clinic
+        }))
+
     } catch (error) {
         let response = new ResponseError({
             message: "Something went wrong",

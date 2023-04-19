@@ -9,13 +9,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getDayOrTimeFromDate = exports.MakeSlotesFormat = exports.getAllUsers = exports.getSlots = exports.deleteUser = exports.userUpdate = exports.updateMother = exports.createUser = exports.getUser = void 0;
+exports.getDayOrTimeFromDate = exports.MakeSlotesFormat = exports.mapMotherWithDoctor = exports.getAllUsers = exports.getSlots = exports.deleteUser = exports.userUpdate = exports.updateMother = exports.createUser = exports.getUserById = exports.getUser = void 0;
 // models
 const UserModel_1 = require("./UserModel");
 // classes
 const ResponseClass_1 = require("../../utils/ResponseClass");
 const Constants_1 = require("../../utils/Constants");
 const AppointmentModel_1 = require("../Appointment/AppointmentModel");
+const clinicModel_1 = require("../Clinic/clinicModel");
 let getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let uid = req.userId;
@@ -42,6 +43,37 @@ let getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getUser = getUser;
+const getUserById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const params = req.params;
+    if (!params.id) {
+        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: "Bad request! User Id must be provide!"
+        }));
+    }
+    try {
+        const user = yield UserModel_1.default.findOne({ _id: params.id, isDeleted: false });
+        if (!user) {
+            return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+                success: false,
+                message: "User Id does not exist."
+            }));
+        }
+        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "get User successfully.",
+            result: user
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.getUserById = getUserById;
 //this controller use only admin
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
@@ -320,6 +352,57 @@ const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.getAllUsers = getAllUsers;
+const mapMotherWithDoctor = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const body = req.body;
+    if (!body.motherId || !body.mappedDoctor || !body.mappedClinic) {
+        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: "Bad Request! Mother id , doctor id or clinic id must be provide."
+        }));
+    }
+    try {
+        const mother = yield UserModel_1.default.findOne({ _id: body.motherId, isDeleted: false, userType: "MOTHER" });
+        if (!mother) {
+            return res.status(Constants_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
+                success: false,
+                message: "Bad Request! user not found!"
+            }));
+        }
+        const doctor = yield UserModel_1.default.findOne({ _id: body.mappedDoctor, isDeleted: false, userType: "DOCTOR" });
+        if (!doctor) {
+            return res.status(Constants_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
+                success: false,
+                message: "Bad Request! Doctor not found!"
+            }));
+        }
+        if (body.mappedDoctor)
+            mother.mappedDoctor = body.mappedDoctor;
+        const clinic = yield clinicModel_1.ClinicModel.findOne({ _id: body.mappedClinic, isDeleted: false });
+        if (!clinic) {
+            return res.status(Constants_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
+                success: false,
+                message: "Bad Request! Clinic not found!"
+            }));
+        }
+        if (body.mappedClinic)
+            mother.mappedClinic = body.mappedClinic;
+        mother.updatedBy = req.userId;
+        yield mother.save();
+        return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "Mother mapped with doctor successfully.",
+            result: mother
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.mapMotherWithDoctor = mapMotherWithDoctor;
 const MakeSlotesFormat = (slots) => {
     const slotsTime = +process.env.SLOT_TIME;
     const newSlots = [];

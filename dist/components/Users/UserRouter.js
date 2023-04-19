@@ -10,6 +10,8 @@ const userController = require("./UserController");
 const router = (0, express_1.Router)();
 //find all user 
 router.get('/find', tokenVerify_1.verifyToken, userController.getUser);
+//get user by id
+router.get('/user/:id', tokenVerify_1.verifyToken, userController.getUserById);
 //update user
 router.put('/update/:id', tokenVerify_1.verifyToken, isAdmin_1.isAdmin, userController.userUpdate);
 //update mother
@@ -22,4 +24,6 @@ router.delete('/delete/:id', tokenVerify_1.verifyToken, isAdmin_1.isAdmin, userC
 router.post('/slots', tokenVerify_1.verifyToken, userController.getSlots);
 //get all users
 router.post('/getAllUsers', tokenVerify_1.verifyToken, userController.getAllUsers);
+//mapped mother with doctor
+router.post('/mother/map/doctor', tokenVerify_1.verifyToken, userController.mapMotherWithDoctor);
 exports.default = router;

@@ -13,4 +13,6 @@ router.put('/update/:id', tokenVerify_1.verifyToken, isAdmin_1.isAdmin, clinicCo
 router.get('/getall', tokenVerify_1.verifyToken, clinicController_1.getAllClinic);
 //delete clinic 
 router.delete('/delete/:id', tokenVerify_1.verifyToken, isAdmin_1.isAdmin, clinicController_1.deleteClinic);
+//find all clinics by longitude and latitude
+router.post('/clinics', tokenVerify_1.verifyToken, clinicController_1.getClinicByLatitudeAndLongitude);
 exports.default = router;

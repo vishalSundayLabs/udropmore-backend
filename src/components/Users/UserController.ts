@@ -16,6 +16,7 @@ import {
 } from "./UserValidate";
 import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_NOT_FOUND, HTTP_OK } from "../../utils/Constants";
 import AppointmentModel from "../Appointment/AppointmentModel";
+import { ClinicModel } from "../Clinic/clinicModel";
 
 export let getUser = async (req: RequestWithUser, res: Response) => {
   try {
@@ -33,7 +34,7 @@ export let getUser = async (req: RequestWithUser, res: Response) => {
     return res.status(200).json(new ResponseSuccess({
       success: true,
       message: "Success",
-      result:userInfo
+      result: userInfo
     }));
 
   } catch (error) {
@@ -46,6 +47,44 @@ export let getUser = async (req: RequestWithUser, res: Response) => {
     return res.status(500).json(response);
   }
 };
+
+export const getUserById = async (req, res) => {
+  const params = req.params
+
+  if (!params.id) {
+    return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+      success: false,
+      message: "Bad request! User Id must be provide!"
+    }))
+  }
+
+  try {
+
+    const user = await UserModel.findOne({ _id: params.id, isDeleted: false })
+
+    if (!user) {
+      return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+        success: false,
+        message: "User Id does not exist."
+      }))
+    }
+
+    return res.status(HTTP_BAD_REQUEST).send(new ResponseSuccess({
+      success: true,
+      message: "get User successfully.",
+      result: user
+    }))
+
+  } catch (error) {
+
+    let response = new ResponseError({
+      message: "Something went wrong",
+      error: error.message,
+    });
+    return res.status(500).json(response);
+
+  }
+}
 //this controller use only admin
 export const createUser = async (req, res) => {
   const body = req.body
@@ -105,12 +144,12 @@ export const createUser = async (req, res) => {
 export const updateMother = async (req, res) => {
 
   const body = req.body
-   
-  if(!body.phoneNumber) {
-      return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
-        success:false,
-        message:"Bad Request! Phone number must be provide."
-      }))
+
+  if (!body.phoneNumber) {
+    return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+      success: false,
+      message: "Bad Request! Phone number must be provide."
+    }))
   }
 
   try {
@@ -133,7 +172,7 @@ export const updateMother = async (req, res) => {
     if (body.userType) mother.userType = body.userType
 
     if (body.isActive) mother.isActive = body.isActive
- 
+
     mother.updatedBy = req.userId;
     await mother.save()
     return res.status(HTTP_OK).send(new ResponseSuccess({
@@ -341,6 +380,70 @@ export const getAllUsers = async (req, res) => {
   }
 }
 
+export const mapMotherWithDoctor = async (req, res) => {
+
+  const body = req.body
+
+  if (!body.motherId || !body.mappedDoctor || !body.mappedClinic) {
+    return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+      success: false,
+      message: "Bad Request! Mother id , doctor id or clinic id must be provide."
+    }))
+  }
+
+  try {
+
+    const mother = await UserModel.findOne({ _id: body.motherId, isDeleted: false, userType: "MOTHER" })
+
+    if (!mother) {
+      return res.status(HTTP_NOT_FOUND).send(new ResponseError({
+        success: false,
+        message: "Bad Request! user not found!"
+      }))
+    }
+
+    const doctor = await UserModel.findOne({ _id: body.mappedDoctor, isDeleted: false, userType: "DOCTOR" })
+
+    if (!doctor) {
+      return res.status(HTTP_NOT_FOUND).send(new ResponseError({
+        success: false,
+        message: "Bad Request! Doctor not found!"
+      }))
+    }
+
+    if (body.mappedDoctor) mother.mappedDoctor = body.mappedDoctor
+
+    const clinic = await ClinicModel.findOne({ _id: body.mappedClinic, isDeleted: false })
+    
+    if (!clinic) {
+      return res.status(HTTP_NOT_FOUND).send(new ResponseError({
+        success: false,
+        message: "Bad Request! Clinic not found!"
+      }))
+    }
+
+    if (body.mappedClinic) mother.mappedClinic = body.mappedClinic
+
+    mother.updatedBy = req.userId;
+
+    await mother.save()
+
+    return res.status(HTTP_OK).send(new ResponseSuccess({
+      success: true,
+      message: "Mother mapped with doctor successfully.",
+      result: mother
+    }))
+
+  } catch (error) {
+
+    let response = new ResponseError({
+      message: "Something went wrong",
+      error: error.message,
+    });
+
+    return res.status(500).json(response);
+  }
+}
 
 export const MakeSlotesFormat = (slots) => {
   const slotsTime = +process.env.SLOT_TIME;

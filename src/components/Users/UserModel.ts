@@ -99,6 +99,14 @@ const userSchema = new mongoose.Schema(
         }]
       }],
     },
+    mappedDoctor:{
+      type:mongoose.SchemaTypes.ObjectId,
+      refs:"User"
+    },
+    mappedClinic:{
+      type:mongoose.SchemaTypes.ObjectId,
+      refs:"User"
+    },
     status: {
       type: String,
       enum: ['ACTIVE', 'INACTIVE']
