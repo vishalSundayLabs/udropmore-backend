@@ -291,7 +291,7 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             }
         }
         const finalSlot = (0, exports.MakeSlotesFormat)(newSlots);
-        const BookedSlot = yield AppointmentModel_1.default.find({ clinicId: body.clinic, doctorId: body.doctor, status: { $ne: "CANCELLED" }, isDeleted: false });
+        const BookedSlot = yield AppointmentModel_1.default.find({ clinicId: body.clinic, doctorId: body.doctor, appointmentDateAndTime: { $regex: `${bodyDate.fullDate}` }, status: { $ne: "CANCELLED" }, isDeleted: false });
         if (BookedSlot.length > 0) {
             for (let j = 0; j < BookedSlot.length; j++) {
                 let bookedSlotIndex = -1;
@@ -455,9 +455,12 @@ const getDayOrTimeFromDate = (date) => {
     const dayInNumber = newDate.getDay();
     const hours = newDate.getHours();
     const minutes = newDate.getMinutes();
+    const dateArr = date.split(' ');
+    const fullDate = `${dateArr[0]} ${dateArr[1]} ${dateArr[2]} ${dateArr[3]}`;
     return {
         day: days[dayInNumber],
-        time: `${hours}:${minutes}`
+        time: `${hours}:${minutes}`,
+        fullDate: fullDate
     };
 };
 exports.getDayOrTimeFromDate = getDayOrTimeFromDate;

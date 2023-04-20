@@ -311,14 +311,13 @@ export const getSlots = async (req, res) => {
     })
     const bodyDate = getDayOrTimeFromDate(body.date)
     const newSlots = [];
-
     for (let i = 0; i < slots[0].slots.length; i++) {
       if (slots[0].slots[i].type == body.appointmentType && slots[0].slots[i].day == bodyDate.day) {
         newSlots.push(slots[0].slots[i])
       }
     }
     const finalSlot = MakeSlotesFormat(newSlots)
-    const BookedSlot = await AppointmentModel.find({ clinicId: body.clinic, doctorId: body.doctor, status: { $ne: "CANCELLED" }, isDeleted: false });
+    const BookedSlot = await AppointmentModel.find({ clinicId: body.clinic, doctorId: body.doctor, appointmentDateAndTime: { $regex: `${bodyDate.fullDate}` }, status: { $ne: "CANCELLED" }, isDeleted: false });
 
     if (BookedSlot.length > 0) {
       for (let j = 0; j < BookedSlot.length; j++) {
@@ -414,7 +413,7 @@ export const mapMotherWithDoctor = async (req, res) => {
     if (body.mappedDoctor) mother.mappedDoctor = body.mappedDoctor
 
     const clinic = await ClinicModel.findOne({ _id: body.mappedClinic, isDeleted: false })
-    
+
     if (!clinic) {
       return res.status(HTTP_NOT_FOUND).send(new ResponseError({
         success: false,
@@ -501,8 +500,11 @@ export const getDayOrTimeFromDate = (date) => {
   const dayInNumber = newDate.getDay()
   const hours = newDate.getHours()
   const minutes = newDate.getMinutes()
+  const dateArr = date.split(' ')
+  const fullDate = `${dateArr[0]} ${dateArr[1]} ${dateArr[2]} ${dateArr[3]}`
   return {
     day: days[dayInNumber],
-    time: `${hours}:${minutes}`
+    time: `${hours}:${minutes}`,
+    fullDate: fullDate
   }
 }

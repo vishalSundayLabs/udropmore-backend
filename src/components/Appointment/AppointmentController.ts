@@ -262,7 +262,7 @@ export const appointmentBookValidations = async (body, req, res) => {
 
     const finalSlot = MakeSlotesFormat(newSlots)
 
-    const BookedSlot = await AppointmentModel.find({ clinicId: body.clinicId, doctorId: body.doctorId, status: { $ne: "CANCELLED" }, isDeleted: false });
+    const BookedSlot = await AppointmentModel.find({ clinicId: body.clinicId, doctorId: body.doctorId, appointmentDateAndTime: { $regex: `${appointmentDate.fullDate}` }, status: { $ne: "CANCELLED" }, isDeleted: false });
 
     if (BookedSlot.length > 0) {
         for (let j = 0; j < BookedSlot.length; j++) {
