@@ -67,7 +67,7 @@ const updateUserDetails = (req, res) => __awaiter(void 0, void 0, void 0, functi
         }));
     }
     try {
-        const userDetails = yield UserDetailsModel_1.default.findOne({ _id: body.motherId, isDeleted: false });
+        const userDetails = yield UserDetailsModel_1.default.findOne({ userId: body.motherId, isDeleted: false });
         if (body.dateOfBirth)
             userDetails.dateOfBirth = body.dateOfBirth;
         if (body.address)

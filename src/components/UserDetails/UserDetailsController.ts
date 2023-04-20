@@ -65,7 +65,7 @@ export const updateUserDetails = async (req, res) => {
 
     try {
 
-        const userDetails = await UserDetailsModel.findOne({ _id: body.motherId, isDeleted: false })
+        const userDetails = await UserDetailsModel.findOne({ userId: body.motherId, isDeleted: false })
 
         if (body.dateOfBirth) userDetails.dateOfBirth = body.dateOfBirth
         if (body.address) userDetails.address = body.address

@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 const userDetailsSchema = new mongoose.Schema({
     userId: {
         type: mongoose.SchemaTypes.ObjectId,
-        refs: "User"
+        refs: "User",
+        unique: true
     },
     dateOfBirth: {
         type: String
