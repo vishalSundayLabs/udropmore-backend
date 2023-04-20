@@ -3,7 +3,8 @@ import * as mongoose from 'mongoose';
 const userDetailsSchema = new mongoose.Schema({
     userId: {
         type: mongoose.SchemaTypes.ObjectId,
-        refs: "User"
+        refs: "User",
+        unique:true
     },
     dateOfBirth: {
         type: String
