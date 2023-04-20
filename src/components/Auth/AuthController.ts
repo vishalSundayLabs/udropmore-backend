@@ -19,6 +19,7 @@ import { HTTP_BAD_REQUEST, HTTP_INTERNAL_SERVER_ERROR, HTTP_NOT_FOUND, HTTP_OK, 
 import { createOtp } from "../../utils/CreateOtp";
 import { validateOtpBody } from "./req_body/ValidateOtp";
 import AuthSession from "./AuthSession";
+import UserDetailsModel from "../UserDetails/UserDetailsModel";
 
 
 export const sendOtp = async (req: Request, res: Response) => {
@@ -95,9 +96,10 @@ export const validateOtp = async (req: Request, res: Response) => {
         var user = await UserModel.findOne({ phoneNumber: otp[0].phoneNumber });
         if (!user && body.platform == 'MOTHER') {
             const newUser = await UserModel.create({ phoneNumber: body.phoneNumber, userType: "MOTHER", platform: body.platform })
+            await UserDetailsModel.create({ userId: newUser._id })
             user = newUser
         }
-        if (body.platform == 'DOCTOR' && user.userType == 'DOCTOR' &&  !user.clinic[0]) {
+        if (body.platform == 'DOCTOR' && user.userType == 'DOCTOR' && !user.clinic[0]) {
             return res.status(HTTP_OK).send(new ResponseSuccess({
                 success: false,
                 message: 'Doctor not mapped to any clinic . Please contact your admin!'
