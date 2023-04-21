@@ -4,30 +4,45 @@ const userDetailsSchema = new mongoose.Schema({
     userId: {
         type: mongoose.SchemaTypes.ObjectId,
         refs: "User",
-        unique:true
+        unique: true
     },
     dateOfBirth: {
-        type: String
+        type: Date
     },
     address: {
-        type: String
+        line1: String,
+        line2: String,
+        city: String,
+        state: String,
+        pincode: Number
     },
     height: {
-        type: Number,
-        default: 0
+        unit: {
+            type: String,
+            enum: ["cm", "ft", "m", "inches"]
+        },
+        value: {
+            type: Number
+        }
     },
     weight: {
-        type: Number,
-        default: 0
+        unit: {
+            type: String,
+            enum: ["kg", "pound"]
+        },
+        value: {
+            type: Number
+        }
     },
     lastMenstrualDate: {
-        type: String
+        type: Date
     },
     dueDate: {
-        type: String
+        type: Date
     },
     maritalStatus: {
-        type: String
+        type: String,
+        enum: ["MARRIED", "NOT_MARRIED"]
     },
     occupation: {
         type: String
@@ -36,7 +51,7 @@ const userDetailsSchema = new mongoose.Schema({
         type: String
     },
     pregnancyWeek: {
-        type: String
+        type: Number
     },
     husbandDetails: {
         type: Object,
@@ -60,26 +75,25 @@ const userDetailsSchema = new mongoose.Schema({
         }
     },
     previousVisit: {
-        type: [String]
+        type: [Date]
     },
     language: {
-        type: String
+        type: String,
+        enum: ["ENGLISH", "HINDI"]
     },
-    emergencyMobileNumber: {
-        type: String
+    emergency: {
+        name: String,
+        phoneNumber: String
     },
-    emergencyName: {
-        type: String
+    createdBy: {
+        type: mongoose.SchemaTypes.ObjectId
     },
-    createdBy:{
-        type:mongoose.SchemaTypes.ObjectId
+    updatedBy: {
+        type: mongoose.SchemaTypes.ObjectId
     },
-    updatedBy:{
-        type:mongoose.SchemaTypes.ObjectId
-    },
-    isDeleted:{
-        type:Boolean,
-        default:false
+    isDeleted: {
+        type: Boolean,
+        default: false
     }
 }, { timestamps: true })
 
