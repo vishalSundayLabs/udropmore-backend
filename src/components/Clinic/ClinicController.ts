@@ -1,5 +1,6 @@
 import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_OK } from "../../utils/Constants"
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
+import UserModel from "../Users/UserModel"
 import { ClinicModel } from "./clinicModel"
 
 export const createClinic = async (req, res) => {
@@ -133,10 +134,10 @@ export const getClinicByLatitudeAndLongitude = async (req, res) => {
     const body = req.body
 
     if (!body.longitude || !body.latitude) {
-        
+
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
-            success:false,
-            message:"Bad request! latitude and longitude must be provide."
+            success: false,
+            message: "Bad request! latitude and longitude must be provide."
         }))
     }
 
@@ -150,6 +151,7 @@ export const getClinicByLatitudeAndLongitude = async (req, res) => {
         }))
 
     } catch (error) {
+
         let response = new ResponseError({
             message: "Something went wrong",
             error: error.message,
@@ -157,4 +159,38 @@ export const getClinicByLatitudeAndLongitude = async (req, res) => {
         return res.status(500).json(response);
     }
 
+}
+
+export const getAllDoctorOfClinic = async (req, res) => {
+    const body = req.body
+    if (!body.clinicId) {
+
+        return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+            success: false,
+            message: "Bad request! Clinic Id must be provide."
+        }))
+
+    }
+
+    try {
+
+        const doctorsOfClinic = await UserModel.find()
+
+        const doctors = doctorsOfClinic.filter((item) => item.clinic.includes(body.clinicId))
+
+        return res.status(HTTP_OK).send(new ResponseSuccess({
+            success: true,
+            message: "find all doctors of this clinic successfully.",
+            result: doctors
+        }))
+
+    } catch (error) {
+
+        let response = new ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+
+    }
 }

@@ -15,4 +15,6 @@ router.get('/getall', tokenVerify_1.verifyToken, clinicController_1.getAllClinic
 router.delete('/delete/:id', tokenVerify_1.verifyToken, isAdmin_1.isAdmin, clinicController_1.deleteClinic);
 //find all clinics by longitude and latitude
 router.post('/clinics', tokenVerify_1.verifyToken, clinicController_1.getClinicByLatitudeAndLongitude);
+//find all doctor of a clinic
+router.post('/doctors', tokenVerify_1.verifyToken, clinicController_1.getAllDoctorOfClinic);
 exports.default = router;

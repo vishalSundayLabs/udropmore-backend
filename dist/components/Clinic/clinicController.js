@@ -9,9 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getClinicByLatitudeAndLongitude = exports.getAllClinic = exports.deleteClinic = exports.updateClinic = exports.createClinic = void 0;
+exports.getAllDoctorOfClinic = exports.getClinicByLatitudeAndLongitude = exports.getAllClinic = exports.deleteClinic = exports.updateClinic = exports.createClinic = void 0;
 const Constants_1 = require("../../utils/Constants");
 const ResponseClass_1 = require("../../utils/ResponseClass");
+const UserModel_1 = require("../Users/UserModel");
 const clinicModel_1 = require("./clinicModel");
 const createClinic = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
@@ -157,3 +158,29 @@ const getClinicByLatitudeAndLongitude = (req, res) => __awaiter(void 0, void 0, 
     }
 });
 exports.getClinicByLatitudeAndLongitude = getClinicByLatitudeAndLongitude;
+const getAllDoctorOfClinic = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const body = req.body;
+    if (!body.clinicId) {
+        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: "Bad request! Clinic Id must be provide."
+        }));
+    }
+    try {
+        const doctorsOfClinic = yield UserModel_1.default.find();
+        const doctors = doctorsOfClinic.filter((item) => item.clinic.includes(body.clinicId));
+        return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "find all doctors of this clinic successfully.",
+            result: doctors
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.getAllDoctorOfClinic = getAllDoctorOfClinic;
