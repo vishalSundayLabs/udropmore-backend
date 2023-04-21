@@ -4,7 +4,7 @@ import { createUserDetails, updateUserDetails } from "./UserDetailsController";
 
 const router = Router()
 
-router.post('/create/userDetails',verifyToken,createUserDetails)
-router.put('/update/userDetail',verifyToken,updateUserDetails)
+router.post('/create/userDetails', createUserDetails)
+router.put('/update/userDetail', updateUserDetails)
 
 export default router;
