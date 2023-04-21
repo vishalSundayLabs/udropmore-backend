@@ -17,6 +17,7 @@ const ResponseClass_1 = require("../../utils/ResponseClass");
 const Constants_1 = require("../../utils/Constants");
 const AppointmentModel_1 = require("../Appointment/AppointmentModel");
 const clinicModel_1 = require("../Clinic/clinicModel");
+const bodyTraverse_1 = require("../../helpers/bodyTraverse");
 let getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let uid = req.userId;
@@ -144,16 +145,7 @@ const updateMother = (req, res) => __awaiter(void 0, void 0, void 0, function* (
                 message: "Bad Request! Invalid Mobile Number!"
             }));
         }
-        if (body.firstName)
-            mother.firstName = body.firstName;
-        if (body.lastName)
-            mother.lastName = body.lastName;
-        if (body.email)
-            mother.email = body.email;
-        if (body.userType)
-            mother.userType = body.userType;
-        if (body.isActive)
-            mother.isActive = body.isActive;
+        (0, bodyTraverse_1.bodyTraverse)(mother, body);
         mother.updatedBy = req.userId;
         yield mother.save();
         return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
@@ -182,44 +174,7 @@ const userUpdate = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                 message: "user does not exist!"
             }));
         }
-        if (body.firstName)
-            user.firstName = body.firstName;
-        if (body.lastName)
-            user.lastName = body.lastName;
-        if (body.middleName)
-            user.middleName = body.middleName;
-        if (body.email)
-            user.email = body.email;
-        if (body.phoneNumber)
-            user.phoneNumber = body.phoneNumber;
-        if (body.userType)
-            user.userType = body.userType;
-        if (body.platform)
-            user.platform = body.platform;
-        if (body.registrationDetails)
-            user.registrationDetails = body.registrationDetails;
-        if (body.degree)
-            user.degree = body.degree;
-        if (body.speciality)
-            user.speciality = body.speciality;
-        if (body.awards)
-            user.awards = body.awards;
-        if (body.experience)
-            user.experience = body.experience;
-        if (body.consultationFeeDetails)
-            user.consultationFeeDetails = body.consultationFeeDetails;
-        if (body.clinic)
-            user.clinic = body.clinic;
-        if (body.memberships)
-            user.memberships = body.memberships;
-        if (body.gallery)
-            user.gallery = body.gallery;
-        if (body.services)
-            user.services = body.services;
-        if (body.availability)
-            user.availability = body.availability;
-        if (body.status)
-            user.status = body.status;
+        (0, bodyTraverse_1.bodyTraverse)(user, body);
         user.updatedBy = req.userId;
         yield user.save();
         return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({

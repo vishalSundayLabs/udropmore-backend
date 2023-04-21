@@ -9,7 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateUserDetails = exports.createUserDetails = void 0;
+exports.getUserDetailsbyId = exports.updateUserDetails = exports.createUserDetails = void 0;
+const bodyTraverse_1 = require("../../helpers/bodyTraverse");
 const Constants_1 = require("../../utils/Constants");
 const ResponseClass_1 = require("../../utils/ResponseClass");
 const UserDetailsModel_1 = require("./UserDetailsModel");
@@ -68,36 +69,14 @@ const updateUserDetails = (req, res) => __awaiter(void 0, void 0, void 0, functi
     }
     try {
         const userDetails = yield UserDetailsModel_1.default.findOne({ userId: body.motherId, isDeleted: false });
-        if (body.dateOfBirth)
-            userDetails.dateOfBirth = body.dateOfBirth;
-        if (body.address)
-            userDetails.address = body.address;
-        if (body.height)
-            userDetails.height = body.height;
-        if (body.weight)
-            userDetails.weight = body.weight;
-        if (body.lastMenstrualDate)
-            userDetails.lastMenstrualDate = body.lastMenstrualDate;
-        if (body.dueDate)
-            userDetails.dueDate = body.dueDate;
-        if (body.maritalStatus)
-            userDetails.maritalStatus = body.maritalStatus;
-        if (body.education)
-            userDetails.education = body.education;
-        if (body.pregnancyWeek)
-            userDetails.pregnancyWeek = body.pregnancyWeek;
-        if (body.husbandDetails)
-            userDetails.husbandDetails = body.husbandDetails;
-        if (body.refBy)
-            userDetails.refBy = body.refBy;
-        if (body.language)
-            userDetails.language = body.language;
-        if (body.emergencyMobileNumber)
-            userDetails.emergencyMobileNumber = body.emergencyMobileNumber;
-        if (body.emergencyName)
-            userDetails.emergencyName = body.emergencyName;
-        if (body.previousVisit)
-            userDetails.previousVisit = body.previousVisit;
+        //add feilds for update
+        if (!userDetails) {
+            return res.status(Constants_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
+                success: false,
+                message: "user details not found."
+            }));
+        }
+        (0, bodyTraverse_1.bodyTraverse)(userDetails, body);
         userDetails.updatedBy = req.userId;
         yield userDetails.save();
         return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
@@ -115,3 +94,34 @@ const updateUserDetails = (req, res) => __awaiter(void 0, void 0, void 0, functi
     }
 });
 exports.updateUserDetails = updateUserDetails;
+const getUserDetailsbyId = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const params = req.params;
+    if (!params.motherId) {
+        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: "Bad request! Mother id must be provide."
+        }));
+    }
+    try {
+        const userDetails = yield UserDetailsModel_1.default.findOne({ userId: params.motherId, isDeleted: false });
+        if (!userDetails) {
+            return res.status(Constants_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
+                success: false,
+                message: "user details not found."
+            }));
+        }
+        return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "get User details successfully.",
+            result: userDetails
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.getUserDetailsbyId = getUserDetailsbyId;

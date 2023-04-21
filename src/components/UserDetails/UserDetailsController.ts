@@ -1,4 +1,5 @@
-import { HTTP_BAD_REQUEST, HTTP_OK } from "../../utils/Constants"
+import { bodyTraverse } from "../../helpers/bodyTraverse"
+import { HTTP_BAD_REQUEST, HTTP_NOT_FOUND, HTTP_OK } from "../../utils/Constants"
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
 import UserDetailsModel from "./UserDetailsModel"
 
@@ -66,22 +67,14 @@ export const updateUserDetails = async (req, res) => {
     try {
 
         const userDetails = await UserDetailsModel.findOne({ userId: body.motherId, isDeleted: false })
-
-        if (body.dateOfBirth) userDetails.dateOfBirth = body.dateOfBirth
-        if (body.address) userDetails.address = body.address
-        if (body.height) userDetails.height = body.height
-        if (body.weight) userDetails.weight = body.weight
-        if (body.lastMenstrualDate) userDetails.lastMenstrualDate = body.lastMenstrualDate
-        if (body.dueDate) userDetails.dueDate = body.dueDate
-        if (body.maritalStatus) userDetails.maritalStatus = body.maritalStatus
-        if (body.education) userDetails.education = body.education
-        if (body.pregnancyWeek) userDetails.pregnancyWeek = body.pregnancyWeek
-        if (body.husbandDetails) userDetails.husbandDetails = body.husbandDetails
-        if (body.refBy) userDetails.refBy = body.refBy
-        if (body.language) userDetails.language = body.language
-        if (body.emergencyMobileNumber) userDetails.emergencyMobileNumber = body.emergencyMobileNumber
-        if (body.emergencyName) userDetails.emergencyName = body.emergencyName
-        if (body.previousVisit) userDetails.previousVisit = body.previousVisit
+        //add feilds for update
+        if (!userDetails) {
+            return res.status(HTTP_NOT_FOUND).send(new ResponseError({
+                success: false,
+                message: "user details not found."
+            }))
+        }
+        bodyTraverse(userDetails, body)
 
         userDetails.updatedBy = req.userId
         await userDetails.save()
@@ -103,4 +96,42 @@ export const updateUserDetails = async (req, res) => {
 
     }
 
+}
+
+export const getUserDetailsbyId = async (req, res) => {
+    const params = req.params
+
+    if (!params.motherId) {
+        return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+            success: false,
+            message: "Bad request! Mother id must be provide."
+        }))
+    }
+
+    try {
+        const userDetails = await UserDetailsModel.findOne({ userId: params.motherId, isDeleted: false })
+
+        if (!userDetails) {
+            return res.status(HTTP_NOT_FOUND).send(new ResponseError({
+                success: false,
+                message: "user details not found."
+            }))
+        }
+
+        return res.status(HTTP_OK).send(new ResponseSuccess({
+            success: true,
+            message: "get User details successfully.",
+            result: userDetails
+        }))
+
+    } catch (error) {
+
+        let response = new ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+
+        return res.status(500).json(response);
+
+    }
 }

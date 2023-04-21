@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAllDoctorOfClinic = exports.getClinicByLatitudeAndLongitude = exports.getAllClinic = exports.deleteClinic = exports.updateClinic = exports.createClinic = void 0;
+const bodyTraverse_1 = require("../../helpers/bodyTraverse");
 const Constants_1 = require("../../utils/Constants");
 const ResponseClass_1 = require("../../utils/ResponseClass");
 const UserModel_1 = require("../Users/UserModel");
@@ -53,24 +54,7 @@ const updateClinic = (req, res) => __awaiter(void 0, void 0, void 0, function* (
                 message: "Clinic does not exist."
             }));
         }
-        if (body.clinicName) {
-            clinic.clinicName = body.clinicName;
-        }
-        if (body.latitude) {
-            clinic.latitude = body.latitude;
-        }
-        if (body.longitude) {
-            clinic.longitude = body.longitude;
-        }
-        if (body.googleMapLink) {
-            clinic.googleMapLink = body.googleMapLink;
-        }
-        if (body.address) {
-            clinic.address = body.address;
-        }
-        if (body.status) {
-            clinic.status = body.status;
-        }
+        (0, bodyTraverse_1.bodyTraverse)(clinic, body);
         clinic.updatedBy = req.userId;
         yield clinic.save();
         return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
@@ -167,7 +151,7 @@ const getAllDoctorOfClinic = (req, res) => __awaiter(void 0, void 0, void 0, fun
         }));
     }
     try {
-        const doctorsOfClinic = yield UserModel_1.default.find();
+        const doctorsOfClinic = yield UserModel_1.default.find({ isDeleted: false, isActive: true });
         const doctors = doctorsOfClinic.filter((item) => item.clinic.includes(body.clinicId));
         return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,

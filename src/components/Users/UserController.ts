@@ -17,6 +17,7 @@ import {
 import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_NOT_FOUND, HTTP_OK } from "../../utils/Constants";
 import AppointmentModel from "../Appointment/AppointmentModel";
 import { ClinicModel } from "../Clinic/clinicModel";
+import { bodyTraverse } from "../../helpers/bodyTraverse";
 
 export let getUser = async (req: RequestWithUser, res: Response) => {
   try {
@@ -162,17 +163,9 @@ export const updateMother = async (req, res) => {
         message: "Bad Request! Invalid Mobile Number!"
       }))
     }
-
-    if (body.firstName) mother.firstName = body.firstName
-
-    if (body.lastName) mother.lastName = body.lastName
-
-    if (body.email) mother.email = body.email
-
-    if (body.userType) mother.userType = body.userType
-
-    if (body.isActive) mother.isActive = body.isActive
-
+    
+    bodyTraverse(mother,body)
+    
     mother.updatedBy = req.userId;
     await mother.save()
     return res.status(HTTP_OK).send(new ResponseSuccess({
@@ -204,43 +197,7 @@ export const userUpdate = async (req, res) => {
       }))
     }
 
-    if (body.firstName) user.firstName = body.firstName
-
-    if (body.lastName) user.lastName = body.lastName
-
-    if (body.middleName) user.middleName = body.middleName
-
-    if (body.email) user.email = body.email
-
-    if (body.phoneNumber) user.phoneNumber = body.phoneNumber
-
-    if (body.userType) user.userType = body.userType
-
-    if (body.platform) user.platform = body.platform
-
-    if (body.registrationDetails) user.registrationDetails = body.registrationDetails
-
-    if (body.degree) user.degree = body.degree
-
-    if (body.speciality) user.speciality = body.speciality
-
-    if (body.awards) user.awards = body.awards
-
-    if (body.experience) user.experience = body.experience
-
-    if (body.consultationFeeDetails) user.consultationFeeDetails = body.consultationFeeDetails
-
-    if (body.clinic) user.clinic = body.clinic
-
-    if (body.memberships) user.memberships = body.memberships
-
-    if (body.gallery) user.gallery = body.gallery
-
-    if (body.services) user.services = body.services
-
-    if (body.availability) user.availability = body.availability
-
-    if (body.status) user.status = body.status
+    bodyTraverse(user,body)
 
     user.updatedBy = req.userId
 

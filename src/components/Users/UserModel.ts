@@ -71,7 +71,7 @@ const userSchema = new mongoose.Schema(
     },
     clinic: {
       type: [mongoose.SchemaTypes.ObjectId],
-      refs:'clinics'
+      refs: 'clinics'
     },
     memberships: {
       type: [{
@@ -88,30 +88,34 @@ const userSchema = new mongoose.Schema(
     availability: {
       type: [{
         type: Object,
-        clinic:mongoose.SchemaTypes.ObjectId,
+        clinic: mongoose.SchemaTypes.ObjectId,
         slots: [{
           day: String,
           timeSlots: [String],
-          type:{
-            type:String,
-            enum:["INPERSON","VIDEOCALL","TELECALL"]
+          type: {
+            type: String,
+            enum: ["INPERSON", "VIDEOCALL", "TELECALL"]
           }
         }]
       }],
     },
-    mappedDoctor:{
-      type:mongoose.SchemaTypes.ObjectId,
-      refs:"User"
+    mappedDoctor: {
+      type: mongoose.SchemaTypes.ObjectId,
+      refs: "User"
     },
-    mappedClinic:{
-      type:mongoose.SchemaTypes.ObjectId,
-      refs:"User"
+    mappedClinic: {
+      type: mongoose.SchemaTypes.ObjectId,
+      refs: "User"
     },
     status: {
       type: String,
       enum: ['ACTIVE', 'INACTIVE']
     },
     isActive: { type: Boolean, default: true },
+    isExist: {
+      type:Boolean,
+      default:false
+    },
     isDeleted: {
       type: Boolean,
       default: false

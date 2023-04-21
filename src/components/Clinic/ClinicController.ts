@@ -1,3 +1,4 @@
+import { bodyTraverse } from "../../helpers/bodyTraverse"
 import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_OK } from "../../utils/Constants"
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
 import UserModel from "../Users/UserModel"
@@ -44,24 +45,9 @@ export const updateClinic = async (req, res) => {
                 message: "Clinic does not exist."
             }))
         }
-        if (body.clinicName) {
-            clinic.clinicName = body.clinicName
-        }
-        if (body.latitude) {
-            clinic.latitude = body.latitude
-        }
-        if (body.longitude) {
-            clinic.longitude = body.longitude
-        }
-        if (body.googleMapLink) {
-            clinic.googleMapLink = body.googleMapLink
-        }
-        if (body.address) {
-            clinic.address = body.address
-        }
-        if (body.status) {
-            clinic.status = body.status
-        }
+    
+        bodyTraverse(clinic,body)
+        
         clinic.updatedBy = req.userId
         await clinic.save()
 
@@ -174,7 +160,7 @@ export const getAllDoctorOfClinic = async (req, res) => {
 
     try {
 
-        const doctorsOfClinic = await UserModel.find()
+        const doctorsOfClinic = await UserModel.find({ isDeleted: false, isActive: true})
 
         const doctors = doctorsOfClinic.filter((item) => item.clinic.includes(body.clinicId))
 

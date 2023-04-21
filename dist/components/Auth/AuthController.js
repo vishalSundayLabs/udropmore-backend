@@ -93,6 +93,9 @@ const validateOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             yield UserDetailsModel_1.default.create({ userId: newUser._id });
             user = newUser;
         }
+        else {
+            user.isExist = true;
+        }
         if (body.platform == 'DOCTOR' && user.userType == 'DOCTOR' && !user.clinic[0]) {
             return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
                 success: false,

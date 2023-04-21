@@ -98,7 +98,10 @@ export const validateOtp = async (req: Request, res: Response) => {
             const newUser = await UserModel.create({ phoneNumber: body.phoneNumber, userType: "MOTHER", platform: body.platform })
             await UserDetailsModel.create({ userId: newUser._id })
             user = newUser
+        } else {
+            user.isExist = true
         }
+
         if (body.platform == 'DOCTOR' && user.userType == 'DOCTOR' && !user.clinic[0]) {
             return res.status(HTTP_OK).send(new ResponseSuccess({
                 success: false,
