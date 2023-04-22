@@ -43,7 +43,7 @@ const userDetailsSchema = new mongoose.Schema({
     },
     maritalStatus: {
         type: String,
-        enum: ["MARRIED", "NOT_MARRIED"]
+        enum: ["MARRIED", "NOT MARRIED"]
     },
     occupation: {
         type: String
@@ -324,7 +324,7 @@ const userDetailsSchema = new mongoose.Schema({
                         type: String,
                         enum: ['YES', 'NO', null], default: null
                     },
-                    description: String
+                    description: { type: String, default: null }
                 },
                 bloodTransfusion: {
                     type: String,
