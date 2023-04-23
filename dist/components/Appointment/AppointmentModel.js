@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require("mongoose");
 const AppointmentSchema = new mongoose.Schema({
     appointmentDateAndTime: {
-        type: Date
+        type: String
     },
     appointmentType: {
         type: String,

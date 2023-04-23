@@ -436,11 +436,18 @@ export const getDayOrTimeFromDate = (date) => {
   const dayInNumber = newDate.getDay()
   const hours = newDate.getHours()
   const minutes = newDate.getMinutes()
-  const dateArr = date.split(' ')
+  const dateArr = date.split(' ');
   const fullDate = `${dateArr[0]} ${dateArr[1]} ${dateArr[2]} ${dateArr[3]}`
+  console.log(fullDate)
   return {
     day: days[dayInNumber],
     time: `${hours}:${minutes}`,
     fullDate: fullDate
   }
 }
+
+
+// const years = newDate.getFullYear()
+// const months = newDate.getMonth()
+// const dates = newDate.getDate()
+// const fullDate = `${years}-${months + 1}-${dates}`
