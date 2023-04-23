@@ -2,7 +2,7 @@ import * as mongoose from "mongoose"
 
 const AppointmentSchema = new mongoose.Schema({
     appointmentDateAndTime: {
-        type: String
+        type: Date
     },
     appointmentType: {
         type: String,

@@ -108,9 +108,10 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     try {
         const oldUser = yield UserModel_1.default.findOne({ phoneNumber: body.phoneNumber });
         if (oldUser) {
-            return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseSuccess({
                 success: false,
                 message: "This phone number is already register!",
+                result: oldUser
             }));
         }
         const user = yield UserModel_1.default.create(reqData);
@@ -386,24 +387,6 @@ const MakeSlotesFormat = (slots) => {
     return newSlots;
 };
 exports.MakeSlotesFormat = MakeSlotesFormat;
-// export const addPatient = async (req, res) => {
-//   const body = req.body
-//   if (!body.platform || !body.PhoneNumber) {
-//     return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
-//       success: false,
-//       message: "Bad Request! Platform and phoneNumber must be provide",
-//     }))
-//   }
-//   try {
-//     const user = await UserModel.findOne({ phoneNumber: body.phoneNumber })
-//   } catch (error) {
-//     let response = new ResponseError({
-//       message: "Something went wrong",
-//       error: error.message,
-//     });
-//     return res.status(500).json(response);
-//   }
-// }
 const getDayOrTimeFromDate = (date) => {
     const newDate = new Date(date);
     const days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];

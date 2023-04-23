@@ -120,9 +120,10 @@ export const createUser = async (req, res) => {
   try {
     const oldUser = await UserModel.findOne({ phoneNumber: body.phoneNumber })
     if (oldUser) {
-      return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+      return res.status(HTTP_BAD_REQUEST).send(new ResponseSuccess({
         success: false,
         message: "This phone number is already register!",
+        result: oldUser
       }))
     }
     const user = await UserModel.create(reqData);
@@ -163,9 +164,9 @@ export const updateMother = async (req, res) => {
         message: "Bad Request! Invalid Mobile Number!"
       }))
     }
-    
-    bodyTraverse(mother,body)
-    
+
+    bodyTraverse(mother, body)
+
     mother.updatedBy = req.userId;
     await mother.save()
     return res.status(HTTP_OK).send(new ResponseSuccess({
@@ -197,7 +198,7 @@ export const userUpdate = async (req, res) => {
       }))
     }
 
-    bodyTraverse(user,body)
+    bodyTraverse(user, body)
 
     user.updatedBy = req.userId
 
@@ -428,28 +429,6 @@ export const MakeSlotesFormat = (slots) => {
   }
   return newSlots;
 };
-
-// export const addPatient = async (req, res) => {
-//   const body = req.body
-//   if (!body.platform || !body.PhoneNumber) {
-//     return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
-//       success: false,
-//       message: "Bad Request! Platform and phoneNumber must be provide",
-//     }))
-//   }
-
-//   try {
-
-//     const user = await UserModel.findOne({ phoneNumber: body.phoneNumber })
-
-//   } catch (error) {
-//     let response = new ResponseError({
-//       message: "Something went wrong",
-//       error: error.message,
-//     });
-//     return res.status(500).json(response);
-//   }
-// }
 
 export const getDayOrTimeFromDate = (date) => {
   const newDate = new Date(date);
