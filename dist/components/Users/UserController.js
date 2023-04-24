@@ -19,6 +19,7 @@ const AppointmentModel_1 = require("../Appointment/AppointmentModel");
 const clinicModel_1 = require("../Clinic/clinicModel");
 const bodyTraverse_1 = require("../../helpers/bodyTraverse");
 const pagination_1 = require("../../helpers/pagination");
+const UserDetailsModel_1 = require("../UserDetails/UserDetailsModel");
 let getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let uid = req.userId;
@@ -374,10 +375,15 @@ const getPatientOfDoctorById = (req, res) => __awaiter(void 0, void 0, void 0, f
     }
     try {
         const patients = yield UserModel_1.default.find({ mappedDoctor: params.doctorId, isDeleted: false, isActive: true });
+        const patientDetails = [];
+        for (let i = 0; i < patients.length; i++) {
+            const patient = yield UserDetailsModel_1.default.find({ userId: patients[i]._id, isDeleted: false });
+            patientDetails.push(patient);
+        }
         return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "get all patient of a doctor successfully.",
-            result: patients
+            result: patientDetails
         }));
     }
     catch (error) {

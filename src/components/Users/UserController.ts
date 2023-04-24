@@ -18,6 +18,8 @@ import AppointmentModel from "../Appointment/AppointmentModel";
 import { ClinicModel } from "../Clinic/clinicModel";
 import { bodyTraverse } from "../../helpers/bodyTraverse";
 import { pagination } from "../../helpers/pagination";
+import UserDetailsModel from "../UserDetails/UserDetailsModel";
+import { resolve6 } from "dns";
 
 export let getUser = async (req: IRequestWithUser, res: Response) => {
 
@@ -169,6 +171,7 @@ export const createUser = async (req, res) => {
   }
 
 }
+
 export const updateMother = async (req, res) => {
 
   const body = req.body
@@ -516,10 +519,17 @@ export const getPatientOfDoctorById = async (req, res) => {
   try {
     const patients = await UserModel.find({ mappedDoctor: params.doctorId, isDeleted: false, isActive: true })
 
+    const patientDetails = []
+
+    for (let i = 0; i < patients.length; i++) {
+      const patient = await UserDetailsModel.find({ userId: patients[i]._id, isDeleted: false })
+      patientDetails.push(patient)
+    }
+
     return res.status(HTTP_BAD_REQUEST).send(new ResponseSuccess({
       success: true,
       message: "get all patient of a doctor successfully.",
-      result: patients
+      result: patientDetails
     }))
 
   } catch (error) {

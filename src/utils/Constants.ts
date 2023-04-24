@@ -8,3 +8,7 @@ export const HTTP_INTERNAL_SERVER_ERROR = 500
 // messages
 
 export const INCORRECT_BODY_FORMAT_MESSAGE = "Body format should be as per the object below"
+
+//past history constant
+export const whoInFamily = ["Maternal", "Paternal", "Marital", "Sibling"]
+export const diseases = ["Diabetes", "Thyroid", "Epilepsy", "Hypertension", "H.D", "Koch", "Cancer", "Asthma"]
