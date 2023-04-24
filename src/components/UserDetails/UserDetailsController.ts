@@ -1,6 +1,7 @@
 import { bodyTraverse } from "../../helpers/bodyTraverse"
 import { HTTP_BAD_REQUEST, HTTP_NOT_FOUND, HTTP_OK } from "../../utils/Constants"
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
+import UserModel from "../Users/UserModel"
 import UserDetailsModel from "./UserDetailsModel"
 
 export const createUserDetails = async (req, res) => {
@@ -67,13 +68,24 @@ export const updateUserDetails = async (req, res) => {
     try {
 
         const userDetails = await UserDetailsModel.findOne({ userId: body.motherId, isDeleted: false })
+        const user = await UserModel.findOne({ _id: userDetails.userId, isActive: true, isDeleted: false })
         //add feilds for update
+        user.firstName = body.firstName
+        user.lastName = body.lastName
+        user.email = body.email
+        user.updatedBy = req.userId
+
+        await user.save()
+
         if (!userDetails) {
+
             return res.status(HTTP_NOT_FOUND).send(new ResponseError({
                 success: false,
                 message: "user details not found."
             }))
+
         }
+
         bodyTraverse(userDetails, body)
 
         userDetails.updatedBy = req.userId
@@ -82,7 +94,7 @@ export const updateUserDetails = async (req, res) => {
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: "User details update successfully.",
-            result: userDetails
+            result: { userDetails, firstName: user.firstName, lastName: user.lastName, email: user.email }
         }))
 
     } catch (error) {

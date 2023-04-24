@@ -13,8 +13,6 @@ const OtpSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     }
-}, {
-    timestamps: true
-});
+}, { timestamps: true });
 const OtpModel = mongoose.model('otps', OtpSchema);
 exports.default = OtpModel;

@@ -15,6 +15,6 @@ router.delete('/delete/:id', verifyToken, isAdmin, deleteClinic)
 //find all clinics by longitude and latitude
 router.post('/clinics', verifyToken, getClinicByLatitudeAndLongitude)
 //find all doctor of a clinic
-router.post('/doctors',verifyToken,getAllDoctorOfClinic)
+router.post('/doctors', verifyToken, getAllDoctorOfClinic)
 
 export default router;

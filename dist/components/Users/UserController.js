@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getDayOrTimeFromDate = exports.MakeSlotesFormat = exports.mapMotherWithDoctor = exports.getAllUsers = exports.getSlots = exports.deleteUser = exports.userUpdate = exports.updateMother = exports.createUser = exports.getUserById = exports.getUser = void 0;
+exports.getDayOrTimeFromDate = exports.makeSlotsFormat = exports.mapMotherWithDoctor = exports.getAllUsers = exports.getSlots = exports.deleteUser = exports.userUpdate = exports.updateMother = exports.createUser = exports.getUserById = exports.getUser = void 0;
 // models
 const UserModel_1 = require("./UserModel");
 // classes
@@ -18,6 +18,7 @@ const Constants_1 = require("../../utils/Constants");
 const AppointmentModel_1 = require("../Appointment/AppointmentModel");
 const clinicModel_1 = require("../Clinic/clinicModel");
 const bodyTraverse_1 = require("../../helpers/bodyTraverse");
+const pagination_1 = require("../../helpers/pagination");
 let getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let uid = req.userId;
@@ -106,7 +107,7 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         status: body.status
     };
     try {
-        const oldUser = yield UserModel_1.default.findOne({ phoneNumber: body.phoneNumber });
+        const oldUser = yield UserModel_1.default.findOne({ phoneNumber: body.phoneNumber, isActive: true, isDeleted: false });
         if (oldUser) {
             return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseSuccess({
                 success: false,
@@ -227,8 +228,10 @@ const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 exports.deleteUser = deleteUser;
 const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
+    const query = req.query;
+    const { limit, skips } = (0, pagination_1.pagination)(query);
     try {
-        const doctor = yield UserModel_1.default.findOne({ _id: body.doctor });
+        const doctor = yield UserModel_1.default.findOne({ _id: body.doctor }).skip(skips).limit(limit);
         if (!doctor) {
             return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
                 success: false,
@@ -246,8 +249,8 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 newSlots.push(slots[0].slots[i]);
             }
         }
-        const finalSlot = (0, exports.MakeSlotesFormat)(newSlots);
-        const BookedSlot = yield AppointmentModel_1.default.find({ clinicId: body.clinic, doctorId: body.doctor, appointmentDateAndTime: { $regex: `${bodyDate.fullDate}` }, status: { $ne: "CANCELLED" }, isDeleted: false });
+        const finalSlot = (0, exports.makeSlotsFormat)(newSlots);
+        const BookedSlot = yield AppointmentModel_1.default.find({ clinicId: body.clinic, doctorId: body.doctor, appointmentDateAndTime: { $gte: new Date(bodyDate.fullDate), $lt: new Date(bodyDate.nextDate) }, status: { $ne: "CANCELLED" }, isDeleted: false });
         if (BookedSlot.length > 0) {
             for (let j = 0; j < BookedSlot.length; j++) {
                 let bookedSlotIndex = -1;
@@ -287,12 +290,14 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.getSlots = getSlots;
 const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
+    const query = req.query;
     let findReqData;
     if (body.userType) {
         findReqData = { userType: body.userType, isDeleted: false };
     }
+    const { limit, skips } = (0, pagination_1.pagination)(query);
     try {
-        const users = yield UserModel_1.default.find(findReqData);
+        const users = yield UserModel_1.default.find(findReqData).skip(skips).limit(limit);
         return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "all users fetch successfully.",
@@ -359,7 +364,7 @@ const mapMotherWithDoctor = (req, res) => __awaiter(void 0, void 0, void 0, func
     }
 });
 exports.mapMotherWithDoctor = mapMotherWithDoctor;
-const MakeSlotesFormat = (slots) => {
+const makeSlotsFormat = (slots) => {
     const slotsTime = +process.env.SLOT_TIME;
     const newSlots = [];
     for (let i = 0; i < slots.length; i++) {
@@ -386,24 +391,25 @@ const MakeSlotesFormat = (slots) => {
     }
     return newSlots;
 };
-exports.MakeSlotesFormat = MakeSlotesFormat;
+exports.makeSlotsFormat = makeSlotsFormat;
 const getDayOrTimeFromDate = (date) => {
     const newDate = new Date(date);
     const days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
     const dayInNumber = newDate.getDay();
     const hours = newDate.getHours();
     const minutes = newDate.getMinutes();
-    const dateArr = date.split(' ');
-    const fullDate = `${dateArr[0]} ${dateArr[1]} ${dateArr[2]} ${dateArr[3]}`;
-    console.log(fullDate);
+    const years = newDate.getFullYear();
+    const months = newDate.getMonth();
+    const dates = newDate.getDate();
+    const fullDate = `${years}-${months + 1}-${dates}`;
+    const nextDate = `${years}-${months + 1}-${dates + 1}`;
     return {
         day: days[dayInNumber],
         time: `${hours}:${minutes}`,
-        fullDate: fullDate
+        fullDate: fullDate,
+        nextDate: nextDate
     };
 };
 exports.getDayOrTimeFromDate = getDayOrTimeFromDate;
-// const years = newDate.getFullYear()
-// const months = newDate.getMonth()
-// const dates = newDate.getDate()
-// const fullDate = `${years}-${months + 1}-${dates}`
+// const dateArr = date.split(' ');
+// const fullDate = `${dateArr[0]} ${dateArr[1]} ${dateArr[2]} ${dateArr[3]}`

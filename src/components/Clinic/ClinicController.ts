@@ -1,11 +1,14 @@
 import { bodyTraverse } from "../../helpers/bodyTraverse"
+import { pagination } from "../../helpers/pagination"
 import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_OK } from "../../utils/Constants"
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
 import UserModel from "../Users/UserModel"
 import { ClinicModel } from "./clinicModel"
 
 export const createClinic = async (req, res) => {
+
     const body = req.body
+
     const reqData = {
         clinicName: body.clinicName,
         latitude: body.latitude,
@@ -15,7 +18,9 @@ export const createClinic = async (req, res) => {
         status: body.status,
         createdBy: req.userId
     }
+
     try {
+
         const clinic = await ClinicModel.create(reqData)
 
         return res.status(HTTP_CREATED).send(new ResponseSuccess({
@@ -23,32 +28,43 @@ export const createClinic = async (req, res) => {
             message: "Clinic created successfully.",
             result: clinic
         }))
+
     } catch (error) {
+
         let response = new ResponseError({
             message: "Something went wrong",
             error: error.message,
         });
+
         return res.status(500).json(response);
+
     }
 
 }
 
 export const updateClinic = async (req, res) => {
+
     const clinicId = req.params.id
+
     const body = req.body
 
     try {
+
         const clinic = await ClinicModel.findOne({ _id: clinicId, isDeleted: false })
+
         if (!clinic) {
+
             return res.status(HTTP_OK).send(new ResponseSuccess({
                 success: false,
                 message: "Clinic does not exist."
             }))
+
         }
-    
-        bodyTraverse(clinic,body)
-        
+
+        bodyTraverse(clinic, body)
+
         clinic.updatedBy = req.userId
+
         await clinic.save()
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
@@ -56,48 +72,69 @@ export const updateClinic = async (req, res) => {
             message: "Clinic update successfully.",
             result: clinic
         }))
+
     } catch (error) {
+
         let response = new ResponseError({
             message: "Something went wrong",
             error: error.message,
         });
+
         return res.status(500).json(response);
+
     }
 
 }
 
 export const deleteClinic = async (req, res) => {
+
     const clinicId = req.params.id
 
     try {
+
         const clinic = await ClinicModel.findOne({ _id: clinicId, isDeleted: false })
+
         if (!clinic) {
+
             return res.status(HTTP_OK).send(new ResponseSuccess({
                 success: false,
                 message: "Clinic already deleted ."
             }))
+
         }
+
         clinic.isDeleted = true
+
         await clinic.save()
+
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: "Clinic delete successfully.",
             result: clinic
         }))
+
     } catch (error) {
+
         let response = new ResponseError({
             message: "Something went wrong",
             error: error.message,
         });
+
         return res.status(500).json(response);
+
     }
 
 }
 
 export const getAllClinic = async (req, res) => {
 
+    const query = req.query
+
+    const { limit, skips } = pagination(query)
+
     try {
-        const clinic = await ClinicModel.find({ isDeleted: false })
+
+        const clinic = await ClinicModel.find({ isDeleted: false }).skip(skips).limit(limit)
 
         return res.status(HTTP_CREATED).send(new ResponseSuccess({
             success: true,
@@ -106,11 +143,14 @@ export const getAllClinic = async (req, res) => {
         }))
 
     } catch (error) {
+
         let response = new ResponseError({
             message: "Something went wrong",
             error: error.message,
         });
+
         return res.status(500).json(response);
+
     }
 
 }
@@ -118,6 +158,7 @@ export const getAllClinic = async (req, res) => {
 export const getClinicByLatitudeAndLongitude = async (req, res) => {
 
     const body = req.body
+    const query = req.query
 
     if (!body.longitude || !body.latitude) {
 
@@ -125,10 +166,13 @@ export const getClinicByLatitudeAndLongitude = async (req, res) => {
             success: false,
             message: "Bad request! latitude and longitude must be provide."
         }))
+
     }
 
+    const { limit, skips } = pagination(query)
+
     try {
-        const clinic = await ClinicModel.find({ isDeleted: false })
+        const clinic = await ClinicModel.find({ isDeleted: false }).skip(skips).limit(limit)
 
         return res.status(HTTP_CREATED).send(new ResponseSuccess({
             success: true,
@@ -142,13 +186,17 @@ export const getClinicByLatitudeAndLongitude = async (req, res) => {
             message: "Something went wrong",
             error: error.message,
         });
+
         return res.status(500).json(response);
     }
 
 }
 
 export const getAllDoctorOfClinic = async (req, res) => {
+
     const body = req.body
+    const query = req.query
+
     if (!body.clinicId) {
 
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
@@ -158,9 +206,11 @@ export const getAllDoctorOfClinic = async (req, res) => {
 
     }
 
+    const { limit, skips } = pagination(query)
+
     try {
 
-        const doctorsOfClinic = await UserModel.find({ isDeleted: false, isActive: true})
+        const doctorsOfClinic = await UserModel.find({ isDeleted: false, isActive: true }).skip(skips).limit(limit)
 
         const doctors = doctorsOfClinic.filter((item) => item.clinic.includes(body.clinicId))
 
@@ -176,7 +226,9 @@ export const getAllDoctorOfClinic = async (req, res) => {
             message: "Something went wrong",
             error: error.message,
         });
+        
         return res.status(500).json(response);
 
     }
+    
 }

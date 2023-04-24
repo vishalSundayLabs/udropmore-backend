@@ -13,6 +13,7 @@ exports.getUserDetailsbyId = exports.updateUserDetails = exports.createUserDetai
 const bodyTraverse_1 = require("../../helpers/bodyTraverse");
 const Constants_1 = require("../../utils/Constants");
 const ResponseClass_1 = require("../../utils/ResponseClass");
+const UserModel_1 = require("../Users/UserModel");
 const UserDetailsModel_1 = require("./UserDetailsModel");
 const createUserDetails = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
@@ -69,7 +70,13 @@ const updateUserDetails = (req, res) => __awaiter(void 0, void 0, void 0, functi
     }
     try {
         const userDetails = yield UserDetailsModel_1.default.findOne({ userId: body.motherId, isDeleted: false });
+        const user = yield UserModel_1.default.findOne({ _id: userDetails.userId, isActive: true, isDeleted: false });
         //add feilds for update
+        user.firstName = body.firstName;
+        user.lastName = body.lastName;
+        user.email = body.email;
+        user.updatedBy = req.userId;
+        yield user.save();
         if (!userDetails) {
             return res.status(Constants_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
                 success: false,
@@ -82,7 +89,7 @@ const updateUserDetails = (req, res) => __awaiter(void 0, void 0, void 0, functi
         return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "User details update successfully.",
-            result: userDetails
+            result: { userDetails, firstName: user.firstName, lastName: user.lastName, email: user.email }
         }));
     }
     catch (error) {

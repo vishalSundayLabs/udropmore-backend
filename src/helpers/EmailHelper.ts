@@ -42,4 +42,5 @@ export function sendEmail(
       resolve(info);
     });
   });
+  
 }

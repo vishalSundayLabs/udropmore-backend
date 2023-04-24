@@ -15,8 +15,10 @@ const AuthSessionSchema = new mongoose.Schema({
     isActive: {
         type: Boolean,
         default: true
+    },
+    isDeleted: {
+        type: Boolean,
+        default: false
     }
-}, {
-    timestamps: true,
-});
+}, { timestamps: true });
 exports.default = mongoose.model("AuthSession", AuthSessionSchema);

@@ -14,4 +14,5 @@ router.post("/sendotp", AuthController.sendOtp);
 router.post('/verifyOtp', AuthController.validateOtp);
 //logout
 router.put("/logout", verifyToken, AuthController.logout)
+
 export default router;

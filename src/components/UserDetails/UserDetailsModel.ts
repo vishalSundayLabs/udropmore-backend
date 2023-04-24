@@ -75,7 +75,16 @@ const userDetailsSchema = new mongoose.Schema({
         }
     },
     previousVisit: {
-        type: [Date]
+        value: {
+            type: Boolean,
+            default: false
+        },
+        sourceOfVisit: {
+            type: String,
+            enum: ["SELF", "SOCIAL MEDIA", "PREVIOUS PREGNANCY", null],
+            default: null
+        },
+        dateOfVisit: Date
     },
     language: {
         type: String,
@@ -488,6 +497,3 @@ const userDetailsSchema = new mongoose.Schema({
 }, { timestamps: true })
 
 export default mongoose.model('UserDetails', userDetailsSchema)
-
-
-

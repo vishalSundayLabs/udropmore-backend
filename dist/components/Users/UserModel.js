@@ -108,7 +108,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ['ACTIVE', 'INACTIVE']
     },
-    isActive: { type: Boolean, default: true },
+    isActive: {
+        type: Boolean,
+        default: true
+    },
     isExist: {
         type: Boolean,
         default: false

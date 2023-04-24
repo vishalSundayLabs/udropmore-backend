@@ -2,26 +2,26 @@ import * as mongoose from 'mongoose'
 import { ITpi } from './TpiInterface'
 
 const tpiResponseSchema = new mongoose.Schema({
-    userId:{
-        type:mongoose.SchemaTypes.ObjectId,
+    userId: {
+        type: mongoose.SchemaTypes.ObjectId,
     },
-    apiType : {
-        type:String,
-        enum:['sendSmsOtp','sendWaOtp']
+    apiType: {
+        type: String,
+        enum: ['sendSmsOtp', 'sendWaOtp']
     },
-    requestBody:{
-        type:{},
-        required:true
+    requestBody: {
+        type: {},
+        required: true
     },
-    responseBody:{
-        type:{},
-        required:true
+    responseBody: {
+        type: {},
+        required: true
     }
-    
-},{
-    timestamps:true
+
+}, {
+    timestamps: true
 })
 
-const TpiModel  = mongoose.model<ITpi>('TpiResponse',tpiResponseSchema)
+const TpiModel = mongoose.model<ITpi>('TpiResponse', tpiResponseSchema)
 
 export default TpiModel;

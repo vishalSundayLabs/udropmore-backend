@@ -3,29 +3,29 @@ import {
   ResponseSuccessOptions,
 } from "../../utils/ResponseClass";
 
-import { commonFields } from "./UserInterface";
+import { ICommonFields } from "./UserInterface";
 
-interface UserResponse extends commonFields{
+interface IUserResponse extends ICommonFields {
   emailVerified: boolean;
   _id?: string;
   firstName: string;
   lastName: string;
   email: string;
-  phoneNumber:string;
+  phoneNumber: string;
   shortSSN: string;
-  userType:string;
+  userType: string;
   userId?: string;
-  waToken:string;
+  waToken: string;
 }
 
-interface UserCreateOptions extends ResponseSuccessOptions {
-  user: UserResponse;
+interface IUserCreateOptions extends ResponseSuccessOptions {
+  user: IUserResponse;
 }
 
-export class UserResponseSuccess extends ResponseSuccess {
+export class IUserResponseSuccess extends ResponseSuccess {
   message: string = "User account created successfully.";
-  user: UserResponse;
-  constructor(options: UserCreateOptions) {
+  user: IUserResponse;
+  constructor(options: IUserCreateOptions) {
     super(options);
     if (options.user) {
       this.user = options.user;

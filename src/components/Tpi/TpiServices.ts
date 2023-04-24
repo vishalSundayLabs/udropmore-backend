@@ -5,6 +5,7 @@ console.log(accountSid, authToken)
 const client = require('twilio')(accountSid, authToken);
 
 export const sendWaOtp = async (phoneNumber, text) => {
+
     const data = client.messages
         .create({
             body: text,
@@ -18,5 +19,7 @@ export const sendWaOtp = async (phoneNumber, text) => {
             const errs = err.message
             return { message: errs }
         })
+        
     return data;
+
 }

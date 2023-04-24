@@ -22,8 +22,8 @@ const clinicSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum:['ACTIVE','INACTIVE'],
-        default:'ACTIVE'
+        enum: ['ACTIVE', 'INACTIVE'],
+        default: 'ACTIVE'
     },
     isDeleted: {
         type: Boolean,

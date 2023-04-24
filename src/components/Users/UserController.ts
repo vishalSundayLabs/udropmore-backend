@@ -2,34 +2,39 @@
 import { Response, Request } from "express";
 // models
 import UserModel from "./UserModel";
-
 // interfaces
-import IUser, { IAvailability, RequestWithUser } from "./UserInterface";
-
+import IUser, { IAvailability, IRequestWithUser } from "./UserInterface";
 // classes
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass";
-import { UserResponseSuccess } from "./UserClass";
+import { IUserResponseSuccess } from "./UserClass";
 import { SaveOptions } from 'mongoose'
 // validation
 import {
   Create as UserCreate,
 } from "./UserValidate";
+
 import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_NOT_FOUND, HTTP_OK } from "../../utils/Constants";
 import AppointmentModel from "../Appointment/AppointmentModel";
 import { ClinicModel } from "../Clinic/clinicModel";
 import { bodyTraverse } from "../../helpers/bodyTraverse";
+import { pagination } from "../../helpers/pagination";
 
-export let getUser = async (req: RequestWithUser, res: Response) => {
+export let getUser = async (req: IRequestWithUser, res: Response) => {
+
   try {
+
     let uid: string = req.userId;
+
     let userInfo: IUser = await UserModel.findOne({ _id: uid, isDeleted: false });
 
     if (!userInfo) {
+
       return res.status(404).json({
         success: false,
         message: "User does not exist.",
         error: "User does not exist.",
       });
+
     }
 
     return res.status(200).json(new ResponseSuccess({
@@ -46,17 +51,22 @@ export let getUser = async (req: RequestWithUser, res: Response) => {
     });
 
     return res.status(500).json(response);
+
   }
+
 };
 
 export const getUserById = async (req, res) => {
+
   const params = req.params
 
   if (!params.id) {
+
     return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
       success: false,
       message: "Bad request! User Id must be provide!"
     }))
+
   }
 
   try {
@@ -64,10 +74,12 @@ export const getUserById = async (req, res) => {
     const user = await UserModel.findOne({ _id: params.id, isDeleted: false })
 
     if (!user) {
+
       return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
         success: false,
         message: "User Id does not exist."
       }))
+
     }
 
     return res.status(HTTP_BAD_REQUEST).send(new ResponseSuccess({
@@ -82,19 +94,26 @@ export const getUserById = async (req, res) => {
       message: "Something went wrong",
       error: error.message,
     });
+
     return res.status(500).json(response);
 
   }
+
 }
 //this controller use only admin
 export const createUser = async (req, res) => {
+
   const body = req.body
+
   if (!body.phoneNumber || !body.userType || !body.platform || !body.firstName) {
+
     return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
       success: false,
       message: "Bad request! ,first name  , phone number , userType , platform must be provide!"
     }))
+
   }
+
   const reqData = {
     firstName: body.firstName,
     lastName: body.lastName,
@@ -118,13 +137,17 @@ export const createUser = async (req, res) => {
   }
 
   try {
-    const oldUser = await UserModel.findOne({ phoneNumber: body.phoneNumber })
+
+    const oldUser = await UserModel.findOne({ phoneNumber: body.phoneNumber, isActive: true, isDeleted: false })
+
     if (oldUser) {
+
       return res.status(HTTP_BAD_REQUEST).send(new ResponseSuccess({
         success: false,
         message: "This phone number is already register!",
         result: oldUser
       }))
+
     }
     const user = await UserModel.create(reqData);
 
@@ -135,11 +158,14 @@ export const createUser = async (req, res) => {
     }))
 
   } catch (error) {
+
     let response = new ResponseError({
       message: "Something went wrong",
       error: error.message,
     });
+
     return res.status(500).json(response);
+
   }
 
 }
@@ -148,10 +174,12 @@ export const updateMother = async (req, res) => {
   const body = req.body
 
   if (!body.phoneNumber) {
+
     return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
       success: false,
       message: "Bad Request! Phone number must be provide."
     }))
+
   }
 
   try {
@@ -159,21 +187,25 @@ export const updateMother = async (req, res) => {
     const mother = await UserModel.findOne({ phoneNumber: body.phoneNumber, isDeleted: false, userType: "MOTHER" })
 
     if (!mother) {
+
       return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
         success: false,
         message: "Bad Request! Invalid Mobile Number!"
       }))
+
     }
 
     bodyTraverse(mother, body)
 
     mother.updatedBy = req.userId;
     await mother.save()
+
     return res.status(HTTP_OK).send(new ResponseSuccess({
       success: true,
       message: "User Update successfully",
       result: mother
     }))
+
   } catch (error) {
 
     let response = new ResponseError({
@@ -186,28 +218,34 @@ export const updateMother = async (req, res) => {
 }
 
 export const userUpdate = async (req, res) => {
+
   const userId = req.params.id
   const body = req.body
 
   try {
+
     const user = await UserModel.findOne({ _id: userId, isDeleted: false })
+
     if (!user) {
+
       return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
         success: false,
         message: "user does not exist!"
       }))
+
     }
 
     bodyTraverse(user, body)
 
     user.updatedBy = req.userId
-
     await user.save()
+
     return res.status(HTTP_OK).send(new ResponseSuccess({
       success: true,
       message: "User Update successfully",
       result: user
     }))
+
   } catch (error) {
 
     let response = new ResponseError({
@@ -220,121 +258,174 @@ export const userUpdate = async (req, res) => {
 }
 
 export const deleteUser = async (req, res) => {
+
   const userId = req.params.id
+
   if (!userId) {
+
     return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
       success: false,
       message: "Bad Request! , user id required!"
     }))
+
   }
 
   try {
+
     const user = await UserModel.findOne({ _id: userId, isDeleted: false });
+
     if (!user) {
+
       return res.status(HTTP_OK).send(new ResponseSuccess({
         success: false,
         message: "user already deleted ."
       }))
+
     }
+
     user.isDeleted = true
     await user.save()
+
     return res.status(HTTP_OK).send(new ResponseSuccess({
       success: true,
       message: "User deleted successfully."
     }))
+
   } catch (error) {
+
     let response = new ResponseError({
       message: "Something went wrong",
       error: error.message,
     });
     return res.status(500).json(response);
+
   }
+
 }
 
 export const getSlots = async (req, res) => {
 
   const body = req.body
+  const query = req.query
+
+  const { limit, skips } = pagination(query)
 
   try {
-    const doctor = await UserModel.findOne({ _id: body.doctor })
+
+    const doctor = await UserModel.findOne({ _id: body.doctor }).skip(skips).limit(limit)
+
     if (!doctor) {
+
       return res.status(HTTP_OK).send(new ResponseSuccess({
         success: false,
         message: "Doctor not found!"
       }))
+
     }
 
     let slots = doctor.availability.filter(ele => {
       if (ele.clinic == body.clinic) return ele;
     })
+
     const bodyDate = getDayOrTimeFromDate(body.date)
     const newSlots = [];
+
     for (let i = 0; i < slots[0].slots.length; i++) {
+
       if (slots[0].slots[i].type == body.appointmentType && slots[0].slots[i].day == bodyDate.day) {
         newSlots.push(slots[0].slots[i])
       }
+
     }
-    const finalSlot = MakeSlotesFormat(newSlots)
-    const BookedSlot = await AppointmentModel.find({ clinicId: body.clinic, doctorId: body.doctor, appointmentDateAndTime: { $regex: `${bodyDate.fullDate}` }, status: { $ne: "CANCELLED" }, isDeleted: false });
+
+    const finalSlot = makeSlotsFormat(newSlots)
+
+    const BookedSlot = await AppointmentModel.find({ clinicId: body.clinic, doctorId: body.doctor, appointmentDateAndTime: { $gte: new Date(bodyDate.fullDate), $lt: new Date(bodyDate.nextDate) }, status: { $ne: "CANCELLED" }, isDeleted: false });
 
     if (BookedSlot.length > 0) {
-      for (let j = 0; j < BookedSlot.length; j++) {
-        let bookedSlotIndex = -1
 
+      for (let j = 0; j < BookedSlot.length; j++) {
+
+        let bookedSlotIndex = -1
         const bookedSlot = getDayOrTimeFromDate(BookedSlot[j].appointmentDateAndTime)
 
         for (let i = 0; i < finalSlot.length; i++) {
           const singleSlot = finalSlot[i]
+
           if (singleSlot.day == bookedSlot.day && singleSlot.time == bookedSlot.time) {
             bookedSlotIndex = i;
             break;
           }
+
         }
+
         if (bookedSlotIndex != -1) {
           finalSlot[bookedSlotIndex].status = "BOOKED"
         }
+
       }
+
     }
+
     if (!finalSlot[0]) {
+
       return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
         success: false,
         message: "Invalid Date with Respect to Day."
       }))
+
     }
+
     return res.status(HTTP_OK).send(new ResponseSuccess({
       success: true,
       message: "get all slots successfully.",
       result: finalSlot
     }))
+
   } catch (error) {
+
     let response = new ResponseError({
       message: "Something went wrong",
       error: error.message,
     });
+
     return res.status(500).json(response);
+
   }
 }
 
 export const getAllUsers = async (req, res) => {
+
   const body = req.body;
+  const query = req.query
   let findReqData;
+
   if (body.userType) {
     findReqData = { userType: body.userType, isDeleted: false }
   }
+
+  const { limit, skips } = pagination(query)
+
   try {
-    const users = await UserModel.find(findReqData)
+
+    const users = await UserModel.find(findReqData).skip(skips).limit(limit)
+
     return res.status(HTTP_OK).send(new ResponseSuccess({
       success: true,
       message: "all users fetch successfully.",
       result: users
     }))
+
   } catch (error) {
+
     let response = new ResponseError({
       message: "Something went wrong",
       error: error.message,
     });
     return res.status(500).json(response);
+
   }
+
 }
 
 export const mapMotherWithDoctor = async (req, res) => {
@@ -342,10 +433,12 @@ export const mapMotherWithDoctor = async (req, res) => {
   const body = req.body
 
   if (!body.motherId || !body.mappedDoctor || !body.mappedClinic) {
+
     return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
       success: false,
       message: "Bad Request! Mother id , doctor id or clinic id must be provide."
     }))
+
   }
 
   try {
@@ -353,19 +446,23 @@ export const mapMotherWithDoctor = async (req, res) => {
     const mother = await UserModel.findOne({ _id: body.motherId, isDeleted: false, userType: "MOTHER" })
 
     if (!mother) {
+
       return res.status(HTTP_NOT_FOUND).send(new ResponseError({
         success: false,
         message: "Bad Request! user not found!"
       }))
+
     }
 
     const doctor = await UserModel.findOne({ _id: body.mappedDoctor, isDeleted: false, userType: "DOCTOR" })
 
     if (!doctor) {
+
       return res.status(HTTP_NOT_FOUND).send(new ResponseError({
         success: false,
         message: "Bad Request! Doctor not found!"
       }))
+
     }
 
     if (body.mappedDoctor) mother.mappedDoctor = body.mappedDoctor
@@ -373,10 +470,12 @@ export const mapMotherWithDoctor = async (req, res) => {
     const clinic = await ClinicModel.findOne({ _id: body.mappedClinic, isDeleted: false })
 
     if (!clinic) {
+
       return res.status(HTTP_NOT_FOUND).send(new ResponseError({
         success: false,
         message: "Bad Request! Clinic not found!"
       }))
+
     }
 
     if (body.mappedClinic) mother.mappedClinic = body.mappedClinic
@@ -402,7 +501,7 @@ export const mapMotherWithDoctor = async (req, res) => {
   }
 }
 
-export const MakeSlotesFormat = (slots) => {
+export const makeSlotsFormat = (slots) => {
   const slotsTime = +process.env.SLOT_TIME;
   const newSlots = [];
   for (let i = 0; i < slots.length; i++) {
@@ -431,23 +530,26 @@ export const MakeSlotesFormat = (slots) => {
 };
 
 export const getDayOrTimeFromDate = (date) => {
+
   const newDate = new Date(date);
   const days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"]
   const dayInNumber = newDate.getDay()
   const hours = newDate.getHours()
   const minutes = newDate.getMinutes()
-  const dateArr = date.split(' ');
-  const fullDate = `${dateArr[0]} ${dateArr[1]} ${dateArr[2]} ${dateArr[3]}`
-  console.log(fullDate)
+  const years = newDate.getFullYear()
+  const months = newDate.getMonth()
+  const dates = newDate.getDate()
+  const fullDate = `${years}-${months + 1}-${dates}`
+  const nextDate = `${years}-${months + 1}-${dates + 1}`
+
   return {
     day: days[dayInNumber],
     time: `${hours}:${minutes}`,
-    fullDate: fullDate
+    fullDate: fullDate,
+    nextDate: nextDate
   }
+
 }
 
-
-// const years = newDate.getFullYear()
-// const months = newDate.getMonth()
-// const dates = newDate.getDate()
-// const fullDate = `${years}-${months + 1}-${dates}`
+  // const dateArr = date.split(' ');
+  // const fullDate = `${dateArr[0]} ${dateArr[1]} ${dateArr[2]} ${dateArr[3]}`

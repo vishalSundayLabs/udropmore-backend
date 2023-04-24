@@ -78,7 +78,7 @@ const validateOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         }));
     }
     try {
-        const otp = yield OtpModel_1.default.find({ phoneNumber: body.phoneNumber }).sort({ $natural: -1 }).limit(1);
+        const otp = yield OtpModel_1.default.find({ phoneNumber: body.phoneNumber, isExpired: false }).sort({ $natural: -1 }).limit(1);
         const message = otp[0] ? otp[0].otp != body.otp ? "Invalid OTP" : isExpiredOtp(otp[0].createdAt) ? "OTP Expired. Please try again!" : null : "Invalid Phone number";
         if (message) {
             return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
@@ -87,7 +87,7 @@ const validateOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             }));
         }
         //create jwt token  
-        var user = yield UserModel_1.default.findOne({ phoneNumber: otp[0].phoneNumber });
+        var user = yield UserModel_1.default.findOne({ phoneNumber: otp[0].phoneNumber, isActive: true, isDeleted: false });
         if (!user && body.platform == 'MOTHER') {
             const newUser = yield UserModel_1.default.create({ phoneNumber: body.phoneNumber, userType: "MOTHER", platform: body.platform });
             yield UserDetailsModel_1.default.create({ userId: newUser._id });
@@ -119,7 +119,6 @@ const validateOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         }));
     }
     catch (error) {
-        console.log(error);
         return res.status(Constants_1.HTTP_INTERNAL_SERVER_ERROR).send(new ResponseClass_1.ResponseError({
             success: false,
             message: "Internal server error!",
@@ -133,14 +132,13 @@ const logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const user = yield UserModel_1.default.findOne({ _id: req.userId, platform: req.platform, userType: req.userType });
         user.jwtToken = null;
         yield user.save();
-        yield AuthSession_1.default.findOneAndUpdate({ userId: user._id, jwtToken: user.jwtToken, isActive: true }, { $set: { isActive: false } });
+        yield AuthSession_1.default.findOneAndUpdate({ userId: user._id, jwtToken: user.jwtToken, isActive: true, isDeleted: false }, { $set: { isActive: false } });
         return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "Logout successful"
         }));
     }
     catch (error) {
-        console.log(error);
         return res.status(Constants_1.HTTP_INTERNAL_SERVER_ERROR).send(new ResponseClass_1.ResponseError({
             success: false,
             message: "Internal server error!",
@@ -155,7 +153,6 @@ const isExpiredOtp = (otpCreationTime) => {
     const TotalPastSeconds = Math.floor(otpCreationTimeFormatted.getHours() * 60 * 60 + otpCreationTimeFormatted.getMinutes() * 60 + otpCreationTimeFormatted.getSeconds());
     const currTime = new Date();
     const TotalCurrTimeSeconds = Math.floor(currTime.getHours() * 60 * 60 + currTime.getMinutes() * 60 + currTime.getSeconds());
-    console.log(TotalCurrTimeSeconds - TotalPastSeconds);
     if (TotalCurrTimeSeconds - TotalPastSeconds > expiryTime) {
         return true;
     }

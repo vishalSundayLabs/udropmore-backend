@@ -9,7 +9,8 @@ export interface IAddress {
   state: string;
   countryCode: string;
 }
-export interface commonFields extends mongoose.Document {
+
+export interface ICommonFields extends mongoose.Document {
   isActive: boolean;
   isDeleted: boolean;
   createdBy: mongoose.Schema.Types.ObjectId;
@@ -17,7 +18,8 @@ export interface commonFields extends mongoose.Document {
   createdAt: Date;
   updatedAt: Date;
 }
-export default interface IUser extends commonFields {
+
+export default interface IUser extends ICommonFields {
   firstName?: string;
   lastName?: string;
   email?: string;
@@ -32,18 +34,20 @@ export default interface IUser extends commonFields {
   shortSSN?: string;
 }
 
-export interface AuthUser {
+export interface IAuthUser {
   email: string;
 }
 
-export interface RequestWithUser extends Request {
-  user: AuthUser;
+export interface IRequestWithUser extends Request {
+  user: IAuthUser;
   userId: string;
 }
+
 export interface ISlots {
      day:string,
      timeSlots:[string]
 }
+
 export interface IAvailability {
   clinic : string,
   slots : [ISlots]
