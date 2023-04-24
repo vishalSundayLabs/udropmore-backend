@@ -41,7 +41,7 @@ export const createAppointment = async (req, res) => {
         }))
 
     } catch (error) {
-        console.log(error)
+        
         let response = new ResponseError({
             message: "Something went wrong",
             error: error.message,
