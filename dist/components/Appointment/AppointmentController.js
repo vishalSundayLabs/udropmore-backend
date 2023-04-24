@@ -42,6 +42,7 @@ const createAppointment = (req, res) => __awaiter(void 0, void 0, void 0, functi
         }));
     }
     catch (error) {
+        console.log(error);
         let response = new ResponseClass_1.ResponseError({
             message: "Something went wrong",
             error: error.message,
@@ -260,7 +261,7 @@ exports.rescheduleAppointment = rescheduleAppointment;
 const appointmentBookValidations = (body, req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const doctor = yield UserModel_1.default.findOne({ _id: body.doctorId, isDeleted: false, isActive: true });
     const appointmentDate = (0, UserController_1.getDayOrTimeFromDate)(body.appointmentDate);
-    let slots = doctor.availability.map(ele => {
+    let slots = doctor.availability.filter(ele => {
         if (ele.clinic == body.clinicId)
             return ele;
     });

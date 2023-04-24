@@ -41,7 +41,7 @@ export const createAppointment = async (req, res) => {
         }))
 
     } catch (error) {
-
+        console.log(error)
         let response = new ResponseError({
             message: "Something went wrong",
             error: error.message,
@@ -349,12 +349,12 @@ export const appointmentBookValidations = async (body, req, res) => {
 
     const appointmentDate = getDayOrTimeFromDate(body.appointmentDate);
 
-    let slots = doctor.availability.map(ele => {
+    let slots = doctor.availability.filter(ele => {
         if (ele.clinic == body.clinicId) return ele;
     })
 
     const newSlots = [];
-
+    
     for (let i = 0; i < slots[0].slots.length; i++) {
 
         if (slots[0].slots[i].type == body.appointmentType && slots[0].slots[i].day == appointmentDate.day) {
