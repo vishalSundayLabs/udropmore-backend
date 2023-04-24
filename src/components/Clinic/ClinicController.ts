@@ -226,9 +226,9 @@ export const getAllDoctorOfClinic = async (req, res) => {
             message: "Something went wrong",
             error: error.message,
         });
-        
+
         return res.status(500).json(response);
 
     }
-    
+
 }

@@ -83,6 +83,7 @@ const updateUserDetails = (req, res) => __awaiter(void 0, void 0, void 0, functi
                 message: "user details not found."
             }));
         }
+        //add feilds for update
         (0, bodyTraverse_1.bodyTraverse)(userDetails, body);
         userDetails.updatedBy = req.userId;
         yield userDetails.save();

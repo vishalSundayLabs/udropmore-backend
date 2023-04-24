@@ -6,12 +6,16 @@ import UserDetailsModel from "./UserDetailsModel"
 
 export const createUserDetails = async (req, res) => {
     const body = req.body
+
     if (!body.motherId) {
+
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
             success: false,
             message: "Bad request! Mother id must be provide."
         }))
+        
     }
+
     const reqData = {
         userId: body.motherId,
         dateOfBirth: body.dateOfBirth,
@@ -85,7 +89,7 @@ export const updateUserDetails = async (req, res) => {
             }))
 
         }
-
+        //add feilds for update
         bodyTraverse(userDetails, body)
 
         userDetails.updatedBy = req.userId

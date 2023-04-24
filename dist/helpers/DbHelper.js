@@ -15,7 +15,6 @@ const Config_1 = require("../config/Config");
 const tracer = require("tracer");
 const logger = tracer.colorConsole();
 const DB_URI = Config_1.default.DBURI;
-console.log(DB_URI);
 function connect() {
     return __awaiter(this, void 0, void 0, function* () {
         return new Promise((resolve, reject) => {

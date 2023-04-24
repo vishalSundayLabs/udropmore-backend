@@ -26,8 +26,7 @@ export const createAppointment = async (req, res) => {
             return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
                 success: false,
                 message: "Appointment already booked ."
-            })
-            )
+            }))
 
         }
 
@@ -47,7 +46,7 @@ export const createAppointment = async (req, res) => {
             message: "Something went wrong",
             error: error.message,
         });
-        
+
         return res.status(500).json(response);
 
     }

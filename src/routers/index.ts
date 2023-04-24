@@ -16,4 +16,5 @@ router.use('/v1/auth', authRouter)
 router.use('/v1/clinic', clinicRouter)
 router.use('/v1/appointment', appointmentRouter)
 router.use('/v1/mother', userDetailsRouter)
+
 export default router;
