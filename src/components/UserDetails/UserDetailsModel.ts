@@ -88,7 +88,7 @@ const userDetailsSchema = new mongoose.Schema({
     },
     language: {
         type: String,
-        enum: ["ENGLISH", "HINDI"]
+        enum: ["ENGLISH", "HINDI","MARATHI"]
     },
     emergency: {
         name: String,
