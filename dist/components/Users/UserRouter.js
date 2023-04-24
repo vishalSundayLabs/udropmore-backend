@@ -26,4 +26,8 @@ router.post('/slots', tokenVerify_1.verifyToken, userController.getSlots);
 router.post('/getAllUsers', tokenVerify_1.verifyToken, userController.getAllUsers);
 //mapped mother with doctor
 router.post('/mother/map/doctor', tokenVerify_1.verifyToken, userController.mapMotherWithDoctor);
+//get all patient of a doctor
+router.get('/doctor/:doctorId/mothers', tokenVerify_1.verifyToken, userController.getPatientOfDoctorById);
+//get doctor details of a mother
+router.get('/mother/:motherId/doctor', tokenVerify_1.verifyToken, userController.getDoctorOfMotherById);
 exports.default = router;

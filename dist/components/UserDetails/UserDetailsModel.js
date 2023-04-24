@@ -43,7 +43,7 @@ const userDetailsSchema = new mongoose.Schema({
     },
     maritalStatus: {
         type: String,
-        enum: ["MARRIED", "NOT MARRIED"]
+        enum: ["MARRIED", "NOT MARRIED", "OTHER"]
     },
     occupation: {
         type: String

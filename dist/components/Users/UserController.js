@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getDayOrTimeFromDate = exports.makeSlotsFormat = exports.mapMotherWithDoctor = exports.getAllUsers = exports.getSlots = exports.deleteUser = exports.userUpdate = exports.updateMother = exports.createUser = exports.getUserById = exports.getUser = void 0;
+exports.getDayOrTimeFromDate = exports.makeSlotsFormat = exports.getDoctorOfMotherById = exports.getPatientOfDoctorById = exports.mapMotherWithDoctor = exports.getAllUsers = exports.getSlots = exports.deleteUser = exports.userUpdate = exports.updateMother = exports.createUser = exports.getUserById = exports.getUser = void 0;
 // models
 const UserModel_1 = require("./UserModel");
 // classes
@@ -364,6 +364,69 @@ const mapMotherWithDoctor = (req, res) => __awaiter(void 0, void 0, void 0, func
     }
 });
 exports.mapMotherWithDoctor = mapMotherWithDoctor;
+const getPatientOfDoctorById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const params = req.params;
+    if (!params.doctorId) {
+        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: "Bad request! Doctor Id must be provide!"
+        }));
+    }
+    try {
+        const patients = yield UserModel_1.default.find({ mappedDoctor: params.doctorId, isDeleted: false, isActive: true });
+        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "get all patient of a doctor successfully.",
+            result: patients
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.getPatientOfDoctorById = getPatientOfDoctorById;
+const getDoctorOfMotherById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const params = req.params;
+    if (!params.motherId) {
+        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: "Bad request! Mother Id must be provide!"
+        }));
+    }
+    try {
+        const patient = yield UserModel_1.default.findOne({ _id: params.motherId, isDeleted: false, isActive: true });
+        if (!patient) {
+            return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+                success: false,
+                message: "user does not exist!"
+            }));
+        }
+        const doctor = yield UserModel_1.default.findOne({ _id: patient.mappedDoctor, isDeleted: false, isActive: true });
+        if (!doctor) {
+            return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+                success: false,
+                message: "Right now user not mapped with doctor."
+            }));
+        }
+        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "get doctor successfully.",
+            result: doctor
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.getDoctorOfMotherById = getDoctorOfMotherById;
 const makeSlotsFormat = (slots) => {
     const slotsTime = +process.env.SLOT_TIME;
     const newSlots = [];
@@ -411,5 +474,3 @@ const getDayOrTimeFromDate = (date) => {
     };
 };
 exports.getDayOrTimeFromDate = getDayOrTimeFromDate;
-// const dateArr = date.split(' ');
-// const fullDate = `${dateArr[0]} ${dateArr[1]} ${dateArr[2]} ${dateArr[3]}`

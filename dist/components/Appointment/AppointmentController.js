@@ -42,7 +42,6 @@ const createAppointment = (req, res) => __awaiter(void 0, void 0, void 0, functi
         }));
     }
     catch (error) {
-        console.log(error);
         let response = new ResponseClass_1.ResponseError({
             message: "Something went wrong",
             error: error.message,

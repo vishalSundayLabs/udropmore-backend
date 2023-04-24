@@ -341,7 +341,7 @@ export const getSlots = async (req, res) => {
     const finalSlot = makeSlotsFormat(newSlots)
 
     const BookedSlot = await AppointmentModel.find({ clinicId: body.clinic, doctorId: body.doctor, appointmentDateAndTime: { $gte: new Date(bodyDate.fullDate), $lt: new Date(bodyDate.nextDate) }, status: { $ne: "CANCELLED" }, isDeleted: false });
-    
+
     if (BookedSlot.length > 0) {
 
       for (let j = 0; j < BookedSlot.length; j++) {
@@ -501,6 +501,91 @@ export const mapMotherWithDoctor = async (req, res) => {
   }
 }
 
+export const getPatientOfDoctorById = async (req, res) => {
+  const params = req.params
+
+  if (!params.doctorId) {
+
+    return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+      success: false,
+      message: "Bad request! Doctor Id must be provide!"
+    }))
+
+  }
+
+  try {
+    const patients = await UserModel.find({ mappedDoctor: params.doctorId, isDeleted: false, isActive: true })
+
+    return res.status(HTTP_BAD_REQUEST).send(new ResponseSuccess({
+      success: true,
+      message: "get all patient of a doctor successfully.",
+      result: patients
+    }))
+
+  } catch (error) {
+
+    let response = new ResponseError({
+      message: "Something went wrong",
+      error: error.message,
+    });
+
+    return res.status(500).json(response);
+
+  }
+}
+
+export const getDoctorOfMotherById = async (req, res) => {
+  const params = req.params
+  if (!params.motherId) {
+
+    return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+      success: false,
+      message: "Bad request! Mother Id must be provide!"
+    }))
+
+  }
+  try {
+    const patient = await UserModel.findOne({ _id: params.motherId, isDeleted: false, isActive: true })
+
+    if (!patient) {
+
+      return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+        success: false,
+        message: "user does not exist!"
+      }))
+
+    }
+
+    const doctor = await UserModel.findOne({ _id: patient.mappedDoctor, isDeleted: false, isActive: true })
+
+    if (!doctor) {
+
+      return res.status(HTTP_OK).send(new ResponseSuccess({
+        success: false,
+        message: "Right now user not mapped with doctor."
+      }))
+
+    }
+
+    return res.status(HTTP_BAD_REQUEST).send(new ResponseSuccess({
+      success: true,
+      message: "get doctor successfully.",
+      result: doctor
+    }))
+
+  } catch (error) {
+
+    let response = new ResponseError({
+      message: "Something went wrong",
+      error: error.message,
+    });
+
+    return res.status(500).json(response);
+
+  }
+}
+
+
 export const makeSlotsFormat = (slots) => {
   const slotsTime = +process.env.SLOT_TIME;
   const newSlots = [];
@@ -551,5 +636,4 @@ export const getDayOrTimeFromDate = (date) => {
 
 }
 
-  // const dateArr = date.split(' ');
-  // const fullDate = `${dateArr[0]} ${dateArr[1]} ${dateArr[2]} ${dateArr[3]}`
+
