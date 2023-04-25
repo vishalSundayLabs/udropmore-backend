@@ -343,6 +343,66 @@ export const rescheduleAppointment = async (req, res) => {
     }
 }
 
+export const rescheduleAppointmentByDoctorOfASlot = async (req, res) => {
+    const body = req.body
+
+    try {
+
+    } catch (error) {
+
+        let response = new ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+
+        return res.status(500).json(response);
+
+    }
+
+}
+export const updateAppointmentStatusByDoctorOfASlot = async (req, res) => {
+    const body = req.body
+
+    if (!body.doctorId || !body.clinicId || !body.date || !body.appointmentType || !body.appointmentStatus) {
+
+        return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+            message: "Bad Request! doctor id , clinic id , date  appointment type , appintmentStusta must be provide."
+        }))
+
+    }
+
+    try {
+        const dateFormat = getDayOrTimeFromDate(body.date)
+        const appointments = await AppointmentModel.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: dateFormat.fullDate, $lt: dateFormat.nextDate }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false })
+
+        for (let i = 0; i < appointments.length; i++) {
+            const slotTimeFormat = getDayOrTimeFromDate(appointments[i].appointmentDateAndTime)
+            if (dateFormat.time == slotTimeFormat.time) {
+                appointments[i].status = body.appointmentStatus
+                await AppointmentModel.findOneAndUpdate({ _id: appointments[i]._id }, { $set: { status: body.appointmentStatus } })
+            }
+        }
+
+        return res.status(HTTP_CREATED).send(new ResponseSuccess({
+            success: true,
+            message: "Appointment update successfully.",
+            result: appointments
+        }))
+
+
+    } catch (error) {
+
+        let response = new ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+
+        return res.status(500).json(response);
+
+    }
+
+}
+
 export const appointmentBookValidations = async (body, req, res) => {
 
     const doctor = await UserModel.findOne({ _id: body.doctorId, isDeleted: false, isActive: true })

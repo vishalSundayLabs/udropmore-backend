@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.appointmentBookValidations = exports.rescheduleAppointment = exports.updateAppointment = exports.getAllAppointmentOfMother = exports.getAllAppointmentsOfADay = exports.getAllAppointments = exports.createAppointment = void 0;
+exports.appointmentBookValidations = exports.updateAppointmentStatusByDoctorOfASlot = exports.rescheduleAppointmentByDoctorOfASlot = exports.rescheduleAppointment = exports.updateAppointment = exports.getAllAppointmentOfMother = exports.getAllAppointmentsOfADay = exports.getAllAppointments = exports.createAppointment = void 0;
 const pagination_1 = require("../../helpers/pagination");
 const Constants_1 = require("../../utils/Constants");
 const ResponseClass_1 = require("../../utils/ResponseClass");
@@ -257,6 +257,51 @@ const rescheduleAppointment = (req, res) => __awaiter(void 0, void 0, void 0, fu
     }
 });
 exports.rescheduleAppointment = rescheduleAppointment;
+const rescheduleAppointmentByDoctorOfASlot = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const body = req.body;
+    try {
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.rescheduleAppointmentByDoctorOfASlot = rescheduleAppointmentByDoctorOfASlot;
+const updateAppointmentStatusByDoctorOfASlot = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const body = req.body;
+    if (!body.doctorId || !body.clinicId || !body.date || !body.appointmentType || !body.appointmentStatus) {
+        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            message: "Bad Request! doctor id , clinic id , date  appointment type , appintmentStusta must be provide."
+        }));
+    }
+    try {
+        const dateFormat = (0, UserController_1.getDayOrTimeFromDate)(body.date);
+        const appointments = yield AppointmentModel_1.default.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: dateFormat.fullDate, $lt: dateFormat.nextDate }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false });
+        for (let i = 0; i < appointments.length; i++) {
+            const slotTimeFormat = (0, UserController_1.getDayOrTimeFromDate)(appointments[i].appointmentDateAndTime);
+            if (dateFormat.time == slotTimeFormat.time) {
+                appointments[i].status = body.appointmentStatus;
+                yield AppointmentModel_1.default.findOneAndUpdate({ _id: appointments[i]._id }, { $set: { status: body.appointmentStatus } });
+            }
+        }
+        return res.status(Constants_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "Appointment update successfully.",
+            result: appointments
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.updateAppointmentStatusByDoctorOfASlot = updateAppointmentStatusByDoctorOfASlot;
 const appointmentBookValidations = (body, req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const doctor = yield UserModel_1.default.findOne({ _id: body.doctorId, isDeleted: false, isActive: true });
     const appointmentDate = (0, UserController_1.getDayOrTimeFromDate)(body.appointmentDate);
