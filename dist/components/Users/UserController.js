@@ -250,7 +250,7 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 newSlots.push(slots[0].slots[i]);
             }
         }
-        const finalSlot = (0, exports.makeSlotsFormat)(newSlots);
+        const finalSlot = (0, exports.makeSlotsFormat)(newSlots, body.appointmentType);
         const BookedSlot = yield AppointmentModel_1.default.find({ clinicId: body.clinic, doctorId: body.doctor, appointmentDateAndTime: { $gte: new Date(bodyDate.fullDate), $lt: new Date(bodyDate.nextDate) }, status: { $ne: "CANCELLED" }, isDeleted: false });
         if (BookedSlot.length > 0) {
             for (let j = 0; j < BookedSlot.length; j++) {
@@ -433,8 +433,8 @@ const getDoctorOfMotherById = (req, res) => __awaiter(void 0, void 0, void 0, fu
     }
 });
 exports.getDoctorOfMotherById = getDoctorOfMotherById;
-const makeSlotsFormat = (slots) => {
-    const slotsTime = +process.env.SLOT_TIME;
+const makeSlotsFormat = (slots, slotType) => {
+    const slotsTime = slotType == 'INPERSON' ? +process.env.INPERSON_SLOT_TIME : slotType == "VIDEOCALL" ? +process.env.VIDEOCALL_SLOT_TIME : +process.env.INPERSON_SLOT_TIME;
     const newSlots = [];
     for (let i = 0; i < slots.length; i++) {
         const timeSlots = slots[i].timeSlots;

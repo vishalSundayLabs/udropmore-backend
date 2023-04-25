@@ -363,7 +363,7 @@ export const appointmentBookValidations = async (body, req, res) => {
 
     }
 
-    const finalSlot = makeSlotsFormat(newSlots)
+    const finalSlot = makeSlotsFormat(newSlots, body.appointemntType)
 
     const BookedSlot = await AppointmentModel.find({ clinicId: body.clinicId, doctorId: body.doctorId, appointmentDateAndTime: { $gte: new Date(appointmentDate.fullDate), $lt: new Date(appointmentDate.nextDate) }, status: { $ne: "CANCELLED" }, isDeleted: false });
 

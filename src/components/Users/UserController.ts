@@ -341,7 +341,7 @@ export const getSlots = async (req, res) => {
 
     }
 
-    const finalSlot = makeSlotsFormat(newSlots)
+    const finalSlot = makeSlotsFormat(newSlots, body.appointmentType)
 
     const BookedSlot = await AppointmentModel.find({ clinicId: body.clinic, doctorId: body.doctor, appointmentDateAndTime: { $gte: new Date(bodyDate.fullDate), $lt: new Date(bodyDate.nextDate) }, status: { $ne: "CANCELLED" }, isDeleted: false });
 
@@ -596,27 +596,37 @@ export const getDoctorOfMotherById = async (req, res) => {
 }
 
 
-export const makeSlotsFormat = (slots) => {
-  const slotsTime = +process.env.SLOT_TIME;
+export const makeSlotsFormat = (slots, slotType) => {
+
+  const slotsTime = slotType == 'INPERSON' ? +process.env.INPERSON_SLOT_TIME : slotType == "VIDEOCALL" ? +process.env.VIDEOCALL_SLOT_TIME : +process.env.INPERSON_SLOT_TIME;
   const newSlots = [];
+
   for (let i = 0; i < slots.length; i++) {
+
     const timeSlots = slots[i].timeSlots;
+
     for (let j = 0; j < timeSlots.length; j++) {
+
       let newTime = timeSlots[j].split("-");
       let startTime = newTime[0];
       let endTime = newTime[1];
       let timeDiff = (Math.floor(endTime) - Math.floor(startTime)) * 60;
       let mintCount: any = 0;
+
       while (timeDiff != mintCount) {
+
         if (mintCount % 60 == 0 && mintCount != 0) {
           startTime++;
         }
+
         // startTime = startTime.toString().length == 1 ? '0' + startTime : startTime
+
         newSlots.push({
           day: slots[i].day,
           time: `${startTime}:${mintCount % 60}`,
           status: "AVAILABLE",
         });
+
         mintCount = mintCount + slotsTime;
       }
     }

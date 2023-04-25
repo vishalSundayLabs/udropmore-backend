@@ -107,7 +107,8 @@ const userDetailsSchema = new mongoose.Schema({
     },
     emergency: {
         name: { type: String, default: null },
-        phoneNumber: { type: String, default: null }
+        phoneNumber: { type: String, default: null },
+        relationShip: { type: String, default: null }
     },
     pastHistory: {
         currentPregnancy: {
