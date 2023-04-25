@@ -359,7 +359,7 @@ export const rescheduleAppointmentByDoctorOfASlot = async (req, res) => {
         const dateFormat = getDayOrTimeFromDate(body.date)
         console.log(dateFormat, new Date(dateFormat.fullDate), new Date(dateFormat.nextDate))
         const appointments = await AppointmentModel.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: new Date(dateFormat.fullDate), $lt: new Date(dateFormat.nextDate) }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false })
-
+        console.log(appointments)
         if (appointments.length == 0) {
 
             return res.status(HTTP_NOT_FOUND).send(new ResponseError({
@@ -373,9 +373,9 @@ export const rescheduleAppointmentByDoctorOfASlot = async (req, res) => {
 
         for (let i = 0; i < appointments.length; i++) {
             const slotTimeFormat = getDayOrTimeFromDate(appointments[i].appointmentDateAndTime)
-
+             console.log(slotTimeFormat,dateFormat.time == slotTimeFormat.time)
             if (dateFormat.time == slotTimeFormat.time) {
-
+            
                 appointments[i].status = body.appointmentStatus
                 await AppointmentModel.findOneAndUpdate({ _id: appointments[i]._id }, { $set: { status: "CANCELLED", reason: "CANCELLED BY DOCTOR", updatedBy: req.userId } })
                 const newAppointment = await AppointmentModel.create({ motherId: appointments[i].motherId, doctorId: body.doctorId, clinicId: body.clinicId, appointmentType: body.appointmentType, appointmentDateAndTime: body.newDate, previousAppointmentDate: appointments[i].appointmentDateAndTime, status: "RESCHEDULED", reason: body.reason, createdBy: req.userId })
