@@ -259,7 +259,29 @@ const rescheduleAppointment = (req, res) => __awaiter(void 0, void 0, void 0, fu
 exports.rescheduleAppointment = rescheduleAppointment;
 const rescheduleAppointmentByDoctorOfASlot = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
+    if (!body.doctorId || !body.clinicId || !body.date || !body.newDate || !body.appointmentType || !body.reason) {
+        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            message: "Bad Request! doctor id , clinic id , date , new date for reschedule , appointment type , appintmentStatus or reason must be provide."
+        }));
+    }
     try {
+        const dateFormat = (0, UserController_1.getDayOrTimeFromDate)(body.date);
+        const appointments = yield AppointmentModel_1.default.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: dateFormat.fullDate, $lt: dateFormat.nextDate }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false });
+        const rescheduledAppointments = [];
+        for (let i = 0; i < appointments.length; i++) {
+            const slotTimeFormat = (0, UserController_1.getDayOrTimeFromDate)(appointments[i].appointmentDateAndTime);
+            if (dateFormat.time == slotTimeFormat.time) {
+                appointments[i].status = body.appointmentStatus;
+                yield AppointmentModel_1.default.findOneAndUpdate({ _id: appointments[i]._id }, { $set: { status: "CANCELLED", reason: "CANCELLED BY DOCTOR" } });
+                const newAppointment = yield AppointmentModel_1.default.create({ motherId: appointments[i].motherId, doctorId: body.doctorId, clinicId: body.clinicId, appointmentType: body.appointmentType, appointmentDateAndTime: body.newDate, previousAppointmentDate: appointments[i].appointmentDateAndTime, status: "RESCHEDULED", reason: body.reason, createdBy: req.userId });
+                rescheduledAppointments.push(newAppointment);
+            }
+        }
+        return res.status(Constants_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: `Reschedule Appointments successfully.`,
+            result: rescheduledAppointments
+        }));
     }
     catch (error) {
         let response = new ResponseClass_1.ResponseError({
@@ -272,9 +294,9 @@ const rescheduleAppointmentByDoctorOfASlot = (req, res) => __awaiter(void 0, voi
 exports.rescheduleAppointmentByDoctorOfASlot = rescheduleAppointmentByDoctorOfASlot;
 const updateAppointmentStatusByDoctorOfASlot = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
-    if (!body.doctorId || !body.clinicId || !body.date || !body.appointmentType || !body.appointmentStatus) {
+    if (!body.doctorId || !body.clinicId || !body.date || !body.appointmentType || !body.appointmentStatus || !body.reason) {
         return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
-            message: "Bad Request! doctor id , clinic id , date  appointment type , appintmentStatus must be provide."
+            message: "Bad Request! doctor id , clinic id , date  appointment type , appintmentStatus or reason must be provide."
         }));
     }
     try {
@@ -285,13 +307,13 @@ const updateAppointmentStatusByDoctorOfASlot = (req, res) => __awaiter(void 0, v
             const slotTimeFormat = (0, UserController_1.getDayOrTimeFromDate)(appointments[i].appointmentDateAndTime);
             if (dateFormat.time == slotTimeFormat.time) {
                 appointments[i].status = body.appointmentStatus;
-                yield AppointmentModel_1.default.findOneAndUpdate({ _id: appointments[i]._id }, { $set: { status: body.appointmentStatus } });
+                yield AppointmentModel_1.default.findOneAndUpdate({ _id: appointments[i]._id }, { $set: { status: body.appointmentStatus, reason: body.reason, updatedBy: req.userId } });
                 changedAppointment.push(appointments[i]);
             }
         }
         return res.status(Constants_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
             success: true,
-            message: `${body.appointmentStatus} Appointment successfully.`,
+            message: `${body.appointmentStatus} Appointments successfully.`,
             result: changedAppointment
         }));
     }

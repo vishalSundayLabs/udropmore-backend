@@ -10,5 +10,6 @@ router.put('/update', tokenVerify_1.verifyToken, AppointmentController_1.updateA
 router.post('/reschedule', tokenVerify_1.verifyToken, AppointmentController_1.rescheduleAppointment);
 router.post('/getAllAppointments', tokenVerify_1.verifyToken, AppointmentController_1.getAllAppointmentsOfADay);
 router.post('/getappointments/mother', tokenVerify_1.verifyToken, AppointmentController_1.getAllAppointmentOfMother);
-router.put('/cancel', tokenVerify_1.verifyToken, AppointmentController_1.updateAppointmentStatusByDoctorOfASlot);
+router.put('/slot/cancel', tokenVerify_1.verifyToken, AppointmentController_1.updateAppointmentStatusByDoctorOfASlot);
+router.put('/slot/reschedule', tokenVerify_1.verifyToken, AppointmentController_1.rescheduleAppointmentByDoctorOfASlot);
 exports.default = router;

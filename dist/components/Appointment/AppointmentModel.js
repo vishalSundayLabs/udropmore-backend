@@ -23,8 +23,15 @@ const AppointmentSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ["CANCELLED", "INPROGRESS", "CONFIRMED", "NOSHOW"],
+        enum: ["CANCELLED", "INPROGRESS", "CONFIRMED", "COMPLETED", "RESCHEDULED"],
         default: 'CONFIRMED'
+    },
+    previousAppointmentDate: {
+        type: Date
+    },
+    reason: {
+        type: String,
+        enum: ["CANCELLED BY DOCTOR", "CANCELLED BY MOTHER", "RESCHEDULED BY DOCTOR", "RESCHEDULED BY MOTHER"]
     },
     createdBy: {
         type: mongoose.SchemaTypes.ObjectId,

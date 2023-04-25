@@ -346,7 +346,36 @@ export const rescheduleAppointment = async (req, res) => {
 export const rescheduleAppointmentByDoctorOfASlot = async (req, res) => {
     const body = req.body
 
+    if (!body.doctorId || !body.clinicId || !body.date || !body.newDate || !body.appointmentType || !body.reason) {
+
+        return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+            message: "Bad Request! doctor id , clinic id , date , new date for reschedule , appointment type , appintmentStatus or reason must be provide."
+        }))
+
+    }
+
     try {
+
+        const dateFormat = getDayOrTimeFromDate(body.date)
+        const appointments = await AppointmentModel.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: dateFormat.fullDate, $lt: dateFormat.nextDate }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false })
+        const rescheduledAppointments = [];
+
+        for (let i = 0; i < appointments.length; i++) {
+            const slotTimeFormat = getDayOrTimeFromDate(appointments[i].appointmentDateAndTime)
+            if (dateFormat.time == slotTimeFormat.time) {
+                appointments[i].status = body.appointmentStatus
+                await AppointmentModel.findOneAndUpdate({ _id: appointments[i]._id }, { $set: { status: "CANCELLED", reason: "CANCELLED BY DOCTOR" } })
+                const newAppointment = await AppointmentModel.create({ motherId: appointments[i].motherId, doctorId: body.doctorId, clinicId: body.clinicId, appointmentType: body.appointmentType, appointmentDateAndTime: body.newDate, previousAppointmentDate: appointments[i].appointmentDateAndTime, status: "RESCHEDULED", reason: body.reason, createdBy: req.userId })
+                rescheduledAppointments.push(newAppointment)
+            }
+
+        }
+
+        return res.status(HTTP_CREATED).send(new ResponseSuccess({
+            success: true,
+            message: `Reschedule Appointments successfully.`,
+            result: rescheduledAppointments
+        }))
 
     } catch (error) {
 
@@ -360,13 +389,14 @@ export const rescheduleAppointmentByDoctorOfASlot = async (req, res) => {
     }
 
 }
+
 export const updateAppointmentStatusByDoctorOfASlot = async (req, res) => {
     const body = req.body
 
-    if (!body.doctorId || !body.clinicId || !body.date || !body.appointmentType || !body.appointmentStatus) {
+    if (!body.doctorId || !body.clinicId || !body.date || !body.appointmentType || !body.appointmentStatus || !body.reason) {
 
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
-            message: "Bad Request! doctor id , clinic id , date  appointment type , appintmentStatus must be provide."
+            message: "Bad Request! doctor id , clinic id , date  appointment type , appintmentStatus or reason must be provide."
         }))
 
     }
@@ -375,11 +405,12 @@ export const updateAppointmentStatusByDoctorOfASlot = async (req, res) => {
         const dateFormat = getDayOrTimeFromDate(body.date)
         const appointments = await AppointmentModel.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: dateFormat.fullDate, $lt: dateFormat.nextDate }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false })
         const changedAppointment = [];
+
         for (let i = 0; i < appointments.length; i++) {
             const slotTimeFormat = getDayOrTimeFromDate(appointments[i].appointmentDateAndTime)
             if (dateFormat.time == slotTimeFormat.time) {
                 appointments[i].status = body.appointmentStatus
-                await AppointmentModel.findOneAndUpdate({ _id: appointments[i]._id }, { $set: { status: body.appointmentStatus } })
+                await AppointmentModel.findOneAndUpdate({ _id: appointments[i]._id }, { $set: { status: body.appointmentStatus, reason: body.reason, updatedBy: req.userId } })
                 changedAppointment.push(appointments[i])
             }
 
@@ -387,7 +418,7 @@ export const updateAppointmentStatusByDoctorOfASlot = async (req, res) => {
 
         return res.status(HTTP_CREATED).send(new ResponseSuccess({
             success: true,
-            message: `${body.appointmentStatus} Appointment successfully.`,
+            message: `${body.appointmentStatus} Appointments successfully.`,
             result: changedAppointment
         }))
 
