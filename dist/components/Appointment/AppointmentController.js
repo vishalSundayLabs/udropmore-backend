@@ -266,6 +266,7 @@ const rescheduleAppointmentByDoctorOfASlot = (req, res) => __awaiter(void 0, voi
     }
     try {
         const dateFormat = (0, UserController_1.getDayOrTimeFromDate)(body.date);
+        console.log(dateFormat, new Date(dateFormat.fullDate), new Date(dateFormat.nextDate));
         const appointments = yield AppointmentModel_1.default.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: new Date(dateFormat.fullDate), $lt: new Date(dateFormat.nextDate) }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false });
         if (appointments.length == 0) {
             return res.status(Constants_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
