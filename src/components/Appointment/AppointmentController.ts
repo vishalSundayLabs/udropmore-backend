@@ -104,7 +104,7 @@ export const getAllAppointmentsOfADay = async (req, res) => {
     const { limit, skips } = pagination(query)
 
     const dates = getDayOrTimeFromDate(body.date)
-   
+
     try {
 
         const appointments = await AppointmentModel.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentType: { $ne: "TELECALL" }, appointmentDateAndTime: { $gte: new Date(dates.fullDate), $lt: new Date(dates.nextDate) }, status: { $ne: "CANCELLED" } }).skip(skips).limit(limit)
@@ -357,9 +357,9 @@ export const rescheduleAppointmentByDoctorOfASlot = async (req, res) => {
     try {
 
         const dateFormat = getDayOrTimeFromDate(body.date)
-        
+
         const appointments = await AppointmentModel.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: new Date(dateFormat.fullDate), $lt: new Date(dateFormat.nextDate) }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false })
-        
+
         if (appointments.length == 0) {
 
             return res.status(HTTP_NOT_FOUND).send(new ResponseError({
@@ -373,9 +373,9 @@ export const rescheduleAppointmentByDoctorOfASlot = async (req, res) => {
 
         for (let i = 0; i < appointments.length; i++) {
             const slotTimeFormat = getDayOrTimeFromDate(appointments[i].appointmentDateAndTime)
-             
+
             if (dateFormat.time == slotTimeFormat.time) {
-            
+
                 appointments[i].status = body.appointmentStatus
                 await AppointmentModel.findOneAndUpdate({ _id: appointments[i]._id }, { $set: { status: "CANCELLED", reason: "CANCELLED BY DOCTOR", updatedBy: req.userId } })
                 const newAppointment = await AppointmentModel.create({ motherId: appointments[i].motherId, doctorId: body.doctorId, clinicId: body.clinicId, appointmentType: body.appointmentType, appointmentDateAndTime: body.newDate, previousAppointmentDate: appointments[i].appointmentDateAndTime, status: "RESCHEDULED", reason: body.reason, createdBy: req.userId })
@@ -433,7 +433,7 @@ export const updateAppointmentStatusByDoctorOfASlot = async (req, res) => {
         for (let i = 0; i < appointments.length; i++) {
 
             const slotTimeFormat = getDayOrTimeFromDate(appointments[i].appointmentDateAndTime)
-            console.log(slotTimeFormat,dateFormat.time == slotTimeFormat.time,dateFormat)
+
             if (dateFormat.time == slotTimeFormat.time) {
 
                 appointments[i].status = body.appointmentStatus
