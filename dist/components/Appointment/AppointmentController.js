@@ -266,7 +266,6 @@ const rescheduleAppointmentByDoctorOfASlot = (req, res) => __awaiter(void 0, voi
     }
     try {
         const dateFormat = (0, UserController_1.getDayOrTimeFromDate)(body.date);
-        console.log(dateFormat, new Date(dateFormat.fullDate), new Date(dateFormat.nextDate));
         const appointments = yield AppointmentModel_1.default.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: new Date(dateFormat.fullDate), $lt: new Date(dateFormat.nextDate) }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false });
         console.log(appointments);
         if (appointments.length == 0) {
@@ -278,6 +277,7 @@ const rescheduleAppointmentByDoctorOfASlot = (req, res) => __awaiter(void 0, voi
         const rescheduledAppointments = [];
         for (let i = 0; i < appointments.length; i++) {
             const slotTimeFormat = (0, UserController_1.getDayOrTimeFromDate)(appointments[i].appointmentDateAndTime);
+            console.log(slotTimeFormat, dateFormat.time == slotTimeFormat.time);
             if (dateFormat.time == slotTimeFormat.time) {
                 appointments[i].status = body.appointmentStatus;
                 yield AppointmentModel_1.default.findOneAndUpdate({ _id: appointments[i]._id }, { $set: { status: "CANCELLED", reason: "CANCELLED BY DOCTOR", updatedBy: req.userId } });
@@ -320,9 +320,9 @@ const updateAppointmentStatusByDoctorOfASlot = (req, res) => __awaiter(void 0, v
         for (let i = 0; i < appointments.length; i++) {
             const slotTimeFormat = (0, UserController_1.getDayOrTimeFromDate)(appointments[i].appointmentDateAndTime);
             if (dateFormat.time == slotTimeFormat.time) {
-                appointments[i].status = body.appointmentStatus;
-                yield AppointmentModel_1.default.findOneAndUpdate({ _id: appointments[i]._id }, { $set: { status: body.appointmentStatus, reason: body.reason, updatedBy: req.userId } });
-                changedAppointment.push(appointments[i]);
+                // appointments[i].status = body.appointmentStatus
+                // await AppointmentModel.findOneAndUpdate({ _id: appointments[i]._id }, { $set: { status: body.appointmentStatus, reason: body.reason, updatedBy: req.userId } })
+                // changedAppointment.push(appointments[i])
             }
         }
         return res.status(Constants_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({

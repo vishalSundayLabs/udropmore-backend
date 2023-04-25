@@ -357,7 +357,7 @@ export const rescheduleAppointmentByDoctorOfASlot = async (req, res) => {
     try {
 
         const dateFormat = getDayOrTimeFromDate(body.date)
-        console.log(dateFormat, new Date(dateFormat.fullDate), new Date(dateFormat.nextDate))
+        
         const appointments = await AppointmentModel.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: new Date(dateFormat.fullDate), $lt: new Date(dateFormat.nextDate) }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false })
         console.log(appointments)
         if (appointments.length == 0) {
@@ -435,10 +435,10 @@ export const updateAppointmentStatusByDoctorOfASlot = async (req, res) => {
             const slotTimeFormat = getDayOrTimeFromDate(appointments[i].appointmentDateAndTime)
 
             if (dateFormat.time == slotTimeFormat.time) {
-
-                appointments[i].status = body.appointmentStatus
-                await AppointmentModel.findOneAndUpdate({ _id: appointments[i]._id }, { $set: { status: body.appointmentStatus, reason: body.reason, updatedBy: req.userId } })
-                changedAppointment.push(appointments[i])
+                console.log("coming this ",appointments[i])
+                // appointments[i].status = body.appointmentStatus
+                // await AppointmentModel.findOneAndUpdate({ _id: appointments[i]._id }, { $set: { status: body.appointmentStatus, reason: body.reason, updatedBy: req.userId } })
+                // changedAppointment.push(appointments[i])
 
             }
 
