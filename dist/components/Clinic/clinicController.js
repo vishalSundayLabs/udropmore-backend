@@ -166,12 +166,14 @@ const getAllDoctorOfClinic = (req, res) => __awaiter(void 0, void 0, void 0, fun
                 if (availability[j].clinic == body.clinicId) {
                     doctors[i].availability = availability[j].slots;
                 }
+                else {
+                    doctors[i].availability = null;
+                }
             }
             if (availability.length == 0) {
                 doctors[i].availability = null;
             }
         }
-        console.log(doctors);
         return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "find all doctors of this clinic successfully.",

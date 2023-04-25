@@ -223,6 +223,8 @@ export const getAllDoctorOfClinic = async (req, res) => {
 
                 if (availability[j].clinic == body.clinicId) {
                     doctors[i].availability = availability[j].slots
+                }else{
+                    doctors[i].availability = null
                 }
 
             }
