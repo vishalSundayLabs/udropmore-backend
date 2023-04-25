@@ -358,15 +358,28 @@ export const rescheduleAppointmentByDoctorOfASlot = async (req, res) => {
 
         const dateFormat = getDayOrTimeFromDate(body.date)
         const appointments = await AppointmentModel.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: dateFormat.fullDate, $lt: dateFormat.nextDate }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false })
+
+        if (appointments.length == 0) {
+
+            return res.status(HTTP_NOT_FOUND).send(new ResponseError({
+                success: false,
+                message: "Appointments not found!"
+            }))
+
+        }
+
         const rescheduledAppointments = [];
 
         for (let i = 0; i < appointments.length; i++) {
             const slotTimeFormat = getDayOrTimeFromDate(appointments[i].appointmentDateAndTime)
+
             if (dateFormat.time == slotTimeFormat.time) {
+
                 appointments[i].status = body.appointmentStatus
-                await AppointmentModel.findOneAndUpdate({ _id: appointments[i]._id }, { $set: { status: "CANCELLED", reason: "CANCELLED BY DOCTOR" } })
+                await AppointmentModel.findOneAndUpdate({ _id: appointments[i]._id }, { $set: { status: "CANCELLED", reason: "CANCELLED BY DOCTOR", updatedBy: req.userId } })
                 const newAppointment = await AppointmentModel.create({ motherId: appointments[i].motherId, doctorId: body.doctorId, clinicId: body.clinicId, appointmentType: body.appointmentType, appointmentDateAndTime: body.newDate, previousAppointmentDate: appointments[i].appointmentDateAndTime, status: "RESCHEDULED", reason: body.reason, createdBy: req.userId })
                 rescheduledAppointments.push(newAppointment)
+
             }
 
         }
@@ -404,14 +417,28 @@ export const updateAppointmentStatusByDoctorOfASlot = async (req, res) => {
     try {
         const dateFormat = getDayOrTimeFromDate(body.date)
         const appointments = await AppointmentModel.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: dateFormat.fullDate, $lt: dateFormat.nextDate }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false })
+
+        if (appointments.length == 0) {
+
+            return res.status(HTTP_NOT_FOUND).send(new ResponseError({
+                success: false,
+                message: "Appointments not found!"
+            }))
+
+        }
+
         const changedAppointment = [];
 
         for (let i = 0; i < appointments.length; i++) {
+
             const slotTimeFormat = getDayOrTimeFromDate(appointments[i].appointmentDateAndTime)
+
             if (dateFormat.time == slotTimeFormat.time) {
+
                 appointments[i].status = body.appointmentStatus
                 await AppointmentModel.findOneAndUpdate({ _id: appointments[i]._id }, { $set: { status: body.appointmentStatus, reason: body.reason, updatedBy: req.userId } })
                 changedAppointment.push(appointments[i])
+
             }
 
         }
