@@ -274,23 +274,25 @@ const updateAppointmentStatusByDoctorOfASlot = (req, res) => __awaiter(void 0, v
     const body = req.body;
     if (!body.doctorId || !body.clinicId || !body.date || !body.appointmentType || !body.appointmentStatus) {
         return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
-            message: "Bad Request! doctor id , clinic id , date  appointment type , appintmentStusta must be provide."
+            message: "Bad Request! doctor id , clinic id , date  appointment type , appintmentStatus must be provide."
         }));
     }
     try {
         const dateFormat = (0, UserController_1.getDayOrTimeFromDate)(body.date);
         const appointments = yield AppointmentModel_1.default.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: dateFormat.fullDate, $lt: dateFormat.nextDate }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false });
+        const changedAppointment = [];
         for (let i = 0; i < appointments.length; i++) {
             const slotTimeFormat = (0, UserController_1.getDayOrTimeFromDate)(appointments[i].appointmentDateAndTime);
             if (dateFormat.time == slotTimeFormat.time) {
                 appointments[i].status = body.appointmentStatus;
                 yield AppointmentModel_1.default.findOneAndUpdate({ _id: appointments[i]._id }, { $set: { status: body.appointmentStatus } });
+                changedAppointment.push(appointments[i]);
             }
         }
         return res.status(Constants_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
             success: true,
-            message: "Appointment update successfully.",
-            result: appointments
+            message: `${body.appointmentStatus} Appointment successfully.`,
+            result: changedAppointment
         }));
     }
     catch (error) {
