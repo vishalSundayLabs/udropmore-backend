@@ -167,7 +167,7 @@ const getAllDoctorOfClinic = (req, res) => __awaiter(void 0, void 0, void 0, fun
                     doctors[i].availability = availability[j].slots;
                 }
                 else {
-                    doctors[i].availability = null;
+                    availability.splice(j, 1);
                 }
             }
             if (availability.length == 0) {
