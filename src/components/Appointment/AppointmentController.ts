@@ -104,7 +104,7 @@ export const getAllAppointmentsOfADay = async (req, res) => {
     const { limit, skips } = pagination(query)
 
     const dates = getDayOrTimeFromDate(body.date)
-
+    console.log(dates, new Date(dates.fullDate), new Date(dates.nextDate))
     try {
 
         const appointments = await AppointmentModel.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentType: { $ne: "TELECALL" }, appointmentDateAndTime: { $gte: new Date(dates.fullDate), $lt: new Date(dates.nextDate) }, status: { $ne: "CANCELLED" } }).skip(skips).limit(limit)
