@@ -24,6 +24,7 @@ const CreateOtp_1 = require("../../utils/CreateOtp");
 const ValidateOtp_1 = require("./req_body/ValidateOtp");
 const AuthSession_1 = require("./AuthSession");
 const UserDetailsModel_1 = require("../UserDetails/UserDetailsModel");
+const sampleUserDetails_1 = require("../../utils/sampleUserDetails");
 const sendOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     if ((0, CompareObjectKeys_1.compareObjectKeys)(body, LoginOtp_1.loginOtpBody)) {
@@ -90,7 +91,8 @@ const validateOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         var user = yield UserModel_1.default.findOne({ phoneNumber: otp[0].phoneNumber, isActive: true, isDeleted: false });
         if (!user && body.platform == 'MOTHER') {
             const newUser = yield UserModel_1.default.create({ phoneNumber: body.phoneNumber, userType: "MOTHER", platform: body.platform });
-            yield UserDetailsModel_1.default.create({ userId: newUser._id });
+            sampleUserDetails_1.sampleUserDetails.userId = newUser._id;
+            yield UserDetailsModel_1.default.create(sampleUserDetails_1.sampleUserDetails);
             user = newUser;
         }
         else {

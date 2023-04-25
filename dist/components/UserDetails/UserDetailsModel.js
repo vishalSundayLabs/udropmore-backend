@@ -8,71 +8,84 @@ const userDetailsSchema = new mongoose.Schema({
         unique: true
     },
     dateOfBirth: {
-        type: Date
+        type: Date,
+        default: null
     },
     address: {
-        line1: String,
-        line2: String,
-        city: String,
-        state: String,
-        pincode: Number
+        line1: { type: String, default: null },
+        line2: { type: String, default: null },
+        city: { type: String, default: null },
+        state: { type: String, default: null },
+        pincode: { type: Number, default: null }
     },
     height: {
         unit: {
             type: String,
-            enum: ["cm", "ft", "m", "inches"]
+            enum: ["cm", "ft", "m", "inches", null],
+            default: null
         },
         value: {
-            type: Number
+            type: Number,
+            default: null
         }
     },
     weight: {
         unit: {
             type: String,
-            enum: ["kg", "pound"]
+            enum: ["kg", "pound", null]
         },
         value: {
-            type: Number
+            type: Number,
+            default: null
         }
     },
     lastMenstrualDate: {
-        type: Date
+        type: Date,
+        default: null
     },
     dueDate: {
-        type: Date
+        type: Date,
+        default: null
     },
     maritalStatus: {
         type: String,
-        enum: ["MARRIED", "NOT MARRIED", "OTHER"]
+        enum: ["MARRIED", "NOT MARRIED", "OTHER", null],
+        default: null
     },
     occupation: {
-        type: String
+        type: String,
+        default: null
     },
     education: {
-        type: String
+        type: String,
+        default: null
     },
     pregnancyWeek: {
-        type: Number
+        type: Number,
+        default: null
     },
     husbandDetails: {
-        type: Object,
         name: {
-            type: String
+            type: String,
+            default: null
         },
         age: {
-            type: Number
+            type: Number,
+            default: null
         },
         occupation: {
-            type: String
+            type: String,
+            default: null
         }
     },
     refBy: {
-        type: Object,
         name: {
-            type: String
+            type: String,
+            default: null
         },
         address: {
-            type: String
+            type: String,
+            default: null
         }
     },
     previousVisit: {
@@ -85,15 +98,16 @@ const userDetailsSchema = new mongoose.Schema({
             enum: ["SELF", "SOCIAL MEDIA", "PREVIOUS PREGNANCY", null],
             default: null
         },
-        dateOfVisit: Date
+        dateOfVisit: { type: Date, default: null }
     },
     language: {
         type: String,
-        enum: ["ENGLISH", "HINDI", "MARATHI"]
+        enum: ["ENGLISH", "HINDI", "MARATHI", null],
+        default: null
     },
     emergency: {
-        name: String,
-        phoneNumber: String
+        name: { type: String, default: null },
+        phoneNumber: { type: String, default: null }
     },
     pastHistory: {
         currentPregnancy: {
@@ -257,7 +271,6 @@ const userDetailsSchema = new mongoose.Schema({
                     dateOfDelivery: { type: Date, default: null },
                     weekOfDelivery: { type: Number, default: null },
                     typeOfDelivery: {
-                        type: String,
                         vaginal: {
                             type: {
                                 type: String,
@@ -411,10 +424,10 @@ const userDetailsSchema = new mongoose.Schema({
         },
     },
     weightGainChart: [{
-            weight: Number,
-            babyWeight: Number,
-            week: Number,
-            date: Date
+            weight: { type: Number, default: null },
+            babyWeight: { type: Number, default: null },
+            week: { type: Number, default: null },
+            date: { type: Date, default: null }
         }],
     createdBy: {
         type: mongoose.SchemaTypes.ObjectId

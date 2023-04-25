@@ -20,6 +20,7 @@ import { createOtp } from "../../utils/CreateOtp";
 import { validateOtpBody } from "./req_body/ValidateOtp";
 import AuthSession from "./AuthSession";
 import UserDetailsModel from "../UserDetails/UserDetailsModel";
+import { sampleUserDetails } from "../../utils/sampleUserDetails";
 
 
 export const sendOtp = async (req: Request, res: Response) => {
@@ -118,8 +119,8 @@ export const validateOtp = async (req: Request, res: Response) => {
         if (!user && body.platform == 'MOTHER') {
 
             const newUser = await UserModel.create({ phoneNumber: body.phoneNumber, userType: "MOTHER", platform: body.platform })
-
-            await UserDetailsModel.create({ userId: newUser._id })
+            sampleUserDetails.userId = newUser._id
+            await UserDetailsModel.create(sampleUserDetails)
 
             user = newUser
 
