@@ -364,8 +364,8 @@ export const appointmentBookValidations = async (body, req, res) => {
     }
 
     const finalSlot = makeSlotsFormat(newSlots, body.appointemntType)
-
-    const BookedSlot = await AppointmentModel.find({ clinicId: body.clinicId, doctorId: body.doctorId, appointmentDateAndTime: { $gte: new Date(appointmentDate.fullDate), $lt: new Date(appointmentDate.nextDate) }, status: { $ne: "CANCELLED" }, isDeleted: false });
+    //for inperson slot any number of user book appointment
+    const BookedSlot = await AppointmentModel.find({ clinicId: body.clinicId, doctorId: body.doctorId, appointmentDateAndTime: { $gte: new Date(appointmentDate.fullDate), $lt: new Date(appointmentDate.nextDate) }, appointmentType: { $ne: "INPERSON" }, status: { $ne: "CANCELLED" }, isDeleted: false });
 
     if (BookedSlot.length > 0) {
 

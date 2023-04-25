@@ -271,7 +271,8 @@ const appointmentBookValidations = (body, req, res) => __awaiter(void 0, void 0,
         }
     }
     const finalSlot = (0, UserController_1.makeSlotsFormat)(newSlots, body.appointemntType);
-    const BookedSlot = yield AppointmentModel_1.default.find({ clinicId: body.clinicId, doctorId: body.doctorId, appointmentDateAndTime: { $gte: new Date(appointmentDate.fullDate), $lt: new Date(appointmentDate.nextDate) }, status: { $ne: "CANCELLED" }, isDeleted: false });
+    //for inperson slot any number of user book appointment
+    const BookedSlot = yield AppointmentModel_1.default.find({ clinicId: body.clinicId, doctorId: body.doctorId, appointmentDateAndTime: { $gte: new Date(appointmentDate.fullDate), $lt: new Date(appointmentDate.nextDate) }, appointmentType: { $ne: "INPERSON" }, status: { $ne: "CANCELLED" }, isDeleted: false });
     if (BookedSlot.length > 0) {
         for (let j = 0; j < BookedSlot.length; j++) {
             let bookedSlotIndex = -1;

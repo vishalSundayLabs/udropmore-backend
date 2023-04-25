@@ -159,11 +159,38 @@ const getAllDoctorOfClinic = (req, res) => __awaiter(void 0, void 0, void 0, fun
     const { limit, skips } = (0, pagination_1.pagination)(query);
     try {
         const doctorsOfClinic = yield UserModel_1.default.find({ isDeleted: false, isActive: true }).skip(skips).limit(limit);
-        const doctors = doctorsOfClinic.filter((item) => item.clinic.includes(body.clinicId));
+        let doctors = doctorsOfClinic.filter((item) => item.clinic.includes(body.clinicId));
+        const newDoctorRes = [];
+        for (let i = 0; i < doctors.length; i++) {
+            const availability = doctors[i].availability;
+            for (let j = 0; j < availability.length; j++) {
+                if (availability[j].clinic == body.clinicId) {
+                    console.log(doctors[i]._id, doctors[i]);
+                    newDoctorRes.push({
+                        doctorId: doctors[i]._id,
+                        clinicId: availability[j].clinic,
+                        firstName: doctors[i].firstName,
+                        lastName: doctors[i].lastName,
+                        phoneNumber: doctors[i].phoneNumber,
+                        availability: availability[j].slots
+                    });
+                }
+            }
+            if (availability.length == 0) {
+                newDoctorRes.push({
+                    doctorId: doctors[i]._id,
+                    clinicId: body.clinicId,
+                    firstName: doctors[i].firstName,
+                    lastName: doctors[i].lastName,
+                    phoneNumber: doctors[i].phoneNumber,
+                    availability: null
+                });
+            }
+        }
         return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "find all doctors of this clinic successfully.",
-            result: doctors
+            result: newDoctorRes
         }));
     }
     catch (error) {
