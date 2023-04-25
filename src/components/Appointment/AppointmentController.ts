@@ -357,7 +357,7 @@ export const rescheduleAppointmentByDoctorOfASlot = async (req, res) => {
     try {
 
         const dateFormat = getDayOrTimeFromDate(body.date)
-        const appointments = await AppointmentModel.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: dateFormat.fullDate, $lt: dateFormat.nextDate }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false })
+        const appointments = await AppointmentModel.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: new Date(dateFormat.fullDate), $lt: new Date(dateFormat.nextDate) }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false })
 
         if (appointments.length == 0) {
 
@@ -416,7 +416,7 @@ export const updateAppointmentStatusByDoctorOfASlot = async (req, res) => {
 
     try {
         const dateFormat = getDayOrTimeFromDate(body.date)
-        const appointments = await AppointmentModel.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: dateFormat.fullDate, $lt: dateFormat.nextDate }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false })
+        const appointments = await AppointmentModel.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: new Date(dateFormat.fullDate), $lt: new Date(dateFormat.nextDate) }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false })
 
         if (appointments.length == 0) {
 

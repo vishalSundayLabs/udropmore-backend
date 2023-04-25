@@ -145,41 +145,8 @@ const userDetailsSchema = new mongoose.Schema({
                     default: null
                 }
             },
-            riskFactor: [
-                { rxInfertility: { type: Boolean, default: false } },
-                { peHtn: { type: Boolean, default: false } },
-                { rhIncom: { type: Boolean, default: false } },
-                { boh: { type: Boolean, default: false } },
-                { gdmDm: { type: Boolean, default: false } },
-                { hydramnios: { type: Boolean, default: false } },
-                { fgr: { type: Boolean, default: false } },
-                { cpd: { type: Boolean, default: false } },
-                { obesity: { type: Boolean, default: false } },
-                { thyroidDysfunction: { type: Boolean, default: false } },
-                { iuiIvf: { type: Boolean, default: false } },
-                { incompOs: { type: Boolean, default: false } },
-                { oligohydramnolsPlacenta: { type: Boolean, default: false } },
-                { prevCsMyomectomy: { type: Boolean, default: false } },
-            ],
-            complaints: [
-                { skinChanges: { type: Boolean, default: false } },
-                { bleedingGums: { type: Boolean, default: false } },
-                { dizziness: { type: Boolean, default: false } },
-                { backache: { type: Boolean, default: false } },
-                { legPain: { type: Boolean, default: false } },
-                { breathlessness: { type: Boolean, default: false } },
-                { fatigue: { type: Boolean, default: false } },
-                { pvBleeding: { type: Boolean, default: false } },
-                { nausea: { type: Boolean, default: false } },
-                { vommiting: { type: Boolean, default: false } },
-                { pvSpotting: { type: Boolean, default: false } },
-                { heartburnIndigestion: { type: Boolean, default: false } },
-                { opvWhiteDischarge: { type: Boolean, default: false } },
-                { swellingOrFluidRetention: { type: Boolean, default: false } },
-                { weakness: { type: Boolean, default: false } },
-                { abdominalPain: { type: Boolean, default: false } },
-                { headaches: { type: Boolean, default: false } },
-            ],
+            riskFactor: [Object],
+            complaints: [Object],
             currentMenstrualHistory: {
                 durationOfCycleDays: {
                     type: Number,
@@ -286,13 +253,7 @@ const userDetailsSchema = new mongoose.Schema({
                             enum: ["EMERGENCY", "ELECTIVE", null],
                             default: null
                         },
-                        indications: [
-                            { failureToProgress: { type: Boolean, default: false } },
-                            { breechPresentation: { type: Boolean, default: false } },
-                            { foetalDistress: { type: Boolean, default: false } },
-                            { preEclampsia: { type: Boolean, default: false } },
-                            { cpd: { type: Boolean, default: false } }
-                        ]
+                        indications: [Object]
                     }
                 },
                 description: {
@@ -322,15 +283,7 @@ const userDetailsSchema = new mongoose.Schema({
                 }
             }],
             operativeProcedure: {
-                procedureName: [
-                    { appendix: { type: Boolean, default: false } },
-                    { lscs: { type: Boolean, default: false } },
-                    { dAndESurgery: { type: Boolean, default: false } },
-                    { cervicalStitch: { type: Boolean, default: false } },
-                    { myonectomy: { type: Boolean, default: false } },
-                    { mtp: { type: Boolean, default: false } },
-                    { laparohupteroscopy: { type: Boolean, default: false } }
-                ],
+                procedureName: [Object],
                 complicationsInTheProcedure: {
                     value: {
                         type: String,
@@ -347,12 +300,7 @@ const userDetailsSchema = new mongoose.Schema({
                         type: String,
                         enum: ["YES", "NO", null], default: null
                     },
-                    types: [
-                        { epidural: { type: Boolean, default: false } },
-                        { sa: { type: Boolean, default: false } },
-                        { ga: { type: Boolean, default: false } },
-                        { la: { type: Boolean, default: false } },
-                    ]
+                    types: [Object]
                 }
             },
             ancComplications: {
@@ -360,40 +308,19 @@ const userDetailsSchema = new mongoose.Schema({
                     type: String,
                     enum: ["YES", "NO", null], default: null
                 },
-                types: [
-                    { cervicalCirclage: { type: Boolean, default: false } },
-                    { hypothyroidism: { type: Boolean, default: false } },
-                    { htn: { type: Boolean, default: false } },
-                    { aph: { type: Boolean, default: false } },
-                    { gdm: { type: Boolean, default: false } },
-                    { dm: { type: Boolean, default: false } },
-                    { pretermLabour: { type: Boolean, default: false } },
-                    { eclamapsia: { type: Boolean, default: false } },
-                    { threatered: { type: Boolean, default: false } }
-                ]
+                types: [Object]
             },
             duringAndAfterDeliveryComplications: {
                 value: {
                     type: String,
                     enum: ["YES", "NO", null], default: null
                 },
-                types: [
-                    { neonatalResurication: { type: Boolean, default: false } },
-                    { pph: { type: Boolean, default: false } },
-                    { postpartumPreEclamapsia: { type: Boolean, default: false } },
-                    { neonatalHypoglycaemia: { type: Boolean, default: false } },
-                ]
+                types: [Object]
             },
         },
         fhAndPastDisease: {
             pastDiseasesHistory: {
-                pastDiseases: [
-                    { renalDisease: { type: Boolean, default: false } },
-                    { jaundice: { type: Boolean, default: false } },
-                    { heartDisease: { type: Boolean, default: false } },
-                    { typhoidFever: { type: Boolean, default: false } },
-                    { none: { type: Boolean, default: false } }
-                ],
+                pastDiseases: [Object],
                 opreativeProcedure: {
                     value: {
                         type: String,
@@ -410,13 +337,7 @@ const userDetailsSchema = new mongoose.Schema({
                 contactLenses: { type: String, enum: ["YES", "NO", null], default: null },
                 allergicReactionToMedication: { type: String, enum: ["YES", "NO", null], default: null },
             },
-            allergies: [
-                { pollenAllergies: { type: Boolean, default: false } },
-                { latexAllergy: { type: Boolean, default: false } },
-                { foodAllergy: { type: Boolean, default: false } },
-                { dust: { type: Boolean, default: false } },
-                { drugs: { type: Boolean, default: false } }
-            ],
+            allergies: [Object],
             familyDiseaseHistory: {
                 maternal: [String],
                 paternal: [String],

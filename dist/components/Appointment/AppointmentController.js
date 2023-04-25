@@ -266,7 +266,7 @@ const rescheduleAppointmentByDoctorOfASlot = (req, res) => __awaiter(void 0, voi
     }
     try {
         const dateFormat = (0, UserController_1.getDayOrTimeFromDate)(body.date);
-        const appointments = yield AppointmentModel_1.default.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: dateFormat.fullDate, $lt: dateFormat.nextDate }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false });
+        const appointments = yield AppointmentModel_1.default.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: new Date(dateFormat.fullDate), $lt: new Date(dateFormat.nextDate) }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false });
         if (appointments.length == 0) {
             return res.status(Constants_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
                 success: false,
@@ -307,7 +307,7 @@ const updateAppointmentStatusByDoctorOfASlot = (req, res) => __awaiter(void 0, v
     }
     try {
         const dateFormat = (0, UserController_1.getDayOrTimeFromDate)(body.date);
-        const appointments = yield AppointmentModel_1.default.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: dateFormat.fullDate, $lt: dateFormat.nextDate }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false });
+        const appointments = yield AppointmentModel_1.default.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: new Date(dateFormat.fullDate), $lt: new Date(dateFormat.nextDate) }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false });
         if (appointments.length == 0) {
             return res.status(Constants_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
                 success: false,
