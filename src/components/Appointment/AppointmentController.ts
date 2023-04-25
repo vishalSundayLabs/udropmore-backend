@@ -359,7 +359,7 @@ export const rescheduleAppointmentByDoctorOfASlot = async (req, res) => {
         const dateFormat = getDayOrTimeFromDate(body.date)
         
         const appointments = await AppointmentModel.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: new Date(dateFormat.fullDate), $lt: new Date(dateFormat.nextDate) }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false })
-        console.log(appointments)
+        
         if (appointments.length == 0) {
 
             return res.status(HTTP_NOT_FOUND).send(new ResponseError({
@@ -373,7 +373,7 @@ export const rescheduleAppointmentByDoctorOfASlot = async (req, res) => {
 
         for (let i = 0; i < appointments.length; i++) {
             const slotTimeFormat = getDayOrTimeFromDate(appointments[i].appointmentDateAndTime)
-             console.log(slotTimeFormat,dateFormat.time == slotTimeFormat.time)
+             
             if (dateFormat.time == slotTimeFormat.time) {
             
                 appointments[i].status = body.appointmentStatus
@@ -433,12 +433,12 @@ export const updateAppointmentStatusByDoctorOfASlot = async (req, res) => {
         for (let i = 0; i < appointments.length; i++) {
 
             const slotTimeFormat = getDayOrTimeFromDate(appointments[i].appointmentDateAndTime)
-
+            console.log(slotTimeFormat,dateFormat.time == slotTimeFormat.time,dateFormat)
             if (dateFormat.time == slotTimeFormat.time) {
-                console.log("coming this ",appointments[i])
-                // appointments[i].status = body.appointmentStatus
-                // await AppointmentModel.findOneAndUpdate({ _id: appointments[i]._id }, { $set: { status: body.appointmentStatus, reason: body.reason, updatedBy: req.userId } })
-                // changedAppointment.push(appointments[i])
+
+                appointments[i].status = body.appointmentStatus
+                await AppointmentModel.findOneAndUpdate({ _id: appointments[i]._id }, { $set: { status: body.appointmentStatus, reason: body.reason, updatedBy: req.userId } })
+                changedAppointment.push(appointments[i])
 
             }
 
