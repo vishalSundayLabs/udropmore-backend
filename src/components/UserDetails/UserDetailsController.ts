@@ -3,7 +3,7 @@ import { HTTP_BAD_REQUEST, HTTP_NOT_FOUND, HTTP_OK } from "../../utils/Constants
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
 import UserModel from "../Users/UserModel"
 import UserDetailsModel from "./UserDetailsModel"
-
+import { weightRange } from '../../utils/Weights'
 export const createUserDetails = async (req, res) => {
     const body = req.body
 
@@ -151,4 +151,35 @@ export const getUserDetailsbyId = async (req, res) => {
         return res.status(500).json(response);
 
     }
+}
+
+export const getWeightByBmi = async (req, res) => {
+    const query = req.query
+    const params = req.params
+    if (!params.motherId || !query.bmi) {
+        return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+            success: false,
+            message: "Bad request! Mother id or BMI must be provide."
+        }))
+    }
+    try {
+        const motherWeightGainChart = await UserDetailsModel.findOne({ userId: params.motherId }, { weightGainChart: true })
+        const weightRangeUsingBmi = weightRange(Number(query.bmi))
+        console.log(weightRangeUsingBmi,query)
+        return res.status(HTTP_OK).send(new ResponseSuccess({
+            success: true,
+            message: "get User details successfully.",
+            result: { item: motherWeightGainChart, weightGainRange: weightRangeUsingBmi }
+        }))
+
+    } catch (error) {
+
+        let response = new ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+
+        return res.status(500).json(response);
+    }
+
 }

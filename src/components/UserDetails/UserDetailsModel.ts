@@ -20,7 +20,7 @@ const userDetailsSchema = new mongoose.Schema({
     height: {
         unit: {
             type: String,
-            enum: ["cm", "ft", "m", "inches", null],
+            enum: ["CM", "FT", "M", "INCHES", null],
             default: null
         },
         value: {
@@ -31,7 +31,7 @@ const userDetailsSchema = new mongoose.Schema({
     weight: {
         unit: {
             type: String,
-            enum: ["kg", "pound", null]
+            enum: ["KG", "POUND", null]
         },
         value: {
             type: Number,
@@ -270,7 +270,7 @@ const userDetailsSchema = new mongoose.Schema({
                 },
                 genderOfChild: {
                     type: String,
-                    enum: ["MALE", "FEMALE", null],
+                    enum: ["MALE", "FEMALE","OTHER" ,null],
                     default: null
                 },
                 birthWeight: { kg: { type: Number, default: null }, gm: { type: Number, default: null } },
@@ -347,8 +347,26 @@ const userDetailsSchema = new mongoose.Schema({
         },
     },
     weightGainChart: [{
-        weight: { type: Number, default: null },
-        babyWeight: { type: Number, default: null },
+        weight: {
+            unit: {
+                type: String,
+                enum: ["KG", "POUND", null]
+            },
+            value: {
+                type: Number,
+                default: null
+            }
+        },
+        babyWeight: {
+            unit: {
+                type: String,
+                enum: ["KG", "G", "POUND", null]
+            },
+            value: {
+                type: Number,
+                default: null
+            }
+        },
         week: { type: Number, default: null },
         date: { type: Date, default: null }
     }],

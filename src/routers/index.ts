@@ -9,7 +9,7 @@ import authRouter from "../components/Auth/AuthRouter";
 import clinicRouter from '../components/Clinic/ClinicRouter';
 import appointmentRouter from '../components/Appointment/AppointmentRouter';
 import userDetailsRouter from '../components/UserDetails/UserDetailsRouter';
-import diseasesRouter from "../components/Diseases/DiseasesRouter";
+import diseasesRouter from "../components/Constant/ConstantRouter";
 const router = Router();
 
 router.use("/v1/users", userRouter);

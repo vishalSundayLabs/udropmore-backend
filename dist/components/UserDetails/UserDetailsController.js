@@ -9,12 +9,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUserDetailsbyId = exports.updateUserDetails = exports.createUserDetails = void 0;
+exports.getWeightByBmi = exports.getUserDetailsbyId = exports.updateUserDetails = exports.createUserDetails = void 0;
 const bodyTraverse_1 = require("../../helpers/bodyTraverse");
 const Constants_1 = require("../../utils/Constants");
 const ResponseClass_1 = require("../../utils/ResponseClass");
 const UserModel_1 = require("../Users/UserModel");
 const UserDetailsModel_1 = require("./UserDetailsModel");
+const Weights_1 = require("../../utils/Weights");
 const createUserDetails = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     if (!body.motherId) {
@@ -134,3 +135,31 @@ const getUserDetailsbyId = (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
 });
 exports.getUserDetailsbyId = getUserDetailsbyId;
+const getWeightByBmi = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const query = req.query;
+    const params = req.params;
+    if (!params.motherId || !query.bmi) {
+        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: "Bad request! Mother id or BMI must be provide."
+        }));
+    }
+    try {
+        const motherWeightGainChart = yield UserDetailsModel_1.default.findOne({ userId: params.motherId }, { weightGainChart: true });
+        const weightRangeUsingBmi = (0, Weights_1.weightRange)(Number(query.bmi));
+        console.log(weightRangeUsingBmi, query);
+        return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "get User details successfully.",
+            result: { item: motherWeightGainChart, weightGainRange: weightRangeUsingBmi }
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.getWeightByBmi = getWeightByBmi;

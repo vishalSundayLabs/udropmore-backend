@@ -7,4 +7,5 @@ const router = (0, express_1.Router)();
 router.post('/create/userDetails', tokenVerify_1.verifyToken, UserDetailsController_1.createUserDetails);
 router.put('/update/userDetail', tokenVerify_1.verifyToken, UserDetailsController_1.updateUserDetails);
 router.get('/getuser/details/:motherId', tokenVerify_1.verifyToken, UserDetailsController_1.getUserDetailsbyId);
+router.get('/:motherId/weights', tokenVerify_1.verifyToken, UserDetailsController_1.getWeightByBmi);
 exports.default = router;

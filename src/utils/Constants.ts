@@ -9,6 +9,66 @@ export const HTTP_INTERNAL_SERVER_ERROR = 500
 
 export const INCORRECT_BODY_FORMAT_MESSAGE = "Body format should be as per the object below"
 
-//past history constant
+//past history constants
 export const whoInFamily = ["Maternal", "Paternal", "Marital", "Sibling"]
 export const diseases = ["Diabetes", "Thyroid", "Epilepsy", "Hypertension", "H.D", "Koch", "Cancer", "Asthma"]
+export const typeOfTermination = [
+    {
+        name: 'MTP',
+        subTypes: [
+            {
+                name: 'Pills',
+            },
+            {
+                name: 'Surgical',
+            },
+            {
+                name: 'General',
+            },
+            {
+                name: 'Curating',
+            },
+        ],
+    },
+    {
+        name: 'Ectopic Pregnancy',
+        subTypes: [
+            {
+                name: 'Left Side',
+            },
+            {
+                name: 'Right Side',
+            },
+            {
+                name: 'Laproscopy Surgery',
+            },
+            {
+                name: 'Medical Management',
+            },
+            {
+                name: 'Laprotomy',
+            },
+        ],
+    },
+    {
+        name: 'MTP for Abnormalities',
+        subTypes: [
+            {
+                name: 'Medical',
+            },
+            {
+                name: 'Surgical',
+            },
+        ],
+    }
+]
+export const typeOfAbortion = ["Biochemical Pregnancy", "Blighted Ovum", "Incomplete Abortion", "Missed Abortion"]
+export const vaginal = ["Spontaneous", "Induced"]
+export const cesareanSection = ["Emergency", "Elective"]
+export const liveBirthsDescription = ["PTND Pre Term Vaginal Delivery", "PTVD Pre Term Vaccum Delivery", "PTFD Pre Term Forceps Delivery", "FTND Full Term Vaginal Delivery", "FTVD Full Term Voccum Delivery", "FTFD Full Term Forceps Delivery"]
+export const genderOfChild = ["Male", "Female", "Other"]
+export const pregnancyType = ["Natural", "Assisted"]
+export const assisted = ["Self", "Donor"]
+export const donor = ["Male", "Female", "Embryo"]
+export const flow = ["Average", "Scanty", "Heavy"]
+export const natureOfCycle = ["Regular", "Irregular"]
