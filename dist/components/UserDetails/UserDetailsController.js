@@ -112,6 +112,7 @@ const getUserDetailsbyId = (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
     try {
         const userDetails = yield UserDetailsModel_1.default.findOne({ userId: params.motherId, isDeleted: false });
+        const user = yield UserModel_1.default.findOne({ _id: userDetails.userId, isActive: true, isDeleted: false });
         if (!userDetails) {
             return res.status(Constants_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
                 success: false,

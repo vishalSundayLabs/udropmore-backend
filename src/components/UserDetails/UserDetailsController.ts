@@ -13,7 +13,7 @@ export const createUserDetails = async (req, res) => {
             success: false,
             message: "Bad request! Mother id must be provide."
         }))
-        
+
     }
 
     const reqData = {
@@ -126,6 +126,7 @@ export const getUserDetailsbyId = async (req, res) => {
 
     try {
         const userDetails = await UserDetailsModel.findOne({ userId: params.motherId, isDeleted: false })
+        const user = await UserModel.findOne({ _id: userDetails.userId, isActive: true, isDeleted: false })
 
         if (!userDetails) {
             return res.status(HTTP_NOT_FOUND).send(new ResponseError({
@@ -137,7 +138,7 @@ export const getUserDetailsbyId = async (req, res) => {
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: "get User details successfully.",
-            result: userDetails
+            result: { userDetails, firstName: user.firstName, lastName: user.lastName, email: user.email }
         }))
 
     } catch (error) {

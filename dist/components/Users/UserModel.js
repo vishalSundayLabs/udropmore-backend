@@ -10,10 +10,12 @@ const userSchema = new mongoose.Schema({
         dafault: "",
     },
     lastName: {
-        type: String
+        type: String,
+        default: ""
     },
     middleName: {
-        type: String
+        type: String,
+        default: ""
     },
     email: {
         type: String,
