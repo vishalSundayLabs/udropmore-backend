@@ -207,12 +207,12 @@ const userDetailsSchema = new mongoose.Schema({
                     typeOfTermination: {
                         mtp: {
                             type: String,
-                            enum: ["MTP", "PILLS", "SURGICAL", "GENERAL", "CURATING", null],
+                            enum: ["PILLS", "SURGICAL", "GENERAL", "CURATING", null],
                             default: null
                         },
                         ectopicPregnancy: {
                             type: String,
-                            enum: ["ECTOPIC PREGNANCY", "PILLS", "LAPROSCOPY SURGERY", "MEDICAL_MANAGEMENT", "LAPROTOMY", null],
+                            enum: ["PILLS", "LAPROSCOPY SURGERY", "MEDICAL MANAGEMENT", "LAPROTOMY", null],
                             default: null
                         },
                         mtpForAbnormalities: {
@@ -244,7 +244,7 @@ const userDetailsSchema = new mongoose.Schema({
                                 type: String,
                                 enum: ["SPONTANEOUS", "INDUCED", null],
                                 default: null
-                            },
+                            }
                         },
                         cesareanSection: {
                             type: {

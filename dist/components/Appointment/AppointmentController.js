@@ -317,7 +317,6 @@ const updateAppointmentStatusByDoctorOfASlot = (req, res) => __awaiter(void 0, v
         const changedAppointment = [];
         for (let i = 0; i < appointments.length; i++) {
             const slotTimeFormat = (0, UserController_1.getDayOrTimeFromDate)(appointments[i].appointmentDateAndTime);
-            console.log(slotTimeFormat, dateFormat.time == slotTimeFormat.time, dateFormat);
             if (dateFormat.time == slotTimeFormat.time) {
                 appointments[i].status = body.appointmentStatus;
                 yield AppointmentModel_1.default.findOneAndUpdate({ _id: appointments[i]._id }, { $set: { status: body.appointmentStatus, reason: body.reason, updatedBy: req.userId } });
