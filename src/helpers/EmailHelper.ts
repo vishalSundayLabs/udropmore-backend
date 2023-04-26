@@ -32,15 +32,18 @@ export function sendEmail(
   );
 
   return new Promise((resolve, reject) => {
+
     if (config.NODE_ENV == "testing") {
       resolve(true); // No emails in test mode
     }
+
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         reject(error);
       }
       resolve(info);
     });
+
   });
-  
+
 }

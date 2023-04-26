@@ -370,10 +370,12 @@ const userDetailsSchema = new mongoose.Schema({
             date: { type: Date, default: null }
         }],
     createdBy: {
-        type: mongoose.SchemaTypes.ObjectId
+        type: mongoose.SchemaTypes.ObjectId,
+        refs: "User"
     },
     updatedBy: {
-        type: mongoose.SchemaTypes.ObjectId
+        type: mongoose.SchemaTypes.ObjectId,
+        refs: "User"
     },
     isDeleted: {
         type: Boolean,

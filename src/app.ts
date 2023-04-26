@@ -28,18 +28,27 @@ app.get("/", (req, res) => {
 });
 
 if (config.NODE_ENV === "development") {
+
   app.use(express.text());
+
   app.use((req, res, next) => {
+
     logger.trace(`${req.method} ${req.url}`);
+
     if (
+
       (/json/i.test(req.headers["content-type"]) &&
         Object.keys(req.body).length > 0) ||
       req.body.length > 0
+
     ) {
       logger.debug(req.body);
     }
+
     next();
+
   });
+
 }
 
 app.use(router);

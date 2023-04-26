@@ -147,7 +147,6 @@ const getWeightByBmi = (req, res) => __awaiter(void 0, void 0, void 0, function*
     try {
         const motherWeightGainChart = yield UserDetailsModel_1.default.findOne({ userId: params.motherId }, { weightGainChart: true });
         const weightRangeUsingBmi = (0, Weights_1.weightRange)(Number(query.bmi));
-        console.log(weightRangeUsingBmi, query);
         return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "get User details successfully.",

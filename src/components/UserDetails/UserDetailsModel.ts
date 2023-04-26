@@ -270,7 +270,7 @@ const userDetailsSchema = new mongoose.Schema({
                 },
                 genderOfChild: {
                     type: String,
-                    enum: ["MALE", "FEMALE","OTHER" ,null],
+                    enum: ["MALE", "FEMALE", "OTHER", null],
                     default: null
                 },
                 birthWeight: { kg: { type: Number, default: null }, gm: { type: Number, default: null } },
@@ -371,10 +371,12 @@ const userDetailsSchema = new mongoose.Schema({
         date: { type: Date, default: null }
     }],
     createdBy: {
-        type: mongoose.SchemaTypes.ObjectId
+        type: mongoose.SchemaTypes.ObjectId,
+        refs: "User"
     },
     updatedBy: {
-        type: mongoose.SchemaTypes.ObjectId
+        type: mongoose.SchemaTypes.ObjectId,
+        refs: "User"
     },
     isDeleted: {
         type: Boolean,

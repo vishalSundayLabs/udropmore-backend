@@ -11,8 +11,7 @@ type env = {
   REGION: string;
   SESSIONTOKEN: string;
   BUCKETNAME: string;
-
-};
+}
 
 
 export const config: env = {
@@ -28,6 +27,6 @@ export const config: env = {
   REGION: process.env.REGION,
   SESSIONTOKEN: process.env.SESSIONTOKEN,
   BUCKETNAME: process.env.BUCKETNAME,
-};
+}
 
 export default config;

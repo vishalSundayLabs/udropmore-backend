@@ -13,18 +13,18 @@ exports.sendWaOtp = void 0;
 //twilio 
 const accountSid = process.env.ACCOUNT_SID;
 const authToken = process.env.AUTH_TOKEN;
-console.log(accountSid, authToken);
 const client = require('twilio')(accountSid, authToken);
 const sendWaOtp = (phoneNumber, text) => __awaiter(void 0, void 0, void 0, function* () {
-    const data = client.messages
-        .create({
+    const reqData = {
         body: text,
         from: 'whatsapp:+14155238886',
         to: `whatsapp:+91${phoneNumber}`
-    })
-        .then((message) => {
+    };
+    const data = client.messages
+        .create(reqData)
+        .then((message) => __awaiter(void 0, void 0, void 0, function* () {
         return message;
-    })
+    }))
         .catch((err) => {
         const errs = err.message;
         return { message: errs };

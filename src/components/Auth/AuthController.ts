@@ -1,15 +1,9 @@
 // external libraries
 import { Response, Request, response } from "express";
-
-import { validateJson } from "../../helpers/ValidatorHelper";
-
 // models
 import UserModel from "../Users/UserModel";
 import OtpModel from "../Otp/OtpModel";
 import * as jwt from 'jsonwebtoken'
-// interfaces
-import IOtp from "./AuthInterface";
-
 // classes
 import { ResponseBodyFormatError, ResponseError, ResponseSuccess } from "../../utils/ResponseClass";
 import { sendWaOtp } from "../Tpi/TpiServices";
@@ -21,7 +15,6 @@ import { validateOtpBody } from "./req_body/ValidateOtp";
 import AuthSession from "./AuthSession";
 import UserDetailsModel from "../UserDetails/UserDetailsModel";
 import { sampleUserDetails } from "../../utils/sampleUserDetails";
-
 
 export const sendOtp = async (req: Request, res: Response) => {
 
@@ -59,10 +52,12 @@ export const sendOtp = async (req: Request, res: Response) => {
                 return res.status(HTTP_OK).send(response)
             })
             .catch((error) => {
+
                 return res.status(HTTP_INTERNAL_SERVER_ERROR).send(new ResponseError({
                     message: "Something went wrong",
                     error: error
                 }))
+
             })
 
     } catch (error) {
@@ -73,6 +68,7 @@ export const sendOtp = async (req: Request, res: Response) => {
         }))
 
     }
+
 }
 
 export const validateOtp = async (req: Request, res: Response) => {
@@ -119,7 +115,9 @@ export const validateOtp = async (req: Request, res: Response) => {
         if (!user && body.platform == 'MOTHER') {
 
             const newUser = await UserModel.create({ phoneNumber: body.phoneNumber, userType: "MOTHER", platform: body.platform })
+
             sampleUserDetails.userId = newUser._id
+
             await UserDetailsModel.create(sampleUserDetails)
 
             user = newUser
@@ -176,7 +174,9 @@ export const logout = async (req, res) => {
     try {
 
         const user = await UserModel.findOne({ _id: req.userId, platform: req.platform, userType: req.userType })
+
         user.jwtToken = null;
+
         await user.save()
 
         await AuthSession.findOneAndUpdate({ userId: user._id, jwtToken: user.jwtToken, isActive: true, isDeleted: false }, { $set: { isActive: false } })
@@ -197,6 +197,7 @@ export const logout = async (req, res) => {
     }
 
 }
+
 const isExpiredOtp = (otpCreationTime) => {
 
     const expiryTime = process.env.OTP_EXPIRY || 1200

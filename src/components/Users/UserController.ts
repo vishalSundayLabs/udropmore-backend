@@ -6,20 +6,12 @@ import UserModel from "./UserModel";
 import IUser, { IAvailability, IRequestWithUser } from "./UserInterface";
 // classes
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass";
-import { IUserResponseSuccess } from "./UserClass";
-import { SaveOptions } from 'mongoose'
-// validation
-import {
-  Create as UserCreate,
-} from "./UserValidate";
-
 import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_NOT_FOUND, HTTP_OK } from "../../utils/Constants";
 import AppointmentModel from "../Appointment/AppointmentModel";
 import { ClinicModel } from "../Clinic/clinicModel";
 import { bodyTraverse } from "../../helpers/bodyTraverse";
 import { pagination } from "../../helpers/pagination";
 import UserDetailsModel from "../UserDetails/UserDetailsModel";
-import { resolve6 } from "dns";
 
 export let getUser = async (req: IRequestWithUser, res: Response) => {
 
@@ -258,6 +250,7 @@ export const userUpdate = async (req, res) => {
 
     return res.status(500).json(response);
   }
+
 }
 
 export const deleteUser = async (req, res) => {
@@ -300,6 +293,7 @@ export const deleteUser = async (req, res) => {
       message: "Something went wrong",
       error: error.message,
     });
+
     return res.status(500).json(response);
 
   }
@@ -395,6 +389,7 @@ export const getSlots = async (req, res) => {
     return res.status(500).json(response);
 
   }
+
 }
 
 export const getAllUsers = async (req, res) => {
@@ -502,6 +497,7 @@ export const mapMotherWithDoctor = async (req, res) => {
 
     return res.status(500).json(response);
   }
+
 }
 
 export const getPatientOfDoctorById = async (req, res) => {
@@ -542,10 +538,13 @@ export const getPatientOfDoctorById = async (req, res) => {
     return res.status(500).json(response);
 
   }
+
 }
 
 export const getDoctorOfMotherById = async (req, res) => {
+
   const params = req.params
+
   if (!params.motherId) {
 
     return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
@@ -554,6 +553,7 @@ export const getDoctorOfMotherById = async (req, res) => {
     }))
 
   }
+
   try {
     const patient = await UserModel.findOne({ _id: params.motherId, isDeleted: false, isActive: true })
 
@@ -593,6 +593,7 @@ export const getDoctorOfMotherById = async (req, res) => {
     return res.status(500).json(response);
 
   }
+
 }
 
 
@@ -619,8 +620,6 @@ export const makeSlotsFormat = (slots, slotType) => {
           startTime++;
         }
 
-        // startTime = startTime.toString().length == 1 ? '0' + startTime : startTime
-
         newSlots.push({
           day: slots[i].day,
           time: `${startTime}:${mintCount % 60}`,
@@ -628,11 +627,12 @@ export const makeSlotsFormat = (slots, slotType) => {
         });
 
         mintCount = mintCount + slotsTime;
+
       }
     }
   }
   return newSlots;
-};
+}
 
 export const getDayOrTimeFromDate = (date) => {
 

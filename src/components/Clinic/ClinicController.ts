@@ -138,7 +138,7 @@ export const getAllClinic = async (req, res) => {
 
         return res.status(HTTP_CREATED).send(new ResponseSuccess({
             success: true,
-            message: "find all Clinic successfully.",
+            message: "Find all Clinic successfully.",
             result: clinic
         }))
 
@@ -222,9 +222,13 @@ export const getAllDoctorOfClinic = async (req, res) => {
             for (let j = 0; j < availability.length; j++) {
 
                 if (availability[j].clinic == body.clinicId) {
+
                     doctors[i].availability = availability[j].slots
-                }else {
-                    availability.splice(j,1)
+
+                } else {
+
+                    availability.splice(j, 1)
+
                 }
 
             }

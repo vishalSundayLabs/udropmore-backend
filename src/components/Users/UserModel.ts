@@ -14,11 +14,11 @@ const userSchema = new mongoose.Schema(
     },
     lastName: {
       type: String,
-      default:""
+      default: ""
     },
     middleName: {
       type: String,
-      default:""
+      default: ""
     },
     email: {
       type: String,
@@ -129,10 +129,12 @@ const userSchema = new mongoose.Schema(
       type: String,
     },
     createdBy: {
-      type: mongoose.SchemaTypes.ObjectId
+      type: mongoose.SchemaTypes.ObjectId,
+      refs: "User"
     },
     updatedBy: {
-      type: mongoose.SchemaTypes.ObjectId
+      type: mongoose.SchemaTypes.ObjectId,
+      refs: "User"
     }
   },
   {

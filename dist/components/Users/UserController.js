@@ -448,7 +448,6 @@ const makeSlotsFormat = (slots, slotType) => {
                 if (mintCount % 60 == 0 && mintCount != 0) {
                     startTime++;
                 }
-                // startTime = startTime.toString().length == 1 ? '0' + startTime : startTime
                 newSlots.push({
                     day: slots[i].day,
                     time: `${startTime}:${mintCount % 60}`,

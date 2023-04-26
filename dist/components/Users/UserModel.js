@@ -126,10 +126,12 @@ const userSchema = new mongoose.Schema({
         type: String,
     },
     createdBy: {
-        type: mongoose.SchemaTypes.ObjectId
+        type: mongoose.SchemaTypes.ObjectId,
+        refs: "User"
     },
     updatedBy: {
-        type: mongoose.SchemaTypes.ObjectId
+        type: mongoose.SchemaTypes.ObjectId,
+        refs: "User"
     }
 }, {
     timestamps: true,

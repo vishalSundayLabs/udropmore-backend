@@ -5,13 +5,18 @@ export const HTTP_UNAUTHORIZED = 403
 export const HTTP_NOT_FOUND = 404
 export const HTTP_INTERNAL_SERVER_ERROR = 500
 
-// messages
+// messages start
 
 export const INCORRECT_BODY_FORMAT_MESSAGE = "Body format should be as per the object below"
 
-//past history constants
+//messages end
+
+//past history constants (start)
+
 export const whoInFamily = ["Maternal", "Paternal", "Marital", "Sibling"]
+
 export const diseases = ["Diabetes", "Thyroid", "Epilepsy", "Hypertension", "H.D", "Koch", "Cancer", "Asthma"]
+
 export const typeOfTermination = [
     {
         name: 'MTP',
@@ -62,13 +67,25 @@ export const typeOfTermination = [
         ],
     }
 ]
+
 export const typeOfAbortion = ["Biochemical Pregnancy", "Blighted Ovum", "Incomplete Abortion", "Missed Abortion"]
+
 export const vaginal = ["Spontaneous", "Induced"]
+
 export const cesareanSection = ["Emergency", "Elective"]
+
 export const liveBirthsDescription = ["PTND Pre Term Vaginal Delivery", "PTVD Pre Term Vaccum Delivery", "PTFD Pre Term Forceps Delivery", "FTND Full Term Vaginal Delivery", "FTVD Full Term Voccum Delivery", "FTFD Full Term Forceps Delivery"]
+
 export const genderOfChild = ["Male", "Female", "Other"]
+
 export const pregnancyType = ["Natural", "Assisted"]
+
 export const assisted = ["Self", "Donor"]
+
 export const donor = ["Male", "Female", "Embryo"]
+
 export const flow = ["Average", "Scanty", "Heavy"]
+
 export const natureOfCycle = ["Regular", "Irregular"]
+
+//past history constants (end)

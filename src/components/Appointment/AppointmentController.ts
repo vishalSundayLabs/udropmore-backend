@@ -118,15 +118,21 @@ export const getAllAppointmentsOfADay = async (req, res) => {
             const item = appointments[i]
 
             if (item.appointmentType == 'VIDEOCALL') {
+
                 videoAppointmentCount++;
+
             }
 
             const motherId = item.motherId.toString()
 
             if (!patientMap.has(motherId)) {
+
                 patientMap.set(motherId, 0)
+
             } else {
+
                 patientMap.set(motherId, patientMap.get(motherId) + 1)
+
             }
 
             const mother = await UserModel.findOne({ _id: item.motherId })
@@ -288,6 +294,7 @@ export const rescheduleAppointment = async (req, res) => {
         }))
 
     }
+
     try {
 
         const bookedAppointment = await AppointmentModel.findOne({ _id: body.appointmentId, isDeleted: false })
@@ -341,15 +348,17 @@ export const rescheduleAppointment = async (req, res) => {
         return res.status(500).json(response);
 
     }
+
 }
 
 export const rescheduleAppointmentByDoctorOfASlot = async (req, res) => {
+
     const body = req.body
 
     if (!body.doctorId || !body.clinicId || !body.date || !body.appointmentType || !body.reason) {
 
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
-            message: "Bad Request! doctor id , clinic id , date , new date for reschedule , appointment type , appintmentStatus or reason must be provide."
+            message: "Bad Request! doctor id , clinic id , date , appointment type or reason must be provide."
         }))
 
     }
@@ -371,7 +380,9 @@ export const rescheduleAppointmentByDoctorOfASlot = async (req, res) => {
 
         const rescheduledAppointments = [];
         let message;
+
         for (let i = 0; i < appointments.length; i++) {
+
             const slotTimeFormat = getDayOrTimeFromDate(appointments[i].appointmentDateAndTime)
 
             if (dateFormat.time == slotTimeFormat.time) {
@@ -379,6 +390,7 @@ export const rescheduleAppointmentByDoctorOfASlot = async (req, res) => {
                 appointments[i].status = body.appointmentStatus
                 await AppointmentModel.updateOne({ _id: appointments[i]._id }, { $set: { status: body.newDate ? "CANCELLED" : "RESCHEDULED", reason: body.newDate ? "CANCELLED BY DOCTOR" : "RESCHEDULED BY DOCTOR", updatedBy: req.userId } })
                 const updatedAppointment = await AppointmentModel.findOne({ _id: appointments[i]._id }).exec()
+
                 if (body.newDate) {
 
                     const newAppointment = await AppointmentModel.create({ motherId: appointments[i].motherId, doctorId: body.doctorId, clinicId: body.clinicId, appointmentType: body.appointmentType, appointmentDateAndTime: body.newDate, previousAppointmentDate: appointments[i].appointmentDateAndTime, status: "RESCHEDULED", reason: body.reason, createdBy: req.userId })
@@ -416,6 +428,7 @@ export const rescheduleAppointmentByDoctorOfASlot = async (req, res) => {
 }
 
 export const updateAppointmentStatusByDoctorOfASlot = async (req, res) => {
+
     const body = req.body
 
     if (!body.doctorId || !body.clinicId || !body.date || !body.appointmentType || !body.appointmentStatus || !body.reason) {
@@ -427,7 +440,9 @@ export const updateAppointmentStatusByDoctorOfASlot = async (req, res) => {
     }
 
     try {
+
         const dateFormat = getDayOrTimeFromDate(body.date)
+
         const appointments = await AppointmentModel.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: new Date(dateFormat.fullDate), $lt: new Date(dateFormat.nextDate) }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false })
 
         if (appointments.length == 0) {
@@ -448,7 +463,9 @@ export const updateAppointmentStatusByDoctorOfASlot = async (req, res) => {
             if (dateFormat.time == slotTimeFormat.time) {
 
                 appointments[i].status = body.appointmentStatus
+
                 await AppointmentModel.findOneAndUpdate({ _id: appointments[i]._id }, { $set: { status: body.appointmentStatus, reason: body.reason, updatedBy: req.userId } })
+
                 changedAppointment.push(appointments[i])
 
             }
@@ -490,7 +507,9 @@ export const appointmentBookValidations = async (body, req, res) => {
     for (let i = 0; i < slots[0].slots.length; i++) {
 
         if (slots[0].slots[i].type == body.appointmentType && slots[0].slots[i].day == appointmentDate.day) {
+
             newSlots.push(slots[0].slots[i])
+
         }
 
     }
@@ -511,16 +530,22 @@ export const appointmentBookValidations = async (body, req, res) => {
                 const singleSlot = finalSlot[i]
 
                 if (singleSlot.day == bookedSlot.day && singleSlot.time == bookedSlot.time) {
+
                     bookedSlotIndex = i;
                     break;
+
                 }
 
             }
 
             if (bookedSlotIndex != -1) {
+
                 finalSlot[bookedSlotIndex].status = "BOOKED"
+
             }
+
         }
+        
     }
 
     let count = 0;

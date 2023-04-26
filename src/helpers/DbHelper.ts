@@ -26,7 +26,7 @@ export async function connect() {
         reject(err);
       });
   });
-  
+
 }
 
 function close() {

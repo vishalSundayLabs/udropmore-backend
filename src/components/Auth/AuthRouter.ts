@@ -3,7 +3,6 @@
  */
 
 import { Router } from "express";
-import * as path from "path";
 import { verifyToken } from "../../middleware/tokenVerify";
 import * as AuthController from "./AuthController";
 

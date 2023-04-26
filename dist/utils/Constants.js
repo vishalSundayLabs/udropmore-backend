@@ -7,9 +7,10 @@ exports.HTTP_BAD_REQUEST = 400;
 exports.HTTP_UNAUTHORIZED = 403;
 exports.HTTP_NOT_FOUND = 404;
 exports.HTTP_INTERNAL_SERVER_ERROR = 500;
-// messages
+// messages start
 exports.INCORRECT_BODY_FORMAT_MESSAGE = "Body format should be as per the object below";
-//past history constants
+//messages end
+//past history constants (start)
 exports.whoInFamily = ["Maternal", "Paternal", "Marital", "Sibling"];
 exports.diseases = ["Diabetes", "Thyroid", "Epilepsy", "Hypertension", "H.D", "Koch", "Cancer", "Asthma"];
 exports.typeOfTermination = [
@@ -72,3 +73,4 @@ exports.assisted = ["Self", "Donor"];
 exports.donor = ["Male", "Female", "Embryo"];
 exports.flow = ["Average", "Scanty", "Heavy"];
 exports.natureOfCycle = ["Regular", "Irregular"];
+//past history constants (end)

@@ -13,6 +13,7 @@ import {
 } from "class-validator";
 
 export class Create {
+
   @IsNotEmpty()
   @IsString()
   firstName: string;

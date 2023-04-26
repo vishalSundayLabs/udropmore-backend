@@ -247,7 +247,6 @@ export const BABY_WEIGHT = {
     }
 }
 
-
 export const weightRange = (BMI) => {
     if (BMI < 18.5) {
         return (

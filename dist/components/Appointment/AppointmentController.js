@@ -261,7 +261,7 @@ const rescheduleAppointmentByDoctorOfASlot = (req, res) => __awaiter(void 0, voi
     const body = req.body;
     if (!body.doctorId || !body.clinicId || !body.date || !body.appointmentType || !body.reason) {
         return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
-            message: "Bad Request! doctor id , clinic id , date , new date for reschedule , appointment type , appintmentStatus or reason must be provide."
+            message: "Bad Request! doctor id , clinic id , date , appointment type or reason must be provide."
         }));
     }
     try {

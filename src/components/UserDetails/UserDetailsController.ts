@@ -5,6 +5,7 @@ import UserModel from "../Users/UserModel"
 import UserDetailsModel from "./UserDetailsModel"
 import { weightRange } from '../../utils/Weights'
 export const createUserDetails = async (req, res) => {
+
     const body = req.body
 
     if (!body.motherId) {
@@ -38,6 +39,7 @@ export const createUserDetails = async (req, res) => {
     }
 
     try {
+
         const userDetails = await UserDetailsModel.create(reqData)
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
@@ -60,18 +62,22 @@ export const createUserDetails = async (req, res) => {
 }
 
 export const updateUserDetails = async (req, res) => {
+
     const body = req.body
 
     if (!body.motherId) {
+
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
             success: false,
             message: "Bad request! Mother id must be provide."
         }))
+
     }
 
     try {
 
         const userDetails = await UserDetailsModel.findOne({ userId: body.motherId, isDeleted: false })
+
         const user = await UserModel.findOne({ _id: userDetails.userId, isActive: true, isDeleted: false })
         //add feilds for update 
         user.firstName = body.firstName ? body.firstName : user.firstName
@@ -93,6 +99,7 @@ export const updateUserDetails = async (req, res) => {
         bodyTraverse(userDetails, body)
 
         userDetails.updatedBy = req.userId
+
         await userDetails.save()
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
@@ -115,24 +122,31 @@ export const updateUserDetails = async (req, res) => {
 }
 
 export const getUserDetailsbyId = async (req, res) => {
+
     const params = req.params
 
     if (!params.motherId) {
+
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
             success: false,
             message: "Bad request! Mother id must be provide."
         }))
+
     }
 
     try {
+
         const userDetails = await UserDetailsModel.findOne({ userId: params.motherId, isDeleted: false })
+
         const user = await UserModel.findOne({ _id: userDetails.userId, isActive: true, isDeleted: false })
 
         if (!userDetails) {
+
             return res.status(HTTP_NOT_FOUND).send(new ResponseError({
                 success: false,
                 message: "user details not found."
             }))
+
         }
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
@@ -154,18 +168,25 @@ export const getUserDetailsbyId = async (req, res) => {
 }
 
 export const getWeightByBmi = async (req, res) => {
+
     const query = req.query
     const params = req.params
+
     if (!params.motherId || !query.bmi) {
+
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
             success: false,
             message: "Bad request! Mother id or BMI must be provide."
         }))
+
     }
+
     try {
+
         const motherWeightGainChart = await UserDetailsModel.findOne({ userId: params.motherId }, { weightGainChart: true })
+
         const weightRangeUsingBmi = weightRange(Number(query.bmi))
-        console.log(weightRangeUsingBmi,query)
+
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: "get User details successfully.",

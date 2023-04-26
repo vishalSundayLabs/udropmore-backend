@@ -107,7 +107,7 @@ const getAllClinic = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         const clinic = yield clinicModel_1.ClinicModel.find({ isDeleted: false }).skip(skips).limit(limit);
         return res.status(Constants_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
             success: true,
-            message: "find all Clinic successfully.",
+            message: "Find all Clinic successfully.",
             result: clinic
         }));
     }
