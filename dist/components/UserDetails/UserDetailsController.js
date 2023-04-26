@@ -122,7 +122,7 @@ const getUserDetailsbyId = (req, res) => __awaiter(void 0, void 0, void 0, funct
         return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "get User details successfully.",
-            result: userDetails
+            result: { userDetails, firstName: user.firstName, lastName: user.lastName, email: user.email }
         }));
     }
     catch (error) {
