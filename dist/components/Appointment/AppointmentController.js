@@ -259,7 +259,7 @@ const rescheduleAppointment = (req, res) => __awaiter(void 0, void 0, void 0, fu
 exports.rescheduleAppointment = rescheduleAppointment;
 const rescheduleAppointmentByDoctorOfASlot = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
-    if (!body.doctorId || !body.clinicId || !body.date || !body.newDate || !body.appointmentType || !body.reason) {
+    if (!body.doctorId || !body.clinicId || !body.date || !body.appointmentType || !body.reason) {
         return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             message: "Bad Request! doctor id , clinic id , date , new date for reschedule , appointment type , appintmentStatus or reason must be provide."
         }));
@@ -274,18 +274,27 @@ const rescheduleAppointmentByDoctorOfASlot = (req, res) => __awaiter(void 0, voi
             }));
         }
         const rescheduledAppointments = [];
+        let message;
         for (let i = 0; i < appointments.length; i++) {
             const slotTimeFormat = (0, UserController_1.getDayOrTimeFromDate)(appointments[i].appointmentDateAndTime);
             if (dateFormat.time == slotTimeFormat.time) {
                 appointments[i].status = body.appointmentStatus;
-                yield AppointmentModel_1.default.findOneAndUpdate({ _id: appointments[i]._id }, { $set: { status: "CANCELLED", reason: "CANCELLED BY DOCTOR", updatedBy: req.userId } });
-                const newAppointment = yield AppointmentModel_1.default.create({ motherId: appointments[i].motherId, doctorId: body.doctorId, clinicId: body.clinicId, appointmentType: body.appointmentType, appointmentDateAndTime: body.newDate, previousAppointmentDate: appointments[i].appointmentDateAndTime, status: "RESCHEDULED", reason: body.reason, createdBy: req.userId });
-                rescheduledAppointments.push(newAppointment);
+                yield AppointmentModel_1.default.updateOne({ _id: appointments[i]._id }, { $set: { status: body.newDate ? "CANCELLED" : "RESCHEDULED", reason: body.newDate ? "CANCELLED BY DOCTOR" : "RESCHEDULED BY DOCTOR", updatedBy: req.userId } });
+                const updatedAppointment = yield AppointmentModel_1.default.findOne({ _id: appointments[i]._id }).exec();
+                if (body.newDate) {
+                    const newAppointment = yield AppointmentModel_1.default.create({ motherId: appointments[i].motherId, doctorId: body.doctorId, clinicId: body.clinicId, appointmentType: body.appointmentType, appointmentDateAndTime: body.newDate, previousAppointmentDate: appointments[i].appointmentDateAndTime, status: "RESCHEDULED", reason: body.reason, createdBy: req.userId });
+                    rescheduledAppointments.push(newAppointment);
+                    message = `Doctor Reschedule Appointments successfully.`;
+                }
+                else {
+                    rescheduledAppointments.push(updatedAppointment);
+                    message = `Doctor request to mother for reschedule appointment successfully.`;
+                }
             }
         }
         return res.status(Constants_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
             success: true,
-            message: `Reschedule Appointments successfully.`,
+            message: message,
             result: rescheduledAppointments
         }));
     }

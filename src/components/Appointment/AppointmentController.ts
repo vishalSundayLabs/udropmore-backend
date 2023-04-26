@@ -346,7 +346,7 @@ export const rescheduleAppointment = async (req, res) => {
 export const rescheduleAppointmentByDoctorOfASlot = async (req, res) => {
     const body = req.body
 
-    if (!body.doctorId || !body.clinicId || !body.date || !body.newDate || !body.appointmentType || !body.reason) {
+    if (!body.doctorId || !body.clinicId || !body.date || !body.appointmentType || !body.reason) {
 
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
             message: "Bad Request! doctor id , clinic id , date , new date for reschedule , appointment type , appintmentStatus or reason must be provide."
@@ -370,16 +370,27 @@ export const rescheduleAppointmentByDoctorOfASlot = async (req, res) => {
         }
 
         const rescheduledAppointments = [];
-
+        let message;
         for (let i = 0; i < appointments.length; i++) {
             const slotTimeFormat = getDayOrTimeFromDate(appointments[i].appointmentDateAndTime)
 
             if (dateFormat.time == slotTimeFormat.time) {
 
                 appointments[i].status = body.appointmentStatus
-                await AppointmentModel.findOneAndUpdate({ _id: appointments[i]._id }, { $set: { status: "CANCELLED", reason: "CANCELLED BY DOCTOR", updatedBy: req.userId } })
-                const newAppointment = await AppointmentModel.create({ motherId: appointments[i].motherId, doctorId: body.doctorId, clinicId: body.clinicId, appointmentType: body.appointmentType, appointmentDateAndTime: body.newDate, previousAppointmentDate: appointments[i].appointmentDateAndTime, status: "RESCHEDULED", reason: body.reason, createdBy: req.userId })
-                rescheduledAppointments.push(newAppointment)
+                await AppointmentModel.updateOne({ _id: appointments[i]._id }, { $set: { status: body.newDate ? "CANCELLED" : "RESCHEDULED", reason: body.newDate ? "CANCELLED BY DOCTOR" : "RESCHEDULED BY DOCTOR", updatedBy: req.userId } })
+                const updatedAppointment = await AppointmentModel.findOne({ _id: appointments[i]._id }).exec()
+                if (body.newDate) {
+
+                    const newAppointment = await AppointmentModel.create({ motherId: appointments[i].motherId, doctorId: body.doctorId, clinicId: body.clinicId, appointmentType: body.appointmentType, appointmentDateAndTime: body.newDate, previousAppointmentDate: appointments[i].appointmentDateAndTime, status: "RESCHEDULED", reason: body.reason, createdBy: req.userId })
+                    rescheduledAppointments.push(newAppointment)
+                    message = `Doctor Reschedule Appointments successfully.`
+
+                } else {
+
+                    rescheduledAppointments.push(updatedAppointment)
+                    message = `Doctor request to mother for reschedule appointment successfully.`
+
+                }
 
             }
 
@@ -387,7 +398,7 @@ export const rescheduleAppointmentByDoctorOfASlot = async (req, res) => {
 
         return res.status(HTTP_CREATED).send(new ResponseSuccess({
             success: true,
-            message: `Reschedule Appointments successfully.`,
+            message: message,
             result: rescheduledAppointments
         }))
 
