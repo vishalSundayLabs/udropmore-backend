@@ -71,10 +71,10 @@ const updateUserDetails = (req, res) => __awaiter(void 0, void 0, void 0, functi
     try {
         const userDetails = yield UserDetailsModel_1.default.findOne({ userId: body.motherId, isDeleted: false });
         const user = yield UserModel_1.default.findOne({ _id: userDetails.userId, isActive: true, isDeleted: false });
-        //add feilds for update
-        user.firstName = body.firstName;
-        user.lastName = body.lastName;
-        user.email = body.email;
+        //add feilds for update 
+        user.firstName = body.firstName ? body.firstName : user.firstName;
+        user.lastName = body.lastName ? body.lastName : user.lastName;
+        user.email = body.email ? body.email : user.email;
         user.updatedBy = req.userId;
         yield user.save();
         if (!userDetails) {

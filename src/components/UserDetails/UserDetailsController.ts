@@ -73,10 +73,10 @@ export const updateUserDetails = async (req, res) => {
 
         const userDetails = await UserDetailsModel.findOne({ userId: body.motherId, isDeleted: false })
         const user = await UserModel.findOne({ _id: userDetails.userId, isActive: true, isDeleted: false })
-        //add feilds for update
-        user.firstName = body.firstName
-        user.lastName = body.lastName
-        user.email = body.email
+        //add feilds for update 
+        user.firstName = body.firstName ? body.firstName : user.firstName
+        user.lastName = body.lastName ? body.lastName : user.lastName
+        user.email = body.email ? body.email : user.email
         user.updatedBy = req.userId
 
         await user.save()
