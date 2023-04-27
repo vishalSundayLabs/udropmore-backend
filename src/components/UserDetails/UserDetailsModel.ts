@@ -291,11 +291,11 @@ const userDetailsSchema = new mongoose.Schema({
                         },
                         description: { type: String, default: null }
                     },
-                    bloodTransfusion: {
+                    bloodTransfusion: { 
                         type: String,
                         enum: ["Yes", "No", null], default: null
                     },
-                    anasthaesia: {
+                    anasthaesia: { 
                         value: {
                             type: String,
                             enum: ["Yes", "No", null], default: null
