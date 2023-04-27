@@ -88,4 +88,8 @@ export const flow = ["Average", "Scanty", "Heavy"]
 
 export const natureOfCycle = ["Regular", "Irregular"]
 
+export const sourceOfVisit = ["Self", "Social Media", "Previous Pregnancy"]
+
+export const language = ["English", "Hindi", "Marathi"]
+
 //past history constants (end)

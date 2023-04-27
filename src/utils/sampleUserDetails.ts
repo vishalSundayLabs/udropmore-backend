@@ -1,5 +1,5 @@
 export const sampleUserDetails = {
-    userId:"",
+    userId: "",
     dateOfBirth: null,
     address: {
         line1: null,
@@ -157,65 +157,66 @@ export const sampleUserDetails = {
                 healthOfChild: {
                     aliveAndWell: false,
                     comments: null
-                }
-            }],
-            operativeProcedure: {
-                procedureName: [
-                    { appendix: false },
-                    { lscs: false },
-                    { dAndESurgery: false },
-                    { cervicalStitch: false },
-                    { myonectomy: false },
-                    { mtp: false },
-                    { laparohupteroscopy: false }
-                ],
-                complicationsInTheProcedure: {
-                    value: null,
-                    description: null
                 },
-                bloodTransfusion: null,
-                anasthaesia: {
+                operativeProcedure: {
+                    procedureName: [
+                        { appendix: false },
+                        { lscs: false },
+                        { dAndESurgery: false },
+                        { cervicalStitch: false },
+                        { myonectomy: false },
+                        { mtp: false },
+                        { laparohupteroscopy: false }
+                    ],
+                    complicationsInTheProcedure: {
+                        value: null,
+                        description: null
+                    },
+                    bloodTransfusion: null,
+                    anasthaesia: {
+                        value: null,
+                        types: [
+                            { epidural: false },
+                            { sa: false },
+                            { ga: false },
+                            { la: false },
+                        ]
+                    }
+                },
+                ancComplications: {
                     value: null,
                     types: [
-                        { epidural: false },
-                        { sa: false },
-                        { ga: false },
-                        { la: false },
+                        { cervicalCirclage: false },
+                        { hypothyroidism: false },
+                        { htn: false },
+                        { aph: false },
+                        { gdm: false },
+                        { dm: false },
+                        { pretermLabour: false },
+                        { eclamapsia: false },
+                        { threatered: false }
+                    ]
+                },
+                duringAndAfterDeliveryComplications: {
+                    value: null,
+                    types: [
+                        { neonatalResurication: false },
+                        { pph: false },
+                        { postpartumPreEclamapsia: false },
+                        { neonatalHypoglycaemia: false },
                     ]
                 }
-            },
-            ancComplications: {
-                value: null,
-                types: [
-                    { cervicalCirclage: false },
-                    { hypothyroidism: false },
-                    { htn: false },
-                    { aph: false },
-                    { gdm: false },
-                    { dm: false },
-                    { pretermLabour: false },
-                    { eclamapsia: false },
-                    { threatered: false }
-                ]
-            },
-            duringAndAfterDeliveryComplications: {
-                value: null,
-                types: [
-                    { neonatalResurication: false},
-                    { pph: false},
-                    { postpartumPreEclamapsia: false},
-                    { neonatalHypoglycaemia: false},
-                ]
-            },
+
+            }]
         },
         fhAndPastDisease: {
             pastDiseasesHistory: {
                 pastDiseases: [
-                    { renalDisease: false},
-                    { jaundice: false},
-                    { heartDisease: false},
-                    { typhoidFever: false},
-                    { none: false}
+                    { renalDisease: false },
+                    { jaundice: false },
+                    { heartDisease: false },
+                    { typhoidFever: false },
+                    { none: false }
                 ],
                 opreativeProcedure: {
                     value: null,

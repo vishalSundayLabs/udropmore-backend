@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.natureOfCycle = exports.flow = exports.donor = exports.assisted = exports.pregnancyType = exports.genderOfChild = exports.liveBirthsDescription = exports.cesareanSection = exports.vaginal = exports.typeOfAbortion = exports.typeOfTermination = exports.diseases = exports.whoInFamily = exports.INCORRECT_BODY_FORMAT_MESSAGE = exports.HTTP_INTERNAL_SERVER_ERROR = exports.HTTP_NOT_FOUND = exports.HTTP_UNAUTHORIZED = exports.HTTP_BAD_REQUEST = exports.HTTP_CREATED = exports.HTTP_OK = void 0;
+exports.language = exports.sourceOfVisit = exports.natureOfCycle = exports.flow = exports.donor = exports.assisted = exports.pregnancyType = exports.genderOfChild = exports.liveBirthsDescription = exports.cesareanSection = exports.vaginal = exports.typeOfAbortion = exports.typeOfTermination = exports.diseases = exports.whoInFamily = exports.INCORRECT_BODY_FORMAT_MESSAGE = exports.HTTP_INTERNAL_SERVER_ERROR = exports.HTTP_NOT_FOUND = exports.HTTP_UNAUTHORIZED = exports.HTTP_BAD_REQUEST = exports.HTTP_CREATED = exports.HTTP_OK = void 0;
 exports.HTTP_OK = 200;
 exports.HTTP_CREATED = 201;
 exports.HTTP_BAD_REQUEST = 400;
@@ -73,4 +73,6 @@ exports.assisted = ["Self", "Donor"];
 exports.donor = ["Male", "Female", "Embryo"];
 exports.flow = ["Average", "Scanty", "Heavy"];
 exports.natureOfCycle = ["Regular", "Irregular"];
+exports.sourceOfVisit = ["Self", "Social Media", "Previous Pregnancy"];
+exports.language = ["English", "Hindi", "Marathi"];
 //past history constants (end)

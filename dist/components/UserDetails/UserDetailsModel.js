@@ -49,7 +49,7 @@ const userDetailsSchema = new mongoose.Schema({
     },
     maritalStatus: {
         type: String,
-        enum: ["MARRIED", "NOT MARRIED", "OTHER", null],
+        enum: ["Married", "Not Married", "Other", null],
         default: null
     },
     occupation: {
@@ -95,14 +95,14 @@ const userDetailsSchema = new mongoose.Schema({
         },
         sourceOfVisit: {
             type: String,
-            enum: ["SELF", "SOCIAL MEDIA", "PREVIOUS PREGNANCY", null],
+            enum: ["SELF Self", "Social Media", "Previous Pregnancy", null],
             default: null
         },
         dateOfVisit: { type: Date, default: null }
     },
     language: {
         type: String,
-        enum: ["ENGLISH", "HINDI", "MARATHI", null],
+        enum: ["English", "Hindi", "Marathi", null],
         default: null
     },
     emergency: {
@@ -115,7 +115,7 @@ const userDetailsSchema = new mongoose.Schema({
             pregnancy: {
                 firstPregnancy: {
                     type: String,
-                    enum: ["YES", "NO", null], default: null
+                    enum: ["Yes", "No", null], default: null
                 },
                 termination: { type: Number, default: null },
                 abortion: { type: Number, default: null },
@@ -132,17 +132,17 @@ const userDetailsSchema = new mongoose.Schema({
             pregnancyType: {
                 type: {
                     type: String,
-                    enum: ["NATURAL", "ASSISTED", null],
+                    enum: ["Natural", "Assisted", null],
                     default: null
                 },
                 assisted: {
                     type: String,
-                    enum: ["SELF", "DONOR", null],
+                    enum: ["Self", "Donor", null],
                     default: null
                 },
                 donor: {
                     type: String,
-                    enum: ["MALE", "FEMALE", "EMBRYO", null],
+                    enum: ["Male", "Female", "Embryo", null],
                     default: null
                 }
             },
@@ -159,16 +159,16 @@ const userDetailsSchema = new mongoose.Schema({
                 },
                 natureOfCycle: {
                     type: String,
-                    enum: ["REGULAR", "IRREGULAR", null],
+                    enum: ["Regular", "Irregular", null],
                     default: null
                 },
                 dysmenorrhea: {
                     type: String,
-                    enum: ["YES", "NO", null], default: null
+                    enum: ["Yes", "No", null], default: null
                 },
                 flow: {
                     type: String,
-                    enum: ["AVERAGE", "SCANTY", "HEAVY", null],
+                    enum: ["Average", "Scanty", "Heavy", null],
                     default: null
                 }
             },
@@ -183,16 +183,16 @@ const userDetailsSchema = new mongoose.Schema({
                 },
                 natureOfCycle: {
                     type: String,
-                    enum: ["REGULAR", "IRREGULAR", null],
+                    enum: ["Regular", "Irregular", null],
                     default: null
                 },
                 dysmenorrhea: {
                     type: String,
-                    enum: ["YES", "NO", null], default: null
+                    enum: ["Yes", "No", null], default: null
                 },
                 flow: {
                     type: String,
-                    enum: ["AVERAGE", "SCANTY", "HEAVY", null],
+                    enum: ["Average", "Scanty", "Heavy", null],
                     default: null
                 }
             },
@@ -207,7 +207,7 @@ const userDetailsSchema = new mongoose.Schema({
                     typeOfTermination: {
                         mtp: {
                             type: String,
-                            enum: ["PILLS", "SURGICAL", "GENERAL", "CURATING", null],
+                            enum: ["Pills", "Surgical", "General", "Curating", null],
                             default: null
                         },
                         ectopicPregnancy: {
@@ -217,7 +217,7 @@ const userDetailsSchema = new mongoose.Schema({
                         },
                         mtpForAbnormalities: {
                             type: String,
-                            enum: ["MEDICAL", "SURGICAL", null],
+                            enum: ["Medical", "Surgical", null],
                             default: null
                         }
                     }
@@ -291,12 +291,12 @@ const userDetailsSchema = new mongoose.Schema({
                         },
                         bloodTransfusion: {
                             type: String,
-                            enum: ["YES", "NO", null], default: null
+                            enum: ["Yes", "No", null], default: null
                         },
                         anasthaesia: {
                             value: {
                                 type: String,
-                                enum: ["YES", "NO", null], default: null
+                                enum: ["Yes", "No", null], default: null
                             },
                             types: [Object]
                         }
@@ -304,14 +304,14 @@ const userDetailsSchema = new mongoose.Schema({
                     ancComplications: {
                         value: {
                             type: String,
-                            enum: ["YES", "NO", null], default: null
+                            enum: ["Yes", "No", null], default: null
                         },
                         types: [Object]
                     },
                     duringAndAfterDeliveryComplications: {
                         value: {
                             type: String,
-                            enum: ["YES", "NO", null], default: null
+                            enum: ["Yes", "No", null], default: null
                         },
                         types: [Object]
                     }
@@ -323,7 +323,7 @@ const userDetailsSchema = new mongoose.Schema({
                 opreativeProcedure: {
                     value: {
                         type: String,
-                        enum: ["YES", "NO", null],
+                        enum: ["Yes", "No", null],
                         default: null
                     },
                     description: {
@@ -332,9 +332,9 @@ const userDetailsSchema = new mongoose.Schema({
                     }
                 },
                 historyOfPreivousMedicine: { type: String, default: null },
-                dentures: { type: String, enum: ["YES", "NO", null], default: null },
-                contactLenses: { type: String, enum: ["YES", "NO", null], default: null },
-                allergicReactionToMedication: { type: String, enum: ["YES", "NO", null], default: null },
+                dentures: { type: String, enum: ["Yes", "No", null], default: null },
+                contactLenses: { type: String, enum: ["Yes", "No", null], default: null },
+                allergicReactionToMedication: { type: String, enum: ["Yes", "No", null], default: null },
             },
             allergies: [Object],
             familyDiseaseHistory: {
