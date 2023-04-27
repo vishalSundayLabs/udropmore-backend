@@ -337,7 +337,17 @@ export const getSlots = async (req, res) => {
 
     const finalSlot = makeSlotsFormat(newSlots, body.appointmentType)
 
-    const BookedSlot = await AppointmentModel.find({ clinicId: body.clinic, doctorId: body.doctor, appointmentDateAndTime: { $gte: new Date(bodyDate.fullDate), $lt: new Date(bodyDate.nextDate) }, appointmentType: body.appointemntType == "INPERSON" ?? { $ne: "INPERSON" }, status: { $ne: "CANCELLED" }, isDeleted: false });
+    let BookedSlot;
+
+    if (body.appointmentType == "INPERSON") {
+
+      BookedSlot = await AppointmentModel.find({ clinicId: body.clinic, doctorId: body.doctor, appointmentDateAndTime: { $gte: new Date(bodyDate.fullDate), $lt: new Date(bodyDate.nextDate) }, appointmentType: { $ne: "INPERSON" }, status: { $ne: "CANCELLED" }, isDeleted: false });
+
+    } else {
+
+      BookedSlot = await AppointmentModel.find({ clinicId: body.clinic, doctorId: body.doctor, appointmentDateAndTime: { $gte: new Date(bodyDate.fullDate), $lt: new Date(bodyDate.nextDate) }, status: { $ne: "CANCELLED" }, isDeleted: false });
+
+    }
 
     if (BookedSlot.length > 0) {
 
