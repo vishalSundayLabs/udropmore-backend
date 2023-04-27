@@ -21,7 +21,7 @@ const userDetailsSchema = new mongoose.Schema({
     height: {
         unit: {
             type: String,
-            enum: ["cm", "ft", "m", "inche", null],
+            enum: ["cm", "ft", "m", "inches", null],
             default: null
         },
         value: {
