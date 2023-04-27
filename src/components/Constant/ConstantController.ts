@@ -1,4 +1,4 @@
-import { diseases, HTTP_OK, whoInFamily, typeOfTermination, typeOfAbortion, vaginal, cesareanSection, liveBirthsDescription, genderOfChild, pregnancyType, assisted, donor, flow, natureOfCycle, sourceOfVisit, language } from "../../utils/Constants"
+import { diseases, HTTP_OK, whoInFamily, typeOfTermination, typeOfAbortion, typeOfDelivery, liveBirthsDescription, genderOfChild, pregnancyType, assisted, donor, flow, natureOfCycle, sourceOfVisit, language } from "../../utils/Constants"
 import { ResponseSuccess } from "../../utils/ResponseClass"
 
 export const getAllConstant = (req, res) => {
@@ -11,8 +11,7 @@ export const getAllConstant = (req, res) => {
             diseases,
             typeOfTermination,
             typeOfAbortion,
-            vaginal,
-            cesareanSection,
+            typeOfDelivery,
             liveBirthsDescription,
             genderOfChild,
             pregnancyType,

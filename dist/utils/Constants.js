@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.language = exports.sourceOfVisit = exports.natureOfCycle = exports.flow = exports.donor = exports.assisted = exports.pregnancyType = exports.genderOfChild = exports.liveBirthsDescription = exports.cesareanSection = exports.vaginal = exports.typeOfAbortion = exports.typeOfTermination = exports.diseases = exports.whoInFamily = exports.INCORRECT_BODY_FORMAT_MESSAGE = exports.HTTP_INTERNAL_SERVER_ERROR = exports.HTTP_NOT_FOUND = exports.HTTP_UNAUTHORIZED = exports.HTTP_BAD_REQUEST = exports.HTTP_CREATED = exports.HTTP_OK = void 0;
+exports.language = exports.sourceOfVisit = exports.natureOfCycle = exports.flow = exports.donor = exports.assisted = exports.pregnancyType = exports.genderOfChild = exports.liveBirthsDescription = exports.typeOfDelivery = exports.typeOfAbortion = exports.typeOfTermination = exports.diseases = exports.whoInFamily = exports.INCORRECT_BODY_FORMAT_MESSAGE = exports.HTTP_INTERNAL_SERVER_ERROR = exports.HTTP_NOT_FOUND = exports.HTTP_UNAUTHORIZED = exports.HTTP_BAD_REQUEST = exports.HTTP_CREATED = exports.HTTP_OK = void 0;
 exports.HTTP_OK = 200;
 exports.HTTP_CREATED = 201;
 exports.HTTP_BAD_REQUEST = 400;
@@ -64,8 +64,10 @@ exports.typeOfTermination = [
     }
 ];
 exports.typeOfAbortion = ["Biochemical Pregnancy", "Blighted Ovum", "Incomplete Abortion", "Missed Abortion"];
-exports.vaginal = ["Spontaneous", "Induced"];
-exports.cesareanSection = ["Emergency", "Elective"];
+exports.typeOfDelivery = {
+    vaginal: ['Spontaneous', 'Induced'],
+    cesareanSection: ['Emergency', 'Elective'],
+};
 exports.liveBirthsDescription = ["PTND Pre Term Vaginal Delivery", "PTVD Pre Term Vaccum Delivery", "PTFD Pre Term Forceps Delivery", "FTND Full Term Vaginal Delivery", "FTVD Full Term Voccum Delivery", "FTFD Full Term Forceps Delivery"];
 exports.genderOfChild = ["Male", "Female"];
 exports.pregnancyType = ["Natural", "Assisted"];
