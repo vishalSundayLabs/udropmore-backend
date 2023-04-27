@@ -228,6 +228,7 @@ const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 });
 exports.deleteUser = deleteUser;
 const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     const body = req.body;
     const query = req.query;
     const { limit, skips } = (0, pagination_1.pagination)(query);
@@ -251,7 +252,7 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             }
         }
         const finalSlot = (0, exports.makeSlotsFormat)(newSlots, body.appointmentType);
-        const BookedSlot = yield AppointmentModel_1.default.find({ clinicId: body.clinic, doctorId: body.doctor, appointmentDateAndTime: { $gte: new Date(bodyDate.fullDate), $lt: new Date(bodyDate.nextDate) }, appointmentType: { $ne: "INPERSON" }, status: { $ne: "CANCELLED" }, isDeleted: false });
+        const BookedSlot = yield AppointmentModel_1.default.find({ clinicId: body.clinic, doctorId: body.doctor, appointmentDateAndTime: { $gte: new Date(bodyDate.fullDate), $lt: new Date(bodyDate.nextDate) }, appointmentType: (_a = body.appointemntType == "INPERSON") !== null && _a !== void 0 ? _a : { $ne: "INPERSON" }, status: { $ne: "CANCELLED" }, isDeleted: false });
         if (BookedSlot.length > 0) {
             for (let j = 0; j < BookedSlot.length; j++) {
                 let bookedSlotIndex = -1;
