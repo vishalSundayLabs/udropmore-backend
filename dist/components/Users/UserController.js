@@ -251,9 +251,12 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             }
         }
         const finalSlot = (0, exports.makeSlotsFormat)(newSlots, body.appointmentType);
-        let BookedSlot;
+        let BookedSlot = [];
         if (body.appointmentType == "INPERSON") {
             BookedSlot = yield AppointmentModel_1.default.find({ clinicId: body.clinic, doctorId: body.doctor, appointmentDateAndTime: { $gte: new Date(bodyDate.fullDate), $lt: new Date(bodyDate.nextDate) }, appointmentType: { $ne: "INPERSON" }, status: { $ne: "CANCELLED" }, isDeleted: false });
+        }
+        else {
+            BookedSlot = yield AppointmentModel_1.default.find({ clinicId: body.clinic, doctorId: body.doctor, appointmentDateAndTime: { $gte: new Date(bodyDate.fullDate), $lt: new Date(bodyDate.nextDate) }, status: { $ne: "CANCELLED" }, isDeleted: false });
         }
         if (BookedSlot.length > 0) {
             for (let j = 0; j < BookedSlot.length; j++) {

@@ -337,7 +337,7 @@ export const getSlots = async (req, res) => {
 
     const finalSlot = makeSlotsFormat(newSlots, body.appointmentType)
 
-    let BookedSlot;
+    let BookedSlot = [];
 
     if (body.appointmentType == "INPERSON") {
 
