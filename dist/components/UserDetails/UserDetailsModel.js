@@ -21,7 +21,7 @@ const userDetailsSchema = new mongoose.Schema({
     height: {
         unit: {
             type: String,
-            enum: ["cm", "ft", "m", "inches", null],
+            enum: ["CM", "FT", "M", "INCHES", null],
             default: null
         },
         value: {
@@ -32,7 +32,7 @@ const userDetailsSchema = new mongoose.Schema({
     weight: {
         unit: {
             type: String,
-            enum: ["kg", "pound", null]
+            enum: ["KG", "POUND", null]
         },
         value: {
             type: Number,
@@ -49,7 +49,7 @@ const userDetailsSchema = new mongoose.Schema({
     },
     maritalStatus: {
         type: String,
-        enum: ["Married", "Not Married", "Other", null],
+        enum: ["MARRIED", "NOT MARRIED", "OTHER", null],
         default: null
     },
     occupation: {
@@ -95,14 +95,14 @@ const userDetailsSchema = new mongoose.Schema({
         },
         sourceOfVisit: {
             type: String,
-            enum: ["SELF Self", "Social Media", "Previous Pregnancy", null],
+            enum: ["SELF", "SOCIAL MEDIA", "PREVIOUS PREGNANCY", null],
             default: null
         },
         dateOfVisit: { type: Date, default: null }
     },
     language: {
         type: String,
-        enum: ["English", "Hindi", "Marathi", null],
+        enum: ["ENGLISH", "HINDI", "MARATHI", null],
         default: null
     },
     emergency: {
@@ -115,7 +115,7 @@ const userDetailsSchema = new mongoose.Schema({
             pregnancy: {
                 firstPregnancy: {
                     type: String,
-                    enum: ["Yes", "No", null], default: null
+                    enum: ["YES", "NO", null], default: null
                 },
                 termination: { type: Number, default: null },
                 abortion: { type: Number, default: null },
@@ -132,17 +132,17 @@ const userDetailsSchema = new mongoose.Schema({
             pregnancyType: {
                 type: {
                     type: String,
-                    enum: ["Natural", "Assisted", null],
+                    enum: ["NATURAL", "ASSISTED", null],
                     default: null
                 },
                 assisted: {
                     type: String,
-                    enum: ["Self", "Donor", null],
+                    enum: ["SELF", "DONOR", null],
                     default: null
                 },
                 donor: {
                     type: String,
-                    enum: ["Male", "Female", "Embryo", null],
+                    enum: ["MALE", "FEMALE", "EMBRYO", null],
                     default: null
                 }
             },
@@ -159,16 +159,16 @@ const userDetailsSchema = new mongoose.Schema({
                 },
                 natureOfCycle: {
                     type: String,
-                    enum: ["Regular", "Irregular", null],
+                    enum: ["REGULAR", "IRREGULAR", null],
                     default: null
                 },
                 dysmenorrhea: {
                     type: String,
-                    enum: ["Yes", "No", null], default: null
+                    enum: ["YES", "NO", null], default: null
                 },
                 flow: {
                     type: String,
-                    enum: ["Average", "Scanty", "Heavy", null],
+                    enum: ["AVERAGE", "SCANTY", "HEAVY", null],
                     default: null
                 }
             },
@@ -183,16 +183,16 @@ const userDetailsSchema = new mongoose.Schema({
                 },
                 natureOfCycle: {
                     type: String,
-                    enum: ["Regular", "Irregular", null],
+                    enum: ["REGULAR", "IRREGULAR", null],
                     default: null
                 },
                 dysmenorrhea: {
                     type: String,
-                    enum: ["Yes", "No", null], default: null
+                    enum: ["YES", "NO", null], default: null
                 },
                 flow: {
                     type: String,
-                    enum: ["Average", "Scanty", "Heavy", null],
+                    enum: ["AVERAGE", "SCANTY", "HEAVY", null],
                     default: null
                 }
             },
@@ -207,7 +207,7 @@ const userDetailsSchema = new mongoose.Schema({
                     typeOfTermination: {
                         mtp: {
                             type: String,
-                            enum: ["Pills", "Surgical", "General", "Curating", null],
+                            enum: ["PILLS", "SURGICAL", "GENERAL", "CURATING", null],
                             default: null
                         },
                         ectopicPregnancy: {
@@ -217,7 +217,7 @@ const userDetailsSchema = new mongoose.Schema({
                         },
                         mtpForAbnormalities: {
                             type: String,
-                            enum: ["Medical", "Surgical", null],
+                            enum: ["MEDICAL", "SURGICAL", null],
                             default: null
                         }
                     }
@@ -279,43 +279,43 @@ const userDetailsSchema = new mongoose.Schema({
                             default: false
                         },
                         comments: { type: String, default: null }
-                    },
-                    operativeProcedure: {
-                        procedureName: [Object],
-                        complicationsInTheProcedure: {
-                            value: {
-                                type: String,
-                                enum: ['YES', 'NO', null], default: null
-                            },
-                            description: { type: String, default: null }
-                        },
-                        bloodTransfusion: {
-                            type: String,
-                            enum: ["Yes", "No", null], default: null
-                        },
-                        anasthaesia: {
-                            value: {
-                                type: String,
-                                enum: ["Yes", "No", null], default: null
-                            },
-                            types: [Object]
-                        }
-                    },
-                    ancComplications: {
-                        value: {
-                            type: String,
-                            enum: ["Yes", "No", null], default: null
-                        },
-                        types: [Object]
-                    },
-                    duringAndAfterDeliveryComplications: {
-                        value: {
-                            type: String,
-                            enum: ["Yes", "No", null], default: null
-                        },
-                        types: [Object]
                     }
-                }]
+                }],
+            operativeProcedure: {
+                procedureName: [Object],
+                complicationsInTheProcedure: {
+                    value: {
+                        type: String,
+                        enum: ['YES', 'NO', null], default: null
+                    },
+                    description: { type: String, default: null }
+                },
+                bloodTransfusion: {
+                    type: String,
+                    enum: ["YES", "NO", null], default: null
+                },
+                anasthaesia: {
+                    value: {
+                        type: String,
+                        enum: ["YES", "NO", null], default: null
+                    },
+                    types: [Object]
+                }
+            },
+            ancComplications: {
+                value: {
+                    type: String,
+                    enum: ["YES", "NO", null], default: null
+                },
+                types: [Object]
+            },
+            duringAndAfterDeliveryComplications: {
+                value: {
+                    type: String,
+                    enum: ["YES", "NO", null], default: null
+                },
+                types: [Object]
+            },
         },
         fhAndPastDisease: {
             pastDiseasesHistory: {
@@ -323,7 +323,7 @@ const userDetailsSchema = new mongoose.Schema({
                 opreativeProcedure: {
                     value: {
                         type: String,
-                        enum: ["Yes", "No", null],
+                        enum: ["YES", "NO", null],
                         default: null
                     },
                     description: {
@@ -332,9 +332,9 @@ const userDetailsSchema = new mongoose.Schema({
                     }
                 },
                 historyOfPreivousMedicine: { type: String, default: null },
-                dentures: { type: String, enum: ["Yes", "No", null], default: null },
-                contactLenses: { type: String, enum: ["Yes", "No", null], default: null },
-                allergicReactionToMedication: { type: String, enum: ["Yes", "No", null], default: null },
+                dentures: { type: String, enum: ["YES", "NO", null], default: null },
+                contactLenses: { type: String, enum: ["YES", "NO", null], default: null },
+                allergicReactionToMedication: { type: String, enum: ["YES", "NO", null], default: null },
             },
             allergies: [Object],
             familyDiseaseHistory: {
