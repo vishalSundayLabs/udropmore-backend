@@ -337,7 +337,7 @@ export const getSlots = async (req, res) => {
 
     const finalSlot = makeSlotsFormat(newSlots, body.appointmentType)
 
-    const BookedSlot = await AppointmentModel.find({ clinicId: body.clinic, doctorId: body.doctor, appointmentDateAndTime: { $gte: new Date(bodyDate.fullDate), $lt: new Date(bodyDate.nextDate) }, status: { $ne: "CANCELLED" }, isDeleted: false });
+    const BookedSlot = await AppointmentModel.find({ clinicId: body.clinic, doctorId: body.doctor, appointmentDateAndTime: { $gte: new Date(bodyDate.fullDate), $lt: new Date(bodyDate.nextDate) }, appointmentType: { $ne: "INPERSON" }, status: { $ne: "CANCELLED" }, isDeleted: false });
 
     if (BookedSlot.length > 0) {
 
@@ -368,7 +368,7 @@ export const getSlots = async (req, res) => {
 
       return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
         success: false,
-        message: "Invalid Date with Respect to Day."
+        message: "Slots Not Available."
       }))
 
     }

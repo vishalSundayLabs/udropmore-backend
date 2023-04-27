@@ -251,7 +251,7 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             }
         }
         const finalSlot = (0, exports.makeSlotsFormat)(newSlots, body.appointmentType);
-        const BookedSlot = yield AppointmentModel_1.default.find({ clinicId: body.clinic, doctorId: body.doctor, appointmentDateAndTime: { $gte: new Date(bodyDate.fullDate), $lt: new Date(bodyDate.nextDate) }, status: { $ne: "CANCELLED" }, isDeleted: false });
+        const BookedSlot = yield AppointmentModel_1.default.find({ clinicId: body.clinic, doctorId: body.doctor, appointmentDateAndTime: { $gte: new Date(bodyDate.fullDate), $lt: new Date(bodyDate.nextDate) }, appointmentType: { $ne: "INPERSON" }, status: { $ne: "CANCELLED" }, isDeleted: false });
         if (BookedSlot.length > 0) {
             for (let j = 0; j < BookedSlot.length; j++) {
                 let bookedSlotIndex = -1;
@@ -271,7 +271,7 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         if (!finalSlot[0]) {
             return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
                 success: false,
-                message: "Invalid Date with Respect to Day."
+                message: "Slots Not Available."
             }));
         }
         return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({

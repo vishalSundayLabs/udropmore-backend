@@ -20,7 +20,9 @@ const getAllConstant = (req, res) => {
             assisted: Constants_1.assisted,
             donor: Constants_1.donor,
             flow: Constants_1.flow,
-            natureOfCycle: Constants_1.natureOfCycle
+            natureOfCycle: Constants_1.natureOfCycle,
+            sourceOfVisit: Constants_1.sourceOfVisit,
+            language: Constants_1.language
         }
     }));
 };
