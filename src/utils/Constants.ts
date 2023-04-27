@@ -70,10 +70,10 @@ export const typeOfTermination = [
 
 export const typeOfAbortion = ["Biochemical Pregnancy", "Blighted Ovum", "Incomplete Abortion", "Missed Abortion"]
 
-export const typeOfDelivery = {
+export const typeOfDelivery = [{
     vaginal: ['Spontaneous', 'Induced'],
     cesareanSection: ['Emergency', 'Elective'],
-}
+}]
 
 export const liveBirthsDescription = ["PTND Pre Term Vaginal Delivery", "PTVD Pre Term Vaccum Delivery", "PTFD Pre Term Forceps Delivery", "FTND Full Term Vaginal Delivery", "FTVD Full Term Voccum Delivery", "FTFD Full Term Forceps Delivery"]
 
