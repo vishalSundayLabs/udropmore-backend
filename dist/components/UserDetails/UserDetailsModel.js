@@ -21,7 +21,7 @@ const userDetailsSchema = new mongoose.Schema({
     height: {
         unit: {
             type: String,
-            enum: ["CM", "FT", "M", "INCHES", null],
+            enum: ["cm", "ft", "m", "inche", null],
             default: null
         },
         value: {
@@ -32,7 +32,7 @@ const userDetailsSchema = new mongoose.Schema({
     weight: {
         unit: {
             type: String,
-            enum: ["KG", "POUND", null]
+            enum: ["kg", "pound", null]
         },
         value: {
             type: Number,
