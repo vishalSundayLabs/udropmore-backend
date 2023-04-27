@@ -1,4 +1,4 @@
-export const BABY_WEIGHT = {
+export const babyWeights = {
     0: {
         babyWeight: {
             value: 0,

@@ -287,7 +287,7 @@ const userDetailsSchema = new mongoose.Schema({
                     complicationsInTheProcedure: {
                         value: {
                             type: String,
-                            enum: ['YES', 'NO', null], default: null
+                            enum: ['Yes', 'No', null], default: null
                         },
                         description: { type: String, default: null }
                     },

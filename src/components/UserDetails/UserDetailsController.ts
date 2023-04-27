@@ -1,6 +1,7 @@
 import { bodyTraverse } from "../../helpers/bodyTraverse"
 import { HTTP_BAD_REQUEST, HTTP_NOT_FOUND, HTTP_OK } from "../../utils/Constants"
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
+import { diseases, whoInFamily, typeOfTermination, typeOfAbortion, typeOfDelivery, liveBirthsDescription, genderOfChild, pregnancyType, assisted, donor, flow, natureOfCycle, sourceOfVisit, language } from "../../utils/Constants"
 import UserModel from "../Users/UserModel"
 import UserDetailsModel from "./UserDetailsModel"
 import { weightRange } from '../../utils/Weights'
@@ -202,5 +203,30 @@ export const getWeightByBmi = async (req, res) => {
 
         return res.status(500).json(response);
     }
+
+}
+
+export const getPastHistoryMasterConstant = (req, res) => {
+
+    return res.status(HTTP_OK).send(new ResponseSuccess({
+        success: true,
+        message: "get Constant successfully.",
+        result: {
+            whoInFamily,
+            diseases,
+            typeOfTermination,
+            typeOfAbortion,
+            typeOfDelivery,
+            liveBirthsDescription,
+            genderOfChild,
+            pregnancyType,
+            assisted,
+            donor,
+            flow,
+            natureOfCycle,
+            sourceOfVisit,
+            language
+        }
+    }))
 
 }

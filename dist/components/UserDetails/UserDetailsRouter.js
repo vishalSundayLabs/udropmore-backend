@@ -8,4 +8,5 @@ router.post('/create/userDetails', tokenVerify_1.verifyToken, UserDetailsControl
 router.put('/update/userDetail', tokenVerify_1.verifyToken, UserDetailsController_1.updateUserDetails);
 router.get('/getuser/details/:motherId', tokenVerify_1.verifyToken, UserDetailsController_1.getUserDetailsbyId);
 router.get('/:motherId/weights', tokenVerify_1.verifyToken, UserDetailsController_1.getWeightByBmi);
+router.get("/pastHistoryMaster", UserDetailsController_1.getPastHistoryMasterConstant);
 exports.default = router;

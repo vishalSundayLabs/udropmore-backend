@@ -9,10 +9,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getWeightByBmi = exports.getUserDetailsbyId = exports.updateUserDetails = exports.createUserDetails = void 0;
+exports.getPastHistoryMasterConstant = exports.getWeightByBmi = exports.getUserDetailsbyId = exports.updateUserDetails = exports.createUserDetails = void 0;
 const bodyTraverse_1 = require("../../helpers/bodyTraverse");
 const Constants_1 = require("../../utils/Constants");
 const ResponseClass_1 = require("../../utils/ResponseClass");
+const Constants_2 = require("../../utils/Constants");
 const UserModel_1 = require("../Users/UserModel");
 const UserDetailsModel_1 = require("./UserDetailsModel");
 const Weights_1 = require("../../utils/Weights");
@@ -162,3 +163,26 @@ const getWeightByBmi = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.getWeightByBmi = getWeightByBmi;
+const getPastHistoryMasterConstant = (req, res) => {
+    return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+        success: true,
+        message: "get Constant successfully.",
+        result: {
+            whoInFamily: Constants_2.whoInFamily,
+            diseases: Constants_2.diseases,
+            typeOfTermination: Constants_2.typeOfTermination,
+            typeOfAbortion: Constants_2.typeOfAbortion,
+            typeOfDelivery: Constants_2.typeOfDelivery,
+            liveBirthsDescription: Constants_2.liveBirthsDescription,
+            genderOfChild: Constants_2.genderOfChild,
+            pregnancyType: Constants_2.pregnancyType,
+            assisted: Constants_2.assisted,
+            donor: Constants_2.donor,
+            flow: Constants_2.flow,
+            natureOfCycle: Constants_2.natureOfCycle,
+            sourceOfVisit: Constants_2.sourceOfVisit,
+            language: Constants_2.language
+        }
+    }));
+};
+exports.getPastHistoryMasterConstant = getPastHistoryMasterConstant;

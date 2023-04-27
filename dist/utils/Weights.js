@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.weightRange = exports.BABY_WEIGHT = void 0;
-exports.BABY_WEIGHT = {
+exports.weightRange = exports.babyWeights = void 0;
+exports.babyWeights = {
     0: {
         babyWeight: {
             value: 0,
