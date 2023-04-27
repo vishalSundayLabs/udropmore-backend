@@ -94,7 +94,7 @@ const userDetailsSchema = new mongoose.Schema({
         },
         sourceOfVisit: {
             type: String,
-            enum: ["SELF Self", "Social Media", "Previous Pregnancy", null],
+            enum: ["Self", "Social Media", "Previous Pregnancy", null],
             default: null
         },
         dateOfVisit: { type: Date, default: null }
