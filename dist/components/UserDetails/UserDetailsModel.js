@@ -95,7 +95,7 @@ const userDetailsSchema = new mongoose.Schema({
         },
         sourceOfVisit: {
             type: String,
-            enum: ["SELF Self", "Social Media", "Previous Pregnancy", null],
+            enum: ["Self", "Social Media", "Previous Pregnancy", null],
             default: null
         },
         dateOfVisit: { type: Date, default: null }
@@ -286,7 +286,7 @@ const userDetailsSchema = new mongoose.Schema({
                         complicationsInTheProcedure: {
                             value: {
                                 type: String,
-                                enum: ['YES', 'NO', null], default: null
+                                enum: ["Yes", "No", null], default: null
                             },
                             description: { type: String, default: null }
                         },
