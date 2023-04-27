@@ -20,7 +20,7 @@ const userDetailsSchema = new mongoose.Schema({
     height: {
         unit: {
             type: String,
-            enum: ["CM", "FT", "M", "INCHES", null],
+            enum: ["cm", "ft", "m", "inches", null],
             default: null
         },
         value: {
@@ -31,7 +31,7 @@ const userDetailsSchema = new mongoose.Schema({
     weight: {
         unit: {
             type: String,
-            enum: ["KG", "POUND", null]
+            enum: ["kg", "pound", null]
         },
         value: {
             type: Number,
@@ -280,43 +280,43 @@ const userDetailsSchema = new mongoose.Schema({
                         default: false
                     },
                     comments: { type: String, default: null }
-                }
-            }],
-            operativeProcedure: {
-                procedureName: [Object],
-                complicationsInTheProcedure: {
+                },
+                operativeProcedure: {
+                    procedureName: [Object],
+                    complicationsInTheProcedure: {
+                        value: {
+                            type: String,
+                            enum: ['YES', 'NO', null], default: null
+                        },
+                        description: { type: String, default: null }
+                    },
+                    bloodTransfusion: {
+                        type: String,
+                        enum: ["YES", "NO", null], default: null
+                    },
+                    anasthaesia: {
+                        value: {
+                            type: String,
+                            enum: ["YES", "NO", null], default: null
+                        },
+                        types: [Object]
+                    }
+                },
+                ancComplications: {
                     value: {
                         type: String,
-                        enum: ['YES', 'NO', null], default: null
+                        enum: ["YES", "NO", null], default: null
                     },
-                    description: { type: String, default: null }
+                    types: [Object]
                 },
-                bloodTransfusion: {
-                    type: String,
-                    enum: ["YES", "NO", null], default: null
-                },
-                anasthaesia: {
+                duringAndAfterDeliveryComplications: {
                     value: {
                         type: String,
                         enum: ["YES", "NO", null], default: null
                     },
                     types: [Object]
                 }
-            },
-            ancComplications: {
-                value: {
-                    type: String,
-                    enum: ["YES", "NO", null], default: null
-                },
-                types: [Object]
-            },
-            duringAndAfterDeliveryComplications: {
-                value: {
-                    type: String,
-                    enum: ["YES", "NO", null], default: null
-                },
-                types: [Object]
-            },
+            }]
         },
         fhAndPastDisease: {
             pastDiseasesHistory: {

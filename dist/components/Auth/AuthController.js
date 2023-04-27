@@ -132,6 +132,12 @@ exports.validateOtp = validateOtp;
 const logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const user = yield UserModel_1.default.findOne({ _id: req.userId, platform: req.platform, userType: req.userType });
+        if (!user) {
+            return res.status(Constants_1.HTTP_UNAUTHORIZED).send(new ResponseClass_1.ResponseError({
+                success: false,
+                message: "Invalid Token!"
+            }));
+        }
         user.jwtToken = null;
         yield user.save();
         yield AuthSession_1.default.findOneAndUpdate({ userId: user._id, jwtToken: user.jwtToken, isActive: true, isDeleted: false }, { $set: { isActive: false } });
