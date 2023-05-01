@@ -1,7 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.nextAntenatalTestSchema = void 0;
-exports.nextAntenatalTestSchema = {
+exports.sampleNextAntenatalTest = void 0;
+exports.sampleNextAntenatalTest = {
+    userId: null,
+    doctorId: null,
     nextAntenatalTest: [{
             week: null,
             standardtest: [{

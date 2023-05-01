@@ -2,6 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sampleCurrentObservastion = void 0;
 exports.sampleCurrentObservastion = {
+    userId: null,
+    doctorId: null,
     currentObservastion: [{
             date: null,
             week: null,

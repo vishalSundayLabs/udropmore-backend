@@ -1,4 +1,6 @@
-export const treatment =  {
+export const sampleTreatment =  {
+    userId:null,
+    doctorId:null,
     obeservation: [{
        date: null,
         examinationFinding: null

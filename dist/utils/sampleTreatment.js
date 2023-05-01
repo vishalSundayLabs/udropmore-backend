@@ -1,7 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.treatment = void 0;
-exports.treatment = {
+exports.sampleTreatment = void 0;
+exports.sampleTreatment = {
+    userId: null,
+    doctorId: null,
     obeservation: [{
             date: null,
             examinationFinding: null

@@ -1,6 +1,6 @@
-import { isNonNullChain } from "typescript";
-
 export const sampleCurrentObservastion = {
+    userId:null,
+    doctorId:null,
     currentObservastion: [{
         date: null,
         week: null,

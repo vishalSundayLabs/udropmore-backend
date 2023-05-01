@@ -12,6 +12,14 @@ import { ClinicModel } from "../Clinic/clinicModel";
 import { bodyTraverse } from "../../helpers/bodyTraverse";
 import { pagination } from "../../helpers/pagination";
 import UserDetailsModel from "../UserDetails/UserDetailsModel";
+import CurrentObservastionModel from "../Consultation/CurrentObservastionModel";
+import antenatalTestModel from "../Consultation/antenatalTestModel";
+import TreatmentModel from "../Consultation/TreatmentModel";
+import NextAntenatalTestModel from "../Consultation/NextAntenatalTestModel";
+import { sampleCurrentObservastion } from "../../utils/sampleCurrentObservastion";
+import { sampleAntentalTest } from "../../utils/sampleAntenatalTest";
+import { sampleTreatment } from "../../utils/sampleTreatment";
+import { sampleNextAntenatalTest } from "../../utils/sampleNextAntenatalTest";
 
 export let getUser = async (req: IRequestWithUser, res: Response) => {
 
@@ -491,6 +499,23 @@ export const mapMotherWithDoctor = async (req, res) => {
     mother.updatedBy = req.userId;
 
     await mother.save()
+
+    sampleCurrentObservastion.userId = mother._id
+    sampleCurrentObservastion.doctorId = doctor._id
+
+    sampleAntentalTest.userId = mother._id
+    sampleAntentalTest.doctorId = doctor._id
+
+    sampleTreatment.userId = mother._id
+    sampleAntentalTest.doctorId = doctor._id
+
+    sampleNextAntenatalTest.userId = mother._id
+    sampleNextAntenatalTest.doctorId = doctor._id
+
+    await CurrentObservastionModel.create(sampleCurrentObservastion)
+    await antenatalTestModel.create(sampleAntentalTest)
+    await TreatmentModel.create(sampleTreatment)
+    await NextAntenatalTestModel.create(sampleNextAntenatalTest)
 
     return res.status(HTTP_OK).send(new ResponseSuccess({
       success: true,

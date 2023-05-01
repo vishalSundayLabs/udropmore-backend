@@ -15,6 +15,14 @@ import { validateOtpBody } from "./req_body/ValidateOtp";
 import AuthSession from "./AuthSession";
 import UserDetailsModel from "../UserDetails/UserDetailsModel";
 import { sampleUserDetails } from "../../utils/sampleUserDetails";
+import CurrentObservastionModel from "../Consultation/CurrentObservastionModel";
+import { sampleCurrentObservastion } from "../../utils/sampleCurrentObservastion";
+import antenatalTestModel from "../Consultation/antenatalTestModel";
+import { sampleAntentalTest } from "../../utils/sampleAntenatalTest";
+import { sampleTreatment } from "../../utils/sampleTreatment";
+import { sampleNextAntenatalTest } from "../../utils/sampleNextAntenatalTest";
+import TreatmentModel from "../Consultation/TreatmentModel";
+import NextAntenatalTestModel from "../Consultation/NextAntenatalTestModel";
 
 export const sendOtp = async (req: Request, res: Response) => {
 
@@ -118,7 +126,7 @@ export const validateOtp = async (req: Request, res: Response) => {
 
             sampleUserDetails.userId = newUser._id
 
-            await UserDetailsModel.create(sampleUserDetails)
+            await UserDetailsModel.create(sampleUserDetails)  
 
             user = newUser
 

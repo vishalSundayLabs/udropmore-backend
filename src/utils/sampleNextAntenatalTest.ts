@@ -1,4 +1,6 @@
-export const nextAntenatalTestSchema = {
+export const sampleNextAntenatalTest= {
+    userId:null,
+    doctorId:null,
     nextAntenatalTest: [{
         week: null,
         standardtest: [{

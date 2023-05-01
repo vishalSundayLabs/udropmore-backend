@@ -5,6 +5,7 @@ import { diseases, whoInFamily, typeOfTermination, typeOfAbortion, typeOfDeliver
 import UserModel from "../Users/UserModel"
 import UserDetailsModel from "./UserDetailsModel"
 import { weightRange } from '../../Constant/WeightChart'
+
 export const createUserDetails = async (req, res) => {
 
     const body = req.body

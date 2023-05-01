@@ -20,6 +20,14 @@ const clinicModel_1 = require("../Clinic/clinicModel");
 const bodyTraverse_1 = require("../../helpers/bodyTraverse");
 const pagination_1 = require("../../helpers/pagination");
 const UserDetailsModel_1 = require("../UserDetails/UserDetailsModel");
+const CurrentObservastionModel_1 = require("../Consultation/CurrentObservastionModel");
+const antenatalTestModel_1 = require("../Consultation/antenatalTestModel");
+const TreatmentModel_1 = require("../Consultation/TreatmentModel");
+const NextAntenatalTestModel_1 = require("../Consultation/NextAntenatalTestModel");
+const sampleCurrentObservastion_1 = require("../../utils/sampleCurrentObservastion");
+const sampleAntenatalTest_1 = require("../../utils/sampleAntenatalTest");
+const sampleTreatment_1 = require("../../utils/sampleTreatment");
+const sampleNextAntenatalTest_1 = require("../../utils/sampleNextAntenatalTest");
 let getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let uid = req.userId;
@@ -356,6 +364,18 @@ const mapMotherWithDoctor = (req, res) => __awaiter(void 0, void 0, void 0, func
             mother.mappedClinic = body.mappedClinic;
         mother.updatedBy = req.userId;
         yield mother.save();
+        sampleCurrentObservastion_1.sampleCurrentObservastion.userId = mother._id;
+        sampleCurrentObservastion_1.sampleCurrentObservastion.doctorId = doctor._id;
+        sampleAntenatalTest_1.sampleAntentalTest.userId = mother._id;
+        sampleAntenatalTest_1.sampleAntentalTest.doctorId = doctor._id;
+        sampleTreatment_1.sampleTreatment.userId = mother._id;
+        sampleAntenatalTest_1.sampleAntentalTest.doctorId = doctor._id;
+        sampleNextAntenatalTest_1.sampleNextAntenatalTest.userId = mother._id;
+        sampleNextAntenatalTest_1.sampleNextAntenatalTest.doctorId = doctor._id;
+        yield CurrentObservastionModel_1.default.create(sampleCurrentObservastion_1.sampleCurrentObservastion);
+        yield antenatalTestModel_1.default.create(sampleAntenatalTest_1.sampleAntentalTest);
+        yield TreatmentModel_1.default.create(sampleTreatment_1.sampleTreatment);
+        yield NextAntenatalTestModel_1.default.create(sampleNextAntenatalTest_1.sampleNextAntenatalTest);
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "Mother mapped with doctor successfully.",

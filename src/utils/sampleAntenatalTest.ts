@@ -1,6 +1,6 @@
-import { isNullishCoalesce } from "typescript";
-
-export const antentalTestSchema = {
+export const sampleAntentalTest = {
+    userId:null,
+    doctorId:null,
     antenatalTest: {
         date: null,
         week: null,
