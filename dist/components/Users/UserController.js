@@ -21,7 +21,7 @@ const bodyTraverse_1 = require("../../helpers/bodyTraverse");
 const pagination_1 = require("../../helpers/pagination");
 const UserDetailsModel_1 = require("../UserDetails/UserDetailsModel");
 const CurrentObservastionModel_1 = require("../Consultation/CurrentObservastionModel");
-const antenatalTestModel_1 = require("../Consultation/antenatalTestModel");
+const AntenatalTestModel_1 = require("../Consultation/AntenatalTestModel");
 const TreatmentModel_1 = require("../Consultation/TreatmentModel");
 const NextAntenatalTestModel_1 = require("../Consultation/NextAntenatalTestModel");
 const sampleCurrentObservastion_1 = require("../../utils/sampleCurrentObservastion");
@@ -373,7 +373,7 @@ const mapMotherWithDoctor = (req, res) => __awaiter(void 0, void 0, void 0, func
         sampleNextAntenatalTest_1.sampleNextAntenatalTest.userId = mother._id;
         sampleNextAntenatalTest_1.sampleNextAntenatalTest.doctorId = doctor._id;
         yield CurrentObservastionModel_1.default.create(sampleCurrentObservastion_1.sampleCurrentObservastion);
-        yield antenatalTestModel_1.default.create(sampleAntenatalTest_1.sampleAntentalTest);
+        yield AntenatalTestModel_1.default.create(sampleAntenatalTest_1.sampleAntentalTest);
         yield TreatmentModel_1.default.create(sampleTreatment_1.sampleTreatment);
         yield NextAntenatalTestModel_1.default.create(sampleNextAntenatalTest_1.sampleNextAntenatalTest);
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({

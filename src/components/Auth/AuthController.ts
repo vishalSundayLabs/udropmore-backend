@@ -17,7 +17,7 @@ import UserDetailsModel from "../UserDetails/UserDetailsModel";
 import { sampleUserDetails } from "../../utils/sampleUserDetails";
 import CurrentObservastionModel from "../Consultation/CurrentObservastionModel";
 import { sampleCurrentObservastion } from "../../utils/sampleCurrentObservastion";
-import antenatalTestModel from "../Consultation/antenatalTestModel";
+import antenatalTestModel from "../Consultation/AntenatalTestModel";
 import { sampleAntentalTest } from "../../utils/sampleAntenatalTest";
 import { sampleTreatment } from "../../utils/sampleTreatment";
 import { sampleNextAntenatalTest } from "../../utils/sampleNextAntenatalTest";

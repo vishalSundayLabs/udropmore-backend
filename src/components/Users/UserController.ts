@@ -13,7 +13,7 @@ import { bodyTraverse } from "../../helpers/bodyTraverse";
 import { pagination } from "../../helpers/pagination";
 import UserDetailsModel from "../UserDetails/UserDetailsModel";
 import CurrentObservastionModel from "../Consultation/CurrentObservastionModel";
-import antenatalTestModel from "../Consultation/antenatalTestModel";
+import antenatalTestModel from "../Consultation/AntenatalTestModel";
 import TreatmentModel from "../Consultation/TreatmentModel";
 import NextAntenatalTestModel from "../Consultation/NextAntenatalTestModel";
 import { sampleCurrentObservastion } from "../../utils/sampleCurrentObservastion";
