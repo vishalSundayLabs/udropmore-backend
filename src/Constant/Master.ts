@@ -94,3 +94,56 @@ export const sourceOfVisit = ["Self", "Social Media", "Previous Pregnancy"]
 export const language = ["English", "Hindi", "Marathi"]
 
 //past history constants (end)
+
+export const antenatalTest = [{
+    week8: {
+        haemogram: ["Hb", "TLC value", "DLC value", "Pi count"],
+        urineRoutine: ["A", "S", "Micro"],
+        ogct: ["ICT-I", "ICT-II", "VDRL/VDRLI", "HIV", "HBsAg", "HCV"]
+    },
+    week12: {
+
+    },
+    week15: {
+
+    },
+    week18: {
+
+    },
+    week21: {
+
+    },
+    week24: {
+
+    },
+    week26: {
+
+    },
+    week28: {
+
+    },
+    week30: {
+
+    },
+    week32: {
+
+    },
+    week34: {
+
+    },
+    week36: {
+
+    },
+    week37: {
+
+    },
+    week38: {
+
+    },
+    week39: {
+
+    },
+    week40: {
+
+    }
+}]

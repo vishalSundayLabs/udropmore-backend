@@ -1,114 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require("mongoose");
-const userDetailsSchema = new mongoose.Schema({
+const pastHistorySchema = new mongoose.Schema({
     userId: {
         type: mongoose.SchemaTypes.ObjectId,
         refs: "User",
         unique: true
     },
-    dateOfBirth: {
-        type: Date,
-        default: null
-    },
-    address: {
-        line1: { type: String, default: null },
-        line2: { type: String, default: null },
-        city: { type: String, default: null },
-        state: { type: String, default: null },
-        pincode: { type: Number, default: null }
-    },
-    height: {
-        unit: {
-            type: String,
-            enum: ["cm", "ft", "m", "inches", null],
-            default: null
-        },
-        value: {
-            type: Number,
-            default: null
-        }
-    },
-    weight: {
-        unit: {
-            type: String,
-            enum: ["kg", "pound", null]
-        },
-        value: {
-            type: Number,
-            default: null
-        }
-    },
-    lastMenstrualDate: {
-        type: Date,
-        default: null
-    },
-    dueDate: {
-        type: Date,
-        default: null
-    },
-    maritalStatus: {
-        type: String,
-        enum: ["Married", "Not Married", "Other", null],
-        default: null
-    },
-    occupation: {
-        type: String,
-        default: null
-    },
-    education: {
-        type: String,
-        default: null
-    },
-    pregnancyWeek: {
-        type: Number,
-        default: null
-    },
-    husbandDetails: {
-        name: {
-            type: String,
-            default: null
-        },
-        age: {
-            type: Number,
-            default: null
-        },
-        occupation: {
-            type: String,
-            default: null
-        }
-    },
-    refBy: {
-        name: {
-            type: String,
-            default: null
-        },
-        address: {
-            type: String,
-            default: null
-        }
-    },
-    previousVisit: {
-        value: {
-            type: Boolean,
-            default: false
-        },
-        sourceOfVisit: {
-            type: String,
-            enum: ["Self", "Social Media", "Previous Pregnancy", null],
-            default: null
-        },
-        dateOfVisit: { type: Date, default: null }
-    },
-    language: {
-        type: String,
-        enum: ["English", "Hindi", "Marathi", null],
-        default: null
-    },
-    emergency: {
-        name: { type: String, default: null },
-        phoneNumber: { type: String, default: null },
-        relationShip: { type: String, default: null }
+    doctorId: {
+        type: mongoose.SchemaTypes.ObjectId,
+        refs: "User"
     },
     pastHistory: {
         currentPregnancy: {
@@ -459,30 +360,6 @@ const userDetailsSchema = new mongoose.Schema({
             }
         },
     },
-    weightGainChart: [{
-            weight: {
-                unit: {
-                    type: String,
-                    enum: ["kg", "pound", null]
-                },
-                value: {
-                    type: Number,
-                    default: null
-                }
-            },
-            babyWeight: {
-                unit: {
-                    type: String,
-                    enum: ["kg", "g", "pound", null]
-                },
-                value: {
-                    type: Number,
-                    default: null
-                }
-            },
-            week: { type: Number, default: null },
-            date: { type: Date, default: null }
-        }],
     createdBy: {
         type: mongoose.SchemaTypes.ObjectId,
         refs: "User"
@@ -496,4 +373,4 @@ const userDetailsSchema = new mongoose.Schema({
         default: false
     }
 }, { timestamps: true });
-exports.default = mongoose.model('UserDetails', userDetailsSchema);
+exports.default = mongoose.model('pastHistory', pastHistorySchema);

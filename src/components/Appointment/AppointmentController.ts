@@ -1,5 +1,5 @@
 import { pagination } from "../../helpers/pagination"
-import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_NOT_FOUND, HTTP_OK } from "../../utils/Constants"
+import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_NOT_FOUND, HTTP_OK } from "../../Constant/Master"
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
 import { getDayOrTimeFromDate, makeSlotsFormat } from "../Users/UserController"
 import UserModel from "../Users/UserModel"
@@ -367,7 +367,7 @@ export const rescheduleAppointmentByDoctorOfASlot = async (req, res) => {
 
         const dateFormat = getDayOrTimeFromDate(body.date)
 
-        const appointments = await AppointmentModel.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: new Date(dateFormat.fullDate), $lt: new Date(dateFormat.nextDate) }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false })
+        const appointments = await AppointmentModel.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: new Date(dateFormat.fullDate), $lt: new Date(dateFormat.nextDate) }, appointmentType: body.appointmentType, status: { $nin: ["CANCELLED", "RESCHEDULED"] }, isDeleted: false })
 
         if (appointments.length == 0) {
 
@@ -545,7 +545,7 @@ export const appointmentBookValidations = async (body, req, res) => {
             }
 
         }
-        
+
     }
 
     let count = 0;

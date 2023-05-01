@@ -6,7 +6,7 @@ import UserModel from "./UserModel";
 import IUser, { IAvailability, IRequestWithUser } from "./UserInterface";
 // classes
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass";
-import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_NOT_FOUND, HTTP_OK } from "../../utils/Constants";
+import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_NOT_FOUND, HTTP_OK } from "../../Constant/Master";
 import AppointmentModel from "../Appointment/AppointmentModel";
 import { ClinicModel } from "../Clinic/clinicModel";
 import { bodyTraverse } from "../../helpers/bodyTraverse";
@@ -647,6 +647,7 @@ export const makeSlotsFormat = (slots, slotType) => {
 export const getDayOrTimeFromDate = (date) => {
 
   const newDate = new Date(date);
+  const currDate = new Date()
   const days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"]
   const dayInNumber = newDate.getDay()
   const hours = newDate.getHours()
@@ -656,12 +657,14 @@ export const getDayOrTimeFromDate = (date) => {
   const dates = newDate.getDate()
   const fullDate = `${years}-${months + 1}-${dates}`
   const nextDate = `${years}-${months + 1}-${dates + 1}`
+  const betweenTwoDateNoOfDays = Math.round(((+currDate) - (+newDate)) / 86400000)
 
   return {
     day: days[dayInNumber],
     time: `${hours}:${minutes}`,
     fullDate: fullDate,
-    nextDate: nextDate
+    nextDate: nextDate,
+    noOfDays: betweenTwoDateNoOfDays
   }
 
 }

@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAllDoctorOfClinic = exports.getClinicByLatitudeAndLongitude = exports.getAllClinic = exports.deleteClinic = exports.updateClinic = exports.createClinic = void 0;
 const bodyTraverse_1 = require("../../helpers/bodyTraverse");
 const pagination_1 = require("../../helpers/pagination");
-const Constants_1 = require("../../utils/Constants");
+const Master_1 = require("../../Constant/Master");
 const ResponseClass_1 = require("../../utils/ResponseClass");
 const UserModel_1 = require("../Users/UserModel");
 const clinicModel_1 = require("./clinicModel");
@@ -29,7 +29,7 @@ const createClinic = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     };
     try {
         const clinic = yield clinicModel_1.ClinicModel.create(reqData);
-        return res.status(Constants_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "Clinic created successfully.",
             result: clinic
@@ -50,7 +50,7 @@ const updateClinic = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     try {
         const clinic = yield clinicModel_1.ClinicModel.findOne({ _id: clinicId, isDeleted: false });
         if (!clinic) {
-            return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
                 success: false,
                 message: "Clinic does not exist."
             }));
@@ -58,7 +58,7 @@ const updateClinic = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         (0, bodyTraverse_1.bodyTraverse)(clinic, body);
         clinic.updatedBy = req.userId;
         yield clinic.save();
-        return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "Clinic update successfully.",
             result: clinic
@@ -78,14 +78,14 @@ const deleteClinic = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     try {
         const clinic = yield clinicModel_1.ClinicModel.findOne({ _id: clinicId, isDeleted: false });
         if (!clinic) {
-            return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
                 success: false,
                 message: "Clinic already deleted ."
             }));
         }
         clinic.isDeleted = true;
         yield clinic.save();
-        return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "Clinic delete successfully.",
             result: clinic
@@ -105,7 +105,7 @@ const getAllClinic = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     const { limit, skips } = (0, pagination_1.pagination)(query);
     try {
         const clinic = yield clinicModel_1.ClinicModel.find({ isDeleted: false }).skip(skips).limit(limit);
-        return res.status(Constants_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "Find all Clinic successfully.",
             result: clinic
@@ -124,7 +124,7 @@ const getClinicByLatitudeAndLongitude = (req, res) => __awaiter(void 0, void 0, 
     const body = req.body;
     const query = req.query;
     if (!body.longitude || !body.latitude) {
-        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
             message: "Bad request! latitude and longitude must be provide."
         }));
@@ -132,7 +132,7 @@ const getClinicByLatitudeAndLongitude = (req, res) => __awaiter(void 0, void 0, 
     const { limit, skips } = (0, pagination_1.pagination)(query);
     try {
         const clinic = yield clinicModel_1.ClinicModel.find({ isDeleted: false }).skip(skips).limit(limit);
-        return res.status(Constants_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "find all Clinic successfully.",
             result: clinic
@@ -151,7 +151,7 @@ const getAllDoctorOfClinic = (req, res) => __awaiter(void 0, void 0, void 0, fun
     const body = req.body;
     const query = req.query;
     if (!body.clinicId) {
-        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
             message: "Bad request! Clinic Id must be provide."
         }));
@@ -174,7 +174,7 @@ const getAllDoctorOfClinic = (req, res) => __awaiter(void 0, void 0, void 0, fun
                 doctors[i].availability = null;
             }
         }
-        return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "find all doctors of this clinic successfully.",
             result: doctors

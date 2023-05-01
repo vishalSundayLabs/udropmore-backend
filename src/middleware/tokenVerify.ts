@@ -1,4 +1,4 @@
-import { HTTP_BAD_REQUEST, HTTP_UNAUTHORIZED } from "../utils/Constants"
+import { HTTP_BAD_REQUEST, HTTP_UNAUTHORIZED } from "../Constant/Master"
 import { ResponseError } from "../utils/ResponseClass"
 const jwt = require("jsonwebtoken")
 

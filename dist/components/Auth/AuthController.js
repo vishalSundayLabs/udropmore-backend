@@ -19,7 +19,7 @@ const ResponseClass_1 = require("../../utils/ResponseClass");
 const TpiServices_1 = require("../Tpi/TpiServices");
 const LoginOtp_1 = require("./req_body/LoginOtp");
 const CompareObjectKeys_1 = require("../../utils/CompareObjectKeys");
-const Constants_1 = require("../../utils/Constants");
+const Master_1 = require("../../Constant/Master");
 const CreateOtp_1 = require("../../utils/CreateOtp");
 const ValidateOtp_1 = require("./req_body/ValidateOtp");
 const AuthSession_1 = require("./AuthSession");
@@ -28,15 +28,15 @@ const sampleUserDetails_1 = require("../../utils/sampleUserDetails");
 const sendOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     if ((0, CompareObjectKeys_1.compareObjectKeys)(body, LoginOtp_1.loginOtpBody)) {
-        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseBodyFormatError({
-            message: Constants_1.INCORRECT_BODY_FORMAT_MESSAGE,
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseBodyFormatError({
+            message: Master_1.INCORRECT_BODY_FORMAT_MESSAGE,
             bodyFormat: process.env.SHOW_BODY_FORMAT ? LoginOtp_1.loginOtpBody : null
         }));
     }
     try {
         var user = yield UserModel_1.default.findOne({ phoneNumber: body.phoneNumber, platform: body.platform }).exec();
         if (!user && body.platform != 'MOTHER') {
-            return res.status(Constants_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
+            return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
                 message: "User Not found. Please contact your admin"
             }));
         }
@@ -47,17 +47,17 @@ const sendOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         //send otp
         (0, TpiServices_1.sendWaOtp)(body.phoneNumber, text)
             .then((response) => {
-            return res.status(Constants_1.HTTP_OK).send(response);
+            return res.status(Master_1.HTTP_OK).send(response);
         })
             .catch((error) => {
-            return res.status(Constants_1.HTTP_INTERNAL_SERVER_ERROR).send(new ResponseClass_1.ResponseError({
+            return res.status(Master_1.HTTP_INTERNAL_SERVER_ERROR).send(new ResponseClass_1.ResponseError({
                 message: "Something went wrong",
                 error: error
             }));
         });
     }
     catch (error) {
-        return res.status(Constants_1.HTTP_INTERNAL_SERVER_ERROR).send(new ResponseClass_1.ResponseError({
+        return res.status(Master_1.HTTP_INTERNAL_SERVER_ERROR).send(new ResponseClass_1.ResponseError({
             message: "Something went wrong",
             error: error.message
         }));
@@ -67,13 +67,13 @@ exports.sendOtp = sendOtp;
 const validateOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     if ((0, CompareObjectKeys_1.compareObjectKeys)(body, ValidateOtp_1.validateOtpBody)) {
-        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseBodyFormatError({
-            message: Constants_1.INCORRECT_BODY_FORMAT_MESSAGE,
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseBodyFormatError({
+            message: Master_1.INCORRECT_BODY_FORMAT_MESSAGE,
             bodyFormat: process.env.SHOW_BODY_FORMAT ? ValidateOtp_1.validateOtpBody : null
         }));
     }
     if (!body.platform) {
-        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
             message: "Platform is required!"
         }));
@@ -82,7 +82,7 @@ const validateOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         const otp = yield OtpModel_1.default.find({ phoneNumber: body.phoneNumber, isExpired: false }).sort({ $natural: -1 }).limit(1);
         const message = otp[0] ? otp[0].otp != body.otp ? "Invalid OTP" : isExpiredOtp(otp[0].createdAt) ? "OTP Expired. Please try again!" : null : "Invalid Phone number";
         if (message) {
-            return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
                 success: false,
                 message: message
             }));
@@ -99,7 +99,7 @@ const validateOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             user.isExist = true;
         }
         if (body.platform == 'DOCTOR' && user.userType == 'DOCTOR' && !user.clinic[0]) {
-            return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
                 success: false,
                 message: 'Doctor not mapped to any clinic . Please contact your admin!'
             }));
@@ -111,7 +111,7 @@ const validateOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         yield user.save();
         // create the auth session with token
         yield AuthSession_1.default.create({ userId: user._id, jwtToken: jwtToken, isActive: true });
-        return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "Login successful",
             result: {
@@ -121,7 +121,7 @@ const validateOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         }));
     }
     catch (error) {
-        return res.status(Constants_1.HTTP_INTERNAL_SERVER_ERROR).send(new ResponseClass_1.ResponseError({
+        return res.status(Master_1.HTTP_INTERNAL_SERVER_ERROR).send(new ResponseClass_1.ResponseError({
             success: false,
             message: "Internal server error!",
             error: error
@@ -133,7 +133,7 @@ const logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const user = yield UserModel_1.default.findOne({ _id: req.userId, platform: req.platform, userType: req.userType });
         if (!user) {
-            return res.status(Constants_1.HTTP_UNAUTHORIZED).send(new ResponseClass_1.ResponseError({
+            return res.status(Master_1.HTTP_UNAUTHORIZED).send(new ResponseClass_1.ResponseError({
                 success: false,
                 message: "Invalid Token!"
             }));
@@ -141,13 +141,13 @@ const logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         user.jwtToken = null;
         yield user.save();
         yield AuthSession_1.default.findOneAndUpdate({ userId: user._id, jwtToken: user.jwtToken, isActive: true, isDeleted: false }, { $set: { isActive: false } });
-        return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "Logout successful"
         }));
     }
     catch (error) {
-        return res.status(Constants_1.HTTP_INTERNAL_SERVER_ERROR).send(new ResponseClass_1.ResponseError({
+        return res.status(Master_1.HTTP_INTERNAL_SERVER_ERROR).send(new ResponseClass_1.ResponseError({
             success: false,
             message: "Internal server error!",
             error: error

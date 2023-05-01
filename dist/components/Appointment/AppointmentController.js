@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.appointmentBookValidations = exports.updateAppointmentStatusByDoctorOfASlot = exports.rescheduleAppointmentByDoctorOfASlot = exports.rescheduleAppointment = exports.updateAppointment = exports.getAllAppointmentOfMother = exports.getAllAppointmentsOfADay = exports.getAllAppointments = exports.createAppointment = void 0;
 const pagination_1 = require("../../helpers/pagination");
-const Constants_1 = require("../../utils/Constants");
+const Master_1 = require("../../Constant/Master");
 const ResponseClass_1 = require("../../utils/ResponseClass");
 const UserController_1 = require("../Users/UserController");
 const UserModel_1 = require("../Users/UserModel");
@@ -28,14 +28,14 @@ const createAppointment = (req, res) => __awaiter(void 0, void 0, void 0, functi
     try {
         const bookedAppointment = yield AppointmentModel_1.default.find({ appointmentDateAndTime: body.appointmentDate, motherId: body.motherId, doctorId: body.doctorId, clinicId: body.clinicId, isDeleted: false });
         if (bookedAppointment.length > 0) {
-            return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
                 success: false,
                 message: "Appointment already booked ."
             }));
         }
         yield (0, exports.appointmentBookValidations)(body, req, res);
         const appointment = yield AppointmentModel_1.default.create(reqData);
-        return res.status(Constants_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "Appointment Book successfully.",
             result: appointment
@@ -61,7 +61,7 @@ const getAllAppointments = (req, res) => __awaiter(void 0, void 0, void 0, funct
     const { limit, skips } = (0, pagination_1.pagination)(query);
     try {
         const appointment = yield AppointmentModel_1.default.find(findData).skip(skips).limit(limit);
-        return res.status(Constants_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "get All appointemnt successfully",
             result: appointment
@@ -80,7 +80,7 @@ const getAllAppointmentsOfADay = (req, res) => __awaiter(void 0, void 0, void 0,
     const body = req.body;
     const query = req.query;
     if (!body.doctorId || !body.clinicId || !body.date) {
-        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             message: "Bad Request! doctor id , clinic id or date must be provide."
         }));
     }
@@ -120,7 +120,7 @@ const getAllAppointmentsOfADay = (req, res) => __awaiter(void 0, void 0, void 0,
             totalNewPatient: newPatient,
             patientList: patientList
         };
-        return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: `All Appointments of ${body.date} .`,
             result: responseObj
@@ -139,7 +139,7 @@ const getAllAppointmentOfMother = (req, res) => __awaiter(void 0, void 0, void 0
     const body = req.body;
     const query = req.query;
     if (!body.motherId || !body.clinicId) {
-        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             message: "Bad Request! mother id , clinic id must be provide."
         }));
     }
@@ -160,7 +160,7 @@ const getAllAppointmentOfMother = (req, res) => __awaiter(void 0, void 0, void 0
     const { limit, skips } = (0, pagination_1.pagination)(query);
     try {
         const appointments = yield AppointmentModel_1.default.find(reqBody).skip(skips).limit(limit);
-        return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "Get all appointment of mother.",
             result: appointments
@@ -178,14 +178,14 @@ exports.getAllAppointmentOfMother = getAllAppointmentOfMother;
 const updateAppointment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     if (!body.appointmentId) {
-        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             message: "Bad Request! mother id , clinic id must be provide."
         }));
     }
     try {
         const bookedAppointment = yield AppointmentModel_1.default.findOne({ _id: body.appointmentId, isDeleted: false });
         if (!bookedAppointment) {
-            return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseSuccess({
+            return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseSuccess({
                 success: false,
                 message: "Appointment not booked yet."
             }));
@@ -193,7 +193,7 @@ const updateAppointment = (req, res) => __awaiter(void 0, void 0, void 0, functi
         if (body.status)
             bookedAppointment.status = body.status;
         yield bookedAppointment.save();
-        return res.status(Constants_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "Appointment Update successfully.",
             result: bookedAppointment
@@ -211,7 +211,7 @@ exports.updateAppointment = updateAppointment;
 const rescheduleAppointment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     if (!body.appointmentId || !body.newDate) {
-        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
             message: "Bad Request! , appointment id and new date must be provide."
         }));
@@ -219,7 +219,7 @@ const rescheduleAppointment = (req, res) => __awaiter(void 0, void 0, void 0, fu
     try {
         const bookedAppointment = yield AppointmentModel_1.default.findOne({ _id: body.appointmentId, isDeleted: false });
         if (!bookedAppointment) {
-            return res.status(Constants_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
+            return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
                 success: false,
                 message: "Appointment not found!"
             }));
@@ -242,7 +242,7 @@ const rescheduleAppointment = (req, res) => __awaiter(void 0, void 0, void 0, fu
         bookedAppointment.status = "CANCELLED";
         yield bookedAppointment.save();
         const rescheduledAppointment = yield AppointmentModel_1.default.create(newBookAppointmentDetails);
-        return res.status(Constants_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "Appointment Reschedule successfully.",
             result: rescheduledAppointment
@@ -260,15 +260,15 @@ exports.rescheduleAppointment = rescheduleAppointment;
 const rescheduleAppointmentByDoctorOfASlot = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     if (!body.doctorId || !body.clinicId || !body.date || !body.appointmentType || !body.reason) {
-        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             message: "Bad Request! doctor id , clinic id , date , appointment type or reason must be provide."
         }));
     }
     try {
         const dateFormat = (0, UserController_1.getDayOrTimeFromDate)(body.date);
-        const appointments = yield AppointmentModel_1.default.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: new Date(dateFormat.fullDate), $lt: new Date(dateFormat.nextDate) }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false });
+        const appointments = yield AppointmentModel_1.default.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: new Date(dateFormat.fullDate), $lt: new Date(dateFormat.nextDate) }, appointmentType: body.appointmentType, status: { $nin: ["CANCELLED", "RESCHEDULED"] }, isDeleted: false });
         if (appointments.length == 0) {
-            return res.status(Constants_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
+            return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
                 success: false,
                 message: "Appointments not found!"
             }));
@@ -292,7 +292,7 @@ const rescheduleAppointmentByDoctorOfASlot = (req, res) => __awaiter(void 0, voi
                 }
             }
         }
-        return res.status(Constants_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: message,
             result: rescheduledAppointments
@@ -310,7 +310,7 @@ exports.rescheduleAppointmentByDoctorOfASlot = rescheduleAppointmentByDoctorOfAS
 const updateAppointmentStatusByDoctorOfASlot = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     if (!body.doctorId || !body.clinicId || !body.date || !body.appointmentType || !body.appointmentStatus || !body.reason) {
-        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             message: "Bad Request! doctor id , clinic id , date  appointment type , appintmentStatus or reason must be provide."
         }));
     }
@@ -318,7 +318,7 @@ const updateAppointmentStatusByDoctorOfASlot = (req, res) => __awaiter(void 0, v
         const dateFormat = (0, UserController_1.getDayOrTimeFromDate)(body.date);
         const appointments = yield AppointmentModel_1.default.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentDateAndTime: { $gte: new Date(dateFormat.fullDate), $lt: new Date(dateFormat.nextDate) }, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false });
         if (appointments.length == 0) {
-            return res.status(Constants_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
+            return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
                 success: false,
                 message: "Appointments not found!"
             }));
@@ -332,7 +332,7 @@ const updateAppointmentStatusByDoctorOfASlot = (req, res) => __awaiter(void 0, v
                 changedAppointment.push(appointments[i]);
             }
         }
-        return res.status(Constants_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: `${body.appointmentStatus} Appointments successfully.`,
             result: changedAppointment

@@ -1,6 +1,6 @@
 import { bodyTraverse } from "../../helpers/bodyTraverse"
 import { pagination } from "../../helpers/pagination"
-import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_OK } from "../../utils/Constants"
+import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_OK } from "../../Constant/Master"
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
 import UserModel from "../Users/UserModel"
 import { ClinicModel } from "./clinicModel"

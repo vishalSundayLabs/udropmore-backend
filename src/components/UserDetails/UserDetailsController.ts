@@ -1,10 +1,10 @@
 import { bodyTraverse } from "../../helpers/bodyTraverse"
-import { HTTP_BAD_REQUEST, HTTP_NOT_FOUND, HTTP_OK } from "../../utils/Constants"
+import { HTTP_BAD_REQUEST, HTTP_NOT_FOUND, HTTP_OK } from "../../Constant/Master"
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
-import { diseases, whoInFamily, typeOfTermination, typeOfAbortion, typeOfDelivery, liveBirthsDescription, genderOfChild, pregnancyType, assisted, donor, flow, natureOfCycle, sourceOfVisit, language } from "../../utils/Constants"
+import { diseases, whoInFamily, typeOfTermination, typeOfAbortion, typeOfDelivery, liveBirthsDescription, genderOfChild, pregnancyType, assisted, donor, flow, natureOfCycle, sourceOfVisit, language } from "../../Constant/Master"
 import UserModel from "../Users/UserModel"
 import UserDetailsModel from "./UserDetailsModel"
-import { weightRange } from '../../utils/Weights'
+import { weightRange } from '../../Constant/WeightChart'
 export const createUserDetails = async (req, res) => {
 
     const body = req.body

@@ -1,4 +1,4 @@
-import { HTTP_UNAUTHORIZED } from "../utils/Constants"
+import { HTTP_UNAUTHORIZED } from "../Constant/Master"
 import { ResponseError } from "../utils/ResponseClass"
 
 export const isAdmin = (req, res, next) => {

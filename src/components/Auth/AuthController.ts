@@ -9,7 +9,7 @@ import { ResponseBodyFormatError, ResponseError, ResponseSuccess } from "../../u
 import { sendWaOtp } from "../Tpi/TpiServices";
 import { loginOtpBody } from "./req_body/LoginOtp";
 import { compareObjectKeys } from "../../utils/CompareObjectKeys";
-import { HTTP_BAD_REQUEST, HTTP_INTERNAL_SERVER_ERROR, HTTP_NOT_FOUND, HTTP_OK, HTTP_UNAUTHORIZED, INCORRECT_BODY_FORMAT_MESSAGE } from "../../utils/Constants";
+import { HTTP_BAD_REQUEST, HTTP_INTERNAL_SERVER_ERROR, HTTP_NOT_FOUND, HTTP_OK, HTTP_UNAUTHORIZED, INCORRECT_BODY_FORMAT_MESSAGE } from "../../Constant/Master";
 import { createOtp } from "../../utils/CreateOtp";
 import { validateOtpBody } from "./req_body/ValidateOtp";
 import AuthSession from "./AuthSession";

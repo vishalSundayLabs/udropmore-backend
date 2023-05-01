@@ -11,16 +11,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getPastHistoryMasterConstant = exports.getWeightByBmi = exports.getUserDetailsbyId = exports.updateUserDetails = exports.createUserDetails = void 0;
 const bodyTraverse_1 = require("../../helpers/bodyTraverse");
-const Constants_1 = require("../../utils/Constants");
+const Master_1 = require("../../Constant/Master");
 const ResponseClass_1 = require("../../utils/ResponseClass");
-const Constants_2 = require("../../utils/Constants");
+const Master_2 = require("../../Constant/Master");
 const UserModel_1 = require("../Users/UserModel");
 const UserDetailsModel_1 = require("./UserDetailsModel");
-const Weights_1 = require("../../utils/Weights");
+const WeightChart_1 = require("../../Constant/WeightChart");
 const createUserDetails = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     if (!body.motherId) {
-        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
             message: "Bad request! Mother id must be provide."
         }));
@@ -47,7 +47,7 @@ const createUserDetails = (req, res) => __awaiter(void 0, void 0, void 0, functi
     };
     try {
         const userDetails = yield UserDetailsModel_1.default.create(reqData);
-        return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "User details create successfully.",
             result: userDetails
@@ -65,7 +65,7 @@ exports.createUserDetails = createUserDetails;
 const updateUserDetails = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     if (!body.motherId) {
-        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
             message: "Bad request! Mother id must be provide."
         }));
@@ -80,7 +80,7 @@ const updateUserDetails = (req, res) => __awaiter(void 0, void 0, void 0, functi
         user.updatedBy = req.userId;
         yield user.save();
         if (!userDetails) {
-            return res.status(Constants_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
+            return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
                 success: false,
                 message: "user details not found."
             }));
@@ -89,7 +89,7 @@ const updateUserDetails = (req, res) => __awaiter(void 0, void 0, void 0, functi
         (0, bodyTraverse_1.bodyTraverse)(userDetails, body);
         userDetails.updatedBy = req.userId;
         yield userDetails.save();
-        return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "User details update successfully.",
             result: { userDetails, firstName: user.firstName, lastName: user.lastName, email: user.email }
@@ -107,7 +107,7 @@ exports.updateUserDetails = updateUserDetails;
 const getUserDetailsbyId = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const params = req.params;
     if (!params.motherId) {
-        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
             message: "Bad request! Mother id must be provide."
         }));
@@ -116,12 +116,12 @@ const getUserDetailsbyId = (req, res) => __awaiter(void 0, void 0, void 0, funct
         const userDetails = yield UserDetailsModel_1.default.findOne({ userId: params.motherId, isDeleted: false });
         const user = yield UserModel_1.default.findOne({ _id: userDetails.userId, isActive: true, isDeleted: false });
         if (!userDetails) {
-            return res.status(Constants_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
+            return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
                 success: false,
                 message: "user details not found."
             }));
         }
-        return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "get User details successfully.",
             result: { userDetails, firstName: user.firstName, lastName: user.lastName, email: user.email }
@@ -140,15 +140,15 @@ const getWeightByBmi = (req, res) => __awaiter(void 0, void 0, void 0, function*
     const query = req.query;
     const params = req.params;
     if (!params.motherId || !query.bmi) {
-        return res.status(Constants_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
             message: "Bad request! Mother id or BMI must be provide."
         }));
     }
     try {
         const motherWeightGainChart = yield UserDetailsModel_1.default.findOne({ userId: params.motherId }, { weightGainChart: true });
-        const weightRangeUsingBmi = (0, Weights_1.weightRange)(Number(query.bmi));
-        return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+        const weightRangeUsingBmi = (0, WeightChart_1.weightRange)(Number(query.bmi));
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "get User details successfully.",
             result: { item: motherWeightGainChart, weightGainRange: weightRangeUsingBmi }
@@ -164,24 +164,24 @@ const getWeightByBmi = (req, res) => __awaiter(void 0, void 0, void 0, function*
 });
 exports.getWeightByBmi = getWeightByBmi;
 const getPastHistoryMasterConstant = (req, res) => {
-    return res.status(Constants_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+    return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
         success: true,
         message: "get Constant successfully.",
         result: {
-            whoInFamily: Constants_2.whoInFamily,
-            diseases: Constants_2.diseases,
-            typeOfTermination: Constants_2.typeOfTermination,
-            typeOfAbortion: Constants_2.typeOfAbortion,
-            typeOfDelivery: Constants_2.typeOfDelivery,
-            liveBirthsDescription: Constants_2.liveBirthsDescription,
-            genderOfChild: Constants_2.genderOfChild,
-            pregnancyType: Constants_2.pregnancyType,
-            assisted: Constants_2.assisted,
-            donor: Constants_2.donor,
-            flow: Constants_2.flow,
-            natureOfCycle: Constants_2.natureOfCycle,
-            sourceOfVisit: Constants_2.sourceOfVisit,
-            language: Constants_2.language
+            whoInFamily: Master_2.whoInFamily,
+            diseases: Master_2.diseases,
+            typeOfTermination: Master_2.typeOfTermination,
+            typeOfAbortion: Master_2.typeOfAbortion,
+            typeOfDelivery: Master_2.typeOfDelivery,
+            liveBirthsDescription: Master_2.liveBirthsDescription,
+            genderOfChild: Master_2.genderOfChild,
+            pregnancyType: Master_2.pregnancyType,
+            assisted: Master_2.assisted,
+            donor: Master_2.donor,
+            flow: Master_2.flow,
+            natureOfCycle: Master_2.natureOfCycle,
+            sourceOfVisit: Master_2.sourceOfVisit,
+            language: Master_2.language
         }
     }));
 };
