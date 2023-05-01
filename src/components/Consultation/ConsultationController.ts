@@ -3,7 +3,7 @@ import { HTTP_BAD_REQUEST, HTTP_NOT_FOUND, HTTP_OK } from "../../Constant/Master
 import { bodyTraverse } from "../../helpers/bodyTraverse"
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
 import { getDayOrTimeFromDate } from "../Users/UserController"
-import antenatalTestModel from "./antenatalTestModel"
+import antenatalTestModel from "./AntenatalTestModel"
 import CurrentObservastionModel from "./CurrentObservastionModel"
 import NextAntenatalTestModel from "./NextAntenatalTestModel"
 import TreatmentModel from "./TreatmentModel"

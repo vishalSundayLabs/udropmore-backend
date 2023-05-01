@@ -15,7 +15,7 @@ const Master_1 = require("../../Constant/Master");
 const bodyTraverse_1 = require("../../helpers/bodyTraverse");
 const ResponseClass_1 = require("../../utils/ResponseClass");
 const UserController_1 = require("../Users/UserController");
-const antenatalTestModel_1 = require("./antenatalTestModel");
+const AntenatalTestModel_1 = require("./AntenatalTestModel");
 const CurrentObservastionModel_1 = require("./CurrentObservastionModel");
 const NextAntenatalTestModel_1 = require("./NextAntenatalTestModel");
 const TreatmentModel_1 = require("./TreatmentModel");
@@ -164,7 +164,7 @@ const createAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, func
     };
     (0, bodyTraverse_1.bodyTraverse)(reqData, body);
     try {
-        const antenatalTest = yield antenatalTestModel_1.default.create(reqData);
+        const antenatalTest = yield AntenatalTestModel_1.default.create(reqData);
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "Create Antenatal Test successfully .",
@@ -189,7 +189,7 @@ const updateAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, func
         }));
     }
     try {
-        const antenatalTest = yield antenatalTestModel_1.default.findOne({ userId: body.motherId, doctorId: body.doctorId, isDeleted: false });
+        const antenatalTest = yield AntenatalTestModel_1.default.findOne({ userId: body.motherId, doctorId: body.doctorId, isDeleted: false });
         if (!antenatalTest) {
             return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseSuccess({
                 success: true,
@@ -223,7 +223,7 @@ const getAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, functio
         }));
     }
     try {
-        const antenatalTest = yield antenatalTestModel_1.default.findOne({ userId: body.motherId, doctorId: body.doctorId, isDeleted: false });
+        const antenatalTest = yield AntenatalTestModel_1.default.findOne({ userId: body.motherId, doctorId: body.doctorId, isDeleted: false });
         if (!antenatalTest) {
             return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseSuccess({
                 success: true,
