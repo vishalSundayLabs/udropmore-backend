@@ -4,7 +4,7 @@ import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
 import { diseases, whoInFamily, typeOfTermination, typeOfAbortion, typeOfDelivery, liveBirthsDescription, genderOfChild, pregnancyType, assisted, donor, flow, natureOfCycle, sourceOfVisit, language } from "../../Constant/Master"
 import UserModel from "../Users/UserModel"
 import UserDetailsModel from "./UserDetailsModel"
-import { weightRange } from '../../Constant/WeightChart'
+import { babyWeights, weightRange } from '../../Constant/WeightChart'
 
 export const createUserDetails = async (req, res) => {
 
@@ -186,6 +186,14 @@ export const getWeightByBmi = async (req, res) => {
     try {
 
         const motherWeightGainChart = await UserDetailsModel.findOne({ userId: params.motherId }, { weightGainChart: true })
+
+        for (let i = 0; i < motherWeightGainChart.weightGainChart.length; i++) {
+
+            const weightKey = motherWeightGainChart.weightGainChart[i].week
+
+            motherWeightGainChart.weightGainChart[i].babyWeight.value = babyWeights[weightKey].babyWeight.value
+
+        }
 
         const weightRangeUsingBmi = weightRange(Number(query.bmi))
 

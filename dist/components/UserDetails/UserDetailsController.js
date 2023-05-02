@@ -147,6 +147,10 @@ const getWeightByBmi = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
     try {
         const motherWeightGainChart = yield UserDetailsModel_1.default.findOne({ userId: params.motherId }, { weightGainChart: true });
+        for (let i = 0; i < motherWeightGainChart.weightGainChart.length; i++) {
+            const weightKey = motherWeightGainChart.weightGainChart[i].week;
+            motherWeightGainChart.weightGainChart[i].babyWeight.value = WeightChart_1.babyWeights[weightKey].babyWeight.value;
+        }
         const weightRangeUsingBmi = (0, WeightChart_1.weightRange)(Number(query.bmi));
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,

@@ -242,10 +242,5 @@ export const sampleUserDetails = {
             }
         },
     },
-    weightGainChart: [{
-        weight: null,
-        babyWeight: null,
-        week: null,
-        date: null
-    }]
+    weightGainChart: []
 }
