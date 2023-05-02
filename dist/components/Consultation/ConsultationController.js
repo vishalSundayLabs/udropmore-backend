@@ -10,10 +10,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getNextAntenatalTest = exports.updateNextAntenatalTest = exports.createNextAntenatalTest = exports.getTreatment = exports.updateTreatment = exports.createTreatment = exports.getAntenatalTest = exports.updateAntenatalTest = exports.createAntenatalTest = exports.getCurrentObservastion = exports.updateCurrentObservastion = exports.createCurrentObservastion = exports.getWeeklyTestOrAppointmentsByLmp = void 0;
+const dayjs = require("dayjs");
 const DoctorToDoTask_1 = require("../../Constant/DoctorToDoTask");
 const Master_1 = require("../../Constant/Master");
 const bodyTraverse_1 = require("../../helpers/bodyTraverse");
 const ResponseClass_1 = require("../../utils/ResponseClass");
+const sampleCurrentObservastion_1 = require("../../utils/sampleCurrentObservastion");
 const UserController_1 = require("../Users/UserController");
 const AntenatalTestModel_1 = require("./AntenatalTestModel");
 const CurrentObservastionModel_1 = require("./CurrentObservastionModel");
@@ -85,7 +87,7 @@ const createCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0
 exports.createCurrentObservastion = createCurrentObservastion;
 const updateCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
-    if (!body.motherId || !body.doctorId) {
+    if (!body.motherId || !body.doctorId || !body.date) {
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
             message: "Bad Request! Mother Id , Doctor Id or date must be provide.",
@@ -119,10 +121,10 @@ const updateCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0
 exports.updateCurrentObservastion = updateCurrentObservastion;
 const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
-    if (!body.motherId || !body.doctorId) {
+    if (!body.motherId || !body.doctorId || !body.lmpDate) {
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
-            message: "Bad Request! Mother Id , Doctor Id or date must be provide.",
+            message: "Bad Request! Mother Id , Doctor Id or LMP Date must be provide.",
         }));
     }
     try {
@@ -133,13 +135,56 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
                 message: "Current Observastion not found!",
             }));
         }
+        const currentDate = dayjs(new Date());
+        const week = currentDate.diff(body.lmpDate, "week") + 1;
+        const currentObservastionDataTemp = currentObservastionData.currentObservastion;
+        const weeks = [5, 8, 12, 15, 18, 21, 24, 26, 28, 30, 32, 34, 36, 37, 38, 39, 40];
+        let previousWeekIndex = 0;
+        for (let i = 0; i < weeks.length; i++) {
+            if (weeks[i] >= week) {
+                previousWeekIndex = i - 1;
+                break;
+            }
+        }
+        const endIndex = currentObservastionDataTemp.length - 1;
+        if (currentObservastionDataTemp[endIndex].week !== weeks[previousWeekIndex]) {
+            const prevData = createPreviousWeekData(week, currentObservastionData.currentObservastion);
+            const actualData = [];
+            for (let j = 0; j < prevData.length; j++) {
+                if (j < currentObservastionDataTemp.length && currentObservastionDataTemp[j].week == prevData[j].week) {
+                    actualData.push(currentObservastionDataTemp[j]);
+                }
+                else {
+                    actualData.push(prevData[j]);
+                }
+            }
+            const currentObservastionTemp = sampleCurrentObservastion_1.sampleCurrentObservastion.currentObservastion[0];
+            currentObservastionTemp.week = weeks[previousWeekIndex + 1];
+            actualData.push(currentObservastionTemp);
+            for (let i = 0; i < actualData.length; i++) {
+                if (!actualData[i].riskFactor.length) {
+                    actualData[i].riskFactor = sampleCurrentObservastion_1.sampleCurrentObservastion.currentObservastion[0].riskFactor;
+                }
+                if (!actualData[i].complaints.length) {
+                    actualData[i].complaints = sampleCurrentObservastion_1.sampleCurrentObservastion.currentObservastion[0].complaints;
+                }
+            }
+            currentObservastionData.currentObservastion = actualData;
+        }
+        else {
+            const currentObservastionTemp = sampleCurrentObservastion_1.sampleCurrentObservastion.currentObservastion[0];
+            currentObservastionTemp.week = weeks[previousWeekIndex + 1];
+            currentObservastionData.currentObservastion.push(currentObservastionTemp);
+        }
+        yield currentObservastionData.save();
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
-            message: "Create Current Observastion successfully .",
+            message: "get Current Observastion Data successfully .",
             result: currentObservastionData
         }));
     }
     catch (error) {
+        console.log(error);
         let response = new ResponseClass_1.ResponseError({
             message: "Something went wrong",
             error: error.message,
@@ -182,7 +227,7 @@ const createAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, func
 exports.createAntenatalTest = createAntenatalTest;
 const updateAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
-    if (!body.motherId || !body.doctorId) {
+    if (!body.motherId || !body.doctorId || !body.date) {
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
             message: "Bad Request! Mother Id , Doctor Id or date must be provide.",
@@ -216,7 +261,7 @@ const updateAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, func
 exports.updateAntenatalTest = updateAntenatalTest;
 const getAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
-    if (!body.motherId || !body.doctorId) {
+    if (!body.motherId || !body.doctorId || !body.date) {
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
             message: "Bad Request! Mother Id , Doctor Id or date must be provide.",
@@ -279,7 +324,7 @@ const createTreatment = (req, res) => __awaiter(void 0, void 0, void 0, function
 exports.createTreatment = createTreatment;
 const updateTreatment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
-    if (!body.motherId || !body.doctorId) {
+    if (!body.motherId || !body.doctorId || !body.date) {
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
             message: "Bad Request! Mother Id , Doctor Id or date must be provide.",
@@ -313,7 +358,7 @@ const updateTreatment = (req, res) => __awaiter(void 0, void 0, void 0, function
 exports.updateTreatment = updateTreatment;
 const getTreatment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
-    if (!body.motherId || !body.doctorId) {
+    if (!body.motherId || !body.doctorId || !body.date) {
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
             message: "Bad Request! Mother Id , Doctor Id or date must be provide.",
@@ -376,7 +421,7 @@ const createNextAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, 
 exports.createNextAntenatalTest = createNextAntenatalTest;
 const updateNextAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
-    if (!body.motherId || !body.doctorId) {
+    if (!body.motherId || !body.doctorId || !body.date) {
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
             message: "Bad Request! Mother Id , Doctor Id or date must be provide.",
@@ -409,7 +454,7 @@ const updateNextAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, 
 exports.updateNextAntenatalTest = updateNextAntenatalTest;
 const getNextAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
-    if (!body.motherId || !body.doctorId) {
+    if (!body.motherId || !body.doctorId || !body.date) {
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
             message: "Bad Request! Mother Id , Doctor Id or date must be provide.",
@@ -439,3 +484,17 @@ const getNextAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, fun
 });
 exports.getNextAntenatalTest = getNextAntenatalTest;
 //end
+//create previous week data
+const createPreviousWeekData = (week, sample) => {
+    const weeks = [5, 8, 12, 15, 18, 21, 24, 26, 28, 30, 32, 34, 36, 37, 38, 39, 40];
+    const result = [];
+    sample.date = new Date();
+    for (let i = 0; i < weeks.length; i++) {
+        const dummy = Object.assign({}, sample);
+        if (week >= 5 && week > weeks[i]) {
+            dummy.week = weeks[i];
+            result.push(dummy);
+        }
+    }
+    return result;
+};

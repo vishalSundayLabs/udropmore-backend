@@ -1,7 +1,10 @@
+import { Dayjs } from "dayjs"
+import dayjs = require("dayjs")
 import { toDoTasks } from "../../Constant/DoctorToDoTask"
 import { HTTP_BAD_REQUEST, HTTP_NOT_FOUND, HTTP_OK } from "../../Constant/Master"
 import { bodyTraverse } from "../../helpers/bodyTraverse"
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
+import { sampleCurrentObservastion } from "../../utils/sampleCurrentObservastion"
 import { getDayOrTimeFromDate } from "../Users/UserController"
 import antenatalTestModel from "./AntenatalTestModel"
 import CurrentObservastionModel from "./CurrentObservastionModel"
@@ -103,7 +106,7 @@ export const updateCurrentObservastion = async (req, res) => {
 
     const body = req.body
 
-    if (!body.motherId || !body.doctorId) {
+    if (!body.motherId || !body.doctorId || !body.date) {
 
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
             success: false,
@@ -153,11 +156,11 @@ export const getCurrentObservastion = async (req, res) => {
 
     const body = req.body
 
-    if (!body.motherId || !body.doctorId) {
+    if (!body.motherId || !body.doctorId || !body.lmpDate) {
 
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
             success: false,
-            message: "Bad Request! Mother Id , Doctor Id or date must be provide.",
+            message: "Bad Request! Mother Id , Doctor Id or LMP Date must be provide.",
         }))
 
     }
@@ -175,14 +178,85 @@ export const getCurrentObservastion = async (req, res) => {
 
         }
 
+        const currentDate = dayjs(new Date())
+
+        const week = currentDate.diff(body.lmpDate, "week") + 1
+
+        const currentObservastionDataTemp = currentObservastionData.currentObservastion
+
+        const weeks = [5, 8, 12, 15, 18, 21, 24, 26, 28, 30, 32, 34, 36, 37, 38, 39, 40]
+
+        let previousWeekIndex = 0;
+
+        for (let i = 0; i < weeks.length; i++) {
+
+            if (weeks[i] >= week) {
+
+                previousWeekIndex = i - 1
+                break;
+
+            }
+
+        }
+
+        const endIndex = currentObservastionDataTemp.length - 1
+
+        if (currentObservastionDataTemp[endIndex].week !== weeks[previousWeekIndex]) {
+
+            const prevData = createPreviousWeekData(week, currentObservastionData.currentObservastion)
+
+            const actualData = []
+
+            for (let j = 0; j < prevData.length; j++) {
+
+                if (j < currentObservastionDataTemp.length && currentObservastionDataTemp[j].week == prevData[j].week) {
+                    actualData.push(currentObservastionDataTemp[j])
+                } else {
+                    actualData.push(prevData[j])
+                }
+
+            }
+
+            const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
+
+            currentObservastionTemp.week = weeks[previousWeekIndex + 1]
+
+            actualData.push(currentObservastionTemp)
+
+            for (let i = 0; i < actualData.length; i++) {
+
+                if (!actualData[i].riskFactor.length) {
+                    actualData[i].riskFactor = sampleCurrentObservastion.currentObservastion[0].riskFactor
+                }
+
+                if (!actualData[i].complaints.length) {
+                    actualData[i].complaints = sampleCurrentObservastion.currentObservastion[0].complaints
+                }
+
+            }
+
+            currentObservastionData.currentObservastion = actualData
+
+        } else {
+
+            const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
+
+            currentObservastionTemp.week = weeks[previousWeekIndex + 1]
+
+            currentObservastionData.currentObservastion.push(currentObservastionTemp)
+
+        }
+
+        await currentObservastionData.save()
+
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
-            message: "Create Current Observastion successfully .",
+            message: "get Current Observastion Data successfully .",
             result: currentObservastionData
         }))
 
     } catch (error) {
-
+        console.log(error)
         let response = new ResponseError({
             message: "Something went wrong",
             error: error.message,
@@ -242,7 +316,7 @@ export const updateAntenatalTest = async (req, res) => {
 
     const body = req.body
 
-    if (!body.motherId || !body.doctorId) {
+    if (!body.motherId || !body.doctorId || !body.date) {
 
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
             success: false,
@@ -292,7 +366,7 @@ export const getAntenatalTest = async (req, res) => {
 
     const body = req.body
 
-    if (!body.motherId || !body.doctorId) {
+    if (!body.motherId || !body.doctorId || !body.date) {
 
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
             success: false,
@@ -382,7 +456,7 @@ export const updateTreatment = async (req, res) => {
 
     const body = req.body
 
-    if (!body.motherId || !body.doctorId) {
+    if (!body.motherId || !body.doctorId || !body.date) {
 
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
             success: false,
@@ -432,7 +506,7 @@ export const getTreatment = async (req, res) => {
 
     const body = req.body
 
-    if (!body.motherId || !body.doctorId) {
+    if (!body.motherId || !body.doctorId || !body.date) {
 
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
             success: false,
@@ -522,7 +596,7 @@ export const updateNextAntenatalTest = async (req, res) => {
 
     const body = req.body
 
-    if (!body.motherId || !body.doctorId) {
+    if (!body.motherId || !body.doctorId || !body.date) {
 
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
             success: false,
@@ -568,9 +642,10 @@ export const updateNextAntenatalTest = async (req, res) => {
 }
 
 export const getNextAntenatalTest = async (req, res) => {
+
     const body = req.body
 
-    if (!body.motherId || !body.doctorId) {
+    if (!body.motherId || !body.doctorId || !body.date) {
 
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
             success: false,
@@ -611,3 +686,28 @@ export const getNextAntenatalTest = async (req, res) => {
 
 }
 //end
+
+//create previous week data
+
+const createPreviousWeekData = (week, sample) => {
+
+    const weeks = [5, 8, 12, 15, 18, 21, 24, 26, 28, 30, 32, 34, 36, 37, 38, 39, 40]
+    const result = []
+    sample.date = new Date()
+
+    for (let i = 0; i < weeks.length; i++) {
+
+        const dummy = { ...sample }
+
+        if (week >= 5 && week > weeks[i]) {
+
+            dummy.week = weeks[i]
+            result.push(dummy)
+
+        }
+
+    }
+
+    return result;
+
+}

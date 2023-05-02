@@ -48,11 +48,12 @@ const userDetailsSchema = new mongoose.Schema({
     },
     maritalStatus: {
         type: String,
-        enum: ["Married", "Not Married", "Other", null],
+        enum: ["Married", "Not Married", "Others", null],
         default: null
     },
     occupation: {
         type: String,
+        enum: ['Business', 'Working', 'Housewife', 'Others'],
         default: null
     },
     education: {
@@ -74,6 +75,7 @@ const userDetailsSchema = new mongoose.Schema({
         },
         occupation: {
             type: String,
+            enum: ['Business', 'Working', 'Others'],
             default: null
         }
     },
