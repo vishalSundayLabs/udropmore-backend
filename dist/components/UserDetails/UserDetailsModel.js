@@ -54,7 +54,7 @@ const userDetailsSchema = new mongoose.Schema({
     },
     occupation: {
         type: String,
-        enum: ['Business', 'Working', 'Housewife', 'Others'],
+        enum: ['Business', 'Working', 'Housewife', 'Others', null],
         default: null
     },
     education: {
@@ -76,7 +76,7 @@ const userDetailsSchema = new mongoose.Schema({
         },
         occupation: {
             type: String,
-            enum: ['Business', 'Working', 'Others'],
+            enum: ['Business', 'Working', 'Others', null],
             default: null
         }
     },
