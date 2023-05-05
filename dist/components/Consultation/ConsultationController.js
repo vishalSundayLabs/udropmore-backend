@@ -156,14 +156,14 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
             const currentObservastionTemp = sampleCurrentObservastion_1.sampleCurrentObservastion.currentObservastion[0];
             currentObservastionTemp.week = weeks[previousWeekIndex + 1];
             actualData.push(currentObservastionTemp);
-            for (let i = 0; i < actualData.length; i++) {
-                if (!actualData[i].riskFactor.length) {
-                    actualData[i].riskFactor = sampleCurrentObservastion_1.sampleCurrentObservastion.currentObservastion[0].riskFactor;
-                }
-                if (!actualData[i].complaints.length) {
-                    actualData[i].complaints = sampleCurrentObservastion_1.sampleCurrentObservastion.currentObservastion[0].complaints;
-                }
-            }
+            // for (let i = 0; i < actualData.length; i++) {
+            //     if (!actualData[i].riskFactor.length) {
+            //         actualData[i].riskFactor = sampleCurrentObservastion.currentObservastion[0].riskFactor
+            //     }
+            //     if (!actualData[i].complaints.length) {
+            //         actualData[i].complaints = sampleCurrentObservastion.currentObservastion[0].complaints
+            //     }
+            // }
             currentObservastionData.currentObservastion = actualData;
         }
         else {

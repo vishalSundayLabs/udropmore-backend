@@ -4,14 +4,16 @@ export const MasterAntenatalTest = {
     // week 5 and week 6 same 
     week5: {
         date: null,
-        week: 5,
+        week: [4,5,6],
         weekAndDays: null,
-        pregnancyConfirmation: pregnancyConfirmation,
-        bloodGroupAndRhTyping: bloodGroupAndRhTyping
+        tests: {
+            pregnancyConfirmation: pregnancyConfirmation,
+            bloodGroupAndRhTyping: bloodGroupAndRhTyping
+        }
     },
     week8: {
         date: null,
-        week: 8,
+        week: [7,8,9],
         weekAndDays: null,
         bloodTest: bloodTest,
         urineRoutine: urineRoutine,
@@ -28,7 +30,7 @@ export const MasterAntenatalTest = {
     },
     week12: {
         date: null,
-        week: 12,
+        week: [10,11,12,13],
         weekAndDays: null,
         firstTrimesterScreening: firstTrimesterScreening,
         ntUsg: ntUsg,
@@ -40,7 +42,7 @@ export const MasterAntenatalTest = {
     },
     week15: {
         date: null,
-        week: 15,
+        week: [14,15,16],
         weekAndDays: null,
         urineCs: urineCs,
         afp: afp,
@@ -49,7 +51,7 @@ export const MasterAntenatalTest = {
     },
     week18: {
         date: null,
-        week: 18,
+        week: [17,18,19],
         weekAndDays: null,
         bloodTest: bloodTest,
         urineCs: urineCs,
@@ -60,7 +62,7 @@ export const MasterAntenatalTest = {
     },
     week21: {
         date: null,
-        week: 21,
+        week: [20,21,22],
         weekAndDays: null,
         foetal2dEcho: foetal2dEcho,
         // pihWorkUp: pihWorkUp,
@@ -68,19 +70,19 @@ export const MasterAntenatalTest = {
     },
     week24: {
         date: null,
-        week: 24,
+        week: [23,24],
         weekAndDays: null,
         ogct: ogct
     },
     week26: {
         date: null,
-        week: 26,
+        week: [25,26],
         weekAndDays: null,
 
     },
     week28: {
         date: null,
-        week: 28,
+        week: [27,28],
         weekAndDays: null,
         usgWithDoppler: usgWithDoppler,
         dfmr: dfmr,
@@ -94,19 +96,19 @@ export const MasterAntenatalTest = {
     },
     week30: {
         date: null,
-        week: 30,
+        week: [29,30],
         weekAndDays: null,
         // dfmr: dfmr
     },
     week32: {
         date: null,
-        week: 32,
+        week: [31,32],
         weekAndDays: null,
         dfmr: dfmr
     },
     week34: {
         date: null,
-        week: 34,
+        week: [33,34],
         weekAndDays: null,
         usgWithDoppler: usgWithDoppler,
         dfmr: dfmr,
@@ -114,35 +116,35 @@ export const MasterAntenatalTest = {
     },
     week36: {
         date: null,
-        week: 36,
+        week: [35,36],
         weekAndDays: null,
         // nst: nst,
         dfmr: dfmr
     },
     week37: {
         date: null,
-        week: 37,
+        week: [37],
         weekAndDays: null,
         // nst: nst,
         dfmr: dfmr
     },
     week38: {
         date: null,
-        week: 38,
+        week: [38],
         weekAndDays: null,
         // nst: nst,
         dfmr: dfmr
     },
     week39: {
         date: null,
-        week: 39,
+        week: [39],
         weekAndDays: null,
         // nst: nst,
         dfmr: dfmr
     },
     week40: {
         date: null,
-        week: 40,
+        week: [40],
         weekAndDays: null,
         // nst: nst,
         dfmr: dfmr

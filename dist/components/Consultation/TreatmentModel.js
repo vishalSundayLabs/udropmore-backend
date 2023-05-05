@@ -10,14 +10,14 @@ const treatmentSchema = new mongoose.Schema({
         type: mongoose.SchemaTypes.ObjectId,
         refs: "User"
     },
-    treatment: {
-        obeservation: [{
-                date: Date,
+    treatment: [{
+            date: Date,
+            obeservation: {
                 examinationFinding: { type: String, default: null }
-            }],
-        prescription: {
-            standardSupplements: [{
-                    name: { type: String, default: null },
+            },
+            prescription: {
+                standardSupplements: {
+                    templateId: "sdijflk",
                     /*
                       Example name:HM1 (doctor firstname + lastname)
                     */
@@ -42,32 +42,32 @@ const treatmentSchema = new mongoose.Schema({
                             startDate: Date,
                             endDate: Date
                         }]
-                }],
-            symptomsSupplements: {
-                vomitting: [{
-                        name: { type: String, default: null },
-                        freq: String,
-                        week: Number,
-                        startDate: Date,
-                        endDate: Date
-                    }],
-                iron: [{
-                        name: { type: String, default: null },
-                        freq: String,
-                        week: Number,
-                        startDate: Date,
-                        endDate: Date
-                    }],
-                acidity: [{
-                        name: { type: String, default: null },
-                        freq: String,
-                        week: Number,
-                        startDate: Date,
-                        endDate: Date
-                    }]
+                },
+                symptomsSupplements: {
+                    vomitting: [{
+                            name: { type: String, default: null },
+                            freq: String,
+                            week: Number,
+                            startDate: Date,
+                            endDate: Date
+                        }],
+                    iron: [{
+                            name: { type: String, default: null },
+                            freq: String,
+                            week: Number,
+                            startDate: Date,
+                            endDate: Date
+                        }],
+                    acidity: [{
+                            name: { type: String, default: null },
+                            freq: String,
+                            week: Number,
+                            startDate: Date,
+                            endDate: Date
+                        }]
+                }
             }
-        }
-    },
+        }],
     isDeleted: {
         type: Boolean,
         default: false

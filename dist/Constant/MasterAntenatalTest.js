@@ -6,14 +6,16 @@ exports.MasterAntenatalTest = {
     // week 5 and week 6 same 
     week5: {
         date: null,
-        week: 5,
+        week: [4, 5, 6],
         weekAndDays: null,
-        pregnancyConfirmation: Tests_1.pregnancyConfirmation,
-        bloodGroupAndRhTyping: Tests_1.bloodGroupAndRhTyping
+        tests: {
+            pregnancyConfirmation: Tests_1.pregnancyConfirmation,
+            bloodGroupAndRhTyping: Tests_1.bloodGroupAndRhTyping
+        }
     },
     week8: {
         date: null,
-        week: 8,
+        week: [7, 8, 9],
         weekAndDays: null,
         bloodTest: Tests_1.bloodTest,
         urineRoutine: Tests_1.urineRoutine,
@@ -30,7 +32,7 @@ exports.MasterAntenatalTest = {
     },
     week12: {
         date: null,
-        week: 12,
+        week: [10, 11, 12, 13],
         weekAndDays: null,
         firstTrimesterScreening: Tests_1.firstTrimesterScreening,
         ntUsg: Tests_1.ntUsg,
@@ -42,7 +44,7 @@ exports.MasterAntenatalTest = {
     },
     week15: {
         date: null,
-        week: 15,
+        week: [14, 15, 16],
         weekAndDays: null,
         urineCs: Tests_1.urineCs,
         afp: Tests_1.afp,
@@ -51,7 +53,7 @@ exports.MasterAntenatalTest = {
     },
     week18: {
         date: null,
-        week: 18,
+        week: [17, 18, 19],
         weekAndDays: null,
         bloodTest: Tests_1.bloodTest,
         urineCs: Tests_1.urineCs,
@@ -62,7 +64,7 @@ exports.MasterAntenatalTest = {
     },
     week21: {
         date: null,
-        week: 21,
+        week: [20, 21, 22],
         weekAndDays: null,
         foetal2dEcho: Tests_1.foetal2dEcho,
         // pihWorkUp: pihWorkUp,
@@ -70,18 +72,18 @@ exports.MasterAntenatalTest = {
     },
     week24: {
         date: null,
-        week: 24,
+        week: [23, 24],
         weekAndDays: null,
         ogct: Tests_1.ogct
     },
     week26: {
         date: null,
-        week: 26,
+        week: [25, 26],
         weekAndDays: null,
     },
     week28: {
         date: null,
-        week: 28,
+        week: [27, 28],
         weekAndDays: null,
         usgWithDoppler: Tests_1.usgWithDoppler,
         dfmr: Tests_1.dfmr,
@@ -95,19 +97,19 @@ exports.MasterAntenatalTest = {
     },
     week30: {
         date: null,
-        week: 30,
+        week: [29, 30],
         weekAndDays: null,
         // dfmr: dfmr
     },
     week32: {
         date: null,
-        week: 32,
+        week: [31, 32],
         weekAndDays: null,
         dfmr: Tests_1.dfmr
     },
     week34: {
         date: null,
-        week: 34,
+        week: [33, 34],
         weekAndDays: null,
         usgWithDoppler: Tests_1.usgWithDoppler,
         dfmr: Tests_1.dfmr,
@@ -115,35 +117,35 @@ exports.MasterAntenatalTest = {
     },
     week36: {
         date: null,
-        week: 36,
+        week: [35, 36],
         weekAndDays: null,
         // nst: nst,
         dfmr: Tests_1.dfmr
     },
     week37: {
         date: null,
-        week: 37,
+        week: [37],
         weekAndDays: null,
         // nst: nst,
         dfmr: Tests_1.dfmr
     },
     week38: {
         date: null,
-        week: 38,
+        week: [38],
         weekAndDays: null,
         // nst: nst,
         dfmr: Tests_1.dfmr
     },
     week39: {
         date: null,
-        week: 39,
+        week: [39],
         weekAndDays: null,
         // nst: nst,
         dfmr: Tests_1.dfmr
     },
     week40: {
         date: null,
-        week: 40,
+        week: [40],
         weekAndDays: null,
         // nst: nst,
         dfmr: Tests_1.dfmr

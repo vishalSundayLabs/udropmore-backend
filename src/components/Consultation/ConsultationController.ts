@@ -213,17 +213,17 @@ export const getCurrentObservastion = async (req, res) => {
 
             actualData.push(currentObservastionTemp)
 
-            for (let i = 0; i < actualData.length; i++) {
+            // for (let i = 0; i < actualData.length; i++) {
 
-                if (!actualData[i].riskFactor.length) {
-                    actualData[i].riskFactor = sampleCurrentObservastion.currentObservastion[0].riskFactor
-                }
+            //     if (!actualData[i].riskFactor.length) {
+            //         actualData[i].riskFactor = sampleCurrentObservastion.currentObservastion[0].riskFactor
+            //     }
 
-                if (!actualData[i].complaints.length) {
-                    actualData[i].complaints = sampleCurrentObservastion.currentObservastion[0].complaints
-                }
+            //     if (!actualData[i].complaints.length) {
+            //         actualData[i].complaints = sampleCurrentObservastion.currentObservastion[0].complaints
+            //     }
 
-            }
+            // }
 
             currentObservastionData.currentObservastion = actualData
 
@@ -237,7 +237,7 @@ export const getCurrentObservastion = async (req, res) => {
 
         }
         
-        
+
         // await currentObservastionData.save()
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
