@@ -131,6 +131,7 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
     }
     try {
         const currentObservastionData = yield CurrentObservastionModel_1.default.findOne({ userId: body.motherId, doctorId: body.doctorId, isDeleted: false });
+        console.log(currentObservastionData);
         if (!currentObservastionData) {
             return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseSuccess({
                 success: true,

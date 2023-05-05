@@ -171,7 +171,7 @@ export const getCurrentObservastion = async (req, res) => {
     try {
 
         const currentObservastionData = await CurrentObservastionModel.findOne({ userId: body.motherId, doctorId: body.doctorId, isDeleted: false })
-
+        console.log(currentObservastionData)
         if (!currentObservastionData) {
 
             return res.status(HTTP_NOT_FOUND).send(new ResponseSuccess({
@@ -236,7 +236,7 @@ export const getCurrentObservastion = async (req, res) => {
             currentObservastionData.currentObservastion.push(currentObservastionTemp)
 
         }
-        
+
 
         // await currentObservastionData.save()
 
