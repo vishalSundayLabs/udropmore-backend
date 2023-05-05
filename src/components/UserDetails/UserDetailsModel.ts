@@ -487,6 +487,36 @@ const userDetailsSchema = new mongoose.Schema({
         week: { type: Number, default: null },
         date: { type: Date, default: null }
     }],
+    weightRangeRecommendedByDoctor: [
+        {
+            week: { type: Number, default: null },
+            upperLimitGain: {
+                unit: {
+                    type: String,
+                    enum: ["kg", "g", "pound", null],
+                    default: null
+                },
+                value: {
+                    type: Number,
+                    default: null
+                },
+                isWho: { type: Boolean, default: false }
+            },
+            lowerLimitGain: {
+                unit: {
+                    type: String,
+                    enum: ["kg", "g", "pound", null],
+                    default: null
+                },
+                value: {
+                    type: Number,
+                    default: null
+                },
+                isWho: { type: Boolean, default: false }
+            },
+
+        }
+    ],
     createdBy: {
         type: mongoose.SchemaTypes.ObjectId,
         refs: "User"

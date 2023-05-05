@@ -17,6 +17,7 @@ const Master_2 = require("../../Constant/Master");
 const UserModel_1 = require("../Users/UserModel");
 const UserDetailsModel_1 = require("./UserDetailsModel");
 const WeightChart_1 = require("../../Constant/WeightChart");
+const calculateCurrentWeekHelper_1 = require("../../helpers/calculateCurrentWeekHelper");
 const createUserDetails = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     if (!body.motherId) {
@@ -85,7 +86,7 @@ const updateUserDetails = (req, res) => __awaiter(void 0, void 0, void 0, functi
                 message: "user details not found."
             }));
         }
-        //add feilds for update
+        //add feilds for update 
         (0, bodyTraverse_1.bodyTraverse)(userDetails, body);
         userDetails.updatedBy = req.userId;
         yield userDetails.save();
@@ -121,6 +122,8 @@ const getUserDetailsbyId = (req, res) => __awaiter(void 0, void 0, void 0, funct
                 message: "user details not found."
             }));
         }
+        const currentWeek = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(userDetails.lastMenstrualDate);
+        userDetails.pregnancyWeek = currentWeek.week;
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "get User details successfully.",
@@ -146,16 +149,28 @@ const getWeightByBmi = (req, res) => __awaiter(void 0, void 0, void 0, function*
         }));
     }
     try {
-        const motherWeightGainChart = yield UserDetailsModel_1.default.findOne({ userId: params.motherId }, { weightGainChart: true });
+        const motherWeightGainChart = yield UserDetailsModel_1.default.findOne({ userId: params.motherId }, { weightGainChart: true, weightRangeRecommendedByDoctor: true });
+        if (!motherWeightGainChart) {
+            return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
+                success: true,
+                message: "Weight gain chart not found!"
+            }));
+        }
         for (let i = 0; i < motherWeightGainChart.weightGainChart.length; i++) {
             const weightKey = motherWeightGainChart.weightGainChart[i].week;
             motherWeightGainChart.weightGainChart[i].babyWeight.value = WeightChart_1.babyWeights[weightKey].babyWeight.value;
         }
-        const weightRangeUsingBmi = (0, WeightChart_1.weightRange)(Number(query.bmi));
+        let weightRangeUsingBmi = null;
+        if (!motherWeightGainChart.weightRangeRecommendedByDoctor || !motherWeightGainChart.weightRangeRecommendedByDoctor.length) {
+            weightRangeUsingBmi = (0, WeightChart_1.weightRange)(Number(query.bmi));
+        }
+        else {
+            weightRangeUsingBmi = motherWeightGainChart.weightRangeRecommendedByDoctor;
+        }
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
-            message: "get User details successfully.",
-            result: { item: motherWeightGainChart, weightGainRange: weightRangeUsingBmi }
+            message: "get weight data successfully.",
+            result: { item: motherWeightGainChart.weightGainChart, weightGainRange: weightRangeUsingBmi }
         }));
     }
     catch (error) {

@@ -1,7 +1,7 @@
 export const sampleAntentalTest = {
     userId:null,
     doctorId:null,
-    antenatalTest: {
+    antenatalTest: [{
         date: null,
         week: null,
         pregnancyConfirmation: {
@@ -19,10 +19,6 @@ export const sampleAntentalTest = {
             fatherBloodGroup: null,
             result: null
         },
-        // currentWeek: [{
-        //     testName: null,
-        //     upload: null,
-        //     followUp: { type: Boolean, default: false }
-        // }]
-    }
+        currentWeek: []
+    }]
 }

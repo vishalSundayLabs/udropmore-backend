@@ -2,8 +2,11 @@ import { Dayjs } from "dayjs"
 import dayjs = require("dayjs")
 import { toDoTasks } from "../../Constant/DoctorToDoTask"
 import { HTTP_BAD_REQUEST, HTTP_NOT_FOUND, HTTP_OK } from "../../Constant/Master"
+import { MasterAntenatalTest } from "../../Constant/MasterAntenatalTest"
 import { bodyTraverse } from "../../helpers/bodyTraverse"
+import { calculateCurrentWeekAndDays } from "../../helpers/calculateCurrentWeekHelper"
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
+import { sampleAntentalTest } from "../../utils/sampleAntenatalTest"
 import { sampleCurrentObservastion } from "../../utils/sampleCurrentObservastion"
 import { getDayOrTimeFromDate } from "../Users/UserController"
 import antenatalTestModel from "./AntenatalTestModel"
@@ -178,32 +181,19 @@ export const getCurrentObservastion = async (req, res) => {
 
         }
 
-        const currentDate = dayjs(new Date())
-
-        const week = currentDate.diff(body.lmpDate, "week") + 1
+        const { week, days } = calculateCurrentWeekAndDays(body.lmpDate)
 
         const currentObservastionDataTemp = currentObservastionData.currentObservastion
 
         const weeks = [5, 8, 12, 15, 18, 21, 24, 26, 28, 30, 32, 34, 36, 37, 38, 39, 40]
 
-        let previousWeekIndex = 0;
-
-        for (let i = 0; i < weeks.length; i++) {
-
-            if (weeks[i] >= week) {
-
-                previousWeekIndex = i - 1
-                break;
-
-            }
-
-        }
+        let previousWeekIndex = getPreviousWeekIndex(week)
 
         const endIndex = currentObservastionDataTemp.length - 1
 
         if (currentObservastionDataTemp[endIndex].week !== weeks[previousWeekIndex]) {
 
-            const prevData = createPreviousWeekData(week, currentObservastionData.currentObservastion)
+            const prevData = createPreviousWeekData(week, sampleCurrentObservastion.currentObservastion[0])
 
             const actualData = []
 
@@ -246,8 +236,9 @@ export const getCurrentObservastion = async (req, res) => {
             currentObservastionData.currentObservastion.push(currentObservastionTemp)
 
         }
-
-        await currentObservastionData.save()
+        
+        
+        // await currentObservastionData.save()
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
@@ -265,6 +256,7 @@ export const getCurrentObservastion = async (req, res) => {
         return res.status(500).json(response);
 
     }
+
 }
 //end
 
@@ -366,7 +358,7 @@ export const getAntenatalTest = async (req, res) => {
 
     const body = req.body
 
-    if (!body.motherId || !body.doctorId || !body.date) {
+    if (!body.motherId || !body.doctorId || !body.lmpDate) {
 
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
             success: false,
@@ -387,6 +379,58 @@ export const getAntenatalTest = async (req, res) => {
             }))
 
         }
+
+        const { week, days } = calculateCurrentWeekAndDays(body.lmpDate)
+
+        const antenatalTestTemp = antenatalTest.antenatalTest
+
+        const weeks = [5, 8, 12, 15, 18, 21, 24, 26, 28, 30, 32, 34, 36, 37, 38, 39, 40]
+
+        let previousWeekIndex = getPreviousWeekIndex(week)
+
+        const endIndex = antenatalTestTemp.length - 1
+        const weekString = `week${week}`
+        const testOfTheWeek = MasterAntenatalTest[weekString]
+
+        if (antenatalTestTemp[endIndex].week !== weeks[previousWeekIndex]) {
+
+            const prevData = createPreviousWeekData(week, MasterAntenatalTest)
+
+            const actualData = []
+
+            for (let j = 0; j < prevData.length; j++) {
+
+                if (j < antenatalTestTemp.length && antenatalTestTemp[j].week == prevData[j].week) {
+
+                    actualData.push(antenatalTestTemp[j])
+
+                } else {
+
+                    actualData.push(prevData[j])
+
+                }
+
+            }
+
+            const sampleAntenatalTestTemp = sampleAntentalTest.antenatalTest[0]
+
+            sampleAntenatalTestTemp.week = weeks[previousWeekIndex + 1]
+
+            actualData.push(sampleAntenatalTestTemp)
+
+            antenatalTest.antenatalTest = actualData
+
+        } else {
+
+            const sampleAntenatalTestTemp = sampleAntentalTest.antenatalTest[0]
+
+            sampleAntenatalTestTemp.week = weeks[previousWeekIndex + 1]
+
+            antenatalTest.antenatalTest.push(sampleAntenatalTestTemp)
+
+        }
+
+        // await antenatalTest.save()
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
@@ -707,7 +751,25 @@ const createPreviousWeekData = (week, sample) => {
         }
 
     }
-
+    console.log(result)
     return result;
 
+}
+
+const getPreviousWeekIndex = (currentWeek) => {
+
+    var previousWeekIndex = 0
+    const weeks = [5, 8, 12, 15, 18, 21, 24, 26, 28, 30, 32, 34, 36, 37, 38, 39, 40]
+
+    for (let i = 0; i < weeks.length; i++) {
+
+        if (weeks[i] >= currentWeek) {
+
+            previousWeekIndex = i - 1
+            break;
+
+        }
+
+    }
+    return previousWeekIndex
 }

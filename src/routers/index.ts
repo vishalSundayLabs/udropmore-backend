@@ -10,6 +10,7 @@ import clinicRouter from '../components/Clinic/ClinicRouter';
 import appointmentRouter from '../components/Appointment/AppointmentRouter';
 import userDetailsRouter from '../components/UserDetails/UserDetailsRouter';
 import consultationRouter from '../components/Consultation/ConsultationRouter'
+import cmsRouter from '../components/CMS/CMSRouter'
 
 const router = Router();
 
@@ -23,6 +24,8 @@ router.use('/v1/appointment', appointmentRouter)
 
 router.use('/v1/mother', userDetailsRouter)
 
-router.use("/v1/consultation",consultationRouter)
+router.use("/v1/consultation", consultationRouter)
+
+router.use("/v1/cms", cmsRouter)
 
 export default router;

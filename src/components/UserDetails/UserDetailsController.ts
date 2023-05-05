@@ -5,6 +5,7 @@ import { diseases, whoInFamily, typeOfTermination, typeOfAbortion, typeOfDeliver
 import UserModel from "../Users/UserModel"
 import UserDetailsModel from "./UserDetailsModel"
 import { babyWeights, weightRange } from '../../Constant/WeightChart'
+import { calculateCurrentWeekAndDays } from "../../helpers/calculateCurrentWeekHelper"
 
 export const createUserDetails = async (req, res) => {
 
@@ -97,7 +98,7 @@ export const updateUserDetails = async (req, res) => {
             }))
 
         }
-        //add feilds for update
+        //add feilds for update 
         bodyTraverse(userDetails, body)
 
         userDetails.updatedBy = req.userId
@@ -151,6 +152,10 @@ export const getUserDetailsbyId = async (req, res) => {
 
         }
 
+        const currentWeek = calculateCurrentWeekAndDays(userDetails.lastMenstrualDate)
+
+        userDetails.pregnancyWeek = currentWeek.week
+
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: "get User details successfully.",
@@ -185,7 +190,14 @@ export const getWeightByBmi = async (req, res) => {
 
     try {
 
-        const motherWeightGainChart = await UserDetailsModel.findOne({ userId: params.motherId }, { weightGainChart: true })
+        const motherWeightGainChart = await UserDetailsModel.findOne({ userId: params.motherId }, { weightGainChart: true, weightRangeRecommendedByDoctor: true })
+
+        if (!motherWeightGainChart) {
+            return res.status(HTTP_NOT_FOUND).send(new ResponseError({
+                success: true,
+                message: "Weight gain chart not found!"
+            }))
+        }
 
         for (let i = 0; i < motherWeightGainChart.weightGainChart.length; i++) {
 
@@ -195,12 +207,22 @@ export const getWeightByBmi = async (req, res) => {
 
         }
 
-        const weightRangeUsingBmi = weightRange(Number(query.bmi))
+        let weightRangeUsingBmi = null
+
+        if (!motherWeightGainChart.weightRangeRecommendedByDoctor || !motherWeightGainChart.weightRangeRecommendedByDoctor.length) {
+
+            weightRangeUsingBmi = weightRange(Number(query.bmi))
+
+        } else {
+
+            weightRangeUsingBmi = motherWeightGainChart.weightRangeRecommendedByDoctor
+
+        }
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
-            message: "get User details successfully.",
-            result: { item: motherWeightGainChart, weightGainRange: weightRangeUsingBmi }
+            message: "get weight data successfully.",
+            result: { item: motherWeightGainChart.weightGainChart, weightGainRange: weightRangeUsingBmi }
         }))
 
     } catch (error) {

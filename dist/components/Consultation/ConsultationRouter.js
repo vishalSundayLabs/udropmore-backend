@@ -8,7 +8,7 @@ router.get("/tests/appointment", tokenVerify_1.verifyToken, ConsultationControll
 //currentObservastion 
 router.post('/currentObservastion/create', tokenVerify_1.verifyToken, ConsultationController_1.createCurrentObservastion);
 router.put('/currentObservastion/update', tokenVerify_1.verifyToken, ConsultationController_1.updateCurrentObservastion);
-router.get('/currentObservastion/details', tokenVerify_1.verifyToken, ConsultationController_1.getCurrentObservastion);
+router.post('/currentObservastion/details', tokenVerify_1.verifyToken, ConsultationController_1.getCurrentObservastion);
 //end
 //antental test
 router.post("/antenatalTest/create", tokenVerify_1.verifyToken, ConsultationController_1.createAntenatalTest);

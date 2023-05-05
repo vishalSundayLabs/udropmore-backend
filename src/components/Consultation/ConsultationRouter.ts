@@ -10,7 +10,7 @@ router.post('/currentObservastion/create', verifyToken, createCurrentObservastio
 
 router.put('/currentObservastion/update', verifyToken, updateCurrentObservastion)
 
-router.get('/currentObservastion/details', verifyToken, getCurrentObservastion)
+router.post('/currentObservastion/details', verifyToken, getCurrentObservastion)
 //end
 
 //antental test
