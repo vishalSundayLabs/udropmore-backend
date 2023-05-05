@@ -171,7 +171,7 @@ export const getCurrentObservastion = async (req, res) => {
     try {
 
         const currentObservastionData = await CurrentObservastionModel.findOne({ userId: body.motherId, doctorId: body.doctorId, isDeleted: false })
-       
+
         if (!currentObservastionData) {
 
             return res.status(HTTP_NOT_FOUND).send(new ResponseSuccess({
@@ -187,55 +187,55 @@ export const getCurrentObservastion = async (req, res) => {
 
         const weeks = [5, 8, 12, 15, 18, 21, 24, 26, 28, 30, 32, 34, 36, 37, 38, 39, 40]
 
-        let previousWeekIndex = getPreviousWeekIndex(week)
+        let previousWeekIndex = getPreviousWeekIndex(week) == -1 ? 0 : getPreviousWeekIndex(week)
 
         const endIndex = currentObservastionDataTemp.length - 1
+        console.log(week, weeks[previousWeekIndex], previousWeekIndex)
+        if (currentObservastionDataTemp[endIndex].week !== weeks[previousWeekIndex]) {
 
-        // if (currentObservastionDataTemp[endIndex].week !== weeks[previousWeekIndex]) {
+            const prevData = createPreviousWeekData(week, sampleCurrentObservastion.currentObservastion[0])
+            console.log(prevData)
+            const actualData = []
 
-        //     const prevData = createPreviousWeekData(week, sampleCurrentObservastion.currentObservastion[0])
+            for (let j = 0; j < prevData.length; j++) {
 
-        //     const actualData = []
+                if (j < currentObservastionDataTemp.length && currentObservastionDataTemp[j].week == prevData[j].week) {
+                    actualData.push(currentObservastionDataTemp[j])
+                } else {
+                    actualData.push(prevData[j])
+                }
 
-        //     for (let j = 0; j < prevData.length; j++) {
+            }
 
-        //         if (j < currentObservastionDataTemp.length && currentObservastionDataTemp[j].week == prevData[j].week) {
-        //             actualData.push(currentObservastionDataTemp[j])
-        //         } else {
-        //             actualData.push(prevData[j])
-        //         }
+            const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
 
-        //     }
+            currentObservastionTemp.week = weeks[previousWeekIndex + 1]
 
-        //     const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
+            actualData.push(currentObservastionTemp)
 
-        //     currentObservastionTemp.week = weeks[previousWeekIndex + 1]
+            // for (let i = 0; i < actualData.length; i++) {
 
-        //     actualData.push(currentObservastionTemp)
+            //     if (!actualData[i].riskFactor.length) {
+            //         actualData[i].riskFactor = sampleCurrentObservastion.currentObservastion[0].riskFactor
+            //     }
 
-        //     // for (let i = 0; i < actualData.length; i++) {
+            //     if (!actualData[i].complaints.length) {
+            //         actualData[i].complaints = sampleCurrentObservastion.currentObservastion[0].complaints
+            //     }
 
-        //     //     if (!actualData[i].riskFactor.length) {
-        //     //         actualData[i].riskFactor = sampleCurrentObservastion.currentObservastion[0].riskFactor
-        //     //     }
+            // }
 
-        //     //     if (!actualData[i].complaints.length) {
-        //     //         actualData[i].complaints = sampleCurrentObservastion.currentObservastion[0].complaints
-        //     //     }
+            currentObservastionData.currentObservastion = actualData
 
-        //     // }
+        } else {
 
-        //     currentObservastionData.currentObservastion = actualData
+            const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
 
-        // } else {
+            currentObservastionTemp.week = weeks[previousWeekIndex + 1]
 
-        //     const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
+            currentObservastionData.currentObservastion.push(currentObservastionTemp)
 
-        //     currentObservastionTemp.week = weeks[previousWeekIndex + 1]
-
-        //     currentObservastionData.currentObservastion.push(currentObservastionTemp)
-
-        // }
+        }
 
 
         // await currentObservastionData.save()
