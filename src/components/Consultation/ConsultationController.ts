@@ -171,7 +171,7 @@ export const getCurrentObservastion = async (req, res) => {
     try {
 
         const currentObservastionData = await CurrentObservastionModel.findOne({ userId: body.motherId, doctorId: body.doctorId, isDeleted: false })
-        console.log(currentObservastionData.riskFactor)
+       
         if (!currentObservastionData) {
 
             return res.status(HTTP_NOT_FOUND).send(new ResponseSuccess({
@@ -191,51 +191,51 @@ export const getCurrentObservastion = async (req, res) => {
 
         const endIndex = currentObservastionDataTemp.length - 1
 
-        if (currentObservastionDataTemp[endIndex].week !== weeks[previousWeekIndex]) {
+        // if (currentObservastionDataTemp[endIndex].week !== weeks[previousWeekIndex]) {
 
-            const prevData = createPreviousWeekData(week, sampleCurrentObservastion.currentObservastion[0])
+        //     const prevData = createPreviousWeekData(week, sampleCurrentObservastion.currentObservastion[0])
 
-            const actualData = []
+        //     const actualData = []
 
-            for (let j = 0; j < prevData.length; j++) {
+        //     for (let j = 0; j < prevData.length; j++) {
 
-                if (j < currentObservastionDataTemp.length && currentObservastionDataTemp[j].week == prevData[j].week) {
-                    actualData.push(currentObservastionDataTemp[j])
-                } else {
-                    actualData.push(prevData[j])
-                }
+        //         if (j < currentObservastionDataTemp.length && currentObservastionDataTemp[j].week == prevData[j].week) {
+        //             actualData.push(currentObservastionDataTemp[j])
+        //         } else {
+        //             actualData.push(prevData[j])
+        //         }
 
-            }
+        //     }
 
-            const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
+        //     const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
 
-            currentObservastionTemp.week = weeks[previousWeekIndex + 1]
+        //     currentObservastionTemp.week = weeks[previousWeekIndex + 1]
 
-            actualData.push(currentObservastionTemp)
+        //     actualData.push(currentObservastionTemp)
 
-            // for (let i = 0; i < actualData.length; i++) {
+        //     // for (let i = 0; i < actualData.length; i++) {
 
-            //     if (!actualData[i].riskFactor.length) {
-            //         actualData[i].riskFactor = sampleCurrentObservastion.currentObservastion[0].riskFactor
-            //     }
+        //     //     if (!actualData[i].riskFactor.length) {
+        //     //         actualData[i].riskFactor = sampleCurrentObservastion.currentObservastion[0].riskFactor
+        //     //     }
 
-            //     if (!actualData[i].complaints.length) {
-            //         actualData[i].complaints = sampleCurrentObservastion.currentObservastion[0].complaints
-            //     }
+        //     //     if (!actualData[i].complaints.length) {
+        //     //         actualData[i].complaints = sampleCurrentObservastion.currentObservastion[0].complaints
+        //     //     }
 
-            // }
+        //     // }
 
-            currentObservastionData.currentObservastion = actualData
+        //     currentObservastionData.currentObservastion = actualData
 
-        } else {
+        // } else {
 
-            const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
+        //     const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
 
-            currentObservastionTemp.week = weeks[previousWeekIndex + 1]
+        //     currentObservastionTemp.week = weeks[previousWeekIndex + 1]
 
-            currentObservastionData.currentObservastion.push(currentObservastionTemp)
+        //     currentObservastionData.currentObservastion.push(currentObservastionTemp)
 
-        }
+        // }
 
 
         // await currentObservastionData.save()

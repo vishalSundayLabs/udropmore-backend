@@ -17,7 +17,6 @@ const bodyTraverse_1 = require("../../helpers/bodyTraverse");
 const calculateCurrentWeekHelper_1 = require("../../helpers/calculateCurrentWeekHelper");
 const ResponseClass_1 = require("../../utils/ResponseClass");
 const sampleAntenatalTest_1 = require("../../utils/sampleAntenatalTest");
-const sampleCurrentObservastion_1 = require("../../utils/sampleCurrentObservastion");
 const UserController_1 = require("../Users/UserController");
 const AntenatalTestModel_1 = require("./AntenatalTestModel");
 const CurrentObservastionModel_1 = require("./CurrentObservastionModel");
@@ -131,7 +130,6 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
     }
     try {
         const currentObservastionData = yield CurrentObservastionModel_1.default.findOne({ userId: body.motherId, doctorId: body.doctorId, isDeleted: false });
-        console.log(currentObservastionData.riskFactor);
         if (!currentObservastionData) {
             return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseSuccess({
                 success: true,
@@ -143,35 +141,33 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
         const weeks = [5, 8, 12, 15, 18, 21, 24, 26, 28, 30, 32, 34, 36, 37, 38, 39, 40];
         let previousWeekIndex = getPreviousWeekIndex(week);
         const endIndex = currentObservastionDataTemp.length - 1;
-        if (currentObservastionDataTemp[endIndex].week !== weeks[previousWeekIndex]) {
-            const prevData = createPreviousWeekData(week, sampleCurrentObservastion_1.sampleCurrentObservastion.currentObservastion[0]);
-            const actualData = [];
-            for (let j = 0; j < prevData.length; j++) {
-                if (j < currentObservastionDataTemp.length && currentObservastionDataTemp[j].week == prevData[j].week) {
-                    actualData.push(currentObservastionDataTemp[j]);
-                }
-                else {
-                    actualData.push(prevData[j]);
-                }
-            }
-            const currentObservastionTemp = sampleCurrentObservastion_1.sampleCurrentObservastion.currentObservastion[0];
-            currentObservastionTemp.week = weeks[previousWeekIndex + 1];
-            actualData.push(currentObservastionTemp);
-            // for (let i = 0; i < actualData.length; i++) {
-            //     if (!actualData[i].riskFactor.length) {
-            //         actualData[i].riskFactor = sampleCurrentObservastion.currentObservastion[0].riskFactor
-            //     }
-            //     if (!actualData[i].complaints.length) {
-            //         actualData[i].complaints = sampleCurrentObservastion.currentObservastion[0].complaints
-            //     }
-            // }
-            currentObservastionData.currentObservastion = actualData;
-        }
-        else {
-            const currentObservastionTemp = sampleCurrentObservastion_1.sampleCurrentObservastion.currentObservastion[0];
-            currentObservastionTemp.week = weeks[previousWeekIndex + 1];
-            currentObservastionData.currentObservastion.push(currentObservastionTemp);
-        }
+        // if (currentObservastionDataTemp[endIndex].week !== weeks[previousWeekIndex]) {
+        //     const prevData = createPreviousWeekData(week, sampleCurrentObservastion.currentObservastion[0])
+        //     const actualData = []
+        //     for (let j = 0; j < prevData.length; j++) {
+        //         if (j < currentObservastionDataTemp.length && currentObservastionDataTemp[j].week == prevData[j].week) {
+        //             actualData.push(currentObservastionDataTemp[j])
+        //         } else {
+        //             actualData.push(prevData[j])
+        //         }
+        //     }
+        //     const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
+        //     currentObservastionTemp.week = weeks[previousWeekIndex + 1]
+        //     actualData.push(currentObservastionTemp)
+        //     // for (let i = 0; i < actualData.length; i++) {
+        //     //     if (!actualData[i].riskFactor.length) {
+        //     //         actualData[i].riskFactor = sampleCurrentObservastion.currentObservastion[0].riskFactor
+        //     //     }
+        //     //     if (!actualData[i].complaints.length) {
+        //     //         actualData[i].complaints = sampleCurrentObservastion.currentObservastion[0].complaints
+        //     //     }
+        //     // }
+        //     currentObservastionData.currentObservastion = actualData
+        // } else {
+        //     const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
+        //     currentObservastionTemp.week = weeks[previousWeekIndex + 1]
+        //     currentObservastionData.currentObservastion.push(currentObservastionTemp)
+        // }
         // await currentObservastionData.save()
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
