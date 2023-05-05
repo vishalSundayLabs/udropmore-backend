@@ -17,7 +17,7 @@ const treatmentSchema = new mongoose.Schema({
         prescription: {
             standardSupplements: {
 
-                templateId: "sdijflk",
+                // templateId: "sdijflk",
                 /*
                   Example name:HM1 (doctor firstname + lastname)
                 */
