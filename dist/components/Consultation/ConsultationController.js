@@ -142,10 +142,10 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
         const weeks = [5, 8, 12, 15, 18, 21, 24, 26, 28, 30, 32, 34, 36, 37, 38, 39, 40];
         let previousWeekIndex = getPreviousWeekIndex(week) == -1 ? 0 : getPreviousWeekIndex(week);
         const endIndex = currentObservastionDataTemp.length - 1;
-        console.log(week, weeks[previousWeekIndex], previousWeekIndex);
-        if (currentObservastionDataTemp[endIndex].week !== weeks[previousWeekIndex]) {
+        console.log(week, weeks[previousWeekIndex], previousWeekIndex, currentObservastionDataTemp[endIndex].week, week);
+        if (currentObservastionDataTemp[endIndex].week !== week) {
             const prevData = createPreviousWeekData(week, sampleCurrentObservastion_1.sampleCurrentObservastion.currentObservastion[0]);
-            console.log(prevData);
+            console.log("in if", prevData);
             const actualData = [];
             for (let j = 0; j < prevData.length; j++) {
                 if (j < currentObservastionDataTemp.length && currentObservastionDataTemp[j].week == prevData[j].week) {
@@ -155,9 +155,11 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
                     actualData.push(prevData[j]);
                 }
             }
-            const currentObservastionTemp = sampleCurrentObservastion_1.sampleCurrentObservastion.currentObservastion[0];
-            currentObservastionTemp.week = weeks[previousWeekIndex + 1];
-            actualData.push(currentObservastionTemp);
+            if (week >= 5) {
+                const currentObservastionTemp = sampleCurrentObservastion_1.sampleCurrentObservastion.currentObservastion[0];
+                currentObservastionTemp.week = weeks[previousWeekIndex + 1];
+                actualData.push(currentObservastionTemp);
+            }
             // for (let i = 0; i < actualData.length; i++) {
             //     if (!actualData[i].riskFactor.length) {
             //         actualData[i].riskFactor = sampleCurrentObservastion.currentObservastion[0].riskFactor
@@ -169,8 +171,9 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
             currentObservastionData.currentObservastion = actualData;
         }
         else {
+            console.log("in else");
             const currentObservastionTemp = sampleCurrentObservastion_1.sampleCurrentObservastion.currentObservastion[0];
-            currentObservastionTemp.week = weeks[previousWeekIndex + 1];
+            currentObservastionTemp.week = weeks[previousWeekIndex == 0 ? week < 5 ? 0 : previousWeekIndex + 1 : previousWeekIndex + 2];
             currentObservastionData.currentObservastion.push(currentObservastionTemp);
         }
         // await currentObservastionData.save()
@@ -522,7 +525,11 @@ const createPreviousWeekData = (week, sample) => {
             result.push(dummy);
         }
     }
-    console.log(result);
+    if (week < 5 && result.length == 0) {
+        const dummy = Object.assign({}, sample);
+        dummy.week = weeks[0];
+        result.push(dummy);
+    }
     return result;
 };
 const getPreviousWeekIndex = (currentWeek) => {

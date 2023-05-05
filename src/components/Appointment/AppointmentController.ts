@@ -112,7 +112,7 @@ export const getAllAppointmentsOfADay = async (req, res) => {
         let patientList = [];
         const patientMap = new Map();
         let videoAppointmentCount = 0;
-
+        
         for (let i = 0; i < appointments.length; i++) {
 
             const item = appointments[i]

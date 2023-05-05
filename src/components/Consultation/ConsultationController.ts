@@ -190,11 +190,11 @@ export const getCurrentObservastion = async (req, res) => {
         let previousWeekIndex = getPreviousWeekIndex(week) == -1 ? 0 : getPreviousWeekIndex(week)
 
         const endIndex = currentObservastionDataTemp.length - 1
-        console.log(week, weeks[previousWeekIndex], previousWeekIndex)
-        if (currentObservastionDataTemp[endIndex].week !== weeks[previousWeekIndex]) {
+        console.log(week, weeks[previousWeekIndex], previousWeekIndex, currentObservastionDataTemp[endIndex].week, week)
+        if (currentObservastionDataTemp[endIndex].week !== week) {
 
             const prevData = createPreviousWeekData(week, sampleCurrentObservastion.currentObservastion[0])
-            console.log(prevData)
+            console.log("in if", prevData)
             const actualData = []
 
             for (let j = 0; j < prevData.length; j++) {
@@ -207,11 +207,15 @@ export const getCurrentObservastion = async (req, res) => {
 
             }
 
-            const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
+            if (week >= 5) {
 
-            currentObservastionTemp.week = weeks[previousWeekIndex + 1]
+                const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
 
-            actualData.push(currentObservastionTemp)
+                currentObservastionTemp.week = weeks[previousWeekIndex + 1]
+
+                actualData.push(currentObservastionTemp)
+
+            }
 
             // for (let i = 0; i < actualData.length; i++) {
 
@@ -228,10 +232,10 @@ export const getCurrentObservastion = async (req, res) => {
             currentObservastionData.currentObservastion = actualData
 
         } else {
-
+            console.log("in else")
             const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
 
-            currentObservastionTemp.week = weeks[previousWeekIndex + 1]
+            currentObservastionTemp.week = weeks[previousWeekIndex == 0 ? week < 5 ? 0 : previousWeekIndex + 1 : previousWeekIndex + 2]
 
             currentObservastionData.currentObservastion.push(currentObservastionTemp)
 
@@ -751,7 +755,17 @@ const createPreviousWeekData = (week, sample) => {
         }
 
     }
-    console.log(result)
+
+    if (week < 5 && result.length == 0) {
+
+        const dummy = { ...sample }
+
+        dummy.week = weeks[0]
+
+        result.push(dummy)
+
+    }
+
     return result;
 
 }
