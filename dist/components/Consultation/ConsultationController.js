@@ -184,10 +184,12 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
             const consultationDate = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(date);
             let diffWeek = week - consultationDate.week;
             let diffDays = days - consultationDate.days;
-            let flagDay = (diffDays % diffWeek) % 7;
-            if (flagDay) {
+            let flagDay = (diffDays / diffWeek) % 7;
+            // console.log("flag day var",flagDay)
+            if (Math.floor(flagDay) == 0) {
+                ++diffWeek;
             }
-            currentObservastionData.currentObservastion[j].weekAndDays = `${diffWeek} week ${} days`;
+            currentObservastionData.currentObservastion[j].weekAndDays = `${diffWeek} week ${flagDay} days`;
             currentObservastionData.currentObservastion[j].date = new Date(date);
         }
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
