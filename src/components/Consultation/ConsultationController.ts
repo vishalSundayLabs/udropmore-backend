@@ -252,9 +252,13 @@ export const getCurrentObservastion = async (req, res) => {
             const date = currentObservastionData.currentObservastion[j].date ? currentObservastionData.currentObservastion[j].date : new Date(moment(body.lmpDate).add(currentObservastionData.currentObservastion[j].week, 'weeks').format('YYYY-MM-DD'))
             console.log(date, currentObservastionData.currentObservastion[j].date)
             const consultationDate = calculateCurrentWeekAndDays(date)
-            const diffWeek = week - consultationDate.week
-            const diffDays = days - consultationDate.days
-            currentObservastionData.currentObservastion[j].weekAndDays = `${diffWeek} week ${diffDays % diffWeek} days`
+            let diffWeek = week - consultationDate.week
+            let diffDays = days - consultationDate.days
+            let flagDay = parseInt((diffDays/diffWeek)) % 7
+            if(flagDay==0) {
+                ++diffWeek
+            }
+            currentObservastionData.currentObservastion[j].weekAndDays = `${diffWeek} week ${flagDay} days`
             currentObservastionData.currentObservastion[j].date = new Date(date)
 
         }

@@ -182,9 +182,12 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
             const date = currentObservastionData.currentObservastion[j].date ? currentObservastionData.currentObservastion[j].date : new Date(moment(body.lmpDate).add(currentObservastionData.currentObservastion[j].week, 'weeks').format('YYYY-MM-DD'));
             console.log(date, currentObservastionData.currentObservastion[j].date);
             const consultationDate = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(date);
-            const diffWeek = week - consultationDate.week;
-            const diffDays = days - consultationDate.days;
-            currentObservastionData.currentObservastion[j].weekAndDays = `${diffWeek} week ${diffDays % diffWeek} days`;
+            let diffWeek = week - consultationDate.week;
+            let diffDays = days - consultationDate.days;
+            let flagDay = (diffDays % diffWeek) % 7;
+            if (flagDay) {
+            }
+            currentObservastionData.currentObservastion[j].weekAndDays = `${diffWeek} week ${} days`;
             currentObservastionData.currentObservastion[j].date = new Date(date);
         }
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
