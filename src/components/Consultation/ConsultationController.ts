@@ -208,15 +208,15 @@ export const getCurrentObservastion = async (req, res) => {
 
             }
 
-            // if (week >= 5) {
+            if (week >= 5) {
 
-            //     const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
+                const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
 
-            //     currentObservastionTemp.week = weeks[previousWeekIndex + 1]
+                currentObservastionTemp.week = weeks[previousWeekIndex + 1]
 
-            //     actualData.push(currentObservastionTemp)
+                actualData.push(currentObservastionTemp)
 
-            // }
+            }
 
             // for (let i = 0; i < actualData.length; i++) {
 
