@@ -172,9 +172,9 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
         }
         else {
             console.log("in else");
-            const currentObservastionTemp = sampleCurrentObservastion_1.sampleCurrentObservastion.currentObservastion[0];
-            currentObservastionTemp.week = weeks[previousWeekIndex == 0 ? week < 5 ? 0 : previousWeekIndex + 1 : previousWeekIndex + 2];
-            currentObservastionData.currentObservastion.push(currentObservastionTemp);
+            // const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
+            // currentObservastionTemp.week = weeks[previousWeekIndex == 0 ? week < 5 ? 0 : previousWeekIndex + 1 : previousWeekIndex + 1]
+            // currentObservastionData.currentObservastion.push(currentObservastionTemp)
         }
         // await currentObservastionData.save()
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
