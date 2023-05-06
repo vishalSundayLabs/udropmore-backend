@@ -255,10 +255,9 @@ export const getCurrentObservastion = async (req, res) => {
             let diffWeek = week - consultationDate.week
             let diffDays = days - consultationDate.days
             let flagDay = (diffDays / diffWeek) % 7
-            // console.log("flag day var",flagDay)
-            if (Math.floor(flagDay) == 0) {
-                ++diffWeek
-            }
+            
+            console.log("flag day var",diffDays,diffWeek,flagDay)
+            
             currentObservastionData.currentObservastion[j].weekAndDays = `${diffWeek} week ${flagDay} days`
             currentObservastionData.currentObservastion[j].date = new Date(date)
 
