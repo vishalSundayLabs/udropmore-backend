@@ -169,15 +169,6 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
             //     }
             // }
             // const appointmentDates = await AppointmentModel.find({ motherId: body.motherId, doctorId: body.doctorId, status: { $in: ["CONFIRMED", "COMPLETED"] } }, { appointmentDateAndTime: true })
-            for (let j = 0; j < actualData.length; j++) {
-                const date = actualData[j].date ? actualData[j].date : new Date(moment(body.lmpDate).add(actualData[j].week, 'weeks').format('YYYY-MM-DD'));
-                console.log(date, actualData[j].date);
-                const consultationDate = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(date);
-                const diffWeek = week - consultationDate.week;
-                const diffDays = days - consultationDate.days;
-                actualData[j].weekAndDays = `${diffWeek} week ${diffDays % diffWeek} days`;
-                actualData[j].date = new Date(date);
-            }
             currentObservastionData.currentObservastion = actualData;
         }
         else {
@@ -187,6 +178,16 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
             // currentObservastionData.currentObservastion.push(currentObservastionTemp)
         }
         // await currentObservastionData.save()
+        const actualData = currentObservastionData.currentObservastion;
+        for (let j = 0; j < actualData.length; j++) {
+            const date = actualData[j].date ? actualData[j].date : new Date(moment(body.lmpDate).add(actualData[j].week, 'weeks').format('YYYY-MM-DD'));
+            console.log(date, actualData[j].date);
+            const consultationDate = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(date);
+            const diffWeek = week - consultationDate.week;
+            const diffDays = days - consultationDate.days;
+            actualData[j].weekAndDays = `${diffWeek} week ${diffDays % diffWeek} days`;
+            actualData[j].date = new Date(date);
+        }
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "get Current Observastion Data successfully .",

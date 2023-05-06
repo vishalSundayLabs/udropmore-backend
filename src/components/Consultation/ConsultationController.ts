@@ -232,18 +232,6 @@ export const getCurrentObservastion = async (req, res) => {
 
             // const appointmentDates = await AppointmentModel.find({ motherId: body.motherId, doctorId: body.doctorId, status: { $in: ["CONFIRMED", "COMPLETED"] } }, { appointmentDateAndTime: true })
 
-            for (let j = 0; j < actualData.length; j++) {
-
-                const date = actualData[j].date ? actualData[j].date : new Date(moment(body.lmpDate).add(actualData[j].week, 'weeks').format('YYYY-MM-DD'))
-                console.log(date, actualData[j].date)
-                const consultationDate = calculateCurrentWeekAndDays(date)
-                const diffWeek = week - consultationDate.week
-                const diffDays = days - consultationDate.days
-                actualData[j].weekAndDays = `${diffWeek} week ${diffDays % diffWeek} days`
-                actualData[j].date = new Date(date)
-
-            }
-
             currentObservastionData.currentObservastion = actualData
 
         } else {
@@ -255,8 +243,21 @@ export const getCurrentObservastion = async (req, res) => {
             // currentObservastionData.currentObservastion.push(currentObservastionTemp)
 
         }
-        
+
         // await currentObservastionData.save()
+        const actualData = currentObservastionData.currentObservastion
+        
+        for (let j = 0; j < actualData.length; j++) {
+
+            const date = actualData[j].date ? actualData[j].date : new Date(moment(body.lmpDate).add(actualData[j].week, 'weeks').format('YYYY-MM-DD'))
+            console.log(date, actualData[j].date)
+            const consultationDate = calculateCurrentWeekAndDays(date)
+            const diffWeek = week - consultationDate.week
+            const diffDays = days - consultationDate.days
+            actualData[j].weekAndDays = `${diffWeek} week ${diffDays % diffWeek} days`
+            actualData[j].date = new Date(date)
+
+        }
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
