@@ -255,7 +255,7 @@ export const getCurrentObservastion = async (req, res) => {
             // currentObservastionData.currentObservastion.push(currentObservastionTemp)
 
         }
-
+        
         // await currentObservastionData.save()
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
