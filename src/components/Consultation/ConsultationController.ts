@@ -256,7 +256,6 @@ export const getCurrentObservastion = async (req, res) => {
 
         }
 
-
         // await currentObservastionData.save()
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
