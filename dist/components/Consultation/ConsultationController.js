@@ -168,6 +168,13 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
             //         actualData[i].complaints = sampleCurrentObservastion.currentObservastion[0].complaints
             //     }
             // }
+            for (let j = 0; j < actualData.length; j++) {
+                const date = actualData[j].date ? actualData[j].date : new Date();
+                const consultationDate = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(date);
+                const diffWeek = week - consultationDate.week;
+                const diffDays = days - consultationDate.days;
+                actualData[j].weekAndDays = `${diffWeek} week ${diffDays % diffWeek} days`;
+            }
             currentObservastionData.currentObservastion = actualData;
         }
         else {

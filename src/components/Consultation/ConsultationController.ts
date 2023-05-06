@@ -229,6 +229,16 @@ export const getCurrentObservastion = async (req, res) => {
 
             // }
 
+            for (let j = 0; j < actualData.length; j++) {
+
+                const date = actualData[j].date ? actualData[j].date : new Date()
+                const consultationDate = calculateCurrentWeekAndDays(date)
+                const diffWeek = week - consultationDate.week
+                const diffDays = days - consultationDate.days
+                actualData[j].weekAndDays = `${diffWeek} week ${diffDays % diffWeek} days`
+                
+            }
+
             currentObservastionData.currentObservastion = actualData
 
         } else {
