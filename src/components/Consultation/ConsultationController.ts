@@ -245,17 +245,17 @@ export const getCurrentObservastion = async (req, res) => {
         }
 
         // await currentObservastionData.save()
-        const actualData = currentObservastionData.currentObservastion
-        
-        for (let j = 0; j < actualData.length; j++) {
+     
 
-            const date = actualData[j].date ? actualData[j].date : new Date(moment(body.lmpDate).add(actualData[j].week, 'weeks').format('YYYY-MM-DD'))
-            console.log(date, actualData[j].date)
+        for (let j = 0; j < currentObservastionData.currentObservastion.length; j++) {
+
+            const date = currentObservastionData.currentObservastion[j].date ? currentObservastionData.currentObservastion[j].date : new Date(moment(body.lmpDate).add(currentObservastionData.currentObservastion[j].week, 'weeks').format('YYYY-MM-DD'))
+            console.log(date, currentObservastionData.currentObservastion[j].date)
             const consultationDate = calculateCurrentWeekAndDays(date)
             const diffWeek = week - consultationDate.week
             const diffDays = days - consultationDate.days
-            actualData[j].weekAndDays = `${diffWeek} week ${diffDays % diffWeek} days`
-            actualData[j].date = new Date(date)
+            currentObservastionData.currentObservastion[j].weekAndDays = `${diffWeek} week ${diffDays % diffWeek} days`
+            currentObservastionData.currentObservastion[j].date = new Date(date)
 
         }
 
