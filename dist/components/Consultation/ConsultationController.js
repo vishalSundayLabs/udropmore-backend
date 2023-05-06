@@ -155,11 +155,11 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
                     actualData.push(prevData[j]);
                 }
             }
-            // if (week >= 5) {
-            //     const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
-            //     currentObservastionTemp.week = weeks[previousWeekIndex + 1]
-            //     actualData.push(currentObservastionTemp)
-            // }
+            if (week >= 5) {
+                const currentObservastionTemp = sampleCurrentObservastion_1.sampleCurrentObservastion.currentObservastion[0];
+                currentObservastionTemp.week = weeks[previousWeekIndex + 1];
+                actualData.push(currentObservastionTemp);
+            }
             // for (let i = 0; i < actualData.length; i++) {
             //     if (!actualData[i].riskFactor.length) {
             //         actualData[i].riskFactor = sampleCurrentObservastion.currentObservastion[0].riskFactor
