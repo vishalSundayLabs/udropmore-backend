@@ -1,5 +1,6 @@
 import { Dayjs } from "dayjs"
 import dayjs = require("dayjs")
+import moment = require("moment")
 import { toDoTasks } from "../../Constant/DoctorToDoTask"
 import { HTTP_BAD_REQUEST, HTTP_NOT_FOUND, HTTP_OK } from "../../Constant/Master"
 import { MasterAntenatalTest } from "../../Constant/MasterAntenatalTest"
@@ -8,6 +9,7 @@ import { calculateCurrentWeekAndDays } from "../../helpers/calculateCurrentWeekH
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
 import { sampleAntentalTest } from "../../utils/sampleAntenatalTest"
 import { sampleCurrentObservastion } from "../../utils/sampleCurrentObservastion"
+import AppointmentModel from "../Appointment/AppointmentModel"
 import { getDayOrTimeFromDate } from "../Users/UserController"
 import antenatalTestModel from "./AntenatalTestModel"
 import CurrentObservastionModel from "./CurrentObservastionModel"
@@ -194,7 +196,6 @@ export const getCurrentObservastion = async (req, res) => {
         if (currentObservastionDataTemp[endIndex].week !== week) {
 
             const prevData = createPreviousWeekData(week, sampleCurrentObservastion.currentObservastion[0])
-            console.log("in if", prevData)
             const actualData = []
 
             for (let j = 0; j < prevData.length; j++) {
@@ -229,14 +230,18 @@ export const getCurrentObservastion = async (req, res) => {
 
             // }
 
+            // const appointmentDates = await AppointmentModel.find({ motherId: body.motherId, doctorId: body.doctorId, status: { $in: ["CONFIRMED", "COMPLETED"] } }, { appointmentDateAndTime: true })
+
             for (let j = 0; j < actualData.length; j++) {
 
-                const date = actualData[j].date ? actualData[j].date : new Date()
+                const date = actualData[j].date ? actualData[j].date : new Date(moment(body.lmpDate).add(actualData[j].week, 'weeks').format('YYYY-MM-DD'))
+                console.log(date, actualData[j].date)
                 const consultationDate = calculateCurrentWeekAndDays(date)
                 const diffWeek = week - consultationDate.week
                 const diffDays = days - consultationDate.days
                 actualData[j].weekAndDays = `${diffWeek} week ${diffDays % diffWeek} days`
-                
+                actualData[j].date = new Date(date)
+
             }
 
             currentObservastionData.currentObservastion = actualData
@@ -751,7 +756,6 @@ const createPreviousWeekData = (week, sample) => {
 
     const weeks = [5, 8, 12, 15, 18, 21, 24, 26, 28, 30, 32, 34, 36, 37, 38, 39, 40]
     const result = []
-    sample.date = new Date()
 
     for (let i = 0; i < weeks.length; i++) {
 
@@ -774,6 +778,10 @@ const createPreviousWeekData = (week, sample) => {
 
         result.push(dummy)
 
+    }
+
+    if (result.length > 0) {
+        result[result.length - 1].date = new Date()
     }
 
     return result;

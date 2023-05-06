@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getNextAntenatalTest = exports.updateNextAntenatalTest = exports.createNextAntenatalTest = exports.getTreatment = exports.updateTreatment = exports.createTreatment = exports.getAntenatalTest = exports.updateAntenatalTest = exports.createAntenatalTest = exports.getCurrentObservastion = exports.updateCurrentObservastion = exports.createCurrentObservastion = exports.getWeeklyTestOrAppointmentsByLmp = void 0;
+const moment = require("moment");
 const DoctorToDoTask_1 = require("../../Constant/DoctorToDoTask");
 const Master_1 = require("../../Constant/Master");
 const MasterAntenatalTest_1 = require("../../Constant/MasterAntenatalTest");
@@ -145,7 +146,6 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
         console.log(week, weeks[previousWeekIndex], previousWeekIndex, currentObservastionDataTemp[endIndex].week, week);
         if (currentObservastionDataTemp[endIndex].week !== week) {
             const prevData = createPreviousWeekData(week, sampleCurrentObservastion_1.sampleCurrentObservastion.currentObservastion[0]);
-            console.log("in if", prevData);
             const actualData = [];
             for (let j = 0; j < prevData.length; j++) {
                 if (j < currentObservastionDataTemp.length && currentObservastionDataTemp[j].week == prevData[j].week) {
@@ -168,12 +168,15 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
             //         actualData[i].complaints = sampleCurrentObservastion.currentObservastion[0].complaints
             //     }
             // }
+            // const appointmentDates = await AppointmentModel.find({ motherId: body.motherId, doctorId: body.doctorId, status: { $in: ["CONFIRMED", "COMPLETED"] } }, { appointmentDateAndTime: true })
             for (let j = 0; j < actualData.length; j++) {
-                const date = actualData[j].date ? actualData[j].date : new Date();
+                const date = actualData[j].date ? actualData[j].date : new Date(moment(body.lmpDate).add(actualData[j].week, 'weeks').format('YYYY-MM-DD'));
+                console.log(date, actualData[j].date);
                 const consultationDate = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(date);
                 const diffWeek = week - consultationDate.week;
                 const diffDays = days - consultationDate.days;
                 actualData[j].weekAndDays = `${diffWeek} week ${diffDays % diffWeek} days`;
+                actualData[j].date = new Date(date);
             }
             currentObservastionData.currentObservastion = actualData;
         }
@@ -524,7 +527,6 @@ exports.getNextAntenatalTest = getNextAntenatalTest;
 const createPreviousWeekData = (week, sample) => {
     const weeks = [5, 8, 12, 15, 18, 21, 24, 26, 28, 30, 32, 34, 36, 37, 38, 39, 40];
     const result = [];
-    sample.date = new Date();
     for (let i = 0; i < weeks.length; i++) {
         const dummy = Object.assign({}, sample);
         if (week >= 5 && week > weeks[i]) {
@@ -536,6 +538,9 @@ const createPreviousWeekData = (week, sample) => {
         const dummy = Object.assign({}, sample);
         dummy.week = weeks[0];
         result.push(dummy);
+    }
+    if (result.length > 0) {
+        result[result.length - 1].date = new Date();
     }
     return result;
 };
