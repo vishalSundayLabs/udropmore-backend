@@ -1,6 +1,6 @@
 import * as mongoose from "mongoose"
 
-const LeapContentSchema = new mongoose.Schema({
+const leapContentSchema = new mongoose.Schema({
     category: {
         type: String,
         enum: ["LEAP", "WEEK", null],
@@ -47,4 +47,4 @@ const LeapContentSchema = new mongoose.Schema({
     }
 }, { timestamps: true })
 
-export default mongoose.model("cmsdata", LeapContentSchema)
+export default mongoose.model("cmsdata", leapContentSchema)

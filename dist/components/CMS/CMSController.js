@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getWeeklyContent = exports.updateWeeklyContent = exports.createWeeklyContent = void 0;
 const Master_1 = require("../../Constant/Master");
 const bodyTraverse_1 = require("../../helpers/bodyTraverse");
+const pagination_1 = require("../../helpers/pagination");
 const ResponseClass_1 = require("../../utils/ResponseClass");
 const CMSModel_1 = require("./CMSModel");
 const createWeeklyContent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -70,14 +71,12 @@ const updateWeeklyContent = (req, res) => __awaiter(void 0, void 0, void 0, func
 exports.updateWeeklyContent = updateWeeklyContent;
 const getWeeklyContent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const query = req.query;
-    if (!query.week) {
-        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
-            success: false,
-            message: "Bad Request! Week must be provide."
-        }));
-    }
+    query.isDeleted = false;
+    console.log(query);
+    const { limit, skips } = (0, pagination_1.pagination)(query);
+    console.log();
     try {
-        const weeklyContent = yield CMSModel_1.default.find({ week: [Number(query.week)] });
+        const weeklyContent = yield CMSModel_1.default.find(query).skip(skips).limit(limit);
         if (weeklyContent.length == 0) {
             return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseSuccess({
                 success: true,

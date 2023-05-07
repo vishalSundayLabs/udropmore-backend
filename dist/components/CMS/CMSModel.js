@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require("mongoose");
-const LeapContentSchema = new mongoose.Schema({
+const leapContentSchema = new mongoose.Schema({
     category: {
         type: String,
         enum: ["LEAP", "WEEK", null],
@@ -47,4 +47,4 @@ const LeapContentSchema = new mongoose.Schema({
         default: false
     }
 }, { timestamps: true });
-exports.default = mongoose.model("cmsdata", LeapContentSchema);
+exports.default = mongoose.model("cmsdata", leapContentSchema);

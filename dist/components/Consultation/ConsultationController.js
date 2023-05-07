@@ -143,7 +143,6 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
         const weeks = [5, 8, 12, 15, 18, 21, 24, 26, 28, 30, 32, 34, 36, 37, 38, 39, 40];
         let previousWeekIndex = getPreviousWeekIndex(week) == -1 ? 0 : getPreviousWeekIndex(week);
         const endIndex = currentObservastionDataTemp.length - 1;
-        console.log(week, weeks[previousWeekIndex], previousWeekIndex, currentObservastionDataTemp[endIndex].week, week);
         if (currentObservastionDataTemp[endIndex].week !== week) {
             const prevData = createPreviousWeekData(week, sampleCurrentObservastion_1.sampleCurrentObservastion.currentObservastion[0]);
             const actualData = [];
@@ -168,7 +167,6 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
             //         actualData[i].complaints = sampleCurrentObservastion.currentObservastion[0].complaints
             //     }
             // }
-            // const appointmentDates = await AppointmentModel.find({ motherId: body.motherId, doctorId: body.doctorId, status: { $in: ["CONFIRMED", "COMPLETED"] } }, { appointmentDateAndTime: true })
             currentObservastionData.currentObservastion = actualData;
         }
         else {
@@ -177,14 +175,11 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
             currentObservastionTemp.week = weeks[previousWeekIndex == 0 ? week < 5 ? 0 : previousWeekIndex + 1 : previousWeekIndex + 1];
             currentObservastionData.currentObservastion.push(currentObservastionTemp);
         }
-        // await currentObservastionData.save()
         for (let j = 0; j < currentObservastionData.currentObservastion.length; j++) {
             const date = currentObservastionData.currentObservastion[j].date ? currentObservastionData.currentObservastion[j].date : new Date(moment(body.lmpDate).add(currentObservastionData.currentObservastion[j].week, 'weeks').format('YYYY-MM-DD'));
-            console.log(date, currentObservastionData.currentObservastion[j].date);
             const consultationDate = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(date);
             let diffWeek = week - consultationDate.week;
             let diffDays = days - consultationDate.days;
-            console.log("flag day var", diffDays, diffWeek);
             currentObservastionData.currentObservastion[j].weekAndDays = `${currentObservastionData.currentObservastion[j].week} week ${Math.floor((diffDays % diffWeek) % 7)} days`;
             currentObservastionData.currentObservastion[j].date = new Date(date);
         }

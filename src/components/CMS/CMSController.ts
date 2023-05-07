@@ -1,5 +1,6 @@
 import { HTTP_BAD_REQUEST, HTTP_NOT_FOUND } from "../../Constant/Master"
 import { bodyTraverse } from "../../helpers/bodyTraverse"
+import { pagination } from "../../helpers/pagination"
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
 import CMSModel from "./CMSModel"
 
@@ -87,18 +88,13 @@ export const getWeeklyContent = async (req, res) => {
 
     const query = req.query
 
-    if (!query.week) {
-
-        return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
-            success: false,
-            message: "Bad Request! Week must be provide."
-        }))
-
-    }
-
+    query.isDeleted = false
+    console.log(query)
+    const { limit, skips } = pagination(query)
+    console.log()
     try {
 
-        const weeklyContent = await CMSModel.find({ week: [Number(query.week)] })
+        const weeklyContent = await CMSModel.find(query).skip(skips).limit(limit)
 
         if (weeklyContent.length == 0) {
 
