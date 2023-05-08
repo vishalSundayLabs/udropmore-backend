@@ -192,7 +192,7 @@ export const getCurrentObservastion = async (req, res) => {
         let previousWeekIndex = getPreviousWeekIndex(week) == -1 ? 0 : getPreviousWeekIndex(week)
 
         const endIndex = currentObservastionDataTemp.length - 1
-        
+
         if (currentObservastionDataTemp[endIndex].week !== week) {
 
             const prevData = createPreviousWeekData(week, sampleCurrentObservastion.currentObservastion[0])
@@ -234,18 +234,19 @@ export const getCurrentObservastion = async (req, res) => {
 
         } else {
             console.log("in else")
-        //    if(currentObservastionData.currentObservastion[endIndex]!==week) {
+            console.log("line 248 in else", week, currentObservastionData.currentObservastion[endIndex], currentObservastionData.currentObservastion[endIndex] !== week)
+            //    if(currentObservastionData.currentObservastion[endIndex]!==week) {
 
-        //     const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
+            //     const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
 
-        //     currentObservastionTemp.week = weeks[previousWeekIndex == 0 ? week < 5 ? 0 : previousWeekIndex + 1 : previousWeekIndex + 1]
+            //     currentObservastionTemp.week = weeks[previousWeekIndex == 0 ? week < 5 ? 0 : previousWeekIndex + 1 : previousWeekIndex + 1]
 
-        //     currentObservastionData.currentObservastion.push(currentObservastionTemp)
+            //     currentObservastionData.currentObservastion.push(currentObservastionTemp)
 
-        //    }
-
+            //    }
+            
         }
-console.log(week,currentObservastionData.currentObservastion[endIndex] , currentObservastionData.currentObservastion[endIndex]!==week)
+        console.log("line 248", week, currentObservastionData.currentObservastion[endIndex], currentObservastionData.currentObservastion[endIndex] !== week)
         for (let j = 0; j < currentObservastionData.currentObservastion.length; j++) {
 
             const date = currentObservastionData.currentObservastion[j].date ? currentObservastionData.currentObservastion[j].date : new Date(moment(body.lmpDate).add(currentObservastionData.currentObservastion[j].week, 'weeks').format('YYYY-MM-DD'))

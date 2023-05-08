@@ -171,10 +171,14 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
         }
         else {
             console.log("in else");
-            const currentObservastionTemp = sampleCurrentObservastion_1.sampleCurrentObservastion.currentObservastion[0];
-            currentObservastionTemp.week = weeks[previousWeekIndex == 0 ? week < 5 ? 0 : previousWeekIndex + 1 : previousWeekIndex + 1];
-            currentObservastionData.currentObservastion.push(currentObservastionTemp);
+            console.log("line 248 in else", week, currentObservastionData.currentObservastion[endIndex], currentObservastionData.currentObservastion[endIndex] !== week);
+            //    if(currentObservastionData.currentObservastion[endIndex]!==week) {
+            //     const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
+            //     currentObservastionTemp.week = weeks[previousWeekIndex == 0 ? week < 5 ? 0 : previousWeekIndex + 1 : previousWeekIndex + 1]
+            //     currentObservastionData.currentObservastion.push(currentObservastionTemp)
+            //    }
         }
+        console.log("line 248", week, currentObservastionData.currentObservastion[endIndex], currentObservastionData.currentObservastion[endIndex] !== week);
         for (let j = 0; j < currentObservastionData.currentObservastion.length; j++) {
             const date = currentObservastionData.currentObservastion[j].date ? currentObservastionData.currentObservastion[j].date : new Date(moment(body.lmpDate).add(currentObservastionData.currentObservastion[j].week, 'weeks').format('YYYY-MM-DD'));
             const consultationDate = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(date);
