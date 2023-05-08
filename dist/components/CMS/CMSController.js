@@ -45,7 +45,7 @@ const updateWeeklyContent = (req, res) => __awaiter(void 0, void 0, void 0, func
         }));
     }
     try {
-        const weeklyContent = yield CMSModel_1.default.findOne({ week: body.week });
+        const weeklyContent = yield CMSModel_1.default.findOne({ _id: body.contentId });
         if (!weeklyContent) {
             return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseSuccess({
                 success: true,
@@ -72,9 +72,7 @@ exports.updateWeeklyContent = updateWeeklyContent;
 const getWeeklyContent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const query = req.query;
     query.isDeleted = false;
-    console.log(query);
     const { limit, skips } = (0, pagination_1.pagination)(query);
-    console.log();
     try {
         const weeklyContent = yield CMSModel_1.default.find(query).skip(skips).limit(limit);
         if (weeklyContent.length == 0) {

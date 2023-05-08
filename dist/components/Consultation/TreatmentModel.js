@@ -18,9 +18,6 @@ const treatmentSchema = new mongoose.Schema({
             prescription: {
                 standardSupplements: {
                     // templateId: "sdijflk",
-                    /*
-                      Example name:HM1 (doctor firstname + lastname)
-                    */
                     calcium: [{
                             name: { type: String, default: null },
                             freq: String,
@@ -67,6 +64,12 @@ const treatmentSchema = new mongoose.Schema({
                         }]
                 }
             }
+        }],
+    followUp: [{
+            followUpDate: { type: Date, default: null },
+            remarksForMother: { type: String, default: null },
+            testName: [String],
+            week: { type: Number, default: null }
         }],
     isDeleted: {
         type: Boolean,
