@@ -245,7 +245,7 @@ export const getCurrentObservastion = async (req, res) => {
         //    }
 
         }
-
+console.log(week,currentObservastionData.currentObservastion[endIndex] , currentObservastionData.currentObservastion[endIndex]!==week)
         for (let j = 0; j < currentObservastionData.currentObservastion.length; j++) {
 
             const date = currentObservastionData.currentObservastion[j].date ? currentObservastionData.currentObservastion[j].date : new Date(moment(body.lmpDate).add(currentObservastionData.currentObservastion[j].week, 'weeks').format('YYYY-MM-DD'))
