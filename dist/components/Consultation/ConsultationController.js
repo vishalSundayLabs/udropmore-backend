@@ -529,21 +529,18 @@ const createPreviousWeekData = (week, sample) => {
     const result = [];
     for (let i = 0; i < weeks.length; i++) {
         const dummy = Object.assign({}, sample);
-        if (week[i].includes(week)) {
+        if (week[i].indexOf(week) != -1) {
             dummy.week = weeks[weeks[i].length - 1];
             result.push(dummy);
         }
     }
-    if (week < 5 && result.length == 0) {
-        const dummy = Object.assign({}, sample);
-        dummy.week = weeks[0];
-        result.push(dummy);
-    }
+    // if (week < 5 && result.length == 0) {
+    //     const dummy = { ...sample }
+    //     dummy.week = weeks[0]
+    //     result.push(dummy)
+    // }
     if (result.length > 0) {
         result[result.length - 1].date = new Date();
-    }
-    if (result[result.length - 1].week == week - 1) {
-        result.pop();
     }
     return result;
 };
