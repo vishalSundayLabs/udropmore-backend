@@ -525,7 +525,7 @@ exports.getNextAntenatalTest = getNextAntenatalTest;
 //end
 //create previous week data
 const createPreviousWeekData = (week, sample) => {
-    const weeks = [[4, 6, 5], [7, 9, 10, 8], [11, 13, 12], [14, 16, 15], [17, 19, 18], [20, 22, 21], [23, 24], [25, 26], [27, 28], [29, 30], [31, 32], [33, 34], [35, 36], [37], [38], [39], [40]];
+    const weeks = [[3, 4, 6, 5], [7, 9, 10, 8], [11, 13, 12], [14, 16, 15], [17, 19, 18], [20, 22, 21], [23, 24], [25, 26], [27, 28], [29, 30], [31, 32], [33, 34], [35, 36], [37], [38], [39], [40]];
     const result = [];
     for (let i = 0; i < weeks.length; i++) {
         const dummy = Object.assign({}, sample);
