@@ -208,15 +208,15 @@ export const getCurrentObservastion = async (req, res) => {
 
             }
 
-            if (week >= 5) {
+            // if (week >= 5) {
 
-                const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
+            //     const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
 
-                currentObservastionTemp.week = weeks[previousWeekIndex + 1]
+            //     currentObservastionTemp.week = weeks[previousWeekIndex + 1]
 
-                actualData.push(currentObservastionTemp)
+            //     actualData.push(currentObservastionTemp)
 
-            }
+            // }
 
             // for (let i = 0; i < actualData.length; i++) {
 
@@ -759,12 +759,17 @@ const createPreviousWeekData = (week, sample) => {
     for (let i = 0; i < weeks.length; i++) {
 
         const dummy = { ...sample }
-        console.log("create prev", weeks[i], weeks[i].length - 1)
+        console.log("create prev",week, weeks[i], weeks[i].length - 1)
         if (weeks[i].indexOf(week) != -1) {
 
             dummy.week = weeks[i][weeks[i].length - 1]
             result.push(dummy)
+            break;
 
+        } else {
+
+            dummy.week = weeks[i][weeks[i].length - 1]
+            result.push(dummy)
         }
 
     }
