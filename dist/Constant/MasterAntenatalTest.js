@@ -1,21 +1,21 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MasterAntenatalTest = void 0;
+exports.masterAntenatalTest = void 0;
 const Tests_1 = require("./Tests");
-exports.MasterAntenatalTest = {
+exports.masterAntenatalTest = [
     // week 5 and week 6 same 
-    week5: {
+    {
         date: null,
-        week: [4, 5, 6],
+        week: [4, 6, 5],
         weekAndDays: null,
         tests: {
             pregnancyConfirmation: Tests_1.pregnancyConfirmation,
             bloodGroupAndRhTyping: Tests_1.bloodGroupAndRhTyping
         }
     },
-    week8: {
+    {
         date: null,
-        week: [7, 8, 9],
+        week: [7, 9, 8],
         weekAndDays: null,
         bloodTest: Tests_1.bloodTest,
         urineRoutine: Tests_1.urineRoutine,
@@ -30,9 +30,9 @@ exports.MasterAntenatalTest = {
         urine: Tests_1.urine,
         glycoylatedHb: Tests_1.glycoylatedHb
     },
-    week12: {
+    {
         date: null,
-        week: [10, 11, 12, 13],
+        week: [10, 11, 13, 12],
         weekAndDays: null,
         firstTrimesterScreening: Tests_1.firstTrimesterScreening,
         ntUsg: Tests_1.ntUsg,
@@ -42,18 +42,18 @@ exports.MasterAntenatalTest = {
         bsl: Tests_1.bsl,
         urine: Tests_1.urine
     },
-    week15: {
+    {
         date: null,
-        week: [14, 15, 16],
+        week: [14, 16, 15],
         weekAndDays: null,
         urineCs: Tests_1.urineCs,
         afp: Tests_1.afp,
         bloodTest: Tests_1.bloodTest,
         urine: Tests_1.urine
     },
-    week18: {
+    {
         date: null,
-        week: [17, 18, 19],
+        week: [17, 19, 18],
         weekAndDays: null,
         bloodTest: Tests_1.bloodTest,
         urineCs: Tests_1.urineCs,
@@ -62,26 +62,26 @@ exports.MasterAntenatalTest = {
         bsl: Tests_1.bsl,
         urine: Tests_1.urine
     },
-    week21: {
+    {
         date: null,
-        week: [20, 21, 22],
+        week: [20, 22, 21],
         weekAndDays: null,
         foetal2dEcho: Tests_1.foetal2dEcho,
         // pihWorkUp: pihWorkUp,
         // coagulationProfile: coagulationProfile
     },
-    week24: {
+    {
         date: null,
         week: [23, 24],
         weekAndDays: null,
         ogct: Tests_1.ogct
     },
-    week26: {
+    {
         date: null,
         week: [25, 26],
         weekAndDays: null,
     },
-    week28: {
+    {
         date: null,
         week: [27, 28],
         weekAndDays: null,
@@ -95,19 +95,19 @@ exports.MasterAntenatalTest = {
         urine: Tests_1.urine,
         thyroidFunctionTest: Tests_1.thyroidFunctionTest
     },
-    week30: {
+    {
         date: null,
         week: [29, 30],
         weekAndDays: null,
         // dfmr: dfmr
     },
-    week32: {
+    {
         date: null,
         week: [31, 32],
         weekAndDays: null,
         dfmr: Tests_1.dfmr
     },
-    week34: {
+    {
         date: null,
         week: [33, 34],
         weekAndDays: null,
@@ -115,39 +115,39 @@ exports.MasterAntenatalTest = {
         dfmr: Tests_1.dfmr,
         nst: Tests_1.nst
     },
-    week36: {
+    {
         date: null,
         week: [35, 36],
         weekAndDays: null,
         // nst: nst,
         dfmr: Tests_1.dfmr
     },
-    week37: {
+    {
         date: null,
         week: [37],
         weekAndDays: null,
         // nst: nst,
         dfmr: Tests_1.dfmr
     },
-    week38: {
+    {
         date: null,
         week: [38],
         weekAndDays: null,
         // nst: nst,
         dfmr: Tests_1.dfmr
     },
-    week39: {
+    {
         date: null,
         week: [39],
         weekAndDays: null,
         // nst: nst,
         dfmr: Tests_1.dfmr
     },
-    week40: {
+    {
         date: null,
         week: [40],
         weekAndDays: null,
         // nst: nst,
         dfmr: Tests_1.dfmr
     }
-};
+];

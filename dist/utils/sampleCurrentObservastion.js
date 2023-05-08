@@ -8,39 +8,132 @@ exports.sampleCurrentObservastion = {
             date: null,
             week: null,
             riskFactor: [
-                { rxInfertility: false },
-                { peHtn: false },
-                { rhIncom: false },
-                { boh: false },
-                { gdmDm: false },
-                { hydramnios: false },
-                { fgr: false },
-                { cpd: false },
-                { obesity: false },
-                { thyroidDysfunction: false },
-                { iuiIvf: false },
-                { incompOs: false },
-                { oligohydramnolsPlacenta: false },
-                { prevCsMyomectomy: false },
+                {
+                    name: "Rx Infertility",
+                    rxInfertility: false
+                },
+                {
+                    name: "PE/HTN",
+                    peHtn: false
+                },
+                {
+                    name: "Rh Incom",
+                    rhIncom: false
+                },
+                {
+                    name: "BOH",
+                    boh: false
+                },
+                {
+                    name: "GDM/DM",
+                    gdmDm: false
+                },
+                {
+                    name: "Hydramnios",
+                    hydramnios: false
+                },
+                {
+                    name: "FGR",
+                    fgr: false
+                },
+                {
+                    name: "CPD",
+                    cpd: false
+                },
+                {
+                    name: "Obesity",
+                    obesity: false
+                },
+                {
+                    name: "Thyroid Dysfunction",
+                    thyroidDysfunction: false
+                },
+                {
+                    name: "IUI/IVF",
+                    iuiIvf: false
+                },
+                {
+                    name: "Incomp OS",
+                    incompOs: false
+                },
+                {
+                    name: "Oligohydramnios Placenta",
+                    oligohydramnolsPlacenta: false
+                },
+                {
+                    name: "Pre CS/Myomectomy",
+                    prevCsMyomectomy: false
+                },
             ],
             complaints: [
-                { skinChanges: false },
-                { bleedingGums: false },
-                { dizziness: false },
-                { backache: false },
-                { legPain: false },
-                { breathlessness: false },
-                { fatigue: false },
-                { pvBleeding: false },
-                { nausea: false },
-                { vommiting: false },
-                { pvSpotting: false },
-                { heartburnIndigestion: false },
-                { opvWhiteDischarge: false },
-                { swellingOrFluidRetention: false },
-                { weakness: false },
-                { abdominalPain: false },
-                { headaches: false },
+                {
+                    name: "Skin changes",
+                    skinChanges: false
+                },
+                {
+                    name: "Bleeding Gums",
+                    bleedingGums: false
+                },
+                {
+                    name: "Duzziness",
+                    dizziness: false
+                },
+                {
+                    name: "Backache",
+                    backache: false
+                },
+                {
+                    name: "Leg pain",
+                    legPain: false
+                },
+                {
+                    name: "Breathlessness",
+                    breathlessness: false
+                },
+                {
+                    name: "Fatigue",
+                    fatigue: false
+                },
+                {
+                    name: "PV bleeding",
+                    pvBleeding: false
+                },
+                {
+                    name: "Nausea",
+                    nausea: false
+                },
+                {
+                    name: "Vommiting",
+                    vommiting: false
+                },
+                {
+                    name: "Rx Infertility",
+                    pvSpotting: false
+                },
+                {
+                    name: "Rx Infertility",
+                    heartburnIndigestion: false
+                },
+                {
+                    name: "PV White discharge",
+                    pvWhiteDischarge: false
+                },
+                {
+                    name: "Swelling or Fluid Retention",
+                    swellingOrFluidRetention: false
+                },
+                {
+                    name: "Weakness",
+                    weakness: false
+                },
+                {
+                    name: "Abdominal pain",
+                    abdominalPain: false
+                },
+                {
+                    name: "Headaches",
+                    headaches: false
+                }
             ],
             generalExamination: {
                 testName: "General Examination",
@@ -50,32 +143,36 @@ exports.sampleCurrentObservastion = {
                         name: "SBP",
                         value: null,
                         unit: "mmhg",
-                        inputType: "Textbox"
+                        inputType: "Textbox",
+                        placeHolder: "90-120"
                     },
                     dbp: {
                         name: "DBP",
                         value: null,
                         unit: "mmhg",
-                        inputType: "Textbox"
+                        inputType: "Textbox",
+                        placeHolder: "70-80"
                     }
                 },
                 pulse: {
                     name: "Pulse",
                     value: null,
                     unit: "bpm",
-                    inputType: "Textbox"
+                    inputType: "Textbox",
+                    placeHolder: "120/80"
                 },
                 temp: {
                     name: "Temp",
                     value: null,
                     unit: "°C",
-                    inputType: "Textbox"
+                    inputType: "Textbox",
+                    placeHolder: "37"
                 },
                 oedema: {
                     name: "Oedema",
                     value: null,
                     options: "Nil/Moderate/+/++",
-                    inputType: "Select"
+                    inputType: "Select",
                 },
                 pallor: {
                     name: "Pallor",
@@ -216,7 +313,8 @@ exports.sampleCurrentObservastion = {
                     name: "Fetal heart rate",
                     value: null,
                     unit: "Beat per mins",
-                    inputType: "Textbox"
+                    inputType: "Textbox",
+                    placeHolder: "120-180"
                 },
                 presentationPart: {
                     name: "Presentation Part",
@@ -240,7 +338,8 @@ exports.sampleCurrentObservastion = {
                     name: "Remark",
                     value: null,
                     options: null,
-                    inputType: "Textbox"
+                    inputType: "Textbox",
+                    placeHolder: null
                 }
             }
         }]

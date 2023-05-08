@@ -12,64 +12,39 @@ const treatmentSchema = new mongoose.Schema({
     },
     treatment: [{
             date: Date,
+            week: { type: String, default: null },
             obeservation: {
-                examinationFinding: { type: String, default: null }
+                examinationFinding: { type: String, default: null },
+                remarksForMother: { type: String, default: null }
             },
             prescription: {
-                standardSupplements: {
-                    // templateId: "sdijflk",
-                    calcium: [{
-                            name: { type: String, default: null },
-                            freq: String,
-                            week: Number,
-                            startDate: Date,
-                            endDate: Date
-                        }],
-                    iron: [{
-                            name: { type: String, default: null },
-                            freq: String,
-                            week: Number,
-                            startDate: Date,
-                            endDate: Date
-                        }],
-                    folicAcid: [{
-                            name: { type: String, default: null },
-                            freq: String,
-                            week: Number,
-                            startDate: Date,
-                            endDate: Date
-                        }]
+                templateId: {
+                    type: mongoose.SchemaTypes.ObjectId,
+                    refs: "template"
                 },
-                symptomsSupplements: {
-                    vomitting: [{
-                            name: { type: String, default: null },
-                            freq: String,
-                            week: Number,
-                            startDate: Date,
-                            endDate: Date
-                        }],
-                    iron: [{
-                            name: { type: String, default: null },
-                            freq: String,
-                            week: Number,
-                            startDate: Date,
-                            endDate: Date
-                        }],
-                    acidity: [{
-                            name: { type: String, default: null },
-                            freq: String,
-                            week: Number,
-                            startDate: Date,
-                            endDate: Date
-                        }]
-                }
+                standardSupplements: [{
+                        type: { type: String, default: null },
+                        subType: { type: String, default: null },
+                        freq: { type: String, default: null },
+                        week: { type: Number, default: null },
+                        startDate: { type: Date, default: null },
+                        endDate: { type: Date, default: null }
+                    }],
+                symptomsSupplements: [{
+                        type: { type: String, default: null },
+                        subType: { type: String, default: null },
+                        freq: { type: String, default: null },
+                        week: { type: Number, default: null },
+                        startDate: { type: Date, default: null },
+                        endDate: { type: Date, default: null }
+                    }]
+            },
+            followUp: {
+                followUpDate: { type: Date, default: null },
+                remarksForMother: { type: String, default: null },
+                testName: [String],
+                week: { type: Number, default: null }
             }
-        }],
-    followUp: [{
-            followUpDate: { type: Date, default: null },
-            remarksForMother: { type: String, default: null },
-            testName: [String],
-            week: { type: Number, default: null }
         }],
     isDeleted: {
         type: Boolean,

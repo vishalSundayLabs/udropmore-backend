@@ -17,7 +17,6 @@ const MasterAntenatalTest_1 = require("../../Constant/MasterAntenatalTest");
 const bodyTraverse_1 = require("../../helpers/bodyTraverse");
 const calculateCurrentWeekHelper_1 = require("../../helpers/calculateCurrentWeekHelper");
 const ResponseClass_1 = require("../../utils/ResponseClass");
-const sampleAntenatalTest_1 = require("../../utils/sampleAntenatalTest");
 const sampleCurrentObservastion_1 = require("../../utils/sampleCurrentObservastion");
 const UserController_1 = require("../Users/UserController");
 const AntenatalTestModel_1 = require("./AntenatalTestModel");
@@ -154,11 +153,6 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
                     actualData.push(prevData[j]);
                 }
             }
-            // if (week >= 5) {
-            //     const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
-            //     currentObservastionTemp.week = weeks[previousWeekIndex + 1]
-            //     actualData.push(currentObservastionTemp)
-            // }
             // for (let i = 0; i < actualData.length; i++) {
             //     if (!actualData[i].riskFactor.length) {
             //         actualData[i].riskFactor = sampleCurrentObservastion.currentObservastion[0].riskFactor
@@ -170,15 +164,12 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
             currentObservastionData.currentObservastion = actualData;
         }
         else {
-            console.log("in else");
-            console.log("line 248 in else", week, currentObservastionData.currentObservastion[endIndex], currentObservastionData.currentObservastion[endIndex] !== week);
             //    if(currentObservastionData.currentObservastion[endIndex]!==week) {
             //     const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
             //     currentObservastionTemp.week = weeks[previousWeekIndex == 0 ? week < 5 ? 0 : previousWeekIndex + 1 : previousWeekIndex + 1]
             //     currentObservastionData.currentObservastion.push(currentObservastionTemp)
             //    }
         }
-        console.log("line 248", week, currentObservastionData.currentObservastion[endIndex], currentObservastionData.currentObservastion[endIndex] !== week);
         for (let j = 0; j < currentObservastionData.currentObservastion.length; j++) {
             const date = currentObservastionData.currentObservastion[j].date ? currentObservastionData.currentObservastion[j].date : new Date(moment(body.lmpDate).add(currentObservastionData.currentObservastion[j].week, 'weeks').format('YYYY-MM-DD'));
             const consultationDate = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(date);
@@ -287,33 +278,32 @@ const getAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, functio
         }
         const { week, days } = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(body.lmpDate);
         const antenatalTestTemp = antenatalTest.antenatalTest;
-        const weeks = [5, 8, 12, 15, 18, 21, 24, 26, 28, 30, 32, 34, 36, 37, 38, 39, 40];
-        let previousWeekIndex = getPreviousWeekIndex(week);
-        const endIndex = antenatalTestTemp.length - 1;
-        const weekString = `week${week}`;
-        const testOfTheWeek = MasterAntenatalTest_1.MasterAntenatalTest[weekString];
-        if (antenatalTestTemp[endIndex].week !== weeks[previousWeekIndex]) {
-            const prevData = createPreviousWeekData(week, MasterAntenatalTest_1.MasterAntenatalTest);
-            const actualData = [];
-            for (let j = 0; j < prevData.length; j++) {
-                if (j < antenatalTestTemp.length && antenatalTestTemp[j].week == prevData[j].week) {
-                    actualData.push(antenatalTestTemp[j]);
-                }
-                else {
-                    actualData.push(prevData[j]);
-                }
+        const testOfTheWeek = [];
+        console.log(week);
+        for (let k = 0; k < MasterAntenatalTest_1.masterAntenatalTest.length; k++) {
+            const tempTest = MasterAntenatalTest_1.masterAntenatalTest[k];
+            console.log("line 399", tempTest.week);
+            if (tempTest.week.includes(week)) {
+                console.log("in if");
+                // tempTest.week = [tempTest.week[tempTest.week.length - 1]]
+                // testOfTheWeek.push(tempTest)
+                break;
             }
-            const sampleAntenatalTestTemp = sampleAntenatalTest_1.sampleAntentalTest.antenatalTest[0];
-            sampleAntenatalTestTemp.week = weeks[previousWeekIndex + 1];
-            actualData.push(sampleAntenatalTestTemp);
-            antenatalTest.antenatalTest = actualData;
+            else {
+                console.log("in else");
+                tempTest.week = [tempTest.week[tempTest.week.length - 1]];
+                testOfTheWeek.push(tempTest);
+            }
         }
-        else {
-            const sampleAntenatalTestTemp = sampleAntenatalTest_1.sampleAntentalTest.antenatalTest[0];
-            sampleAntenatalTestTemp.week = weeks[previousWeekIndex + 1];
-            antenatalTest.antenatalTest.push(sampleAntenatalTestTemp);
+        for (let j = 0; j < testOfTheWeek.length; j++) {
+            if (antenatalTestTemp[j] && antenatalTestTemp[j].week == testOfTheWeek[j].week[0]) {
+                continue;
+            }
+            else {
+                testOfTheWeek[j].week = testOfTheWeek[j].week[0];
+                antenatalTest.antenatalTest.push(testOfTheWeek[j]);
+            }
         }
-        // await antenatalTest.save()
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "find Antenatal Test successfully .",
@@ -529,7 +519,6 @@ const createPreviousWeekData = (week, sample) => {
     const result = [];
     for (let i = 0; i < weeks.length; i++) {
         const dummy = Object.assign({}, sample);
-        console.log("create prev", week, weeks[i], weeks[i].length - 1);
         if (weeks[i].indexOf(week) != -1) {
             dummy.week = weeks[i][weeks[i].length - 1];
             result.push(dummy);

@@ -26,7 +26,7 @@ exports.pregnancyConfirmation = {
     phisicalSymptoms: {
         name: "Physical Symptoms",
         value: null,
-        options: "Abdominal Pain || Urine Frequency || Nausea || Weakness || Feverish",
+        options: ["Abdominal Pain", "Urine Frequency", "Nausea", " Weakness ", "Feverish"],
         inputType: "Select"
     }
 };
@@ -36,19 +36,19 @@ exports.bloodGroupAndRhTyping = {
     motherBloodGroup: {
         name: "Mother Blood Group",
         value: null,
-        options: "A +ve/A -ve/B +ve/B -ve/AB +ve/AB -ve/O +ve/O -ve",
+        options: ["A +ve", "A -ve", "B +ve", "B -ve", "AB +ve", "AB -ve", "O +ve", "O -ve"],
         inputType: "Select"
     },
     fatherBloodGroup: {
         name: "Father Blood Group",
         value: null,
-        options: "A +ve/A -ve/B +ve/B -ve/AB +ve/AB -ve/O +ve/O -ve",
+        options: ["A +ve", "A -ve", "B +ve", "B -ve", "AB +ve", "AB -ve", "O +ve", "O -ve"],
         inputType: "Select"
     },
     result: {
         name: "Result",
         value: null,
-        options: "Rh -ve",
+        options: ["Rh -ve"],
         inputType: "Checkbox"
     }
 };
@@ -59,45 +59,55 @@ exports.bloodTest = {
     hb: {
         name: "Hb",
         value: null,
-        inputType: "Textbox"
+        unit: "g/dl",
+        inputType: "Textbox",
+        placeholder: "90-120"
     },
     tlcValue: {
         name: "TLC Value",
         value: null,
-        inputType: "Textbox"
+        unit: "Cells",
+        inputType: "Textbox",
+        placeholder: "4000-11000"
     },
     dlcValue: {
         name: "DLC Value",
         n: {
             name: "N",
             value: null,
-            inputType: "Textbox"
+            inputType: "Textbox",
+            placeholder: "25"
         },
         l: {
             name: "L",
             value: null,
-            inputType: "Textbox"
+            inputType: "Textbox",
+            placeholder: "19"
         },
         e: {
             name: "E",
             value: null,
-            inputType: "Textbox"
+            inputType: "Textbox",
+            placeholder: "09"
         },
         m: {
             name: "M",
             value: null,
-            inputType: "Textbox"
+            inputType: "Textbox",
+            placeholder: "12"
         },
         b: {
             name: "B",
             value: null,
-            inputType: "Textbox"
+            inputType: "Textbox",
+            placeholder: "08"
         }
     },
     piCount: {
         name: "PI Count",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: "150,000 to 450,000"
     }
 };
 exports.urineRoutine = {
@@ -107,17 +117,20 @@ exports.urineRoutine = {
     a: {
         name: "A",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: null
     },
     s: {
         name: "S",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: null
     },
     micro: {
         name: "Micro",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: null
     }
 };
 exports.ogct = {
@@ -127,7 +140,9 @@ exports.ogct = {
     twoHours: {
         name: "2 hours",
         value: null,
-        inputType: "Textbox"
+        unit: "mg/dl",
+        inputType: "Textbox",
+        placeholder: null
     }
 };
 exports.ict = {
@@ -137,12 +152,14 @@ exports.ict = {
     I: {
         name: "I",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: null
     },
     II: {
         name: "II",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: null
     },
     vdrl: {
         name: "VDRL",
@@ -176,13 +193,13 @@ exports.hbElectrophoriesis = {
     w: {
         name: "W",
         value: null,
-        options: "Boedline raised/Hb A2",
+        options: ["Boedline raised", "Hb A2"],
         inputType: "Select"
     },
     h: {
         name: "H",
         value: null,
-        options: "Boedline raised/Hb A2",
+        options: ["Boedline raised", "Hb A2"],
         inputType: "Select"
     }
 };
@@ -193,22 +210,26 @@ exports.thyroidFunctionTest = {
     utsh: {
         name: "uTSH",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: "0-999"
     },
     ft3: {
         name: "F T3",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: "xx.xx"
     },
     ft4: {
         name: "F T4",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: "xx.xx"
     },
     antiThyAbs: {
         name: "Anti Thy Abs",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: "0-999"
     }
 };
 exports.rubellaLgm = {
@@ -218,7 +239,7 @@ exports.rubellaLgm = {
     rubellaLgm: {
         name: "Rubella LGM",
         value: null,
-        options: "Positive/Negative",
+        options: ["Positive", "Negative"],
         inputType: "Select"
     }
 };
@@ -229,7 +250,7 @@ exports.srVitB12 = {
     srVitB12: {
         name: "Sr. Vit B12",
         value: null,
-        options: "Positive/Negative",
+        options: ["Positive", "Negative"],
         inputType: "Select"
     }
 };
@@ -240,7 +261,7 @@ exports.biGroup = {
     biGroup: {
         name: "BI Group",
         value: null,
-        options: "Positive/Negative",
+        options: ["Positive", "Negative"],
         inputType: "Select"
     }
 };
@@ -251,7 +272,7 @@ exports.glycoylatedHb = {
     gycoylatedHb: {
         name: "Glycoylated Hb",
         value: null,
-        options: "Positive/Negative",
+        options: ["Positive", "Negative"],
         inputType: "Select"
     }
 };
@@ -260,9 +281,10 @@ exports.afp = {
     followUp: false,
     testName: "AFP",
     afp: {
-        name: "Select Value",
+        name: "AFP",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: "10-150"
     }
 };
 exports.bsl = {
@@ -272,7 +294,8 @@ exports.bsl = {
     bsl: {
         name: "B.S.L",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: "0-999"
     }
 };
 exports.urine = {
@@ -282,13 +305,13 @@ exports.urine = {
     a: {
         name: "A",
         value: null,
-        options: "Nil/Trace/+1/+2/+3",
+        options: ["Nil", "Trace", "+1", "+2", "+3"],
         inputType: "Select"
     },
     s: {
         name: "S",
         value: null,
-        options: "Nil/Trace/+1/+2/+3",
+        options: ["Nil", "Trace", "+1", "+2", "+3"],
         inputType: "Select"
     }
 };
@@ -299,17 +322,20 @@ exports.urineCs = {
     a: {
         name: "A",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: null
     },
     s: {
         name: "S",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: null
     },
     micro: {
         name: "Micro",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: null
     }
 };
 exports.firstTrimesterScreening = {
@@ -319,12 +345,15 @@ exports.firstTrimesterScreening = {
     srFreeBhcg: {
         name: "Sr. free BHCG",
         value: null,
-        inputType: "Textbox"
+        unit: "mIU/ml",
+        inputType: "Textbox",
+        placeholder: "0-10lac"
     },
     pappA: {
         name: "papp-A",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: null
     }
 };
 exports.ntUsg = {
@@ -334,7 +363,7 @@ exports.ntUsg = {
     re: {
         name: "Re",
         value: null,
-        options: "Single || Twins Triplets",
+        options: ["Single", "Twins", "Triplets"],
         inputType: "Select"
     },
     sw: {
@@ -352,19 +381,19 @@ exports.ntUsg = {
     placenta: {
         name: "Placenta",
         value: null,
-        options: "Anterior low || Posterior || Anterior low || Posterior low",
+        options: ["Anterior low", "Posterior", "Anterior low", "Posterior low"],
         inputType: "Select"
     },
     liquor: {
         name: "Liquor",
         value: null,
-        options: "Adequate || Low || Excess",
+        options: ["Adequate", "Low", " Excess"],
         inputType: "Select"
     },
     other: {
         name: "Other",
         value: null,
-        options: "Uteroplacental insufficiency || Foetp-placental insufficiency",
+        options: ["Uteroplacental insufficiency ", " Foetp-placental insufficiency"],
         inputType: "Select"
     },
     liveFeotus: {
@@ -381,7 +410,7 @@ exports.nips = {
     nips: {
         name: "NIPS",
         value: null,
-        options: "Low Risk/Increased risk",
+        options: ["Low Risk", "Increased risk"],
         inputType: "Select"
     }
 };
@@ -403,27 +432,32 @@ exports.quadrapleTest = {
     bhcg: {
         name: "BHCG",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: null
     },
     e3: {
         name: "E3",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeHolder: null
     },
     alphaAfp: {
         name: "AlphaAFP",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeHolder: null
     },
     inhibinA: {
         name: "Inhibin A",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeHolder: null
     },
     karyatyping: {
         name: "karyatyping",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeHolder: null
     }
 };
 exports.spInvestigation = {
@@ -433,7 +467,7 @@ exports.spInvestigation = {
     aca: {
         name: "ACA",
         value: null,
-        options: "Positive/Negative",
+        options: ["Positive", "Negative"],
         inputType: "Select"
     },
     la: {
@@ -480,52 +514,72 @@ exports.anaemiaInvestigation = {
     mcv: {
         name: "MCV",
         value: null,
-        inputType: "Textbox"
+        unit: "µm3",
+        inputType: "Textbox",
+        placeHolder: "0.1 to 999.9"
     },
     mch: {
         name: "MCH",
         value: null,
-        inputType: "Textbox"
+        unit: "pg/cell",
+        inputType: "Textbox",
+        placeholder: "01-99"
     },
     mchc: {
         name: "MCHC",
         value: null,
-        inputType: "Textbox"
+        unit: "g/l",
+        inputType: "Textbox",
+        placeholder: "01-999"
     },
     pbs: {
         name: "PBS",
         value: null,
-        inputType: "Textbox"
+        unit: null,
+        inputType: "Textbox",
+        placeholder: null
     },
     srFerritin: {
         name: "Sr. Ferritin",
         value: null,
-        inputType: "Textbox"
+        unit: "µg/l",
+        inputType: "Textbox",
+        placeholder: "15-30"
     },
     srIron: {
         name: "Sr. Iron",
         value: null,
-        inputType: "Textbox"
+        unit: null,
+        inputType: "Textbox",
+        placeholder: null
     },
     tibc: {
         name: "TIBC",
         value: null,
-        inputType: "Textbox"
+        unit: "µg/dl",
+        inputType: "Textbox",
+        placeholder: "01-999"
     },
     sickling: {
         name: "Sickling",
         value: null,
-        inputType: "Textbox"
+        unit: null,
+        inputType: "Textbox",
+        placeholder: null
     },
     srVitB12: {
         name: "Sr. Vit B12",
         value: null,
-        inputType: "Textbox"
+        unit: "pg/ml",
+        inputType: "Textbox",
+        placeholder: "01-999"
     },
     srFolate: {
         name: "Sr. Folate",
         value: null,
-        inputType: "Textbox"
+        unit: "ng/ml",
+        inputType: "Textbox",
+        placeholder: "0.1-99"
     }
 };
 exports.anomalyScan = {
@@ -535,52 +589,62 @@ exports.anomalyScan = {
     anencephaly: {
         name: "Anencephaly",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: null
     },
     openSpinaBifida: {
         name: "Open Spina Bifida",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: null
     },
     cleftLip: {
         name: "Cleft Lip",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: null
     },
     diaphragmaticHernia: {
         name: "Diaphragmatic",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: null
     },
     gastroschisis: {
         name: "Gastroschisis",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: null
     },
     exomphalos: {
         name: "Exomphalos",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: null
     },
     seriousCardiacAbnormalities: {
         name: "Serious Cardiac Abnormalities",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: null
     },
     bilateralRenalAgenesis: {
         name: "Bilateral Renal Agenesis",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: null
     },
     lethalSkeletalDysplasia: {
         name: "Lethal Skeletal Dysplasia",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: null
     },
     edwardsSyndromeTrisomy18: {
         name: "Edwards Syndrome (Trisomy 18)",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        placeholder: null
     }
 };
 exports.foetal2dEcho = {
@@ -590,19 +654,19 @@ exports.foetal2dEcho = {
     fetalGrowth: {
         name: "Fetal Growth",
         value: null,
-        options: "Adequate/Low",
+        options: ["Adequate", "Low"],
         inputType: "Select"
     },
     liquorQuantity: {
         name: "Liquor Quantity",
         value: null,
-        options: "Adequate/Low",
+        options: ["Adequate", "Low"],
         inputType: "Select"
     },
     fetoAndUteroplacentalCirculation: {
         name: "Feto & Uteroplacental circulation",
         value: null,
-        options: "Adequate/Low",
+        options: ["Adequate", "Low"],
         inputType: "Select"
     }
 };
@@ -613,53 +677,71 @@ exports.pihWorkUp = {
     srBili: {
         name: "Sr. bili",
         value: null,
-        inputType: "Textbox"
+        unit: "mg/dl",
+        inputType: "Textbox",
+        placeholder: "0.1 to 1.2"
     },
     sgpt: {
         name: "SGPT",
         value: null,
-        inputType: "Textbox"
+        unit: "U/L",
+        inputType: "Textbox",
+        placeholder: "1-99"
     },
     sgot: {
         name: "SGOT",
         value: null,
-        inputType: "Textbox"
+        unit: "U/L",
+        inputType: "Textbox",
+        placeholder: "1 to 99"
     },
     srProtines: {
         name: "Sr. protines",
         value: null,
-        inputType: "Textbox"
+        unit: "g/dl",
+        inputType: "Textbox",
+        placeholder: "0.1 to 9.9"
     },
     bul: {
         name: "BUL",
         value: null,
-        inputType: "Textbox"
+        unit: null,
+        inputType: "Textbox",
+        placeholder: null
     },
     srCreat: {
         name: "Sr. Creat",
         value: null,
-        inputType: "Textbox"
+        unit: "mg/dl",
+        inputType: "Textbox",
+        placeholder: "0.1 to 9.9"
     },
     srUricAcid: {
         name: "Sr. Uric Acid",
         value: null,
-        inputType: "Textbox"
+        unit: "mg/dl",
+        inputType: "Textbox",
+        placeholder: "0.1 to 9.9"
     },
     srUricAlb: {
         name: "Sr. Uric Alb",
-        value: null,
-        inputType: "Textbox"
+        value: "mg/24 hr",
+        inputType: "Textbox",
+        placeholder: "0-999"
     },
     ldh: {
         name: "LDH",
         value: null,
-        inputType: "Textbox"
+        unit: "U/L",
+        inputType: "Textbox",
+        placeholder: "01 to 999"
     },
     karyotypingDt: {
         name: "Karyotyping Dt",
         value: null,
-        options: "Adequate/Low",
-        inputType: "Textbox"
+        unit: null,
+        inputType: "Textbox",
+        placeholder: null
     }
 };
 exports.coagulationProfile = {
@@ -669,37 +751,51 @@ exports.coagulationProfile = {
     bt: {
         name: "BT",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        unit: null,
+        placeholder: null
     },
     ct: {
         name: "CT",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        unit: null,
+        placeholder: null
     },
     pc: {
         name: "PC",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        unit: null,
+        placeholder: null
     },
     pt: {
         name: "PT",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        unit: null,
+        placeholder: null
     },
     pttk: {
         name: "PTTK",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        unit: null,
+        placeholder: null
     },
     dDimer: {
         name: "D Dimer",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        unit: null,
+        placeholder: null
     },
     sFibrinogen: {
         name: "S. Fibrinogen",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        unit: null,
+        placeholder: null
     }
 };
 exports.usgWithDoppler = {
@@ -709,25 +805,25 @@ exports.usgWithDoppler = {
     fetalGrowth: {
         name: "Fetal Growth",
         value: null,
-        options: "Adequate/Low",
+        options: ["Adequate", "Low"],
         inputType: "Select"
     },
     liquorQuantity: {
         name: "Liquor Quantity",
         value: null,
-        options: "Adequate/Low",
+        options: ["Adequate", "Low"],
         inputType: "Select"
     },
     fetoAndUteroplacentalCirculation: {
         name: "Feto & Uteroplacental circulation",
         value: null,
-        options: "Adequate/Low",
+        options: ["Adequate", "Low"],
         inputType: "Select"
     },
     presentation: {
         name: "Presentation",
         value: null,
-        options: "Cephlic/Breech/Shoulder/Face",
+        options: ["Cephlic", "Breech", "Shoulder", "Face"],
         inputType: "Select"
     }
 };
@@ -738,7 +834,7 @@ exports.dfmr = {
     dfmr: {
         name: "DFMR",
         value: null,
-        options: "Normal/Low",
+        options: ["Normal", "Low"],
         inputType: "Select"
     }
 };
@@ -749,6 +845,8 @@ exports.nst = {
     beatPerMins: {
         name: "Beat per mins",
         value: null,
-        inputType: "Textbox"
+        inputType: "Textbox",
+        unit: null,
+        placeholder: null
     }
 };
