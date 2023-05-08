@@ -759,13 +759,13 @@ const createPreviousWeekData = (week, sample) => {
     for (let i = 0; i < weeks.length; i++) {
 
         const dummy = { ...sample }
-        console.log("create prev", weeks[i], weeks[i], weeks[i].length - 1)
-        // if (weeks[i].indexOf(week) != -1) {
+        console.log("create prev", weeks[i], weeks[i].length - 1)
+        if (weeks[i].indexOf(week) != -1) {
 
-        //     dummy.week = weeks[i][weeks[i].length - 1]
-        //     result.push(dummy)
+            dummy.week = weeks[i][weeks[i].length - 1]
+            result.push(dummy)
 
-        // }
+        }
 
     }
 
