@@ -33,7 +33,7 @@ const treatmentSchema = new mongoose.Schema({
                                 value: { type: Number, default: null },
                                 unit: {
                                     type: String,
-                                    enum: ["Day", "Week", "Month", null],
+                                    enum: ["Days", "Weeks", "Months", null],
                                     default: null
                                 }
                             },

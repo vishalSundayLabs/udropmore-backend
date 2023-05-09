@@ -9,4 +9,5 @@ router.put('/update/userDetail', tokenVerify_1.verifyToken, UserDetailsControlle
 router.get('/getuser/details/:motherId', tokenVerify_1.verifyToken, UserDetailsController_1.getUserDetailsbyId);
 router.get('/:motherId/weights', tokenVerify_1.verifyToken, UserDetailsController_1.getWeightByBmi);
 router.get("/pastHistoryMaster", UserDetailsController_1.getPastHistoryMasterConstant);
+router.get("/currentMedications/details/:motherId", tokenVerify_1.verifyToken, UserDetailsController_1.getCurrentMedications);
 exports.default = router;

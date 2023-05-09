@@ -262,3 +262,39 @@ export const getPastHistoryMasterConstant = (req, res) => {
     }))
 
 }
+
+export const getCurrentMedications = async (req, res) => {
+
+    const params = req.params
+
+    if (!params.motherId) {
+
+        return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+            success: false,
+            message: "Bad request! Mother id or BMI must be provide."
+        }))
+
+    }
+
+    try {
+
+        const currentMedicationsData = await UserDetailsModel.findOne({ userId: params.motherId, isDeleted: false }, { pastHistory: true })
+        console.log(currentMedicationsData)
+        return res.status(HTTP_OK).send(new ResponseSuccess({
+            success: true,
+            message: "get currentMedications successfully.",
+            result: currentMedicationsData.pastHistory.currentPregnancy.currentMedications
+        }))
+
+    } catch (error) {
+
+        let response = new ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+
+        return res.status(500).json(response);
+
+    }
+
+}

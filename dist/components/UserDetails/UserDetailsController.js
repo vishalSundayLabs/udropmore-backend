@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getPastHistoryMasterConstant = exports.getWeightByBmi = exports.getUserDetailsbyId = exports.updateUserDetails = exports.createUserDetails = void 0;
+exports.getCurrentMedications = exports.getPastHistoryMasterConstant = exports.getWeightByBmi = exports.getUserDetailsbyId = exports.updateUserDetails = exports.createUserDetails = void 0;
 const bodyTraverse_1 = require("../../helpers/bodyTraverse");
 const Master_1 = require("../../Constant/Master");
 const ResponseClass_1 = require("../../utils/ResponseClass");
@@ -206,3 +206,29 @@ const getPastHistoryMasterConstant = (req, res) => {
     }));
 };
 exports.getPastHistoryMasterConstant = getPastHistoryMasterConstant;
+const getCurrentMedications = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const params = req.params;
+    if (!params.motherId) {
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: "Bad request! Mother id or BMI must be provide."
+        }));
+    }
+    try {
+        const currentMedicationsData = yield UserDetailsModel_1.default.findOne({ userId: params.motherId, isDeleted: false }, { pastHistory: true });
+        console.log(currentMedicationsData);
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "get currentMedications successfully.",
+            result: currentMedicationsData.pastHistory.currentPregnancy.currentMedications
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.getCurrentMedications = getCurrentMedications;
