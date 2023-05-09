@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deletePrescriptionTemplate = exports.getPrescriptionTemplate = exports.createPrescriptionTemplate = void 0;
+exports.deletePrescriptionTemplate = exports.getPrescriptionTemplate = exports.updatePrescriptionTemplate = exports.createPrescriptionTemplate = void 0;
 const Master_1 = require("../../Constant/Master");
 const bodyTraverse_1 = require("../../helpers/bodyTraverse");
 const ResponseClass_1 = require("../../utils/ResponseClass");
@@ -41,6 +41,40 @@ const createPrescriptionTemplate = (req, res) => __awaiter(void 0, void 0, void 
     }
 });
 exports.createPrescriptionTemplate = createPrescriptionTemplate;
+const updatePrescriptionTemplate = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const body = req.body;
+    const params = req.params;
+    if (!params.templateId) {
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: "Bad Request! Template Id must be provide.",
+        }));
+    }
+    try {
+        const template = yield TemplateModel_1.default.findOne({ _id: params.templateId });
+        if (!template) {
+            return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseSuccess({
+                success: false,
+                message: " Template not found!"
+            }));
+        }
+        (0, bodyTraverse_1.bodyTraverse)(template, body);
+        yield template.save();
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "Template update successfully.",
+            result: template
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.updatePrescriptionTemplate = updatePrescriptionTemplate;
 const getPrescriptionTemplate = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const params = req.params;
     if (!params.doctorId) {
@@ -50,7 +84,7 @@ const getPrescriptionTemplate = (req, res) => __awaiter(void 0, void 0, void 0, 
         }));
     }
     try {
-        const template = yield TemplateModel_1.default.find({ doctorId: params.doctorId }).sort({ $nature: -1 }).limit(3);
+        const template = yield TemplateModel_1.default.find({ doctorId: params.doctorId, isDeleted: false }).sort({ createdAt: -1 }).limit(3);
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "3 latest Template get successfully.",

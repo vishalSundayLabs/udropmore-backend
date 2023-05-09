@@ -200,7 +200,8 @@ const getPastHistoryMasterConstant = (req, res) => {
             flow: Master_2.flow,
             natureOfCycle: Master_2.natureOfCycle,
             sourceOfVisit: Master_2.sourceOfVisit,
-            language: Master_2.language
+            language: Master_2.language,
+            medicines: Master_2.medicines
         }
     }));
 };

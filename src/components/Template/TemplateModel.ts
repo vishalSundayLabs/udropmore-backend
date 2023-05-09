@@ -6,21 +6,21 @@ const standardSupplementsSchema = new mongoose.Schema({
         refs: "User"
     },
     standardSupplements: [{
-        type: { type: String, default: null },
-        subType: { type: String, default: null },
-        freq: { type: String, default: null },
-        week: { type: Number, default: null },
-        startDate: { type: Date, default: null },
-        endDate: { type: Date, default: null }
+        category: {
+            categoryName: { type: String, default: null },
+            drugs: [{
+                drugName: { type: String, default: null },
+                freq: { type: String, default: null },
+                week: { type: Number, default: null },
+                startDate: { type: Date, default: null },
+                endDate: { type: Date, default: null }
+            }]
+        }
     }],
-    symptomsSupplements: [{
-        type: { type: String, default: null },
-        subType: { type: String, default: null },
-        freq: { type: String, default: null },
-        week: { type: Number, default: null },
-        startDate: { type: Date, default: null },
-        endDate: { type: Date, default: null }
-    }],
+    isDeleted: {
+        type: Boolean,
+        default: false
+    },
     createdBy: {
         type: mongoose.SchemaTypes.ObjectId,
         refs: "User"

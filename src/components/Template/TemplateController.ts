@@ -1,4 +1,4 @@
-import { HTTP_BAD_REQUEST } from "../../Constant/Master"
+import { HTTP_BAD_REQUEST, HTTP_NOT_FOUND } from "../../Constant/Master"
 import { bodyTraverse } from "../../helpers/bodyTraverse"
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
 import TemplateModel from "./TemplateModel"
@@ -42,6 +42,56 @@ export const createPrescriptionTemplate = async (req, res) => {
 
 }
 
+export const updatePrescriptionTemplate = async (req, res) => {
+
+    const body = req.body
+    const params = req.params
+
+    if (!params.templateId) {
+
+        return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+            success: false,
+            message: "Bad Request! Template Id must be provide.",
+        }))
+
+    }
+
+    try {
+
+        const template = await TemplateModel.findOne({ _id: params.templateId })
+       
+        if(!template) {
+
+            return res.status(HTTP_NOT_FOUND).send(new ResponseSuccess({
+                success: false,
+                message: " Template not found!"
+            }))
+    
+        }
+
+        bodyTraverse(template, body)
+
+        await template.save()
+
+        return res.status(HTTP_BAD_REQUEST).send(new ResponseSuccess({
+            success: true,
+            message: "Template update successfully.",
+            result: template
+        }))
+
+    } catch (error) {
+
+        let response = new ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+
+        return res.status(500).json(response);
+
+    }
+
+}
+
 export const getPrescriptionTemplate = async (req, res) => {
 
     const params = req.params
@@ -57,7 +107,7 @@ export const getPrescriptionTemplate = async (req, res) => {
 
     try {
 
-        const template = await TemplateModel.find({ doctorId: params.doctorId }).sort({ $nature: -1 }).limit(3)
+        const template = await TemplateModel.find({ doctorId: params.doctorId, isDeleted: false }).sort({ createdAt: -1 }).limit(3)
 
         return res.status(HTTP_BAD_REQUEST).send(new ResponseSuccess({
             success: true,

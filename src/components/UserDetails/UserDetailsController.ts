@@ -1,7 +1,7 @@
 import { bodyTraverse } from "../../helpers/bodyTraverse"
 import { HTTP_BAD_REQUEST, HTTP_NOT_FOUND, HTTP_OK } from "../../Constant/Master"
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
-import { diseases, whoInFamily, typeOfTermination, typeOfAbortion, typeOfDelivery, liveBirthsDescription, genderOfChild, pregnancyType, assisted, donor, flow, natureOfCycle, sourceOfVisit, language } from "../../Constant/Master"
+import { diseases, whoInFamily, typeOfTermination, typeOfAbortion, typeOfDelivery, liveBirthsDescription, genderOfChild, pregnancyType, assisted, donor, flow, natureOfCycle, sourceOfVisit, language, medicines } from "../../Constant/Master"
 import UserModel from "../Users/UserModel"
 import UserDetailsModel from "./UserDetailsModel"
 import { babyWeights, weightRange } from '../../Constant/WeightChart'
@@ -256,7 +256,8 @@ export const getPastHistoryMasterConstant = (req, res) => {
             flow,
             natureOfCycle,
             sourceOfVisit,
-            language
+            language,
+            medicines
         }
     }))
 
