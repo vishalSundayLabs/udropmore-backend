@@ -58,15 +58,15 @@ export const updatePrescriptionTemplate = async (req, res) => {
 
     try {
 
-        const template = await TemplateModel.findOne({ _id: params.templateId })
-       
-        if(!template) {
+        const template = await TemplateModel.findOne({ _id: params.templateId, isDeleted: false })
+
+        if (!template) {
 
             return res.status(HTTP_NOT_FOUND).send(new ResponseSuccess({
                 success: false,
                 message: " Template not found!"
             }))
-    
+
         }
 
         bodyTraverse(template, body)
@@ -143,7 +143,7 @@ export const deletePrescriptionTemplate = async (req, res) => {
 
     try {
 
-        const template = await TemplateModel.findOne({ _id: params.templateId })
+        const template = await TemplateModel.findOne({ _id: params.templateId, isDeleted: false })
 
         template.isDeleted = true
 

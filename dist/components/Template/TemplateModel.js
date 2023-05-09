@@ -11,8 +11,15 @@ const standardSupplementsSchema = new mongoose.Schema({
                 categoryName: { type: String, default: null },
                 drugs: [{
                         drugName: { type: String, default: null },
-                        freq: { type: String, default: null },
-                        week: { type: Number, default: null },
+                        freq: { type: String, default: "101" },
+                        duration: {
+                            value: { type: Number, default: null },
+                            unit: {
+                                type: String,
+                                enum: ["Day", "Week", "Month", null],
+                                default: null
+                            }
+                        },
                         startDate: { type: Date, default: null },
                         endDate: { type: Date, default: null }
                     }]

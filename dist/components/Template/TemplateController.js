@@ -51,7 +51,7 @@ const updatePrescriptionTemplate = (req, res) => __awaiter(void 0, void 0, void 
         }));
     }
     try {
-        const template = yield TemplateModel_1.default.findOne({ _id: params.templateId });
+        const template = yield TemplateModel_1.default.findOne({ _id: params.templateId, isDeleted: false });
         if (!template) {
             return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseSuccess({
                 success: false,
@@ -109,7 +109,7 @@ const deletePrescriptionTemplate = (req, res) => __awaiter(void 0, void 0, void 
         }));
     }
     try {
-        const template = yield TemplateModel_1.default.findOne({ _id: params.templateId });
+        const template = yield TemplateModel_1.default.findOne({ _id: params.templateId, isDeleted: false });
         template.isDeleted = true;
         yield template.save();
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseSuccess({

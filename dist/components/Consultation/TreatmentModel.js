@@ -18,26 +18,33 @@ const treatmentSchema = new mongoose.Schema({
                 remarksForMother: { type: String, default: null }
             },
             prescription: {
-                templateId: {
-                    type: mongoose.SchemaTypes.ObjectId,
-                    refs: "template"
+                standardSupplements: {
+                    templateId: {
+                        type: mongoose.SchemaTypes.ObjectId,
+                        refs: "template",
+                        default: null
+                    },
+                    medicines: [{
+                            category: {
+                                categoryName: { type: String, default: null },
+                                drugs: [{
+                                        drugName: { type: String, default: null },
+                                        freq: { type: String, default: null },
+                                        duration: {
+                                            value: { type: Number, default: null },
+                                            unit: {
+                                                type: String,
+                                                enum: ["Day", "Week", "Month", null],
+                                                default: null
+                                            }
+                                        },
+                                        startDate: { type: Date, default: null },
+                                        endDate: { type: Date, default: null }
+                                    }]
+                            }
+                        }]
                 },
-                standardSupplements: [{
-                        type: { type: String, default: null },
-                        subType: { type: String, default: null },
-                        freq: { type: String, default: null },
-                        week: { type: Number, default: null },
-                        startDate: { type: Date, default: null },
-                        endDate: { type: Date, default: null }
-                    }],
-                symptomsSupplements: [{
-                        type: { type: String, default: null },
-                        subType: { type: String, default: null },
-                        freq: { type: String, default: null },
-                        week: { type: Number, default: null },
-                        startDate: { type: Date, default: null },
-                        endDate: { type: Date, default: null }
-                    }]
+                symptomsSupplements: []
             },
             followUp: {
                 followUpDate: { type: Date, default: null },
