@@ -7,7 +7,7 @@ export const sampleCurrentObservastion = {
         week: null,
         riskFactor: [
             {
-                name: "Rx Infertility",
+                name: "RxInfertility",
                 rxInfertility: false
             },
             {
@@ -59,7 +59,7 @@ export const sampleCurrentObservastion = {
                 oligohydramnolsPlacenta: false
             },
             {
-                name: "Pre CS/Myomectomy",
+                name: "Prev CS / Myomectomy",
                 prevCsMyomectomy: false
             },
         ],
@@ -73,7 +73,7 @@ export const sampleCurrentObservastion = {
                 bleedingGums: false
             },
             {
-                name: "Duzziness",
+                name: "Dizziness",
                 dizziness: false
             },
             {
@@ -105,11 +105,11 @@ export const sampleCurrentObservastion = {
                 vommiting: false
             },
             {
-                name: "Rx Infertility",
+                name: "PV spotting",
                 pvSpotting: false
             },
             {
-                name: "Rx Infertility",
+                name: "Heartburn & indigestion",
                 heartburnIndigestion: false
             },
             {
@@ -117,7 +117,7 @@ export const sampleCurrentObservastion = {
                 pvWhiteDischarge: false
             },
             {
-                name: "Swelling or Fluid Retention",
+                name: "Swelling or Fluid retention",
                 swellingOrFluidRetention: false
             },
             {

@@ -64,7 +64,7 @@ exports.sampleUserDetails = {
             },
             riskFactor: [
                 {
-                    name: "Rx Infertility",
+                    name: "RxInfertility",
                     rxInfertility: false
                 },
                 {
@@ -116,7 +116,7 @@ exports.sampleUserDetails = {
                     oligohydramnolsPlacenta: false
                 },
                 {
-                    name: "Pre CS/Myomectomy",
+                    name: "Prev CS / Myomectomy",
                     prevCsMyomectomy: false
                 },
             ],
@@ -130,7 +130,7 @@ exports.sampleUserDetails = {
                     bleedingGums: false
                 },
                 {
-                    name: "Duzziness",
+                    name: "Dizziness",
                     dizziness: false
                 },
                 {
@@ -162,11 +162,11 @@ exports.sampleUserDetails = {
                     vommiting: false
                 },
                 {
-                    name: "Rx Infertility",
+                    name: "PV spotting",
                     pvSpotting: false
                 },
                 {
-                    name: "Rx Infertility",
+                    name: "Heartburn & indigestion",
                     heartburnIndigestion: false
                 },
                 {
@@ -174,7 +174,7 @@ exports.sampleUserDetails = {
                     pvWhiteDischarge: false
                 },
                 {
-                    name: "Swelling or Fluid Retention",
+                    name: "Swelling or Fluid retention",
                     swellingOrFluidRetention: false
                 },
                 {
@@ -250,7 +250,7 @@ exports.sampleUserDetails = {
                                     foetalDistress: false
                                 },
                                 {
-                                    name: "Pre eclampsia",
+                                    name: "Pre Eclampsia",
                                     preEclampsia: false
                                 },
                                 {
@@ -260,10 +260,6 @@ exports.sampleUserDetails = {
                                 {
                                     name: "Vertex floating with unfavourablen cervix",
                                     vertexFloatingWithUnfavourableCervix: false
-                                },
-                                {
-                                    name: "Other",
-                                    other: false
                                 }
                             ]
                         }
@@ -304,10 +300,6 @@ exports.sampleUserDetails = {
                             {
                                 name: "Laparohupteroscopy",
                                 laparohupteroscopy: false
-                            },
-                            {
-                                name: "Other",
-                                other: false
                             }
                         ],
                         complicationsInTheProcedure: {
@@ -329,7 +321,7 @@ exports.sampleUserDetails = {
                         value: null,
                         types: [
                             {
-                                name: "Cervical circlage",
+                                name: "Cervical Circlage",
                                 cervicalCirclage: false
                             },
                             {
@@ -353,7 +345,7 @@ exports.sampleUserDetails = {
                                 dm: false
                             },
                             {
-                                name: "Preterm labour",
+                                name: "Preterm Labour",
                                 pretermLabour: false
                             },
                             {
@@ -361,12 +353,8 @@ exports.sampleUserDetails = {
                                 eclamapsia: false
                             },
                             {
-                                name: "Threatered abortia",
+                                name: "Threatered Abortia",
                                 threatered: false
-                            },
-                            {
-                                name: "Other",
-                                other: false
                             }
                         ]
                     },
@@ -388,10 +376,6 @@ exports.sampleUserDetails = {
                             {
                                 name: "Neonatal hypoglycarmia",
                                 neonatalHypoglycaemia: false
-                            },
-                            {
-                                name: "Other",
-                                other: false
                             }
                         ]
                     }
@@ -405,7 +389,7 @@ exports.sampleUserDetails = {
                         renalDisease: false
                     },
                     {
-                        name: "jaundice",
+                        name: "Jaundice",
                         jaundice: false
                     },
                     {

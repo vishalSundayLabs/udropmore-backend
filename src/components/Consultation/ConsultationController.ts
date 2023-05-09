@@ -395,12 +395,12 @@ export const getAntenatalTest = async (req, res) => {
         console.log(week)
         for (let k = 0; k < masterAntenatalTest.length; k++) {
 
-            const tempTest = masterAntenatalTest[k]
-            console.log("line 399", tempTest.week)
+            const tempTest = { ...masterAntenatalTest[k] }
+            
             if (tempTest.week.includes(week)) {
                 console.log("in if")
-                // tempTest.week = [tempTest.week[tempTest.week.length - 1]]
-                // testOfTheWeek.push(tempTest)
+                tempTest.week = [tempTest.week[tempTest.week.length - 1]]
+                testOfTheWeek.push(tempTest)
                 break;
 
             } else {
@@ -423,7 +423,16 @@ export const getAntenatalTest = async (req, res) => {
 
         }
 
+        for (let j = 0; j < antenatalTest.antenatalTest.length; j++) {
 
+            const date = antenatalTest.antenatalTest[j].date ? antenatalTest.antenatalTest[j].date : new Date(moment(body.lmpDate).add(antenatalTest.antenatalTest[j].week, 'weeks').format('YYYY-MM-DD'))
+            const consultationDate = calculateCurrentWeekAndDays(date)
+            let diffWeek = week - consultationDate.week
+            let diffDays = days - consultationDate.days
+            antenatalTest.antenatalTest[j].weekAndDays = `${antenatalTest.antenatalTest[j].week} week ${Math.floor((diffDays % diffWeek) % 7)} days`
+            antenatalTest.antenatalTest[j].date = new Date(date)
+
+        }
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,

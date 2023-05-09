@@ -39,10 +39,7 @@ export const typeOfTermination = [
         name: 'Ectopic Pregnancy',
         subTypes: [
             {
-                name: 'Left Side',
-            },
-            {
-                name: 'Right Side',
+                name:"Pills"
             },
             {
                 name: 'Laproscopy Surgery',
@@ -52,7 +49,7 @@ export const typeOfTermination = [
             },
             {
                 name: 'Laprotomy',
-            },
+            }
         ],
     },
     {
@@ -94,3 +91,122 @@ export const sourceOfVisit = ["Self", "Social Media", "Previous Pregnancy"]
 export const language = ["English", "Hindi", "Marathi"]
 
 //past history constants (end)
+
+//prescription medicines
+
+export const medicines = [{
+    category: "Iron",
+    drugName: [{
+        name: "Fesovit",
+        freq: null,
+        week: null,
+        startDate: null,
+        endDate: null
+    },
+    {
+        name: "Autrin",
+        freq: null,
+        week: null,
+        startDate: null,
+        endDate: null
+    },
+    {
+        name: "Fersoft",
+        freq: null,
+        week: null,
+        startDate: null,
+        endDate: null
+    },
+    {
+        name: "Reducted MB",
+        freq: null,
+        week: null,
+        startDate: null,
+        endDate: null
+    }]
+},
+{
+    category: "Calcium",
+    drugName: [{
+        name: "Triple A",
+        freq: null,
+        week: null,
+        startDate: null,
+        endDate: null
+    },
+    {
+        name: "Skelcal Mom",
+        freq: null,
+        week: null,
+        startDate: null,
+        endDate: null
+    }]
+},
+{
+    category: "Protien Powder",
+    drugName: [{
+        name: "Protien X",
+        freq: null,
+        week: null,
+        startDate: null,
+        endDate: null
+    }]
+},
+{
+    category: "Folic Acids",
+    drugName: [{
+        name: "Fol - NT",
+        freq: null,
+        week: null,
+        startDate: null,
+        endDate: null
+    },
+    {
+        name: "Foltec Plus",
+        freq: null,
+        week: null,
+        startDate: null,
+        endDate: null
+    }]
+},
+{
+    category: "Zinc",
+    drugName: [{
+        name: "Zincovit",
+        freq: null,
+        week: null,
+        startDate: null,
+        endDate: null
+    }]
+},
+{
+    category: "Acidity",
+    drugName: [{
+        name: "Digene",
+        freq: null,
+        week: null,
+        startDate: null,
+        endDate: null
+    }]
+},
+{
+    category: "Vomitting",
+    drugName: [{
+        name: "Pregnidoxin NU",
+        freq: null,
+        week: null,
+        startDate: null,
+        endDate: null
+    }]
+},
+{
+    category: "Abdominal Pain",
+    drugName: [{
+        name: "Protien X",
+        freq: null,
+        week: null,
+        startDate: null,
+        endDate: null
+    }]
+}
+]

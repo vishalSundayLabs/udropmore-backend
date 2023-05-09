@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.language = exports.sourceOfVisit = exports.natureOfCycle = exports.flow = exports.donor = exports.assisted = exports.pregnancyType = exports.genderOfChild = exports.liveBirthsDescription = exports.typeOfDelivery = exports.typeOfAbortion = exports.typeOfTermination = exports.diseases = exports.whoInFamily = exports.INCORRECT_BODY_FORMAT_MESSAGE = exports.HTTP_INTERNAL_SERVER_ERROR = exports.HTTP_NOT_FOUND = exports.HTTP_UNAUTHORIZED = exports.HTTP_BAD_REQUEST = exports.HTTP_CREATED = exports.HTTP_OK = void 0;
+exports.medicines = exports.language = exports.sourceOfVisit = exports.natureOfCycle = exports.flow = exports.donor = exports.assisted = exports.pregnancyType = exports.genderOfChild = exports.liveBirthsDescription = exports.typeOfDelivery = exports.typeOfAbortion = exports.typeOfTermination = exports.diseases = exports.whoInFamily = exports.INCORRECT_BODY_FORMAT_MESSAGE = exports.HTTP_INTERNAL_SERVER_ERROR = exports.HTTP_NOT_FOUND = exports.HTTP_UNAUTHORIZED = exports.HTTP_BAD_REQUEST = exports.HTTP_CREATED = exports.HTTP_OK = void 0;
 exports.HTTP_OK = 200;
 exports.HTTP_CREATED = 201;
 exports.HTTP_BAD_REQUEST = 400;
@@ -35,10 +35,7 @@ exports.typeOfTermination = [
         name: 'Ectopic Pregnancy',
         subTypes: [
             {
-                name: 'Left Side',
-            },
-            {
-                name: 'Right Side',
+                name: "Pills"
             },
             {
                 name: 'Laproscopy Surgery',
@@ -48,7 +45,7 @@ exports.typeOfTermination = [
             },
             {
                 name: 'Laprotomy',
-            },
+            }
         ],
     },
     {
@@ -78,3 +75,120 @@ exports.natureOfCycle = ["Regular", "Irregular"];
 exports.sourceOfVisit = ["Self", "Social Media", "Previous Pregnancy"];
 exports.language = ["English", "Hindi", "Marathi"];
 //past history constants (end)
+//prescription medicines
+exports.medicines = [{
+        category: "Iron",
+        drugName: [{
+                name: "Fesovit",
+                freq: null,
+                week: null,
+                startDate: null,
+                endDate: null
+            },
+            {
+                name: "Autrin",
+                freq: null,
+                week: null,
+                startDate: null,
+                endDate: null
+            },
+            {
+                name: "Fersoft",
+                freq: null,
+                week: null,
+                startDate: null,
+                endDate: null
+            },
+            {
+                name: "Reducted MB",
+                freq: null,
+                week: null,
+                startDate: null,
+                endDate: null
+            }]
+    },
+    {
+        category: "Calcium",
+        drugName: [{
+                name: "Triple A",
+                freq: null,
+                week: null,
+                startDate: null,
+                endDate: null
+            },
+            {
+                name: "Skelcal Mom",
+                freq: null,
+                week: null,
+                startDate: null,
+                endDate: null
+            }]
+    },
+    {
+        category: "Protien Powder",
+        drugName: [{
+                name: "Protien X",
+                freq: null,
+                week: null,
+                startDate: null,
+                endDate: null
+            }]
+    },
+    {
+        category: "Folic Acids",
+        drugName: [{
+                name: "Fol - NT",
+                freq: null,
+                week: null,
+                startDate: null,
+                endDate: null
+            },
+            {
+                name: "Foltec Plus",
+                freq: null,
+                week: null,
+                startDate: null,
+                endDate: null
+            }]
+    },
+    {
+        category: "Zinc",
+        drugName: [{
+                name: "Zincovit",
+                freq: null,
+                week: null,
+                startDate: null,
+                endDate: null
+            }]
+    },
+    {
+        category: "Acidity",
+        drugName: [{
+                name: "Digene",
+                freq: null,
+                week: null,
+                startDate: null,
+                endDate: null
+            }]
+    },
+    {
+        category: "Vomitting",
+        drugName: [{
+                name: "Pregnidoxin NU",
+                freq: null,
+                week: null,
+                startDate: null,
+                endDate: null
+            }]
+    },
+    {
+        category: "Abdominal Pain",
+        drugName: [{
+                name: "Protien X",
+                freq: null,
+                week: null,
+                startDate: null,
+                endDate: null
+            }]
+    }
+];

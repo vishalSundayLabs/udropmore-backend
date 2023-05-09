@@ -238,7 +238,15 @@ const userDetailsSchema = new mongoose.Schema({
                 }
             },
             currentMedications: {
-
+                standardSupplements: [{
+                    type: { type: String, default: null },
+                    subType: { type: String, default: null },
+                    freq: { type: String, default: null },
+                    week: { type: Number, default: null },
+                    startDate: { type: Date, default: null },
+                    endDate: { type: Date, default: null }
+                }],
+                symptomsSupplements: []
             },
         },
         obstetricsHistory: {
@@ -248,7 +256,7 @@ const userDetailsSchema = new mongoose.Schema({
                 dateOfTermination: { type: Date, default: null },
                 weekOfTermination: { type: Number, default: null },
                 typeOfTermination: {
-                    mtp: {
+                     mtp: {
                         type: String,
                         enum: ["Pills", "Surgical", "General", "Curating", null],
                         default: null

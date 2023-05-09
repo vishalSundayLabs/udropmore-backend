@@ -20,10 +20,10 @@ export const pregnancyConfirmation = {
         btnName: "Confirm",
         inputType: "Button"
     },
-    phisicalSymptoms: {
+    physicalSymptoms: {
         name: "Physical Symptoms",
         value: null,
-        options: ["Abdominal Pain", "Urine Frequency", "Nausea", " Weakness ", "Feverish"],
+        options: ["Abdominal Pain", "Urine Frequency", "Nausea", "Weakness ", "Feverish"],
         inputType: "Select"
     }
 }
