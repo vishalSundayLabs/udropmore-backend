@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.nst = exports.dfmr = exports.usgWithDoppler = exports.coagulationProfile = exports.pihWorkUp = exports.foetal2dEcho = exports.anomalyScan = exports.anaemiaInvestigation = exports.spInvestigation = exports.quadrapleTest = exports.dentalCheckUp = exports.nips = exports.ntUsg = exports.firstTrimesterScreening = exports.urineCs = exports.urine = exports.bsl = exports.afp = exports.glycoylatedHb = exports.biGroup = exports.srVitB12 = exports.rubellaLgm = exports.thyroidFunctionTest = exports.hbElectrophoriesis = exports.ict = exports.ogct = exports.urineRoutine = exports.bloodTest = exports.bloodGroupAndRhTyping = exports.pregnancyConfirmation = void 0;
 exports.pregnancyConfirmation = {
     testName: "Pregnancy Confirmation",
-    upload: null,
+    view: null,
     followUp: false,
     betaHcgTest: {
         name: "Beta HCG Test",
@@ -26,12 +26,12 @@ exports.pregnancyConfirmation = {
     physicalSymptoms: {
         name: "Physical Symptoms",
         value: null,
-        options: ["Abdominal Pain", "Urine Frequency", "Nausea", "Weakness ", "Feverish"],
-        inputType: "Select"
+        options: "Abdominal Pain || Urine Frequency || Nausea || Weakness  || Feverish",
+        inputType: "MultiSelect"
     }
 };
 exports.bloodGroupAndRhTyping = {
-    upload: null,
+    view: null,
     followUp: false,
     motherBloodGroup: {
         name: "Mother Blood Group",
@@ -48,12 +48,12 @@ exports.bloodGroupAndRhTyping = {
     result: {
         name: "Result",
         value: null,
-        options: ["Rh -ve"],
+        options: "Rh -ve",
         inputType: "Checkbox"
     }
 };
 exports.bloodTest = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "Blood Test",
     hb: {
@@ -72,6 +72,7 @@ exports.bloodTest = {
     },
     dlcValue: {
         name: "DLC Value",
+        inputType: "Object",
         n: {
             name: "N",
             value: null,
@@ -111,7 +112,7 @@ exports.bloodTest = {
     }
 };
 exports.urineRoutine = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "Urine Routine",
     a: {
@@ -134,7 +135,7 @@ exports.urineRoutine = {
     }
 };
 exports.ogct = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "OGCT",
     twoHours: {
@@ -142,11 +143,11 @@ exports.ogct = {
         value: null,
         unit: "mg/dl",
         inputType: "Textbox",
-        placeholder: null
+        placeholder: "155"
     }
 };
 exports.ict = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "ICT",
     I: {
@@ -162,32 +163,32 @@ exports.ict = {
         placeholder: null
     },
     vdrl: {
-        name: "VDRL",
+        name: "VDRL/VDRLI",
         value: null,
-        options: null,
+        options: ["Positive", "Negetive"],
         inputType: "Select"
     },
     hiv: {
         name: "HIV",
         value: null,
-        options: null,
+        options: ["Positive", "Negetive"],
         inputType: "Select"
     },
     hbsag: {
         name: "HBsAg",
         value: null,
-        options: null,
+        options: ["Positive", "Negetive"],
         inputType: "Select"
     },
     hcv: {
         name: "HCV",
         value: null,
-        options: null,
+        options: ["Positive", "Negetive"],
         inputType: "Select"
     }
 };
 exports.hbElectrophoriesis = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "Hb Electrophoresis",
     w: {
@@ -204,7 +205,7 @@ exports.hbElectrophoriesis = {
     }
 };
 exports.thyroidFunctionTest = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "Thyroid Function Test",
     utsh: {
@@ -233,7 +234,7 @@ exports.thyroidFunctionTest = {
     }
 };
 exports.rubellaLgm = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "Rubella LGM",
     rubellaLgm: {
@@ -244,7 +245,7 @@ exports.rubellaLgm = {
     }
 };
 exports.srVitB12 = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "Sr. Vit B12",
     srVitB12: {
@@ -255,7 +256,7 @@ exports.srVitB12 = {
     }
 };
 exports.biGroup = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "BI Group",
     biGroup: {
@@ -266,7 +267,7 @@ exports.biGroup = {
     }
 };
 exports.glycoylatedHb = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "Glycoylated Hb",
     gycoylatedHb: {
@@ -277,18 +278,19 @@ exports.glycoylatedHb = {
     }
 };
 exports.afp = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "AFP",
     afp: {
         name: "AFP",
         value: null,
+        unit: "ng/ml",
         inputType: "Textbox",
         placeholder: "10-150"
     }
 };
 exports.bsl = {
-    upload: null,
+    view: null,
     followUp: false,
     textName: "B.S.L",
     bsl: {
@@ -299,7 +301,7 @@ exports.bsl = {
     }
 };
 exports.urine = {
-    upload: null,
+    view: null,
     followUp: false,
     textName: "Urine",
     a: {
@@ -316,7 +318,7 @@ exports.urine = {
     }
 };
 exports.urineCs = {
-    upload: null,
+    view: null,
     followUp: false,
     textName: "Urine C/s",
     a: {
@@ -339,7 +341,7 @@ exports.urineCs = {
     }
 };
 exports.firstTrimesterScreening = {
-    upload: null,
+    view: null,
     followUp: false,
     textName: "First Trimester Screening",
     srFreeBhcg: {
@@ -347,7 +349,7 @@ exports.firstTrimesterScreening = {
         value: null,
         unit: "mIU/ml",
         inputType: "Textbox",
-        placeholder: "0-10lac"
+        placeholder: "0-10,00,000"
     },
     pappA: {
         name: "papp-A",
@@ -357,14 +359,14 @@ exports.firstTrimesterScreening = {
     }
 };
 exports.ntUsg = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "NT USG",
     re: {
         name: "Re",
         value: null,
-        options: ["Single", "Twins", "Triplets"],
-        inputType: "Select"
+        options: "Single || Twins || Triplets",
+        inputType: "MultiSelect"
     },
     sw: {
         name: "S/W",
@@ -381,20 +383,20 @@ exports.ntUsg = {
     placenta: {
         name: "Placenta",
         value: null,
-        options: ["Anterior low", "Posterior", "Anterior low", "Posterior low"],
-        inputType: "Select"
+        options: "Anterior || Posterior || Anterior low || Posterior low",
+        inputType: "MultiSelect"
     },
     liquor: {
         name: "Liquor",
         value: null,
-        options: ["Adequate", "Low", " Excess"],
+        options: "Adequate || Low || Excess",
         inputType: "Select"
     },
     other: {
         name: "Other",
         value: null,
-        options: ["Uteroplacental insufficiency ", " Foetp-placental insufficiency"],
-        inputType: "Select"
+        options: "Uteroplacental insufficiency ||  Foetp-placental insufficiency",
+        inputType: "MultiSelect"
     },
     liveFeotus: {
         name: "Live Feotus",
@@ -404,7 +406,7 @@ exports.ntUsg = {
     }
 };
 exports.nips = {
-    upload: null,
+    view: null,
     followUp: false,
     textName: "NIPS",
     nips: {
@@ -415,18 +417,18 @@ exports.nips = {
     }
 };
 exports.dentalCheckUp = {
-    upload: null,
+    view: null,
     followUp: false,
     textName: "Dental check up",
     dentalCheckUp: {
         name: "Dental check up",
         value: null,
-        options: null,
-        inputType: "Select"
+        inputType: "Textbox",
+        placeholder: null
     }
 };
 exports.quadrapleTest = {
-    upload: null,
+    view: null,
     followUp: false,
     textName: "Quadraple Test",
     bhcg: {
@@ -461,7 +463,7 @@ exports.quadrapleTest = {
     }
 };
 exports.spInvestigation = {
-    upload: null,
+    view: null,
     followUp: false,
     textName: "SP Investigation",
     aca: {
@@ -508,7 +510,7 @@ exports.spInvestigation = {
     }
 };
 exports.anaemiaInvestigation = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "Anaemia Investigation",
     mcv: {
@@ -583,7 +585,7 @@ exports.anaemiaInvestigation = {
     }
 };
 exports.anomalyScan = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "Anomaly Scan",
     anencephaly: {
@@ -648,7 +650,7 @@ exports.anomalyScan = {
     }
 };
 exports.foetal2dEcho = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "Foetal 2D Echo",
     fetalGrowth: {
@@ -671,7 +673,7 @@ exports.foetal2dEcho = {
     }
 };
 exports.pihWorkUp = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "PIH Workup",
     srBili: {
@@ -745,7 +747,7 @@ exports.pihWorkUp = {
     }
 };
 exports.coagulationProfile = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "Coagulation Profile",
     bt: {
@@ -799,7 +801,7 @@ exports.coagulationProfile = {
     }
 };
 exports.usgWithDoppler = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "USG With Doppler",
     fetalGrowth: {
@@ -828,7 +830,7 @@ exports.usgWithDoppler = {
     }
 };
 exports.dfmr = {
-    upload: null,
+    view: null,
     followUp: false,
     textName: "DFMR",
     dfmr: {
@@ -839,14 +841,14 @@ exports.dfmr = {
     }
 };
 exports.nst = {
-    upload: null,
+    view: null,
     followUp: false,
     textName: "NST",
     beatPerMins: {
         name: "Beat per mins",
         value: null,
         inputType: "Textbox",
-        unit: null,
+        unit: "beat per mins",
         placeholder: null
     }
 };

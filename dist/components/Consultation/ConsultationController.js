@@ -345,7 +345,7 @@ const createTreatment = (req, res) => __awaiter(void 0, void 0, void 0, function
         const treatment = yield TreatmentModel_1.default.create(reqData);
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
-            message: "Create Current Observastion successfully .",
+            message: "Create Treatment data successfully .",
             result: treatment
         }));
     }
@@ -379,7 +379,7 @@ const updateTreatment = (req, res) => __awaiter(void 0, void 0, void 0, function
         yield treatment.save();
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
-            message: "update Treatment data successfully .",
+            message: "Update Treatment data successfully .",
             result: treatment
         }));
     }

@@ -1,6 +1,6 @@
 export const pregnancyConfirmation = {
     testName: "Pregnancy Confirmation",
-    upload: null,
+    view: null,
     followUp: false,
     betaHcgTest: {
         name: "Beta HCG Test",
@@ -10,47 +10,47 @@ export const pregnancyConfirmation = {
     },
     urinePregnancyTest: {
         name: "Urine Pregnancy",
-        value: null,
+        value: null, //boolean
         btnName: "Confirm",
         inputType: "Button"
     },
     missedPeriods: {
         name: "Missed periods",
-        value: null,
+        value: null, //boolean
         btnName: "Confirm",
         inputType: "Button"
     },
     physicalSymptoms: {
         name: "Physical Symptoms",
-        value: null,
+        value: null,//array
         options: "Abdominal Pain || Urine Frequency || Nausea || Weakness  || Feverish",
         inputType: "MultiSelect"
     }
 }
 export const bloodGroupAndRhTyping = {
-    upload: null,
+    view: null,
     followUp: false,
     motherBloodGroup: {
         name: "Mother Blood Group",
-        value: null,
+        value: null, // string
         options: ["A +ve", "A -ve", "B +ve", "B -ve", "AB +ve", "AB -ve", "O +ve", "O -ve"],
         inputType: "Select"
     },
     fatherBloodGroup: {
         name: "Father Blood Group",
-        value: null,
+        value: null, //string
         options: ["A +ve", "A -ve", "B +ve", "B -ve", "AB +ve", "AB -ve", "O +ve", "O -ve"],
         inputType: "Select"
     },
     result: {
         name: "Result",
-        value: null,
-        options: ["Rh -ve"],
+        value: null, // string
+        options: "Rh -ve",
         inputType: "Checkbox"
     }
 }
 export const bloodTest = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "Blood Test",
     hb: {
@@ -110,7 +110,7 @@ export const bloodTest = {
 }
 
 export const urineRoutine = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "Urine Routine",
     a: {
@@ -134,7 +134,7 @@ export const urineRoutine = {
 }
 
 export const ogct = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "OGCT",
     twoHours: {
@@ -142,12 +142,12 @@ export const ogct = {
         value: null,
         unit: "mg/dl",
         inputType: "Textbox",
-        placeholder: null
+        placeholder: "155"
     }
 }
 
 export const ict = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "ICT",
     I: {
@@ -163,7 +163,7 @@ export const ict = {
         placeholder: null
     },
     vdrl: {
-        name: "VDRL",
+        name: "VDRL/VDRLI",
         value: null,
         options: ["Positive", "Negetive"],
         inputType: "Select"
@@ -189,7 +189,7 @@ export const ict = {
 }
 
 export const hbElectrophoriesis = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "Hb Electrophoresis",
     w: {
@@ -207,7 +207,7 @@ export const hbElectrophoriesis = {
 }
 
 export const thyroidFunctionTest = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "Thyroid Function Test",
     utsh: {
@@ -237,7 +237,7 @@ export const thyroidFunctionTest = {
 }
 
 export const rubellaLgm = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "Rubella LGM",
     rubellaLgm: {
@@ -249,7 +249,7 @@ export const rubellaLgm = {
 }
 
 export const srVitB12 = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "Sr. Vit B12",
     srVitB12: {
@@ -261,7 +261,7 @@ export const srVitB12 = {
 }
 
 export const biGroup = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "BI Group",
     biGroup: {
@@ -273,7 +273,7 @@ export const biGroup = {
 }
 
 export const glycoylatedHb = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "Glycoylated Hb",
     gycoylatedHb: {
@@ -285,19 +285,20 @@ export const glycoylatedHb = {
 }
 
 export const afp = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "AFP",
     afp: {
         name: "AFP",
         value: null,
+        unit: "ng/ml",
         inputType: "Textbox",
         placeholder: "10-150"
     }
 }
 
 export const bsl = {
-    upload: null,
+    view: null,
     followUp: false,
     textName: "B.S.L",
     bsl: {
@@ -309,7 +310,7 @@ export const bsl = {
 }
 
 export const urine = {
-    upload: null,
+    view: null,
     followUp: false,
     textName: "Urine",
     a: {
@@ -327,7 +328,7 @@ export const urine = {
 }
 
 export const urineCs = {
-    upload: null,
+    view: null,
     followUp: false,
     textName: "Urine C/s",
     a: {
@@ -351,7 +352,7 @@ export const urineCs = {
 }
 
 export const firstTrimesterScreening = {
-    upload: null,
+    view: null,
     followUp: false,
     textName: "First Trimester Screening",
     srFreeBhcg: {
@@ -359,7 +360,7 @@ export const firstTrimesterScreening = {
         value: null,
         unit: "mIU/ml",
         inputType: "Textbox",
-        placeholder: "0-10lac"
+        placeholder: "0-10,00,000"
     },
     pappA: {
         name: "papp-A",
@@ -370,7 +371,7 @@ export const firstTrimesterScreening = {
 }
 
 export const ntUsg = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "NT USG",
     re: {
@@ -418,7 +419,7 @@ export const ntUsg = {
 }
 
 export const nips = {
-    upload: null,
+    view: null,
     followUp: false,
     textName: "NIPS",
     nips: {
@@ -430,19 +431,19 @@ export const nips = {
 }
 
 export const dentalCheckUp = {
-    upload: null,
+    view: null,
     followUp: false,
     textName: "Dental check up",
     dentalCheckUp: {
         name: "Dental check up",
         value: null,
-        options: null,
-        inputType: "Select"
+        inputType: "Textbox",
+        placeholder: null
     }
 }
 
 export const quadrapleTest = {
-    upload: null,
+    view: null,
     followUp: false,
     textName: "Quadraple Test",
     bhcg: {
@@ -478,7 +479,7 @@ export const quadrapleTest = {
 }
 
 export const spInvestigation = {
-    upload: null,
+    view: null,
     followUp: false,
     textName: "SP Investigation",
     aca: {
@@ -526,7 +527,7 @@ export const spInvestigation = {
 }
 
 export const anaemiaInvestigation = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "Anaemia Investigation",
     mcv: {
@@ -602,7 +603,7 @@ export const anaemiaInvestigation = {
 }
 
 export const anomalyScan = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "Anomaly Scan",
     anencephaly: {
@@ -668,7 +669,7 @@ export const anomalyScan = {
 }
 
 export const foetal2dEcho = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "Foetal 2D Echo",
     fetalGrowth: {
@@ -692,7 +693,7 @@ export const foetal2dEcho = {
 }
 
 export const pihWorkUp = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "PIH Workup",
     srBili: {
@@ -767,7 +768,7 @@ export const pihWorkUp = {
 }
 
 export const coagulationProfile = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "Coagulation Profile",
     bt: {
@@ -822,7 +823,7 @@ export const coagulationProfile = {
 }
 
 export const usgWithDoppler = {
-    upload: null,
+    view: null,
     followUp: false,
     testName: "USG With Doppler",
     fetalGrowth: {
@@ -853,7 +854,7 @@ export const usgWithDoppler = {
 }
 
 export const dfmr = {
-    upload: null,
+    view: null,
     followUp: false,
     textName: "DFMR",
     dfmr: {
@@ -865,14 +866,14 @@ export const dfmr = {
 }
 
 export const nst = {
-    upload: null,
+    view: null,
     followUp: false,
     textName: "NST",
     beatPerMins: {
         name: "Beat per mins",
         value: null,
         inputType: "Textbox",
-        unit: null,
+        unit: "beat per mins",
         placeholder: null
     }
 }
