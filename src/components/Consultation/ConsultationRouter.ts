@@ -18,7 +18,7 @@ router.post("/antenatalTest/create", verifyToken, createAntenatalTest)
 
 router.put("/antenatalTest/update", verifyToken, updateAntenatalTest)
 
-router.get("/antenatalTest/details", verifyToken, getAntenatalTest)
+router.post("/antenatalTest/details", verifyToken, getAntenatalTest)
 //end
 
 //treatment test
