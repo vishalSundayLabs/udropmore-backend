@@ -13,16 +13,16 @@ router.post('/currentObservastion/details', tokenVerify_1.verifyToken, Consultat
 //antental test
 router.post("/antenatalTest/create", tokenVerify_1.verifyToken, ConsultationController_1.createAntenatalTest);
 router.put("/antenatalTest/update", tokenVerify_1.verifyToken, ConsultationController_1.updateAntenatalTest);
-router.get("/antenatalTest/details", tokenVerify_1.verifyToken, ConsultationController_1.getAntenatalTest);
+router.post("/antenatalTest/details", tokenVerify_1.verifyToken, ConsultationController_1.getAntenatalTest);
 //end
 //treatment test
 router.post("/treatment/create", tokenVerify_1.verifyToken, ConsultationController_1.createTreatment);
 router.put("/treatment/update", tokenVerify_1.verifyToken, ConsultationController_1.updateTreatment);
-router.get("/treatment/details", tokenVerify_1.verifyToken, ConsultationController_1.getTreatment);
+router.post("/treatment/details", tokenVerify_1.verifyToken, ConsultationController_1.getTreatment);
 //end
 //next antenatal test
 router.post("/nextAntenatalTest/create", tokenVerify_1.verifyToken, ConsultationController_1.createNextAntenatalTest);
 router.put("/nextAntenatalTest/update", tokenVerify_1.verifyToken, ConsultationController_1.updateNextAntenatalTest);
-router.get("/nextAntenatalTest/details", tokenVerify_1.verifyToken, ConsultationController_1.getNextAntenatalTest);
+router.post("/nextAntenatalTest/details", tokenVerify_1.verifyToken, ConsultationController_1.getNextAntenatalTest);
 //end
 exports.default = router;

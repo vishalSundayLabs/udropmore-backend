@@ -26,7 +26,7 @@ router.post("/treatment/create", verifyToken, createTreatment)
 
 router.put("/treatment/update", verifyToken, updateTreatment)
 
-router.get("/treatment/details", verifyToken, getTreatment)
+router.post("/treatment/details", verifyToken, getTreatment)
 
 //end
 
@@ -35,7 +35,7 @@ router.post("/nextAntenatalTest/create", verifyToken, createNextAntenatalTest)
 
 router.put("/nextAntenatalTest/update", verifyToken, updateNextAntenatalTest)
 
-router.get("/nextAntenatalTest/details", verifyToken, getNextAntenatalTest)
+router.post("/nextAntenatalTest/details", verifyToken, getNextAntenatalTest)
 //end
 
 export default router
