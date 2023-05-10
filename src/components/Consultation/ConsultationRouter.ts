@@ -27,6 +27,7 @@ router.post("/treatment/create", verifyToken, createTreatment)
 router.put("/treatment/update", verifyToken, updateTreatment)
 
 router.get("/treatment/details", verifyToken, getTreatment)
+
 //end
 
 //next antenatal test
