@@ -69,6 +69,7 @@ export const bloodTest = {
     },
     dlcValue: {
         name: "DLC Value",
+        inputType: "Object",
         n: {
             name: "N",
             value: null,
@@ -164,25 +165,25 @@ export const ict = {
     vdrl: {
         name: "VDRL",
         value: null,
-        options: ["Positive","Negetive"],
+        options: ["Positive", "Negetive"],
         inputType: "Select"
     },
     hiv: {
         name: "HIV",
         value: null,
-        options: ["Positive","Negetive"],
+        options: ["Positive", "Negetive"],
         inputType: "Select"
     },
     hbsag: {
         name: "HBsAg",
         value: null,
-        options:  ["Positive","Negetive"],
+        options: ["Positive", "Negetive"],
         inputType: "Select"
     },
     hcv: {
         name: "HCV",
         value: null,
-        options:  ["Positive","Negetive"],
+        options: ["Positive", "Negetive"],
         inputType: "Select"
     }
 }
