@@ -481,7 +481,7 @@ export const createTreatment = async (req, res) => {
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
-            message: "Create Current Observastion successfully .",
+            message: "Create Treatment data successfully .",
             result: treatment
         }))
 
@@ -531,7 +531,7 @@ export const updateTreatment = async (req, res) => {
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
-            message: "update Treatment data successfully .",
+            message: "Update Treatment data successfully .",
             result: treatment
         }))
 

@@ -23,8 +23,8 @@ export const pregnancyConfirmation = {
     physicalSymptoms: {
         name: "Physical Symptoms",
         value: null,
-        options: ["Abdominal Pain", "Urine Frequency", "Nausea", "Weakness ", "Feverish"],
-        inputType: "Select"
+        options: "Abdominal Pain || Urine Frequency || Nausea || Weakness  || Feverish",
+        inputType: "MultiSelect"
     }
 }
 export const bloodGroupAndRhTyping = {
@@ -164,25 +164,25 @@ export const ict = {
     vdrl: {
         name: "VDRL",
         value: null,
-        options: null,
+        options: ["Positive","Negetive"],
         inputType: "Select"
     },
     hiv: {
         name: "HIV",
         value: null,
-        options: null,
+        options: ["Positive","Negetive"],
         inputType: "Select"
     },
     hbsag: {
         name: "HBsAg",
         value: null,
-        options: null,
+        options:  ["Positive","Negetive"],
         inputType: "Select"
     },
     hcv: {
         name: "HCV",
         value: null,
-        options: null,
+        options:  ["Positive","Negetive"],
         inputType: "Select"
     }
 }
@@ -375,8 +375,8 @@ export const ntUsg = {
     re: {
         name: "Re",
         value: null,
-        options: ["Single", "Twins", "Triplets"],
-        inputType: "Select"
+        options: "Single || Twins || Triplets",
+        inputType: "MultiSelect"
     },
     sw: {
         name: "S/W",
@@ -393,20 +393,20 @@ export const ntUsg = {
     placenta: {
         name: "Placenta",
         value: null,
-        options: ["Anterior low", "Posterior", "Anterior low", "Posterior low"],
-        inputType: "Select"
+        options: "Anterior || Posterior || Anterior low || Posterior low",
+        inputType: "MultiSelect"
     },
     liquor: {
         name: "Liquor",
         value: null,
-        options: ["Adequate", "Low", " Excess"],
+        options: "Adequate || Low || Excess",
         inputType: "Select"
     },
     other: {
         name: "Other",
         value: null,
-        options: ["Uteroplacental insufficiency ", " Foetp-placental insufficiency"],
-        inputType: "Select"
+        options: "Uteroplacental insufficiency ||  Foetp-placental insufficiency",
+        inputType: "MultiSelect"
     },
     liveFeotus: {
         name: "Live Feotus",
