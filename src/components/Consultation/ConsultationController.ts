@@ -455,39 +455,23 @@ export const getAntenatalTest = async (req, res) => {
 
 export const uploadAntenatalTest = async (req, res) => {
 
-    // const body = req.body
+    const body = req.body
 
-    // if (!body.motherId || !body.doctorId || !body.date) {
+    if (!body.motherId || !body.doctorId) {
 
-    //     return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
-    //         success: false,
-    //         message: "Bad Request! Mother Id , Doctor Id or date must be provide.",
-    //     }))
+        return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+            success: false,
+            message: "Bad Request! Mother Id , Doctor Id must be provide.",
+        }))
 
-    // }
-    console.log(req)
+    }
+
     try {
-
-        // const antenatalTest = await antenatalTestModel.findOne({ userId: body.motherId, doctorId: body.doctorId, isDeleted: false })
-
-        // if (!antenatalTest) {
-
-        //     return res.status(HTTP_NOT_FOUND).send(new ResponseSuccess({
-        //         success: true,
-        //         message: "Antenatal test not found!",
-        //     }))
-
-        // }
-
-        // bodyTraverse(antenatalTest, body)
-        // antenatalTest.updatedBy = req.userId
-
-        // await antenatalTest.save()
-
+        console.log(req)
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: "update Antenatal Test successfully .",
-            // result: antenatalTest
+            result: { motherId: body.motherId, doctorId: body.doctorId, testFile: req.files }
         }))
 
     } catch (error) {
