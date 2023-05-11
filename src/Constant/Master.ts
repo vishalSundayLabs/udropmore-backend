@@ -227,6 +227,8 @@ export const medicines = {
                     nightDose: null,
                     afternoonDose: null,
                 },
+                startDate: null,
+                endDate: null,
                 type: 'SUPPLEMENT',
             },
             {
@@ -244,13 +246,10 @@ export const medicines = {
                 },
                 type: 'SUPPLEMENT',
             },
-        ],
-
-        Calcium: [
             {
                 brandName: null,
-                category: 'Calcium',
-                drugName: 'TripleACal-FD',
+                category: 'Iron',
+                drugName: 'Fersoft',
                 details: {
                     duration: {
                         value: null,
@@ -262,7 +261,128 @@ export const medicines = {
                 },
                 type: 'SUPPLEMENT',
             },
+            {
+                brandName: null,
+                category: 'Iron',
+                drugName: 'Reducted MB',
+                details: {
+                    duration: {
+                        value: null,
+                        unit: null,
+                    },
+                    morningDose: null,
+                    nightDose: null,
+                    afternoonDose: null,
+                },
+                type: 'SUPPLEMENT',
+            }
         ],
+
+        Calcium: [
+            {
+                brandName: null,
+                category: 'Calcium',
+                drugName: 'Triple A',
+                details: {
+                    duration: {
+                        value: null,
+                        unit: null,
+                    },
+                    morningDose: null,
+                    nightDose: null,
+                    afternoonDose: null,
+                },
+                startDate: null,
+                endDate: null,
+                type: 'SUPPLEMENT',
+            },
+            {
+                brandName: null,
+                category: 'Calcium',
+                drugName: 'Skelcal Mom',
+                details: {
+                    duration: {
+                        value: null,
+                        unit: null,
+                    },
+                    morningDose: null,
+                    nightDose: null,
+                    afternoonDose: null,
+                },
+                startDate: null,
+                endDate: null,
+                type: 'SUPPLEMENT',
+            }
+        ],
+        protienPowder: [{
+            brandName: null,
+            category: 'Protien Powder',
+            drugName: 'Protien X',
+            details: {
+                duration: {
+                    value: null,
+                    unit: null,
+                },
+                morningDose: null,
+                nightDose: null,
+                afternoonDose: null,
+            },
+            startDate: null,
+            endDate: null,
+            type: 'SUPPLEMENT',
+        }],
+        folicAcids: [{
+            brandName: null,
+            category: 'Folic Acids',
+            drugName: 'Fol - NT',
+            details: {
+                duration: {
+                    value: null,
+                    unit: null,
+                },
+                morningDose: null,
+                nightDose: null,
+                afternoonDose: null,
+            },
+            startDate: null,
+            endDate: null,
+            type: 'SUPPLEMENT',
+        },
+        {
+            brandName: null,
+            category: 'Folic Acids',
+            drugName: 'Foltec Plus',
+            details: {
+                duration: {
+                    value: null,
+                    unit: null,
+                },
+                morningDose: null,
+                nightDose: null,
+                afternoonDose: null,
+            },
+            startDate: null,
+            endDate: null,
+            type: 'SUPPLEMENT',
+        }
+        ],
+        zinc: [{
+            brandName: null,
+            category: 'Zinc',
+            drugName: 'Zincovit',
+            details: {
+                duration: {
+                    value: null,
+                    unit: null,
+                },
+                morningDose: null,
+                nightDose: null,
+                afternoonDose: null,
+            },
+            startDate: null,
+            endDate: null,
+            type: 'SUPPLEMENT',
+        }]
     },
     SYMPTOM_BASED: {
         Vomitting: [
@@ -279,6 +399,8 @@ export const medicines = {
                     nightDose: null,
                     afternoonDose: null,
                 },
+                startDate: null,
+                endDate: null,
                 type: 'SYMPTOM_BASED',
             },
             {
@@ -312,6 +434,8 @@ export const medicines = {
                     nightDose: null,
                     afternoonDose: null,
                 },
+                startDate: null,
+                endDate: null,
                 type: 'SYMPTOM_BASED',
             },
         ],
