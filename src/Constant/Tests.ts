@@ -45,7 +45,7 @@ export const bloodGroupAndRhTyping = {
     result: {
         name: "Result",
         value: null, // string
-        options: "Rh -ve",
+        options: ["Rh -ve"],
         inputType: "Checkbox"
     }
 }
