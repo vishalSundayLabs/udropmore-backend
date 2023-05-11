@@ -257,7 +257,7 @@ export const getPastHistoryMasterConstant = (req, res) => {
             natureOfCycle,
             sourceOfVisit,
             language,
-            medicines
+            item:medicines
         }
     }))
 
