@@ -300,7 +300,7 @@ export const afp = {
 export const bsl = {
     view: null,
     followUp: false,
-    textName: "B.S.L",
+    testName: "B.S.L",
     bsl: {
         name: "B.S.L",
         value: null,
@@ -312,7 +312,7 @@ export const bsl = {
 export const urine = {
     view: null,
     followUp: false,
-    textName: "Urine",
+    testName: "Urine",
     a: {
         name: "A",
         value: null,
@@ -330,7 +330,7 @@ export const urine = {
 export const urineCs = {
     view: null,
     followUp: false,
-    textName: "Urine C/s",
+    testName: "Urine C/s",
     a: {
         name: "A",
         value: null,
@@ -354,7 +354,7 @@ export const urineCs = {
 export const firstTrimesterScreening = {
     view: null,
     followUp: false,
-    textName: "First Trimester Screening",
+    testName: "First Trimester Screening",
     srFreeBhcg: {
         name: "Sr. free BHCG",
         value: null,
@@ -383,13 +383,13 @@ export const ntUsg = {
     sw: {
         name: "S/W",
         value: null,
-        options: "AA weeks BB days",
+        options: ["AA weeks BB days"],
         inputType: "Select"
     },
     ew: {
         name: "E/W",
         value: null,
-        options: "AA weeks BB days",
+        options: ["AA weeks BB days"],
         inputType: "Select"
     },
     placenta: {
@@ -402,7 +402,7 @@ export const ntUsg = {
         name: "Liquor",
         value: null,
         options: "Adequate || Low || Excess",
-        inputType: "Select"
+        inputType: "MultiSelect"
     },
     other: {
         name: "Other",
@@ -421,7 +421,7 @@ export const ntUsg = {
 export const nips = {
     view: null,
     followUp: false,
-    textName: "NIPS",
+    testName: "NIPS",
     nips: {
         name: "NIPS",
         value: null,
@@ -433,7 +433,7 @@ export const nips = {
 export const dentalCheckUp = {
     view: null,
     followUp: false,
-    textName: "Dental check up",
+    testName: "Dental check up",
     dentalCheckUp: {
         name: "Dental check up",
         value: null,
@@ -445,7 +445,7 @@ export const dentalCheckUp = {
 export const quadrapleTest = {
     view: null,
     followUp: false,
-    textName: "Quadraple Test",
+    testName: "Quadraple Test",
     bhcg: {
         name: "BHCG",
         value: null,
@@ -481,7 +481,7 @@ export const quadrapleTest = {
 export const spInvestigation = {
     view: null,
     followUp: false,
-    textName: "SP Investigation",
+    testName: "SP Investigation",
     aca: {
         name: "ACA",
         value: null,
@@ -856,7 +856,7 @@ export const usgWithDoppler = {
 export const dfmr = {
     view: null,
     followUp: false,
-    textName: "DFMR",
+    testName: "DFMR",
     dfmr: {
         name: "DFMR",
         value: null,
@@ -868,7 +868,7 @@ export const dfmr = {
 export const nst = {
     view: null,
     followUp: false,
-    textName: "NST",
+    testName: "NST",
     beatPerMins: {
         name: "Beat per mins",
         value: null,

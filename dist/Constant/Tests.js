@@ -292,7 +292,7 @@ exports.afp = {
 exports.bsl = {
     view: null,
     followUp: false,
-    textName: "B.S.L",
+    testName: "B.S.L",
     bsl: {
         name: "B.S.L",
         value: null,
@@ -303,7 +303,7 @@ exports.bsl = {
 exports.urine = {
     view: null,
     followUp: false,
-    textName: "Urine",
+    testName: "Urine",
     a: {
         name: "A",
         value: null,
@@ -320,7 +320,7 @@ exports.urine = {
 exports.urineCs = {
     view: null,
     followUp: false,
-    textName: "Urine C/s",
+    testName: "Urine C/s",
     a: {
         name: "A",
         value: null,
@@ -343,7 +343,7 @@ exports.urineCs = {
 exports.firstTrimesterScreening = {
     view: null,
     followUp: false,
-    textName: "First Trimester Screening",
+    testName: "First Trimester Screening",
     srFreeBhcg: {
         name: "Sr. free BHCG",
         value: null,
@@ -371,13 +371,13 @@ exports.ntUsg = {
     sw: {
         name: "S/W",
         value: null,
-        options: "AA weeks BB days",
+        options: ["AA weeks BB days"],
         inputType: "Select"
     },
     ew: {
         name: "E/W",
         value: null,
-        options: "AA weeks BB days",
+        options: ["AA weeks BB days"],
         inputType: "Select"
     },
     placenta: {
@@ -390,7 +390,7 @@ exports.ntUsg = {
         name: "Liquor",
         value: null,
         options: "Adequate || Low || Excess",
-        inputType: "Select"
+        inputType: "MultiSelect"
     },
     other: {
         name: "Other",
@@ -408,7 +408,7 @@ exports.ntUsg = {
 exports.nips = {
     view: null,
     followUp: false,
-    textName: "NIPS",
+    testName: "NIPS",
     nips: {
         name: "NIPS",
         value: null,
@@ -419,7 +419,7 @@ exports.nips = {
 exports.dentalCheckUp = {
     view: null,
     followUp: false,
-    textName: "Dental check up",
+    testName: "Dental check up",
     dentalCheckUp: {
         name: "Dental check up",
         value: null,
@@ -430,7 +430,7 @@ exports.dentalCheckUp = {
 exports.quadrapleTest = {
     view: null,
     followUp: false,
-    textName: "Quadraple Test",
+    testName: "Quadraple Test",
     bhcg: {
         name: "BHCG",
         value: null,
@@ -465,7 +465,7 @@ exports.quadrapleTest = {
 exports.spInvestigation = {
     view: null,
     followUp: false,
-    textName: "SP Investigation",
+    testName: "SP Investigation",
     aca: {
         name: "ACA",
         value: null,
@@ -832,7 +832,7 @@ exports.usgWithDoppler = {
 exports.dfmr = {
     view: null,
     followUp: false,
-    textName: "DFMR",
+    testName: "DFMR",
     dfmr: {
         name: "DFMR",
         value: null,
@@ -843,7 +843,7 @@ exports.dfmr = {
 exports.nst = {
     view: null,
     followUp: false,
-    textName: "NST",
+    testName: "NST",
     beatPerMins: {
         name: "Beat per mins",
         value: null,
