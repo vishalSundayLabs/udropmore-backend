@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const tokenVerify_1 = require("../../middleware/tokenVerify");
+const AwsFileUploader_1 = require("../../utils/AwsFileUploader");
 const ConsultationController_1 = require("./ConsultationController");
 const router = (0, express_1.Router)();
 router.get("/tests/appointment", tokenVerify_1.verifyToken, ConsultationController_1.getWeeklyTestOrAppointmentsByLmp);
@@ -14,6 +15,7 @@ router.post('/currentObservastion/details', tokenVerify_1.verifyToken, Consultat
 router.post("/antenatalTest/create", tokenVerify_1.verifyToken, ConsultationController_1.createAntenatalTest);
 router.put("/antenatalTest/update", tokenVerify_1.verifyToken, ConsultationController_1.updateAntenatalTest);
 router.post("/antenatalTest/details", tokenVerify_1.verifyToken, ConsultationController_1.getAntenatalTest);
+router.put("/antenatalTest/file/upload", AwsFileUploader_1.upload.array("file"), ConsultationController_1.uploadAntenatalTest);
 //end
 //treatment test
 router.post("/treatment/create", tokenVerify_1.verifyToken, ConsultationController_1.createTreatment);

@@ -9,8 +9,7 @@ const Config_1 = require("../config/Config");
 Aws.config.update({
     secretAccessKey: Config_1.default.SECRETACCESSKEY,
     accessKeyId: Config_1.default.ACCESSKEYID,
-    region: Config_1.default.REGION,
-    sessionToken: Config_1.default.SESSIONTOKEN,
+    region: Config_1.default.REGION
 });
 exports.s3 = new Aws.S3();
 exports.upload = multer({

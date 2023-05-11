@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getNextAntenatalTest = exports.updateNextAntenatalTest = exports.createNextAntenatalTest = exports.getTreatment = exports.updateTreatment = exports.createTreatment = exports.getAntenatalTest = exports.updateAntenatalTest = exports.createAntenatalTest = exports.getCurrentObservastion = exports.updateCurrentObservastion = exports.createCurrentObservastion = exports.getWeeklyTestOrAppointmentsByLmp = void 0;
+exports.getNextAntenatalTest = exports.updateNextAntenatalTest = exports.createNextAntenatalTest = exports.getTreatment = exports.updateTreatment = exports.createTreatment = exports.uploadAntenatalTest = exports.getAntenatalTest = exports.updateAntenatalTest = exports.createAntenatalTest = exports.getCurrentObservastion = exports.updateCurrentObservastion = exports.createCurrentObservastion = exports.getWeeklyTestOrAppointmentsByLmp = void 0;
 const moment = require("moment");
 const DoctorToDoTask_1 = require("../../Constant/DoctorToDoTask");
 const Master_1 = require("../../Constant/Master");
@@ -326,6 +326,41 @@ const getAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.getAntenatalTest = getAntenatalTest;
+const uploadAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    // const body = req.body
+    // if (!body.motherId || !body.doctorId || !body.date) {
+    //     return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+    //         success: false,
+    //         message: "Bad Request! Mother Id , Doctor Id or date must be provide.",
+    //     }))
+    // }
+    console.log(req);
+    try {
+        // const antenatalTest = await antenatalTestModel.findOne({ userId: body.motherId, doctorId: body.doctorId, isDeleted: false })
+        // if (!antenatalTest) {
+        //     return res.status(HTTP_NOT_FOUND).send(new ResponseSuccess({
+        //         success: true,
+        //         message: "Antenatal test not found!",
+        //     }))
+        // }
+        // bodyTraverse(antenatalTest, body)
+        // antenatalTest.updatedBy = req.userId
+        // await antenatalTest.save()
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "update Antenatal Test successfully .",
+            // result: antenatalTest
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.uploadAntenatalTest = uploadAntenatalTest;
 //end
 //start Treatment
 const createTreatment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

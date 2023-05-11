@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { verifyToken } from '../../middleware/tokenVerify';
-import { createAntenatalTest, createCurrentObservastion, createNextAntenatalTest, createTreatment, getAntenatalTest, getCurrentObservastion, getNextAntenatalTest, getTreatment, getWeeklyTestOrAppointmentsByLmp, updateAntenatalTest, updateCurrentObservastion, updateNextAntenatalTest, updateTreatment } from './ConsultationController';
+import { upload } from '../../utils/AwsFileUploader';
+import { createAntenatalTest, createCurrentObservastion, createNextAntenatalTest, createTreatment, getAntenatalTest, getCurrentObservastion, getNextAntenatalTest, getTreatment, getWeeklyTestOrAppointmentsByLmp, updateAntenatalTest, updateCurrentObservastion, updateNextAntenatalTest, updateTreatment, uploadAntenatalTest } from './ConsultationController';
 const router = Router()
 
 router.get("/tests/appointment", verifyToken, getWeeklyTestOrAppointmentsByLmp)
@@ -19,6 +20,8 @@ router.post("/antenatalTest/create", verifyToken, createAntenatalTest)
 router.put("/antenatalTest/update", verifyToken, updateAntenatalTest)
 
 router.post("/antenatalTest/details", verifyToken, getAntenatalTest)
+
+router.put("/antenatalTest/file/upload", upload.array("file"), uploadAntenatalTest)
 //end
 
 //treatment test

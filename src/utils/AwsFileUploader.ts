@@ -7,8 +7,7 @@ import config from "../config/Config";
 Aws.config.update({
   secretAccessKey: config.SECRETACCESSKEY,
   accessKeyId: config.ACCESSKEYID,
-  region: config.REGION,
-  sessionToken: config.SESSIONTOKEN,
+  region: config.REGION
 });
 
 export const s3 = new Aws.S3();
