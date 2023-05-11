@@ -6,7 +6,7 @@ const standardSupplementsSchema = new mongoose.Schema({
         type: mongoose.SchemaTypes.ObjectId,
         refs: "User"
     },
-    standardSupplements: [],
+    standardSupplements: { type: Object, default: null },
     isDeleted: {
         type: Boolean,
         default: false

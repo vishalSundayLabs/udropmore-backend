@@ -238,26 +238,15 @@ const userDetailsSchema = new mongoose.Schema({
                 }
             },
             currentMedications: {
-                standardSupplements: {
-                    templateId: {
-                        type: mongoose.SchemaTypes.ObjectId,
-                        refs: "template",
-                        default: null
-                    },
-                    medicines: [{
-                        category: {
-                            categoryName: { type: String, default: null },
-                            drugs: [{
-                                drugName: { type: String, default: null },
-                                freq: { type: String, default: null },
-                                week: { type: Number, default: null },
-                                startDate: { type: Date, default: null },
-                                endDate: { type: Date, default: null }
-                            }]
-                        }
-                    }]
-                },
-                symptomsSupplements: []
+                // standardSupplements: {
+                //     templateId: {
+                //         type: mongoose.SchemaTypes.ObjectId,
+                //         refs: "template",
+                //         default: null
+                //     },
+                //     medicines: []
+                // },
+                // symptomsSupplements: []
             },
         },
         obstetricsHistory: {

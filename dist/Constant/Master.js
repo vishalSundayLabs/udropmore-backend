@@ -225,6 +225,8 @@ exports.medicines = {
                     nightDose: null,
                     afternoonDose: null,
                 },
+                startDate: null,
+                endDate: null,
                 type: 'SUPPLEMENT',
             },
             {
@@ -240,6 +242,8 @@ exports.medicines = {
                     nightDose: null,
                     afternoonDose: null,
                 },
+                startDate: null,
+                endDate: null,
                 type: 'SUPPLEMENT',
             },
             {
@@ -255,6 +259,8 @@ exports.medicines = {
                     nightDose: null,
                     afternoonDose: null,
                 },
+                startDate: null,
+                endDate: null,
                 type: 'SUPPLEMENT',
             }
         ],
@@ -396,6 +402,8 @@ exports.medicines = {
                     nightDose: null,
                     afternoonDose: null,
                 },
+                startDate: null,
+                endDate: null,
                 type: 'SYMPTOM_BASED',
             },
         ],

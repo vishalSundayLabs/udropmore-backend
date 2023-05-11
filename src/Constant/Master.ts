@@ -244,6 +244,8 @@ export const medicines = {
                     nightDose: null,
                     afternoonDose: null,
                 },
+                startDate: null,
+                endDate: null,
                 type: 'SUPPLEMENT',
             },
             {
@@ -259,6 +261,8 @@ export const medicines = {
                     nightDose: null,
                     afternoonDose: null,
                 },
+                startDate: null,
+                endDate: null,
                 type: 'SUPPLEMENT',
             },
             {
@@ -274,6 +278,8 @@ export const medicines = {
                     nightDose: null,
                     afternoonDose: null,
                 },
+                startDate: null,
+                endDate: null,
                 type: 'SUPPLEMENT',
             }
         ],
@@ -416,6 +422,8 @@ export const medicines = {
                     nightDose: null,
                     afternoonDose: null,
                 },
+                startDate: null,
+                endDate: null,
                 type: 'SYMPTOM_BASED',
             },
         ],
