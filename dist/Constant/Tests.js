@@ -48,7 +48,7 @@ exports.bloodGroupAndRhTyping = {
     result: {
         name: "Result",
         value: null,
-        options: "Rh -ve",
+        options: ["Rh -ve"],
         inputType: "Checkbox"
     }
 };
