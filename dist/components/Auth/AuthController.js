@@ -105,7 +105,7 @@ const validateOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             }));
         }
         const jwtToken = jwt.sign({ userId: user._id, userType: user.userType, platform: user.platform }, process.env.JWTSECRET, {
-            expiresIn: 60
+            expiresIn: process.env.JWTEXPIRESIN
         });
         user.jwtToken = jwtToken;
         yield user.save();

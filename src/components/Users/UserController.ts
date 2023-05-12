@@ -342,7 +342,7 @@ export const getSlots = async (req, res) => {
       }
 
     }
-
+    console.log(bodyDate)
     const finalSlot = makeSlotsFormat(newSlots, body.appointmentType)
 
     let BookedSlot = [];
@@ -681,7 +681,7 @@ export const getDayOrTimeFromDate = (date) => {
   const months = newDate.getMonth()
   const dates = newDate.getDate()
   const fullDate = `${years}-${months + 1}-${dates}`
-  const nextDate = `${years}-${months + 1}-${dates + 1}`
+  const nextDate = `${years}-${dates + 1 == 32 ? months + 2 : months + 1}-${dates + 1 == 32 ? 1 : dates + 1}`
   const betweenTwoDateNoOfDays = Math.round(((+currDate) - (+newDate)) / 86400000)
 
   return {

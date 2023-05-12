@@ -146,7 +146,7 @@ export const validateOtp = async (req: Request, res: Response) => {
         }
 
         const jwtToken = jwt.sign({ userId: user._id, userType: user.userType, platform: user.platform }, process.env.JWTSECRET, {
-            expiresIn: 60
+            expiresIn: process.env.JWTEXPIRESIN
         })
 
         user.jwtToken = jwtToken;
@@ -156,7 +156,7 @@ export const validateOtp = async (req: Request, res: Response) => {
         // create the auth session with token
         await AuthSession.create({ userId: user._id, jwtToken: jwtToken, isActive: true })
 
-
+        
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: "Login successful",

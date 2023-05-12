@@ -1,6 +1,6 @@
 export const pregnancyConfirmation = {
     testName: "Pregnancy Confirmation",
-    view: null,
+    viewUrl: null,
     followUp: false,
     betaHcgTest: {
         name: "Beta HCG Test",
@@ -28,7 +28,7 @@ export const pregnancyConfirmation = {
     }
 }
 export const bloodGroupAndRhTyping = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     motherBloodGroup: {
         name: "Mother Blood Group",
@@ -50,7 +50,7 @@ export const bloodGroupAndRhTyping = {
     }
 }
 export const bloodTest = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Blood Test",
     hb: {
@@ -110,7 +110,7 @@ export const bloodTest = {
 }
 
 export const urineRoutine = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Urine Routine",
     a: {
@@ -134,7 +134,7 @@ export const urineRoutine = {
 }
 
 export const ogct = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "OGCT",
     twoHours: {
@@ -147,7 +147,7 @@ export const ogct = {
 }
 
 export const ict = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "ICT",
     I: {
@@ -189,7 +189,7 @@ export const ict = {
 }
 
 export const hbElectrophoriesis = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Hb Electrophoresis",
     w: {
@@ -207,7 +207,7 @@ export const hbElectrophoriesis = {
 }
 
 export const thyroidFunctionTest = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Thyroid Function Test",
     utsh: {
@@ -237,7 +237,7 @@ export const thyroidFunctionTest = {
 }
 
 export const rubellaLgm = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Rubella LGM",
     rubellaLgm: {
@@ -249,7 +249,7 @@ export const rubellaLgm = {
 }
 
 export const srVitB12 = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Sr. Vit B12",
     srVitB12: {
@@ -261,7 +261,7 @@ export const srVitB12 = {
 }
 
 export const biGroup = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "BI Group",
     biGroup: {
@@ -273,7 +273,7 @@ export const biGroup = {
 }
 
 export const glycoylatedHb = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Glycoylated Hb",
     gycoylatedHb: {
@@ -285,7 +285,7 @@ export const glycoylatedHb = {
 }
 
 export const afp = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "AFP",
     afp: {
@@ -298,7 +298,7 @@ export const afp = {
 }
 
 export const bsl = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "B.S.L",
     bsl: {
@@ -310,7 +310,7 @@ export const bsl = {
 }
 
 export const urine = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Urine",
     a: {
@@ -328,7 +328,7 @@ export const urine = {
 }
 
 export const urineCs = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Urine C/s",
     a: {
@@ -352,7 +352,7 @@ export const urineCs = {
 }
 
 export const firstTrimesterScreening = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "First Trimester Screening",
     srFreeBhcg: {
@@ -371,7 +371,7 @@ export const firstTrimesterScreening = {
 }
 
 export const ntUsg = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "NT USG",
     re: {
@@ -419,7 +419,7 @@ export const ntUsg = {
 }
 
 export const nips = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "NIPS",
     nips: {
@@ -431,7 +431,7 @@ export const nips = {
 }
 
 export const dentalCheckUp = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Dental check up",
     dentalCheckUp: {
@@ -443,7 +443,7 @@ export const dentalCheckUp = {
 }
 
 export const quadrapleTest = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Quadraple Test",
     bhcg: {
@@ -479,7 +479,7 @@ export const quadrapleTest = {
 }
 
 export const spInvestigation = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "SP Investigation",
     aca: {
@@ -527,7 +527,7 @@ export const spInvestigation = {
 }
 
 export const anaemiaInvestigation = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Anaemia Investigation",
     mcv: {
@@ -603,7 +603,7 @@ export const anaemiaInvestigation = {
 }
 
 export const anomalyScan = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Anomaly Scan",
     anencephaly: {
@@ -669,7 +669,7 @@ export const anomalyScan = {
 }
 
 export const foetal2dEcho = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Foetal 2D Echo",
     fetalGrowth: {
@@ -693,7 +693,7 @@ export const foetal2dEcho = {
 }
 
 export const pihWorkUp = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "PIH Workup",
     srBili: {
@@ -768,7 +768,7 @@ export const pihWorkUp = {
 }
 
 export const coagulationProfile = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Coagulation Profile",
     bt: {
@@ -823,7 +823,7 @@ export const coagulationProfile = {
 }
 
 export const usgWithDoppler = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "USG With Doppler",
     fetalGrowth: {
@@ -854,7 +854,7 @@ export const usgWithDoppler = {
 }
 
 export const dfmr = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "DFMR",
     dfmr: {
@@ -866,7 +866,7 @@ export const dfmr = {
 }
 
 export const nst = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "NST",
     beatPerMins: {

@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.nst = exports.dfmr = exports.usgWithDoppler = exports.coagulationProfile = exports.pihWorkUp = exports.foetal2dEcho = exports.anomalyScan = exports.anaemiaInvestigation = exports.spInvestigation = exports.quadrapleTest = exports.dentalCheckUp = exports.nips = exports.ntUsg = exports.firstTrimesterScreening = exports.urineCs = exports.urine = exports.bsl = exports.afp = exports.glycoylatedHb = exports.biGroup = exports.srVitB12 = exports.rubellaLgm = exports.thyroidFunctionTest = exports.hbElectrophoriesis = exports.ict = exports.ogct = exports.urineRoutine = exports.bloodTest = exports.bloodGroupAndRhTyping = exports.pregnancyConfirmation = void 0;
 exports.pregnancyConfirmation = {
     testName: "Pregnancy Confirmation",
-    view: null,
+    viewUrl: null,
     followUp: false,
     betaHcgTest: {
         name: "Beta HCG Test",
@@ -31,7 +31,7 @@ exports.pregnancyConfirmation = {
     }
 };
 exports.bloodGroupAndRhTyping = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     motherBloodGroup: {
         name: "Mother Blood Group",
@@ -53,7 +53,7 @@ exports.bloodGroupAndRhTyping = {
     }
 };
 exports.bloodTest = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Blood Test",
     hb: {
@@ -112,7 +112,7 @@ exports.bloodTest = {
     }
 };
 exports.urineRoutine = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Urine Routine",
     a: {
@@ -135,7 +135,7 @@ exports.urineRoutine = {
     }
 };
 exports.ogct = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "OGCT",
     twoHours: {
@@ -147,7 +147,7 @@ exports.ogct = {
     }
 };
 exports.ict = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "ICT",
     I: {
@@ -188,7 +188,7 @@ exports.ict = {
     }
 };
 exports.hbElectrophoriesis = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Hb Electrophoresis",
     w: {
@@ -205,7 +205,7 @@ exports.hbElectrophoriesis = {
     }
 };
 exports.thyroidFunctionTest = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Thyroid Function Test",
     utsh: {
@@ -234,7 +234,7 @@ exports.thyroidFunctionTest = {
     }
 };
 exports.rubellaLgm = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Rubella LGM",
     rubellaLgm: {
@@ -245,7 +245,7 @@ exports.rubellaLgm = {
     }
 };
 exports.srVitB12 = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Sr. Vit B12",
     srVitB12: {
@@ -256,7 +256,7 @@ exports.srVitB12 = {
     }
 };
 exports.biGroup = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "BI Group",
     biGroup: {
@@ -267,7 +267,7 @@ exports.biGroup = {
     }
 };
 exports.glycoylatedHb = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Glycoylated Hb",
     gycoylatedHb: {
@@ -278,7 +278,7 @@ exports.glycoylatedHb = {
     }
 };
 exports.afp = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "AFP",
     afp: {
@@ -290,7 +290,7 @@ exports.afp = {
     }
 };
 exports.bsl = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "B.S.L",
     bsl: {
@@ -301,7 +301,7 @@ exports.bsl = {
     }
 };
 exports.urine = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Urine",
     a: {
@@ -318,7 +318,7 @@ exports.urine = {
     }
 };
 exports.urineCs = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Urine C/s",
     a: {
@@ -341,7 +341,7 @@ exports.urineCs = {
     }
 };
 exports.firstTrimesterScreening = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "First Trimester Screening",
     srFreeBhcg: {
@@ -359,7 +359,7 @@ exports.firstTrimesterScreening = {
     }
 };
 exports.ntUsg = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "NT USG",
     re: {
@@ -406,7 +406,7 @@ exports.ntUsg = {
     }
 };
 exports.nips = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "NIPS",
     nips: {
@@ -417,7 +417,7 @@ exports.nips = {
     }
 };
 exports.dentalCheckUp = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Dental check up",
     dentalCheckUp: {
@@ -428,7 +428,7 @@ exports.dentalCheckUp = {
     }
 };
 exports.quadrapleTest = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Quadraple Test",
     bhcg: {
@@ -463,7 +463,7 @@ exports.quadrapleTest = {
     }
 };
 exports.spInvestigation = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "SP Investigation",
     aca: {
@@ -510,7 +510,7 @@ exports.spInvestigation = {
     }
 };
 exports.anaemiaInvestigation = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Anaemia Investigation",
     mcv: {
@@ -585,7 +585,7 @@ exports.anaemiaInvestigation = {
     }
 };
 exports.anomalyScan = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Anomaly Scan",
     anencephaly: {
@@ -650,7 +650,7 @@ exports.anomalyScan = {
     }
 };
 exports.foetal2dEcho = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Foetal 2D Echo",
     fetalGrowth: {
@@ -673,7 +673,7 @@ exports.foetal2dEcho = {
     }
 };
 exports.pihWorkUp = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "PIH Workup",
     srBili: {
@@ -747,7 +747,7 @@ exports.pihWorkUp = {
     }
 };
 exports.coagulationProfile = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "Coagulation Profile",
     bt: {
@@ -801,7 +801,7 @@ exports.coagulationProfile = {
     }
 };
 exports.usgWithDoppler = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "USG With Doppler",
     fetalGrowth: {
@@ -830,7 +830,7 @@ exports.usgWithDoppler = {
     }
 };
 exports.dfmr = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "DFMR",
     dfmr: {
@@ -841,7 +841,7 @@ exports.dfmr = {
     }
 };
 exports.nst = {
-    view: null,
+    viewUrl: null,
     followUp: false,
     testName: "NST",
     beatPerMins: {
