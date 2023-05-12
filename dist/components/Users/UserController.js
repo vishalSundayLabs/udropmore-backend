@@ -497,7 +497,7 @@ const getDayOrTimeFromDate = (date) => {
     const months = newDate.getMonth();
     const dates = newDate.getDate();
     const fullDate = `${years}-${months + 1}-${dates}`;
-    const nextDate = `${years}-${dates + 1 == 32 ? months + 2 : months + 1}-${dates + 1 == 32 ? 1 : dates + 1}`;
+    const nextDate = `${months + 2 == 13 && dates + 1 == 32 ? years + 1 : years}-${dates + 1 == 32 ? months + 2 == 13 ? 1 : months + 2 : months + 1}-${dates + 1 == 32 ? 1 : dates + 1}`;
     const betweenTwoDateNoOfDays = Math.round(((+currDate) - (+newDate)) / 86400000);
     return {
         day: days[dayInNumber],
