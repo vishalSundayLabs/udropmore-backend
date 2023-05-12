@@ -802,16 +802,6 @@ const createPreviousWeekData = (week, sample) => {
 
     }
 
-    // if (week < 5 && result.length == 0) {
-
-    //     const dummy = { ...sample }
-
-    //     dummy.week = weeks[0]
-
-    //     result.push(dummy)
-
-    // }
-
     if (result.length > 0) {
         result[result.length - 1].date = new Date()
     }
