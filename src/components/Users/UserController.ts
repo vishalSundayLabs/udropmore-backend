@@ -342,7 +342,7 @@ export const getSlots = async (req, res) => {
       }
 
     }
-    console.log(bodyDate)
+
     const finalSlot = makeSlotsFormat(newSlots, body.appointmentType)
 
     let BookedSlot = [];

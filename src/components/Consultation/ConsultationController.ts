@@ -467,11 +467,20 @@ export const uploadAntenatalTest = async (req, res) => {
     }
 
     try {
-        console.log(req)
+
+        const isAvailableAntenatalTest = await antenatalTestModel.findOne({ userId: body.motherId, doctorId: body.doctorId, isDeleted: false })
+
+        if (!isAvailableAntenatalTest) {
+            return res.status(HTTP_NOT_FOUND).send(new ResponseError({
+                success: false,
+                message: "Antenatal test not found! So you are not able to upload test files.",
+            }))
+        }
+
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: "update Antenatal Test successfully .",
-            result: { motherId: body.motherId, doctorId: body.doctorId, testFile: req.files }
+            result: { antenatalTestId: isAvailableAntenatalTest._id, motherId: body.motherId, doctorId: body.doctorId, testFile: req.files }
         }))
 
     } catch (error) {

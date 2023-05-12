@@ -335,11 +335,17 @@ const uploadAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, func
         }));
     }
     try {
-        console.log(req);
+        const isAvailableAntenatalTest = yield AntenatalTestModel_1.default.findOne({ userId: body.motherId, doctorId: body.doctorId, isDeleted: false });
+        if (!isAvailableAntenatalTest) {
+            return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
+                success: false,
+                message: "Antenatal test not found! So you are not able to upload test files.",
+            }));
+        }
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "update Antenatal Test successfully .",
-            result: { motherId: body.motherId, doctorId: body.doctorId, testFile: req.files }
+            result: { antenatalTestId: isAvailableAntenatalTest._id, motherId: body.motherId, doctorId: body.doctorId, testFile: req.files }
         }));
     }
     catch (error) {

@@ -258,7 +258,6 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 newSlots.push(slots[0].slots[i]);
             }
         }
-        console.log(bodyDate);
         const finalSlot = (0, exports.makeSlotsFormat)(newSlots, body.appointmentType);
         let BookedSlot = [];
         if (body.appointmentType == "INPERSON") {
