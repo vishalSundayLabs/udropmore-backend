@@ -342,6 +342,12 @@ const uploadAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, func
                 message: "Antenatal test not found! So you are not able to upload test files.",
             }));
         }
+        if (req.files.length == 0) {
+            return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+                success: false,
+                message: "Test file not upload ",
+            }));
+        }
         const antentalTestFilesUrl = req.files.map((item) => item.location);
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,

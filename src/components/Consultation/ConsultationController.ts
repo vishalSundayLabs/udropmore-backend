@@ -471,10 +471,21 @@ export const uploadAntenatalTest = async (req, res) => {
         const isAvailableAntenatalTest = await antenatalTestModel.findOne({ userId: body.motherId, doctorId: body.doctorId, isDeleted: false })
 
         if (!isAvailableAntenatalTest) {
+
             return res.status(HTTP_NOT_FOUND).send(new ResponseError({
                 success: false,
                 message: "Antenatal test not found! So you are not able to upload test files.",
             }))
+
+        }
+
+        if (req.files.length == 0) {
+
+            return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+                success: false,
+                message: "Bad Request! Test file not upload by you.",
+            }))
+
         }
 
         const antentalTestFilesUrl = req.files.map((item) => item.location)
@@ -482,7 +493,7 @@ export const uploadAntenatalTest = async (req, res) => {
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: "update Antenatal Test successfully .",
-            result: { antenatalTestId: isAvailableAntenatalTest._id, motherId: body.motherId, doctorId: body.doctorId, testFilesUrl: antentalTestFilesUrl}
+            result: { antenatalTestId: isAvailableAntenatalTest._id, motherId: body.motherId, doctorId: body.doctorId, testFilesUrl: antentalTestFilesUrl }
         }))
 
     } catch (error) {
