@@ -18,11 +18,11 @@ export const upload = multer({
     bucket: config.BUCKETNAME,
     acl: "public-read",
     contentType: multerS3.AUTO_CONTENT_TYPE,
-    metadata: function (req, file, cb) {
-      cb(undefined, { fieldName: file.fieldname });
+    metadata: async function (req, file, cb) {
+      await cb(undefined, { fieldName: file.fieldname });
     },
-    key: function (req, file, cb) {
-      cb(
+    key: async function (req, file, cb) {
+      await cb(
         undefined,
         `${Date.now().toString()}${path.extname(file.originalname)}`
       );
