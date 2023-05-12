@@ -345,7 +345,7 @@ const uploadAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, func
         if (req.files.length == 0) {
             return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
                 success: false,
-                message: "Test file not upload ",
+                message: "Bad Request! Test file not upload by you.",
             }));
         }
         const antentalTestFilesUrl = req.files.map((item) => item.location);
