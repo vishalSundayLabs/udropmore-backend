@@ -477,10 +477,12 @@ export const uploadAntenatalTest = async (req, res) => {
             }))
         }
 
+        const antentalTestFilesUrl = req.files.map((item) => item.location)
+
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: "update Antenatal Test successfully .",
-            result: { antenatalTestId: isAvailableAntenatalTest._id, motherId: body.motherId, doctorId: body.doctorId, testFile: req.files }
+            result: { antenatalTestId: isAvailableAntenatalTest._id, motherId: body.motherId, doctorId: body.doctorId, testFilesUrl: antentalTestFilesUrl}
         }))
 
     } catch (error) {

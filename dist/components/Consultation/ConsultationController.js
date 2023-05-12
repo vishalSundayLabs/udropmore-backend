@@ -342,10 +342,11 @@ const uploadAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, func
                 message: "Antenatal test not found! So you are not able to upload test files.",
             }));
         }
+        const antentalTestFilesUrl = req.files.map((item) => item.location);
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "update Antenatal Test successfully .",
-            result: { antenatalTestId: isAvailableAntenatalTest._id, motherId: body.motherId, doctorId: body.doctorId, testFile: req.files }
+            result: { antenatalTestId: isAvailableAntenatalTest._id, motherId: body.motherId, doctorId: body.doctorId, testFilesUrl: antentalTestFilesUrl }
         }));
     }
     catch (error) {
