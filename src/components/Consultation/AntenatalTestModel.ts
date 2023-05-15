@@ -10,6 +10,10 @@ const antentalTestSchema = new mongoose.Schema({
         refs: "User"
     },
     antenatalTest: [],
+    isDraft: {
+        type: Boolean,
+        default: false
+    },
     isDeleted: {
         type: Boolean,
         default: false

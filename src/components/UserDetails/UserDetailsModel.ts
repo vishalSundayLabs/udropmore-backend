@@ -525,6 +525,7 @@ const userDetailsSchema = new mongoose.Schema({
 
         }
     ],
+    isDraft: { type: Boolean, default: false },
     createdBy: {
         type: mongoose.SchemaTypes.ObjectId,
         refs: "User"

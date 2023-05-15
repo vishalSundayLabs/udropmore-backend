@@ -231,9 +231,11 @@ export const sampleUserDetails = {
                 weekOfDelivery: null,
                 typeOfDelivery: {
                     vaginal: {
+                        name:"Vaginal",
                         type: null,
                     },
                     cesareanSection: {
+                        name:"Cesarean section",
                         type: null,
                         indications: [
                             {

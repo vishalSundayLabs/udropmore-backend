@@ -43,7 +43,7 @@ exports.masterAntenatalTest = [
             nips: Tests_1.nips,
             dentalCheckUp: Tests_1.dentalCheckUp,
             bsl: Tests_1.bsl,
-            urine: Tests_1.urine
+            urine: Tests_1.urineRoutine
         }
     },
     {
@@ -63,7 +63,7 @@ exports.masterAntenatalTest = [
         weekAndDays: null,
         tests: {
             bloodTest: Tests_1.bloodTest,
-            urineCs: Tests_1.urineCs,
+            urineCs: Object.assign(Object.assign({}, Tests_1.urineCs), { isRepeat: false }),
             afp: Tests_1.afp,
             anomalyScan: Tests_1.anomalyScan,
             bsl: Tests_1.bsl,
@@ -132,7 +132,7 @@ exports.masterAntenatalTest = [
         weekAndDays: null,
         tests: {
             usgWithDoppler: Tests_1.usgWithDoppler,
-            dfmr: Tests_1.dfmr,
+            dfmr: Object.assign(Object.assign({}, Tests_1.dfmr), { isRepeat: false }),
             nst: Tests_1.nst
         }
     },

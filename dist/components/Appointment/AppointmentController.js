@@ -87,7 +87,7 @@ const getAllAppointmentsOfADay = (req, res) => __awaiter(void 0, void 0, void 0,
     const { limit, skips } = (0, pagination_1.pagination)(query);
     const dates = (0, UserController_1.getDayOrTimeFromDate)(body.date);
     try {
-        const appointments = yield AppointmentModel_1.default.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentType: { $ne: "TELECALL" }, appointmentDateAndTime: { $gte: new Date(dates.fullDate), $lt: new Date(dates.nextDate) }, status: { $ne: "CANCELLED" } }).skip(skips).limit(limit);
+        const appointments = yield AppointmentModel_1.default.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentType: { $ne: "TELECALL" }, appointmentDateAndTime: { $gte: new Date(dates.fullDate), $lt: new Date(dates.nextDate) }, status: { $nin: ["CANCELLED", "RESCHEDULED"] } }).skip(skips).limit(limit);
         let patientList = [];
         const patientMap = new Map();
         let videoAppointmentCount = 0;

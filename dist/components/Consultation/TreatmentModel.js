@@ -53,6 +53,7 @@ const treatmentSchema = new mongoose.Schema({
                 week: { type: Number, default: null }
             }
         }],
+    isDraft: { type: Boolean, default: false },
     isDeleted: {
         type: Boolean,
         default: false

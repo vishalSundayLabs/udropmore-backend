@@ -218,6 +218,10 @@ const currentObservastionSchema = new mongoose.Schema({
                 }
             }
         }],
+    isDraft: {
+        type: Boolean,
+        default: false
+    },
     isDeleted: {
         type: Boolean,
         default: false

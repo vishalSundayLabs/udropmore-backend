@@ -55,7 +55,8 @@ exports.bloodGroupAndRhTyping = {
 exports.bloodTest = {
     viewUrl: null,
     followUp: false,
-    testName: "Blood Test",
+    testName: "Haemogram",
+    isRepeat: true,
     hb: {
         name: "Hb",
         value: null,
@@ -115,6 +116,7 @@ exports.urineRoutine = {
     viewUrl: null,
     followUp: false,
     testName: "Urine Routine",
+    isRepeat: true,
     a: {
         name: "A",
         value: null,
@@ -138,6 +140,7 @@ exports.ogct = {
     viewUrl: null,
     followUp: false,
     testName: "OGCT",
+    isRepeat: true,
     twoHours: {
         name: "2 hours",
         value: null,
@@ -150,6 +153,7 @@ exports.ict = {
     viewUrl: null,
     followUp: false,
     testName: "ICT",
+    isRepeat: true,
     I: {
         name: "I",
         value: null,
@@ -208,6 +212,7 @@ exports.thyroidFunctionTest = {
     viewUrl: null,
     followUp: false,
     testName: "Thyroid Function Test",
+    isRepeat: true,
     utsh: {
         name: "uTSH",
         value: null,
@@ -281,6 +286,7 @@ exports.afp = {
     viewUrl: null,
     followUp: false,
     testName: "AFP",
+    isRepeat: true,
     afp: {
         name: "AFP",
         value: null,
@@ -293,6 +299,7 @@ exports.bsl = {
     viewUrl: null,
     followUp: false,
     testName: "B.S.L",
+    isRepeat: true,
     bsl: {
         name: "B.S.L",
         value: null,
@@ -304,6 +311,7 @@ exports.urine = {
     viewUrl: null,
     followUp: false,
     testName: "Urine",
+    isRepeat: true,
     a: {
         name: "A",
         value: null,
@@ -321,6 +329,7 @@ exports.urineCs = {
     viewUrl: null,
     followUp: false,
     testName: "Urine C/s",
+    isRepeat: true,
     a: {
         name: "A",
         value: null,
@@ -409,6 +418,7 @@ exports.nips = {
     viewUrl: null,
     followUp: false,
     testName: "NIPS",
+    isRepeat: true,
     nips: {
         name: "NIPS",
         value: null,
@@ -588,6 +598,7 @@ exports.anomalyScan = {
     viewUrl: null,
     followUp: false,
     testName: "Anomaly Scan",
+    isRepeat: false,
     anencephaly: {
         name: "Anencephaly",
         value: null,
@@ -653,6 +664,7 @@ exports.foetal2dEcho = {
     viewUrl: null,
     followUp: false,
     testName: "Foetal 2D Echo",
+    isRepeat: false,
     fetalGrowth: {
         name: "Fetal Growth",
         value: null,
@@ -804,6 +816,7 @@ exports.usgWithDoppler = {
     viewUrl: null,
     followUp: false,
     testName: "USG With Doppler",
+    isRepeat: false,
     fetalGrowth: {
         name: "Fetal Growth",
         value: null,
@@ -833,6 +846,7 @@ exports.dfmr = {
     viewUrl: null,
     followUp: false,
     testName: "DFMR",
+    isRepeat: true,
     dfmr: {
         name: "DFMR",
         value: null,
@@ -844,6 +858,7 @@ exports.nst = {
     viewUrl: null,
     followUp: false,
     testName: "NST",
+    isRepeat: false,
     beatPerMins: {
         name: "Beat per mins",
         value: null,

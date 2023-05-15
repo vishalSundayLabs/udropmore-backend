@@ -41,7 +41,7 @@ export const masterAntenatalTest = [
             nips: nips,
             dentalCheckUp: dentalCheckUp,
             bsl: bsl,
-            urine: urine
+            urine: urineRoutine
         }
     },
     {
@@ -61,7 +61,7 @@ export const masterAntenatalTest = [
         weekAndDays: null,
         tests: {
             bloodTest: bloodTest,
-            urineCs: urineCs,
+            urineCs: {...urineCs,isRepeat:false},
             afp: afp,
             anomalyScan: anomalyScan,
             bsl: bsl,
@@ -132,7 +132,7 @@ export const masterAntenatalTest = [
         weekAndDays: null,
         tests: {
             usgWithDoppler: usgWithDoppler,
-            dfmr: dfmr,
+            dfmr: {...dfmr,isRepeat:false},
             nst: nst
         }
     },

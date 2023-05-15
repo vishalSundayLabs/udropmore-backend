@@ -107,7 +107,7 @@ export const getAllAppointmentsOfADay = async (req, res) => {
 
     try {
 
-        const appointments = await AppointmentModel.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentType: { $ne: "TELECALL" }, appointmentDateAndTime: { $gte: new Date(dates.fullDate), $lt: new Date(dates.nextDate) }, status: { $ne: "CANCELLED" } }).skip(skips).limit(limit)
+        const appointments = await AppointmentModel.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentType: { $ne: "TELECALL" }, appointmentDateAndTime: { $gte: new Date(dates.fullDate), $lt: new Date(dates.nextDate) }, status: { $nin: ["CANCELLED","RESCHEDULED"] } }).skip(skips).limit(limit)
 
         let patientList = [];
         const patientMap = new Map();

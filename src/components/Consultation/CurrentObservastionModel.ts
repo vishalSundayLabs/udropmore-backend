@@ -12,7 +12,7 @@ const currentObservastionSchema = new mongoose.Schema({
     currentObservastion: [{
         date: Date,
         week: { type: Number, default: null },
-        weekAndDays:{ type: String, default: null },
+        weekAndDays: { type: String, default: null },
         riskFactor: [Object],
         complaints: [Object],
         generalExamination: {
@@ -22,26 +22,26 @@ const currentObservastionSchema = new mongoose.Schema({
                 sbp: {
                     name: { type: String, default: "SBP" },
                     value: { type: Number, default: null },
-                    unit:{ type: String, default: "mmhg" },
+                    unit: { type: String, default: "mmhg" },
                     inputType: { type: String, default: "Textbox" }
                 },
                 dbp: {
                     name: { type: String, default: "DBP" },
                     value: { type: Number, default: null },
-                    unit:{ type: String, default: "mmhg" },
+                    unit: { type: String, default: "mmhg" },
                     inputType: { type: String, default: "Textbox" }
                 }
             },
             pulse: {
                 name: { type: String, default: "Pulse" },
                 value: { type: Number, default: null },
-                unit:{ type: String, default: "bpm" },
+                unit: { type: String, default: "bpm" },
                 inputType: { type: String, default: "Textbox" }
             },
             temp: {
                 name: { type: String, default: "Temp" },
                 value: { type: Number, default: null },
-                unit:{ type: String, default: "°C" },
+                unit: { type: String, default: "°C" },
                 inputType: { type: String, default: "Textbox" }
             },
             oedema: {
@@ -99,7 +99,7 @@ const currentObservastionSchema = new mongoose.Schema({
                 inputType: { type: String, default: "Select" }
             }
         },
-        perAbdomen: { 
+        perAbdomen: {
             testName: { type: String, default: "Per Abdomen" },
             liver: {
                 name: { type: String, default: "Liver" },
@@ -188,7 +188,7 @@ const currentObservastionSchema = new mongoose.Schema({
             fetalHeartRate: {
                 name: { type: String, default: "Fetal heart rate" },
                 value: { type: Number, default: null },
-                unit:{ type: String, default: "Beat per mins" },
+                unit: { type: String, default: "Beat per mins" },
                 inputType: { type: String, default: "Textbox" }
             },
             presentationPart: {
@@ -217,6 +217,10 @@ const currentObservastionSchema = new mongoose.Schema({
             }
         }
     }],
+    isDraft: {
+        type: Boolean,
+        default: false
+    },
     isDeleted: {
         type: Boolean,
         default: false

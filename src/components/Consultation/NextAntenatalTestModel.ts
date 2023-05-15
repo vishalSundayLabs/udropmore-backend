@@ -12,15 +12,19 @@ const nextAntenatalTestSchema = new mongoose.Schema({
     nextAntenatalTest: [{
         week: Number,
         standardtest: [{
-            name:  { type: String, default: null }
+            name: { type: String, default: null }
         }],
         additionalTest: [{
-            name:  { type: String, default: null }
+            name: { type: String, default: null }
         }]
     }],
+    isDraft: {
+        type: Boolean,
+        default: false
+    },
     isDeleted: {
         type: Boolean,
-        default:false
+        default: false
     },
     createdBy: {
         type: mongoose.SchemaTypes.ObjectId,

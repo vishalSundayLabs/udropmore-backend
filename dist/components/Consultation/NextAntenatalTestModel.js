@@ -19,6 +19,10 @@ const nextAntenatalTestSchema = new mongoose.Schema({
                     name: { type: String, default: null }
                 }]
         }],
+    isDraft: {
+        type: Boolean,
+        default: false
+    },
     isDeleted: {
         type: Boolean,
         default: false

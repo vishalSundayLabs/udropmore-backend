@@ -231,7 +231,7 @@ exports.sampleUserDetails = {
                     dateOfDelivery: null,
                     weekOfDelivery: null,
                     typeOfDelivery: {
-                        vaginal: {
+                        Vaginal: {
                             type: null,
                         },
                         cesareanSection: {
