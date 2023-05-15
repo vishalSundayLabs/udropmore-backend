@@ -644,7 +644,7 @@ export const getTreatment = async (req, res) => {
 
             const prevData = createPreviousWeekData(week, sampleTreatment.treatment[0])
             const actualData = []
-
+            
             for (let j = 0; j < prevData.length; j++) {
 
                 if (j < tempTreatment.length && tempTreatment[j].week == prevData[j].week) {
@@ -655,7 +655,7 @@ export const getTreatment = async (req, res) => {
 
             }
 
-            tempTreatment.treatment = actualData
+            treatment.treatment = actualData
 
         }
 
@@ -666,7 +666,6 @@ export const getTreatment = async (req, res) => {
             let diffWeek = week - consultationDate.week
             let diffDays = days - consultationDate.days
             treatment.treatment[j].weekAndDays = `${treatment.treatment[j].week} week ${Math.floor((diffDays % diffWeek) % 7)} days`
-            treatment.treatment[j].week = week
             treatment.treatment[j].date = new Date(date)
 
         }

@@ -21,7 +21,7 @@ const treatmentSchema = new mongoose.Schema({
             followUp: {
                 followUpDate: { type: Date, default: null },
                 remarksForMother: { type: String, default: null },
-                testName: [String]
+                testName: []
             }
         }],
     isDraft: { type: Boolean, default: false },

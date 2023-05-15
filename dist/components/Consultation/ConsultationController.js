@@ -461,7 +461,7 @@ const getTreatment = (req, res) => __awaiter(void 0, void 0, void 0, function* (
                     actualData.push(prevData[j]);
                 }
             }
-            tempTreatment.treatment = actualData;
+            treatment.treatment = actualData;
         }
         for (let j = 0; j < treatment.treatment.length; j++) {
             const date = treatment.treatment[j].date ? treatment.treatment[j].date : new Date(moment(body.lmpDate).add(treatment.treatment[j].week, 'weeks').format('YYYY-MM-DD'));
@@ -469,7 +469,6 @@ const getTreatment = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             let diffWeek = week - consultationDate.week;
             let diffDays = days - consultationDate.days;
             treatment.treatment[j].weekAndDays = `${treatment.treatment[j].week} week ${Math.floor((diffDays % diffWeek) % 7)} days`;
-            treatment.treatment[j].week = week;
             treatment.treatment[j].date = new Date(date);
         }
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
