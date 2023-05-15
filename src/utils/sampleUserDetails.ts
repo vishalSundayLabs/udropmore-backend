@@ -235,7 +235,7 @@ export const sampleUserDetails = {
                         type: null,
                     },
                     cesareanSection: {
-                        name:"Cesarean section",
+                        name:"Cesarean section", 
                         type: null,
                         indications: [
                             {

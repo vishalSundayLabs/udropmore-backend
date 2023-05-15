@@ -291,6 +291,7 @@ const userDetailsSchema = new mongoose.Schema({
                 weekOfDelivery: { type: Number, default: null },
                 typeOfDelivery: {
                     vaginal: {
+                        name: { type: String, default: "Vaginal" },
                         type: {
                             type: String,
                             enum: ["Spontaneous", "Induced", null],
@@ -298,6 +299,7 @@ const userDetailsSchema = new mongoose.Schema({
                         }
                     },
                     cesareanSection: {
+                        name: { type: String, default: "Cesarean section" },
                         type: {
                             type: String,
                             enum: ["Emergency", "Elective", null],
