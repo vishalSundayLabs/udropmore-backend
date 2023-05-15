@@ -165,25 +165,25 @@ export const ict = {
     vdrl: {
         name: "VDRL/VDRLI",
         value: null,
-        options: ["Positive", "Negetive"],
+        options: ["Positive", "Negative"],
         inputType: "Select"
     },
     hiv: {
         name: "HIV",
         value: null,
-        options: ["Positive", "Negetive"],
+        options: ["Positive", "Negative"],
         inputType: "Select"
     },
     hbsag: {
         name: "HBsAg",
         value: null,
-        options: ["Positive", "Negetive"],
+        options: ["Positive", "Negative"],
         inputType: "Select"
     },
     hcv: {
         name: "HCV",
         value: null,
-        options: ["Positive", "Negetive"],
+        options: ["Positive", "Negative"],
         inputType: "Select"
     }
 }
@@ -195,13 +195,13 @@ export const hbElectrophoriesis = {
     w: {
         name: "W",
         value: null,
-        options: ["Boedline raised", "Hb A2"],
+        options: ["Borderline raised", "Hb A2"],
         inputType: "Select"
     },
     h: {
         name: "H",
         value: null,
-        options: ["Boedline raised", "Hb A2"],
+        options: ["Borderline raised", "Hb A2"],
         inputType: "Select"
     }
 }

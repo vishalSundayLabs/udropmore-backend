@@ -179,7 +179,7 @@ const pastHistorySchema = new mongoose.Schema({
                     dateOfDelivery: { type: Date, default: null },
                     weekOfDelivery: { type: Number, default: null },
                     typeOfDelivery: {
-                        vaginal: {
+                        Vaginal: {
                             type: {
                                 type: String,
                                 enum: ["Spontaneous", "Induced", null],

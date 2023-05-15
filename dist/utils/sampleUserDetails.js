@@ -310,10 +310,10 @@ exports.sampleUserDetails = {
                         anasthaesia: {
                             value: null,
                             types: [
-                                { epidural: false },
-                                { sa: false },
-                                { ga: false },
-                                { la: false },
+                                { name: "Epidural", epidural: false },
+                                { name: "S.A", sa: false },
+                                { name: "G.A", ga: false },
+                                { name: "L.A", la: false },
                             ]
                         }
                     },
