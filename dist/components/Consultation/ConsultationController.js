@@ -18,6 +18,7 @@ const bodyTraverse_1 = require("../../helpers/bodyTraverse");
 const calculateCurrentWeekHelper_1 = require("../../helpers/calculateCurrentWeekHelper");
 const ResponseClass_1 = require("../../utils/ResponseClass");
 const sampleCurrentObservastion_1 = require("../../utils/sampleCurrentObservastion");
+const sampleTreatment_1 = require("../../utils/sampleTreatment");
 const UserController_1 = require("../Users/UserController");
 const AntenatalTestModel_1 = require("./AntenatalTestModel");
 const CurrentObservastionModel_1 = require("./CurrentObservastionModel");
@@ -279,17 +280,14 @@ const getAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, functio
         const { week, days } = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(body.lmpDate);
         const antenatalTestTemp = antenatalTest.antenatalTest;
         const testOfTheWeek = [];
-        console.log(week);
         for (let k = 0; k < MasterAntenatalTest_1.masterAntenatalTest.length; k++) {
             const tempTest = Object.assign({}, MasterAntenatalTest_1.masterAntenatalTest[k]);
             if (tempTest.week.includes(week)) {
-                console.log("in if");
                 tempTest.week = [tempTest.week[tempTest.week.length - 1]];
                 testOfTheWeek.push(tempTest);
                 break;
             }
             else {
-                console.log("in else");
                 tempTest.week = [tempTest.week[tempTest.week.length - 1]];
                 testOfTheWeek.push(tempTest);
             }
@@ -433,7 +431,7 @@ const updateTreatment = (req, res) => __awaiter(void 0, void 0, void 0, function
 exports.updateTreatment = updateTreatment;
 const getTreatment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
-    if (!body.motherId || !body.doctorId || !body.date) {
+    if (!body.motherId || !body.doctorId || !body.lmpDate) {
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
             message: "Bad Request! Mother Id , Doctor Id or date must be provide.",
@@ -446,6 +444,33 @@ const getTreatment = (req, res) => __awaiter(void 0, void 0, void 0, function* (
                 success: true,
                 message: "Treatment Data not found!",
             }));
+        }
+        const { week, days } = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(body.lmpDate);
+        const tempTreatment = treatment.treatment;
+        const weeks = [5, 8, 12, 15, 18, 21, 24, 26, 28, 30, 32, 34, 36, 37, 38, 39, 40];
+        let previousWeekIndex = getPreviousWeekIndex(week) == -1 ? 0 : getPreviousWeekIndex(week);
+        const endIndex = tempTreatment.length - 1;
+        if (tempTreatment[endIndex].week !== week) {
+            const prevData = createPreviousWeekData(week, sampleTreatment_1.sampleTreatment.treatment[0]);
+            const actualData = [];
+            for (let j = 0; j < prevData.length; j++) {
+                if (j < tempTreatment.length && tempTreatment[j].week == prevData[j].week) {
+                    actualData.push(tempTreatment[j]);
+                }
+                else {
+                    actualData.push(prevData[j]);
+                }
+            }
+            tempTreatment.treatment = actualData;
+        }
+        for (let j = 0; j < treatment.treatment.length; j++) {
+            const date = treatment.treatment[j].date ? treatment.treatment[j].date : new Date(moment(body.lmpDate).add(treatment.treatment[j].week, 'weeks').format('YYYY-MM-DD'));
+            const consultationDate = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(date);
+            let diffWeek = week - consultationDate.week;
+            let diffDays = days - consultationDate.days;
+            treatment.treatment[j].weekAndDays = `${treatment.treatment[j].week} week ${Math.floor((diffDays % diffWeek) % 7)} days`;
+            treatment.treatment[j].week = week;
+            treatment.treatment[j].date = new Date(date);
         }
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,

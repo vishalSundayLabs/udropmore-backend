@@ -339,7 +339,7 @@ exports.sampleCurrentObservastion = {
                     value: null,
                     options: null,
                     inputType: "Textbox",
-                    placeHolder: null
+                    placeHolder: "Type..."
                 }
             }
         }]

@@ -11,46 +11,17 @@ const treatmentSchema = new mongoose.Schema({
         refs: "User"
     },
     treatment: [{
-            date: Date,
-            week: { type: String, default: null },
+            date: { type: Date, default: null },
+            week: { type: Number, default: null },
+            weekAndDays: { type: String, default: null },
             obeservation: {
                 examinationFinding: { type: String, default: null },
-                remarksForMother: { type: String, default: null }
             },
-            prescription: {
-                standardSupplements: {
-                    templateId: {
-                        type: mongoose.SchemaTypes.ObjectId,
-                        refs: "template",
-                        default: null
-                    },
-                    medicines: [{
-                            category: {
-                                categoryName: { type: String, default: null },
-                                drugs: [{
-                                        drugName: { type: String, default: null },
-                                        freq: { type: String, default: "101" },
-                                        duration: {
-                                            value: { type: Number, default: null },
-                                            unit: {
-                                                type: String,
-                                                enum: ["Days", "Weeks", "Months", null],
-                                                default: null
-                                            }
-                                        },
-                                        startDate: { type: Date, default: null },
-                                        endDate: { type: Date, default: null }
-                                    }]
-                            }
-                        }]
-                },
-                symptomsSupplements: []
-            },
+            prescription: {},
             followUp: {
                 followUpDate: { type: Date, default: null },
                 remarksForMother: { type: String, default: null },
-                testName: [String],
-                week: { type: Number, default: null }
+                testName: [String]
             }
         }],
     isDraft: { type: Boolean, default: false },

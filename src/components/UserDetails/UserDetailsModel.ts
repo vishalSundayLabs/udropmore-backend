@@ -188,7 +188,6 @@ const userDetailsSchema = new mongoose.Schema({
                 { headaches: false },
             ]
             */
-
             currentMenstrualHistory: {
                 durationOfCycleDays: {
                     type: Number,
@@ -237,17 +236,7 @@ const userDetailsSchema = new mongoose.Schema({
                     default: null
                 }
             },
-            currentMedications: {
-                // standardSupplements: {
-                //     templateId: {
-                //         type: mongoose.SchemaTypes.ObjectId,
-                //         refs: "template",
-                //         default: null
-                //     },
-                //     medicines: []
-                // },
-                // symptomsSupplements: []
-            },
+            currentMedications: {},
         },
         obstetricsHistory: {
             terminations: [{

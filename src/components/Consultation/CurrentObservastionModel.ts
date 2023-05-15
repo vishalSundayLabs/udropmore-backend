@@ -23,26 +23,30 @@ const currentObservastionSchema = new mongoose.Schema({
                     name: { type: String, default: "SBP" },
                     value: { type: Number, default: null },
                     unit: { type: String, default: "mmhg" },
-                    inputType: { type: String, default: "Textbox" }
+                    inputType: { type: String, default: "Textbox" },
+                    placeHolder: { type: String, default: "90-120" }
                 },
                 dbp: {
                     name: { type: String, default: "DBP" },
                     value: { type: Number, default: null },
                     unit: { type: String, default: "mmhg" },
-                    inputType: { type: String, default: "Textbox" }
+                    inputType: { type: String, default: "Textbox" },
+                    placeHolder: { type: String, default: "70-80" }
                 }
             },
             pulse: {
                 name: { type: String, default: "Pulse" },
                 value: { type: Number, default: null },
                 unit: { type: String, default: "bpm" },
-                inputType: { type: String, default: "Textbox" }
+                inputType: { type: String, default: "Textbox" },
+                placeHolder: { type: String, default: "120/80" }
             },
             temp: {
                 name: { type: String, default: "Temp" },
                 value: { type: Number, default: null },
                 unit: { type: String, default: "°C" },
-                inputType: { type: String, default: "Textbox" }
+                inputType: { type: String, default: "Textbox" },
+                placeHolder: { type: String, default: "37" }
             },
             oedema: {
                 name: { type: String, default: "Oedema" },
@@ -189,7 +193,8 @@ const currentObservastionSchema = new mongoose.Schema({
                 name: { type: String, default: "Fetal heart rate" },
                 value: { type: Number, default: null },
                 unit: { type: String, default: "Beat per mins" },
-                inputType: { type: String, default: "Textbox" }
+                inputType: { type: String, default: "Textbox" },
+                placeHolder: { type: String, default: "120-180" }
             },
             presentationPart: {
                 name: { type: String, default: "Presentation Part" },
@@ -213,7 +218,8 @@ const currentObservastionSchema = new mongoose.Schema({
                 name: { type: String, default: "Remark" },
                 value: { type: Number, default: null },
                 options: { type: String, default: null },
-                inputType: { type: String, default: "Textbox" }
+                inputType: { type: String, default: "Textbox" },
+                placeHolder: { type: String, default: "Type..." }
             }
         }
     }],

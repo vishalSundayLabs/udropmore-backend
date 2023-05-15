@@ -140,31 +140,31 @@ export const sampleCurrentObservastion = {
                 sbp: {
                     name: "SBP",
                     value: null,
-                    unit:"mmhg",
+                    unit: "mmhg",
                     inputType: "Textbox",
-                    placeHolder:"90-120"
+                    placeHolder: "90-120"
                 },
                 dbp: {
                     name: "DBP",
                     value: null,
-                    unit:"mmhg",
+                    unit: "mmhg",
                     inputType: "Textbox",
-                    placeHolder:"70-80"
+                    placeHolder: "70-80"
                 }
             },
             pulse: {
                 name: "Pulse",
                 value: null,
-                unit:"bpm",
+                unit: "bpm",
                 inputType: "Textbox",
-                placeHolder:"120/80"
+                placeHolder: "120/80"
             },
             temp: {
                 name: "Temp",
                 value: null,
-                unit:"°C",
+                unit: "°C",
                 inputType: "Textbox",
-                placeHolder:"37"
+                placeHolder: "37"
             },
             oedema: {
                 name: "Oedema",
@@ -310,9 +310,9 @@ export const sampleCurrentObservastion = {
             fetalHeartRate: {
                 name: "Fetal heart rate",
                 value: null,
-                unit:"Beat per mins",
+                unit: "Beat per mins",
                 inputType: "Textbox",
-                placeHolder:"120-180"
+                placeHolder: "120-180"
             },
             presentationPart: {
                 name: "Presentation Part",
@@ -337,7 +337,7 @@ export const sampleCurrentObservastion = {
                 value: null,
                 options: null,
                 inputType: "Textbox",
-                placeHolder:null
+                placeHolder: "Type..."
             }
         }
     }]

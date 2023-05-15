@@ -9,6 +9,7 @@ import { calculateCurrentWeekAndDays } from "../../helpers/calculateCurrentWeekH
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
 import { sampleAntentalTest } from "../../utils/sampleAntenatalTest"
 import { sampleCurrentObservastion } from "../../utils/sampleCurrentObservastion"
+import { sampleTreatment } from "../../utils/sampleTreatment"
 import AppointmentModel from "../Appointment/AppointmentModel"
 import { getDayOrTimeFromDate } from "../Users/UserController"
 import antenatalTestModel from "./AntenatalTestModel"
@@ -392,19 +393,19 @@ export const getAntenatalTest = async (req, res) => {
 
         const antenatalTestTemp = antenatalTest.antenatalTest
         const testOfTheWeek = []
-        console.log(week)
+
         for (let k = 0; k < masterAntenatalTest.length; k++) {
 
             const tempTest = { ...masterAntenatalTest[k] }
 
             if (tempTest.week.includes(week)) {
-                console.log("in if")
+
                 tempTest.week = [tempTest.week[tempTest.week.length - 1]]
                 testOfTheWeek.push(tempTest)
                 break;
 
             } else {
-                console.log("in else")
+
                 tempTest.week = [tempTest.week[tempTest.week.length - 1]]
                 testOfTheWeek.push(tempTest)
 
@@ -608,7 +609,7 @@ export const getTreatment = async (req, res) => {
 
     const body = req.body
 
-    if (!body.motherId || !body.doctorId || !body.date) {
+    if (!body.motherId || !body.doctorId || !body.lmpDate) {
 
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
             success: false,
@@ -627,6 +628,46 @@ export const getTreatment = async (req, res) => {
                 success: true,
                 message: "Treatment Data not found!",
             }))
+
+        }
+
+        const { week, days } = calculateCurrentWeekAndDays(body.lmpDate)
+        const tempTreatment = treatment.treatment
+
+        const weeks = [5, 8, 12, 15, 18, 21, 24, 26, 28, 30, 32, 34, 36, 37, 38, 39, 40]
+
+        let previousWeekIndex = getPreviousWeekIndex(week) == -1 ? 0 : getPreviousWeekIndex(week)
+
+        const endIndex = tempTreatment.length - 1
+
+        if (tempTreatment[endIndex].week !== week) {
+
+            const prevData = createPreviousWeekData(week, sampleTreatment.treatment[0])
+            const actualData = []
+
+            for (let j = 0; j < prevData.length; j++) {
+
+                if (j < tempTreatment.length && tempTreatment[j].week == prevData[j].week) {
+                    actualData.push(tempTreatment[j])
+                } else {
+                    actualData.push(prevData[j])
+                }
+
+            }
+
+            tempTreatment.treatment = actualData
+
+        }
+
+        for (let j = 0; j < treatment.treatment.length; j++) {
+
+            const date = treatment.treatment[j].date ? treatment.treatment[j].date : new Date(moment(body.lmpDate).add(treatment.treatment[j].week, 'weeks').format('YYYY-MM-DD'))
+            const consultationDate = calculateCurrentWeekAndDays(date)
+            let diffWeek = week - consultationDate.week
+            let diffDays = days - consultationDate.days
+            treatment.treatment[j].weekAndDays = `${treatment.treatment[j].week} week ${Math.floor((diffDays % diffWeek) % 7)} days`
+            treatment.treatment[j].week = week
+            treatment.treatment[j].date = new Date(date)
 
         }
 
