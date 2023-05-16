@@ -18,6 +18,7 @@ const bodyTraverse_1 = require("../../helpers/bodyTraverse");
 const calculateCurrentWeekHelper_1 = require("../../helpers/calculateCurrentWeekHelper");
 const ResponseClass_1 = require("../../utils/ResponseClass");
 const sampleCurrentObservastion_1 = require("../../utils/sampleCurrentObservastion");
+const sampleNextAntenatalTest_1 = require("../../utils/sampleNextAntenatalTest");
 const sampleTreatment_1 = require("../../utils/sampleTreatment");
 const UserController_1 = require("../Users/UserController");
 const AntenatalTestModel_1 = require("./AntenatalTestModel");
@@ -520,7 +521,7 @@ const createNextAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, 
 exports.createNextAntenatalTest = createNextAntenatalTest;
 const updateNextAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
-    if (!body.motherId || !body.doctorId || !body.date) {
+    if (!body.motherId || !body.doctorId || !body.lmpDate) {
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
             message: "Bad Request! Mother Id , Doctor Id or date must be provide.",
@@ -536,6 +537,7 @@ const updateNextAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, 
         }
         (0, bodyTraverse_1.bodyTraverse)(nextAntenatalTest, body);
         nextAntenatalTest.updatedBy = req.userId;
+        yield nextAntenatalTest.save();
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "update Next Antenatal Test data successfully .",
@@ -553,7 +555,7 @@ const updateNextAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, 
 exports.updateNextAntenatalTest = updateNextAntenatalTest;
 const getNextAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
-    if (!body.motherId || !body.doctorId || !body.date) {
+    if (!body.motherId || !body.doctorId || !body.lmpDate) {
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
             message: "Bad Request! Mother Id , Doctor Id or date must be provide.",
@@ -561,16 +563,26 @@ const getNextAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, fun
     }
     try {
         const nextAntenatalTest = yield NextAntenatalTestModel_1.default.findOne({ userId: body.motherId, doctorId: body.doctorId, isDeleted: false });
-        if (!nextAntenatalTest) {
-            return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
-                success: true,
-                message: "Next Antenatal test Data not found!",
-            }));
+        const { week, days } = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(body.lmpDate);
+        const oldTest = [];
+        if (nextAntenatalTest.nextAntenatalTest.length > 0) {
+            oldTest.push(nextAntenatalTest.nextAntenatalTest.filter((test) => { var _a; return (_a = test.week == week) !== null && _a !== void 0 ? _a : test; })[0]);
         }
+        let standardTest = null;
+        let additionalTest = null;
+        standardTest = sampleNextAntenatalTest_1.standardTests.filter((test) => { var _a; return (_a = test.week.includes(week)) !== null && _a !== void 0 ? _a : test; })[0];
+        additionalTest = sampleNextAntenatalTest_1.additionalTests.filter((test) => { var _a; return (_a = test.week.includes(week + 1)) !== null && _a !== void 0 ? _a : test; })[0];
+        const responseData = {
+            week: oldTest[0] ? oldTest[0].week : standardTest.week[standardTest.week.length - 1],
+            standardTest: oldTest[0] ? oldTest[0].standardTest : standardTest.testName,
+            additionalTest: oldTest[0] ? oldTest[0].additionalTest : additionalTest.testName,
+            motherId: body.motherId,
+            doctorId: body.doctorId
+        };
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "find Next Antenatal Test data successfully .",
-            result: nextAntenatalTest
+            result: responseData
         }));
     }
     catch (error) {

@@ -28,6 +28,8 @@ const sampleCurrentObservastion_1 = require("../../utils/sampleCurrentObservasti
 const sampleAntenatalTest_1 = require("../../utils/sampleAntenatalTest");
 const sampleTreatment_1 = require("../../utils/sampleTreatment");
 const sampleNextAntenatalTest_1 = require("../../utils/sampleNextAntenatalTest");
+const PastHistoryModel_1 = require("../Consultation/PastHistoryModel");
+const samplePastHostory_1 = require("../../utils/samplePastHostory");
 let getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let uid = req.userId;
@@ -364,6 +366,8 @@ const mapMotherWithDoctor = (req, res) => __awaiter(void 0, void 0, void 0, func
             mother.mappedClinic = body.mappedClinic;
         mother.updatedBy = req.userId;
         yield mother.save();
+        samplePastHostory_1.samplePastHistory.userId = mother._id;
+        samplePastHostory_1.samplePastHistory.doctorId = doctor._id;
         sampleCurrentObservastion_1.sampleCurrentObservastion.userId = mother._id;
         sampleCurrentObservastion_1.sampleCurrentObservastion.doctorId = doctor._id;
         sampleAntenatalTest_1.sampleAntentalTest.userId = mother._id;
@@ -372,6 +376,7 @@ const mapMotherWithDoctor = (req, res) => __awaiter(void 0, void 0, void 0, func
         sampleAntenatalTest_1.sampleAntentalTest.doctorId = doctor._id;
         sampleNextAntenatalTest_1.sampleNextAntenatalTest.userId = mother._id;
         sampleNextAntenatalTest_1.sampleNextAntenatalTest.doctorId = doctor._id;
+        yield PastHistoryModel_1.default.create(samplePastHostory_1.samplePastHistory);
         yield CurrentObservastionModel_1.default.create(sampleCurrentObservastion_1.sampleCurrentObservastion);
         yield AntenatalTestModel_1.default.create(sampleAntenatalTest_1.sampleAntentalTest);
         yield TreatmentModel_1.default.create(sampleTreatment_1.sampleTreatment);

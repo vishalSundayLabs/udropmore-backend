@@ -20,6 +20,8 @@ import { sampleCurrentObservastion } from "../../utils/sampleCurrentObservastion
 import { sampleAntentalTest } from "../../utils/sampleAntenatalTest";
 import { sampleTreatment } from "../../utils/sampleTreatment";
 import { sampleNextAntenatalTest } from "../../utils/sampleNextAntenatalTest";
+import PastHistoryModel from "../Consultation/PastHistoryModel";
+import { samplePastHistory } from "../../utils/samplePastHostory";
 
 export let getUser = async (req: IRequestWithUser, res: Response) => {
 
@@ -500,6 +502,9 @@ export const mapMotherWithDoctor = async (req, res) => {
 
     await mother.save()
 
+    samplePastHistory.userId = mother._id
+    samplePastHistory.doctorId = doctor._id
+
     sampleCurrentObservastion.userId = mother._id
     sampleCurrentObservastion.doctorId = doctor._id
 
@@ -512,6 +517,7 @@ export const mapMotherWithDoctor = async (req, res) => {
     sampleNextAntenatalTest.userId = mother._id
     sampleNextAntenatalTest.doctorId = doctor._id
 
+    await PastHistoryModel.create(samplePastHistory)
     await CurrentObservastionModel.create(sampleCurrentObservastion)
     await antenatalTestModel.create(sampleAntentalTest)
     await TreatmentModel.create(sampleTreatment)

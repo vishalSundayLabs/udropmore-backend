@@ -9,6 +9,7 @@ import { calculateCurrentWeekAndDays } from "../../helpers/calculateCurrentWeekH
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
 import { sampleAntentalTest } from "../../utils/sampleAntenatalTest"
 import { sampleCurrentObservastion } from "../../utils/sampleCurrentObservastion"
+import { additionalTests, standardTests } from "../../utils/sampleNextAntenatalTest"
 import { sampleTreatment } from "../../utils/sampleTreatment"
 import AppointmentModel from "../Appointment/AppointmentModel"
 import { getDayOrTimeFromDate } from "../Users/UserController"
@@ -644,7 +645,7 @@ export const getTreatment = async (req, res) => {
 
             const prevData = createPreviousWeekData(week, sampleTreatment.treatment[0])
             const actualData = []
-            
+
             for (let j = 0; j < prevData.length; j++) {
 
                 if (j < tempTreatment.length && tempTreatment[j].week == prevData[j].week) {
@@ -738,7 +739,7 @@ export const updateNextAntenatalTest = async (req, res) => {
 
     const body = req.body
 
-    if (!body.motherId || !body.doctorId || !body.date) {
+    if (!body.motherId || !body.doctorId || !body.lmpDate) {
 
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
             success: false,
@@ -764,6 +765,8 @@ export const updateNextAntenatalTest = async (req, res) => {
 
         nextAntenatalTest.updatedBy = req.userId
 
+        await nextAntenatalTest.save()
+
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: "update Next Antenatal Test data successfully .",
@@ -787,7 +790,7 @@ export const getNextAntenatalTest = async (req, res) => {
 
     const body = req.body
 
-    if (!body.motherId || !body.doctorId || !body.date) {
+    if (!body.motherId || !body.doctorId || !body.lmpDate) {
 
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
             success: false,
@@ -800,19 +803,32 @@ export const getNextAntenatalTest = async (req, res) => {
 
         const nextAntenatalTest = await NextAntenatalTestModel.findOne({ userId: body.motherId, doctorId: body.doctorId, isDeleted: false })
 
-        if (!nextAntenatalTest) {
+        const { week, days } = calculateCurrentWeekAndDays(body.lmpDate)
+        const oldTest = []
 
-            return res.status(HTTP_NOT_FOUND).send(new ResponseError({
-                success: true,
-                message: "Next Antenatal test Data not found!",
-            }))
+        if (nextAntenatalTest.nextAntenatalTest.length > 0) {
+            oldTest.push(nextAntenatalTest.nextAntenatalTest.filter((test) => test.week == week ?? test)[0])
+        }
 
+        let standardTest = null
+        let additionalTest = null
+
+
+        standardTest = standardTests.filter((test) => test.week.includes(week) ?? test)[0]
+        additionalTest = additionalTests.filter((test) => test.week.includes(week + 1) ?? test)[0]
+
+        const responseData = {
+            week: oldTest[0] ? oldTest[0].week : standardTest.week[standardTest.week.length - 1],
+            standardTest: oldTest[0] ? oldTest[0].standardTest : standardTest.testName,
+            additionalTest: oldTest[0] ? oldTest[0].additionalTest : additionalTest.testName,
+            motherId: body.motherId,
+            doctorId: body.doctorId
         }
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: "find Next Antenatal Test data successfully .",
-            result: nextAntenatalTest
+            result: responseData
         }))
 
     } catch (error) {

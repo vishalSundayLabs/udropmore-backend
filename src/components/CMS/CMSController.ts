@@ -50,7 +50,7 @@ export const updateWeeklyContent = async (req, res) => {
 
     try {
 
-        const weeklyContent = await CMSModel.findOne({ _id:body.contentId })
+        const weeklyContent = await CMSModel.findOne({ _id: body.contentId })
 
         if (!weeklyContent) {
 
@@ -87,11 +87,17 @@ export const updateWeeklyContent = async (req, res) => {
 export const getWeeklyContent = async (req, res) => {
 
     const query = req.query
+    const reqData = {}
 
-    query.isDeleted = false
+    reqData["category"] = query.category
+    reqData["type"] = query.type
+    reqData["subtype"] = query.subtype
+    reqData["trimesters"] = query.trimesters
+    reqData["weeks"] = query.week
+    reqData["tags"] = query.tags
 
     const { limit, skips } = pagination(query)
- 
+
     try {
 
         const weeklyContent = await CMSModel.find(query).skip(skips).limit(limit)

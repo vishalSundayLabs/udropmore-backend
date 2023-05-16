@@ -74,7 +74,7 @@ const updateUserDetails = (req, res) => __awaiter(void 0, void 0, void 0, functi
     try {
         const userDetails = yield UserDetailsModel_1.default.findOne({ userId: body.motherId, isDeleted: false });
         const user = yield UserModel_1.default.findOne({ _id: userDetails.userId, isActive: true, isDeleted: false });
-        //add feilds for update 
+        //add feilds for update in user model
         user.firstName = body.firstName ? body.firstName : user.firstName;
         user.lastName = body.lastName ? body.lastName : user.lastName;
         user.email = body.email ? body.email : user.email;
@@ -86,7 +86,17 @@ const updateUserDetails = (req, res) => __awaiter(void 0, void 0, void 0, functi
                 message: "user details not found."
             }));
         }
-        //add feilds for update 
+        //this is not deployed yet
+        //   const pastHistoryData = await PastHistoryModel.findOne({ userId: body.motherId, isDeleted: false })
+        //   if (!pastHistoryData) {
+        //       return res.status(HTTP_NOT_FOUND).send(new ResponseError({
+        //           success: false,
+        //           message: "Past history data not found!"
+        //       }))
+        //   }
+        //   pastHistoryData.pastHistory = userDetails.pastHistory
+        //  await pastHistoryData.save()
+        //not deploy
         (0, bodyTraverse_1.bodyTraverse)(userDetails, body);
         userDetails.updatedBy = req.userId;
         yield userDetails.save();
@@ -122,6 +132,16 @@ const getUserDetailsbyId = (req, res) => __awaiter(void 0, void 0, void 0, funct
                 message: "user details not found."
             }));
         }
+        //this is not deployed yet
+        // const pastHistoryData = await PastHistoryModel.findOne({ userId: params.motherId, isDeleted: false })
+        // if (!pastHistoryData) {
+        //     return res.status(HTTP_NOT_FOUND).send(new ResponseError({
+        //         success: false,
+        //         message: "Past history data not found!"
+        //     }))
+        // }
+        // userDetails.pastHistory = pastHistoryData.pastHistory
+        //not deploy
         const currentWeek = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(userDetails.lastMenstrualDate);
         userDetails.pregnancyWeek = currentWeek.week;
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({

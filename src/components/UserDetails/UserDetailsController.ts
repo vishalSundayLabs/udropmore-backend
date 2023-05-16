@@ -6,6 +6,7 @@ import UserModel from "../Users/UserModel"
 import UserDetailsModel from "./UserDetailsModel"
 import { babyWeights, weightRange } from '../../Constant/WeightChart'
 import { calculateCurrentWeekAndDays } from "../../helpers/calculateCurrentWeekHelper"
+import PastHistoryModel from "../Consultation/PastHistoryModel"
 
 export const createUserDetails = async (req, res) => {
 
@@ -82,7 +83,7 @@ export const updateUserDetails = async (req, res) => {
         const userDetails = await UserDetailsModel.findOne({ userId: body.motherId, isDeleted: false })
 
         const user = await UserModel.findOne({ _id: userDetails.userId, isActive: true, isDeleted: false })
-        //add feilds for update 
+        //add feilds for update in user model
         user.firstName = body.firstName ? body.firstName : user.firstName
         user.lastName = body.lastName ? body.lastName : user.lastName
         user.email = body.email ? body.email : user.email
@@ -98,7 +99,23 @@ export const updateUserDetails = async (req, res) => {
             }))
 
         }
-        //add feilds for update 
+          //this is not deployed yet
+        //   const pastHistoryData = await PastHistoryModel.findOne({ userId: body.motherId, isDeleted: false })
+
+        //   if (!pastHistoryData) {
+  
+        //       return res.status(HTTP_NOT_FOUND).send(new ResponseError({
+        //           success: false,
+        //           message: "Past history data not found!"
+        //       }))
+  
+        //   }
+  
+        //   pastHistoryData.pastHistory = userDetails.pastHistory
+        //  await pastHistoryData.save()
+           
+          //not deploy
+
         bodyTraverse(userDetails, body)
 
         userDetails.updatedBy = req.userId
@@ -151,6 +168,21 @@ export const getUserDetailsbyId = async (req, res) => {
             }))
 
         }
+        //this is not deployed yet
+        // const pastHistoryData = await PastHistoryModel.findOne({ userId: params.motherId, isDeleted: false })
+
+        // if (!pastHistoryData) {
+
+        //     return res.status(HTTP_NOT_FOUND).send(new ResponseError({
+        //         success: false,
+        //         message: "Past history data not found!"
+        //     }))
+
+        // }
+
+        // userDetails.pastHistory = pastHistoryData.pastHistory
+
+        //not deploy
 
         const currentWeek = calculateCurrentWeekAndDays(userDetails.lastMenstrualDate)
 
@@ -257,7 +289,7 @@ export const getPastHistoryMasterConstant = (req, res) => {
             natureOfCycle,
             sourceOfVisit,
             language,
-            item:medicines
+            item: medicines
         }
     }))
 

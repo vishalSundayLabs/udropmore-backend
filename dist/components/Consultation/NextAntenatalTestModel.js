@@ -11,12 +11,14 @@ const nextAntenatalTestSchema = new mongoose.Schema({
         refs: "User"
     },
     nextAntenatalTest: [{
-            week: Number,
-            standardtest: [{
-                    name: { type: String, default: null }
+            week: { type: Number, default: null },
+            standardTest: [{
+                    name: { type: String, default: null },
+                    value: { type: Boolean, default: false }
                 }],
             additionalTest: [{
-                    name: { type: String, default: null }
+                    name: { type: String, default: null },
+                    value: { type: Boolean, default: false }
                 }]
         }],
     isDraft: {

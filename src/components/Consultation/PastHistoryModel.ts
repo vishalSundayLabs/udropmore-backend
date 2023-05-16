@@ -87,7 +87,6 @@ const pastHistorySchema = new mongoose.Schema({
                 { headaches: false },
             ]
             */
-
             currentMenstrualHistory: {
                 durationOfCycleDays: {
                     type: Number,
@@ -136,9 +135,7 @@ const pastHistorySchema = new mongoose.Schema({
                     default: null
                 }
             },
-            currentMedications: {
-
-            },
+            currentMedications: {},
         },
         obstetricsHistory: {
             terminations: [{
@@ -181,7 +178,8 @@ const pastHistorySchema = new mongoose.Schema({
                 dateOfDelivery: { type: Date, default: null },
                 weekOfDelivery: { type: Number, default: null },
                 typeOfDelivery: {
-                    Vaginal: {
+                    vaginal: {
+                        name: { type: String, default: "Vaginal" },
                         type: {
                             type: String,
                             enum: ["Spontaneous", "Induced", null],
@@ -189,6 +187,7 @@ const pastHistorySchema = new mongoose.Schema({
                         }
                     },
                     cesareanSection: {
+                        name: { type: String, default: "Cesarean section" },
                         type: {
                             type: String,
                             enum: ["Emergency", "Elective", null],

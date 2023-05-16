@@ -71,7 +71,13 @@ const updateWeeklyContent = (req, res) => __awaiter(void 0, void 0, void 0, func
 exports.updateWeeklyContent = updateWeeklyContent;
 const getWeeklyContent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const query = req.query;
-    query.isDeleted = false;
+    const reqData = {};
+    reqData["category"] = query.category;
+    reqData["type"] = query.type;
+    reqData["subtype"] = query.subtype;
+    reqData["trimesters"] = query.trimesters;
+    reqData["weeks"] = query.week;
+    reqData["tags"] = query.tags;
     const { limit, skips } = (0, pagination_1.pagination)(query);
     try {
         const weeklyContent = yield CMSModel_1.default.find(query).skip(skips).limit(limit);
