@@ -33,6 +33,7 @@ exports.pregnancyConfirmation = {
 exports.bloodGroupAndRhTyping = {
     viewUrl: null,
     followUp: false,
+    testName: "Blood Group and Rh Typing",
     motherBloodGroup: {
         name: "Mother Blood Group",
         value: null,

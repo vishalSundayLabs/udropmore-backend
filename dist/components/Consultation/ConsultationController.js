@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getNextAntenatalTest = exports.updateNextAntenatalTest = exports.createNextAntenatalTest = exports.getTreatment = exports.updateTreatment = exports.createTreatment = exports.uploadAntenatalTest = exports.getAntenatalTest = exports.updateAntenatalTest = exports.createAntenatalTest = exports.getCurrentObservastion = exports.updateCurrentObservastion = exports.createCurrentObservastion = exports.getWeeklyTestOrAppointmentsByLmp = void 0;
+exports.getNextConsultationDateAndTests = exports.getNextAntenatalTest = exports.updateNextAntenatalTest = exports.createNextAntenatalTest = exports.getTreatment = exports.updateTreatment = exports.createTreatment = exports.uploadAntenatalTest = exports.getAntenatalTest = exports.updateAntenatalTest = exports.createAntenatalTest = exports.getCurrentObservastion = exports.updateCurrentObservastion = exports.createCurrentObservastion = exports.getWeeklyTestOrAppointmentsByLmp = void 0;
 const moment = require("moment");
 const DoctorToDoTask_1 = require("../../Constant/DoctorToDoTask");
 const Master_1 = require("../../Constant/Master");
@@ -21,6 +21,7 @@ const sampleCurrentObservastion_1 = require("../../utils/sampleCurrentObservasti
 const sampleNextAntenatalTest_1 = require("../../utils/sampleNextAntenatalTest");
 const sampleTreatment_1 = require("../../utils/sampleTreatment");
 const UserController_1 = require("../Users/UserController");
+const UserModel_1 = require("../Users/UserModel");
 const AntenatalTestModel_1 = require("./AntenatalTestModel");
 const CurrentObservastionModel_1 = require("./CurrentObservastionModel");
 const NextAntenatalTestModel_1 = require("./NextAntenatalTestModel");
@@ -471,7 +472,43 @@ const getTreatment = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             let diffDays = days - consultationDate.days;
             treatment.treatment[j].weekAndDays = `${treatment.treatment[j].week} week ${Math.floor((diffDays % diffWeek) % 7)} days`;
             treatment.treatment[j].date = new Date(date);
+            // treatment.treatment[j].followUp.testName = findWeeklyTests(standardTests,treatment.treatment[j].week).testName
         }
+        // const antenatalTestData = await antenatalTestModel.findOne({ userId: body.motherId, doctorId: body.doctorId, isDeleted: false })
+        // if (antenatalTestData) {
+        //     const data = antenatalTestData.antenatalTest
+        //     for (let i = 0; i < data.length; i++) {
+        //         const testData = []
+        //         for (let key in data[i]) {
+        //             if (key === "tests" && data[i][key]) {
+        //                 for (let testKey in data[i][key]) {
+        //                     const testVal = data[i][key];
+        //                     if (testVal[testKey].followUp) {
+        //                         testData.push({ name: testVal[testKey].testName, value: testVal[testKey].followUp })
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //         const treatmentTempData = treatment.treatment
+        //         for (let j = 0; j < treatmentTempData.length; j++) {
+        //             if (treatmentTempData[j].week == data[i].week) {
+        //                 let len = treatmentTempData[j].followUp.testName.length
+        //                 if (len == 0) {
+        //                     treatmentTempData[j].followUp.testName = findWeeklyTests(standardTests, data[i].week)
+        //                     console.log("line 700",treatmentTempData[j].followUp.testName,data[i].week)
+        //                     len = treatmentTempData[j].followUp.testName.length
+        //                 }
+        //                 for (let k = 0; k < testData.length; k++) {
+        //                     for (let h = 0; h < len; h++) {
+        //                         if (testData[i].name == treatmentTempData[j].followUp.testName[h].name) {
+        //                             treatmentTempData[j].followUp.testName[i].value = true
+        //                         }
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "find Treatment data successfully .",
@@ -570,8 +607,8 @@ const getNextAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, fun
         }
         let standardTest = null;
         let additionalTest = null;
-        standardTest = sampleNextAntenatalTest_1.standardTests.filter((test) => { var _a; return (_a = test.week.includes(week)) !== null && _a !== void 0 ? _a : test; })[0];
-        additionalTest = sampleNextAntenatalTest_1.additionalTests.filter((test) => { var _a; return (_a = test.week.includes(week + 1)) !== null && _a !== void 0 ? _a : test; })[0];
+        standardTest = findWeeklyTests(sampleNextAntenatalTest_1.standardTests, week);
+        additionalTest = findWeeklyTests(sampleNextAntenatalTest_1.additionalTests, week + 1);
         const responseData = {
             week: oldTest[0] ? oldTest[0].week : standardTest.week[standardTest.week.length - 1],
             standardTest: oldTest[0] ? oldTest[0].standardTest : standardTest.testName,
@@ -595,7 +632,58 @@ const getNextAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, fun
 });
 exports.getNextAntenatalTest = getNextAntenatalTest;
 //end
+//next consultation date and tests
+const getNextConsultationDateAndTests = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const body = req.body;
+    if (!body.motherId || !body.lmpDate) {
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: "Bad Request! Mother Id , Date must be provide.",
+        }));
+    }
+    try {
+        const mother = yield UserModel_1.default.findOne({ _id: body.motherId, isDeleted: false });
+        if (!mother) {
+            return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
+                success: false,
+                message: "Mother not found!"
+            }));
+        }
+        const { week, days } = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(body.lmpDate);
+        let standardTest = findWeeklyTests(sampleNextAntenatalTest_1.standardTests, week + 1);
+        let endIndex = standardTest.week.length - 1;
+        let nextWeek = standardTest.week[endIndex];
+        if (week >= nextWeek) {
+            standardTest = findWeeklyTests(sampleNextAntenatalTest_1.standardTests, week + 2);
+            endIndex = standardTest.week.length - 1;
+            nextWeek = standardTest.week[endIndex];
+        }
+        const responseData = {
+            nextConsultationDate: new Date(moment(body.lmpDate).add(nextWeek, 'weeks').format('YYYY-MM-DD')),
+            currentWeek: week,
+            nextWeek: nextWeek,
+            tests: standardTest.testName
+        };
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "Next Consultation Date And Tests find successfully .",
+            result: responseData
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.getNextConsultationDateAndTests = getNextConsultationDateAndTests;
+//end
 //create previous week data
+const findWeeklyTests = (tests, week) => {
+    return tests.filter((test) => { var _a; return (_a = test.week.includes(week)) !== null && _a !== void 0 ? _a : test; })[0];
+};
 const createPreviousWeekData = (week, sample) => {
     const weeks = [[3, 4, 6, 5], [7, 9, 10, 8], [11, 13, 12], [14, 16, 15], [17, 19, 18], [20, 22, 21], [23, 24], [25, 26], [27, 28], [29, 30], [31, 32], [33, 34], [35, 36], [37], [38], [39], [40]];
     const result = [];
@@ -626,4 +714,20 @@ const getPreviousWeekIndex = (currentWeek) => {
         }
     }
     return previousWeekIndex;
+};
+const findFollowUpTests = (data, followUpData) => {
+    const followUpTests = [];
+    for (let i = 0; i < data.length; i++) {
+        for (let key in data[i]) {
+            if (key === "tests" && data[i][key]) {
+                for (let testKey in data[i][key]) {
+                    const testVal = data[i][key];
+                    if (testVal[testKey].followUp) {
+                        followUpTests.push(testVal[testKey].testName);
+                    }
+                }
+            }
+        }
+    }
+    return followUpTests;
 };

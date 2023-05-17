@@ -512,7 +512,7 @@ export const mapMotherWithDoctor = async (req, res) => {
     sampleAntentalTest.doctorId = doctor._id
 
     sampleTreatment.userId = mother._id
-    sampleAntentalTest.doctorId = doctor._id
+    sampleTreatment.doctorId = doctor._id
 
     sampleNextAntenatalTest.userId = mother._id
     sampleNextAntenatalTest.doctorId = doctor._id

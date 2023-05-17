@@ -13,6 +13,7 @@ import { additionalTests, standardTests } from "../../utils/sampleNextAntenatalT
 import { sampleTreatment } from "../../utils/sampleTreatment"
 import AppointmentModel from "../Appointment/AppointmentModel"
 import { getDayOrTimeFromDate } from "../Users/UserController"
+import UserModel from "../Users/UserModel"
 import antenatalTestModel from "./AntenatalTestModel"
 import CurrentObservastionModel from "./CurrentObservastionModel"
 import NextAntenatalTestModel from "./NextAntenatalTestModel"
@@ -668,8 +669,48 @@ export const getTreatment = async (req, res) => {
             let diffDays = days - consultationDate.days
             treatment.treatment[j].weekAndDays = `${treatment.treatment[j].week} week ${Math.floor((diffDays % diffWeek) % 7)} days`
             treatment.treatment[j].date = new Date(date)
+            // treatment.treatment[j].followUp.testName = findWeeklyTests(standardTests,treatment.treatment[j].week).testName
 
         }
+
+        // const antenatalTestData = await antenatalTestModel.findOne({ userId: body.motherId, doctorId: body.doctorId, isDeleted: false })
+
+        // if (antenatalTestData) {
+
+        //     const data = antenatalTestData.antenatalTest
+
+        //     for (let i = 0; i < data.length; i++) {
+        //         const testData = []
+        //         for (let key in data[i]) {
+        //             if (key === "tests" && data[i][key]) {
+        //                 for (let testKey in data[i][key]) {
+        //                     const testVal = data[i][key];
+        //                     if (testVal[testKey].followUp) {
+        //                         testData.push({ name: testVal[testKey].testName, value: testVal[testKey].followUp })
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //         const treatmentTempData = treatment.treatment
+        //         for (let j = 0; j < treatmentTempData.length; j++) {
+        //             if (treatmentTempData[j].week == data[i].week) {
+        //                 let len = treatmentTempData[j].followUp.testName.length
+        //                 if (len == 0) {
+        //                     treatmentTempData[j].followUp.testName = findWeeklyTests(standardTests, data[i].week)
+        //                     console.log("line 700",treatmentTempData[j].followUp.testName,data[i].week)
+        //                     len = treatmentTempData[j].followUp.testName.length
+        //                 }
+        //                 for (let k = 0; k < testData.length; k++) {
+        //                     for (let h = 0; h < len; h++) {
+        //                         if (testData[i].name == treatmentTempData[j].followUp.testName[h].name) {
+        //                             treatmentTempData[j].followUp.testName[i].value = true
+        //                         }
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
@@ -814,8 +855,8 @@ export const getNextAntenatalTest = async (req, res) => {
         let additionalTest = null
 
 
-        standardTest = standardTests.filter((test) => test.week.includes(week) ?? test)[0]
-        additionalTest = additionalTests.filter((test) => test.week.includes(week + 1) ?? test)[0]
+        standardTest = findWeeklyTests(standardTests, week)
+        additionalTest = findWeeklyTests(additionalTests, week + 1)
 
         const responseData = {
             week: oldTest[0] ? oldTest[0].week : standardTest.week[standardTest.week.length - 1],
@@ -845,7 +886,75 @@ export const getNextAntenatalTest = async (req, res) => {
 }
 //end
 
+//next consultation date and tests
+
+export const getNextConsultationDateAndTests = async (req, res) => {
+
+    const body = req.body
+
+    if (!body.motherId || !body.lmpDate) {
+
+        return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+            success: false,
+            message: "Bad Request! Mother Id , Date must be provide.",
+        }))
+
+    }
+
+    try {
+
+        const mother = await UserModel.findOne({ _id: body.motherId, isDeleted: false })
+
+        if (!mother) {
+
+            return res.status(HTTP_NOT_FOUND).send(new ResponseError({
+                success: false,
+                message: "Mother not found!"
+            }))
+
+        }
+
+        const { week, days } = calculateCurrentWeekAndDays(body.lmpDate)
+        let standardTest = findWeeklyTests(standardTests, week + 1)
+        let endIndex = standardTest.week.length - 1
+        let nextWeek = standardTest.week[endIndex]
+
+        if (week >= nextWeek) {
+            standardTest = findWeeklyTests(standardTests, week + 2)
+            endIndex = standardTest.week.length - 1
+            nextWeek = standardTest.week[endIndex]
+        }
+
+        const responseData = {
+            nextConsultationDate: new Date(moment(body.lmpDate).add(nextWeek, 'weeks').format('YYYY-MM-DD')),
+            currentWeek: week,
+            nextWeek: nextWeek,
+            tests: standardTest.testName
+        }
+
+        return res.status(HTTP_OK).send(new ResponseSuccess({
+            success: true,
+            message: "Next Consultation Date And Tests find successfully .",
+            result: responseData
+        }))
+
+    } catch (error) {
+
+        let response = new ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+
+        return res.status(500).json(response);
+
+    }
+}
+//end
+
 //create previous week data
+const findWeeklyTests = (tests, week) => {
+    return tests.filter((test) => test.week.includes(week) ?? test)[0]
+}
 
 const createPreviousWeekData = (week, sample) => {
 
@@ -893,4 +1002,24 @@ const getPreviousWeekIndex = (currentWeek) => {
 
     }
     return previousWeekIndex
+}
+
+const findFollowUpTests = (data, followUpData) => {
+
+    const followUpTests = []
+
+    for (let i = 0; i < data.length; i++) {
+        for (let key in data[i]) {
+            if (key === "tests" && data[i][key]) {
+                for (let testKey in data[i][key]) {
+                    const testVal = data[i][key];
+                    if (testVal[testKey].followUp) {
+                        followUpTests.push(testVal[testKey].testName);
+                    }
+                }
+            }
+        }
+    }
+
+    return followUpTests
 }

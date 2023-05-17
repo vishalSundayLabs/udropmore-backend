@@ -27,4 +27,6 @@ router.post("/nextAntenatalTest/create", tokenVerify_1.verifyToken, Consultation
 router.put("/nextAntenatalTest/update", tokenVerify_1.verifyToken, ConsultationController_1.updateNextAntenatalTest);
 router.post("/nextAntenatalTest/details", tokenVerify_1.verifyToken, ConsultationController_1.getNextAntenatalTest);
 //end
+//next consultation 
+router.get("/recommendation", tokenVerify_1.verifyToken, ConsultationController_1.getNextConsultationDateAndTests);
 exports.default = router;

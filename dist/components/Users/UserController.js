@@ -373,7 +373,7 @@ const mapMotherWithDoctor = (req, res) => __awaiter(void 0, void 0, void 0, func
         sampleAntenatalTest_1.sampleAntentalTest.userId = mother._id;
         sampleAntenatalTest_1.sampleAntentalTest.doctorId = doctor._id;
         sampleTreatment_1.sampleTreatment.userId = mother._id;
-        sampleAntenatalTest_1.sampleAntentalTest.doctorId = doctor._id;
+        sampleTreatment_1.sampleTreatment.doctorId = doctor._id;
         sampleNextAntenatalTest_1.sampleNextAntenatalTest.userId = mother._id;
         sampleNextAntenatalTest_1.sampleNextAntenatalTest.doctorId = doctor._id;
         yield PastHistoryModel_1.default.create(samplePastHostory_1.samplePastHistory);
