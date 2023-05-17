@@ -495,7 +495,6 @@ const getTreatment = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         //                 let len = treatmentTempData[j].followUp.testName.length
         //                 if (len == 0) {
         //                     treatmentTempData[j].followUp.testName = findWeeklyTests(standardTests, data[i].week)
-        //                     console.log("line 700",treatmentTempData[j].followUp.testName,data[i].week)
         //                     len = treatmentTempData[j].followUp.testName.length
         //                 }
         //                 for (let k = 0; k < testData.length; k++) {

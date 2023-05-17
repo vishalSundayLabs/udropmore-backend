@@ -28,7 +28,7 @@ const treatmentSchema = new mongoose.Schema({
                 },
                 remarksForMother: {
                     name: { type: String, default: "Remarks for Mother" },
-                    value: { type: Date, default: null }
+                    value: { type: String, default: null }
                 },
                 testName: []
             }
