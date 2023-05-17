@@ -14,12 +14,21 @@ const treatmentSchema = new mongoose.Schema({
         week: { type: Number, default: null },
         weekAndDays: { type: String, default: null },
         obeservation: {
-            examinationFinding: { type: String, default: null },
+            examinationFinding: {
+                name: { type: String, default: "Examination Finding" },
+                value: { type: String, default: null }
+            }
         },
         prescription: { type: Object, default: null },
         followUp: {
-            followUpDate: { type: Date, default: null },
-            remarksForMother: { type: String, default: null },
+            followUpDate: {
+                name: { type: String, default: "Follow Up Date" },
+                value: { type: Date, default: null }
+            },
+            remarksForMother: {
+                name: { type: String, default: "Remarks for Mother" },
+                value: { type: Date, default: null }
+            },
             testName: []
         }
     }],

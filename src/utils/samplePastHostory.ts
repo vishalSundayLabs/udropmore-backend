@@ -164,9 +164,7 @@ export const samplePastHistory = {
                 dysmenorrhea: null,
                 flow: null
             },
-            currentMedications: {
-
-            },
+            currentMedications: null,
         },
         obstetricsHistory: {
             terminations: [{

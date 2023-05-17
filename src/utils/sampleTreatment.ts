@@ -1,18 +1,38 @@
-export const sampleTreatment =  {
-    userId:null,
-    doctorId:null,
+export const sampleTreatment = {
+    userId: null,
+    doctorId: null,
     treatment: [{
         date: null,
         week: null,
         weekAndDays: null,
         obeservation: {
-            examinationFinding: null,
+            examinationFinding: {
+                name: "Examination Finding",
+                value: null
+            }
         },
-        prescription: {},
+        prescription: null,
         followUp: {
-            followUpDate:null,
-            remarksForMother: null,
-            testName: [String]
+            followUpDate: {
+                name: "Follow Up Date",
+                value: null
+            },
+            remarksForMother: {
+                name: "Remarks for Mother",
+                value: null
+            },
+            testName: [
+                { name: "Fetal Monitoring", value: false },
+                { name: "Glucose Test", value: false },
+                { name: "Thyroid Tests", value: false },
+                { name: "Pregnancy Test", value: false },
+                { name: "Urine Test", value: false },
+                { name: "MRI Scan", value: false },
+                { name: "Hepatitis B & C", value: false },
+                { name: "Ultrasound", value: false },
+                { name: "Glucose Tolerance Test", value: false },
+                { name: "Complete Blood Count", value: false }
+            ]
         }
     }]
 }
