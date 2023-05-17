@@ -236,7 +236,7 @@ const userDetailsSchema = new mongoose.Schema({
                     default: null
                 }
             },
-            currentMedications: {},
+            currentMedications: { type: Object, default: null },
         },
         obstetricsHistory: {
             terminations: [{

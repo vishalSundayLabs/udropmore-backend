@@ -201,9 +201,7 @@ export const sampleUserDetails = {
                 dysmenorrhea: null,
                 flow: null
             },
-            currentMedications: {
-
-            },
+            currentMedications: null,
         },
         obstetricsHistory: {
             terminations: [{
