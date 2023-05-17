@@ -16,7 +16,7 @@ const treatmentSchema = new mongoose.Schema({
         obeservation: {
             examinationFinding: { type: String, default: null },
         },
-        prescription: {},
+        prescription: { type: Object, default: null },
         followUp: {
             followUpDate: { type: Date, default: null },
             remarksForMother: { type: String, default: null },
