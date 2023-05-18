@@ -608,7 +608,6 @@ const getNextAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, fun
         let standardTest = findWeeklyTests(sampleNextAntenatalTest_1.standardTests, week);
         let endIndex = additionalTest.week.length - 1;
         let nextWeek = additionalTest.week[endIndex];
-        console.log(week, nextWeek);
         if (week >= nextWeek) {
             additionalTest = findWeeklyTests(sampleNextAntenatalTest_1.additionalTests, week + 2);
             endIndex = additionalTest.week.length - 1;

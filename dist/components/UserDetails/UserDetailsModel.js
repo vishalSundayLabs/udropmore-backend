@@ -442,7 +442,17 @@ const userDetailsSchema = new mongoose.Schema({
                 historyOfPreivousMedicine: { type: String, default: null },
                 dentures: { type: String, enum: ["Yes", "No", null], default: null },
                 contactLenses: { type: String, enum: ["Yes", "No", null], default: null },
-                allergicReactionToMedication: { type: String, enum: ["Yes", "No", null], default: null },
+                allergicReactionToMedication: {
+                    value: {
+                        type: String,
+                        enum: ["Yes", "No", null],
+                        default: null
+                    },
+                    description: {
+                        type: String,
+                        default: null
+                    }
+                },
             },
             allergies: [Object],
             /*

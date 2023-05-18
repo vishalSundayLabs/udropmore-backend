@@ -1489,7 +1489,7 @@ export const nutrientGroupVeg = [{
     ]
 },
 {
-    type: "Leucine",
+    type: "Threonine",
     veg: [
         {
             name: "Paneer",
@@ -1498,7 +1498,7 @@ export const nutrientGroupVeg = [{
                 value: 1,
                 unit: "Cup"
             },
-            dv: "128%"
+            dv: "188%"
         },
         {
             name: "Milk",
@@ -1507,52 +1507,351 @@ export const nutrientGroupVeg = [{
                 value: 1,
                 unit: "Glass"
             },
-            dv: "57%"
+            dv: "67%"
         },
         {
-            name: "Pumpkin Seeds",
-            value: false,
-            size: {
-                value: 1,
-                unit: "Handful"
-            },
-            dv: "87%"
-        },
-        {
-            name: "Pistachio",
-            value: false,
-            size: {
-                value: 1,
-                unit: "Handful"
-            },
-            dv: "17%"
-        },
-        {
-            name: "Peanuts",
-            value: false,
-            size: {
-                value: 1,
-                unit: "Handful"
-            },
-            dv: "16%"
-        },
-        {
-            name: "Almonds",
-            value: false,
-            size: {
-                value: 1,
-                unit: "Handful"
-            },
-            dv: "15%"
-        }, 
-        {
-            name: "Yogurt",
+            name: "Edamame",
             value: false,
             size: {
                 value: 1,
                 unit: "Cup"
             },
-            dv: "52%"
+            dv: "118%"
+        },
+        {
+            name: "Kidney Beans",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "61%"
+        },
+        {
+            name: "Lentils",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "55%"
+        },
+        {
+            name: "Green Peas",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "31%"
+        },
+        {
+            name: "Sweet Potatoes",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "24%"
+        },
+        {
+            name: "Carrots",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "23%"
+        }
+    ]
+},
+{
+    type: "Lysine",
+    veg: [
+        {
+            name: "Paneer",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "106%"
+        },
+        {
+            name: "Milk",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Glass"
+            },
+            dv: "67%"
+        },
+        {
+            name: "Edamame",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "91%"
+        },
+        {
+            name: "Green Peas",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "24%"
+        },
+        {
+            name: "Sweet Potatoes",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "12%"
+        },
+        {
+            name: "Spinach",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "16%"
+        }
+    ]
+},
+{
+    type: "Methionine",
+    veg: [
+        {
+            name: "Paneer",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "73%"
+        },
+        {
+            name: "Milk",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Glass"
+            },
+            dv: "59%"
+        },
+        {
+            name: "Edamame",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "118%"
+        },
+        {
+            name: "Kidney Beans",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "35%"
+        },
+        {
+            name: "Lentils",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "55%"
+        },
+        {
+            name: "Green Peas",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "18%"
+        },
+        {
+            name: "Sweet Potatoes",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "17%"
+        },
+        {
+            name: "Carrots",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "23%"
+        },
+        {
+            name: "Spinach",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "14%"
+        }
+    ]
+},
+{
+    type: "Cystine",
+    veg: [
+        {
+            name: "Paneer",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "50%"
+        },
+        {
+            name: "Milk",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Glass"
+            },
+            dv: "67%"
+        },
+        {
+            name: "Milk",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Glass"
+            },
+            dv: "59%"
+        },
+        {
+            name: "Lentils",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "81%"
+        },
+        {
+            name: "Carrots",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "21%"
+        },
+        {
+            name: "Cashews",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Handful"
+            },
+            dv: "39%"
+        }
+    ]
+},
+{
+    type: "Valine",
+    veg: [
+        {
+            name: "Paneer",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "120%"
+        },
+        {
+            name: "Milk",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Glass"
+            },
+            dv: "60%"
+        },
+        {
+            name: "Edamame",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "79%"
+        },
+        {
+            name: "Kidney Beans",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "49%"
+        },
+        {
+            name: "Lentils",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "49%"
+        },
+        {
+            name: "Milk",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "67%"
+        },
+        {
+            name: "Green Peas",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "20%"
+        },
+        {
+            name: "Sweet Potatoes",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "24%"
+        },
+        {
+            name: "Carrots",
+            value: false,
+            size: {
+                value: 1,
+                unit: "Cup"
+            },
+            dv: "23%"
         }
     ]
 }
