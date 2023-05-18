@@ -850,15 +850,20 @@ export const getNextAntenatalTest = async (req, res) => {
             oldTest.push(nextAntenatalTest.nextAntenatalTest.filter((test) => test.week == week ?? test)[0])
         }
 
-        let standardTest = null
-        let additionalTest = null
+        let additionalTest = findWeeklyTests(additionalTests, week + 1)
+        let standardTest = findWeeklyTests(standardTests, week)
+        let endIndex = additionalTest.week.length - 1
+        let nextWeek = additionalTest.week[endIndex]
 
-
-        standardTest = findWeeklyTests(standardTests, week)
-        additionalTest = findWeeklyTests(additionalTests, week + 1)
+        if (week >= nextWeek) {
+            additionalTest = findWeeklyTests(additionalTests, week + 2)
+            endIndex = additionalTest.week.length - 1
+            nextWeek = additionalTest.week[endIndex]
+        }
 
         const responseData = {
             week: oldTest[0] ? oldTest[0].week : standardTest.week[standardTest.week.length - 1],
+            nextWeek:nextWeek,
             standardTest: oldTest[0] ? oldTest[0].standardTest : standardTest.testName,
             additionalTest: oldTest[0] ? oldTest[0].additionalTest : additionalTest.testName,
             motherId: body.motherId,

@@ -604,12 +604,19 @@ const getNextAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, fun
         if (nextAntenatalTest.nextAntenatalTest.length > 0) {
             oldTest.push(nextAntenatalTest.nextAntenatalTest.filter((test) => { var _a; return (_a = test.week == week) !== null && _a !== void 0 ? _a : test; })[0]);
         }
-        let standardTest = null;
-        let additionalTest = null;
-        standardTest = findWeeklyTests(sampleNextAntenatalTest_1.standardTests, week);
-        additionalTest = findWeeklyTests(sampleNextAntenatalTest_1.additionalTests, week + 1);
+        let additionalTest = findWeeklyTests(sampleNextAntenatalTest_1.additionalTests, week + 1);
+        let standardTest = findWeeklyTests(sampleNextAntenatalTest_1.standardTests, week);
+        let endIndex = additionalTest.week.length - 1;
+        let nextWeek = additionalTest.week[endIndex];
+        console.log(week, nextWeek);
+        if (week >= nextWeek) {
+            additionalTest = findWeeklyTests(sampleNextAntenatalTest_1.additionalTests, week + 2);
+            endIndex = additionalTest.week.length - 1;
+            nextWeek = additionalTest.week[endIndex];
+        }
         const responseData = {
             week: oldTest[0] ? oldTest[0].week : standardTest.week[standardTest.week.length - 1],
+            nextWeek: nextWeek,
             standardTest: oldTest[0] ? oldTest[0].standardTest : standardTest.testName,
             additionalTest: oldTest[0] ? oldTest[0].additionalTest : additionalTest.testName,
             motherId: body.motherId,
