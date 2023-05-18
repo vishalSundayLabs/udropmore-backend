@@ -779,7 +779,7 @@ export const updateNextAntenatalTest = async (req, res) => {
 
     const body = req.body
 
-    if (!body.motherId || !body.doctorId || !body.lmpDate) {
+    if (!body.motherId || !body.doctorId || !body.date) {
 
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
             success: false,

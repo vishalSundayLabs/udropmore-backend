@@ -557,7 +557,7 @@ const createNextAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, 
 exports.createNextAntenatalTest = createNextAntenatalTest;
 const updateNextAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
-    if (!body.motherId || !body.doctorId || !body.lmpDate) {
+    if (!body.motherId || !body.doctorId || !body.date) {
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
             message: "Bad Request! Mother Id , Doctor Id or date must be provide.",
