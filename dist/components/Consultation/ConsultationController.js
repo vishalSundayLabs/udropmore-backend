@@ -166,8 +166,8 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
             let diffDays = days - consultationDate.days;
             currentObservastionData.currentObservastion[j].weekAndDays = `${currentObservastionData.currentObservastion[j].week} week ${Math.floor((diffDays % diffWeek) % 7)} days`;
             currentObservastionData.currentObservastion[j].date = new Date(date);
-            const dateForUsg = currentObservastionData.currentObservastion[j].dating.usg.date ? currentObservastionData.currentObservastion[j].dating.usg.date : new Date(body.lmpDate);
-            currentObservastionData.currentObservastion[j].dating.usg.date = dateForUsg;
+            const dateForUsg = currentObservastionData.currentObservastion[j].dating.usg.value ? currentObservastionData.currentObservastion[j].dating.usg.value : new Date(body.lmpDate);
+            currentObservastionData.currentObservastion[j].dating.usg.value = dateForUsg;
             const usgDateWithWeekAndDays = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(dateForUsg);
             currentObservastionData.currentObservastion[j].dating.clinical.weekAndDays = `${usgDateWithWeekAndDays.week} week ${(usgDateWithWeekAndDays.days % usgDateWithWeekAndDays.week) % 7} days`;
         }
