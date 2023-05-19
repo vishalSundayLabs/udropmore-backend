@@ -16,6 +16,16 @@ const currentObservastionSchema = new mongoose.Schema({
             weekAndDays: { type: String, default: null },
             riskFactor: [Object],
             complaints: [Object],
+            dating: {
+                usg: {
+                    name: { type: String, default: "USG" },
+                    date: { type: Date, default: null }
+                },
+                clinical: {
+                    name: { type: String, default: "Clinical" },
+                    weekAndDays: { type: String, default: null }
+                }
+            },
             generalExamination: {
                 testName: { type: String, default: "General Examination" },
                 bp: {

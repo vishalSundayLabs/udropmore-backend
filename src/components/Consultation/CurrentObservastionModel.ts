@@ -15,6 +15,16 @@ const currentObservastionSchema = new mongoose.Schema({
         weekAndDays: { type: String, default: null },
         riskFactor: [Object],
         complaints: [Object],
+        dating: {
+            usg: {
+                name: { type: String, default: "USG" },
+                date: { type: Date, default: null }
+            },
+            clinical: {
+                name: { type: String, default: "Clinical" },
+                weekAndDays: { type: String, default: null }
+            }
+        },
         generalExamination: {
             testName: { type: String, default: "General Examination" },
             bp: {
@@ -51,37 +61,37 @@ const currentObservastionSchema = new mongoose.Schema({
             oedema: {
                 name: { type: String, default: "Oedema" },
                 value: { type: String, default: null },
-                options: { type: Object, default: ["Nil","Moderate","+","++"] },
+                options: { type: Object, default: ["Nil", "Moderate", "+", "++"] },
                 inputType: { type: String, default: "Select" }
             },
             pallor: {
                 name: { type: String, default: "Pallor" },
                 value: { type: String, default: null },
-                options: { type: Object, default: ["Normal","Nil"] },
+                options: { type: Object, default: ["Normal", "Nil"] },
                 inputType: { type: String, default: "Select" }
             },
             icterus: {
                 name: { type: String, default: "Icterus" },
                 value: { type: String, default: null },
-                options: { type: Object, default: ["Normal","Nil"] },
+                options: { type: Object, default: ["Normal", "Nil"] },
                 inputType: { type: String, default: "Select" }
             },
             thy: {
                 name: { type: String, default: "Thy" },
                 value: { type: String, default: null },
-                options: { type: Object, default: ["Normal","Nil"] },
+                options: { type: Object, default: ["Normal", "Nil"] },
                 inputType: { type: String, default: "Select" }
             },
             hair: {
                 name: { type: String, default: "Hair" },
                 value: { type: String, default: null },
-                options: { type: Object, default: ["Normal","Nil"] },
+                options: { type: Object, default: ["Normal", "Nil"] },
                 inputType: { type: String, default: "Select" }
             },
             br: {
                 name: { type: String, default: "Br" },
                 value: { type: String, default: null },
-                options: { type: Object, default: ["Normal","Nil"] },
+                options: { type: Object, default: ["Normal", "Nil"] },
                 inputType: { type: String, default: "Select" }
             },
             respiratorySystem: {
@@ -108,37 +118,37 @@ const currentObservastionSchema = new mongoose.Schema({
             liver: {
                 name: { type: String, default: "Liver" },
                 value: { type: String, default: null },
-                options: { type: Object, default: ["Normal","Nil"] },
+                options: { type: Object, default: ["Normal", "Nil"] },
                 inputType: { type: String, default: "Select" }
             },
             spleen: {
                 name: { type: String, default: "Spleen" },
                 value: { type: String, default: null },
-                options: { type: Object, default: ["Normal","Nil"] },
+                options: { type: Object, default: ["Normal", "Nil"] },
                 inputType: { type: String, default: "Select" }
             },
             lump: {
                 name: { type: String, default: "Lump" },
                 value: { type: String, default: null },
-                options: { type: Object, default: ["Normal","Nil"] },
+                options: { type: Object, default: ["Normal", "Nil"] },
                 inputType: { type: String, default: "Select" }
             },
             scar: {
                 name: { type: String, default: "Scar" },
                 value: { type: String, default: null },
-                options: { type: Object, default: ["Normal","Nil"] },
+                options: { type: Object, default: ["Normal", "Nil"] },
                 inputType: { type: String, default: "Select" }
             },
             hernia: {
                 name: { type: String, default: "Hernia" },
                 value: { type: String, default: null },
-                options: { type: Object, default: ["Normal","Nil"] },
+                options: { type: Object, default: ["Normal", "Nil"] },
                 inputType: { type: String, default: "Select" }
             },
             uterus: {
                 name: { type: String, default: "Uterus" },
                 value: { type: String, default: null },
-                options: { type: Object, default: ["Normal","Nil"] },
+                options: { type: Object, default: ["Normal", "Nil"] },
                 inputType: { type: String, default: "Select" }
             }
         },
@@ -147,37 +157,37 @@ const currentObservastionSchema = new mongoose.Schema({
             avafOrrvrf: {
                 name: { type: String, default: "AVAF/RVRF" },
                 value: { type: String, default: null },
-                options: { type: Object, default: ["Retro Flex","Retro Verted"] },
+                options: { type: Object, default: ["Retro Flex", "Retro Verted"] },
                 inputType: { type: String, default: "Select" }
             },
             os: {
                 name: { type: String, default: "OS" },
                 value: { type: String, default: null },
-                options: { type: Object, default: ["Long","Short","Conical","Patulous","Closed/Open"] },
+                options: { type: Object, default: ["Long", "Short", "Conical", "Patulous", "Closed/Open"] },
                 inputType: { type: String, default: "Select" }
             },
             vagina: {
                 name: { type: String, default: "Vagina" },
                 value: { type: String, default: null },
-                options: { type: Object, default: ["Heavy","Infection","White discharge"] },
+                options: { type: Object, default: ["Heavy", "Infection", "White discharge"] },
                 inputType: { type: String, default: "Select" }
             },
             adenaxea: {
                 name: { type: String, default: "Adenaxea" },
                 value: { type: String, default: null },
-                options: { type: Object, default: ["Th","Tender","masses"] },
+                options: { type: Object, default: ["Th", "Tender", "masses"] },
                 inputType: { type: String, default: "Select" }
             },
             fx: {
                 name: { type: String, default: "Fx" },
                 value: { type: String, default: null },
-                options: { type: Object, default: ["Th","Tender","Masses"] },
+                options: { type: Object, default: ["Th", "Tender", "Masses"] },
                 inputType: { type: String, default: "Select" }
             },
             externalBallottement: {
                 name: { type: String, default: "External Ballottement" },
                 value: { type: String, default: null },
-                options: { type: Object, default: ["Well relaxed","Irritable"] },
+                options: { type: Object, default: ["Well relaxed", "Irritable"] },
                 inputType: { type: String, default: "Select" }
             }
         },
@@ -186,7 +196,7 @@ const currentObservastionSchema = new mongoose.Schema({
             fetus: {
                 name: { type: String, default: "Fetus" },
                 value: { type: String, default: null },
-                options: { type: Object, default: ["Single","Twin","Triplet" ]},
+                options: { type: Object, default: ["Single", "Twin", "Triplet"] },
                 inputType: { type: String, default: "Select" }
             },
             fetalHeartRate: {
@@ -199,19 +209,19 @@ const currentObservastionSchema = new mongoose.Schema({
             presentationPart: {
                 name: { type: String, default: "Presentation Part" },
                 value: { type: Number, default: null },
-                options: { type: Object, default: ["Caphalic","Breech","Transverse Lie"] },
+                options: { type: Object, default: ["Caphalic", "Breech", "Transverse Lie"] },
                 inputType: { type: String, default: "Select" }
             },
             pos: {
                 name: { type: String, default: "P.O.S" },
                 value: { type: Number, default: null },
-                options: { type: Object, default: ["ROA","ROT","ROP","LOA","LOT","LOP"] },
+                options: { type: Object, default: ["ROA", "ROT", "ROP", "LOA", "LOT", "LOP"] },
                 inputType: { type: String, default: "Select" }
             },
             injection: {
                 name: { type: String, default: "Injection" },
                 value: { type: Number, default: null },
-                options: { type: Object, default: ["TT First Dose","Boostrix","Dexa 4 dose","Anti D if Rh-ve","RhoGAM"] },
+                options: { type: Object, default: ["TT First Dose", "Boostrix", "Dexa 4 dose", "Anti D if Rh-ve", "RhoGAM"] },
                 inputType: { type: String, default: "Select" }
             },
             remark: {

@@ -1,4 +1,3 @@
-import { Dayjs } from "dayjs"
 import dayjs = require("dayjs")
 import moment = require("moment")
 import { toDoTasks } from "../../Constant/DoctorToDoTask"
@@ -138,6 +137,7 @@ export const updateCurrentObservastion = async (req, res) => {
 
         bodyTraverse(currentObservastionData, body)
 
+        currentObservastionData.isDraft = body.isDraft ? body.isDraft : body.isDraft
         currentObservastionData.updatedBy = req.userId
 
         await currentObservastionData.save()
@@ -212,31 +212,7 @@ export const getCurrentObservastion = async (req, res) => {
 
             }
 
-            // for (let i = 0; i < actualData.length; i++) {
-
-            //     if (!actualData[i].riskFactor.length) {
-            //         actualData[i].riskFactor = sampleCurrentObservastion.currentObservastion[0].riskFactor
-            //     }
-
-            //     if (!actualData[i].complaints.length) {
-            //         actualData[i].complaints = sampleCurrentObservastion.currentObservastion[0].complaints
-            //     }
-
-            // }
-
             currentObservastionData.currentObservastion = actualData
-
-        } else {
-
-            //    if(currentObservastionData.currentObservastion[endIndex]!==week) {
-
-            //     const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
-
-            //     currentObservastionTemp.week = weeks[previousWeekIndex == 0 ? week < 5 ? 0 : previousWeekIndex + 1 : previousWeekIndex + 1]
-
-            //     currentObservastionData.currentObservastion.push(currentObservastionTemp)
-
-            //    }
 
         }
 
@@ -244,10 +220,14 @@ export const getCurrentObservastion = async (req, res) => {
 
             const date = currentObservastionData.currentObservastion[j].date ? currentObservastionData.currentObservastion[j].date : new Date(moment(body.lmpDate).add(currentObservastionData.currentObservastion[j].week, 'weeks').format('YYYY-MM-DD'))
             const consultationDate = calculateCurrentWeekAndDays(date)
-            let diffWeek = week - consultationDate.week
+            let diffWeek = (week - consultationDate.week) ? week - consultationDate.week : 1
             let diffDays = days - consultationDate.days
             currentObservastionData.currentObservastion[j].weekAndDays = `${currentObservastionData.currentObservastion[j].week} week ${Math.floor((diffDays % diffWeek) % 7)} days`
             currentObservastionData.currentObservastion[j].date = new Date(date)
+            const dateForUsg = currentObservastionData.currentObservastion[j].dating.usg.date ? currentObservastionData.currentObservastion[j].dating.usg.date : new Date(body.lmpDate);
+            currentObservastionData.currentObservastion[j].dating.usg.date = dateForUsg
+            const usgDateWithWeekAndDays = calculateCurrentWeekAndDays(dateForUsg)
+            currentObservastionData.currentObservastion[j].dating.clinical.weekAndDays = `${usgDateWithWeekAndDays.week} week ${(usgDateWithWeekAndDays.days % usgDateWithWeekAndDays.week) % 7} days`
 
         }
 
@@ -342,6 +322,8 @@ export const updateAntenatalTest = async (req, res) => {
         }
 
         bodyTraverse(antenatalTest, body)
+
+        antenatalTest.isDraft = body.isDraft ? body.isDraft : body.isDraft
         antenatalTest.updatedBy = req.userId
 
         await antenatalTest.save()
@@ -584,6 +566,8 @@ export const updateTreatment = async (req, res) => {
         }
 
         bodyTraverse(treatment, body)
+        
+        treatment.isDraft = body.isDraft ? body.isDraft : body.isDraft
         treatment.updatedBy = req.userId
 
         await treatment.save()
@@ -673,43 +657,53 @@ export const getTreatment = async (req, res) => {
 
         }
 
-        // const antenatalTestData = await antenatalTestModel.findOne({ userId: body.motherId, doctorId: body.doctorId, isDeleted: false })
+        const antenatalTestData = await antenatalTestModel.findOne({ userId: body.motherId, doctorId: body.doctorId, isDeleted: false })
 
-        // if (antenatalTestData) {
+        if (antenatalTestData) {
 
-        //     const data = antenatalTestData.antenatalTest
+            const data = antenatalTestData.antenatalTest
 
-        //     for (let i = 0; i < data.length; i++) {
-        //         const testData = []
-        //         for (let key in data[i]) {
-        //             if (key === "tests" && data[i][key]) {
-        //                 for (let testKey in data[i][key]) {
-        //                     const testVal = data[i][key];
-        //                     if (testVal[testKey].followUp) {
-        //                         testData.push({ name: testVal[testKey].testName, value: testVal[testKey].followUp })
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //         const treatmentTempData = treatment.treatment
-        //         for (let j = 0; j < treatmentTempData.length; j++) {
-        //             if (treatmentTempData[j].week == data[i].week) {
-        //                 let len = treatmentTempData[j].followUp.testName.length
-        //                 if (len == 0) {
-        //                     treatmentTempData[j].followUp.testName = findWeeklyTests(standardTests, data[i].week)
-        //                     len = treatmentTempData[j].followUp.testName.length
-        //                 }
-        //                 for (let k = 0; k < testData.length; k++) {
-        //                     for (let h = 0; h < len; h++) {
-        //                         if (testData[i].name == treatmentTempData[j].followUp.testName[h].name) {
-        //                             treatmentTempData[j].followUp.testName[i].value = true
-        //                         }
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
+            for (let i = 0; i < data.length; i++) {
+                const testData = []
+                for (let key in data[i]) {
+                    if (key === "tests" && data[i][key]) {
+                        for (let testKey in data[i][key]) {
+                            const testVal = data[i][key];
+                            if (testVal[testKey].followUp) {
+                                testData.push({ name: testVal[testKey].testName, value: testVal[testKey].followUp })
+                            }
+                        }
+                    }
+                }
+
+                // const treatmentData = treatment.treatment.findIndex((item) => item.week == data[i].week)
+
+                // if(treatmentData>=0) {
+
+                // }
+
+                // console.log("line 697 : ",treatmentData,data[i].week)
+
+                // const treatmentTempData = treatment.treatment
+
+                // for (let j = 0; j < treatmentTempData.length; j++) {
+                //     if (treatmentTempData[j].week == data[i].week) {
+                //         let len = treatmentTempData[j].followUp.testName.length
+                //         if (len == 0) {
+                //             treatmentTempData[j].followUp.testName = findWeeklyTests(standardTests, data[i].week)
+                //             len = treatmentTempData[j].followUp.testName.length
+                //         }
+                //         for (let k = 0; k < testData.length; k++) {
+                //             for (let h = 0; h < len; h++) {
+                //                 if (testData[i].name == treatmentTempData[j].followUp.testName[h].name) {
+                //                     treatmentTempData[j].followUp.testName[i].value = true
+                //                 }
+                //             }
+                //         }
+                //     }
+                // }
+            }
+        }
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
@@ -803,6 +797,7 @@ export const updateNextAntenatalTest = async (req, res) => {
 
         bodyTraverse(nextAntenatalTest, body)
 
+        nextAntenatalTest.isDraft = body.isDraft ? body.isDraft : body.isDraft
         nextAntenatalTest.updatedBy = req.userId
 
         await nextAntenatalTest.save()
@@ -863,7 +858,7 @@ export const getNextAntenatalTest = async (req, res) => {
 
         const responseData = {
             week: oldTest[0] ? oldTest[0].week : standardTest.week[standardTest.week.length - 1],
-            nextWeek:nextWeek,
+            nextWeek: nextWeek,
             standardTest: oldTest[0] ? oldTest[0].standardTest : standardTest.testName,
             additionalTest: oldTest[0] ? oldTest[0].additionalTest : additionalTest.testName,
             motherId: body.motherId,

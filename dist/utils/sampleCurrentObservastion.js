@@ -135,6 +135,16 @@ exports.sampleCurrentObservastion = {
                     headaches: false
                 }
             ],
+            dating: {
+                usg: {
+                    name: "USG",
+                    date: null
+                },
+                clinical: {
+                    name: "Clinical",
+                    weekAndDays: null
+                }
+            },
             generalExamination: {
                 testName: "General Examination",
                 bp: {

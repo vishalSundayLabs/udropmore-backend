@@ -5,7 +5,7 @@ export const bodyTraverse = (data, body) => {
         if (body[key]) {
             data[key] = body[key]
         }
-
+      console.log(key,data[key],body[key])
     }
 
 }

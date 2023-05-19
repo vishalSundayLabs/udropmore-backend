@@ -107,6 +107,7 @@ const updateCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0
             }));
         }
         (0, bodyTraverse_1.bodyTraverse)(currentObservastionData, body);
+        currentObservastionData.isDraft = body.isDraft ? body.isDraft : body.isDraft;
         currentObservastionData.updatedBy = req.userId;
         yield currentObservastionData.save();
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
@@ -156,30 +157,19 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
                     actualData.push(prevData[j]);
                 }
             }
-            // for (let i = 0; i < actualData.length; i++) {
-            //     if (!actualData[i].riskFactor.length) {
-            //         actualData[i].riskFactor = sampleCurrentObservastion.currentObservastion[0].riskFactor
-            //     }
-            //     if (!actualData[i].complaints.length) {
-            //         actualData[i].complaints = sampleCurrentObservastion.currentObservastion[0].complaints
-            //     }
-            // }
             currentObservastionData.currentObservastion = actualData;
-        }
-        else {
-            //    if(currentObservastionData.currentObservastion[endIndex]!==week) {
-            //     const currentObservastionTemp = sampleCurrentObservastion.currentObservastion[0]
-            //     currentObservastionTemp.week = weeks[previousWeekIndex == 0 ? week < 5 ? 0 : previousWeekIndex + 1 : previousWeekIndex + 1]
-            //     currentObservastionData.currentObservastion.push(currentObservastionTemp)
-            //    }
         }
         for (let j = 0; j < currentObservastionData.currentObservastion.length; j++) {
             const date = currentObservastionData.currentObservastion[j].date ? currentObservastionData.currentObservastion[j].date : new Date(moment(body.lmpDate).add(currentObservastionData.currentObservastion[j].week, 'weeks').format('YYYY-MM-DD'));
             const consultationDate = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(date);
-            let diffWeek = week - consultationDate.week;
+            let diffWeek = (week - consultationDate.week) ? week - consultationDate.week : 1;
             let diffDays = days - consultationDate.days;
             currentObservastionData.currentObservastion[j].weekAndDays = `${currentObservastionData.currentObservastion[j].week} week ${Math.floor((diffDays % diffWeek) % 7)} days`;
             currentObservastionData.currentObservastion[j].date = new Date(date);
+            const dateForUsg = currentObservastionData.currentObservastion[j].dating.usg.date ? currentObservastionData.currentObservastion[j].dating.usg.date : new Date(body.lmpDate);
+            currentObservastionData.currentObservastion[j].dating.usg.date = dateForUsg;
+            const usgDateWithWeekAndDays = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(dateForUsg);
+            currentObservastionData.currentObservastion[j].dating.clinical.weekAndDays = `${usgDateWithWeekAndDays.week} week ${(usgDateWithWeekAndDays.days % usgDateWithWeekAndDays.week) % 7} days`;
         }
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
@@ -246,6 +236,7 @@ const updateAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, func
             }));
         }
         (0, bodyTraverse_1.bodyTraverse)(antenatalTest, body);
+        antenatalTest.isDraft = body.isDraft ? body.isDraft : body.isDraft;
         antenatalTest.updatedBy = req.userId;
         yield antenatalTest.save();
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
@@ -414,6 +405,7 @@ const updateTreatment = (req, res) => __awaiter(void 0, void 0, void 0, function
             }));
         }
         (0, bodyTraverse_1.bodyTraverse)(treatment, body);
+        treatment.isDraft = body.isDraft ? body.isDraft : body.isDraft;
         treatment.updatedBy = req.userId;
         yield treatment.save();
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
@@ -474,40 +466,44 @@ const getTreatment = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             treatment.treatment[j].date = new Date(date);
             // treatment.treatment[j].followUp.testName = findWeeklyTests(standardTests,treatment.treatment[j].week).testName
         }
-        // const antenatalTestData = await antenatalTestModel.findOne({ userId: body.motherId, doctorId: body.doctorId, isDeleted: false })
-        // if (antenatalTestData) {
-        //     const data = antenatalTestData.antenatalTest
-        //     for (let i = 0; i < data.length; i++) {
-        //         const testData = []
-        //         for (let key in data[i]) {
-        //             if (key === "tests" && data[i][key]) {
-        //                 for (let testKey in data[i][key]) {
-        //                     const testVal = data[i][key];
-        //                     if (testVal[testKey].followUp) {
-        //                         testData.push({ name: testVal[testKey].testName, value: testVal[testKey].followUp })
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //         const treatmentTempData = treatment.treatment
-        //         for (let j = 0; j < treatmentTempData.length; j++) {
-        //             if (treatmentTempData[j].week == data[i].week) {
-        //                 let len = treatmentTempData[j].followUp.testName.length
-        //                 if (len == 0) {
-        //                     treatmentTempData[j].followUp.testName = findWeeklyTests(standardTests, data[i].week)
-        //                     len = treatmentTempData[j].followUp.testName.length
-        //                 }
-        //                 for (let k = 0; k < testData.length; k++) {
-        //                     for (let h = 0; h < len; h++) {
-        //                         if (testData[i].name == treatmentTempData[j].followUp.testName[h].name) {
-        //                             treatmentTempData[j].followUp.testName[i].value = true
-        //                         }
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
+        const antenatalTestData = yield AntenatalTestModel_1.default.findOne({ userId: body.motherId, doctorId: body.doctorId, isDeleted: false });
+        if (antenatalTestData) {
+            const data = antenatalTestData.antenatalTest;
+            for (let i = 0; i < data.length; i++) {
+                const testData = [];
+                for (let key in data[i]) {
+                    if (key === "tests" && data[i][key]) {
+                        for (let testKey in data[i][key]) {
+                            const testVal = data[i][key];
+                            if (testVal[testKey].followUp) {
+                                testData.push({ name: testVal[testKey].testName, value: testVal[testKey].followUp });
+                            }
+                        }
+                    }
+                }
+                // const treatmentData = treatment.treatment.findIndex((item) => item.week == data[i].week)
+                // if(treatmentData>=0) {
+                // }
+                // console.log("line 697 : ",treatmentData,data[i].week)
+                // const treatmentTempData = treatment.treatment
+                // for (let j = 0; j < treatmentTempData.length; j++) {
+                //     if (treatmentTempData[j].week == data[i].week) {
+                //         let len = treatmentTempData[j].followUp.testName.length
+                //         if (len == 0) {
+                //             treatmentTempData[j].followUp.testName = findWeeklyTests(standardTests, data[i].week)
+                //             len = treatmentTempData[j].followUp.testName.length
+                //         }
+                //         for (let k = 0; k < testData.length; k++) {
+                //             for (let h = 0; h < len; h++) {
+                //                 if (testData[i].name == treatmentTempData[j].followUp.testName[h].name) {
+                //                     treatmentTempData[j].followUp.testName[i].value = true
+                //                 }
+                //             }
+                //         }
+                //     }
+                // }
+            }
+        }
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "find Treatment data successfully .",
@@ -572,6 +568,7 @@ const updateNextAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, 
             }));
         }
         (0, bodyTraverse_1.bodyTraverse)(nextAntenatalTest, body);
+        nextAntenatalTest.isDraft = body.isDraft ? body.isDraft : body.isDraft;
         nextAntenatalTest.updatedBy = req.userId;
         yield nextAntenatalTest.save();
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
