@@ -566,7 +566,7 @@ export const updateTreatment = async (req, res) => {
         }
 
         bodyTraverse(treatment, body)
-        
+
         treatment.isDraft = body.isDraft ? body.isDraft : body.isDraft
         treatment.updatedBy = req.userId
 
@@ -664,23 +664,31 @@ export const getTreatment = async (req, res) => {
             const data = antenatalTestData.antenatalTest
 
             for (let i = 0; i < data.length; i++) {
-                const testData = []
+                const uniqueTests = {}
                 for (let key in data[i]) {
                     if (key === "tests" && data[i][key]) {
                         for (let testKey in data[i][key]) {
                             const testVal = data[i][key];
                             if (testVal[testKey].followUp) {
-                                testData.push({ name: testVal[testKey].testName, value: testVal[testKey].followUp })
+                                uniqueTests[testVal[testKey].testName] =  { name: testVal[testKey].testName, value: testVal[testKey].followUp }
                             }
                         }
                     }
                 }
 
-                // const treatmentData = treatment.treatment.findIndex((item) => item.week == data[i].week)
+                const treatmentDataIndex = treatment.treatment.findIndex((item) => item.week == data[i].week)
 
-                // if(treatmentData>=0) {
+                if (treatmentDataIndex >= 0) {
 
-                // }
+                    treatment.treatment[treatmentDataIndex].followUp.testName.forEach(item => {
+                        if (!uniqueTests[item.name]) {
+                            uniqueTests[item.name] =  { name: item.name, value: item.value }
+                        }
+                    })
+
+                    treatment.treatment[treatmentDataIndex].followUp.testName = Object.values(uniqueTests)
+                    
+                }
 
                 // console.log("line 697 : ",treatmentData,data[i].week)
 

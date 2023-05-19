@@ -470,20 +470,26 @@ const getTreatment = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         if (antenatalTestData) {
             const data = antenatalTestData.antenatalTest;
             for (let i = 0; i < data.length; i++) {
-                const testData = [];
+                const uniqueTests = {};
                 for (let key in data[i]) {
                     if (key === "tests" && data[i][key]) {
                         for (let testKey in data[i][key]) {
                             const testVal = data[i][key];
                             if (testVal[testKey].followUp) {
-                                testData.push({ name: testVal[testKey].testName, value: testVal[testKey].followUp });
+                                uniqueTests[testVal[testKey].testName] = { name: testVal[testKey].testName, value: testVal[testKey].followUp };
                             }
                         }
                     }
                 }
-                // const treatmentData = treatment.treatment.findIndex((item) => item.week == data[i].week)
-                // if(treatmentData>=0) {
-                // }
+                const treatmentDataIndex = treatment.treatment.findIndex((item) => item.week == data[i].week);
+                if (treatmentDataIndex >= 0) {
+                    treatment.treatment[treatmentDataIndex].followUp.testName.forEach(item => {
+                        if (!uniqueTests[item.name]) {
+                            uniqueTests[item.name] = { name: item.name, value: item.value };
+                        }
+                    });
+                    treatment.treatment[treatmentDataIndex].followUp.testName = Object.values(uniqueTests);
+                }
                 // console.log("line 697 : ",treatmentData,data[i].week)
                 // const treatmentTempData = treatment.treatment
                 // for (let j = 0; j < treatmentTempData.length; j++) {
