@@ -17,9 +17,10 @@ const currentObservastionSchema = new mongoose.Schema({
             riskFactor: [Object],
             complaints: [Object],
             dating: {
+                testName: { type: String, default: "Dating" },
                 usg: {
                     name: { type: String, default: "USG" },
-                    date: { type: Date, default: null }
+                    value: { type: Date, default: null },
                 },
                 clinical: {
                     name: { type: String, default: "Clinical" },

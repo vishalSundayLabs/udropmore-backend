@@ -136,6 +136,7 @@ exports.sampleCurrentObservastion = {
                 }
             ],
             dating: {
+                testName: "Dating",
                 usg: {
                     name: "USG",
                     date: null

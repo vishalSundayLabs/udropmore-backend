@@ -490,24 +490,6 @@ const getTreatment = (req, res) => __awaiter(void 0, void 0, void 0, function* (
                     });
                     treatment.treatment[treatmentDataIndex].followUp.testName = Object.values(uniqueTests);
                 }
-                // console.log("line 697 : ",treatmentData,data[i].week)
-                // const treatmentTempData = treatment.treatment
-                // for (let j = 0; j < treatmentTempData.length; j++) {
-                //     if (treatmentTempData[j].week == data[i].week) {
-                //         let len = treatmentTempData[j].followUp.testName.length
-                //         if (len == 0) {
-                //             treatmentTempData[j].followUp.testName = findWeeklyTests(standardTests, data[i].week)
-                //             len = treatmentTempData[j].followUp.testName.length
-                //         }
-                //         for (let k = 0; k < testData.length; k++) {
-                //             for (let h = 0; h < len; h++) {
-                //                 if (testData[i].name == treatmentTempData[j].followUp.testName[h].name) {
-                //                     treatmentTempData[j].followUp.testName[i].value = true
-                //                 }
-                //             }
-                //         }
-                //     }
-                // }
             }
         }
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
