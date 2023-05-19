@@ -107,12 +107,12 @@ export const getAllAppointmentsOfADay = async (req, res) => {
 
     try {
 
-        const appointments = await AppointmentModel.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentType: { $ne: "TELECALL" }, appointmentDateAndTime: { $gte: new Date(dates.fullDate), $lt: new Date(dates.nextDate) }, status: { $nin: ["CANCELLED","RESCHEDULED"] } }).skip(skips).limit(limit)
+        const appointments = await AppointmentModel.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentType: { $ne: "TELECALL" }, appointmentDateAndTime: { $gte: new Date(dates.fullDate), $lt: new Date(dates.nextDate) }, status: "CONFIRMED" }).skip(skips).limit(limit)
 
         let patientList = [];
         const patientMap = new Map();
         let videoAppointmentCount = 0;
-        
+
         for (let i = 0; i < appointments.length; i++) {
 
             const item = appointments[i]
@@ -135,11 +135,15 @@ export const getAllAppointmentsOfADay = async (req, res) => {
 
             }
 
-            const mother = await UserModel.findOne({ _id: item.motherId })
+            const mother = await UserModel.findOne({ _id: item.motherId, isDeleted: false })
+
+            if (!mother) {
+                continue
+            }
 
             const { day, time } = getDayOrTimeFromDate(item.appointmentDateAndTime)
 
-            patientList.push({ motherId: item.motherId, name: mother.firstName, phoneNumber: mother.phoneNumber, appointmentTime: time, appointmentType: item.appointmentType, appointmentStatus: item.status })
+            patientList.push({ appointmentId: item._id, motherId: item.motherId, name: mother.firstName, phoneNumber: mother.phoneNumber, appointmentTime: time, appointmentType: item.appointmentType, appointmentStatus: item.status })
 
         }
 
@@ -155,7 +159,7 @@ export const getAllAppointmentsOfADay = async (req, res) => {
 
         const responseObj = {
             RequestedDate: body.date,
-            totalAppointment: appointments.length,
+            totalAppointment: patientList.length,
             totalVideoAppointment: videoAppointmentCount,
             totalNewPatient: newPatient,
             patientList: patientList

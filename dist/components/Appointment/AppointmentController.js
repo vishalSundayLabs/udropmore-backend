@@ -87,7 +87,7 @@ const getAllAppointmentsOfADay = (req, res) => __awaiter(void 0, void 0, void 0,
     const { limit, skips } = (0, pagination_1.pagination)(query);
     const dates = (0, UserController_1.getDayOrTimeFromDate)(body.date);
     try {
-        const appointments = yield AppointmentModel_1.default.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentType: { $ne: "TELECALL" }, appointmentDateAndTime: { $gte: new Date(dates.fullDate), $lt: new Date(dates.nextDate) }, status: { $nin: ["CANCELLED", "RESCHEDULED"] } }).skip(skips).limit(limit);
+        const appointments = yield AppointmentModel_1.default.find({ doctorId: body.doctorId, clinicId: body.clinicId, appointmentType: { $ne: "TELECALL" }, appointmentDateAndTime: { $gte: new Date(dates.fullDate), $lt: new Date(dates.nextDate) }, status: "CONFIRMED" }).skip(skips).limit(limit);
         let patientList = [];
         const patientMap = new Map();
         let videoAppointmentCount = 0;
@@ -103,9 +103,12 @@ const getAllAppointmentsOfADay = (req, res) => __awaiter(void 0, void 0, void 0,
             else {
                 patientMap.set(motherId, patientMap.get(motherId) + 1);
             }
-            const mother = yield UserModel_1.default.findOne({ _id: item.motherId });
+            const mother = yield UserModel_1.default.findOne({ _id: item.motherId, isDeleted: false });
+            if (!mother) {
+                continue;
+            }
             const { day, time } = (0, UserController_1.getDayOrTimeFromDate)(item.appointmentDateAndTime);
-            patientList.push({ motherId: item.motherId, name: mother.firstName, phoneNumber: mother.phoneNumber, appointmentTime: time, appointmentType: item.appointmentType, appointmentStatus: item.status });
+            patientList.push({ appointmentId: item._id, motherId: item.motherId, name: mother.firstName, phoneNumber: mother.phoneNumber, appointmentTime: time, appointmentType: item.appointmentType, appointmentStatus: item.status });
         }
         let newPatient = 0;
         for (let [key, val] of patientMap) {
@@ -115,7 +118,7 @@ const getAllAppointmentsOfADay = (req, res) => __awaiter(void 0, void 0, void 0,
         }
         const responseObj = {
             RequestedDate: body.date,
-            totalAppointment: appointments.length,
+            totalAppointment: patientList.length,
             totalVideoAppointment: videoAppointmentCount,
             totalNewPatient: newPatient,
             patientList: patientList
