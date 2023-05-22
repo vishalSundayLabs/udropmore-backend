@@ -220,25 +220,25 @@ const currentObservastionSchema = new mongoose.Schema({
                 },
                 presentationPart: {
                     name: { type: String, default: "Presentation Part" },
-                    value: { type: Number, default: null },
+                    value: { type: String, default: null },
                     options: { type: Object, default: ["Caphalic", "Breech", "Transverse Lie"] },
                     inputType: { type: String, default: "Select" }
                 },
                 pos: {
                     name: { type: String, default: "P.O.S" },
-                    value: { type: Number, default: null },
+                    value: { type: String, default: null },
                     options: { type: Object, default: ["ROA", "ROT", "ROP", "LOA", "LOT", "LOP"] },
                     inputType: { type: String, default: "Select" }
                 },
                 injection: {
                     name: { type: String, default: "Injection" },
-                    value: { type: Number, default: null },
+                    value: { type: String, default: null },
                     options: { type: Object, default: ["TT First Dose", "Boostrix", "Dexa 4 dose", "Anti D if Rh-ve", "RhoGAM"] },
                     inputType: { type: String, default: "Select" }
                 },
                 remark: {
                     name: { type: String, default: "Remark" },
-                    value: { type: Number, default: null },
+                    value: { type: String, default: null },
                     options: { type: String, default: null },
                     inputType: { type: String, default: "Textbox" },
                     placeHolder: { type: String, default: "Type..." }
