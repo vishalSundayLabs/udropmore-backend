@@ -171,6 +171,7 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
             const usgDateWithWeekAndDays = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(dateForUsg);
             currentObservastionData.currentObservastion[j].dating.clinical.weekAndDays = `${usgDateWithWeekAndDays.week} week ${(usgDateWithWeekAndDays.days % usgDateWithWeekAndDays.week) % 7} days`;
         }
+        // const currentAppointment = await AppointmentModel.findOne({})
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "get Current Observastion Data successfully .",

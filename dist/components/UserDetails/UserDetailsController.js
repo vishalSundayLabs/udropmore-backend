@@ -18,6 +18,7 @@ const UserModel_1 = require("../Users/UserModel");
 const UserDetailsModel_1 = require("./UserDetailsModel");
 const WeightChart_1 = require("../../Constant/WeightChart");
 const calculateCurrentWeekHelper_1 = require("../../helpers/calculateCurrentWeekHelper");
+const PastHistoryModel_1 = require("../Consultation/PastHistoryModel");
 const createUserDetails = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     if (!body.motherId) {
@@ -87,15 +88,15 @@ const updateUserDetails = (req, res) => __awaiter(void 0, void 0, void 0, functi
             }));
         }
         //this is not deployed yet
-        //   const pastHistoryData = await PastHistoryModel.findOne({ userId: body.motherId, isDeleted: false })
-        //   if (!pastHistoryData) {
-        //       return res.status(HTTP_NOT_FOUND).send(new ResponseError({
-        //           success: false,
-        //           message: "Past history data not found!"
-        //       }))
-        //   }
-        //   pastHistoryData.pastHistory = userDetails.pastHistory
-        //  await pastHistoryData.save()
+        const pastHistoryData = yield PastHistoryModel_1.default.findOne({ userId: body.motherId, isDeleted: false });
+        if (!pastHistoryData) {
+            return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
+                success: false,
+                message: "Past history data not found!"
+            }));
+        }
+        pastHistoryData.pastHistory = userDetails.pastHistory;
+        yield pastHistoryData.save();
         //not deploy
         (0, bodyTraverse_1.bodyTraverse)(userDetails, body);
         userDetails.updatedBy = req.userId;
@@ -140,7 +141,7 @@ const getUserDetailsbyId = (req, res) => __awaiter(void 0, void 0, void 0, funct
         //         message: "Past history data not found!"
         //     }))
         // }
-        // userDetails.pastHistory = pastHistoryData.pastHistory
+        // userDetails.pastHisory = pastHistoryData.pastHistory ? pastHistoryData.pastHistory : []
         //not deploy
         const currentWeek = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(userDetails.lastMenstrualDate);
         userDetails.pregnancyWeek = currentWeek.week;

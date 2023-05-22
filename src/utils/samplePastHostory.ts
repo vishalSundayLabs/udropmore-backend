@@ -375,7 +375,10 @@ export const samplePastHistory = {
                 historyOfPreivousMedicine: null,
                 dentures: null,
                 contactLenses: null,
-                allergicReactionToMedication: null,
+                allergicReactionToMedication: {
+                    value: null,
+                    description: null
+                }
             },
             allergies: [
                 {

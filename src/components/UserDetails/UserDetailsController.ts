@@ -99,22 +99,22 @@ export const updateUserDetails = async (req, res) => {
             }))
 
         }
-          //this is not deployed yet
-        //   const pastHistoryData = await PastHistoryModel.findOne({ userId: body.motherId, isDeleted: false })
+        //this is not deployed yet
+        const pastHistoryData = await PastHistoryModel.findOne({ userId: body.motherId, isDeleted: false })
 
-        //   if (!pastHistoryData) {
-  
-        //       return res.status(HTTP_NOT_FOUND).send(new ResponseError({
-        //           success: false,
-        //           message: "Past history data not found!"
-        //       }))
-  
-        //   }
-  
-        //   pastHistoryData.pastHistory = userDetails.pastHistory
-        //  await pastHistoryData.save()
-           
-          //not deploy
+        if (!pastHistoryData) {
+
+            return res.status(HTTP_NOT_FOUND).send(new ResponseError({
+                success: false,
+                message: "Past history data not found!"
+            }))
+
+        }
+
+        pastHistoryData.pastHistory = userDetails.pastHistory
+        await pastHistoryData.save()
+
+        //not deploy
 
         bodyTraverse(userDetails, body)
 
@@ -180,10 +180,10 @@ export const getUserDetailsbyId = async (req, res) => {
 
         // }
 
-        // userDetails.pastHistory = pastHistoryData.pastHistory
-
+        // userDetails.pastHisory = pastHistoryData.pastHistory ? pastHistoryData.pastHistory : []
+       
         //not deploy
-
+ 
         const currentWeek = calculateCurrentWeekAndDays(userDetails.lastMenstrualDate)
 
         userDetails.pregnancyWeek = currentWeek.week

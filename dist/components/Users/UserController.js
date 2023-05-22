@@ -405,13 +405,13 @@ const getPatientOfDoctorById = (req, res) => __awaiter(void 0, void 0, void 0, f
         }));
     }
     try {
-        const patients = yield UserModel_1.default.find({ mappedDoctor: params.doctorId, isDeleted: false, isActive: true });
+        const patients = yield UserModel_1.default.find({ mappedDoctor: params.doctorId, userType: "MOTHER", isDeleted: false, isActive: true });
         const patientDetails = [];
         for (let i = 0; i < patients.length; i++) {
-            const patient = yield UserDetailsModel_1.default.find({ userId: patients[i]._id, isDeleted: false });
-            patientDetails.push(patient);
+            const patient = yield UserDetailsModel_1.default.findOne({ userId: patients[i]._id, isDeleted: false }).exec();
+            patientDetails.push(Object.assign(Object.assign({}, patient._doc), patients[i]._doc));
         }
-        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "get all patient of a doctor successfully.",
             result: patientDetails

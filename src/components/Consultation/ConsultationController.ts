@@ -188,7 +188,7 @@ export const getCurrentObservastion = async (req, res) => {
         }
 
         const { week, days } = calculateCurrentWeekAndDays(body.lmpDate)
-
+       
         const currentObservastionDataTemp = currentObservastionData.currentObservastion
 
         const weeks = [5, 8, 12, 15, 18, 21, 24, 26, 28, 30, 32, 34, 36, 37, 38, 39, 40]
@@ -230,6 +230,8 @@ export const getCurrentObservastion = async (req, res) => {
             currentObservastionData.currentObservastion[j].dating.clinical.weekAndDays = `${usgDateWithWeekAndDays.week} week ${(usgDateWithWeekAndDays.days % usgDateWithWeekAndDays.week) % 7} days`
 
         }
+
+        // const currentAppointment = await AppointmentModel.findOne({})
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,

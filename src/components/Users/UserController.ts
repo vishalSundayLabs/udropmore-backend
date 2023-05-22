@@ -554,16 +554,15 @@ export const getPatientOfDoctorById = async (req, res) => {
   }
 
   try {
-    const patients = await UserModel.find({ mappedDoctor: params.doctorId, isDeleted: false, isActive: true })
+    const patients = await UserModel.find({ mappedDoctor: params.doctorId, userType: "MOTHER", isDeleted: false, isActive: true })
 
     const patientDetails = []
-
     for (let i = 0; i < patients.length; i++) {
-      const patient = await UserDetailsModel.find({ userId: patients[i]._id, isDeleted: false })
-      patientDetails.push(patient)
+      const patient = await UserDetailsModel.findOne({ userId: patients[i]._id, isDeleted: false }).exec()
+      patientDetails.push({...patient._doc,...patients[i]._doc})
     }
 
-    return res.status(HTTP_BAD_REQUEST).send(new ResponseSuccess({
+    return res.status(HTTP_OK).send(new ResponseSuccess({
       success: true,
       message: "get all patient of a doctor successfully.",
       result: patientDetails
