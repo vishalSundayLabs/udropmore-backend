@@ -239,12 +239,12 @@ export const getCurrentObservastion = async (req, res) => {
             if (week == appointmentWeek.week) {
 
                 const lastIndex = currentObservastionData.currentObservastion.length - 1
-                currentObservastionData.currentObservastion[lastIndex].actualDate = currentAppointment.appointmentDateAndTime
-                currentObservastionData.currentObservastion[lastIndex].actualWeekAndDays = `${appointmentWeek.week} week ${(appointmentWeek.days % appointmentWeek.week) % 7} days`
-                currentObservastionData.currentObservastion[lastIndex].dating.usg.value.week = appointmentWeek.week
-                currentObservastionData.currentObservastion[lastIndex].dating.usg.value.days = Math.floor((appointmentWeek.days % appointmentWeek.week) % 7)
-                currentObservastionData.currentObservastion[lastIndex].dating.clinical.value.week = appointmentWeek.week
-                currentObservastionData.currentObservastion[lastIndex].dating.clinical.value.days = Math.floor((appointmentWeek.days % appointmentWeek.week) % 7)
+                currentObservastionData.currentObservastion[lastIndex].actualDate = currentObservastionData.currentObservastion[lastIndex].actualDate ? currentObservastionData.currentObservastion[lastIndex].actualDate : currentAppointment.appointmentDateAndTime
+                currentObservastionData.currentObservastion[lastIndex].actualWeekAndDays = currentObservastionData.currentObservastion[lastIndex].actualWeekAndDays ? currentObservastionData.currentObservastion[lastIndex].actualWeekAndDays : `${appointmentWeek.week} week ${(appointmentWeek.days % appointmentWeek.week) % 7} days`
+                currentObservastionData.currentObservastion[lastIndex].dating.usg.value.week = currentObservastionData.currentObservastion[lastIndex].dating.usg.value.week ? currentObservastionData.currentObservastion[lastIndex].dating.usg.value.week : appointmentWeek.week
+                currentObservastionData.currentObservastion[lastIndex].dating.usg.value.days = currentObservastionData.currentObservastion[lastIndex].dating.usg.value.days ? currentObservastionData.currentObservastion[lastIndex].dating.usg.value.days : Math.floor((appointmentWeek.days % appointmentWeek.week) % 7)
+                currentObservastionData.currentObservastion[lastIndex].dating.clinical.value.week = currentObservastionData.currentObservastion[lastIndex].dating.clinical.value.week ? currentObservastionData.currentObservastion[lastIndex].dating.clinical.value.week : appointmentWeek.week
+                currentObservastionData.currentObservastion[lastIndex].dating.clinical.value.days = currentObservastionData.currentObservastion[lastIndex].dating.clinical.value.days ? currentObservastionData.currentObservastion[lastIndex].dating.clinical.value.days : Math.floor((appointmentWeek.days % appointmentWeek.week) % 7)
 
             }
         }
