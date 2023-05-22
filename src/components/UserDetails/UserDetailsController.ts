@@ -100,19 +100,19 @@ export const updateUserDetails = async (req, res) => {
 
         }
         //this is not deployed yet
-        const pastHistoryData = await PastHistoryModel.findOne({ userId: body.motherId, isDeleted: false })
+        // const pastHistoryData = await PastHistoryModel.findOne({ userId: body.motherId, isDeleted: false })
 
-        if (!pastHistoryData) {
+        // if (!pastHistoryData) {
 
-            return res.status(HTTP_NOT_FOUND).send(new ResponseError({
-                success: false,
-                message: "Past history data not found!"
-            }))
+        //     return res.status(HTTP_NOT_FOUND).send(new ResponseError({
+        //         success: false,
+        //         message: "Past history data not found!"
+        //     }))
 
-        }
+        // }
 
-        pastHistoryData.pastHistory = userDetails.pastHistory
-        await pastHistoryData.save()
+        // pastHistoryData.pastHistory = userDetails.pastHistory
+        // await pastHistoryData.save()
 
         //not deploy
 

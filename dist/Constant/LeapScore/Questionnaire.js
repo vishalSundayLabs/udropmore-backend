@@ -4,37 +4,37 @@ const questionnaire = [
         section: [
             {
                 sectionName: "Green Leafy Vegetables",
-                question: {
-                    questionName: "How often do you consume Green Leafy Vegetables ?",
-                    options: {
-                        option: ["Never", "Once a Week", "2 to 3 times a week", "Everyday"],
-                        nutrient: [{ name: "Never", value: 1 }, { name: "Once a week", value: 2 }, { name: "2 to 3 times a week", value: 3 }, { name: "Everyday", value: 4 }],
-                        score: 0,
-                        multiSelect: false
-                    }
-                },
-                subQuestions: [{
-                        subQuestionName: "Which Green Leafy Vegetables do you consume ?",
-                        option: {
-                            A: [{ name: "Spinach", value: false }, { name: "Basil", value: false }, { name: "Carrots", value: false }, { name: "Brussel Sprouts", value: false }],
-                            B: [{ name: "Lettuce", value: false }, { name: "Asparagus", value: false }, { name: "Beet root", value: false }],
-                            C: [{ name: "Cabbage-White | Green | Purple", value: false }, { name: "Broccoli", value: false }, { name: "Radish", value: false }],
-                            D: [{ name: "Sweet Potatoes", value: false }, { name: "Red Bell Peppers", value: false }, { name: "Potatoes", value: false }]
+                question: [{
+                        questionName: "How often do you consume Green Leafy Vegetables ?",
+                        options: {
+                            option: ["Never", "Once a Week", "2 to 3 times a week", "Everyday"],
+                            nutrient: [{ name: "Never", value: 1 }, { name: "Once a week", value: 2 }, { name: "2 to 3 times a week", value: 3 }, { name: "Everyday", value: 4 }],
+                            score: 0,
+                            multiSelect: false
                         },
-                        nutrient: {
-                            A: { name: "Vitamin A", value: 1 },
-                            B: { name: "Folate", value: 1 },
-                            C: { name: "Others", value: 1 },
-                            D: { name: "Vitamin B6", value: 1 }
-                        },
-                        score: 0,
-                        multiSelect: true
+                        subQuestions: [{
+                                subQuestionName: "Which Green Leafy Vegetables do you consume ?",
+                                option: {
+                                    A: [{ name: "Spinach", value: false }, { name: "Basil", value: false }, { name: "Carrots", value: false }, { name: "Brussel Sprouts", value: false }],
+                                    B: [{ name: "Lettuce", value: false }, { name: "Asparagus", value: false }, { name: "Beet root", value: false }],
+                                    C: [{ name: "Cabbage-White | Green | Purple", value: false }, { name: "Broccoli", value: false }, { name: "Radish", value: false }],
+                                    D: [{ name: "Sweet Potatoes", value: false }, { name: "Red Bell Peppers", value: false }, { name: "Potatoes", value: false }]
+                                },
+                                nutrient: {
+                                    A: { name: "Vitamin A", value: 1 },
+                                    B: { name: "Folate", value: 1 },
+                                    C: { name: "Others", value: 1 },
+                                    D: { name: "Vitamin B6", value: 1 }
+                                },
+                                score: 0,
+                                multiSelect: true
+                            }]
                     }]
             },
             {
                 sectionName: "Fruits",
                 question: {
-                    questionName: "How often do you consume Green Leafy Vegetables ?",
+                    questionName: "How often do you consume fruits ?",
                     options: {
                         option: ["Never", "Once a Week", "2 to 3 times a week", "Everyday"],
                         nutrient: [{ name: "Never", value: 1 }, { name: "Once a week", value: 2 }, { name: "2 to 3 times a week", value: 3 }, { name: "Everyday", value: 4 }],
@@ -43,18 +43,18 @@ const questionnaire = [
                     }
                 },
                 subQuestions: [{
-                        subQuestionName: "Which Green Leafy Vegetables do you consume ?",
+                        subQuestionName: "Which fruit do you consume ?",
                         option: {
-                            A: [{ name: "Spinach", value: false }, { name: "Basil", value: false }, { name: "Carrots", value: false }, { name: "Brussel Sprouts", value: false }],
-                            B: [{ name: "Lettuce", value: false }, { name: "Asparagus", value: false }, { name: "Beet root", value: false }],
-                            C: [{ name: "Cabbage-White | Green | Purple", value: false }, { name: "Broccoli", value: false }, { name: "Radish", value: false }],
-                            D: [{ name: "Sweet Potatoes", value: false }, { name: "Red Bell Peppers", value: false }, { name: "Potatoes", value: false }]
+                            A: [{ name: "Fruits like Tomatoes / Amla / Oranges / Lemons", value: false }, { name: "Basil", value: false }, { name: "Carrots", value: false }, { name: "Brussel Sprouts", value: false }],
+                            B: [{ name: "Seasonal Fruits - Grapes", value: false }, { name: "Mangoes", value: false }, { name: "Strawberries, Pomegranate, Figs", value: false }],
+                            C: [{ name: "Berries - Banana, Watermelon, BlueBerries", value: false }, { name: "Broccoli", value: false }, { name: "Radish", value: false }],
+                            D: [{ name: "Musk Melons", value: false }, { name: "Honeydew", value: false }, { name: "Papaya", value: false }]
                         },
                         nutrient: {
-                            A: { name: "Vitamin A", value: 1 },
-                            B: { name: "Folate", value: 1 },
-                            C: { name: "Others", value: 1 },
-                            D: { name: "Vitamin B6", value: 1 }
+                            A: { name: "Vitamin C | Fiber | Sugar", value: 1 },
+                            B: { name: "Seasonal Fruits", value: 1 },
+                            C: { name: "Fiber | Sugar", value: 1 },
+                            D: { name: "Fiber | Sugar | Potassium", value: 1 }
                         },
                         score: 0,
                         multiSelect: true
@@ -103,25 +103,55 @@ const questionnaire = [
                             nutrient: [{ name: "Never", value: 1 }, { name: "Once a week", value: 2 }, { name: "2 to 3 times a week", value: 3 }, { name: "Everyday", value: 4 }],
                             score: 0,
                             multiSelect: false
-                        }
-                    }],
-                subQuestions: [{
-                        subQuestionName: "Which type of nuts do you consume regularly ?",
-                        option: {
-                            A: [{ name: "Almonds", value: false }, { name: "Basil", value: false }, { name: "Carrots", value: false }, { name: "Brussel Sprouts", value: false }],
-                            B: [{ name: "Pistachios", value: false }, { name: "Asparagus", value: false }, { name: "Beet root", value: false }],
-                            C: [{ name: "Cabbage-White | Green | Purple", value: false }, { name: "Broccoli", value: false }, { name: "Radish", value: false }],
-                            D: [{ name: "Sweet Potatoes", value: false }, { name: "Red Bell Peppers", value: false }, { name: "Potatoes", value: false }]
                         },
-                        nutrient: {
-                            A: { name: "Vitamin A", value: 1 },
-                            B: { name: "Folate", value: 1 },
-                            C: { name: "Others", value: 1 },
-                            D: { name: "Vitamin B6", value: 1 }
+                        subQuestions: [{
+                                subQuestionName: "Which type of nuts do you consume regularly ?",
+                                option: {
+                                    A: [{ name: "Almonds", value: false }],
+                                    B: [{ name: "Pistachios", value: false }],
+                                    C: [{ name: "Raisins", value: false }],
+                                    D: [{ name: "Cashews", value: false }],
+                                    E: [{ name: "Walnuts", value: false }],
+                                    F: [{ name: "Dates", value: false }]
+                                },
+                                nutrient: {
+                                    A: { name: "Vitamin E", value: 1 },
+                                    B: { name: "Vitamin B6", value: 1 },
+                                    C: { name: "Iron", value: 1 },
+                                    D: { name: "Phosphorus", value: 1 },
+                                    E: [{ name: "DHA", value: 1 }]
+                                },
+                                score: 0,
+                                multiSelect: true
+                            }]
+                    },
+                    {
+                        questionName: "How often do you consume Seeds?",
+                        options: {
+                            option: ["Never", "Once a Week", "2 to 3 times a week", "Everyday"],
+                            nutrient: [{ name: "Never", value: 1 }, { name: "Once a week", value: 2 }, { name: "2 to 3 times a week", value: 3 }, { name: "Everyday", value: 4 }],
+                            score: 0,
+                            multiSelect: false
                         },
-                        score: 0,
-                        multiSelect: true
-                    }]
+                        subQuestions: [{
+                                subQuestionName: "Which type of Seeds do you consume regularly ?",
+                                option: {
+                                    A: [{ name: "Flax Seeds", value: false }],
+                                    B: [{ name: "Sunflower Seeds", value: false }],
+                                    C: [{ name: "chia Seeds", value: false }],
+                                    D: [{ name: "Pumpkin Seeds", value: false }]
+                                },
+                                nutrient: {
+                                    A: { name: "Fats | protein | Fiber", value: 1 },
+                                    B: { name: "Fats | Protein", value: 1 },
+                                    C: { name: "Fats | Protein | Fiber", value: 1 },
+                                    D: { name: "Fats | Protein | Iron", value: 1 }
+                                },
+                                score: 0,
+                                multiSelect: true
+                            }]
+                    }
+                ],
             }
         ]
     },
