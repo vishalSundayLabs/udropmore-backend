@@ -186,9 +186,8 @@ export const getCurrentObservastion = async (req, res) => {
             }))
 
         }
-
         const { week, days } = calculateCurrentWeekAndDays(body.lmpDate)
-       
+
         const currentObservastionDataTemp = currentObservastionData.currentObservastion
 
         const weeks = [5, 8, 12, 15, 18, 21, 24, 26, 28, 30, 32, 34, 36, 37, 38, 39, 40]
@@ -222,16 +221,33 @@ export const getCurrentObservastion = async (req, res) => {
             const consultationDate = calculateCurrentWeekAndDays(date)
             let diffWeek = (week - consultationDate.week) ? week - consultationDate.week : 1
             let diffDays = days - consultationDate.days
-            currentObservastionData.currentObservastion[j].weekAndDays = `${currentObservastionData.currentObservastion[j].week} week ${Math.floor((diffDays % diffWeek) % 7)} days`
+            const weekAndDay = `${currentObservastionData.currentObservastion[j].week} week ${Math.floor((diffDays % diffWeek) % 7)} days`
+            currentObservastionData.currentObservastion[j].weekAndDays = weekAndDay
             currentObservastionData.currentObservastion[j].date = new Date(date)
-            const dateForUsg = currentObservastionData.currentObservastion[j].dating.usg.value ? currentObservastionData.currentObservastion[j].dating.usg.value : new Date(body.lmpDate);
-            currentObservastionData.currentObservastion[j].dating.usg.value = dateForUsg
-            const usgDateWithWeekAndDays = calculateCurrentWeekAndDays(dateForUsg)
-            currentObservastionData.currentObservastion[j].dating.clinical.weekAndDays = `${usgDateWithWeekAndDays.week} week ${(usgDateWithWeekAndDays.days % usgDateWithWeekAndDays.week) % 7} days`
+            currentObservastionData.currentObservastion[j].dating.usg.value.week = currentObservastionData.currentObservastion[j].week
+            currentObservastionData.currentObservastion[j].dating.usg.value.days = Math.floor((diffDays % diffWeek) % 7)
+            currentObservastionData.currentObservastion[j].dating.clinical.value.week = currentObservastionData.currentObservastion[j].week
+            currentObservastionData.currentObservastion[j].dating.clinical.value.days = Math.floor((diffDays % diffWeek) % 7)
 
         }
 
-        // const currentAppointment = await AppointmentModel.findOne({})
+        const currentDate = getDayOrTimeFromDate(new Date())
+        const currentAppointment = await AppointmentModel.findOne({ motherId: body.motherId, doctorId: body.doctorId, appointmentDateAndTime: { $gte: new Date(currentDate.fullDate), $lt: new Date(currentDate.nextDate) }, status: "CONFIRMED" }).sort({ createdAt: 1 })
+
+        if (currentAppointment) {
+            const appointmentWeek = calculateCurrentWeekAndDays(body.lmpDate, currentAppointment.appointmentDateAndTime)
+            if (week == appointmentWeek.week) {
+
+                const lastIndex = currentObservastionData.currentObservastion.length - 1
+                currentObservastionData.currentObservastion[lastIndex].actualDate = currentAppointment.appointmentDateAndTime
+                currentObservastionData.currentObservastion[lastIndex].actualWeekAndDays = `${appointmentWeek.week} week ${(appointmentWeek.days % appointmentWeek.week) % 7} days`
+                currentObservastionData.currentObservastion[lastIndex].dating.usg.value.week = appointmentWeek.week
+                currentObservastionData.currentObservastion[lastIndex].dating.usg.value.days = Math.floor((appointmentWeek.days % appointmentWeek.week) % 7)
+                currentObservastionData.currentObservastion[lastIndex].dating.clinical.value.week = appointmentWeek.week
+                currentObservastionData.currentObservastion[lastIndex].dating.clinical.value.days = Math.floor((appointmentWeek.days % appointmentWeek.week) % 7)
+
+            }
+        }
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
@@ -672,7 +688,7 @@ export const getTreatment = async (req, res) => {
                         for (let testKey in data[i][key]) {
                             const testVal = data[i][key];
                             if (testVal[testKey].followUp) {
-                                uniqueTests[testVal[testKey].testName] =  { name: testVal[testKey].testName, value: testVal[testKey].followUp }
+                                uniqueTests[testVal[testKey].testName] = { name: testVal[testKey].testName, value: testVal[testKey].followUp }
                             }
                         }
                     }
@@ -684,7 +700,7 @@ export const getTreatment = async (req, res) => {
 
                     treatment.treatment[treatmentDataIndex].followUp.testName.forEach(item => {
                         if (!uniqueTests[item.name]) {
-                            uniqueTests[item.name] =  { name: item.name, value: item.value }
+                            uniqueTests[item.name] = { name: item.name, value: item.value }
                         }
                     })
 

@@ -380,15 +380,21 @@ exports.ntUsg = {
     },
     sw: {
         name: "S/W",
-        value: null,
-        options: ["AA weeks BB days"],
-        inputType: "Select"
+        value: {
+            week: null,
+            days: null
+        },
+        options: null,
+        inputType: "inputBox"
     },
     ew: {
         name: "E/W",
-        value: null,
-        options: ["AA weeks BB days"],
-        inputType: "Select"
+        value: {
+            week: null,
+            days: null
+        },
+        options: null,
+        inputType: "inputBox"
     },
     placenta: {
         name: "Placenta",
@@ -422,7 +428,7 @@ exports.nips = {
     isRepeat: true,
     nips: {
         name: "NIPS",
-        value: null,
+        value: "Low Risk",
         options: ["Low Risk", "Increased risk"],
         inputType: "Select"
     }
@@ -479,7 +485,7 @@ exports.spInvestigation = {
     testName: "SP Investigation",
     aca: {
         name: "ACA",
-        value: null,
+        value: "Positive",
         options: ["Positive", "Negative"],
         inputType: "Select"
     },
@@ -668,19 +674,19 @@ exports.foetal2dEcho = {
     isRepeat: false,
     fetalGrowth: {
         name: "Fetal Growth",
-        value: null,
+        value: "Adequate",
         options: ["Adequate", "Low"],
         inputType: "Select"
     },
     liquorQuantity: {
         name: "Liquor Quantity",
-        value: null,
+        value: "Adequate",
         options: ["Adequate", "Low"],
         inputType: "Select"
     },
     fetoAndUteroplacentalCirculation: {
         name: "Feto & Uteroplacental circulation",
-        value: null,
+        value: "Adequate",
         options: ["Adequate", "Low"],
         inputType: "Select"
     }
@@ -820,25 +826,25 @@ exports.usgWithDoppler = {
     isRepeat: false,
     fetalGrowth: {
         name: "Fetal Growth",
-        value: null,
+        value: "Adequate",
         options: ["Adequate", "Low"],
         inputType: "Select"
     },
     liquorQuantity: {
         name: "Liquor Quantity",
-        value: null,
+        value: "Adequate",
         options: ["Adequate", "Low"],
         inputType: "Select"
     },
     fetoAndUteroplacentalCirculation: {
         name: "Feto & Uteroplacental circulation",
-        value: null,
+        value: "Adequate",
         options: ["Adequate", "Low"],
         inputType: "Select"
     },
     presentation: {
         name: "Presentation",
-        value: null,
+        value: "Cephlic",
         options: ["Cephlic", "Breech", "Shoulder", "Face"],
         inputType: "Select"
     }
@@ -850,7 +856,7 @@ exports.dfmr = {
     isRepeat: true,
     dfmr: {
         name: "DFMR",
-        value: null,
+        value: "Normal",
         options: ["Normal", "Low"],
         inputType: "Select"
     }

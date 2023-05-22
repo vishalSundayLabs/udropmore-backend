@@ -19,75 +19,75 @@ exports.standardTests = [
     {
         week: [4, 6, 5],
         testName: [
-            { name: "PIH Workup", value: false },
-            { name: "Coagulation Profile", value: false },
-            { name: "SP Investigation", value: false },
-            { name: "Anaemia", value: false },
-            { name: "NST", value: false },
-            { name: "Haemeogram", value: false },
-            { name: "USG", value: false }
+            { name: "PIH Workup", value: true },
+            { name: "Coagulation Profile", value: true },
+            { name: "SP Investigation", value: true },
+            { name: "Anaemia", value: true },
+            { name: "NST", value: true },
+            { name: "Haemeogram", value: true },
+            { name: "USG", value: true }
         ]
     },
     {
         week: [7, 9, 8],
         testName: [
-            { name: "USG", value: false },
-            { name: "Haemogram", value: false },
-            { name: "Urine Routine (A,S,Micro)", value: false },
-            { name: "OGCT", value: false },
-            { name: "Hb Electrophoresis", value: false },
-            { name: "Rubella lgM", value: false },
-            { name: "Urine Regular (A,S)", value: false },
-            { name: "Sr.Vit B12", value: false },
-            { name: "Thyroid Function Test", value: false },
-            { name: "BI Group", value: false },
-            { name: "AFP", value: false },
-            { name: "B.S.L", value: false },
-            { name: "Glycoylated Hb", value: false }
+            { name: "USG", value: true },
+            { name: "Haemogram", value: true },
+            { name: "Urine Routine (A,S,Micro)", value: true },
+            { name: "OGCT", value: true },
+            { name: "Hb Electrophoresis", value: true },
+            { name: "Rubella lgM", value: true },
+            { name: "Urine Regular (A,S)", value: true },
+            { name: "Sr.Vit B12", value: true },
+            { name: "Thyroid Function Test", value: true },
+            { name: "BI Group", value: true },
+            { name: "AFP", value: true },
+            { name: "B.S.L", value: true },
+            { name: "Glycoylated Hb", value: true }
         ]
     },
     {
         week: [10, 11, 13, 12],
         testName: [
-            { name: "First Trimester Screening", value: false },
-            { name: "NT USG", value: false },
-            { name: "OGCT", value: false },
-            { name: "NIPS", value: false },
-            { name: "Urine Routine", value: false },
-            { name: "B.S.L", value: false },
-            { name: "Dental checkup", value: false }
+            { name: "First Trimester Screening", value: true },
+            { name: "NT USG", value: true },
+            { name: "OGCT", value: true },
+            { name: "NIPS", value: true },
+            { name: "Urine Routine", value: true },
+            { name: "B.S.L", value: true },
+            { name: "Dental checkup", value: true }
         ]
     },
     {
         week: [14, 16, 15],
         testName: [
-            { name: "Urine C/S(A,S)", value: false },
-            { name: "AFP", value: false },
-            { name: "Blood test", value: false },
-            { name: "Urine Regualar (A,S)", value: false }
+            { name: "Urine C/S(A,S)", value: true },
+            { name: "AFP", value: true },
+            { name: "Blood test", value: true },
+            { name: "Urine Regualar (A,S)", value: true }
         ]
     },
     {
         week: [17, 19, 18],
         testName: [
-            { name: "Urine C/S (A,S)", value: false },
-            { name: "AFP", value: false },
-            { name: "Haemogram", value: false },
-            { name: "B.S.L", value: false },
-            { name: "Anomaly Scan", value: false },
-            { name: "Urine Regular (A,S)", value: false }
+            { name: "Urine C/S (A,S)", value: true },
+            { name: "AFP", value: true },
+            { name: "Haemogram", value: true },
+            { name: "B.S.L", value: true },
+            { name: "Anomaly Scan", value: true },
+            { name: "Urine Regular (A,S)", value: true }
         ]
     },
     {
         week: [20, 22, 21],
         testName: [
-            { name: "Foetal 2D Echo", value: false }
+            { name: "Foetal 2D Echo", value: true }
         ]
     },
     {
         week: [23, 24],
         testName: [
-            { name: "OGCT", value: false }
+            { name: "OGCT", value: true }
         ]
     },
     {
@@ -97,14 +97,14 @@ exports.standardTests = [
     {
         week: [27, 28],
         testName: [
-            { name: "USG with dropper", value: false },
-            { name: "DFMR", value: false },
-            { name: "Urine C/S (A,S,Micro", value: false },
-            { name: "Haemogram", value: false },
-            { name: "AFP", value: false },
-            { name: "OGCT", value: false },
-            { name: "Urine Regular (A,S)", value: false },
-            { name: "Thyroid Function Test", value: false }
+            { name: "USG with dropper", value: true },
+            { name: "DFMR", value: true },
+            { name: "Urine C/S (A,S,Micro", value: true },
+            { name: "Haemogram", value: true },
+            { name: "AFP", value: true },
+            { name: "OGCT", value: true },
+            { name: "Urine Regular (A,S)", value: true },
+            { name: "Thyroid Function Test", value: true }
         ]
     },
     {
@@ -114,44 +114,44 @@ exports.standardTests = [
     {
         week: [31, 32],
         testName: [
-            { name: "DFMR", value: false }
+            { name: "DFMR", value: true }
         ]
     },
     {
         week: [33, 34],
         testName: [
-            { name: "USG with dropper", value: false },
-            { name: "DFMR", value: false }
+            { name: "USG with dropper", value: true },
+            { name: "DFMR", value: true }
         ]
     },
     {
         week: [35, 36],
         testName: [
-            { name: "DFMR", value: false }
+            { name: "DFMR", value: true }
         ]
     },
     {
         week: [37],
         testName: [
-            { name: "DFMR", value: false }
+            { name: "DFMR", value: true }
         ]
     },
     {
         week: [38],
         testName: [
-            { name: "DFMR", value: false }
+            { name: "DFMR", value: true }
         ]
     },
     {
         week: [39],
         testName: [
-            { name: "DFMR", value: false }
+            { name: "DFMR", value: true }
         ]
     },
     {
         week: [40],
         testName: [
-            { name: "DFMR", value: false }
+            { name: "DFMR", value: true }
         ]
     }
 ];

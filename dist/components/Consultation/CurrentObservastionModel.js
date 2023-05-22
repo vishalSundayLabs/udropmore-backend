@@ -11,20 +11,30 @@ const currentObservastionSchema = new mongoose.Schema({
         refs: "User"
     },
     currentObservastion: [{
-            date: Date,
+            date: { type: Date, default: null },
             week: { type: Number, default: null },
             weekAndDays: { type: String, default: null },
+            actualDate: { type: Date, default: null },
+            actualWeekAndDays: { type: String, default: null },
             riskFactor: [Object],
             complaints: [Object],
             dating: {
                 testName: { type: String, default: "Dating" },
                 usg: {
                     name: { type: String, default: "USG" },
-                    value: { type: Date, default: null },
+                    inputType: { type: String, default: "inputBox" },
+                    value: {
+                        week: { type: Number, default: null },
+                        days: { type: Number, default: null }
+                    }
                 },
                 clinical: {
                     name: { type: String, default: "Clinical" },
-                    weekAndDays: { type: String, default: null }
+                    inputType: { type: String, default: "inputBox" },
+                    value: {
+                        week: { type: Number, default: null },
+                        days: { type: Number, default: null }
+                    }
                 }
             },
             generalExamination: {

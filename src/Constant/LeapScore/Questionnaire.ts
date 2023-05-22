@@ -97,7 +97,7 @@ const questionnaire = [
             {
                 sectionName: "Nuts & Seeds",
                 question: [{
-                    questionName: "How often do you consume Nuts like Almonds,Dates etc ?",
+                    questionName: "How often do you consume Nuts ?",
                     options: {
                         option: ["Never", "Once a Week", "2 to 3 times a week", "Everyday"],
                         nutrient: [{ name: "Never", value: 1 }, { name: "Once a week", value: 2 }, { name: "2 to 3 times a week", value: 3 }, { name: "Everyday", value: 4 }],
@@ -106,10 +106,10 @@ const questionnaire = [
                     }
                 }],
                 subQuestions: [{
-                    subQuestionName: "Which Green Leafy Vegetables do you consume ?",
+                    subQuestionName: "Which type of nuts do you consume regularly ?",
                     option: {
-                        A: [{ name: "Spinach", value: false }, { name: "Basil", value: false }, { name: "Carrots", value: false }, { name: "Brussel Sprouts", value: false }],
-                        B: [{ name: "Lettuce", value: false }, { name: "Asparagus", value: false }, { name: "Beet root", value: false }],
+                        A: [{ name: "Almonds", value: false }, { name: "Basil", value: false }, { name: "Carrots", value: false }, { name: "Brussel Sprouts", value: false }],
+                        B: [{ name: "Pistachios", value: false }, { name: "Asparagus", value: false }, { name: "Beet root", value: false }],
                         C: [{ name: "Cabbage-White | Green | Purple", value: false }, { name: "Broccoli", value: false }, { name: "Radish", value: false }],
                         D: [{ name: "Sweet Potatoes", value: false }, { name: "Red Bell Peppers", value: false }, { name: "Potatoes", value: false }]
                     },

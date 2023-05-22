@@ -7,6 +7,8 @@ exports.sampleCurrentObservastion = {
     currentObservastion: [{
             date: null,
             week: null,
+            actualDate: null,
+            actualWeekAndDays: null,
             riskFactor: [
                 {
                     name: "RxInfertility",
@@ -139,11 +141,19 @@ exports.sampleCurrentObservastion = {
                 testName: "Dating",
                 usg: {
                     name: "USG",
-                    date: null
+                    inputType: "inputBox",
+                    value: {
+                        week: null,
+                        days: null
+                    }
                 },
                 clinical: {
                     name: "Clinical",
-                    weekAndDays: null
+                    inputType: "inputBox",
+                    value: {
+                        week: null,
+                        days: null
+                    }
                 }
             },
             generalExamination: {
@@ -181,38 +191,38 @@ exports.sampleCurrentObservastion = {
                 },
                 oedema: {
                     name: "Oedema",
-                    value: null,
+                    value: "Nil",
                     options: ["Nil", "Moderate", "+", "++"],
                     inputType: "Select",
                 },
                 pallor: {
                     name: "Pallor",
-                    value: null,
-                    options: ["Normal", "Nil"],
+                    value: "Nil",
+                    options: ["Nil", "Normal"],
                     inputType: "Select"
                 },
                 icterus: {
                     name: "Icterus",
-                    value: null,
-                    options: ["Normal", "Nil"],
+                    value: "Nil",
+                    options: ["Nil", "Normal"],
                     inputType: "Select"
                 },
                 thy: {
                     name: "Thy",
-                    value: null,
-                    options: ["Normal", "Nil"],
+                    value: "Nil",
+                    options: ["Nil", "Normal"],
                     inputType: "Select"
                 },
                 hair: {
                     name: "Hair",
-                    value: null,
-                    options: ["Normal", "Nil"],
+                    value: "Nil",
+                    options: ["Nil", "Normal"],
                     inputType: "Select"
                 },
                 br: {
                     name: "Br",
-                    value: null,
-                    options: ["Normal", "Nil"],
+                    value: "Nil",
+                    options: ["Nil", "Normal"],
                     inputType: "Select"
                 },
                 respiratorySystem: {
@@ -238,38 +248,38 @@ exports.sampleCurrentObservastion = {
                 testName: "Per Abdomen",
                 liver: {
                     name: "Liver",
-                    value: null,
-                    options: ["Normal", "Nil"],
+                    value: "Nil",
+                    options: ["Nil", "Normal"],
                     inputType: "Select"
                 },
                 spleen: {
                     name: "Spleen",
-                    value: null,
-                    options: ["Normal", "Nil"],
+                    value: "Nil",
+                    options: ["Nil", "Normal"],
                     inputType: "Select"
                 },
                 lump: {
                     name: "Lump",
-                    value: null,
-                    options: ["Normal", "Nil"],
+                    value: "Nil",
+                    options: ["Nil", "Normal"],
                     inputType: "Select"
                 },
                 scar: {
                     name: "Scar",
-                    value: null,
-                    options: ["Normal", "Nil"],
+                    value: "Nil",
+                    options: ["Nil", "Normal"],
                     inputType: "Select"
                 },
                 hernia: {
                     name: "Hernia",
-                    value: null,
-                    options: ["Normal", "Nil"],
+                    value: "Nil",
+                    options: ["Nil", "Normal"],
                     inputType: "Select"
                 },
                 uterus: {
                     name: "Uterus",
-                    value: null,
-                    options: ["Normal", "Nil"],
+                    value: "Nil",
+                    options: ["Nil", "Normal"],
                     inputType: "Select"
                 }
             },
@@ -277,37 +287,37 @@ exports.sampleCurrentObservastion = {
                 testName: "Per Vagina",
                 avafOrrvrf: {
                     name: "AVAF/RVRF",
-                    value: null,
+                    value: "Retro Flex",
                     options: ["Retro Flex", "Retro Verted"],
                     inputType: "Select"
                 },
                 os: {
                     name: "OS",
-                    value: null,
+                    value: "Long",
                     options: ["Long", "Short", "Conical", "Patulous", "Closed/Open"],
                     inputType: "Select"
                 },
                 vagina: {
                     name: "Vagina",
-                    value: null,
+                    value: "Heavy",
                     options: ["Heavy", "Infection", "White discharge"],
                     inputType: "Select"
                 },
                 adenaxea: {
                     name: "Adenaxea",
-                    value: null,
+                    value: "Th",
                     options: ["Th", "Tender", "masses"],
                     inputType: "Select"
                 },
                 fx: {
                     name: "Fx",
-                    value: null,
+                    value: "Th",
                     options: ["Th", "Tender", "masses"],
                     inputType: "Select"
                 },
                 externalBallottement: {
                     name: "External Ballottement",
-                    value: null,
+                    value: "Well relaxed",
                     options: ["Well relaxed", "Irritable"],
                     inputType: "Select"
                 }
@@ -316,7 +326,7 @@ exports.sampleCurrentObservastion = {
                 testName: "Fetus",
                 fetus: {
                     name: "Fetus",
-                    value: null,
+                    value: "Single",
                     options: ["Single", "Twin", "Triplet"],
                     inputType: "Select"
                 },
@@ -329,19 +339,19 @@ exports.sampleCurrentObservastion = {
                 },
                 presentationPart: {
                     name: "Presentation Part",
-                    value: null,
+                    value: "Caphalic",
                     options: ["Caphalic", "Breech", "Transverse Lie"],
                     inputType: "Select"
                 },
                 pos: {
                     name: "P.O.S",
-                    value: null,
+                    value: "ROA",
                     options: ["ROA", "ROT", "ROP", "LOA", "LOT", "LOP"],
                     inputType: "Select"
                 },
                 injection: {
                     name: "Injection",
-                    value: null,
+                    value: "TT First Dose",
                     options: ["TT First Dose", "Boostrix", "Dexa 4 dose", "Anti D if Rh-ve", "RhoGAM"],
                     inputType: "Select"
                 },

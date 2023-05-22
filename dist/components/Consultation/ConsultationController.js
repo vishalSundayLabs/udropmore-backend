@@ -20,6 +20,7 @@ const ResponseClass_1 = require("../../utils/ResponseClass");
 const sampleCurrentObservastion_1 = require("../../utils/sampleCurrentObservastion");
 const sampleNextAntenatalTest_1 = require("../../utils/sampleNextAntenatalTest");
 const sampleTreatment_1 = require("../../utils/sampleTreatment");
+const AppointmentModel_1 = require("../Appointment/AppointmentModel");
 const UserController_1 = require("../Users/UserController");
 const UserModel_1 = require("../Users/UserModel");
 const AntenatalTestModel_1 = require("./AntenatalTestModel");
@@ -164,14 +165,28 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
             const consultationDate = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(date);
             let diffWeek = (week - consultationDate.week) ? week - consultationDate.week : 1;
             let diffDays = days - consultationDate.days;
-            currentObservastionData.currentObservastion[j].weekAndDays = `${currentObservastionData.currentObservastion[j].week} week ${Math.floor((diffDays % diffWeek) % 7)} days`;
+            const weekAndDay = `${currentObservastionData.currentObservastion[j].week} week ${Math.floor((diffDays % diffWeek) % 7)} days`;
+            currentObservastionData.currentObservastion[j].weekAndDays = weekAndDay;
             currentObservastionData.currentObservastion[j].date = new Date(date);
-            const dateForUsg = currentObservastionData.currentObservastion[j].dating.usg.value ? currentObservastionData.currentObservastion[j].dating.usg.value : new Date(body.lmpDate);
-            currentObservastionData.currentObservastion[j].dating.usg.value = dateForUsg;
-            const usgDateWithWeekAndDays = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(dateForUsg);
-            currentObservastionData.currentObservastion[j].dating.clinical.weekAndDays = `${usgDateWithWeekAndDays.week} week ${(usgDateWithWeekAndDays.days % usgDateWithWeekAndDays.week) % 7} days`;
+            currentObservastionData.currentObservastion[j].dating.usg.value.week = currentObservastionData.currentObservastion[j].week;
+            currentObservastionData.currentObservastion[j].dating.usg.value.days = Math.floor((diffDays % diffWeek) % 7);
+            currentObservastionData.currentObservastion[j].dating.clinical.value.week = currentObservastionData.currentObservastion[j].week;
+            currentObservastionData.currentObservastion[j].dating.clinical.value.days = Math.floor((diffDays % diffWeek) % 7);
         }
-        // const currentAppointment = await AppointmentModel.findOne({})
+        const currentDate = (0, UserController_1.getDayOrTimeFromDate)(new Date());
+        const currentAppointment = yield AppointmentModel_1.default.findOne({ motherId: body.motherId, doctorId: body.doctorId, appointmentDateAndTime: { $gte: new Date(currentDate.fullDate), $lt: new Date(currentDate.nextDate) }, status: "CONFIRMED" }).sort({ createdAt: 1 });
+        if (currentAppointment) {
+            const appointmentWeek = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(body.lmpDate, currentAppointment.appointmentDateAndTime);
+            if (week == appointmentWeek.week) {
+                const lastIndex = currentObservastionData.currentObservastion.length - 1;
+                currentObservastionData.currentObservastion[lastIndex].actualDate = currentAppointment.appointmentDateAndTime;
+                currentObservastionData.currentObservastion[lastIndex].actualWeekAndDays = `${appointmentWeek.week} week ${(appointmentWeek.days % appointmentWeek.week) % 7} days`;
+                currentObservastionData.currentObservastion[lastIndex].dating.usg.value.week = appointmentWeek.week;
+                currentObservastionData.currentObservastion[lastIndex].dating.usg.value.days = Math.floor((appointmentWeek.days % appointmentWeek.week) % 7);
+                currentObservastionData.currentObservastion[lastIndex].dating.clinical.value.week = appointmentWeek.week;
+                currentObservastionData.currentObservastion[lastIndex].dating.clinical.value.days = Math.floor((appointmentWeek.days % appointmentWeek.week) % 7);
+            }
+        }
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "get Current Observastion Data successfully .",
