@@ -301,12 +301,10 @@ export const NutrientGroups = {
         veg: [
             {
                 food: getFood.paneer,
-                name: "Paneer",
                 dv: "66%"
             },
             {
                 food: getFood.potatoes,
-                name: "Potatoes",
                 dv: "32%"
             },
             {
@@ -315,12 +313,10 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.bananas,
-                name: "Bananas",
                 dv: "32%"
             },
             {
                 food: getFood.pistachio,
-                name: "Pistachio",
                 dv: "28%"
             }
         ],
@@ -348,32 +344,22 @@ export const NutrientGroups = {
         veg: [
             {
                 food: getFood.edamame,
-                name: "Edamame",
                 dv: "121%"
             },
             {
                 food: getFood.asparagus,
-                name: "Asparagus",
                 dv: "67%"
             },
             {
                 food: getFood.lettuce,
-                name: "Lettuce",
                 dv: "16%"
             },
             {
                 food: getFood.spinach,
-                name: "Spinach",
-                value: false,
-                size: {
-                    value: 1,
-                    unit: "Glass"
-                },
                 dv: "36%"
             },
             {
                 food: getFood.brocolli,
-                name: "Brocolli",
                 dv: "42%"
             },
             {
@@ -386,14 +372,12 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.mangose,
-                name: "Mangoes",
                 dv: "28%"
             }
         ],
         nonVeg: [
             {
                 food: getFood.oranges,
-                name: "Oranges",
                 dv: "14%"
             }
         ]
@@ -403,12 +387,10 @@ export const NutrientGroups = {
         veg: [
             {
                 food: getFood.allBranWheatFlaks,
-                name: "All Bran Wheat Flaks",
                 dv: "325%"
             },
             {
                 food: getFood.paneer,
-                name: "Paneer",
                 dv: "137%"
             },
             {
@@ -419,22 +401,14 @@ export const NutrientGroups = {
         nonVeg: [
             {
                 food: getFood.paneer,
-                name: "Paneer",
                 dv: "137%"
             },
             {
                 food: getFood.milk,
-                name: "Milk",
                 dv: "108%"
             },
             {
                 food: getFood.eggs,
-                name: "Eggs",
-                value: false,
-                size: {
-                    value: 1,
-                    unit: "Large"
-                },
                 dv: "23%"
             },
             {
@@ -443,22 +417,10 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.crab,
-                name: "Crab",
-                value: false,
-                size: {
-                    value: 1,
-                    unit: "Crab Leg"
-                },
                 dv: "642%"
             },
             {
                 food: getFood.clams,
-                name: "Clams",
-                value: false,
-                size: {
-                    value: 75,
-                    unit: "g"
-                },
                 dv: "3502%"
             }
         ]
@@ -472,23 +434,16 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.broccoli,
-                name: "Broccoli",
                 dv: "11%"
             },
             {
                 food: getFood.greenPeas,
-                name: "Green Peas",
                 dv: "9%"
             }
         ],
         nonVeg: [
             {
                 food: getFood.chickenBreast,
-                value: false,
-                size: {
-                    value: 175,
-                    unit: "g"
-                },
                 dv: "36%"
             },
             {
@@ -501,12 +456,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.eggs,
-                name: "Eggs",
-                value: false,
-                size: {
-                    value: 1,
-                    unit: "Large"
-                },
                 dv: "27"
             },
             {
@@ -515,12 +464,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.shrimps,
-                name: "Shrimps",
-                value: false,
-                size: {
-                    value: 12,
-                    unit: "Large"
-                },
                 dv: "21%"
             }
         ]
@@ -538,34 +481,24 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.peanuts,
-                name: "Peanuts",
                 dv: "9%"
             },
             {
                 food: getFood.spinach,
-                name: "Spinach",
                 dv: "25%"
             },
             {
                 food: getFood.kiwi,
-                name: "Kiwifruit",
                 dv: "18%"
             },
             {
                 food: getFood.broccoli,
-                name: "Broccoli",
                 dv: "15%"
             }
         ],
         nonVeg: [
             {
                 food: getFood.shrimps,
-                name: "Shrimps",
-                value: false,
-                size: {
-                    value: 12,
-                    unit: "Large"
-                },
                 dv: "12%"
             }
         ]
@@ -575,37 +508,30 @@ export const NutrientGroups = {
         veg: [
             {
                 food: getFood.cabbage,
-                name: "Cabbage",
                 dv: "136%"
             },
             {
                 food: getFood.asparagus,
-                name: "Asparagus",
                 dv: "76%"
             },
             {
                 food: getFood.brusselSprouts,
-                name: "Brussel Sprouts",
                 dv: "182%"
             },
             {
                 food: getFood.broccoli,
-                name: "Broccoli",
                 dv: "183%"
             },
             {
                 food: getFood.kiwi,
-                name: "Kiwifruit",
                 dv: "60%"
             },
             {
                 food: getFood.ladyFinger,
-                name: "Lady Finger",
                 dv: "53%"
             },
             {
                 food: getFood.lettuce,
-                name: "Lettuce",
                 dv: "47%"
             }
         ],
@@ -616,37 +542,30 @@ export const NutrientGroups = {
         veg: [
             {
                 food: getFood.cookedSpinach,
-                name: "Cooked Spinach",
                 dv: "37%"
             },
             {
                 food: getFood.pumpkinSeeds,
-                name: "Pumpkin Seeds",
                 dv: "37%"
             },
             {
                 food: getFood.brownRice,
-                name: "Broun Rice",
                 dv: "20%"
             },
             {
                 food: getFood.quinoa,
-                name: "Quinoa",
                 dv: "28%"
             },
             {
                 food: getFood.yogurt,
-                name: "Yogurt",
                 dv: "11%"
             },
             {
                 food: getFood.flaxSeeds,
-                name: "Flax Seeds",
                 dv: "27%"
             },
             {
                 food: getFood.cashews,
-                name: "Cashews",
                 dv: "20%"
             },
             {
@@ -657,22 +576,18 @@ export const NutrientGroups = {
         nonVeg: [
             {
                 food: getFood.bananas,
-                name: "Bananas",
                 dv: "10%"
             },
             {
                 food: getFood.hempSeeds,
-                name: "Hemp Seeds",
                 dv: "47%"
             },
             {
                 food: getFood.cashews,
-                name: "Cashews",
                 dv: "20%"
             },
             {
                 food: getFood.walnuts,
-                name: "Walnuts",
                 dv: "12%"
             },
             {
@@ -686,22 +601,18 @@ export const NutrientGroups = {
         veg: [
             {
                 food: getFood.brazilNuts,
-                name: "Brazil Nuts",
                 dv: "990%"
             },
             {
                 food: getFood.paneer,
-                name: "Paneer",
                 dv: "80%"
             },
             {
                 food: getFood.oatmeal,
-                name: "Oatmeal",
                 dv: "23%"
             },
             {
                 food: getFood.brownRice,
-                name: "Brown Rice",
                 dv: "21%"
             },
             {
@@ -710,24 +621,16 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.chiaSeeds,
-                name: "Chia Seeds",
                 dv: "29%"
             },
             {
                 food: getFood.flaxSeeds,
-                name: "Flax Seeds",
                 dv: "13%"
             }
         ],
         nonVeg: [
             {
                 food: getFood.oysters,
-                name: "Oysters",
-                value: false,
-                size: {
-                    value: 6,
-                    unit: "units"
-                },
                 dv: "334%"
             },
             {
@@ -740,21 +643,10 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.chickenBreast,
-                value: false,
-                size: {
-                    value: 175,
-                    unit: "g"
-                },
                 dv: "99%"
             },
             {
                 food: getFood.shrimps,
-                name: "Shrimps",
-                value: false,
-                size: {
-                    value: 12,
-                    unit: "Large"
-                },
                 dv: "77%"
             }
         ]
@@ -764,32 +656,26 @@ export const NutrientGroups = {
         veg: [
             {
                 food: getFood.cookedSpinach,
-                name: "Cooked Spinach",
                 dv: "12%"
             },
             {
                 food: getFood.pumpkinSeeds,
-                name: "Pumpkin Seeds",
                 dv: "27%"
             },
             {
                 food: getFood.cashews,
-                name: "Cashews",
                 dv: "14%"
             },
             {
                 food: getFood.oatmeal,
-                name: "Oatmeal",
                 dv: "21%"
             },
             {
                 food: getFood.chickpeas,
-                name: "Chickpeas",
                 dv: "23%"
             },
             {
                 food: getFood.paneer,
-                name: "Paneer",
                 dv: "36%"
             },
             {
@@ -798,29 +684,16 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.cerealKalloggsSmartStartStrong,
-                name: "Cereal Kalloggs Smart Start Strong",
                 dv: "136%"
             }
         ],
         nonVeg: [
             {
                 food: getFood.oysters,
-                name: "Oysters",
-                value: false,
-                size: {
-                    value: 6,
-                    unit: "units"
-                },
                 dv: "93%"
             },
             {
                 food: getFood.clams,
-                name: "Clams",
-                value: false,
-                size: {
-                    value: 6,
-                    unit: "units"
-                },
                 dv: "47%"
             },
             {
@@ -829,12 +702,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.chicken,
-                name: "Chicken",
-                value: false,
-                size: {
-                    value: 175,
-                    unit: "g"
-                },
                 dv: "49%"
             },
             {
@@ -843,7 +710,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.yogurt,
-                name: "Yogurt",
                 dv: "22%"
             },
             {
@@ -857,22 +723,18 @@ export const NutrientGroups = {
         veg: [
             {
                 food: getFood.allBranWheatFlaks,
-                name: "All Bran Wheat Flaks",
                 dv: "109%"
             },
             {
                 food: getFood.apricots,
-                name: "Apricots",
                 dv: "42%"
             },
             {
                 food: getFood.spinach,
-                name: "Spinach",
                 dv: "36%"
             },
             {
                 food: getFood.quinoa,
-                name: "Quinoa",
                 dv: "15%"
             },
             {
@@ -881,19 +743,12 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.pumpkinSeeds,
-                name: "Pumpkin Seeds",
                 dv: "14%"
             }
         ],
         nonVeg: [
             {
                 food: getFood.oysters,
-                name: "Oysters",
-                value: false,
-                size: {
-                    value: 6,
-                    unit: "units"
-                },
                 dv: "43%"
             },
             {
@@ -902,17 +757,14 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.chiaSeeds,
-                name: "Chia Seeds",
                 dv: "12%"
             },
             {
                 food: getFood.sesameSeeds,
-                name: "Sesame Seeds",
                 dv: "14%"
             },
             {
                 food: getFood.hempSeeds,
-                name: "Hemp Seeds",
                 dv: "13%"
             }
         ]
@@ -922,27 +774,22 @@ export const NutrientGroups = {
         veg: [
             {
                 food: getFood.guava,
-                name: "Guava",
                 dv: "6000%"
             },
             {
                 food: getFood.tomatoes,
-                name: "Tomatoes",
                 dv: "500%"
             },
             {
                 food: getFood.watermelon,
-                name: "Watermelon",
                 dv: "5000%"
             },
             {
                 food: getFood.grapefruit,
-                name: "Grapefruit",
                 dv: "500%"
             },
             {
                 food: getFood.papaya,
-                name: "Papaya",
                 dv: "2000%"
             }
         ],
@@ -953,12 +800,10 @@ export const NutrientGroups = {
         veg: [
             {
                 food: getFood.chiaSeeds,
-                name: "Chia Seeds",
                 dv: "14%"
             },
             {
                 food: getFood.sesameSeeds,
-                name: "Sesame Seeds",
                 dv: "22%"
             },
             {
@@ -967,12 +812,10 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.paneer,
-                name: "Paneer",
                 dv: "132%"
             },
             {
                 food: getFood.kale,
-                name: "Kale",
                 dv: "13%"
             }
         ],
@@ -983,22 +826,14 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.yogurt,
-                name: "Yogurt",
                 dv: "38%"
             },
             {
                 food: getFood.spinach,
-                name: "Spinach",
                 dv: "16%"
             },
             {
                 food: getFood.ladyFinger,
-                name: "Lady Finger",
-                value: false,
-                size: {
-                    value: 175,
-                    unit: "g"
-                },
                 dv: "9%"
             }
         ]
@@ -1008,39 +843,28 @@ export const NutrientGroups = {
         veg: [
             {
                 food: getFood.paneer,
-                name: "Paneer",
                 dv: "106%"
             },
             {
                 food: getFood.sweetPotatoes,
-                name: "Sweet Patatoes",
                 dv: "79%"
             },
             {
                 food: getFood.sesameSeeds,
-                name: "Sesame Seeds",
                 dv: "78%"
             },
             {
                 food: getFood.cashews,
-                name: "Cashews",
                 dv: "70%"
             },
             {
                 food: getFood.chickpeas,
-                name: "Chickpeas",
                 dv: "64%"
             }
         ],
         nonVeg: [
             {
                 food: getFood.oysters,
-                name: "Oysters",
-                value: false,
-                size: {
-                    value: 6,
-                    unit: "units"
-                },
                 dv: "419%"
             },
             {
@@ -1059,7 +883,6 @@ export const NutrientGroups = {
         veg: [
             {
                 food: getFood.iodisedSalt,
-                name: "Iodised Salt",
                 value: false,
                 size: {
                     value: 1,
@@ -1069,12 +892,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.bakedPotatoWithPeel,
-                name: "Baked Potato With Peel",
-                value: false,
-                size: {
-                    value: null,
-                    unit: null
-                },
                 dv: "40%"
             },
             {
@@ -1085,22 +902,10 @@ export const NutrientGroups = {
         nonVeg: [
             {
                 food: getFood.seaweed,
-                name: "Seaweed",
-                value: false,
-                size: {
-                    value: 1,
-                    unit: "g"
-                },
                 dv: "1000%"
             },
             {
                 food: getFood.shrimps,
-                name: "Shrimps",
-                value: false,
-                size: {
-                    value: null,
-                    unit: null
-                },
                 dv: "27%"
             }
         ]
@@ -1110,7 +915,6 @@ export const NutrientGroups = {
         veg: [
             {
                 food: getFood.spinach,
-                name: "Spinach",
                 dv: "18%"
             },
             {
@@ -1119,12 +923,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.potatoes,
-                name: "Potatoes",
-                value: false,
-                size: {
-                    value: 1,
-                    unit: "Medium"
-                },
                 dv: "20%"
             },
             {
@@ -1139,17 +937,14 @@ export const NutrientGroups = {
         nonVeg: [
             {
                 food: getFood.salmon,
-                name: "Salmon",
                 dv: "23%"
             },
             {
                 food: getFood.bananas,
-                name: "Bananas",
                 dv: "11%"
             },
             {
                 food: getFood.tomatoes,
-                name: "Tomatoes",
                 dv: "11%"
             }
         ]
@@ -1159,7 +954,6 @@ export const NutrientGroups = {
         veg: [
             {
                 food: getFood.paneer,
-                name: "Paneer",
                 dv: "38%"
             },
             {
@@ -1172,22 +966,18 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.pumpkinSeeds,
-                name: "Pumpkin Seeds",
                 dv: "28%"
             },
             {
                 food: getFood.hempSeeds,
-                name: "Hemp Seeds",
                 dv: "37%"
             },
             {
                 food: getFood.quinoa,
-                name: "Quinoa",
                 dv: "22%"
             },
             {
                 food: getFood.brownRice,
-                name: "Brown Rice",
                 dv: "12%"
             }
         ],
@@ -1198,21 +988,10 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.chickenBreast,
-                value: false,
-                size: {
-                    value: 175,
-                    unit: "g"
-                },
                 dv: "33%"
             },
             {
                 food: getFood.beef,
-                name: "Beef",
-                value: false,
-                size: {
-                    value: 1,
-                    unit: "Streak"
-                },
                 dv: "27%"
             }
         ]
@@ -1223,12 +1002,6 @@ export const NutrientGroups = {
         veg: [
             {
                 food: getFood.cheese,
-                name: "Cheese",
-                value: false,
-                size: {
-                    value: null,
-                    unit: null
-                },
                 dv: null
             },
             {
@@ -1237,44 +1010,32 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.flaxSeeds,
-                name: "Flax Seeds",
                 dv: "30%"
             },
             {
                 food: getFood.peanuts,
-                name: "Peanuts",
                 dv: "23%"
             },
             {
                 food: getFood.pumpkinSeeds,
-                name: "Pumpkin Seeds",
                 dv: "58%"
             },
             {
                 food: getFood.paneer,
-                name: "Paneer",
                 dv: "212%"
             },
             {
                 food: getFood.edamame,
-                name: "Edamame",
                 dv: "149%"
             },
             {
                 food: getFood.oatmeal,
-                name: "Oatmeal",
                 dv: "33%"
             }
         ],
         nonVeg: [
             {
                 food: getFood.chicken,
-                name: "Chicken",
-                value: false,
-                size: {
-                    value: 175,
-                    unit: "g"
-                },
                 dv: "245%"
             },
             {
@@ -1287,22 +1048,14 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.cashews,
-                name: "Cashews",
                 dv: "27%"
             },
             {
                 food: getFood.pistachio,
-                name: "Pistachio",
                 dv: "27%"
             },
             {
                 food: getFood.eggs,
-                name: "Eggs",
-                value: false,
-                size: {
-                    value: 1,
-                    unit: "Large"
-                },
                 dv: "27%"
             }
         ]
@@ -1312,7 +1065,6 @@ export const NutrientGroups = {
         veg: [
             {
                 food: getFood.paneer,
-                name: "Paneer",
                 dv: "128%"
             },
             {
@@ -1321,17 +1073,14 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.pumpkinSeeds,
-                name: "Pumpkin Seeds",
                 dv: "87%"
             },
             {
                 food: getFood.pistachio,
-                name: "Pistachio",
                 dv: "17%"
             },
             {
                 food: getFood.peanuts,
-                name: "Peanuts",
                 dv: "16%"
             },
             {
@@ -1340,19 +1089,12 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.yogurt,
-                name: "Yogurt",
                 dv: "52%"
             }
         ],
         nonVeg: [
             {
                 food: getFood.chicken,
-                name: "Chicken",
-                value: false,
-                size: {
-                    value: 175,
-                    unit: "g"
-                },
                 dv: "189%"
             },
             {
@@ -1365,12 +1107,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.eggs,
-                name: "Eggs",
-                value: false,
-                size: {
-                    value: 1,
-                    unit: "Large"
-                },
                 dv: "20%"
             }
         ]
@@ -1380,7 +1116,6 @@ export const NutrientGroups = {
         veg: [
             {
                 food: getFood.paneer,
-                name: "Paneer",
                 dv: "153%"
             },
             {
@@ -1393,12 +1128,10 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.pumpkinSeeds,
-                name: "Pumpkin Seeds",
                 dv: "26%"
             },
             {
                 food: getFood.spinach,
-                name: "Spinach",
                 dv: "20%"
             },
             {
@@ -1407,7 +1140,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.hempSeeds,
-                name: "Hemp Seeds",
                 dv: "26%"
             },
             {
@@ -1416,7 +1148,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.pistachio,
-                name: "Pistachio",
                 dv: "19%"
             }
         ],
@@ -1427,11 +1158,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.chickenBreast,
-                value: false,
-                size: {
-                    value: 175,
-                    unit: "g"
-                },
                 dv: "191%"
             },
             {
@@ -1440,27 +1166,22 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.quinoa,
-                name: "Quinoa",
                 dv: "21%"
             },
             {
                 food: getFood.flaxSeeds,
-                name: "Flax Seeds",
                 dv: "18%"
             },
             {
                 food: getFood.peanuts,
-                name: "Peanuts",
                 dv: "17%"
             },
             {
                 food: getFood.oatmeal,
-                name: "Oatmeal",
                 dv: "19%"
             },
             {
                 food: getFood.yogurt,
-                name: "Yogurt",
                 dv: "55%"
             }
         ]
@@ -1470,7 +1191,6 @@ export const NutrientGroups = {
         veg: [
             {
                 food: getFood.paneer,
-                name: "Paneer",
                 dv: "188%"
             },
             {
@@ -1479,7 +1199,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.edamame,
-                name: "Edamame",
                 dv: "118%"
             },
             {
@@ -1493,7 +1212,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.greenPeas,
-                name: "Green Peas",
                 dv: "31%"
             },
             {
@@ -1517,36 +1235,22 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.chickenBreast,
-                value: false,
-                size: {
-                    value: 175,
-                    unit: "g"
-                },
                 dv: "233%"
             },
             {
                 food: getFood.yogurt,
-                name: "Yogurt",
                 dv: "55%"
             },
             {
                 food: getFood.eggs,
-                name: "Eggs",
-                value: false,
-                size: {
-                    value: 1,
-                    unit: "Large"
-                },
                 dv: "29%"
             },
             {
                 food: getFood.pumpkinSeeds,
-                name: "Pumpkin Seeds",
                 dv: "26%"
             },
             {
                 food: getFood.hempSeeds,
-                name: "Hemp Seeds",
                 dv: "34%"
             },
             {
@@ -1555,12 +1259,10 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.quinoa,
-                name: "Quinoa",
                 dv: "23%"
             },
             {
                 food: getFood.oatmeal,
-                name: "Oatmeal",
                 dv: "21%"
             }
         ]
@@ -1570,7 +1272,6 @@ export const NutrientGroups = {
         veg: [
             {
                 food: getFood.paneer,
-                name: "Paneer",
                 dv: "106%"
             },
             {
@@ -1579,12 +1280,10 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.edamame,
-                name: "Edamame",
                 dv: "91%"
             },
             {
                 food: getFood.greenPeas,
-                name: "Green Peas",
                 dv: "24%"
             },
             {
@@ -1593,7 +1292,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.spinach,
-                name: "Spinach",
                 dv: "16%"
             }
         ],
@@ -1608,51 +1306,30 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.chickenBreast,
-                value: false,
-                size: {
-                    value: 175,
-                    unit: "g"
-                },
                 dv: "250%"
             },
             {
                 food: getFood.yogurt,
-                name: "Yogurt",
                 dv: "60%"
             },
             {
                 food: getFood.eggs,
-                name: "Eggs",
-                value: false,
-                size: {
-                    value: 1,
-                    unit: "Large"
-                },
                 dv: "22%"
             },
             {
                 food: getFood.crab,
-                name: "Crab",
-                value: false,
-                size: {
-                    value: 1,
-                    unit: "Crab Leg"
-                },
                 dv: "107%"
             },
             {
                 food: getFood.pumpkinSeeds,
-                name: "Pumpkin Seeds",
                 dv: "26%"
             },
             {
                 food: getFood.quinoa,
-                name: "Quinoa",
                 dv: "21%"
             },
             {
                 food: getFood.oatmeal,
-                name: "Oatmeal",
                 dv: "15%"
             }
         ]
@@ -1662,7 +1339,6 @@ export const NutrientGroups = {
         veg: [
             {
                 food: getFood.paneer,
-                name: "Paneer",
                 dv: "73%"
             },
             {
@@ -1671,7 +1347,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.edamame,
-                name: "Edamame",
                 dv: "118%"
             },
             {
@@ -1685,7 +1360,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.greenPeas,
-                name: "Green Peas",
                 dv: "18%"
             },
             {
@@ -1699,7 +1373,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.spinach,
-                name: "Spinach",
                 dv: "14%"
             }
         ],
@@ -1714,41 +1387,26 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.chickenBreast,
-                value: false,
-                size: {
-                    value: 175,
-                    unit: "g"
-                },
                 dv: "195%"
             },
             {
                 food: getFood.yogurt,
-                name: "Yogurt",
                 dv: "57%"
             },
             {
                 food: getFood.eggs,
-                name: "Eggs",
-                value: false,
-                size: {
-                    value: 1,
-                    unit: "Large"
-                },
                 dv: "27%"
             },
             {
                 food: getFood.chiaSeeds,
-                name: "Chia Seeds",
                 dv: "23%"
             },
             {
                 food: getFood.pumpkinSeeds,
-                name: "Pumpkin Seeds",
                 dv: "23%"
             },
             {
                 food: getFood.hempSeeds,
-                name: "Hemp Seeds",
                 dv: "36%"
             },
             {
@@ -1757,37 +1415,22 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.quinoa,
-                name: "Quinoa",
                 dv: "24%"
             },
             {
                 food: getFood.oatmeal,
-                name: "Oatmeal",
                 dv: "21%"
             },
             {
                 food: getFood.sesameSeeds,
-                name: "Sesame Seeds",
                 dv: "22%"
             },
             {
                 food: getFood.crab,
-                name: "Crab",
-                value: false,
-                size: {
-                    value: 1,
-                    unit: "Crab Leg"
-                },
                 dv: "100%"
             },
             {
                 food: getFood.shrimps,
-                name: "Shrimps",
-                value: false,
-                size: {
-                    value: 12,
-                    unit: "Large"
-                },
                 dv: "78%"
             }
         ]
@@ -1797,7 +1440,6 @@ export const NutrientGroups = {
         veg: [
             {
                 food: getFood.paneer,
-                name: "Paneer",
                 dv: "50%"
             },
             {
@@ -1819,7 +1461,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.cashews,
-                name: "Cashews",
                 dv: "39%"
             }
         ],
@@ -1834,36 +1475,22 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.chickenBreast,
-                value: false,
-                size: {
-                    value: 175,
-                    unit: "g"
-                },
                 dv: "199%"
             },
             {
                 food: getFood.eggs,
-                name: "Eggs",
-                value: false,
-                size: {
-                    value: 1,
-                    unit: "Large"
-                },
                 dv: "51%"
             },
             {
                 food: getFood.chiaSeeds,
-                name: "Chia Seeds",
                 dv: "40%"
             },
             {
                 food: getFood.pumpkinSeeds,
-                name: "Pumpkin Seeds",
                 dv: "23%"
             },
             {
                 food: getFood.hempSeeds,
-                name: "Hemp Seeds",
                 dv: "66%"
             },
             {
@@ -1872,17 +1499,14 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.quinoa,
-                name: "Quinoa",
                 dv: "24%"
             },
             {
                 food: getFood.oatmeal,
-                name: "Oatmeal",
                 dv: "79%"
             },
             {
                 food: getFood.sesameSeeds,
-                name: "Sesame Seeds",
                 dv: "34%"
             }
         ]
@@ -1892,7 +1516,6 @@ export const NutrientGroups = {
         veg: [
             {
                 food: getFood.paneer,
-                name: "Paneer",
                 dv: "120%"
             },
             {
@@ -1901,7 +1524,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.edamame,
-                name: "Edamame",
                 dv: "79%"
             },
             {
@@ -1919,7 +1541,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.greenPeas,
-                name: "Green Peas",
                 dv: "20%"
             },
             {
@@ -1928,17 +1549,14 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.pistachio,
-                name: "Pistachio",
                 dv: "20%"
             },
             {
                 food: getFood.spinach,
-                name: "Spinach",
                 dv: "17%"
             },
             {
                 food: getFood.cashews,
-                name: "Cashews",
                 dv: "16%"
             }
         ],
@@ -1953,41 +1571,26 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.chickenBreast,
-                value: false,
-                size: {
-                    value: 175,
-                    unit: "g"
-                },
                 dv: "155%"
             },
             {
                 food: getFood.yogurt,
-                name: "Yogurt",
                 dv: "64%"
             },
             {
                 food: getFood.eggs,
-                name: "Eggs",
-                value: false,
-                size: {
-                    value: 1,
-                    unit: "Large"
-                },
                 dv: "21%"
             },
             {
                 food: getFood.chiaSeeds,
-                name: "Chia Seeds",
                 dv: "15%"
             },
             {
                 food: getFood.pumpkinSeeds,
-                name: "Pumpkin Seeds",
                 dv: "24%"
             },
             {
                 food: getFood.hempSeeds,
-                name: "Hemp Seeds",
                 dv: "28%"
             },
             {
@@ -1996,17 +1599,14 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.brownRice,
-                name: "Brown Rice",
                 dv: "17%"
             },
             {
                 food: getFood.oatmeal,
-                name: "Oatmeal",
                 dv: "21%"
             },
             {
                 food: getFood.flaxSeeds,
-                name: "Flax Seeds",
                 dv: "17%"
             },
             {
@@ -2021,7 +1621,6 @@ export const NutrientGroups = {
         veg: [
             {
                 food: getFood.paneer,
-                name: "Paneer",
                 dv: "240%"
             },
             {
@@ -2030,7 +1629,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.edamame,
-                name: "Edamame",
                 dv: "171%"
             },
             {
@@ -2048,7 +1646,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.greenPeas,
-                name: "Green Peas",
                 dv: "36%"
             },
             {
@@ -2057,17 +1654,14 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.pistachio,
-                name: "Pistachio",
                 dv: "37%"
             },
             {
                 food: getFood.spinach,
-                name: "Spinach",
                 dv: "28%"
             },
             {
                 food: getFood.broccoli,
-                name: "Broccoli",
                 dv: "21%"
             },
             {
@@ -2086,11 +1680,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.chickenBreast,
-                value: false,
-                size: {
-                    value: 175,
-                    unit: "g"
-                },
                 dv: "251%"
             },
             {
@@ -2099,27 +1688,18 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.eggs,
-                name: "Eggs",
-                value: false,
-                size: {
-                    value: 1,
-                    unit: "Large"
-                },
                 dv: "21%"
             },
             {
                 food: getFood.chiaSeeds,
-                name: "Chia Seeds",
                 dv: "33%"
             },
             {
                 food: getFood.pumpkinSeeds,
-                name: "Pumpkin Seeds",
                 dv: "56%"
             },
             {
                 food: getFood.hempSeeds,
-                name: "Hemp Seeds",
                 dv: "47%"
             },
             {
@@ -2142,17 +1722,10 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.flaxSeeds,
-                name: "Flax Seeds",
                 dv: "17%"
             },
             {
                 food: getFood.shrimps,
-                name: "Shrimps",
-                value: false,
-                size: {
-                    value: 12,
-                    unit: "Large"
-                },
                 dv: "78%"
             }
         ]
@@ -2162,7 +1735,6 @@ export const NutrientGroups = {
         veg: [
             {
                 food: getFood.paneer,
-                name: "Paneer",
                 dv: "202%"
             },
             {
@@ -2171,7 +1743,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.edamame,
-                name: "Edamame",
                 dv: "124%"
             },
             {
@@ -2189,7 +1760,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.greenPeas,
-                name: "Green Peas",
                 dv: "20%"
             },
             {
@@ -2198,27 +1768,22 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.pistachio,
-                name: "Pistachio",
                 dv: "20%"
             },
             {
                 food: getFood.spinach,
-                name: "Spinach",
                 dv: "23%"
             },
             {
                 food: getFood.cashews,
-                name: "Cashews",
                 dv: "16%"
             },
             {
                 food: getFood.peanuts,
-                name: "Peanuts",
                 dv: "31%"
             },
             {
                 food: getFood.ladyFinger,
-                name: "lady Finger",
                 dv: "15%"
             }
         ],
@@ -2233,41 +1798,26 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.chickenBreast,
-                value: false,
-                size: {
-                    value: 175,
-                    unit: "g"
-                },
                 dv: "224%"
             },
             {
                 food: getFood.yogurt,
-                name: "Yogurt",
                 dv: "49%"
             },
             {
                 food: getFood.eggs,
-                name: "Eggs",
-                value: false,
-                size: {
-                    value: 1,
-                    unit: "Large"
-                },
                 dv: "29%"
             },
             {
                 food: getFood.chiaSeeds,
-                name: "Chia Seeds",
                 dv: "18%"
             },
             {
                 food: getFood.pumpkinSeeds,
-                name: "Pumpkin Seeds",
                 dv: "35%"
             },
             {
                 food: getFood.hempSeeds,
-                name: "Hemp Seeds",
                 dv: "41%"
             },
             {
@@ -2281,17 +1831,14 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.oatmeal,
-                name: "Oatmeal",
                 dv: "27%"
             },
             {
                 food: getFood.sesameSeeds,
-                name: "Sesame Seeds",
                 dv: "23%"
             },
             {
                 food: getFood.brownRice,
-                name: "Brown Rice",
                 dv: "19%"
             },
             {
@@ -2306,7 +1853,6 @@ export const NutrientGroups = {
         veg: [
             {
                 food: getFood.paneer,
-                name: "Paneer",
                 dv: "155%"
             },
             {
@@ -2315,7 +1861,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.edamame,
-                name: "Edamame",
                 dv: "79%"
             },
             {
@@ -2333,7 +1878,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.greenPeas,
-                name: "Green Peas",
                 dv: "24%"
             },
             {
@@ -2342,17 +1886,14 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.pistachio,
-                name: "Pistachio",
                 dv: "20%"
             },
             {
                 food: getFood.spinach,
-                name: "Spinach",
                 dv: "17%"
             },
             {
                 food: getFood.cashews,
-                name: "Cashews",
                 dv: "16%"
             },
             {
@@ -2361,7 +1902,6 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.pistachio,
-                name: "Pistachio",
                 dv: "22%"
             }
         ],
@@ -2376,41 +1916,26 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.chickenBreast,
-                value: false,
-                size: {
-                    value: 175,
-                    unit: "g"
-                },
                 dv: "290%"
             },
             {
                 food: getFood.yogurt,
-                name: "Yogurt",
                 dv: "50%"
             },
             {
                 food: getFood.eggs,
-                name: "Eggs",
-                value: false,
-                size: {
-                    value: 1,
-                    unit: "Large"
-                },
                 dv: "21%"
             },
             {
                 food: getFood.chiaSeeds,
-                name: "Chia Seeds",
                 dv: "22%"
             },
             {
                 food: getFood.pumpkinSeeds,
-                name: "Pumpkin Seeds",
                 dv: "31%"
             },
             {
                 food: getFood.hempSeeds,
-                name: "Hemp Seeds",
                 dv: "39%"
             },
             {
@@ -2424,22 +1949,18 @@ export const NutrientGroups = {
             },
             {
                 food: getFood.oatmeal,
-                name: "Oatmeal",
                 dv: "18%"
             },
             {
                 food: getFood.brownRice,
-                name: "Brown Rice",
                 dv: "19%"
             },
             {
                 food: getFood.flaxSeeds,
-                name: "Flax Seeds",
                 dv: "19%"
             },
             {
                 food: getFood.quinoa,
-                name: "Quinoa",
                 dv: "34%"
             }
         ]
