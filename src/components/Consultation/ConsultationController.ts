@@ -224,10 +224,10 @@ export const getCurrentObservastion = async (req, res) => {
             const weekAndDay = `${currentObservastionData.currentObservastion[j].week} week ${Math.floor((diffDays % diffWeek) % 7)} days`
             currentObservastionData.currentObservastion[j].weekAndDays = weekAndDay
             currentObservastionData.currentObservastion[j].date = new Date(date)
-            currentObservastionData.currentObservastion[j].dating.usg.value.week = currentObservastionData.currentObservastion[j].week
-            currentObservastionData.currentObservastion[j].dating.usg.value.days = Math.floor((diffDays % diffWeek) % 7)
-            currentObservastionData.currentObservastion[j].dating.clinical.value.week = currentObservastionData.currentObservastion[j].week
-            currentObservastionData.currentObservastion[j].dating.clinical.value.days = Math.floor((diffDays % diffWeek) % 7)
+            currentObservastionData.currentObservastion[j].dating.usg.value.week = currentObservastionData.currentObservastion[j].dating.usg.value.week ? currentObservastionData.currentObservastion[j].dating.usg.value.week : currentObservastionData.currentObservastion[j].week
+            currentObservastionData.currentObservastion[j].dating.usg.value.days = currentObservastionData.currentObservastion[j].dating.usg.value.days ? currentObservastionData.currentObservastion[j].dating.usg.value.days : Math.floor((diffDays % diffWeek) % 7)
+            currentObservastionData.currentObservastion[j].dating.clinical.value.week = currentObservastionData.currentObservastion[j].dating.clinical.value.week ? currentObservastionData.currentObservastion[j].dating.clinical.value.week : currentObservastionData.currentObservastion[j].week
+            currentObservastionData.currentObservastion[j].dating.clinical.value.days = currentObservastionData.currentObservastion[j].dating.clinical.value.days ? currentObservastionData.currentObservastion[j].dating.clinical.value.days : Math.floor((diffDays % diffWeek) % 7)
 
         }
 

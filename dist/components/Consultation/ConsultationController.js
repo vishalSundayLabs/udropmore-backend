@@ -168,10 +168,10 @@ const getCurrentObservastion = (req, res) => __awaiter(void 0, void 0, void 0, f
             const weekAndDay = `${currentObservastionData.currentObservastion[j].week} week ${Math.floor((diffDays % diffWeek) % 7)} days`;
             currentObservastionData.currentObservastion[j].weekAndDays = weekAndDay;
             currentObservastionData.currentObservastion[j].date = new Date(date);
-            currentObservastionData.currentObservastion[j].dating.usg.value.week = currentObservastionData.currentObservastion[j].week;
-            currentObservastionData.currentObservastion[j].dating.usg.value.days = Math.floor((diffDays % diffWeek) % 7);
-            currentObservastionData.currentObservastion[j].dating.clinical.value.week = currentObservastionData.currentObservastion[j].week;
-            currentObservastionData.currentObservastion[j].dating.clinical.value.days = Math.floor((diffDays % diffWeek) % 7);
+            currentObservastionData.currentObservastion[j].dating.usg.value.week = currentObservastionData.currentObservastion[j].dating.usg.value.week ? currentObservastionData.currentObservastion[j].dating.usg.value.week : currentObservastionData.currentObservastion[j].week;
+            currentObservastionData.currentObservastion[j].dating.usg.value.days = currentObservastionData.currentObservastion[j].dating.usg.value.days ? currentObservastionData.currentObservastion[j].dating.usg.value.days : Math.floor((diffDays % diffWeek) % 7);
+            currentObservastionData.currentObservastion[j].dating.clinical.value.week = currentObservastionData.currentObservastion[j].dating.clinical.value.week ? currentObservastionData.currentObservastion[j].dating.clinical.value.week : currentObservastionData.currentObservastion[j].week;
+            currentObservastionData.currentObservastion[j].dating.clinical.value.days = currentObservastionData.currentObservastion[j].dating.clinical.value.days ? currentObservastionData.currentObservastion[j].dating.clinical.value.days : Math.floor((diffDays % diffWeek) % 7);
         }
         const currentDate = (0, UserController_1.getDayOrTimeFromDate)(new Date());
         const currentAppointment = yield AppointmentModel_1.default.findOne({ motherId: body.motherId, doctorId: body.doctorId, appointmentDateAndTime: { $gte: new Date(currentDate.fullDate), $lt: new Date(currentDate.nextDate) }, status: "CONFIRMED" }).sort({ createdAt: 1 });
