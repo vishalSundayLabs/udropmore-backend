@@ -1,4179 +1,2447 @@
-// export const NutrientGroups = {
+import { getFood } from "../../Constant/LeapScore/Food"
 
-// vitaminC: {
-//         value: "Vitamin C",
-//         veg: [
-//             {
-//                 name: "Guava",
-//                 size: {
-//                     value: 1,
-//                     unit: "Cup"
-//                 },
-//                 dv: "254%"
-//             },
-//             {
-//                 name: "Kiwi",
-//                 value: false,
-//                 size: {
-//                     value: 1,
-//                     unit: "Cup"
-//                 },
-//                 dv: "185%"
-//             },
-//             {
-//                 name: "Bell Peppers",
-//                 value: false,
-//                 size: {
-//                     value: 1,
-//                     unit: "Cup"
-//                 },
-//                 dv: "169%"
-//             },
-//             {
-//                 name: "Strawberries",
-//                 value: false,
-//                 size: {
-//                     value: 1,
-//                     unit: "Cup"
-//                 },
-//                 dv: "108%"
-//             },
-//             {
-//                 name: "Oranges",
-//                 value: false,
-//                 size: {
-//                     value: 1,
-//                     unit: "Cup"
-//                 },
-//                 dv: "106%"
-//             }
-//         ],
-//         nonVeg: []
-//     }
-// },
-// vitaminA: {
-//     veg: [
-//         {
-//             name: "Carrots",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "148%"
-//         },
-//         {
-//             name: "Sweet Potatoes",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "122%"
-//         },
-//         {
-//             name: "Spinach",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "105%"
-//         },
-//         {
-//             name: "Musk Melon",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "33%"
-//         },
-//         {
-//             name: "Lettuce",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "23%"
-//         }
-//     ]
-// },
-// {
-//     type: "Beta-carotene",
-//     veg: [
-//         {
-//             name: "Carrots",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "120%"
-//         },
-//         {
-//             name: "Sweet Potatoes",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "213%"
-//         },
-//         {
-//             name: "Spinach",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "105%"
-//         },
-//         {
-//             name: "Musk Melon",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "33%"
-//         },
-//         {
-//             name: "Lettuce",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "23%"
-//         }
-//     ]
-// },
-// {
-//     type: "Vitamin B1 Thiamin",
-//     veg: [
-//         {
-//             name: "Flax Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handfull"
-//             },
-//             dv: "39%"
-//         },
-//         {
-//             name: "Green Peas",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "35%"
-//         },
-//         {
-//             name: "Paneer",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "33%"
-//         },
-//         {
-//             name: "Brown Rice",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "30%"
-//         },
-//         {
-//             name: "Asparagus",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "24%"
-//         }
-//     ]
-// },
-// {
-//     type: "Vitamin B2 Riboflavin",
-//     veg: [
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "69%"
-//         },
-//         {
-//             name: "Mushrooms",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "38%"
-//         },
-//         {
-//             name: "Paneer",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "76%"
-//         },
-//         {
-//             name: "Spinach",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "33%"
-//         },
-//         {
-//             name: "Almonds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "25%"
-//         }
-//     ]
-// },
-// {
-//     type: "Vitamin B3 Niacin",
-//     veg: [
-//         {
-//             name: "Brown Rice",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "32%"
-//         },
-//         {
-//             name: "Mushrooms",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "47%"
-//         },
-//         {
-//             name: "Peanuts",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "25%"
-//         },
-//         {
-//             name: "Green Peas",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "33%"
-//         },
-//         {
-//             name: "Sweet Potatoes",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "15%"
-//         }
-//     ]
-// },
-// {
-//     type: "Vitamin B5 Pantothenic",
-//     veg: [
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "36%"
-//         },
-//         {
-//             name: "Mushrooms",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "38%"
-//         },
-//         {
-//             name: "Sunflower Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "40%"
-//         },
-//         {
-//             name: "Almonds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "25%"
-//         },
-//         {
-//             name: "Sweets Potatoes",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "26%"
-//         },
-//         {
-//             name: "Lentils",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "25%"
-//         }
-//     ]
-// },
-// {
-//     type: "Vitamin B6",
-//     veg: [
-//         {
-//             name: "Paneer",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "66%"
-//         },
-//         {
-//             name: "Potatoes",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "32%"
-//         },
-//         {
-//             name: "Sunflower Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "40%"
-//         },
-//         {
-//             name: "Bananas",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "32%"
-//         },
-//         {
-//             name: "Pistachio",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "28%"
-//         }
-//     ]
-// },
-// {
-//     type: "Vitamin B9 Folate",
-//     veg: [
-//         {
-//             name: "Edamame",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "121%"
-//         },
-//         {
-//             name: "Asparagus",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "67%"
-//         },
-//         {
-//             name: "Lettuce",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "16%"
-//         },
-//         {
-//             name: "Spinach",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "36%"
-//         },
-//         {
-//             name: "Brocolli",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "42%"
-//         },
-//         {
-//             name: "Sweet Potatoes",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "26%"
-//         },
-//         {
-//             name: "Lentils",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "90%"
-//         },
-//         {
-//             name: "Mangoes",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "28%"
-//         }
-//     ]
-// },
-// {
-//     type: "Vitamin B12",
-//     veg: [
-//         {
-//             name: "All Bran Wheat Flaks",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "325%"
-//         },
-//         {
-//             name: "Paneer",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "137%"
-//         },
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "108%"
-//         }
-//     ]
-// },
-// {
-//     type: "Choline",
-//     veg: [
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "15%"
-//         },
-//         {
-//             name: "Broccoli",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "11%"
-//         },
-//         {
-//             name: "Green Peas",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "9%"
-//         }
-//     ]
-// },
-// {
-//     type: "Vitamin E",
-//     veg: [
-//         {
-//             name: "Sunflower Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "49%"
-//         },
-//         {
-//             name: "Almonds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "49%"
-//         },
-//         {
-//             name: "Peanuts",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "9%"
-//         },
-//         {
-//             name: "Spinach",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "25%"
-//         },
-//         {
-//             name: "Kiwifruit",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "18%"
-//         },
-//         {
-//             name: "Broccoli",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "15%"
-//         }
-//     ]
-// },
-// {
-//     type: "Vitamin K",
-//     veg: [
-//         {
-//             name: "Cabbage",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "136%"
-//         },
-//         {
-//             name: "Asparagus",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "76%"
-//         },
-//         {
-//             name: "Brussel Sprouts",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "182%"
-//         },
-//         {
-//             name: "Broccoli",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "183%"
-//         },
-//         {
-//             name: "Kiwifruit",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "60%"
-//         },
-//         {
-//             name: "Lady Finger",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "53%"
-//         },
-//         {
-//             name: "Lettuce",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "47%"
-//         }
-//     ]
-// },
-// {
-//     type: "Magnesium",
-//     veg: [
-//         {
-//             name: "Cooked Spinach",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "37%"
-//         },
-//         {
-//             name: "Pumpkin Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "37%"
-//         },
-//         {
-//             name: "Broun Rice",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "20%"
-//         },
-//         {
-//             name: "Quinoa",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "28%"
-//         },
-//         {
-//             name: "Yogurt",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "11%"
-//         },
-//         {
-//             name: "Flax Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "27%"
-//         },
-//         {
-//             name: "Cashews",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "20%"
-//         },
-//         {
-//             name: "Almonds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "18%"
-//         }
-//     ]
-// },
-// {
-//     type: "Selenium",
-//     veg: [
-//         {
-//             name: "Brazil Nuts",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "990%"
-//         },
-//         {
-//             name: "Paneer",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "80%"
-//         },
-//         {
-//             name: "Oatmeal",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "23%"
-//         },
-//         {
-//             name: "Brown Rice",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "21%"
-//         },
-//         {
-//             name: "Sunflower Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "41%"
-//         },
-//         {
-//             name: "Chia Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "29%"
-//         },
-//         {
-//             name: "Flax Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "13%"
-//         }
-//     ]
-// },
-// {
-//     type: "Zinc",
-//     veg: [
-//         {
-//             name: "Cooked Spinach",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "12%"
-//         },
-//         {
-//             name: "Pumpkin Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "27%"
-//         },
-//         {
-//             name: "Cashews",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "14%"
-//         },
-//         {
-//             name: "Oatmeal",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "21%"
-//         },
-//         {
-//             name: "Chickpeas",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "23%"
-//         },
-//         {
-//             name: "Paneer",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "36%"
-//         },
-//         {
-//             name: "Lentils",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "23%"
-//         },
-//         {
-//             name: "Cereal Kalloggs Smart Start Strong",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "136%"
-//         }
-//     ]
-// },
-// {
-//     type: "Iron",
-//     veg: [
-//         {
-//             name: "All Bran Wheat Flaks",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "109%"
-//         },
-//         {
-//             name: "Apricots",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "42%"
-//         },
-//         {
-//             name: "Spinach",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "36%"
-//         },
-//         {
-//             name: "Quinoa",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "15%"
-//         },
-//         {
-//             name: "Mushrooms",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "15%"
-//         },
-//         {
-//             name: "Pumpkin Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "14%"
-//         }
-//     ]
-// },
-// {
-//     type: "Lycopene",
-//     veg: [
-//         {
-//             name: "Guava",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "6000%"
-//         },
-//         {
-//             name: "Tomatoes",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "500%"
-//         },
-//         {
-//             name: "Watermelon",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "5000%"
-//         },
-//         {
-//             name: "Grapefruit",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "500%"
-//         },
-//         {
-//             name: "Papaya",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "2000%"
-//         }
-//     ]
-// },
-// {
-//     type: "Calcium",
-//     veg: [
-//         {
-//             name: "Chia Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "14%"
-//         },
-//         {
-//             name: "Sesame Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "22%"
-//         },
-//         {
-//             name: "Almonds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "18%"
-//         },
-//         {
-//             name: "Paneer",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "132%"
-//         },
-//         {
-//             name: "Kale",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "13%"
-//         }
-//     ]
-// },
-// {
-//     type: "Copper",
-//     veg: [
-//         {
-//             name: "Paneer",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "106%"
-//         },
-//         {
-//             name: "Sweet Patatoes",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "79%"
-//         },
-//         {
-//             name: "Sesame Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "78%"
-//         },
-//         {
-//             name: "Cashews",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "70%"
-//         },
-//         {
-//             name: "Chickpeas",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "64%"
-//         }
-//     ]
-// },
-// {
-//     type: "Iodine",
-//     veg: [
-//         {
-//             name: "Iodised Salt",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "g"
-//             },
-//             dv: "51%"
-//         },
-//         {
-//             name: "Baked Potato With Peel",
-//             value: false,
-//             size: {
-//                 value: null,
-//                 unit: null
-//             },
-//             dv: "40%"
-//         },
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "37%"
-//         }
-//     ]
-// },
-// {
-//     type: "Potassium",
-//     veg: [
-//         {
-//             name: "Spinach",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "18%"
-//         },
-//         {
-//             name: "Lentils",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "16%"
-//         },
-//         {
-//             name: "Potatoes",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Medium"
-//             },
-//             dv: "20%"
-//         },
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "16%"
-//         },
-//         {
-//             name: "Mushrooms",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "12%"
-//         }
-//     ]
-// },
-// {
-//     type: "Phosphorus",
-//     veg: [
-//         {
-//             name: "Paneer",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "38%"
-//         },
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "33%"
-//         },
-//         {
-//             name: "Lentils",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "29%"
-//         },
-//         {
-//             name: "Pumpkin Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "28%"
-//         },
-//         {
-//             name: "Hemp Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "37%"
-//         },
-//         {
-//             name: "Quinoa",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "22%"
-//         },
-//         {
-//             name: "Brown Rice",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "12%"
-//         }
-//     ]
-// },
-// // Essential Amino Acids
-// {
-//     type: "Trytophan",
-//     veg: [
-//         {
-//             name: "Cheese",
-//             value: false,
-//             size: {
-//                 value: null,
-//                 unit: null
-//             },
-//             dv: null
-//         },
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "75%"
-//         },
-//         {
-//             name: "Flax Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "30%"
-//         },
-//         {
-//             name: "Peanuts",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "23%"
-//         },
-//         {
-//             name: "Pumpkin Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "58%"
-//         },
-//         {
-//             name: "Paneer",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "212%"
-//         },
-//         {
-//             name: "Edamame",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "149%"
-//         },
-//         {
-//             name: "Oatmeal",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "33%"
-//         }
-//     ]
-// },
-// {
-//     type: "Leucine",
-//     veg: [
-//         {
-//             name: "Paneer",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "128%"
-//         },
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "57%"
-//         },
-//         {
-//             name: "Pumpkin Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "87%"
-//         },
-//         {
-//             name: "Pistachio",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "17%"
-//         },
-//         {
-//             name: "Peanuts",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "16%"
-//         },
-//         {
-//             name: "Almonds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "15%"
-//         },
-//         {
-//             name: "Yogurt",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "52%"
-//         }
-//     ]
-// },
-// {
-//     type: "Isoleucine",
-//     veg: [
-//         {
-//             name: "Paneer",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "153%"
-//         },
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "61%"
-//         },
-//         {
-//             name: "Lentils",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "55%"
-//         },
-//         {
-//             name: "Pumpkin Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "26%"
-//         },
-//         {
-//             name: "Spinach",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "20%"
-//         },
-//         {
-//             name: "Sweet Potatoes",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "20%"
-//         },
-//         {
-//             name: "Hemp Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "26%"
-//         },
-//         {
-//             name: "Sunflower Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "20%"
-//         },
-//         {
-//             name: "Pistachio",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "19%"
-//         }
-//     ]
-// },
-// {
-//     type: "Threonine",
-//     veg: [
-//         {
-//             name: "Paneer",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "188%"
-//         },
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "67%"
-//         },
-//         {
-//             name: "Edamame",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "118%"
-//         },
-//         {
-//             name: "Kidney Beans",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "61%"
-//         },
-//         {
-//             name: "Lentils",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "55%"
-//         },
-//         {
-//             name: "Green Peas",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "31%"
-//         },
-//         {
-//             name: "Sweet Potatoes",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "24%"
-//         },
-//         {
-//             name: "Carrots",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "23%"
-//         }
-//     ]
-// },
-// {
-//     type: "Lysine",
-//     veg: [
-//         {
-//             name: "Paneer",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "106%"
-//         },
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "67%"
-//         },
-//         {
-//             name: "Edamame",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "91%"
-//         },
-//         {
-//             name: "Green Peas",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "24%"
-//         },
-//         {
-//             name: "Sweet Potatoes",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "12%"
-//         },
-//         {
-//             name: "Spinach",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "16%"
-//         }
-//     ]
-// },
-// {
-//     type: "Methionine",
-//     veg: [
-//         {
-//             name: "Paneer",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "73%"
-//         },
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "59%"
-//         },
-//         {
-//             name: "Edamame",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "118%"
-//         },
-//         {
-//             name: "Kidney Beans",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "35%"
-//         },
-//         {
-//             name: "Lentils",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "55%"
-//         },
-//         {
-//             name: "Green Peas",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "18%"
-//         },
-//         {
-//             name: "Sweet Potatoes",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "17%"
-//         },
-//         {
-//             name: "Carrots",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "23%"
-//         },
-//         {
-//             name: "Spinach",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "14%"
-//         }
-//     ]
-// },
-// {
-//     type: "Cystine",
-//     veg: [
-//         {
-//             name: "Paneer",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "50%"
-//         },
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "67%"
-//         },
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "59%"
-//         },
-//         {
-//             name: "Lentils",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "81%"
-//         },
-//         {
-//             name: "Carrots",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "21%"
-//         },
-//         {
-//             name: "Cashews",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "39%"
-//         }
-//     ]
-// },
-// {
-//     type: "Valine",
-//     veg: [
-//         {
-//             name: "Paneer",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "120%"
-//         },
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "60%"
-//         },
-//         {
-//             name: "Edamame",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "79%"
-//         },
-//         {
-//             name: "Kidney Beans",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "49%"
-//         },
-//         {
-//             name: "Lentils",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "49%"
-//         },
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "67%"
-//         },
-//         {
-//             name: "Green Peas",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "20%"
-//         },
-//         {
-//             name: "Sweet Potatoes",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "18%"
-//         },
-//         {
-//             name: "Pistachio",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "20%"
-//         },
-//         {
-//             name: "Spinach",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "17%"
-//         },
-//         {
-//             name: "Cashews",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "16%"
-//         }
-//     ]
-// },
-// {
-//     type: "Phenylalanine",
-//     veg: [
-//         {
-//             name: "Paneer",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "240%"
-//         },
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "60%"
-//         },
-//         {
-//             name: "Edamame",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "171%"
-//         },
-//         {
-//             name: "Kidney Beans",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "103%"
-//         },
-//         {
-//             name: "Lentils",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "101%"
-//         },
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "98%"
-//         },
-//         {
-//             name: "Green Peas",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "36%"
-//         },
-//         {
-//             name: "Sweet Potatoes",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "35%"
-//         },
-//         {
-//             name: "Pistachio",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "37%"
-//         },
-//         {
-//             name: "Spinach",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "28%"
-//         },
-//         {
-//             name: "Broccoli",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "21%"
-//         },
-//         {
-//             name: "Almonds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "31%"
-//         }
-//     ]
-// },
-// {
-//     type: "Tyrosine",
-//     veg: [
-//         {
-//             name: "Paneer",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "202%"
-//         },
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "60%"
-//         },
-//         {
-//             name: "Edamame",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "124%"
-//         },
-//         {
-//             name: "Kidney Beans",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "49%"
-//         },
-//         {
-//             name: "Lentils",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "49%"
-//         },
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "95%"
-//         },
-//         {
-//             name: "Green Peas",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "20%"
-//         },
-//         {
-//             name: "Sweet Potatoes",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "24%"
-//         },
-//         {
-//             name: "Pistachio",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "20%"
-//         },
-//         {
-//             name: "Spinach",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "23%"
-//         },
-//         {
-//             name: "Cashews",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "16%"
-//         },
-//         {
-//             name: "Peanuts",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "31%"
-//         },
-//         {
-//             name: "lady Finger",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "15%"
-//         }
-//     ]
-// },
-// {
-//     type: "Histidine",
-//     veg: [
-//         {
-//             name: "Paneer",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "155%"
-//         },
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "71%"
-//         },
-//         {
-//             name: "Edamame",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "79%"
-//         },
-//         {
-//             name: "Kidney Beans",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "67%"
-//         },
-//         {
-//             name: "Lentils",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "72%"
-//         },
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "67%"
-//         },
-//         {
-//             name: "Green Peas",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "24%"
-//         },
-//         {
-//             name: "Sweet Potatoes",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "18%"
-//         },
-//         {
-//             name: "Pistachio",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "20%"
-//         },
-//         {
-//             name: "Spinach",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "17%"
-//         },
-//         {
-//             name: "Cashews",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "16%"
-//         },
-//         {
-//             name: "Almonds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "22%"
-//         },
-//         {
-//             name: "Pistachio",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "22%"
-//         }
-//     ]
-// }
-// ]
+export const NutrientGroups = {
 
-// export const nutrientGroupNonVeg = [{
-//     type: "Vitamin C",
-//     nonVeg: [
-//         {
-//             name: "Papaya",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "98%"
-//         },
-//         {
-//             name: "Broccoli",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "90%"
-//         },
-//         {
-//             name: "Tomatoes",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "61%"
-//         }
-//     ]
-// },
-// {
-//     type: "Vitamin A",
-//     nonVeg: [
-//         {
-//             name: "Red Bell Pappers",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "22%"
-//         },
-//         {
-//             name: "Brocolli",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "13%"
-//         },
-//         {
-//             name: "Dried Apricots",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "20%"
-//         }
-//     ]
-// },
-// {
-//     type: "Beta-carotene",
-//     nonVeg: [
-//         {
-//             name: "Red Bell Pappers",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "22%"
-//         },
-//         {
-//             name: "Brocolli",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "13%"
-//         },
-//         {
-//             name: "Dried Apricots",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "20%"
-//         }
-//     ]
-// },
-// {
-//     type: "Vitamin B1 Thiamin",
-//     nonVeg: [
-//         {
-//             name: "Pork Chops",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Chop"
-//             },
-//             dv: "96%"
-//         },
-//         {
-//             name: "Fish Salmon",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Fillet"
-//             },
-//             dv: "48%"
-//         },
-//         {
-//             name: "Mussels",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "21%"
-//         }
-//     ]
-// },
-// {
-//     type: "Vitamin B2 Riboflavin",
-//     nonVeg: [
-//         {
-//             name: "Beef",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Steak"
-//             },
-//             dv: "112%"
-//         },
-//         {
-//             name: "Fish Salmon",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Fillet"
-//             },
-//             dv: "64%"
-//         },
-//         {
-//             name: "Pork Chops",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Chop"
-//             },
-//             dv: "36%"
-//         },
-//         {
-//             name: "Lean Roast Ham",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "36%"
-//         },
-//         {
-//             name: "Eggs",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Large"
-//             },
-//             dv: "20%"
-//         }
-//     ]
-// },
-// {
-//     type: "Vitamin B3 Niacin",
-//     nonVeg: [
-//         {
-//             name: "Chicken Breast",
-//             value: false,
-//             size: {
-//                 value: 200,
-//                 unit: "g"
-//             },
-//             dv: "100%"
-//         },
-//         {
-//             name: "Fish Salmon",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Fillet"
-//             },
-//             dv: "108%"
-//         },
-//         {
-//             name: "Pork Chops",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Chop"
-//             },
-//             dv: "85%"
-//         },
-//         {
-//             name: "Beef",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Steak"
-//             },
-//             dv: "60%"
-//         }
-//     ]
-// },
-// {
-//     type: "Vitamin B5 Pantothenic",
-//     nonVeg: [
-//         {
-//             name: "Chicken Breast",
-//             value: false,
-//             size: {
-//                 value: 200,
-//                 unit: "g"
-//             },
-//             dv: "54%"
-//         },
-//         {
-//             name: "Fish Salmon",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Fillet"
-//             },
-//             dv: "65%"
-//         },
-//         {
-//             name: "Pork Chops",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Chop"
-//             },
-//             dv: "34%"
-//         },
-//         {
-//             name: "Beef",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Steak"
-//             },
-//             dv: "45%"
-//         }
-//     ]
-// },
-// {
-//     type: "Vitamin B6",
-//     nonVeg: [
-//         {
-//             name: "Chicken Breast",
-//             value: false,
-//             size: {
-//                 value: 200,
-//                 unit: "g"
-//             },
-//             dv: "92%"
-//         },
-//         {
-//             name: "Fish Salmon",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Fillet"
-//             },
-//             dv: "94%"
-//         },
-//         {
-//             name: "Pork Chops",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Chop"
-//             },
-//             dv: "54%"
-//         },
-//         {
-//             name: "Beef",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Steak"
-//             },
-//             dv: "48%"
-//         }
-//     ]
-// },
-// {
-//     type: "Vitamin B9 Folate",
-//     nonVeg: [
-//         {
-//             name: "Oranges",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "14%"
-//         }
-//     ]
-// },
-// {
-//     type: "Vitamin B12",
-//     nonVeg: [
-//         {
-//             name: "Paneer",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "137%"
-//         },
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "108%"
-//         },
-//         {
-//             name: "Eggs",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Large"
-//             },
-//             dv: "23%"
-//         },
-//         {
-//             name: "Beef",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Steak"
-//             },
-//             dv: "533%"
-//         },
-//         {
-//             name: "Crab",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Crab Leg"
-//             },
-//             dv: "642%"
-//         },
-//         {
-//             name: "Clams",
-//             value: false,
-//             size: {
-//                 value: 75,
-//                 unit: "g"
-//             },
-//             dv: "3502%"
-//         }
-//     ]
-// },
-// {
-//     type: "Choline",
-//     nonVeg: [
-//         {
-//             name: "Chicken Breast",
-//             value: false,
-//             size: {
-//                 value: 175,
-//                 unit: "g"
-//             },
-//             dv: "36%"
-//         },
-//         {
-//             name: "Fish Salmon",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Fillet"
-//             },
-//             dv: "35%"
-//         },
-//         {
-//             name: "Pork Chops",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Chop"
-//             },
-//             dv: "28%"
-//         },
-//         {
-//             name: "Eggs",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Large"
-//             },
-//             dv: "27"
-//         },
-//         {
-//             name: "Beef",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Steak"
-//             },
-//             dv: "24%"
-//         },
-//         {
-//             name: "Shrimps",
-//             value: false,
-//             size: {
-//                 value: 12,
-//                 unit: "Large"
-//             },
-//             dv: "21%"
-//         }
-//     ]
-// },
-// {
-//     type: "Vitamin E",
-//     nonVeg: [
-//         {
-//             name: "Shrimps",
-//             value: false,
-//             size: {
-//                 value: 12,
-//                 unit: "Large"
-//             },
-//             dv: "12%"
-//         }
-//     ]
-// },
-// {
-//     type: "Vitamin K",
-//     nonVeg: []
-// },
-// {
-//     type: "Magnesium",
-//     nonVeg: [
-//         {
-//             name: "Bananas",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "10%"
-//         },
-//         {
-//             name: "Hemp Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "47%"
-//         },
-//         {
-//             name: "Cashews",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "20%"
-//         },
-//         {
-//             name: "Walnuts",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "12%"
-//         },
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "12%"
-//         }
-//     ]
-// },
-// {
-//     type: "Selenium",
-//     nonVeg: [
-//         {
-//             name: "Oysters",
-//             value: false,
-//             size: {
-//                 value: 6,
-//                 unit: "units"
-//             },
-//             dv: "334%"
-//         },
-//         {
-//             name: "Pork Chops",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Chop"
-//             },
-//             dv: "147%"
-//         },
-//         {
-//             name: "Beef",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Steak"
-//             },
-//             dv: "111%"
-//         },
-//         {
-//             name: "Chicken Breast",
-//             value: false,
-//             size: {
-//                 value: 175,
-//                 unit: "g"
-//             },
-//             dv: "99%"
-//         },
-//         {
-//             name: "Shrimps",
-//             value: false,
-//             size: {
-//                 value: 12,
-//                 unit: "Large"
-//             },
-//             dv: "77%"
-//         }
-//     ]
-// },
-// {
-//     type: "Zinc",
-//     nonVeg: [
-//         {
-//             name: "Oysters",
-//             value: false,
-//             size: {
-//                 value: 6,
-//                 unit: "units"
-//             },
-//             dv: "93%"
-//         },
-//         {
-//             name: "Clams",
-//             value: false,
-//             size: {
-//                 value: 6,
-//                 unit: "units"
-//             },
-//             dv: "47%"
-//         },
-//         {
-//             name: "Beef",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Steak"
-//             },
-//             dv: "52%"
-//         },
-//         {
-//             name: "Chicken",
-//             value: false,
-//             size: {
-//                 value: 175,
-//                 unit: "g"
-//             },
-//             dv: "49%"
-//         },
-//         {
-//             name: "Pork Chops",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Chop"
-//             },
-//             dv: "32%"
-//         },
-//         {
-//             name: "Yogurt",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "22%"
-//         },
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "16%"
-//         }
-//     ]
-// },
-// {
-//     type: "Iron",
-//     nonVeg: [
-//         {
-//             name: "Oysters",
-//             value: false,
-//             size: {
-//                 value: 6,
-//                 unit: "units"
-//             },
-//             dv: "43%"
-//         },
-//         {
-//             name: "Beef",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Steak"
-//             },
-//             dv: "52%"
-//         },
-//         {
-//             name: "Chia Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "12%"
-//         },
-//         {
-//             name: "Sesame Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "14%"
-//         },
-//         {
-//             name: "Hemp Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "13%"
-//         }
-//     ]
-// },
-// {
-//     type: "Lycopene",
-//     nonVeg: []
-// },
-// {
-//     type: "Calcium",
-//     nonVeg: [
-//         {
-//             name: "Milk",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Glass"
-//             },
-//             dv: "46%"
-//         },
-//         {
-//             name: "Yogurt",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "38%"
-//         },
-//         {
-//             name: "Spinach",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "16%"
-//         },
-//         {
-//             name: "Lady Finger",
-//             value: false,
-//             size: {
-//                 value: 175,
-//                 unit: "g"
-//             },
-//             dv: "9%"
-//         }
-//     ]
-// },
-// {
-//     type: "Copper",
-//     nonVeg: [
-//         {
-//             name: "Oysters",
-//             value: false,
-//             size: {
-//                 value: 6,
-//                 unit: "units"
-//             },
-//             dv: "419%"
-//         },
-//         {
-//             name: "Mushrooms",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "144%"
-//         },
-//         {
-//             name: "Fish Salmon",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Fillet"
-//             },
-//             dv: "61%"
-//         }
-//     ]
-// },
-// {
-//     type: "Iodine",
-//     nonVeg: [
-//         {
-//             name: "Seaweed",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "g"
-//             },
-//             dv: "1000%"
-//         },
-//         {
-//             name: "Shrimps",
-//             value: false,
-//             size: {
-//                 value: null,
-//                 unit: null
-//             },
-//             dv: "27%"
-//         }
-//     ]
-// },
-// {
-//     type: "Potassium",
-//     nonVeg: [
-//         {
-//             name: "Salmon",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Fillet"
-//             },
-//             dv: "23%"
-//         },
-//         {
-//             name: "Bananas",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "11%"
-//         },
-//         {
-//             name: "Tomatoes",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "11%"
-//         }
-//     ]
-// },
-// {
-//     type: "Phosphorus",
-//     nonVeg: [
-//         {
-//             name: "Pork Chops",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Chop"
-//             },
-//             dv: "41%"
-//         },
-//         {
-//             name: "Chicken Breast",
-//             value: false,
-//             size: {
-//                 value: 175,
-//                 unit: "g"
-//             },
-//             dv: "33%"
-//         },
-//         {
-//             name: "Beef",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Streak"
-//             },
-//             dv: "27%"
-//         }
-//     ]
-// },
-// // Essential Amino Acids
-// {
-//     type: "Trytophan",
-//     nonVeg: [
-//         {
-//             name: "Chicken",
-//             value: false,
-//             size: {
-//                 value: 175,
-//                 unit: "g"
-//             },
-//             dv: "245%"
-//         },
-//         {
-//             name: "Pork Chops",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Chop"
-//             },
-//             dv: "224%"
-//         },
-//         {
-//             name: "Beef",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Steak"
-//             },
-//             dv: "227%"
-//         },
-//         {
-//             name: "Cashews",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "27%"
-//         },
-//         {
-//             name: "Pistachio",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "27%"
-//         },
-//         {
-//             name: "Eggs",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Large"
-//             },
-//             dv: "27%"
-//         }
-//     ]
-// },
-// {
-//     type: "Leucine",
-//     nonVeg: [
-//         {
-//             name: "Chicken",
-//             value: false,
-//             size: {
-//                 value: 175,
-//                 unit: "g"
-//             },
-//             dv: "189%"
-//         },
-//         {
-//             name: "Beef",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Steak"
-//             },
-//             dv: "183%"
-//         },
-//         {
-//             name: "Pork Chops",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Chop"
-//             },
-//             dv: "165%"
-//         },
-//         {
-//             name: "Eggs",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Large"
-//             },
-//             dv: "20%"
-//         }
-//     ]
-// },
-// {
-//     type: "Isoleucine",
-//     nonVeg: [
-//         {
-//             name: "Beef",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Steak"
-//             },
-//             dv: "192%"
-//         },
-//         {
-//             name: "Chicken Breast",
-//             value: false,
-//             size: {
-//                 value: 175,
-//                 unit: "g"
-//             },
-//             dv: "191%"
-//         },
-//         {
-//             name: "Pork Chops",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Chop"
-//             },
-//             dv: "178%"
-//         },
-//         {
-//             name: "Quinoa",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "21%"
-//         },
-//         {
-//             name: "Flax Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "18%"
-//         },
-//         {
-//             name: "Peanuts",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "17%"
-//         },
-//         {
-//             name: "Oatmeal",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "19%"
-//         },
-//         {
-//             name: "Yogurt",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "55%"
-//         }
-//     ]
-// },
-// {
-//     type: "Threonine",
-//     nonVeg: [
-//         {
-//             name: "Beef",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Steak"
-//             },
-//             dv: "258%"
-//         },
-//         {
-//             name: "Pork Chops",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Chop"
-//             },
-//             dv: "221%"
-//         },
-//         {
-//             name: "Chicken Breast",
-//             value: false,
-//             size: {
-//                 value: 175,
-//                 unit: "g"
-//             },
-//             dv: "233%"
-//         },
-//         {
-//             name: "Yogurt",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "55%"
-//         },
-//         {
-//             name: "Eggs",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Large"
-//             },
-//             dv: "29%"
-//         },
-//         {
-//             name: "Pumpkin Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "26%"
-//         },
-//         {
-//             name: "Hemp Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "34%"
-//         },
-//         {
-//             name: "Sunflower Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "21%"
-//         },
-//         {
-//             name: "Quinoa",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "23%"
-//         },
-//         {
-//             name: "Oatmeal",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "21%"
-//         }
-//     ]
-// },
-// {
-//     type: "Lysine",
-//     nonVeg: [
-//         {
-//             name: "Beef",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Steak"
-//             },
-//             dv: "268%"
-//         },
-//         {
-//             name: "Pork Chops",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Chop"
-//             },
-//             dv: "223%"
-//         },
-//         {
-//             name: "Chicken Breast",
-//             value: false,
-//             size: {
-//                 value: 175,
-//                 unit: "g"
-//             },
-//             dv: "250%"
-//         },
-//         {
-//             name: "Yogurt",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "60%"
-//         },
-//         {
-//             name: "Eggs",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Large"
-//             },
-//             dv: "22%"
-//         },
-//         {
-//             name: "Crab",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Crab Leg"
-//             },
-//             dv: "107%"
-//         },
-//         {
-//             name: "Pumpkin Seeds",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Handful"
-//             },
-//             dv: "26%"
-//         },
-//         {
-//             name: "Quinoa",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "21%"
-//         },
-//         {
-//             name: "Oatmeal",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Cup"
-//             },
-//             dv: "15%"
-//         }
-//     ]
-// },
-// {
-//     type: "Methionine",
-//     nonVeg:[
-//         {
-//             name: "Beef",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Steak"
-//             },
-//             dv: "211%"
-//         },
-//         {
-//             name: "Pork Chops",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Chop"
-//             },
-//             dv: "198%"
-//         },
-//         {
-//             name:"Chicken Breast",
-//             value:false,
-//             size:{
-//                 value:175,
-//                 unit:"g"
-//             },
-//             dv:"195%"
-//         },
-//         {
-//             name:"Yogurt",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Cup"
-//             },
-//             dv:"57%"
-//         },
-//         {
-//             name:"Eggs",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Large"
-//             },
-//             dv:"27%"
-//         },
-//         {
-//             name:"Chia Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"23%"
-//         },
-//         {
-//             name:"Pumpkin Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"23%"
-//         },
-//         {
-//             name:"Hemp Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"36%"
-//         },
-//         {
-//             name:"Sunflower Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"16%"
-//         },
-//         {
-//             name:"Quinoa",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Cup"
-//             },
-//             dv:"24%"
-//         },
-//         {
-//             name:"Oatmeal",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Cup"
-//             },
-//             dv:"21%"
-//         },
-//         {
-//             name:"Sesame Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"22%"
-//         },
-//         {
-//             name:"Crab",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Crab Leg"
-//             },
-//             dv:"100%"
-//         },
-//         {
-//             name:"Shrimps",
-//             value:false,
-//             size:{
-//                 value:12,
-//                 unit:"Large"
-//             },
-//             dv:"78%"
-//         }
-//     ]
-// },
-// {
-//     type: "Cystine",
-//     nonVeg:[
-//         {
-//             name: "Beef",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Steak"
-//             },
-//             dv: "204%"
-//         },
-//         {
-//             name: "Pork Chops",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Chop"
-//             },
-//             dv: "207%"
-//         },
-//         {
-//             name:"Chicken Breast",
-//             value:false,
-//             size:{
-//                 value:175,
-//                 unit:"g"
-//             },
-//             dv:"199%"
-//         },
-//         {
-//             name:"Eggs",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Large"
-//             },
-//             dv:"51%"
-//         },
-//         {
-//             name:"Chia Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"40%"
-//         },
-//         {
-//             name:"Pumpkin Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"23%"
-//         },
-//         {
-//             name:"Hemp Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"66%"
-//         },
-//         {
-//             name:"Sunflower Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"38%"
-//         },
-//         {
-//             name:"Quinoa",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Cup"
-//             },
-//             dv:"24%"
-//         },
-//         {
-//             name:"Oatmeal",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Cup"
-//             },
-//             dv:"79%"
-//         },
-//         {
-//             name:"Sesame Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"34%"
-//         }
-//     ]
-// },
-// {
-//     type: "Valine",
-//     nonVeg:[
-//         {
-//             name: "Beef",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Steak"
-//             },
-//             dv: "156%"
-//         },
-//         {
-//             name: "Pork Chops",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Chop"
-//             },
-//             dv: "146%"
-//         },
-//         {
-//             name:"Chicken Breast",
-//             value:false,
-//             size:{
-//                 value:175,
-//                 unit:"g"
-//             },
-//             dv:"155%"
-//         },
-//         {
-//             name:"Yogurt",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Cup"
-//             },
-//             dv:"64%"
-//         },
-//         {
-//             name:"Eggs",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Large"
-//             },
-//             dv:"21%"
-//         },
-//         {
-//             name:"Chia Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"15%"
-//         },
-//         {
-//             name:"Pumpkin Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"24%"
-//         },
-//         {
-//             name:"Hemp Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"28%"
-//         },
-//         {
-//             name:"Sunflower Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"20%"
-//         },
-//         {
-//             name:"Brown Rice",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Cup"
-//             },
-//             dv:"17%"
-//         },
-//         {
-//             name:"Oatmeal",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Cup"
-//             },
-//             dv:"21%"
-//         },
-//         {
-//             name:"Flax Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"17%"
-//         },
-//         {
-//             name:"Millets",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Cup"
-//             },
-//             dv:"18%"
-//         }
-//     ]
-// },
-// {
-//     type: "Phyenylalanine",
-//     nonVeg:[
-//         {
-//             name: "Beef",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Steak"
-//             },
-//             dv: "262%"
-//         },
-//         {
-//             name: "Pork Chops",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Chop"
-//             },
-//             dv: "250%"
-//         },
-//         {
-//             name:"Chicken Breast",
-//             value:false,
-//             size:{
-//                 value:175,
-//                 unit:"g"
-//             },
-//             dv:"251%"
-//         },
-//         {
-//             name:"Yogurt",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Cup"
-//             },
-//             dv:"88%"
-//         },
-//         {
-//             name:"Eggs",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Large"
-//             },
-//             dv:"21%"
-//         },
-//         {
-//             name:"Chia Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"33%"
-//         },
-//         {
-//             name:"Pumpkin Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"56%"
-//         },
-//         {
-//             name:"Hemp Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"47%"
-//         },
-//         {
-//             name:"Sunflower Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"37%"
-//         },
-//         {
-//             name:"Quinoa",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Cup"
-//             },
-//             dv:"39%"
-//         },
-//         {
-//             name:"Oatmeal",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Cup"
-//             },
-//             dv:"38%"
-//         },
-//         {
-//             name:"Brown Rice",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Cup"
-//             },
-//             dv:"31%"
-//         },
-//         {
-//             name:"Flax Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"17%"
-//         },
-//         {
-//             name:"Shrimps",
-//             value:false,
-//             size:{
-//                 value:12,
-//                 unit:"Large"
-//             },
-//             dv:"78%"
-//         }
-//     ]
-// },
-// {
-//     type: "Tyrosine",
-//     nonVeg:[
-//         {
-//             name: "Beef",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Steak"
-//             },
-//             dv: "248%"
-//         },
-//         {
-//             name: "Pork Chops",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Chop"
-//             },
-//             dv: "239%"
-//         },
-//         {
-//             name:"Chicken Breast",
-//             value:false,
-//             size:{
-//                 value:175,
-//                 unit:"g"
-//             },
-//             dv:"224%"
-//         },
-//         {
-//             name:"Yogurt",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Cup"
-//             },
-//             dv:"49%"
-//         },
-//         {
-//             name:"Eggs",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Large"
-//             },
-//             dv:"29%"
-//         },
-//         {
-//             name:"Chia Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"18%"
-//         },
-//         {
-//             name:"Pumpkin Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"35%"
-//         },
-//         {
-//             name:"Hemp Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"41%"
-//         },
-//         {
-//             name:"Sunflower Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"18%"
-//         },
-//         {
-//             name:"Salmon",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Fillet"
-//             },
-//             dv:"235%"
-//         },
-//         {
-//             name:"Oatmeal",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Cup"
-//             },
-//             dv:"27%"
-//         },
-//         {
-//             name:"Sesame Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Cup"
-//             },
-//             dv:"23%"
-//         },
-//         {
-//             name:"Brown Rice",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Cup"
-//             },
-//             dv:"19%"
-//         },
-//         {
-//             name:"Millets",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Cup"
-//             },
-//             dv:"21%"
-//         }
-//     ]
-// },
-// {
-//     type: "Histidine",
-//     nonVeg:[
-//         {
-//             name: "Beef",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Steak"
-//             },
-//             dv: "314%"
-//         },
-//         {
-//             name: "Pork Chops",
-//             value: false,
-//             size: {
-//                 value: 1,
-//                 unit: "Chop"
-//             },
-//             dv: "318%"
-//         },
-//         {
-//             name:"Chicken Breast",
-//             value:false,
-//             size:{
-//                 value:175,
-//                 unit:"g"
-//             },
-//             dv:"290%"
-//         },
-//         {
-//             name:"Yogurt",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Cup"
-//             },
-//             dv:"50%"
-//         },
-//         {
-//             name:"Eggs",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Large"
-//             },
-//             dv:"21%"
-//         },
-//         {
-//             name:"Chia Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"22%"
-//         },
-//         {
-//             name:"Pumpkin Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"31%"
-//         },
-//         {
-//             name:"Hemp Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"39%"
-//         },
-//         {
-//             name:"Sunflower Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"22%"
-//         },
-//         {
-//             name:"Salmon",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Fillet"
-//             },
-//             dv:"182%"
-//         },
-//         {
-//             name:"Oatmeal",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Cup"
-//             },
-//             dv:"18%"
-//         },
-//         {
-//             name:"Brown Rice",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Cup"
-//             },
-//             dv:"19%"
-//         },
-//         {
-//             name:"Flax Seeds",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Handful"
-//             },
-//             dv:"19%"
-//         },
-//         {
-//             name:"Quinoa",
-//             value:false,
-//             size:{
-//                 value:1,
-//                 unit:"Cup"
-//             },
-//             dv:"34%"
-//         }
-//     ]
-// }
-// ]
+    vitaminC: {
+        name: "Vitamin C",
+        veg: [
+            {
+                food: getFood.guava,
+                dv: "254%"
+            },
+            {
+                food: getFood.kiwi,
+                dv: "185%"
+            },
+            {
+                food: getFood.bellPappers,
+                dv: "169%"
+            },
+            {
+                food: getFood.strawberries,
+                dv: "108%"
+            },
+            {
+                food: getFood.oranges,
+                dv: "106%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.papaya,
+                dv: "98%"
+            },
+            {
+                food: getFood.broccoli,
+                dv: "90%"
+            },
+            {
+                food: getFood.tomatoes,
+                dv: "61%"
+            }
+        ]
+
+    },
+    vitaminA: {
+        name: "Vitamin A",
+        veg: [
+            {
+                food: getFood.carrots,
+                dv: "148%"
+            },
+            {
+                food: getFood.sweetPotatoes,
+                dv: "122%"
+            },
+            {
+                food: getFood.spinach,
+                dv: "105%"
+            },
+            {
+                food: getFood.muskMelon,
+                dv: "33%"
+            },
+            {
+                food: getFood.lettuce,
+                dv: "23%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.redBellPappers,
+                dv: "22%"
+            },
+            {
+                food: getFood.brocolli,
+                dv: "13%"
+            },
+            {
+                food: getFood.driedApricots,
+                dv: "20%"
+            }
+        ]
+    },
+    betaCarotene: {
+        type: "Beta-carotene",
+        veg: [
+            {
+                food: getFood.carrots,
+                dv: "120%"
+            },
+            {
+                food: getFood.sweetPotatoes,
+                dv: "213%"
+            },
+            {
+                food: getFood.spinach,
+                dv: "105%"
+            },
+            {
+                food: getFood.muskMelon,
+                dv: "33%"
+            },
+            {
+                food: getFood.lettuce,
+                dv: "23%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.redBellPappers,
+                dv: "22%"
+            },
+            {
+                food: getFood.brocolli,
+                dv: "13%"
+            },
+            {
+                food: getFood.driedApricots,
+                dv: "20%"
+            }
+        ]
+    },
+    vitaminB1Thiamin: {
+        type: "Vitamin B1 Thiamin",
+        veg: [
+            {
+                food: getFood.flaxSeeds,
+                dv: "39%"
+            },
+            {
+                food: getFood.greenPeas,
+                dv: "35%"
+            },
+            {
+                food: getFood.paneer,
+                dv: "33%"
+            },
+            {
+                food: getFood.brownRice,
+                dv: "30%"
+            },
+            {
+                food: getFood.asparagus,
+                dv: "24%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.porkChops,
+                dv: "96%"
+            },
+            {
+                food: getFood.fishSalmon,
+                dv: "48%"
+            },
+            {
+                food: getFood.mussels,
+                dv: "21%"
+            }
+        ]
+    },
+    vitaminB2Riboflavin: {
+        type: "Vitamin B2 Riboflavin",
+        veg: [
+            {
+                food: getFood.milk,
+                dv: "69%"
+            },
+            {
+                food: getFood.mushrooms,
+                dv: "38%"
+            },
+            {
+                food: getFood.paneer,
+                dv: "76%"
+            },
+            {
+                food: getFood.spinach,
+                dv: "33%"
+            },
+            {
+                food: getFood.almonds,
+                dv: "25%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.beef,
+                dv: "112%"
+            },
+            {
+                food: getFood.fishSalmon,
+                dv: "64%"
+            },
+            {
+                food: getFood.porkChops,
+                dv: "36%"
+            },
+            {
+                food: getFood.leanRoastHam,
+                dv: "36%"
+            },
+            {
+                food: getFood.eggs,
+                dv: "20%"
+            }
+        ]
+    },
+    vitaminB3Niacin: {
+        type: "Vitamin B3 Niacin",
+        veg: [
+            {
+                food: getFood.brownRice,
+                dv: "32%"
+            },
+            {
+                food: getFood.mushrooms,
+                dv: "47%"
+            },
+            {
+                food: getFood.peanuts,
+                dv: "25%"
+            },
+            {
+                food: getFood.greenPeas,
+                dv: "33%"
+            },
+            {
+                food: getFood.sweetPotatoes,
+                dv: "15%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.chickenBreast,
+                dv: "100%"
+            },
+            {
+                food: getFood.fishSalmon,
+                dv: "108%"
+            },
+            {
+                food: getFood.porkChops,
+                dv: "85%"
+            },
+            {
+                food: getFood.beef,
+                dv: "60%"
+            }
+        ]
+    },
+    vitaminB5Pantothenic: {
+        type: "Vitamin B5 Pantothenic",
+        veg: [
+            {
+                food: getFood.milk,
+                dv: "36%"
+            },
+            {
+                food: getFood.mushrooms,
+                dv: "38%"
+            },
+            {
+                food: getFood.sunflowerSeeds,
+                dv: "40%"
+            },
+            {
+                food: getFood.almonds,
+                dv: "25%"
+            },
+            {
+                food: getFood.sweetPotatoes,
+                dv: "26%"
+            },
+            {
+                food: getFood.lentils,
+                dv: "25%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.chickenBreast,
+                dv: "54%"
+            },
+            {
+                food: getFood.fishSalmon,
+                dv: "65%"
+            },
+            {
+                food: getFood.porkChops,
+                dv: "34%"
+            },
+            {
+                food: getFood.beef,
+                dv: "45%"
+            }
+        ]
+    },
+    vitaminB6: {
+        type: "Vitamin B6",
+        veg: [
+            {
+                food: getFood.paneer,
+                name: "Paneer",
+                dv: "66%"
+            },
+            {
+                food: getFood.potatoes,
+                name: "Potatoes",
+                dv: "32%"
+            },
+            {
+                food: getFood.sunflowerSeeds,
+                dv: "40%"
+            },
+            {
+                food: getFood.bananas,
+                name: "Bananas",
+                dv: "32%"
+            },
+            {
+                food: getFood.pistachio,
+                name: "Pistachio",
+                dv: "28%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.chickenBreast,
+                dv: "92%"
+            },
+            {
+                food: getFood.fishSalmon,
+                dv: "94%"
+            },
+            {
+                food: getFood.porkChops,
+                dv: "54%"
+            },
+            {
+                food: getFood.beef,
+                dv: "48%"
+            }
+        ]
+    },
+    vitaminB9Folate: {
+        type: "Vitamin B9 Folate",
+        veg: [
+            {
+                food: getFood.edamame,
+                name: "Edamame",
+                dv: "121%"
+            },
+            {
+                food: getFood.asparagus,
+                name: "Asparagus",
+                dv: "67%"
+            },
+            {
+                food: getFood.lettuce,
+                name: "Lettuce",
+                dv: "16%"
+            },
+            {
+                food: getFood.spinach,
+                name: "Spinach",
+                value: false,
+                size: {
+                    value: 1,
+                    unit: "Glass"
+                },
+                dv: "36%"
+            },
+            {
+                food: getFood.brocolli,
+                name: "Brocolli",
+                dv: "42%"
+            },
+            {
+                food: getFood.sweetPotatoes,
+                dv: "26%"
+            },
+            {
+                food: getFood.lentils,
+                dv: "90%"
+            },
+            {
+                food: getFood.mangose,
+                name: "Mangoes",
+                dv: "28%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.oranges,
+                name: "Oranges",
+                dv: "14%"
+            }
+        ]
+    },
+    vitaminB12: {
+        type: "Vitamin B12",
+        veg: [
+            {
+                food: getFood.allBranWheatFlaks,
+                name: "All Bran Wheat Flaks",
+                dv: "325%"
+            },
+            {
+                food: getFood.paneer,
+                name: "Paneer",
+                dv: "137%"
+            },
+            {
+                food: getFood.milk,
+                dv: "108%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.paneer,
+                name: "Paneer",
+                dv: "137%"
+            },
+            {
+                food: getFood.milk,
+                name: "Milk",
+                dv: "108%"
+            },
+            {
+                food: getFood.eggs,
+                name: "Eggs",
+                value: false,
+                size: {
+                    value: 1,
+                    unit: "Large"
+                },
+                dv: "23%"
+            },
+            {
+                food: getFood.beef,
+                dv: "533%"
+            },
+            {
+                food: getFood.crab,
+                name: "Crab",
+                value: false,
+                size: {
+                    value: 1,
+                    unit: "Crab Leg"
+                },
+                dv: "642%"
+            },
+            {
+                food: getFood.clams,
+                name: "Clams",
+                value: false,
+                size: {
+                    value: 75,
+                    unit: "g"
+                },
+                dv: "3502%"
+            }
+        ]
+    },
+    choline: {
+        type: "Choline",
+        veg: [
+            {
+                food: getFood.milk,
+                dv: "15%"
+            },
+            {
+                food: getFood.broccoli,
+                name: "Broccoli",
+                dv: "11%"
+            },
+            {
+                food: getFood.greenPeas,
+                name: "Green Peas",
+                dv: "9%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.chickenBreast,
+                value: false,
+                size: {
+                    value: 175,
+                    unit: "g"
+                },
+                dv: "36%"
+            },
+            {
+                food: getFood.fishSalmon,
+                dv: "35%"
+            },
+            {
+                food: getFood.porkChops,
+                dv: "28%"
+            },
+            {
+                food: getFood.eggs,
+                name: "Eggs",
+                value: false,
+                size: {
+                    value: 1,
+                    unit: "Large"
+                },
+                dv: "27"
+            },
+            {
+                food: getFood.beef,
+                dv: "24%"
+            },
+            {
+                food: getFood.shrimps,
+                name: "Shrimps",
+                value: false,
+                size: {
+                    value: 12,
+                    unit: "Large"
+                },
+                dv: "21%"
+            }
+        ]
+    },
+    vitaminE: {
+        type: "Vitamin E",
+        veg: [
+            {
+                food: getFood.sunflowerSeeds,
+                dv: "49%"
+            },
+            {
+                food: getFood.almonds,
+                dv: "49%"
+            },
+            {
+                food: getFood.peanuts,
+                name: "Peanuts",
+                dv: "9%"
+            },
+            {
+                food: getFood.spinach,
+                name: "Spinach",
+                dv: "25%"
+            },
+            {
+                food: getFood.kiwi,
+                name: "Kiwifruit",
+                dv: "18%"
+            },
+            {
+                food: getFood.broccoli,
+                name: "Broccoli",
+                dv: "15%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.shrimps,
+                name: "Shrimps",
+                value: false,
+                size: {
+                    value: 12,
+                    unit: "Large"
+                },
+                dv: "12%"
+            }
+        ]
+    },
+    vitaminK: {
+        type: "Vitamin K",
+        veg: [
+            {
+                food: getFood.cabbage,
+                name: "Cabbage",
+                dv: "136%"
+            },
+            {
+                food: getFood.asparagus,
+                name: "Asparagus",
+                dv: "76%"
+            },
+            {
+                food: getFood.brusselSprouts,
+                name: "Brussel Sprouts",
+                dv: "182%"
+            },
+            {
+                food: getFood.broccoli,
+                name: "Broccoli",
+                dv: "183%"
+            },
+            {
+                food: getFood.kiwi,
+                name: "Kiwifruit",
+                dv: "60%"
+            },
+            {
+                food: getFood.ladyFinger,
+                name: "Lady Finger",
+                dv: "53%"
+            },
+            {
+                food: getFood.lettuce,
+                name: "Lettuce",
+                dv: "47%"
+            }
+        ],
+        nonVeg: []
+    },
+    magnesium: {
+        type: "Magnesium",
+        veg: [
+            {
+                food: getFood.cookedSpinach,
+                name: "Cooked Spinach",
+                dv: "37%"
+            },
+            {
+                food: getFood.pumpkinSeeds,
+                name: "Pumpkin Seeds",
+                dv: "37%"
+            },
+            {
+                food: getFood.brownRice,
+                name: "Broun Rice",
+                dv: "20%"
+            },
+            {
+                food: getFood.quinoa,
+                name: "Quinoa",
+                dv: "28%"
+            },
+            {
+                food: getFood.yogurt,
+                name: "Yogurt",
+                dv: "11%"
+            },
+            {
+                food: getFood.flaxSeeds,
+                name: "Flax Seeds",
+                dv: "27%"
+            },
+            {
+                food: getFood.cashews,
+                name: "Cashews",
+                dv: "20%"
+            },
+            {
+                food: getFood.almonds,
+                dv: "18%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.bananas,
+                name: "Bananas",
+                dv: "10%"
+            },
+            {
+                food: getFood.hempSeeds,
+                name: "Hemp Seeds",
+                dv: "47%"
+            },
+            {
+                food: getFood.cashews,
+                name: "Cashews",
+                dv: "20%"
+            },
+            {
+                food: getFood.walnuts,
+                name: "Walnuts",
+                dv: "12%"
+            },
+            {
+                food: getFood.milk,
+                dv: "12%"
+            }
+        ]
+    },
+    selenium: {
+        type: "Selenium",
+        veg: [
+            {
+                food: getFood.brazilNuts,
+                name: "Brazil Nuts",
+                dv: "990%"
+            },
+            {
+                food: getFood.paneer,
+                name: "Paneer",
+                dv: "80%"
+            },
+            {
+                food: getFood.oatmeal,
+                name: "Oatmeal",
+                dv: "23%"
+            },
+            {
+                food: getFood.brownRice,
+                name: "Brown Rice",
+                dv: "21%"
+            },
+            {
+                food: getFood.sunflowerSeeds,
+                dv: "41%"
+            },
+            {
+                food: getFood.chiaSeeds,
+                name: "Chia Seeds",
+                dv: "29%"
+            },
+            {
+                food: getFood.flaxSeeds,
+                name: "Flax Seeds",
+                dv: "13%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.oysters,
+                name: "Oysters",
+                value: false,
+                size: {
+                    value: 6,
+                    unit: "units"
+                },
+                dv: "334%"
+            },
+            {
+                food: getFood.porkChops,
+                dv: "147%"
+            },
+            {
+                food: getFood.beef,
+                dv: "111%"
+            },
+            {
+                food: getFood.chickenBreast,
+                value: false,
+                size: {
+                    value: 175,
+                    unit: "g"
+                },
+                dv: "99%"
+            },
+            {
+                food: getFood.shrimps,
+                name: "Shrimps",
+                value: false,
+                size: {
+                    value: 12,
+                    unit: "Large"
+                },
+                dv: "77%"
+            }
+        ]
+    },
+    zinc: {
+        type: "Zinc",
+        veg: [
+            {
+                food: getFood.cookedSpinach,
+                name: "Cooked Spinach",
+                dv: "12%"
+            },
+            {
+                food: getFood.pumpkinSeeds,
+                name: "Pumpkin Seeds",
+                dv: "27%"
+            },
+            {
+                food: getFood.cashews,
+                name: "Cashews",
+                dv: "14%"
+            },
+            {
+                food: getFood.oatmeal,
+                name: "Oatmeal",
+                dv: "21%"
+            },
+            {
+                food: getFood.chickpeas,
+                name: "Chickpeas",
+                dv: "23%"
+            },
+            {
+                food: getFood.paneer,
+                name: "Paneer",
+                dv: "36%"
+            },
+            {
+                food: getFood.lentils,
+                dv: "23%"
+            },
+            {
+                food: getFood.cerealKalloggsSmartStartStrong,
+                name: "Cereal Kalloggs Smart Start Strong",
+                dv: "136%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.oysters,
+                name: "Oysters",
+                value: false,
+                size: {
+                    value: 6,
+                    unit: "units"
+                },
+                dv: "93%"
+            },
+            {
+                food: getFood.clams,
+                name: "Clams",
+                value: false,
+                size: {
+                    value: 6,
+                    unit: "units"
+                },
+                dv: "47%"
+            },
+            {
+                food: getFood.beef,
+                dv: "52%"
+            },
+            {
+                food: getFood.chicken,
+                name: "Chicken",
+                value: false,
+                size: {
+                    value: 175,
+                    unit: "g"
+                },
+                dv: "49%"
+            },
+            {
+                food: getFood.porkChops,
+                dv: "32%"
+            },
+            {
+                food: getFood.yogurt,
+                name: "Yogurt",
+                dv: "22%"
+            },
+            {
+                food: getFood.milk,
+                dv: "16%"
+            }
+        ]
+    },
+    iron: {
+        type: "Iron",
+        veg: [
+            {
+                food: getFood.allBranWheatFlaks,
+                name: "All Bran Wheat Flaks",
+                dv: "109%"
+            },
+            {
+                food: getFood.apricots,
+                name: "Apricots",
+                dv: "42%"
+            },
+            {
+                food: getFood.spinach,
+                name: "Spinach",
+                dv: "36%"
+            },
+            {
+                food: getFood.quinoa,
+                name: "Quinoa",
+                dv: "15%"
+            },
+            {
+                food: getFood.mushrooms,
+                dv: "15%"
+            },
+            {
+                food: getFood.pumpkinSeeds,
+                name: "Pumpkin Seeds",
+                dv: "14%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.oysters,
+                name: "Oysters",
+                value: false,
+                size: {
+                    value: 6,
+                    unit: "units"
+                },
+                dv: "43%"
+            },
+            {
+                food: getFood.beef,
+                dv: "52%"
+            },
+            {
+                food: getFood.chiaSeeds,
+                name: "Chia Seeds",
+                dv: "12%"
+            },
+            {
+                food: getFood.sesameSeeds,
+                name: "Sesame Seeds",
+                dv: "14%"
+            },
+            {
+                food: getFood.hempSeeds,
+                name: "Hemp Seeds",
+                dv: "13%"
+            }
+        ]
+    },
+    lycopene: {
+        type: "Lycopene",
+        veg: [
+            {
+                food: getFood.guava,
+                name: "Guava",
+                dv: "6000%"
+            },
+            {
+                food: getFood.tomatoes,
+                name: "Tomatoes",
+                dv: "500%"
+            },
+            {
+                food: getFood.watermelon,
+                name: "Watermelon",
+                dv: "5000%"
+            },
+            {
+                food: getFood.grapefruit,
+                name: "Grapefruit",
+                dv: "500%"
+            },
+            {
+                food: getFood.papaya,
+                name: "Papaya",
+                dv: "2000%"
+            }
+        ],
+        nonVeg: []
+    },
+    calcium: {
+        type: "Calcium",
+        veg: [
+            {
+                food: getFood.chiaSeeds,
+                name: "Chia Seeds",
+                dv: "14%"
+            },
+            {
+                food: getFood.sesameSeeds,
+                name: "Sesame Seeds",
+                dv: "22%"
+            },
+            {
+                food: getFood.almonds,
+                dv: "18%"
+            },
+            {
+                food: getFood.paneer,
+                name: "Paneer",
+                dv: "132%"
+            },
+            {
+                food: getFood.kale,
+                name: "Kale",
+                dv: "13%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.milk,
+                dv: "46%"
+            },
+            {
+                food: getFood.yogurt,
+                name: "Yogurt",
+                dv: "38%"
+            },
+            {
+                food: getFood.spinach,
+                name: "Spinach",
+                dv: "16%"
+            },
+            {
+                food: getFood.ladyFinger,
+                name: "Lady Finger",
+                value: false,
+                size: {
+                    value: 175,
+                    unit: "g"
+                },
+                dv: "9%"
+            }
+        ]
+    },
+    copper: {
+        type: "Copper",
+        veg: [
+            {
+                food: getFood.paneer,
+                name: "Paneer",
+                dv: "106%"
+            },
+            {
+                food: getFood.sweetPotatoes,
+                name: "Sweet Patatoes",
+                dv: "79%"
+            },
+            {
+                food: getFood.sesameSeeds,
+                name: "Sesame Seeds",
+                dv: "78%"
+            },
+            {
+                food: getFood.cashews,
+                name: "Cashews",
+                dv: "70%"
+            },
+            {
+                food: getFood.chickpeas,
+                name: "Chickpeas",
+                dv: "64%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.oysters,
+                name: "Oysters",
+                value: false,
+                size: {
+                    value: 6,
+                    unit: "units"
+                },
+                dv: "419%"
+            },
+            {
+                food: getFood.mushrooms,
+
+                dv: "144%"
+            },
+            {
+                food: getFood.fishSalmon,
+                dv: "61%"
+            }
+        ]
+    },
+    iodine: {
+        type: "Iodine",
+        veg: [
+            {
+                food: getFood.iodisedSalt,
+                name: "Iodised Salt",
+                value: false,
+                size: {
+                    value: 1,
+                    unit: "g"
+                },
+                dv: "51%"
+            },
+            {
+                food: getFood.bakedPotatoWithPeel,
+                name: "Baked Potato With Peel",
+                value: false,
+                size: {
+                    value: null,
+                    unit: null
+                },
+                dv: "40%"
+            },
+            {
+                food: getFood.milk,
+                dv: "37%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.seaweed,
+                name: "Seaweed",
+                value: false,
+                size: {
+                    value: 1,
+                    unit: "g"
+                },
+                dv: "1000%"
+            },
+            {
+                food: getFood.shrimps,
+                name: "Shrimps",
+                value: false,
+                size: {
+                    value: null,
+                    unit: null
+                },
+                dv: "27%"
+            }
+        ]
+    },
+    potassium: {
+        type: "Potassium",
+        veg: [
+            {
+                food: getFood.spinach,
+                name: "Spinach",
+                dv: "18%"
+            },
+            {
+                food: getFood.lentils,
+                dv: "16%"
+            },
+            {
+                food: getFood.potatoes,
+                name: "Potatoes",
+                value: false,
+                size: {
+                    value: 1,
+                    unit: "Medium"
+                },
+                dv: "20%"
+            },
+            {
+                food: getFood.milk,
+                dv: "16%"
+            },
+            {
+                food: getFood.mushrooms,
+                dv: "12%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.salmon,
+                name: "Salmon",
+                dv: "23%"
+            },
+            {
+                food: getFood.bananas,
+                name: "Bananas",
+                dv: "11%"
+            },
+            {
+                food: getFood.tomatoes,
+                name: "Tomatoes",
+                dv: "11%"
+            }
+        ]
+    },
+    phosphorus: {
+        type: "Phosphorus",
+        veg: [
+            {
+                food: getFood.paneer,
+                name: "Paneer",
+                dv: "38%"
+            },
+            {
+                food: getFood.milk,
+                dv: "33%"
+            },
+            {
+                food: getFood.lentils,
+                dv: "29%"
+            },
+            {
+                food: getFood.pumpkinSeeds,
+                name: "Pumpkin Seeds",
+                dv: "28%"
+            },
+            {
+                food: getFood.hempSeeds,
+                name: "Hemp Seeds",
+                dv: "37%"
+            },
+            {
+                food: getFood.quinoa,
+                name: "Quinoa",
+                dv: "22%"
+            },
+            {
+                food: getFood.brownRice,
+                name: "Brown Rice",
+                dv: "12%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.porkChops,
+                dv: "41%"
+            },
+            {
+                food: getFood.chickenBreast,
+                value: false,
+                size: {
+                    value: 175,
+                    unit: "g"
+                },
+                dv: "33%"
+            },
+            {
+                food: getFood.beef,
+                name: "Beef",
+                value: false,
+                size: {
+                    value: 1,
+                    unit: "Streak"
+                },
+                dv: "27%"
+            }
+        ]
+    },
+    // Essential Amino Acids
+    trytophan: {
+        type: "Trytophan",
+        veg: [
+            {
+                food: getFood.cheese,
+                name: "Cheese",
+                value: false,
+                size: {
+                    value: null,
+                    unit: null
+                },
+                dv: null
+            },
+            {
+                food: getFood.milk,
+                dv: "75%"
+            },
+            {
+                food: getFood.flaxSeeds,
+                name: "Flax Seeds",
+                dv: "30%"
+            },
+            {
+                food: getFood.peanuts,
+                name: "Peanuts",
+                dv: "23%"
+            },
+            {
+                food: getFood.pumpkinSeeds,
+                name: "Pumpkin Seeds",
+                dv: "58%"
+            },
+            {
+                food: getFood.paneer,
+                name: "Paneer",
+                dv: "212%"
+            },
+            {
+                food: getFood.edamame,
+                name: "Edamame",
+                dv: "149%"
+            },
+            {
+                food: getFood.oatmeal,
+                name: "Oatmeal",
+                dv: "33%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.chicken,
+                name: "Chicken",
+                value: false,
+                size: {
+                    value: 175,
+                    unit: "g"
+                },
+                dv: "245%"
+            },
+            {
+                food: getFood.porkChops,
+                dv: "224%"
+            },
+            {
+                food: getFood.beef,
+                dv: "227%"
+            },
+            {
+                food: getFood.cashews,
+                name: "Cashews",
+                dv: "27%"
+            },
+            {
+                food: getFood.pistachio,
+                name: "Pistachio",
+                dv: "27%"
+            },
+            {
+                food: getFood.eggs,
+                name: "Eggs",
+                value: false,
+                size: {
+                    value: 1,
+                    unit: "Large"
+                },
+                dv: "27%"
+            }
+        ]
+    },
+    leucine: {
+        type: "Leucine",
+        veg: [
+            {
+                food: getFood.paneer,
+                name: "Paneer",
+                dv: "128%"
+            },
+            {
+                food: getFood.milk,
+                dv: "57%"
+            },
+            {
+                food: getFood.pumpkinSeeds,
+                name: "Pumpkin Seeds",
+                dv: "87%"
+            },
+            {
+                food: getFood.pistachio,
+                name: "Pistachio",
+                dv: "17%"
+            },
+            {
+                food: getFood.peanuts,
+                name: "Peanuts",
+                dv: "16%"
+            },
+            {
+                food: getFood.almonds,
+                dv: "15%"
+            },
+            {
+                food: getFood.yogurt,
+                name: "Yogurt",
+                dv: "52%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.chicken,
+                name: "Chicken",
+                value: false,
+                size: {
+                    value: 175,
+                    unit: "g"
+                },
+                dv: "189%"
+            },
+            {
+                food: getFood.beef,
+                dv: "183%"
+            },
+            {
+                food: getFood.porkChops,
+                dv: "165%"
+            },
+            {
+                food: getFood.eggs,
+                name: "Eggs",
+                value: false,
+                size: {
+                    value: 1,
+                    unit: "Large"
+                },
+                dv: "20%"
+            }
+        ]
+    },
+    isoleucine: {
+        type: "Isoleucine",
+        veg: [
+            {
+                food: getFood.paneer,
+                name: "Paneer",
+                dv: "153%"
+            },
+            {
+                food: getFood.milk,
+                dv: "61%"
+            },
+            {
+                food: getFood.lentils,
+                dv: "55%"
+            },
+            {
+                food: getFood.pumpkinSeeds,
+                name: "Pumpkin Seeds",
+                dv: "26%"
+            },
+            {
+                food: getFood.spinach,
+                name: "Spinach",
+                dv: "20%"
+            },
+            {
+                food: getFood.sweetPotatoes,
+                dv: "20%"
+            },
+            {
+                food: getFood.hempSeeds,
+                name: "Hemp Seeds",
+                dv: "26%"
+            },
+            {
+                food: getFood.sunflowerSeeds,
+                dv: "20%"
+            },
+            {
+                food: getFood.pistachio,
+                name: "Pistachio",
+                dv: "19%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.beef,
+                dv: "192%"
+            },
+            {
+                food: getFood.chickenBreast,
+                value: false,
+                size: {
+                    value: 175,
+                    unit: "g"
+                },
+                dv: "191%"
+            },
+            {
+                food: getFood.porkChops,
+                dv: "178%"
+            },
+            {
+                food: getFood.quinoa,
+                name: "Quinoa",
+                dv: "21%"
+            },
+            {
+                food: getFood.flaxSeeds,
+                name: "Flax Seeds",
+                dv: "18%"
+            },
+            {
+                food: getFood.peanuts,
+                name: "Peanuts",
+                dv: "17%"
+            },
+            {
+                food: getFood.oatmeal,
+                name: "Oatmeal",
+                dv: "19%"
+            },
+            {
+                food: getFood.yogurt,
+                name: "Yogurt",
+                dv: "55%"
+            }
+        ]
+    },
+    threonine: {
+        type: "Threonine",
+        veg: [
+            {
+                food: getFood.paneer,
+                name: "Paneer",
+                dv: "188%"
+            },
+            {
+                food: getFood.milk,
+                dv: "67%"
+            },
+            {
+                food: getFood.edamame,
+                name: "Edamame",
+                dv: "118%"
+            },
+            {
+                food: getFood.kidneyBeans,
+                name: "Kidney Beans",
+                dv: "61%"
+            },
+            {
+                food: getFood.lentils,
+                dv: "55%"
+            },
+            {
+                food: getFood.greenPeas,
+                name: "Green Peas",
+                dv: "31%"
+            },
+            {
+                food: getFood.sweetPotatoes,
+                dv: "24%"
+            },
+            {
+                food: getFood.carrots,
+                name: "Carrots",
+                dv: "23%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.beef,
+                dv: "258%"
+            },
+            {
+                food: getFood.porkChops,
+                dv: "221%"
+            },
+            {
+                food: getFood.chickenBreast,
+                value: false,
+                size: {
+                    value: 175,
+                    unit: "g"
+                },
+                dv: "233%"
+            },
+            {
+                food: getFood.yogurt,
+                name: "Yogurt",
+                dv: "55%"
+            },
+            {
+                food: getFood.eggs,
+                name: "Eggs",
+                value: false,
+                size: {
+                    value: 1,
+                    unit: "Large"
+                },
+                dv: "29%"
+            },
+            {
+                food: getFood.pumpkinSeeds,
+                name: "Pumpkin Seeds",
+                dv: "26%"
+            },
+            {
+                food: getFood.hempSeeds,
+                name: "Hemp Seeds",
+                dv: "34%"
+            },
+            {
+                food: getFood.sunflowerSeeds,
+                dv: "21%"
+            },
+            {
+                food: getFood.quinoa,
+                name: "Quinoa",
+                dv: "23%"
+            },
+            {
+                food: getFood.oatmeal,
+                name: "Oatmeal",
+                dv: "21%"
+            }
+        ]
+    },
+    lysine: {
+        type: "Lysine",
+        veg: [
+            {
+                food: getFood.paneer,
+                name: "Paneer",
+                dv: "106%"
+            },
+            {
+                food: getFood.milk,
+                dv: "67%"
+            },
+            {
+                food: getFood.edamame,
+                name: "Edamame",
+                dv: "91%"
+            },
+            {
+                food: getFood.greenPeas,
+                name: "Green Peas",
+                dv: "24%"
+            },
+            {
+                food: getFood.sweetPotatoes,
+                dv: "12%"
+            },
+            {
+                food: getFood.spinach,
+                name: "Spinach",
+                dv: "16%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.beef,
+                dv: "268%"
+            },
+            {
+                food: getFood.porkChops,
+                dv: "223%"
+            },
+            {
+                food: getFood.chickenBreast,
+                value: false,
+                size: {
+                    value: 175,
+                    unit: "g"
+                },
+                dv: "250%"
+            },
+            {
+                food: getFood.yogurt,
+                name: "Yogurt",
+                dv: "60%"
+            },
+            {
+                food: getFood.eggs,
+                name: "Eggs",
+                value: false,
+                size: {
+                    value: 1,
+                    unit: "Large"
+                },
+                dv: "22%"
+            },
+            {
+                food: getFood.crab,
+                name: "Crab",
+                value: false,
+                size: {
+                    value: 1,
+                    unit: "Crab Leg"
+                },
+                dv: "107%"
+            },
+            {
+                food: getFood.pumpkinSeeds,
+                name: "Pumpkin Seeds",
+                dv: "26%"
+            },
+            {
+                food: getFood.quinoa,
+                name: "Quinoa",
+                dv: "21%"
+            },
+            {
+                food: getFood.oatmeal,
+                name: "Oatmeal",
+                dv: "15%"
+            }
+        ]
+    },
+    methionine: {
+        type: "Methionine",
+        veg: [
+            {
+                food: getFood.paneer,
+                name: "Paneer",
+                dv: "73%"
+            },
+            {
+                food: getFood.milk,
+                dv: "59%"
+            },
+            {
+                food: getFood.edamame,
+                name: "Edamame",
+                dv: "118%"
+            },
+            {
+                food: getFood.kidneyBeans,
+                name: "Kidney Beans",
+                dv: "35%"
+            },
+            {
+                food: getFood.lentils,
+                dv: "55%"
+            },
+            {
+                food: getFood.greenPeas,
+                name: "Green Peas",
+                dv: "18%"
+            },
+            {
+                food: getFood.sweetPotatoes,
+                dv: "17%"
+            },
+            {
+                food: getFood.carrots,
+                name: "Carrots",
+                dv: "23%"
+            },
+            {
+                food: getFood.spinach,
+                name: "Spinach",
+                dv: "14%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.beef,
+                dv: "211%"
+            },
+            {
+                food: getFood.porkChops,
+                dv: "198%"
+            },
+            {
+                food: getFood.chickenBreast,
+                value: false,
+                size: {
+                    value: 175,
+                    unit: "g"
+                },
+                dv: "195%"
+            },
+            {
+                food: getFood.yogurt,
+                name: "Yogurt",
+                dv: "57%"
+            },
+            {
+                food: getFood.eggs,
+                name: "Eggs",
+                value: false,
+                size: {
+                    value: 1,
+                    unit: "Large"
+                },
+                dv: "27%"
+            },
+            {
+                food: getFood.chiaSeeds,
+                name: "Chia Seeds",
+                dv: "23%"
+            },
+            {
+                food: getFood.pumpkinSeeds,
+                name: "Pumpkin Seeds",
+                dv: "23%"
+            },
+            {
+                food: getFood.hempSeeds,
+                name: "Hemp Seeds",
+                dv: "36%"
+            },
+            {
+                food: getFood.sunflowerSeeds,
+                dv: "16%"
+            },
+            {
+                food: getFood.quinoa,
+                name: "Quinoa",
+                dv: "24%"
+            },
+            {
+                food: getFood.oatmeal,
+                name: "Oatmeal",
+                dv: "21%"
+            },
+            {
+                food: getFood.sesameSeeds,
+                name: "Sesame Seeds",
+                dv: "22%"
+            },
+            {
+                food: getFood.crab,
+                name: "Crab",
+                value: false,
+                size: {
+                    value: 1,
+                    unit: "Crab Leg"
+                },
+                dv: "100%"
+            },
+            {
+                food: getFood.shrimps,
+                name: "Shrimps",
+                value: false,
+                size: {
+                    value: 12,
+                    unit: "Large"
+                },
+                dv: "78%"
+            }
+        ]
+    },
+    cystine: {
+        type: "Cystine",
+        veg: [
+            {
+                food: getFood.paneer,
+                name: "Paneer",
+                dv: "50%"
+            },
+            {
+                food: getFood.milk,
+                dv: "67%"
+            },
+            {
+                food: getFood.milk,
+                dv: "59%"
+            },
+            {
+                food: getFood.lentils,
+                dv: "81%"
+            },
+            {
+                food: getFood.carrots,
+                name: "Carrots",
+                dv: "21%"
+            },
+            {
+                food: getFood.cashews,
+                name: "Cashews",
+                dv: "39%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.beef,
+                dv: "204%"
+            },
+            {
+                food: getFood.porkChops,
+                dv: "207%"
+            },
+            {
+                food: getFood.chickenBreast,
+                value: false,
+                size: {
+                    value: 175,
+                    unit: "g"
+                },
+                dv: "199%"
+            },
+            {
+                food: getFood.eggs,
+                name: "Eggs",
+                value: false,
+                size: {
+                    value: 1,
+                    unit: "Large"
+                },
+                dv: "51%"
+            },
+            {
+                food: getFood.chiaSeeds,
+                name: "Chia Seeds",
+                dv: "40%"
+            },
+            {
+                food: getFood.pumpkinSeeds,
+                name: "Pumpkin Seeds",
+                dv: "23%"
+            },
+            {
+                food: getFood.hempSeeds,
+                name: "Hemp Seeds",
+                dv: "66%"
+            },
+            {
+                food: getFood.sunflowerSeeds,
+                dv: "38%"
+            },
+            {
+                food: getFood.quinoa,
+                name: "Quinoa",
+                dv: "24%"
+            },
+            {
+                food: getFood.oatmeal,
+                name: "Oatmeal",
+                dv: "79%"
+            },
+            {
+                food: getFood.sesameSeeds,
+                name: "Sesame Seeds",
+                dv: "34%"
+            }
+        ]
+    },
+    valine: {
+        type: "Valine",
+        veg: [
+            {
+                food: getFood.paneer,
+                name: "Paneer",
+                dv: "120%"
+            },
+            {
+                food: getFood.milk,
+                dv: "60%"
+            },
+            {
+                food: getFood.edamame,
+                name: "Edamame",
+                dv: "79%"
+            },
+            {
+                food: getFood.kidneyBeans,
+                name: "Kidney Beans",
+                dv: "49%"
+            },
+            {
+                food: getFood.lentils,
+                dv: "49%"
+            },
+            {
+                food: getFood.milk,
+                dv: "67%"
+            },
+            {
+                food: getFood.greenPeas,
+                name: "Green Peas",
+                dv: "20%"
+            },
+            {
+                food: getFood.sweetPotatoes,
+                dv: "18%"
+            },
+            {
+                food: getFood.pistachio,
+                name: "Pistachio",
+                dv: "20%"
+            },
+            {
+                food: getFood.spinach,
+                name: "Spinach",
+                dv: "17%"
+            },
+            {
+                food: getFood.cashews,
+                name: "Cashews",
+                dv: "16%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.beef,
+                dv: "156%"
+            },
+            {
+                food: getFood.porkChops,
+                dv: "146%"
+            },
+            {
+                food: getFood.chickenBreast,
+                value: false,
+                size: {
+                    value: 175,
+                    unit: "g"
+                },
+                dv: "155%"
+            },
+            {
+                food: getFood.yogurt,
+                name: "Yogurt",
+                dv: "64%"
+            },
+            {
+                food: getFood.eggs,
+                name: "Eggs",
+                value: false,
+                size: {
+                    value: 1,
+                    unit: "Large"
+                },
+                dv: "21%"
+            },
+            {
+                food: getFood.chiaSeeds,
+                name: "Chia Seeds",
+                dv: "15%"
+            },
+            {
+                food: getFood.pumpkinSeeds,
+                name: "Pumpkin Seeds",
+                dv: "24%"
+            },
+            {
+                food: getFood.hempSeeds,
+                name: "Hemp Seeds",
+                dv: "28%"
+            },
+            {
+                food: getFood.sunflowerSeeds,
+                dv: "20%"
+            },
+            {
+                food: getFood.brownRice,
+                name: "Brown Rice",
+                dv: "17%"
+            },
+            {
+                food: getFood.oatmeal,
+                name: "Oatmeal",
+                dv: "21%"
+            },
+            {
+                food: getFood.flaxSeeds,
+                name: "Flax Seeds",
+                dv: "17%"
+            },
+            {
+                food: getFood.millets,
+                name: "Millets",
+                dv: "18%"
+            }
+        ]
+    },
+    phenylalanine: {
+        type: "Phenylalanine",
+        veg: [
+            {
+                food: getFood.paneer,
+                name: "Paneer",
+                dv: "240%"
+            },
+            {
+                food: getFood.milk,
+                dv: "60%"
+            },
+            {
+                food: getFood.edamame,
+                name: "Edamame",
+                dv: "171%"
+            },
+            {
+                food: getFood.kidneyBeans,
+                name: "Kidney Beans",
+                dv: "103%"
+            },
+            {
+                food: getFood.lentils,
+                dv: "101%"
+            },
+            {
+                food: getFood.milk,
+                dv: "98%"
+            },
+            {
+                food: getFood.greenPeas,
+                name: "Green Peas",
+                dv: "36%"
+            },
+            {
+                food: getFood.sweetPotatoes,
+                dv: "35%"
+            },
+            {
+                food: getFood.pistachio,
+                name: "Pistachio",
+                dv: "37%"
+            },
+            {
+                food: getFood.spinach,
+                name: "Spinach",
+                dv: "28%"
+            },
+            {
+                food: getFood.broccoli,
+                name: "Broccoli",
+                dv: "21%"
+            },
+            {
+                food: getFood.almonds,
+                dv: "31%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.beef,
+                dv: "262%"
+            },
+            {
+                food: getFood.porkChops,
+                dv: "250%"
+            },
+            {
+                food: getFood.chickenBreast,
+                value: false,
+                size: {
+                    value: 175,
+                    unit: "g"
+                },
+                dv: "251%"
+            },
+            {
+                food: getFood.yogurt,
+                dv: "88%"
+            },
+            {
+                food: getFood.eggs,
+                name: "Eggs",
+                value: false,
+                size: {
+                    value: 1,
+                    unit: "Large"
+                },
+                dv: "21%"
+            },
+            {
+                food: getFood.chiaSeeds,
+                name: "Chia Seeds",
+                dv: "33%"
+            },
+            {
+                food: getFood.pumpkinSeeds,
+                name: "Pumpkin Seeds",
+                dv: "56%"
+            },
+            {
+                food: getFood.hempSeeds,
+                name: "Hemp Seeds",
+                dv: "47%"
+            },
+            {
+                food: getFood.sunflowerSeeds,
+                dv: "37%"
+            },
+            {
+                food: getFood.quinoa,
+                dv: "39%"
+            },
+            {
+                food: getFood.oatmeal,
+
+                dv: "38%"
+            },
+            {
+                food: getFood.brownRice,
+
+                dv: "31%"
+            },
+            {
+                food: getFood.flaxSeeds,
+                name: "Flax Seeds",
+                dv: "17%"
+            },
+            {
+                food: getFood.shrimps,
+                name: "Shrimps",
+                value: false,
+                size: {
+                    value: 12,
+                    unit: "Large"
+                },
+                dv: "78%"
+            }
+        ]
+    },
+    tyrosine: {
+        type: "Tyrosine",
+        veg: [
+            {
+                food: getFood.paneer,
+                name: "Paneer",
+                dv: "202%"
+            },
+            {
+                food: getFood.milk,
+                dv: "60%"
+            },
+            {
+                food: getFood.edamame,
+                name: "Edamame",
+                dv: "124%"
+            },
+            {
+                food: getFood.kidneyBeans,
+                name: "Kidney Beans",
+                dv: "49%"
+            },
+            {
+                food: getFood.lentils,
+                dv: "49%"
+            },
+            {
+                food: getFood.milk,
+                dv: "95%"
+            },
+            {
+                food: getFood.greenPeas,
+                name: "Green Peas",
+                dv: "20%"
+            },
+            {
+                food: getFood.sweetPotatoes,
+                dv: "24%"
+            },
+            {
+                food: getFood.pistachio,
+                name: "Pistachio",
+                dv: "20%"
+            },
+            {
+                food: getFood.spinach,
+                name: "Spinach",
+                dv: "23%"
+            },
+            {
+                food: getFood.cashews,
+                name: "Cashews",
+                dv: "16%"
+            },
+            {
+                food: getFood.peanuts,
+                name: "Peanuts",
+                dv: "31%"
+            },
+            {
+                food: getFood.ladyFinger,
+                name: "lady Finger",
+                dv: "15%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.beef,
+                dv: "248%"
+            },
+            {
+                food: getFood.porkChops,
+                dv: "239%"
+            },
+            {
+                food: getFood.chickenBreast,
+                value: false,
+                size: {
+                    value: 175,
+                    unit: "g"
+                },
+                dv: "224%"
+            },
+            {
+                food: getFood.yogurt,
+                name: "Yogurt",
+                dv: "49%"
+            },
+            {
+                food: getFood.eggs,
+                name: "Eggs",
+                value: false,
+                size: {
+                    value: 1,
+                    unit: "Large"
+                },
+                dv: "29%"
+            },
+            {
+                food: getFood.chiaSeeds,
+                name: "Chia Seeds",
+                dv: "18%"
+            },
+            {
+                food: getFood.pumpkinSeeds,
+                name: "Pumpkin Seeds",
+                dv: "35%"
+            },
+            {
+                food: getFood.hempSeeds,
+                name: "Hemp Seeds",
+                dv: "41%"
+            },
+            {
+                food: getFood.sunflowerSeeds,
+                dv: "18%"
+            },
+            {
+                food: getFood.salmon,
+                name: "Salmon",
+                dv: "235%"
+            },
+            {
+                food: getFood.oatmeal,
+                name: "Oatmeal",
+                dv: "27%"
+            },
+            {
+                food: getFood.sesameSeeds,
+                name: "Sesame Seeds",
+                dv: "23%"
+            },
+            {
+                food: getFood.brownRice,
+                name: "Brown Rice",
+                dv: "19%"
+            },
+            {
+                food: getFood.millets,
+                name: "Millets",
+                dv: "21%"
+            }
+        ]
+    },
+    histidine: {
+        type: "Histidine",
+        veg: [
+            {
+                food: getFood.paneer,
+                name: "Paneer",
+                dv: "155%"
+            },
+            {
+                food: getFood.milk,
+                dv: "71%"
+            },
+            {
+                food: getFood.edamame,
+                name: "Edamame",
+                dv: "79%"
+            },
+            {
+                food: getFood.kidneyBeans,
+                name: "Kidney Beans",
+                dv: "67%"
+            },
+            {
+                food: getFood.lentils,
+                dv: "72%"
+            },
+            {
+                food: getFood.milk,
+                dv: "67%"
+            },
+            {
+                food: getFood.greenPeas,
+                name: "Green Peas",
+                dv: "24%"
+            },
+            {
+                food: getFood.sweetPotatoes,
+                dv: "18%"
+            },
+            {
+                food: getFood.pistachio,
+                name: "Pistachio",
+                dv: "20%"
+            },
+            {
+                food: getFood.spinach,
+                name: "Spinach",
+                dv: "17%"
+            },
+            {
+                food: getFood.cashews,
+                name: "Cashews",
+                dv: "16%"
+            },
+            {
+                food: getFood.almonds,
+                dv: "22%"
+            },
+            {
+                food: getFood.pistachio,
+                name: "Pistachio",
+                dv: "22%"
+            }
+        ],
+        nonVeg: [
+            {
+                food: getFood.beef,
+                dv: "314%"
+            },
+            {
+                food: getFood.porkChops,
+                dv: "318%"
+            },
+            {
+                food: getFood.chickenBreast,
+                value: false,
+                size: {
+                    value: 175,
+                    unit: "g"
+                },
+                dv: "290%"
+            },
+            {
+                food: getFood.yogurt,
+                name: "Yogurt",
+                dv: "50%"
+            },
+            {
+                food: getFood.eggs,
+                name: "Eggs",
+                value: false,
+                size: {
+                    value: 1,
+                    unit: "Large"
+                },
+                dv: "21%"
+            },
+            {
+                food: getFood.chiaSeeds,
+                name: "Chia Seeds",
+                dv: "22%"
+            },
+            {
+                food: getFood.pumpkinSeeds,
+                name: "Pumpkin Seeds",
+                dv: "31%"
+            },
+            {
+                food: getFood.hempSeeds,
+                name: "Hemp Seeds",
+                dv: "39%"
+            },
+            {
+                food: getFood.sunflowerSeeds,
+                dv: "22%"
+            },
+            {
+                food: getFood.salmon,
+                name: "Salmon",
+                dv: "182%"
+            },
+            {
+                food: getFood.oatmeal,
+                name: "Oatmeal",
+                dv: "18%"
+            },
+            {
+                food: getFood.brownRice,
+                name: "Brown Rice",
+                dv: "19%"
+            },
+            {
+                food: getFood.flaxSeeds,
+                name: "Flax Seeds",
+                dv: "19%"
+            },
+            {
+                food: getFood.quinoa,
+                name: "Quinoa",
+                dv: "34%"
+            }
+        ]
+    }
+}

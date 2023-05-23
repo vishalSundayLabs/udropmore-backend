@@ -8,9 +8,6 @@ const leapContentSchema = new mongoose.Schema({
         default: null
     },
     data: {
-        metaData: {
-            sequence: { type: Number, default: null }
-        },
         featureMedia: {
             image: { type: String, default: null },
             video: { type: String, default: null },
@@ -20,6 +17,9 @@ const leapContentSchema = new mongoose.Schema({
         },
         sections: [],
         title: { type: String, default: null }
+    },
+    metadata: {
+        sequence: { type: String, default: null }
     },
     subtype: {
         type: String,

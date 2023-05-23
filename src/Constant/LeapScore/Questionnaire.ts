@@ -1,7 +1,7 @@
-// import { NutrientGroups } from '../../Constant/LeapScore/NutrientGroup' 
 // const questionnaire = [
 //     {
-//         category: "Food Diversity",
+//         category: Lifestyle,
+//         subCategory: "Food Diversity",
 //         section: [
 //             {
 //                 sectionName: "Green Leafy Vegetables",
@@ -11,11 +11,13 @@
 //                         option: [{
 //                             option: "Never",
 //                             score: 1,
-//                             isSelected: false
+//                             isSelected: false,
+//                             nextQuestionKey: null
 //                          }, {
 //                             option: "Never",
 //                             score: 1,
-//                             isSelected: false
+//                             isSelected: false,
+//                             nextQuestionKey: 1394848
 //                          }, {
 //                             option: "Never",
 //                             score: 1,
@@ -29,14 +31,15 @@
 //                         multiSelect: false
 //                     },
 //                     subQuestions: [{
+//                         key: 1394848,
 //                         name: "Which Green Leafy Vegetables do you consume ?",
 //                         option: {
-//                             A: {name: "Spinach / Basil / Carrots / Brussel Sprouts", nutrient: NutrientGroups.vitaminA, score: 1}
+//                             A: {options: [{ name: "Spinach", selected: false }, { name: "Basil", value: false }, { name: "Carrots", value: false }, { name: "Brussel Sprouts", value: false }], score: 1},
 //                             B: [{ name: "Lettuce", value: false }, { name: "Asparagus", value: false }, { name: "Beet root", value: false }],
 //                             C: [{ name: "Cabbage-White | Green | Purple", value: false }, { name: "Broccoli", value: false }, { name: "Radish", value: false }],
 //                             D: [{ name: "Sweet Potatoes", value: false }, { name: "Red Bell Peppers", value: false }, { name: "Potatoes", value: false }]
 //                         },
-//                         score: 0,
+//                         calculatedScore: 0,
 //                         multiSelect: true
 //                     }]
 //                 }]
