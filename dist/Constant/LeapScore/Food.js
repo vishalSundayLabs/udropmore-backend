@@ -21,7 +21,8 @@ exports.getFood = {
         size: {
             value: 1,
             unit: "Cup"
-        }
+        },
+        macro: []
     },
     bellPappers: {
         name: "Bell Peppers",

@@ -88,6 +88,7 @@ export const getWeeklyContent = async (req, res) => {
 
     const query = req.query
     const { limit, skips } = pagination(query)
+    query.isDeleted = false
 
     try {
 

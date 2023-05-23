@@ -72,6 +72,7 @@ exports.updateWeeklyContent = updateWeeklyContent;
 const getWeeklyContent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const query = req.query;
     const { limit, skips } = (0, pagination_1.pagination)(query);
+    query.isDeleted = false;
     try {
         const weeklyContent = yield CMSModel_1.default.find(query).skip(skips).limit(limit);
         if (weeklyContent.length == 0) {

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.get = void 0;
-exports.get = {
+exports.getCategories = void 0;
+exports.getCategories = {
     LIFESTYLE: "LIFESTYLE",
     EMOTIONAL: "EMOTIONAL",
     PHYSICAL: "PHYSICAL",

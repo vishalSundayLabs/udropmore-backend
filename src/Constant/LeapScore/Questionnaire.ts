@@ -1,8 +1,8 @@
-import { get } from "./LeapCategories"
+import { getCategories } from "./LeapCategories"
 
 const questionnaire = [
     {
-        category: '',
+        category: getCategories.LIFESTYLE,
         subCategory: "Food Diversity",
         section: [
             {
@@ -141,7 +141,8 @@ const questionnaire = [
         ]
     },
     {
-        category: "Micro Nutrient Dense Foods",
+        category: getCategories.LIFESTYLE,
+        subCategory: "Micro Nutrient Dense Foods",
         section: [
             {
                 sectionName: "Nuts & Seeds",
@@ -175,10 +176,10 @@ const questionnaire = [
                         option: {
                             A: { options: [{ name: "Almonds", isSelected: false }], score: 1 },
                             B: { options: [{ name: "Pistachios", isSelected: false }], score: 1 },
-                            C: {options:[{ name: "Raisins", isSelected: false }],score:1},
-                            D: {options:[{ name: "Cashews", isSelected: false }],score:1},
-                            E: {options:[{ name: "Walnuts", isSelected: false }],score:1},
-                            F: {options:[{ name: "Dates", isSelected: false }],score:1}
+                            C: { options: [{ name: "Raisins", isSelected: false }], score: 1 },
+                            D: { options: [{ name: "Cashews", isSelected: false }], score: 1 },
+                            E: { options: [{ name: "Walnuts", isSelected: false }], score: 1 },
+                            F: { options: [{ name: "Dates", isSelected: false }], score: 1 }
                         },
                         nutrient: {
                             A: { name: "Vitamin E", value: 1 },
@@ -240,7 +241,8 @@ const questionnaire = [
         ]
     },
     {
-        category: "Protein",
+        category: getCategories.LIFESTYLE,
+        subCategory: "Protein",
         section: [
             {
                 sectionName: "Diary Products",
@@ -337,7 +339,8 @@ const questionnaire = [
         ]
     },
     {
-        category: "Protein - Non Veg",
+        category: getCategories.LIFESTYLE,
+        subCategory: "Protein - Non Veg",
         section: [
             {
                 sectionName: "Eggs",
@@ -509,7 +512,8 @@ const questionnaire = [
         ]
     },
     {
-        category: "DHA",
+        category: getCategories.LIFESTYLE,
+        subCategory: "DHA",
         section: [
             {
                 sectionName: null,
@@ -571,7 +575,8 @@ const questionnaire = [
         ]
     },
     {
-        category: "DHA - Non Veg",
+        category: getCategories.LIFESTYLE,
+        subCategory: "DHA - Non Veg",
         section: [
             {
                 sectionName: null,
@@ -685,7 +690,8 @@ const questionnaire = [
         ]
     },
     {
-        category: "Good Fats",
+        category: getCategories.LIFESTYLE,
+        subCategory: "Good Fats",
         section: [
             {
                 sectionName: null,
@@ -882,7 +888,8 @@ const questionnaire = [
         ]
     },
     {
-        category: "High Fibre Foods",
+        category: getCategories.LIFESTYLE,
+        subCategory: "High Fibre Foods",
         section: [
             {
                 sectionName: null,
@@ -1075,7 +1082,8 @@ const questionnaire = [
         ]
     },
     {
-        category: "Healthy Carbs",
+        category: getCategories.LIFESTYLE,
+        subCategory: "Healthy Carbs",
         section: [
             {
                 sectionName: null,

@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const LeapCategories_1 = require("./LeapCategories");
 const questionnaire = [
     {
-        category: '',
+        category: LeapCategories_1.getCategories.LIFESTYLE,
         subCategory: "Food Diversity",
         section: [
             {
@@ -141,7 +142,8 @@ const questionnaire = [
         ]
     },
     {
-        category: "Micro Nutrient Dense Foods",
+        category: LeapCategories_1.getCategories.LIFESTYLE,
+        subCategory: "Micro Nutrient Dense Foods",
         section: [
             {
                 sectionName: "Nuts & Seeds",
@@ -239,7 +241,8 @@ const questionnaire = [
         ]
     },
     {
-        category: "Protein",
+        category: LeapCategories_1.getCategories.LIFESTYLE,
+        subCategory: "Protein",
         section: [
             {
                 sectionName: "Diary Products",
@@ -336,7 +339,8 @@ const questionnaire = [
         ]
     },
     {
-        category: "Protein - Non Veg",
+        category: LeapCategories_1.getCategories.LIFESTYLE,
+        subCategory: "Protein - Non Veg",
         section: [
             {
                 sectionName: "Eggs",
@@ -508,7 +512,8 @@ const questionnaire = [
         ]
     },
     {
-        category: "DHA",
+        category: LeapCategories_1.getCategories.LIFESTYLE,
+        subCategory: "DHA",
         section: [
             {
                 sectionName: null,
@@ -570,7 +575,8 @@ const questionnaire = [
         ]
     },
     {
-        category: "DHA - Non Veg",
+        category: LeapCategories_1.getCategories.LIFESTYLE,
+        subCategory: "DHA - Non Veg",
         section: [
             {
                 sectionName: null,
@@ -684,7 +690,8 @@ const questionnaire = [
         ]
     },
     {
-        category: "Good Fats",
+        category: LeapCategories_1.getCategories.LIFESTYLE,
+        subCategory: "Good Fats",
         section: [
             {
                 sectionName: null,
@@ -881,7 +888,8 @@ const questionnaire = [
         ]
     },
     {
-        category: "High Fibre Foods",
+        category: LeapCategories_1.getCategories.LIFESTYLE,
+        subCategory: "High Fibre Foods",
         section: [
             {
                 sectionName: null,
@@ -1074,7 +1082,8 @@ const questionnaire = [
         ]
     },
     {
-        category: "Healthy Carbs",
+        category: LeapCategories_1.getCategories.LIFESTYLE,
+        subCategory: "Healthy Carbs",
         section: [
             {
                 sectionName: null,
