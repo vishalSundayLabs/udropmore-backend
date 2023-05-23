@@ -87,21 +87,11 @@ export const updateWeeklyContent = async (req, res) => {
 export const getWeeklyContent = async (req, res) => {
 
     const query = req.query
-    const reqData = {}
-
-    reqData["category"] = query.category
-    reqData["type"] = query.type
-    reqData["subtype"] = query.subtype
-    reqData["trimesters"] = query.trimesters
-    reqData["weeks"] = query.week
-    reqData["tags"] = query.tags
-    reqData["isDeleted"] = false
-
     const { limit, skips } = pagination(query)
 
     try {
 
-        const weeklyContent = await CMSModel.find(reqData).skip(skips).limit(limit)
+        const weeklyContent = await CMSModel.find(query).skip(skips).limit(limit)
 
         if (weeklyContent.length == 0) {
 
