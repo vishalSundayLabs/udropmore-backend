@@ -10,7 +10,7 @@ exports.emotion = [
             {
                 sectionName: null,
                 question: [{
-                        name: "In the last one month how often have you been upset because of something that happened unexpectedly ?",
+                        name: "How many hours do you sleep everyday ?",
                         options: {
                             option: [{
                                     option: "Never",
@@ -21,7 +21,6 @@ exports.emotion = [
                                     option: "Sometimes",
                                     score: 3,
                                     isSelected: false,
-                                    // nextQuestionKey: 1394848
                                 }, {
                                     option: "Fairly often",
                                     score: 2,
@@ -40,7 +39,7 @@ exports.emotion = [
             {
                 sectionName: null,
                 question: [{
-                        name: "In the last month, how often have you felt that you have not been able to control the important things of your life ?",
+                        name: "How many glasses of water do you drink everyday ?",
                         options: {
                             option: [{
                                     option: "Never",
@@ -51,7 +50,6 @@ exports.emotion = [
                                     option: "Sometimes",
                                     score: 3,
                                     isSelected: false,
-                                    // nextQuestionKey: 1394848
                                 }, {
                                     option: "Fairly often",
                                     score: 2,
@@ -70,7 +68,7 @@ exports.emotion = [
             {
                 sectionName: null,
                 question: [{
-                        name: "In the last month, how often have you felt nervous and stressed ?",
+                        name: "Do you smoke and/ or consume alcohol?",
                         options: {
                             option: [{
                                     option: "Never",
@@ -81,7 +79,6 @@ exports.emotion = [
                                     option: "Sometimes",
                                     score: 3,
                                     isSelected: false,
-                                    // nextQuestionKey: 1394848
                                 }, {
                                     option: "Fairly often",
                                     score: 2,
@@ -100,7 +97,7 @@ exports.emotion = [
             {
                 sectionName: null,
                 question: [{
-                        name: "In the last month, how often have you felt confident about your ability to handle your personal problems ?",
+                        name: "Are you a vegetarian or Non – vegetarian ?",
                         options: {
                             option: [{
                                     option: "Never",
@@ -111,7 +108,6 @@ exports.emotion = [
                                     option: "Sometimes",
                                     score: 3,
                                     isSelected: false,
-                                    // nextQuestionKey: 1394848
                                 }, {
                                     option: "Fairly often",
                                     score: 2,
@@ -130,7 +126,7 @@ exports.emotion = [
             {
                 sectionName: null,
                 question: [{
-                        name: "In the last one month how often have you been upset because of something that happened unexpectedly ?",
+                        name: "How often do you have fruits ?",
                         options: {
                             option: [{
                                     option: "Never",
@@ -141,7 +137,6 @@ exports.emotion = [
                                     option: "Sometimes",
                                     score: 3,
                                     isSelected: false,
-                                    // nextQuestionKey: 1394848
                                 }, {
                                     option: "Fairly often",
                                     score: 2,
@@ -160,7 +155,7 @@ exports.emotion = [
             {
                 sectionName: null,
                 question: [{
-                        name: "In the last one month how often have you been upset because of something that happened unexpectedly ?",
+                        name: "Which of the following diary products do you consume regularly?",
                         options: {
                             option: [{
                                     option: "Never",
@@ -171,7 +166,6 @@ exports.emotion = [
                                     option: "Sometimes",
                                     score: 3,
                                     isSelected: false,
-                                    // nextQuestionKey: 1394848
                                 }, {
                                     option: "Fairly often",
                                     score: 2,
@@ -190,7 +184,7 @@ exports.emotion = [
             {
                 sectionName: null,
                 question: [{
-                        name: "In the last one month how often have you been upset because of something that happened unexpectedly ?",
+                        name: "Do you consume Dal/pulses in every meal ?",
                         options: {
                             option: [{
                                     option: "Never",
@@ -201,7 +195,6 @@ exports.emotion = [
                                     option: "Sometimes",
                                     score: 3,
                                     isSelected: false,
-                                    // nextQuestionKey: 1394848
                                 }, {
                                     option: "Fairly often",
                                     score: 2,
@@ -220,7 +213,7 @@ exports.emotion = [
             {
                 sectionName: null,
                 question: [{
-                        name: "In the last one month how often have you been upset because of something that happened unexpectedly ?",
+                        name: "Which type of nuts do you consume regularly ?",
                         options: {
                             option: [{
                                     option: "Never",
@@ -231,37 +224,6 @@ exports.emotion = [
                                     option: "Sometimes",
                                     score: 3,
                                     isSelected: false,
-                                    // nextQuestionKey: 1394848
-                                }, {
-                                    option: "Fairly often",
-                                    score: 2,
-                                    isSelected: false
-                                }, {
-                                    option: "Very often",
-                                    score: 1,
-                                    isSelected: false
-                                }],
-                            calculatedScore: 0,
-                            multiSelect: false
-                        },
-                        subQuestions: null
-                    }]
-            },
-            {
-                sectionName: null,
-                question: [{
-                        name: "In the last one month how often have you been upset because of something that happened unexpectedly ?",
-                        options: {
-                            option: [{
-                                    option: "Never",
-                                    score: 4,
-                                    isSelected: false,
-                                    nextQuestionKey: null
-                                }, {
-                                    option: "Sometimes",
-                                    score: 3,
-                                    isSelected: false,
-                                    // nextQuestionKey: 1394848
                                 }, {
                                     option: "Fairly often",
                                     score: 2,
@@ -291,7 +253,6 @@ exports.emotion = [
                                     option: "Sometimes",
                                     score: 3,
                                     isSelected: false,
-                                    // nextQuestionKey: 1394848
                                 }, {
                                     option: "Fairly often",
                                     score: 2,
@@ -321,7 +282,35 @@ exports.emotion = [
                                     option: "Sometimes",
                                     score: 3,
                                     isSelected: false,
-                                    // nextQuestionKey: 1394848
+                                }, {
+                                    option: "Fairly often",
+                                    score: 2,
+                                    isSelected: false
+                                }, {
+                                    option: "Very often",
+                                    score: 1,
+                                    isSelected: false
+                                }],
+                            calculatedScore: 0,
+                            multiSelect: false
+                        },
+                        subQuestions: null
+                    }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                        name: "In the last one month how often have you been upset because of something that happened unexpectedly ?",
+                        options: {
+                            option: [{
+                                    option: "Never",
+                                    score: 4,
+                                    isSelected: false,
+                                    nextQuestionKey: null
+                                }, {
+                                    option: "Sometimes",
+                                    score: 3,
+                                    isSelected: false,
                                 }, {
                                     option: "Fairly often",
                                     score: 2,

@@ -13,14 +13,14 @@ exports.preprocessMiddlewareForCreatingPath = void 0;
 const Master_1 = require("../Constant/Master");
 const ResponseClass_1 = require("../utils/ResponseClass");
 const preprocessMiddlewareForCreatingPath = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    if (!req.params.contentId) {
+    if (!req.params.week) {
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
-            message: "Bad Request! Content Id must be provide.",
+            message: "Bad Request! Week must be provide.",
         }));
     }
-    let path = 'Content/'; //Add static path
-    path = path + req.params.contentId; //Add id
+    let path = 'Content/';
+    path = path + req.params.week;
     req.processedpath = path;
     next();
 });
