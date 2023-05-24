@@ -14,9 +14,7 @@ const Questionnaire_1 = require("../../Constant/LeapScore/Questionnaire");
 const Master_1 = require("../../Constant/Master");
 const ResponseClass_1 = require("../../utils/ResponseClass");
 const getLeapScoreQuestions = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const query = req.query;
     try {
-        // const questions = questionnaire.filter((item) => item.category == query.category)
         const lifestyleQuestions = Questionnaire_1.lifeStyle;
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
