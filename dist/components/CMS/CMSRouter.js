@@ -2,9 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const tokenVerify_1 = require("../../middleware/tokenVerify");
+const AwsFileUploader_1 = require("../../utils/AwsFileUploader");
 const CMSController_1 = require("./CMSController");
 const router = (0, express_1.Router)();
 router.post("/weekly/content/create", tokenVerify_1.verifyToken, CMSController_1.createWeeklyContent);
 router.put("/weekly/content/update", tokenVerify_1.verifyToken, CMSController_1.updateWeeklyContent);
 router.get("/weekly/content/details", tokenVerify_1.verifyToken, CMSController_1.getWeeklyContent);
+router.post("/weekly/content/upload/files", tokenVerify_1.verifyToken, AwsFileUploader_1.upload.array("file"), CMSController_1.uploadImagesAndVideo);
 exports.default = router;

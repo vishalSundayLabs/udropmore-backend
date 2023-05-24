@@ -21,7 +21,7 @@ router.put("/antenatalTest/update", verifyToken, updateAntenatalTest)
 
 router.post("/antenatalTest/details", verifyToken, getAntenatalTest)
 
-router.put("/antenatalTest/file/upload", upload.array("file"), uploadAntenatalTest)
+router.put("/antenatalTest/file/upload", verifyToken, upload.array("file"), uploadAntenatalTest)
 //end
 
 //treatment test

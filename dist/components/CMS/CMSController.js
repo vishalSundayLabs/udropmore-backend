@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getWeeklyContent = exports.updateWeeklyContent = exports.createWeeklyContent = void 0;
+exports.uploadImagesAndVideo = exports.getWeeklyContent = exports.updateWeeklyContent = exports.createWeeklyContent = void 0;
 const Master_1 = require("../../Constant/Master");
 const bodyTraverse_1 = require("../../helpers/bodyTraverse");
 const pagination_1 = require("../../helpers/pagination");
@@ -96,3 +96,34 @@ const getWeeklyContent = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.getWeeklyContent = getWeeklyContent;
+const uploadImagesAndVideo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const body = req.body;
+    if (!body.contentId) {
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: "Bad Request! Content Id must be provide.",
+        }));
+    }
+    try {
+        if (req.files.length == 0) {
+            return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+                success: false,
+                message: "Bad Request! file not upload by you.",
+            }));
+        }
+        const filesUrl = req.files.map((item) => item.location);
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "upload file successfully .",
+            result: filesUrl
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.uploadImagesAndVideo = uploadImagesAndVideo;

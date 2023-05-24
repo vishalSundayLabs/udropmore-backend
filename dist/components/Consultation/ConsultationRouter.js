@@ -15,7 +15,7 @@ router.post('/currentObservastion/details', tokenVerify_1.verifyToken, Consultat
 router.post("/antenatalTest/create", tokenVerify_1.verifyToken, ConsultationController_1.createAntenatalTest);
 router.put("/antenatalTest/update", tokenVerify_1.verifyToken, ConsultationController_1.updateAntenatalTest);
 router.post("/antenatalTest/details", tokenVerify_1.verifyToken, ConsultationController_1.getAntenatalTest);
-router.put("/antenatalTest/file/upload", AwsFileUploader_1.upload.array("file"), ConsultationController_1.uploadAntenatalTest);
+router.put("/antenatalTest/file/upload", tokenVerify_1.verifyToken, AwsFileUploader_1.upload.array("file"), ConsultationController_1.uploadAntenatalTest);
 //end
 //treatment test
 router.post("/treatment/create", tokenVerify_1.verifyToken, ConsultationController_1.createTreatment);
