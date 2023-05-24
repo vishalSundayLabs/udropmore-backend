@@ -125,7 +125,7 @@ export const getFood = {
             value: 1,
             unit: "Glass"
         },
-        macro: ["Vitamin B2 Riboflavin","Vitamin B5 Pantothenic","Vitamin B12","Choline","Zinc", "Iodine","Potassium","Phosphorus", "Trytophan", "Leucine", "Isoleucine","Threonine","Lysine", "Methionine", "Cystine","Valine","Phenylalanine","Tyrosine","Histidine"]
+        macro: ["Vitamin B2 Riboflavin", "Vitamin B5 Pantothenic", "Vitamin B12", "Choline", "Zinc", "Iodine", "Potassium", "Phosphorus", "Trytophan", "Leucine", "Isoleucine", "Threonine", "Lysine", "Methionine", "Cystine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
     },
     mushrooms: {
         name: "Mushrooms",
@@ -133,7 +133,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin B2 Riboflavin","Vitamin B3 Niacin","Vitamin B5 Pantothenic", "Iron","Copper","Potassium"]
+        macro: ["Vitamin B2 Riboflavin", "Vitamin B3 Niacin", "Vitamin B5 Pantothenic", "Iron", "Copper", "Potassium"]
     },
     almonds: {
         name: "Almonds",
@@ -141,7 +141,7 @@ export const getFood = {
             value: 1,
             unit: "Handful"
         },
-        macro: []
+        macro: ["Vitamin B2 Riboflavin", "Vitamin B5 Pantothenic", "Vitamin E", "Magnesium", "Calcium", "Leucine", "Phenylalanine", "Histidine"]
     },
     peanuts: {
         name: "Peanuts",
@@ -149,7 +149,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin B3 Niacin", "Vitamin E", "Trytophan", "Leucine", "Isoleucine", "Tyrosine"]
     },
     sunflowerSeeds: {
         name: "Sunflower Seeds",
@@ -157,7 +157,7 @@ export const getFood = {
             value: 1,
             unit: "Handful"
         },
-        macro: []
+        macro: ["Vitamin B5 Pantothenic", "Vitamin B6", "Vitamin E", "Selenium", "Isoleucine", "Threonine", "Methionine", "Cystine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
     },
     lentils: {
         name: "Lentils",
@@ -165,7 +165,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin B5 Pantothenic", "Vitamin B9 Folate", "Zinc", "Potassium", "Phosphorus", "Isoleucine", "Threonine", "Methionine", "Cystine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
     },
     potatoes: {
         name: "Potatoes",
@@ -173,7 +173,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin A", "Beta-carotene", "Vitamin B3 Niacin", "Vitamin B5 Pantothenic", "Vitamin B6", "Vitamin B9 Folate", "Copper", "Potassium", "Isoleucine", "Threonine", "Lysine", "Methionine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
     },
     bananas: {
         name: "Bananas",
@@ -181,7 +181,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin B6", "Magnesium", "Potassium"]
     },
     pistachio: {
         name: "Pistachio",
@@ -189,7 +189,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin B6", "Trytophan", "Leucine", "Isoleucine", "Valine", "Phenylalanine", "Tyrosine", "Histidine",]
     },
     edamame: {
         name: "Edamame",
@@ -197,7 +197,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin B9 Folate", "Trytophan", "Threonine", "Lysine", "Methionine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
     },
     brocolli: {
         name: "Brocolli",
@@ -205,7 +205,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin A", "Beta-carotene", "Vitamin B9 Folate",]
     },
     mangose: {
         name: "Mangoes",
@@ -221,7 +221,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin B12", "Iron"]
     },
     broccoli: {
         name: "Broccoli",
@@ -229,7 +229,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin C", "Choline", "Vitamin E", "Vitamin K", "Phenylalanine"]
     },
     cabbage: {
         name: "Cabbage",
@@ -237,7 +237,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin K"]
     },
     brusselSprouts: {
         name: "Brussel Sprouts",
@@ -245,7 +245,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin K"]
     },
     ladyFinger: {
         name: "Lady Finger",
@@ -253,7 +253,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin K", "Calcium", "Tyrosine"]
     },
     cookedSpinach: {
         name: "Cooked Spinach",
@@ -261,7 +261,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Magnesium", "Zinc"]
     },
     pumpkinSeeds: {
         name: "Pumpkin Seeds",
@@ -269,7 +269,7 @@ export const getFood = {
             value: 1,
             unit: "Handful"
         },
-        macro: []
+        macro: ["Magnesium", "Zinc", "Iron", "Phosphorus", "Trytophan", "Leucine", "Isoleucine", "Threonine", "Lysine", "Methionine", "Cystine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
     },
     quinoa: {
         name: "Quinoa",
@@ -277,7 +277,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Magnesium", "Iron", "Phosphorus", "Isoleucine", "Threonine", "Lysine", "Methionine", "Cystine", "Phenylalanine", "Histidine"]
     },
     yogurt: {
         name: "Yogurt",
@@ -285,7 +285,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Magnesium", "Zinc", "Calcium", "Leucine", "Isoleucine", "Threonine", "Lysine", "Methionine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
     },
     cashews: {
         name: "Cashews",
@@ -293,7 +293,7 @@ export const getFood = {
             value: 1,
             unit: "Handful"
         },
-        macro: []
+        macro: ["Magnesium", "Zinc", "Copper", "Trytophan", "Cystine", "Valine", "Tyrosine", "Histidine"]
     },
     brazilNuts: {
         name: "Brazil Nuts",
@@ -301,7 +301,7 @@ export const getFood = {
             value: 1,
             unit: "Handful"
         },
-        macro: []
+        macro: ["Selenium"]
     },
     oatmeal: {
         name: "Oatmeal",
@@ -309,7 +309,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Selenium", "Zinc", "Trytophan", "Isoleucine", "Threonine", "Lysine", "Methionine", "Cystine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
     },
     chiaSeeds: {
         name: "Chia Seeds",
@@ -317,7 +317,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Selenium", "Iron", "Calcium", "Methionine", "Cystine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
     },
     chickpeas: {
         name: "Chickpeas",
@@ -325,7 +325,7 @@ export const getFood = {
             value: 1,
             unit: "Handful"
         },
-        macro: []
+        macro: ["Zinc", "Copper"]
     },
     cerealKalloggsSmartStartStrong: {
         name: "Cereal Kalloggs Smart Start Strong",
@@ -333,7 +333,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Zinc"]
     },
     apricots: {
         name: "Apricots",
@@ -341,7 +341,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin A", "Beta-carotene", "Iron",]
     },
     tomatoes: {
         name: "Tomatoes",
@@ -349,7 +349,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin C", "Lycopene", "Potassium"]
     },
     watermelon: {
         name: "Watermelon",
@@ -357,7 +357,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Lycopene"]
     },
     grapefruit: {
         name: "Grapefruit",
@@ -365,7 +365,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Lycopene"]
     },
     papaya: {
         name: "Papaya",
@@ -373,7 +373,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin C", "Lycopene"]
     },
     sesameSeeds: {
         name: "Sesame Seeds",
@@ -381,7 +381,7 @@ export const getFood = {
             value: 1,
             unit: "Handful"
         },
-        macro: []
+        macro: ["Iron", "Calcium", "Copper", "Methionine", "Cystine", "Tyrosine"]
     },
     kale: {
         name: "Kale",
@@ -389,7 +389,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Calcium"]
     },
     iodisedSalt: {
         name: "Iodised Salt",
@@ -397,7 +397,7 @@ export const getFood = {
             value: 1,
             unit: "g"
         },
-        macro: []
+        macro: ["Iodine"]
     },
     bakedPotatoWithPeel: {
         name: "Baked Potato With Peel",
@@ -405,7 +405,7 @@ export const getFood = {
             value: null,
             unit: null
         },
-        macro: []
+        macro: ["Iodine"]
     },
     hempSeeds: {
         name: "Hemp Seeds",
@@ -413,7 +413,7 @@ export const getFood = {
             value: 1,
             unit: "Handful"
         },
-        macro: []
+        macro: ["Magnesium", "Iron", "Phosphorus", "Isoleucine", "Threonine", "Methionine", "Cystine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
     },
     cheese: {
         name: "Cheese",
@@ -421,7 +421,7 @@ export const getFood = {
             value: null,
             unit: null
         },
-        macro: []
+        macro: ["Trytophan"]
     },
     kidneyBeans: {
         name: "Kidney Beans",
@@ -429,7 +429,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Threonine", "Methionine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
     },
     redBellPappers: {
         name: "Red Bell Pappers",
@@ -437,7 +437,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin A", "Beta-carotene"]
     },
     driedApricots: {
         name: "Dried Apricots",
@@ -445,7 +445,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin A", "Beta-carotene"]
     },
     porkChops: {
         name: "Pork Chops",
@@ -453,7 +453,7 @@ export const getFood = {
             value: 1,
             unit: "Chop"
         },
-        macro: []
+        macro: ["Vitamin B1 Thiamin", "Vitamin B2 Riboflavin", "Vitamin B3 Niacin", "Vitamin B5 Pantothenic", "Vitamin B6", "Choline", "Selenium", "Zinc", "Phosphorus", "Trytophan", "Leucine", "Isoleucine", "Threonine", "Lysine", "Methionine", "Cystine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
     },
     fishSalmon: {
         name: "Fish Salmon",
@@ -461,7 +461,7 @@ export const getFood = {
             value: 1,
             unit: "Fillet"
         },
-        macro: []
+        macro: ["Vitamin B1 Thiamin", "Vitamin B2 Riboflavin", "Vitamin B3 Niacin", "Vitamin B5 Pantothenic", "Vitamin B6", "Choline", "Copper",]
     },
     mussels: {
         name: "Mussels",
@@ -469,7 +469,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin B1 Thiamin"]
     },
     beef: {
         name: "Beef",
@@ -477,7 +477,7 @@ export const getFood = {
             value: 1,
             unit: "Steak"
         },
-        macro: []
+        macro: ["Vitamin B2 Riboflavin", "Vitamin B3 Niacin", "Vitamin B5 Pantothenic", "Vitamin B6", "Vitamin B12", "Choline", "Selenium", "Zinc", "Iron", "Phosphorus", "Trytophan", "Leucine", "Isoleucine", "Threonine", "Lysine", "Methionine", "Cystine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
     },
     leanRoastHam: {
         name: "Lean Roast Ham",
@@ -485,7 +485,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin B2 Riboflavin"]
     },
     eggs: {
         name: "Eggs",
@@ -493,7 +493,7 @@ export const getFood = {
             value: 1,
             unit: "Large"
         },
-        macro: []
+        macro: ["Vitamin B2 Riboflavin", "Vitamin B12", "Choline", "Trytophan", "Leucine", "Threonine", "Lysine", "Methionine", "Cystine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
     },
     chickenBreast: {
         name: "Chicken Breast",
@@ -501,7 +501,7 @@ export const getFood = {
             value: 200,
             unit: "g"
         },
-        macro: []
+        macro: ["Vitamin B3 Niacin", "Vitamin B5 Pantothenic", "Vitamin B6", "Choline", "Selenium", "Phosphorus", "Isoleucine", "Threonine", "Lysine", "Methionine", "Cystine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
     },
     crab: {
         name: "Crab",
@@ -509,7 +509,7 @@ export const getFood = {
             value: 1,
             unit: "Crab Leg"
         },
-        macro: []
+        macro: ["Vitamin B12", "Lysine", "Methionine"]
     },
     clams: {
         name: "Clams",
@@ -517,7 +517,7 @@ export const getFood = {
             value: 75,
             unit: "g"
         },
-        macro: []
+        macro: ["Vitamin B12", "Zinc"]
     },
     shrimps: {
         name: "Shrimps",
@@ -525,7 +525,7 @@ export const getFood = {
             value: 12,
             unit: "Large"
         },
-        macro: []
+        macro: ["Choline", "Vitamin E", "Selenium", "Iodine", "Methionine", "Phenylalanine"]
     },
     walnuts: {
         name: "Walnuts",
@@ -533,7 +533,7 @@ export const getFood = {
             value: 1,
             unit: "Handful"
         },
-        macro: []
+        macro: ["Magnesium"]
     },
     oysters: {
         name: "Oysters",
@@ -541,7 +541,7 @@ export const getFood = {
             value: 6,
             unit: "units"
         },
-        macro: []
+        macro: ["Selenium", "Zinc",]
     },
     chicken: {
         name: "Chicken",
@@ -549,7 +549,7 @@ export const getFood = {
             value: 175,
             unit: "g"
         },
-        macro: []
+        macro: ["Zinc", "Trytophan", "Leucine"]
     },
     seaweed: {
         name: "Seaweed",
@@ -557,7 +557,7 @@ export const getFood = {
             value: 1,
             unit: "g"
         },
-        macro: []
+        macro: ["Iodine"]
     },
     salmon: {
         name: "Salmon",
@@ -565,7 +565,7 @@ export const getFood = {
             value: 1,
             unit: "Fillet"
         },
-        macro: []
+        macro: [ "Potassium","Tyrosine","Histidine"]
     },
     millets: {
         name: "Millets",
@@ -574,6 +574,6 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Valine","Tyrosine"]
     }
 }
