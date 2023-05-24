@@ -30,7 +30,7 @@ const leapContentSchema = new mongoose.Schema({
     trimesters: [Number],
     type: {
         type: String,
-        enum: ["MOTHER", "BABY", null],
+        enum: ["MOTHER", "BABY", "LIFESTYLE", "ANATOMY", "EMOTION", "PHYSICAL_FITNESS", null],
         default: null
     },
     weeks: [Number],

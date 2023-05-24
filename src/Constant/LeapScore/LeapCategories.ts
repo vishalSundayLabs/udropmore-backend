@@ -1,6 +1,6 @@
 export const getCategories = {
     LIFESTYLE: "LIFESTYLE",
-    EMOTIONAL: "EMOTIONAL",
+    EMOTION: "EMOTION",
     PHYSICAL: "PHYSICAL",
     ANATOMY: "ANATOMY"
 }

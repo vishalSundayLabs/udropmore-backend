@@ -6,12 +6,10 @@ export const getLeapScoreQuestions = async (req, res) => {
 
     try {
 
-        const lifestyleQuestions = lifeStyle
-
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: "Get All Questions successfully.",
-            result: { lifestyle: lifestyleQuestions, emotion: null, anatomy: null, physicalFitness: null }
+            result: { lifestyle: lifeStyle, emotion: null, anatomy: null, physicalFitness: null }
         }))
 
     } catch (error) {

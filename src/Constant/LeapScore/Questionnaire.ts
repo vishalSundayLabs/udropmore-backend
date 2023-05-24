@@ -14,13 +14,11 @@ export const lifeStyle = [
                         option: [{
                             option: "Never",
                             score: 1,
-                            isSelected: false,
-                            // nextQuestionKey: null
+                            isSelected: false
                         }, {
                             option: "Once a week",
                             score: 2,
                             isSelected: false,
-                            // nextQuestionKey: 1394848
                         }, {
                             option: "2 to 3 times a week",
                             score: 3,
@@ -34,12 +32,11 @@ export const lifeStyle = [
                         multiSelect: false
                     },
                     subQuestions: [{
-                        // key: 1394848,
                         name: "Which Green Leafy Vegetables do you consume ?",
                         option: {
                             A: { options: [{ name: getFood.spinach.name, isSelected: false }, { name: "Basil", isSelected: false }, { name: getFood.carrots.name, isSelected: false }, { name: getFood.brusselSprouts.name, isSelected: false }], score: 1 },
                             B: { options: [{ name: getFood.lettuce.name, isSelected: false }, { name: "Asparagus", isSelected: false }, { name: "Beet root", isSelected: false }], score: 1 },
-                            C: { options: [{ name: `${getFood.cabbage}-White | Green | Purple`, isSelected: false }, { name: getFood.broccoli, isSelected: false }, { name: "Radish", isSelected: false }], score: 1 },
+                            C: { options: [{ name: `${getFood.cabbage.name}-White | Green | Purple`, isSelected: false }, { name: getFood.broccoli, isSelected: false }, { name: "Radish", isSelected: false }], score: 1 },
                             D: { options: [{ name: getFood.sweetPotatoes, isSelected: false }, { name: getFood.redBellPappers, isSelected: false }, { name: "Potatoes", isSelected: false }], score: 1 }
                         },
                         calculatedScore: 0,
@@ -1222,6 +1219,547 @@ export const lifeStyle = [
                     }
 
                 ],
+            }
+        ]
+    }
+]
+
+export const emotion = [
+    {
+        category: getCategories.EMOTION,
+        subCategory: null,
+        section: [
+            {
+                sectionName: null,
+                question: [{
+                    name: "In the last one month how often have you been upset because of something that happened unexpectedly ?",
+                    options: {
+                        option: [{
+                            option: "Never",
+                            score: 4,
+                            isSelected: false,
+                            nextQuestionKey: null
+                        }, {
+                            option: "Sometimes",
+                            score: 3,
+                            isSelected: false,
+                            // nextQuestionKey: 1394848
+                        }, {
+                            option: "Fairly often",
+                            score: 2,
+                            isSelected: false
+                        }, {
+                            option: "Very often",
+                            score: 1,
+                            isSelected: false
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: null
+                }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                    name: "In the last month, how often have you felt that you have not been able to control the important things of your life ?",
+                    options: {
+                        option: [{
+                            option: "Never",
+                            score: 4,
+                            isSelected: false,
+                            nextQuestionKey: null
+                        }, {
+                            option: "Sometimes",
+                            score: 3,
+                            isSelected: false,
+                            // nextQuestionKey: 1394848
+                        }, {
+                            option: "Fairly often",
+                            score: 2,
+                            isSelected: false
+                        }, {
+                            option: "Very often",
+                            score: 1,
+                            isSelected: false
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: null
+                }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                    name: "In the last month, how often have you felt nervous and stressed ?",
+                    options: {
+                        option: [{
+                            option: "Never",
+                            score: 4,
+                            isSelected: false,
+                            nextQuestionKey: null
+                        }, {
+                            option: "Sometimes",
+                            score: 3,
+                            isSelected: false,
+                            // nextQuestionKey: 1394848
+                        }, {
+                            option: "Fairly often",
+                            score: 2,
+                            isSelected: false
+                        }, {
+                            option: "Very often",
+                            score: 1,
+                            isSelected: false
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: null
+                }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                    name: "In the last month, how often have you felt confident about your ability to handle your personal problems ?",
+                    options: {
+                        option: [{
+                            option: "Never",
+                            score: 4,
+                            isSelected: false,
+                            nextQuestionKey: null
+                        }, {
+                            option: "Sometimes",
+                            score: 3,
+                            isSelected: false,
+                            // nextQuestionKey: 1394848
+                        }, {
+                            option: "Fairly often",
+                            score: 2,
+                            isSelected: false
+                        }, {
+                            option: "Very often",
+                            score: 1,
+                            isSelected: false
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: null
+                }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                    name: "In the last one month how often have you been upset because of something that happened unexpectedly ?",
+                    options: {
+                        option: [{
+                            option: "Never",
+                            score: 4,
+                            isSelected: false,
+                            nextQuestionKey: null
+                        }, {
+                            option: "Sometimes",
+                            score: 3,
+                            isSelected: false,
+                            // nextQuestionKey: 1394848
+                        }, {
+                            option: "Fairly often",
+                            score: 2,
+                            isSelected: false
+                        }, {
+                            option: "Very often",
+                            score: 1,
+                            isSelected: false
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: null
+                }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                    name: "In the last one month how often have you been upset because of something that happened unexpectedly ?",
+                    options: {
+                        option: [{
+                            option: "Never",
+                            score: 4,
+                            isSelected: false,
+                            nextQuestionKey: null
+                        }, {
+                            option: "Sometimes",
+                            score: 3,
+                            isSelected: false,
+                            // nextQuestionKey: 1394848
+                        }, {
+                            option: "Fairly often",
+                            score: 2,
+                            isSelected: false
+                        }, {
+                            option: "Very often",
+                            score: 1,
+                            isSelected: false
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: null
+                }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                    name: "In the last one month how often have you been upset because of something that happened unexpectedly ?",
+                    options: {
+                        option: [{
+                            option: "Never",
+                            score: 4,
+                            isSelected: false,
+                            nextQuestionKey: null
+                        }, {
+                            option: "Sometimes",
+                            score: 3,
+                            isSelected: false,
+                            // nextQuestionKey: 1394848
+                        }, {
+                            option: "Fairly often",
+                            score: 2,
+                            isSelected: false
+                        }, {
+                            option: "Very often",
+                            score: 1,
+                            isSelected: false
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: null
+                }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                    name: "In the last one month how often have you been upset because of something that happened unexpectedly ?",
+                    options: {
+                        option: [{
+                            option: "Never",
+                            score: 4,
+                            isSelected: false,
+                            nextQuestionKey: null
+                        }, {
+                            option: "Sometimes",
+                            score: 3,
+                            isSelected: false,
+                            // nextQuestionKey: 1394848
+                        }, {
+                            option: "Fairly often",
+                            score: 2,
+                            isSelected: false
+                        }, {
+                            option: "Very often",
+                            score: 1,
+                            isSelected: false
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: null
+                }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                    name: "In the last one month how often have you been upset because of something that happened unexpectedly ?",
+                    options: {
+                        option: [{
+                            option: "Never",
+                            score: 4,
+                            isSelected: false,
+                            nextQuestionKey: null
+                        }, {
+                            option: "Sometimes",
+                            score: 3,
+                            isSelected: false,
+                            // nextQuestionKey: 1394848
+                        }, {
+                            option: "Fairly often",
+                            score: 2,
+                            isSelected: false
+                        }, {
+                            option: "Very often",
+                            score: 1,
+                            isSelected: false
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: null
+                }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                    name: "In the last one month how often have you been upset because of something that happened unexpectedly ?",
+                    options: {
+                        option: [{
+                            option: "Never",
+                            score: 4,
+                            isSelected: false,
+                            nextQuestionKey: null
+                        }, {
+                            option: "Sometimes",
+                            score: 3,
+                            isSelected: false,
+                            // nextQuestionKey: 1394848
+                        }, {
+                            option: "Fairly often",
+                            score: 2,
+                            isSelected: false
+                        }, {
+                            option: "Very often",
+                            score: 1,
+                            isSelected: false
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: null
+                }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                    name: "In the last one month how often have you been upset because of something that happened unexpectedly ?",
+                    options: {
+                        option: [{
+                            option: "Never",
+                            score: 4,
+                            isSelected: false,
+                            nextQuestionKey: null
+                        }, {
+                            option: "Sometimes",
+                            score: 3,
+                            isSelected: false,
+                            // nextQuestionKey: 1394848
+                        }, {
+                            option: "Fairly often",
+                            score: 2,
+                            isSelected: false
+                        }, {
+                            option: "Very often",
+                            score: 1,
+                            isSelected: false
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: null
+                }]
+            }
+        ]
+    }
+]
+
+export const anatomy = [
+    {
+        category: getCategories.LIFESTYLE,
+        subCategory: "Protein",
+        section: [
+            {
+                sectionName: "Diary Products",
+                question: [{
+                    name: "How often do you consume Dairy Products ?",
+                    options: {
+                        option: [{
+                            option: "Never",
+                            score: 1,
+                            isSelected: false,
+                            nextQuestionKey: null
+                        }, {
+                            option: "Once a week",
+                            score: 2,
+                            isSelected: false,
+                            // nextQuestionKey: 1394848
+                        }, {
+                            option: "2 to 3 times a week",
+                            score: 3,
+                            isSelected: false
+                        }, {
+                            option: "Everyday",
+                            score: 4,
+                            isSelected: false
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: [{
+                        subname: "Which Dairy Products do you consume ?",
+                        option: {
+                            A: [{ name: "Paneer", isSelected: false }],
+                            B: [{ name: "Milk", isSelected: false }],
+                            C: [{ name: "Yogurt", isSelected: false }],
+                            D: [{ name: "Cheese", isSelected: false }]
+                        },
+                        nutrient: {
+                            A: { name: "Calcium | Amino Acids", value: 1 },
+                            B: { name: "Calcium | Amino Acids", value: 1 },
+                            C: { name: "Calcium | Amino Acids", value: 1 },
+                            D: { name: "Calcium | Amino Acids", value: 1 }
+                        },
+                        score: 0,
+                        multiSelect: true
+                    }]
+                }]
+            },
+            {
+                sectionName: "Dals & Pulses",
+                question: [{
+                    name: "How often do you consume Dal & Pulses ?",
+                    options: {
+                        option: [{
+                            option: "Never",
+                            score: 1,
+                            isSelected: false,
+                            nextQuestionKey: null
+                        }, {
+                            option: "Once a week",
+                            score: 2,
+                            isSelected: false,
+                            // nextQuestionKey: 1394848
+                        }, {
+                            option: "2 to 3 times a week",
+                            score: 3,
+                            isSelected: false
+                        }, {
+                            option: "Everyday",
+                            score: 4,
+                            isSelected: false
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: [{
+                        subname: "Which Dals & Pulses do you consume ?",
+                        option: {
+                            A: [{ name: "Rajma or Kidney Beans", isSelected: false }],
+                            B: [{ name: "Chickpeas", isSelected: false }, { name: "Chana", isSelected: false }, { name: "Chole or Kala Chana", isSelected: false }],
+                            C: [{ name: "Hare Mung", isSelected: false }, { name: "Toor Dal", isSelected: false }, { name: "Urad Dal", isSelected: false }, { name: "Masoor Dal" }],
+                            D: [{ name: "Til", isSelected: false }, { name: "Sesame Seeds", isSelected: false }]
+                        },
+                        nutrient: {
+                            A: { name: "Iron", value: 1 },
+                            B: { name: "Iron", value: 1 },
+                            C: { name: "Protein | Fiber | Iron", value: 1 },
+                            D: { name: "Fat | Iron | Calcium", value: 1 }
+                        },
+                        score: 0,
+                        multiSelect: true
+                    }]
+                }]
+            }
+        ]
+    }
+]
+
+export const physicalFitness = [
+    {
+        category: getCategories.LIFESTYLE,
+        subCategory: "Protein",
+        section: [
+            {
+                sectionName: "Diary Products",
+                question: [{
+                    name: "How often do you consume Dairy Products ?",
+                    options: {
+                        option: [{
+                            option: "Never",
+                            score: 1,
+                            isSelected: false,
+                            nextQuestionKey: null
+                        }, {
+                            option: "Once a week",
+                            score: 2,
+                            isSelected: false,
+                            // nextQuestionKey: 1394848
+                        }, {
+                            option: "2 to 3 times a week",
+                            score: 3,
+                            isSelected: false
+                        }, {
+                            option: "Everyday",
+                            score: 4,
+                            isSelected: false
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: [{
+                        subname: "Which Dairy Products do you consume ?",
+                        option: {
+                            A: [{ name: "Paneer", isSelected: false }],
+                            B: [{ name: "Milk", isSelected: false }],
+                            C: [{ name: "Yogurt", isSelected: false }],
+                            D: [{ name: "Cheese", isSelected: false }]
+                        },
+                        nutrient: {
+                            A: { name: "Calcium | Amino Acids", value: 1 },
+                            B: { name: "Calcium | Amino Acids", value: 1 },
+                            C: { name: "Calcium | Amino Acids", value: 1 },
+                            D: { name: "Calcium | Amino Acids", value: 1 }
+                        },
+                        score: 0,
+                        multiSelect: true
+                    }]
+                }]
+            },
+            {
+                sectionName: "Dals & Pulses",
+                question: [{
+                    name: "How often do you consume Dal & Pulses ?",
+                    options: {
+                        option: [{
+                            option: "Never",
+                            score: 1,
+                            isSelected: false,
+                            nextQuestionKey: null
+                        }, {
+                            option: "Once a week",
+                            score: 2,
+                            isSelected: false,
+                            // nextQuestionKey: 1394848
+                        }, {
+                            option: "2 to 3 times a week",
+                            score: 3,
+                            isSelected: false
+                        }, {
+                            option: "Everyday",
+                            score: 4,
+                            isSelected: false
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: [{
+                        subname: "Which Dals & Pulses do you consume ?",
+                        option: {
+                            A: [{ name: "Rajma or Kidney Beans", isSelected: false }],
+                            B: [{ name: "Chickpeas", isSelected: false }, { name: "Chana", isSelected: false }, { name: "Chole or Kala Chana", isSelected: false }],
+                            C: [{ name: "Hare Mung", isSelected: false }, { name: "Toor Dal", isSelected: false }, { name: "Urad Dal", isSelected: false }, { name: "Masoor Dal" }],
+                            D: [{ name: "Til", isSelected: false }, { name: "Sesame Seeds", isSelected: false }]
+                        },
+                        nutrient: {
+                            A: { name: "Iron", value: 1 },
+                            B: { name: "Iron", value: 1 },
+                            C: { name: "Protein | Fiber | Iron", value: 1 },
+                            D: { name: "Fat | Iron | Calcium", value: 1 }
+                        },
+                        score: 0,
+                        multiSelect: true
+                    }]
+                }]
             }
         ]
     }
