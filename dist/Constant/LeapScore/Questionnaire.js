@@ -1,7 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.questionnaire = void 0;
+const Food_1 = require("./Food");
 const LeapCategories_1 = require("./LeapCategories");
-const questionnaire = [
+exports.questionnaire = [
     {
         category: LeapCategories_1.getCategories.LIFESTYLE,
         subCategory: "Food Diversity",
@@ -15,7 +17,7 @@ const questionnaire = [
                                     option: "Never",
                                     score: 1,
                                     isSelected: false,
-                                    nextQuestionKey: null
+                                    // nextQuestionKey: null
                                 }, {
                                     option: "Once a week",
                                     score: 2,
@@ -37,8 +39,8 @@ const questionnaire = [
                                 // key: 1394848,
                                 name: "Which Green Leafy Vegetables do you consume ?",
                                 option: {
-                                    A: { options: [{ name: "Spinach", isSelected: false }, { name: "Basil", isSelected: false }, { name: "Carrots", isSelected: false }, { name: "Brussel Sprouts", isSelected: false }], score: 1 },
-                                    B: { options: [{ name: "Lettuce", isSelected: false }, { name: "Asparagus", isSelected: false }, { name: "Beet root", isSelected: false }], score: 1 },
+                                    A: { options: [{ name: Food_1.getFood.spinach.name, isSelected: false }, { name: "Basil", isSelected: false }, { name: "Carrots", isSelected: false }, { name: "Brussel Sprouts", isSelected: false }], score: 1 },
+                                    B: { options: [{ name: Food_1.getFood.lettuce.name, isSelected: false }, { name: "Asparagus", isSelected: false }, { name: "Beet root", isSelected: false }], score: 1 },
                                     C: { options: [{ name: "Cabbage-White | Green | Purple", isSelected: false }, { name: "Broccoli", isSelected: false }, { name: "Radish", isSelected: false }], score: 1 },
                                     D: { options: [{ name: "Sweet Potatoes", isSelected: false }, { name: "Red Bell Peppers", isSelected: false }, { name: "Potatoes", isSelected: false }], score: 1 }
                                 },

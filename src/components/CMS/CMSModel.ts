@@ -22,7 +22,7 @@ const leapContentSchema = new mongoose.Schema({
     },
     subtype: {
         type: String,
-        enum: ["LIFESTYLE", "ANATOMY", "EMOTION", "PHYSICAL_FITNESS", "SUMMARY", "PHYSICAL", "IMMUNE", null],
+        enum: ["LIFESTYLE", "ANATOMY", "EMOTION", "PHYSICAL_FITNESS", "SUMMARY", "PHYSICAL", "IMMUNE", "COGNITIVE", null],
         default: null
     },
     tags: [String],

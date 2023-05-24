@@ -12,6 +12,7 @@ import userDetailsRouter from '../components/UserDetails/UserDetailsRouter';
 import consultationRouter from '../components/Consultation/ConsultationRouter'
 import cmsRouter from '../components/CMS/CMSRouter'
 import prescriptionTemplateRouter from "../components/Template/TemplateRouter";
+import leapScoreQuestionsRouter from "../components/LeapScore/LeapScoreRouter"
 
 const router = Router();
 
@@ -30,5 +31,7 @@ router.use("/v1/consultation", consultationRouter)
 router.use("/v1/cms", cmsRouter)
 
 router.use("/v1/prescription", prescriptionTemplateRouter)
+
+router.use('/v1/leapScore', leapScoreQuestionsRouter)
 
 export default router;

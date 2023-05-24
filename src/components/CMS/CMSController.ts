@@ -1,4 +1,4 @@
-import { HTTP_BAD_REQUEST, HTTP_NOT_FOUND } from "../../Constant/Master"
+import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_NOT_FOUND, HTTP_OK } from "../../Constant/Master"
 import { bodyTraverse } from "../../helpers/bodyTraverse"
 import { pagination } from "../../helpers/pagination"
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
@@ -16,7 +16,7 @@ export const createWeeklyContent = async (req, res) => {
 
         const weeklyContent = await CMSModel.create(reqData)
 
-        return res.status(HTTP_NOT_FOUND).send(new ResponseSuccess({
+        return res.status(HTTP_CREATED).send(new ResponseSuccess({
             success: true,
             message: "Create weekly data successfully .",
             result: weeklyContent
@@ -65,7 +65,7 @@ export const updateWeeklyContent = async (req, res) => {
 
         await weeklyContent.save()
 
-        return res.status(HTTP_NOT_FOUND).send(new ResponseSuccess({
+        return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: "update Weekly data successfully .",
             result: weeklyContent
@@ -103,7 +103,7 @@ export const getWeeklyContent = async (req, res) => {
 
         }
 
-        return res.status(HTTP_NOT_FOUND).send(new ResponseSuccess({
+        return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: "get Weekly data successfully .",
             result: weeklyContent

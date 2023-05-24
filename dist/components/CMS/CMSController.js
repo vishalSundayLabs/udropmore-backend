@@ -21,7 +21,7 @@ const createWeeklyContent = (req, res) => __awaiter(void 0, void 0, void 0, func
     (0, bodyTraverse_1.bodyTraverse)(reqData, body);
     try {
         const weeklyContent = yield CMSModel_1.default.create(reqData);
-        return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "Create weekly data successfully .",
             result: weeklyContent
@@ -54,7 +54,7 @@ const updateWeeklyContent = (req, res) => __awaiter(void 0, void 0, void 0, func
         }
         (0, bodyTraverse_1.bodyTraverse)(weeklyContent, body);
         yield weeklyContent.save();
-        return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "update Weekly data successfully .",
             result: weeklyContent
@@ -81,7 +81,7 @@ const getWeeklyContent = (req, res) => __awaiter(void 0, void 0, void 0, functio
                 message: "Weekly data not found!"
             }));
         }
-        return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "get Weekly data successfully .",
             result: weeklyContent

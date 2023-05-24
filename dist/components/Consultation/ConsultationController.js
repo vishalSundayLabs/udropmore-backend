@@ -335,7 +335,6 @@ const getAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, functio
 exports.getAntenatalTest = getAntenatalTest;
 const uploadAntenatalTest = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
-    console.log(body);
     if (!body.motherId || !body.doctorId) {
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,

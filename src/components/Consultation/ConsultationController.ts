@@ -459,7 +459,7 @@ export const getAntenatalTest = async (req, res) => {
 export const uploadAntenatalTest = async (req, res) => {
 
     const body = req.body
-    console.log(body)
+
     if (!body.motherId || !body.doctorId) {
 
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({

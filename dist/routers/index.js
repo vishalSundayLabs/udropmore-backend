@@ -13,6 +13,7 @@ const UserDetailsRouter_1 = require("../components/UserDetails/UserDetailsRouter
 const ConsultationRouter_1 = require("../components/Consultation/ConsultationRouter");
 const CMSRouter_1 = require("../components/CMS/CMSRouter");
 const TemplateRouter_1 = require("../components/Template/TemplateRouter");
+const LeapScoreRouter_1 = require("../components/LeapScore/LeapScoreRouter");
 const router = (0, express_1.Router)();
 router.use("/v1/users", UserRouter_1.default);
 router.use('/v1/auth', AuthRouter_1.default);
@@ -22,4 +23,5 @@ router.use('/v1/mother', UserDetailsRouter_1.default);
 router.use("/v1/consultation", ConsultationRouter_1.default);
 router.use("/v1/cms", CMSRouter_1.default);
 router.use("/v1/prescription", TemplateRouter_1.default);
+router.use('/v1/leapScore', LeapScoreRouter_1.default);
 exports.default = router;
