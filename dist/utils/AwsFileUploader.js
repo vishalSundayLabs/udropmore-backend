@@ -22,7 +22,8 @@ exports.upload = multer({
             cb(undefined, { fieldName: file.fieldname });
         },
         key: function (req, file, cb) {
-            cb(undefined, `${Date.now().toString()}${path.extname(file.originalname)}`);
+            let folderPath = req.processedpath;
+            cb(undefined, `${folderPath}/${Date.now().toString()}${path.extname(file.originalname)}`);
         },
     }),
 });

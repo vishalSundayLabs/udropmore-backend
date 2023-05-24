@@ -22,9 +22,10 @@ export const upload = multer({
       cb(undefined, { fieldName: file.fieldname });
     },
     key: function (req, file, cb) {
+      let folderPath = req.processedpath
       cb(
         undefined,
-        `${Date.now().toString()}${path.extname(file.originalname)}`
+        `${folderPath}/${Date.now().toString()}${path.extname(file.originalname)}`
       );
     },
   }),

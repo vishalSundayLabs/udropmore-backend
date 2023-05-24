@@ -124,17 +124,6 @@ export const getWeeklyContent = async (req, res) => {
 
 export const uploadImagesAndVideo = async (req, res) => {
 
-    const body = req.body
-
-    if (!body.contentId) {
-
-        return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
-            success: false,
-            message: "Bad Request! Content Id must be provide.",
-        }))
-
-    }
-
     try {
 
         if (req.files.length == 0) {

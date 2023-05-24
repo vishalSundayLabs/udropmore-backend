@@ -97,13 +97,6 @@ const getWeeklyContent = (req, res) => __awaiter(void 0, void 0, void 0, functio
 });
 exports.getWeeklyContent = getWeeklyContent;
 const uploadImagesAndVideo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const body = req.body;
-    if (!body.contentId) {
-        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
-            success: false,
-            message: "Bad Request! Content Id must be provide.",
-        }));
-    }
     try {
         if (req.files.length == 0) {
             return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
