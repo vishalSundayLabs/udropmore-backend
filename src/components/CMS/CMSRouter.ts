@@ -9,6 +9,6 @@ const router = Router()
 router.post("/weekly/content/create", verifyToken, createWeeklyContent)
 router.put("/weekly/content/update", verifyToken, updateWeeklyContent)
 router.get("/weekly/content/details", verifyToken, getWeeklyContent)
-router.post("/weekly/content/upload/files/:contentId", verifyToken, preprocessMiddlewareForCreatingPath, upload.array("file"), uploadImagesAndVideo)
+router.post("/weekly/content/upload/files/:week", verifyToken, preprocessMiddlewareForCreatingPath, upload.array("file"), uploadImagesAndVideo)
 
 export default router

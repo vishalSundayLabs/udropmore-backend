@@ -242,7 +242,7 @@ exports.emotion = [
             {
                 sectionName: null,
                 question: [{
-                        name: "In the last one month how often have you been upset because of something that happened unexpectedly ?",
+                        name: "Do you regularly consume any of the following ?",
                         options: {
                             option: [{
                                     option: "Never",
@@ -271,7 +271,7 @@ exports.emotion = [
             {
                 sectionName: null,
                 question: [{
-                        name: "In the last one month how often have you been upset because of something that happened unexpectedly ?",
+                        name: "How often do you consume green leafy vegetables ?",
                         options: {
                             option: [{
                                     option: "Never",
@@ -300,7 +300,65 @@ exports.emotion = [
             {
                 sectionName: null,
                 question: [{
-                        name: "In the last one month how often have you been upset because of something that happened unexpectedly ?",
+                        name: "How many spoons of sugar do you consume everyday ?",
+                        options: {
+                            option: [{
+                                    option: "Never",
+                                    score: 4,
+                                    isSelected: false,
+                                    nextQuestionKey: null
+                                }, {
+                                    option: "Sometimes",
+                                    score: 3,
+                                    isSelected: false,
+                                }, {
+                                    option: "Fairly often",
+                                    score: 2,
+                                    isSelected: false
+                                }, {
+                                    option: "Very often",
+                                    score: 1,
+                                    isSelected: false
+                                }],
+                            calculatedScore: 0,
+                            multiSelect: false
+                        },
+                        subQuestions: null
+                    }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                        name: "Which types of meat do you consume ?",
+                        options: {
+                            option: [{
+                                    option: "Never",
+                                    score: 4,
+                                    isSelected: false,
+                                    nextQuestionKey: null
+                                }, {
+                                    option: "Sometimes",
+                                    score: 3,
+                                    isSelected: false,
+                                }, {
+                                    option: "Fairly often",
+                                    score: 2,
+                                    isSelected: false
+                                }, {
+                                    option: "Very often",
+                                    score: 1,
+                                    isSelected: false
+                                }],
+                            calculatedScore: 0,
+                            multiSelect: false
+                        },
+                        subQuestions: null
+                    }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                        name: "How often do you consumer eggs ?",
                         options: {
                             option: [{
                                     option: "Never",
