@@ -15,17 +15,13 @@ const Master_1 = require("../../Constant/Master");
 const ResponseClass_1 = require("../../utils/ResponseClass");
 const getLeapScoreQuestions = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const query = req.query;
-    // if (!query.category) {
-    //     return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
-    //         message: "Bad Request! Category must be provide."
-    //     }))
-    // }
     try {
         // const questions = questionnaire.filter((item) => item.category == query.category)
+        const lifestyleQuestions = Questionnaire_1.lifeStyle;
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "Get All Questions successfully.",
-            result: Questionnaire_1.questionnaire
+            result: { lifestyle: lifestyleQuestions, emotion: null, anatomy: null, physicalFitness: null }
         }));
     }
     catch (error) {

@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.questionnaire = void 0;
+exports.lifeStyle = void 0;
 const Food_1 = require("./Food");
 const LeapCategories_1 = require("./LeapCategories");
-exports.questionnaire = [
+exports.lifeStyle = [
     {
         category: LeapCategories_1.getCategories.LIFESTYLE,
         subCategory: "Food Diversity",
@@ -39,10 +39,10 @@ exports.questionnaire = [
                                 // key: 1394848,
                                 name: "Which Green Leafy Vegetables do you consume ?",
                                 option: {
-                                    A: { options: [{ name: Food_1.getFood.spinach.name, isSelected: false }, { name: "Basil", isSelected: false }, { name: "Carrots", isSelected: false }, { name: "Brussel Sprouts", isSelected: false }], score: 1 },
+                                    A: { options: [{ name: Food_1.getFood.spinach.name, isSelected: false }, { name: "Basil", isSelected: false }, { name: Food_1.getFood.carrots.name, isSelected: false }, { name: Food_1.getFood.brusselSprouts.name, isSelected: false }], score: 1 },
                                     B: { options: [{ name: Food_1.getFood.lettuce.name, isSelected: false }, { name: "Asparagus", isSelected: false }, { name: "Beet root", isSelected: false }], score: 1 },
-                                    C: { options: [{ name: "Cabbage-White | Green | Purple", isSelected: false }, { name: "Broccoli", isSelected: false }, { name: "Radish", isSelected: false }], score: 1 },
-                                    D: { options: [{ name: "Sweet Potatoes", isSelected: false }, { name: "Red Bell Peppers", isSelected: false }, { name: "Potatoes", isSelected: false }], score: 1 }
+                                    C: { options: [{ name: `${Food_1.getFood.cabbage}-White | Green | Purple`, isSelected: false }, { name: Food_1.getFood.broccoli, isSelected: false }, { name: "Radish", isSelected: false }], score: 1 },
+                                    D: { options: [{ name: Food_1.getFood.sweetPotatoes, isSelected: false }, { name: Food_1.getFood.redBellPappers, isSelected: false }, { name: "Potatoes", isSelected: false }], score: 1 }
                                 },
                                 calculatedScore: 0,
                                 multiSelect: true

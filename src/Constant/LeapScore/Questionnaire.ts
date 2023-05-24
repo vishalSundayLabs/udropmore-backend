@@ -1,7 +1,7 @@
 import { getFood } from "./Food"
 import { getCategories } from "./LeapCategories"
 
-export const questionnaire = [
+export const lifeStyle = [
     {
         category: getCategories.LIFESTYLE,
         subCategory: "Food Diversity",
@@ -37,10 +37,10 @@ export const questionnaire = [
                         // key: 1394848,
                         name: "Which Green Leafy Vegetables do you consume ?",
                         option: {
-                            A: { options: [{ name: getFood.spinach.name, isSelected: false }, { name: "Basil", isSelected: false }, { name: "Carrots", isSelected: false }, { name: "Brussel Sprouts", isSelected: false }], score: 1 },
+                            A: { options: [{ name: getFood.spinach.name, isSelected: false }, { name: "Basil", isSelected: false }, { name: getFood.carrots.name, isSelected: false }, { name: getFood.brusselSprouts.name, isSelected: false }], score: 1 },
                             B: { options: [{ name: getFood.lettuce.name, isSelected: false }, { name: "Asparagus", isSelected: false }, { name: "Beet root", isSelected: false }], score: 1 },
-                            C: { options: [{ name: "Cabbage-White | Green | Purple", isSelected: false }, { name: "Broccoli", isSelected: false }, { name: "Radish", isSelected: false }], score: 1 },
-                            D: { options: [{ name: "Sweet Potatoes", isSelected: false }, { name: "Red Bell Peppers", isSelected: false }, { name: "Potatoes", isSelected: false }], score: 1 }
+                            C: { options: [{ name: `${getFood.cabbage}-White | Green | Purple`, isSelected: false }, { name: getFood.broccoli, isSelected: false }, { name: "Radish", isSelected: false }], score: 1 },
+                            D: { options: [{ name: getFood.sweetPotatoes, isSelected: false }, { name: getFood.redBellPappers, isSelected: false }, { name: "Potatoes", isSelected: false }], score: 1 }
                         },
                         calculatedScore: 0,
                         multiSelect: true

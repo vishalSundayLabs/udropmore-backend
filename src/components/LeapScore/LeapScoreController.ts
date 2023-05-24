@@ -1,25 +1,19 @@
-import { questionnaire } from "../../Constant/LeapScore/Questionnaire"
+import { lifeStyle } from "../../Constant/LeapScore/Questionnaire"
 import { HTTP_BAD_REQUEST, HTTP_OK } from "../../Constant/Master"
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
 
 export const getLeapScoreQuestions = async (req, res) => {
     const query = req.query
-    // if (!query.category) {
-
-    //     return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
-    //         message: "Bad Request! Category must be provide."
-    //     }))
-
-    // }
 
     try {
 
         // const questions = questionnaire.filter((item) => item.category == query.category)
+        const lifestyleQuestions = lifeStyle
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: "Get All Questions successfully.",
-            result: questionnaire
+            result: { lifestyle: lifestyleQuestions, emotion: null, anatomy: null, physicalFitness: null }
         }))
 
     } catch (error) {
