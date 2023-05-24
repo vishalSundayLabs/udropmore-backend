@@ -5,7 +5,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin A","Beta-carotene","Threonine","Methionine","Cystine"]
+        macro: ["Vitamin A", "Beta-carotene", "Threonine", "Methionine", "Cystine"]
     },
     guava: {
         name: "Guava",
@@ -13,7 +13,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin C","Lycopene"]
+        macro: ["Vitamin C", "Lycopene"]
     },
     kiwi: {
         name: "Kiwi",
@@ -21,7 +21,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin C","Vitamin E","Vitamin K"]
+        macro: ["Vitamin C", "Vitamin E", "Vitamin K"]
     },
     bellPappers: {
         name: "Bell Peppers",
@@ -45,7 +45,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin C","Vitamin B9 Folate"]
+        macro: ["Vitamin C", "Vitamin B9 Folate"]
     },
     sweetPotatoes: {
         name: "Sweet Potatoes",
@@ -53,7 +53,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin A","Beta-carotene","Vitamin B3 Niacin","Vitamin B5 Pantothenic"]
+        macro: ["Vitamin A", "Beta-carotene", "Vitamin B3 Niacin", "Vitamin B5 Pantothenic", "Vitamin B9 Folate", "Copper", "Isoleucine", "Threonine", "Lysine", "Methionine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
     },
     spinach: {
         name: "Spinach",
@@ -61,7 +61,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin A", "Beta-carotene", "Vitamin B2 Riboflavin", "Vitamin B3 Niacin", "Vitamin B9 Folate", "Vitamin E", "Magnesium", "Zinc", "Iron", "Calcium", "Potassium", "Isoleucine", "Lysine", "Methionine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
     },
     muskMelon: {
         name: "Musk Melon",
@@ -69,7 +69,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin A", "Beta-carotene"]
     },
     lettuce: {
         name: "Lettuce",
@@ -77,7 +77,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin A", "Beta-carotene", "Vitamin B9 Folate", "Vitamin K"]
     },
     flaxSeeds: {
         name: "Flax Seeds",
@@ -85,7 +85,7 @@ export const getFood = {
             value: 1,
             unit: "Handfull"
         },
-        macro: []
+        macro: ["Vitamin B1 Thiamin", "Magnesium", "Selenium", "Trytophan", "Isoleucine", "Valine", "Phenylalanine", "Histidine"]
     },
     greenPeas: {
         name: "Green Peas",
@@ -93,7 +93,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin B1 Thiamin", "Vitamin B3 Niacin", "Choline", "Threonine", "Lysine", "Methionine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
     },
     paneer: {
         name: "Paneer",
@@ -101,7 +101,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin B1 Thiamin", "Vitamin B2 Riboflavin", "Vitamin B6", "Vitamin B12", "Selenium", "Zinc", "Calcium", "Copper", "Phosphorus", "Trytophan", "Leucine", "Isoleucine", "Threonine", "Lysine", "Methionine", "Cystine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
     },
     brownRice: {
         name: "Brown Rice",
@@ -109,7 +109,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin B1 Thiamin", "Vitamin B3 Niacin", "Magnesium", "Selenium", "Phosphorus", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
     },
     asparagus: {
         name: "Asparagus",
@@ -117,7 +117,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin B1 Thiamin", "Vitamin B9 Folate", "Vitamin K"]
     },
     milk: {
         name: "Milk",
@@ -125,7 +125,7 @@ export const getFood = {
             value: 1,
             unit: "Glass"
         },
-        macro: []
+        macro: ["Vitamin B2 Riboflavin","Vitamin B5 Pantothenic","Vitamin B12","Choline","Zinc", "Iodine","Potassium","Phosphorus", "Trytophan", "Leucine", "Isoleucine","Threonine","Lysine", "Methionine", "Cystine","Valine","Phenylalanine","Tyrosine","Histidine"]
     },
     mushrooms: {
         name: "Mushrooms",
@@ -133,7 +133,7 @@ export const getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        macro: ["Vitamin B2 Riboflavin","Vitamin B3 Niacin","Vitamin B5 Pantothenic", "Iron","Copper","Potassium"]
     },
     almonds: {
         name: "Almonds",

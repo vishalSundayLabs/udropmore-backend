@@ -11,7 +11,8 @@ const leapContentSchema = new mongoose.Schema({
             image: { type: String, default: null },
             video: { type: String, default: null },
             images: {
-                hero: { type: String, default: null }
+                hero: { type: String, default: null },
+                Thumbnail: { type: String, default: null }
             }
         },
         sections: [],
@@ -29,7 +30,7 @@ const leapContentSchema = new mongoose.Schema({
     trimesters: [Number],
     type: {
         type: String,
-        enum: ["MOTHER", "BABY","LIFESTYLE", "ANATOMY", "EMOTION", "PHYSICAL_FITNESS", null],
+        enum: ["MOTHER", "BABY", "LIFESTYLE", "ANATOMY", "EMOTION", "PHYSICAL_FITNESS", null],
         default: null
     },
     weeks: [Number],

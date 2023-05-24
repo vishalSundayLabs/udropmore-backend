@@ -12,7 +12,8 @@ const leapContentSchema = new mongoose.Schema({
             image: { type: String, default: null },
             video: { type: String, default: null },
             images: {
-                hero: { type: String, default: null }
+                hero: { type: String, default: null },
+                Thumbnail: { type: String, default: null }
             }
         },
         sections: [],
