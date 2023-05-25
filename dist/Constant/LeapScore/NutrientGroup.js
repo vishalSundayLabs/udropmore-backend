@@ -83,7 +83,7 @@ exports.NutrientGroups = {
         ]
     },
     betaCarotene: {
-        type: "Beta-carotene",
+        name: "Beta-carotene",
         veg: [
             {
                 food: Food_1.food.carrots,
@@ -122,7 +122,7 @@ exports.NutrientGroups = {
         ]
     },
     vitaminB1Thiamin: {
-        type: "Vitamin B1 Thiamin",
+        name: "Vitamin B1 Thiamin",
         veg: [
             {
                 food: Food_1.food.flaxSeeds,
@@ -161,7 +161,7 @@ exports.NutrientGroups = {
         ]
     },
     vitaminB2Riboflavin: {
-        type: "Vitamin B2 Riboflavin",
+        name: "Vitamin B2 Riboflavin",
         veg: [
             {
                 food: Food_1.food.milk,
@@ -208,7 +208,7 @@ exports.NutrientGroups = {
         ]
     },
     vitaminB3Niacin: {
-        type: "Vitamin B3 Niacin",
+        name: "Vitamin B3 Niacin",
         veg: [
             {
                 food: Food_1.food.brownRice,
@@ -251,7 +251,7 @@ exports.NutrientGroups = {
         ]
     },
     vitaminB5Pantothenic: {
-        type: "Vitamin B5 Pantothenic",
+        name: "Vitamin B5 Pantothenic",
         veg: [
             {
                 food: Food_1.food.milk,
@@ -298,7 +298,7 @@ exports.NutrientGroups = {
         ]
     },
     vitaminB6: {
-        type: "Vitamin B6",
+        name: "Vitamin B6",
         veg: [
             {
                 food: Food_1.food.paneer,
@@ -341,7 +341,7 @@ exports.NutrientGroups = {
         ]
     },
     vitaminB9Folate: {
-        type: "Vitamin B9 Folate",
+        name: "Vitamin B9 Folate",
         veg: [
             {
                 food: Food_1.food.edamame,
@@ -384,7 +384,7 @@ exports.NutrientGroups = {
         ]
     },
     vitaminB12: {
-        type: "Vitamin B12",
+        name: "Vitamin B12",
         veg: [
             {
                 food: Food_1.food.allBranWheatFlaks,
@@ -427,7 +427,7 @@ exports.NutrientGroups = {
         ]
     },
     choline: {
-        type: "Choline",
+        name: "Choline",
         veg: [
             {
                 food: Food_1.food.milk,
@@ -470,7 +470,7 @@ exports.NutrientGroups = {
         ]
     },
     vitaminE: {
-        type: "Vitamin E",
+        name: "Vitamin E",
         veg: [
             {
                 food: Food_1.food.sunflowerSeeds,
@@ -505,7 +505,7 @@ exports.NutrientGroups = {
         ]
     },
     vitaminK: {
-        type: "Vitamin K",
+        name: "Vitamin K",
         veg: [
             {
                 food: Food_1.food.cabbage,
@@ -539,7 +539,7 @@ exports.NutrientGroups = {
         nonVeg: []
     },
     magnesium: {
-        type: "Magnesium",
+        name: "Magnesium",
         veg: [
             {
                 food: Food_1.food.cookedSpinach,
@@ -598,7 +598,7 @@ exports.NutrientGroups = {
         ]
     },
     selenium: {
-        type: "Selenium",
+        name: "Selenium",
         veg: [
             {
                 food: Food_1.food.brazilNuts,
@@ -653,7 +653,7 @@ exports.NutrientGroups = {
         ]
     },
     zinc: {
-        type: "Zinc",
+        name: "Zinc",
         veg: [
             {
                 food: Food_1.food.cookedSpinach,
@@ -720,7 +720,7 @@ exports.NutrientGroups = {
         ]
     },
     iron: {
-        type: "Iron",
+        name: "Iron",
         veg: [
             {
                 food: Food_1.food.allBranWheatFlaks,
@@ -771,7 +771,7 @@ exports.NutrientGroups = {
         ]
     },
     lycopene: {
-        type: "Lycopene",
+        name: "Lycopene",
         veg: [
             {
                 food: Food_1.food.guava,
@@ -797,7 +797,7 @@ exports.NutrientGroups = {
         nonVeg: []
     },
     calcium: {
-        type: "Calcium",
+        name: "Calcium",
         veg: [
             {
                 food: Food_1.food.chiaSeeds,
@@ -840,7 +840,7 @@ exports.NutrientGroups = {
         ]
     },
     copper: {
-        type: "Copper",
+        name: "Copper",
         veg: [
             {
                 food: Food_1.food.paneer,
@@ -879,7 +879,7 @@ exports.NutrientGroups = {
         ]
     },
     iodine: {
-        type: "Iodine",
+        name: "Iodine",
         veg: [
             {
                 food: Food_1.food.iodisedSalt,
@@ -911,7 +911,7 @@ exports.NutrientGroups = {
         ]
     },
     potassium: {
-        type: "Potassium",
+        name: "Potassium",
         veg: [
             {
                 food: Food_1.food.spinach,
@@ -950,7 +950,7 @@ exports.NutrientGroups = {
         ]
     },
     phosphorus: {
-        type: "Phosphorus",
+        name: "Phosphorus",
         veg: [
             {
                 food: Food_1.food.paneer,
@@ -998,7 +998,7 @@ exports.NutrientGroups = {
     },
     // Essential Amino Acids
     trytophan: {
-        type: "Trytophan",
+        name: "Trytophan",
         veg: [
             {
                 food: Food_1.food.cheese,
@@ -1061,7 +1061,7 @@ exports.NutrientGroups = {
         ]
     },
     leucine: {
-        type: "Leucine",
+        name: "Leucine",
         veg: [
             {
                 food: Food_1.food.paneer,
@@ -1112,7 +1112,7 @@ exports.NutrientGroups = {
         ]
     },
     isoleucine: {
-        type: "Isoleucine",
+        name: "Isoleucine",
         veg: [
             {
                 food: Food_1.food.paneer,
@@ -1187,7 +1187,7 @@ exports.NutrientGroups = {
         ]
     },
     threonine: {
-        type: "Threonine",
+        name: "Threonine",
         veg: [
             {
                 food: Food_1.food.paneer,
@@ -1268,7 +1268,7 @@ exports.NutrientGroups = {
         ]
     },
     lysine: {
-        type: "Lysine",
+        name: "Lysine",
         veg: [
             {
                 food: Food_1.food.paneer,
@@ -1335,7 +1335,7 @@ exports.NutrientGroups = {
         ]
     },
     methionine: {
-        type: "Methionine",
+        name: "Methionine",
         veg: [
             {
                 food: Food_1.food.paneer,
@@ -1436,7 +1436,7 @@ exports.NutrientGroups = {
         ]
     },
     cystine: {
-        type: "Cystine",
+        name: "Cystine",
         veg: [
             {
                 food: Food_1.food.paneer,
@@ -1512,7 +1512,7 @@ exports.NutrientGroups = {
         ]
     },
     valine: {
-        type: "Valine",
+        name: "Valine",
         veg: [
             {
                 food: Food_1.food.paneer,
@@ -1617,7 +1617,7 @@ exports.NutrientGroups = {
         ]
     },
     phenylalanine: {
-        type: "Phenylalanine",
+        name: "Phenylalanine",
         veg: [
             {
                 food: Food_1.food.paneer,
@@ -1729,7 +1729,7 @@ exports.NutrientGroups = {
         ]
     },
     tyrosine: {
-        type: "Tyrosine",
+        name: "Tyrosine",
         veg: [
             {
                 food: Food_1.food.paneer,
@@ -1847,7 +1847,7 @@ exports.NutrientGroups = {
         ]
     },
     histidine: {
-        type: "Histidine",
+        name: "Histidine",
         veg: [
             {
                 food: Food_1.food.paneer,

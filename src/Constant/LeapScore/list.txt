@@ -26,3 +26,8 @@ Chole
 Kala Chana
 Masoor Dal
 Tahini
+wheat
+Oats
+Rice
+Jowar
+Museli

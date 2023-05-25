@@ -81,7 +81,7 @@ export const NutrientGroups = {
         ]
     },
     betaCarotene: {
-        type: "Beta-carotene",
+        name: "Beta-carotene",
         veg: [
             {
                 food: food.carrots,
@@ -120,7 +120,7 @@ export const NutrientGroups = {
         ]
     },
     vitaminB1Thiamin: {
-        type: "Vitamin B1 Thiamin",
+        name: "Vitamin B1 Thiamin",
         veg: [
             {
                 food: food.flaxSeeds,
@@ -159,7 +159,7 @@ export const NutrientGroups = {
         ]
     },
     vitaminB2Riboflavin: {
-        type: "Vitamin B2 Riboflavin",
+        name: "Vitamin B2 Riboflavin",
         veg: [
             {
                 food: food.milk,
@@ -206,7 +206,7 @@ export const NutrientGroups = {
         ]
     },
     vitaminB3Niacin: {
-        type: "Vitamin B3 Niacin",
+        name: "Vitamin B3 Niacin",
         veg: [
             {
                 food: food.brownRice,
@@ -249,7 +249,7 @@ export const NutrientGroups = {
         ]
     },
     vitaminB5Pantothenic: {
-        type: "Vitamin B5 Pantothenic",
+        name: "Vitamin B5 Pantothenic",
         veg: [
             {
                 food: food.milk,
@@ -296,7 +296,7 @@ export const NutrientGroups = {
         ]
     },
     vitaminB6: {
-        type: "Vitamin B6",
+        name: "Vitamin B6",
         veg: [
             {
                 food: food.paneer,
@@ -339,7 +339,7 @@ export const NutrientGroups = {
         ]
     },
     vitaminB9Folate: {
-        type: "Vitamin B9 Folate",
+        name: "Vitamin B9 Folate",
         veg: [
             {
                 food: food.edamame,
@@ -382,7 +382,7 @@ export const NutrientGroups = {
         ]
     },
     vitaminB12: {
-        type: "Vitamin B12",
+        name: "Vitamin B12",
         veg: [
             {
                 food: food.allBranWheatFlaks,
@@ -425,7 +425,7 @@ export const NutrientGroups = {
         ]
     },
     choline: {
-        type: "Choline",
+        name: "Choline",
         veg: [
             {
                 food: food.milk,
@@ -468,7 +468,7 @@ export const NutrientGroups = {
         ]
     },
     vitaminE: {
-        type: "Vitamin E",
+        name: "Vitamin E",
         veg: [
             {
                 food: food.sunflowerSeeds,
@@ -503,7 +503,7 @@ export const NutrientGroups = {
         ]
     },
     vitaminK: {
-        type: "Vitamin K",
+        name: "Vitamin K",
         veg: [
             {
                 food: food.cabbage,
@@ -537,7 +537,7 @@ export const NutrientGroups = {
         nonVeg: []
     },
     magnesium: {
-        type: "Magnesium",
+        name: "Magnesium",
         veg: [
             {
                 food: food.cookedSpinach,
@@ -596,7 +596,7 @@ export const NutrientGroups = {
         ]
     },
     selenium: {
-        type: "Selenium",
+        name: "Selenium",
         veg: [
             {
                 food: food.brazilNuts,
@@ -651,7 +651,7 @@ export const NutrientGroups = {
         ]
     },
     zinc: {
-        type: "Zinc",
+        name: "Zinc",
         veg: [
             {
                 food: food.cookedSpinach,
@@ -718,7 +718,7 @@ export const NutrientGroups = {
         ]
     },
     iron: {
-        type: "Iron",
+        name: "Iron",
         veg: [
             {
                 food: food.allBranWheatFlaks,
@@ -769,7 +769,7 @@ export const NutrientGroups = {
         ]
     },
     lycopene: {
-        type: "Lycopene",
+        name: "Lycopene",
         veg: [
             {
                 food: food.guava,
@@ -795,7 +795,7 @@ export const NutrientGroups = {
         nonVeg: []
     },
     calcium: {
-        type: "Calcium",
+        name: "Calcium",
         veg: [
             {
                 food: food.chiaSeeds,
@@ -838,7 +838,7 @@ export const NutrientGroups = {
         ]
     },
     copper: {
-        type: "Copper",
+        name: "Copper",
         veg: [
             {
                 food: food.paneer,
@@ -878,7 +878,7 @@ export const NutrientGroups = {
         ]
     },
     iodine: {
-        type: "Iodine",
+        name: "Iodine",
         veg: [
             {
                 food: food.iodisedSalt,
@@ -910,7 +910,7 @@ export const NutrientGroups = {
         ]
     },
     potassium: {
-        type: "Potassium",
+        name: "Potassium",
         veg: [
             {
                 food: food.spinach,
@@ -949,7 +949,7 @@ export const NutrientGroups = {
         ]
     },
     phosphorus: {
-        type: "Phosphorus",
+        name: "Phosphorus",
         veg: [
             {
                 food: food.paneer,
@@ -997,7 +997,7 @@ export const NutrientGroups = {
     },
     // Essential Amino Acids
     trytophan: {
-        type: "Trytophan",
+        name: "Trytophan",
         veg: [
             {
                 food: food.cheese,
@@ -1060,7 +1060,7 @@ export const NutrientGroups = {
         ]
     },
     leucine: {
-        type: "Leucine",
+        name: "Leucine",
         veg: [
             {
                 food: food.paneer,
@@ -1111,7 +1111,7 @@ export const NutrientGroups = {
         ]
     },
     isoleucine: {
-        type: "Isoleucine",
+        name: "Isoleucine",
         veg: [
             {
                 food: food.paneer,
@@ -1186,7 +1186,7 @@ export const NutrientGroups = {
         ]
     },
     threonine: {
-        type: "Threonine",
+        name: "Threonine",
         veg: [
             {
                 food: food.paneer,
@@ -1267,7 +1267,7 @@ export const NutrientGroups = {
         ]
     },
     lysine: {
-        type: "Lysine",
+        name: "Lysine",
         veg: [
             {
                 food: food.paneer,
@@ -1334,7 +1334,7 @@ export const NutrientGroups = {
         ]
     },
     methionine: {
-        type: "Methionine",
+        name: "Methionine",
         veg: [
             {
                 food: food.paneer,
@@ -1435,7 +1435,7 @@ export const NutrientGroups = {
         ]
     },
     cystine: {
-        type: "Cystine",
+        name: "Cystine",
         veg: [
             {
                 food: food.paneer,
@@ -1511,7 +1511,7 @@ export const NutrientGroups = {
         ]
     },
     valine: {
-        type: "Valine",
+        name: "Valine",
         veg: [
             {
                 food: food.paneer,
@@ -1616,7 +1616,7 @@ export const NutrientGroups = {
         ]
     },
     phenylalanine: {
-        type: "Phenylalanine",
+        name: "Phenylalanine",
         veg: [
             {
                 food: food.paneer,
@@ -1730,7 +1730,7 @@ export const NutrientGroups = {
         ]
     },
     tyrosine: {
-        type: "Tyrosine",
+        name: "Tyrosine",
         veg: [
             {
                 food: food.paneer,
@@ -1848,7 +1848,7 @@ export const NutrientGroups = {
         ]
     },
     histidine: {
-        type: "Histidine",
+        name: "Histidine",
         veg: [
             {
                 food: food.paneer,

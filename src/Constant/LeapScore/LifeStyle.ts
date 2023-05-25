@@ -37,7 +37,7 @@ export const lifeStyle = [
                             A: { options: [{ name: food.spinach.name, isSelected: false }, { name: "Basil", isSelected: false }, { name: food.carrots.name, isSelected: false }, { name: food.brusselSprouts.name, isSelected: false }], score: 1 },
                             B: { options: [{ name: food.lettuce.name, isSelected: false }, { name: food.asparagus.name, isSelected: false }, { name: "Beet root", isSelected: false }], score: 1 },
                             C: { options: [{ name: `${food.cabbage.name}-White | Green | Purple`, isSelected: false }, { name: food.broccoli, isSelected: false }, { name: "Radish", isSelected: false }], score: 1 },
-                            D: { options: [{ name: food.sweetPotatoes, isSelected: false }, { name: food.redBellPappers, isSelected: false }, { name: food.potatoes.name, isSelected: false }], score: 1 }
+                            D: { options: [{ name: food.sweetPotatoes.name, isSelected: false }, { name: food.redBellPappers.name, isSelected: false }, { name: food.potatoes.name, isSelected: false }], score: 1 }
                         },
                         calculatedScore: 0,
                         multiSelect: true
@@ -75,10 +75,10 @@ export const lifeStyle = [
                 subQuestions: [{
                     name: "Which fruit do you consume ?",
                     option: {
-                        A: { options: [{ name: `Fruits like ${food.tomatoes} / Amla / ${food.oranges} / Lemon`, isSelected: false }, { name: "Basil", isSelected: false }, { name: food.carrots.name, isSelected: false }, { name: food.brusselSprouts, isSelected: false }], score: 1 },
-                        B: { options: [{ name: `Seasonal Fruits - ${food.grapes.name}`, isSelected: false }, { name: food.mangose.name, isSelected: false }, { name: `${food.strawberries}, Pomegranate, Figs`, isSelected: false }], score: 1 },
-                        C: { options: [{ name: `Berries - ${food.bananas.name}, ${food.watermelon}, BlueBerries`, isSelected: false }], score: 1 },
-                        D: { options: [{ name: food.muskMelon, isSelected: false }, { name: "Honeydew", isSelected: false }, { name: food.papaya, isSelected: false }], score: 1 }
+                        A: { options: [{ name: `Fruits like ${food.tomatoes.name} / Amla / ${food.oranges.name} / Lemon`, isSelected: false }, { name: "Basil", isSelected: false }, { name: food.carrots.name, isSelected: false }, { name: food.brusselSprouts.name, isSelected: false }], score: 1 },
+                        B: { options: [{ name: `Seasonal Fruits - ${food.grapes.name}`, isSelected: false }, { name: food.mangose.name, isSelected: false }, { name: `${food.strawberries.name}, Pomegranate, Figs`, isSelected: false }], score: 1 },
+                        C: { options: [{ name: `Berries - ${food.bananas.name}, ${food.watermelon.name}, BlueBerries`, isSelected: false }], score: 1 },
+                        D: { options: [{ name: food.muskMelon.name, isSelected: false }, { name: "Honeydew", isSelected: false }, { name: food.papaya.name, isSelected: false }], score: 1 }
                     },
                     nutrient: {
                         A: { name: "Vitamin C | Fiber | Sugar", value: 1 },
@@ -121,9 +121,9 @@ export const lifeStyle = [
                         name: "Which of the following you consume reqularly ?",
                         option: {
                             A: { options: [{ name: "wheat", isSelected: false }, { name: "Rice", isSelected: false }], score: 1 },
-                            B: { options: [{ name: "Oats", isSelected: false }, { name: "All Bran Wheat Flakes", isSelected: false }, { name: "Museli", isSelected: false }], score: 1 },
-                            C: { options: [{ name: "Millets", isSelected: false }, { name: "Jowar", isSelected: false }], score: 1 },
-                            D: { options: [{ name: "Quinoa", isSelected: false }], score: 1 }
+                            B: { options: [{ name: "Oats", isSelected: false }, { name: food.allBranWheatFlaks.name, isSelected: false }, { name: "Museli", isSelected: false }], score: 1 },
+                            C: { options: [{ name: food.millets.name, isSelected: false }, { name: "Jowar", isSelected: false }], score: 1 },
+                            D: { options: [{ name: food.quinoa.name, isSelected: false }], score: 1 }
                         },
                         nutrient: {
                             A: { name: "Fiber / Iron / Protein / Carbohydrates", value: 1 },
@@ -321,7 +321,7 @@ export const lifeStyle = [
                             A: { options: [{ name: `Rajma or ${food.kidneyBeans.name}`, isSelected: false }], score: 1 },
                             B: { options: [{ name: food.chickpeas.name, isSelected: false }, { name: "Chana", isSelected: false }, { name: "Chole or Kala Chana", isSelected: false }], score: 1 },
                             C: { options: [{ name: "Hare Mung", isSelected: false }, { name: "Toor Dal", isSelected: false }, { name: "Urad Dal", isSelected: false }, { name: "Masoor Dal" }], score: 1 },
-                            D: { options: [{ name: "Til", isSelected: false }, { name: food.sesameSeeds, isSelected: false }], score: 1 }
+                            D: { options: [{ name: "Til", isSelected: false }, { name: food.sesameSeeds.name, isSelected: false }], score: 1 }
                         },
                         nutrient: {
                             A: { name: "Iron", value: 1 },
