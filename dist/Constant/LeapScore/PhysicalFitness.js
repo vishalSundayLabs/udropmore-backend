@@ -4,99 +4,256 @@ exports.physicalFitness = void 0;
 const LeapCategories_1 = require("./LeapCategories");
 exports.physicalFitness = [
     {
-        category: LeapCategories_1.getCategories.LIFESTYLE,
-        subCategory: "Protein",
+        category: LeapCategories_1.getCategories.PHYSICAL,
+        subCategory: null,
         section: [
             {
-                sectionName: "Diary Products",
+                sectionName: null,
                 question: [{
-                        name: "How often do you consume Dairy Products ?",
+                        name: "Does your work involve vigorous-intensity activity that causes large increases in breathing or heart rate like [carrying or lifting heavy loads, digging/ grinding etc] for at least 10 minutes continuously?",
                         options: {
                             option: [{
-                                    option: "Never",
-                                    score: 1,
-                                    isSelected: false,
-                                    nextQuestionKey: null
+                                    option: "Yes",
+                                    score: 2,
+                                    isSelected: false
                                 }, {
-                                    option: "Once a week",
+                                    option: "No",
                                     score: 2,
                                     isSelected: false,
-                                    // nextQuestionKey: 1394848
-                                }, {
-                                    option: "2 to 3 times a week",
-                                    score: 3,
-                                    isSelected: false
-                                }, {
-                                    option: "Everyday",
-                                    score: 4,
-                                    isSelected: false
                                 }],
-                            calculatedScore: 0,
+                            cacalculatedScore: 0,
                             multiSelect: false
                         },
                         subQuestions: [{
-                                subname: "Which Dairy Products do you consume ?",
+                                name: "In a typical week, how many days do you do vigourous activities at work ?",
                                 option: {
-                                    A: [{ name: "Paneer", isSelected: false }],
-                                    B: [{ name: "Milk", isSelected: false }],
-                                    C: [{ name: "Yogurt", isSelected: false }],
-                                    D: [{ name: "Cheese", isSelected: false }]
+                                    A: { options: [{ name: "Monday" }], score: 1 },
+                                    B: { options: [{ name: "Tuesday" }], score: 1 },
+                                    C: { options: [{ name: "Wednesday" }], score: 1 },
+                                    D: { options: [{ name: "Thursday" }], score: 1 },
+                                    E: { options: [{ name: "Friday" }], score: 1 },
+                                    F: { options: [{ name: "Saturday" }], score: 1 },
+                                    G: { options: [{ name: "Sunday" }], score: 1 }
                                 },
-                                nutrient: {
-                                    A: { name: "Calcium | Amino Acids", value: 1 },
-                                    B: { name: "Calcium | Amino Acids", value: 1 },
-                                    C: { name: "Calcium | Amino Acids", value: 1 },
-                                    D: { name: "Calcium | Amino Acids", value: 1 }
-                                },
-                                score: 0,
+                                calculatedScore: 0,
                                 multiSelect: true
-                            }]
+                            },
+                            {
+                                name: "How much time do you spend doing vigorous activities at work in a typical day ?",
+                                option: {
+                                    A: { options: [{ name: "Hours" }], score: 2 },
+                                    B: { options: [{ name: "Minutes" }], score: 2 }
+                                },
+                                calculatedScore: 0,
+                                multiSelect: true
+                            }
+                        ]
                     }]
             },
             {
-                sectionName: "Dals & Pulses",
+                sectionName: null,
+                question: {
+                    name: "Does your work involve moderate-intensity activity, that causes small increases in breathing or heart rate such as carrying light loads for at least 10 minutes continuously ?",
+                    options: {
+                        option: [{
+                                option: "Yes",
+                                score: 2,
+                                isSelected: false,
+                                nextQuestionKey: null
+                            }, {
+                                option: "No",
+                                score: 2,
+                                isSelected: false,
+                                // nextQuestionKey: 1394848
+                            }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    }
+                },
+                subQuestions: [
+                    {
+                        name: "In a typical week, on how many days do you do moderateintensity activities as part of your work ?",
+                        option: {
+                            A: { options: [{ name: "Monday" }], score: 1 },
+                            B: { options: [{ name: "Tuesday" }], score: 1 },
+                            C: { options: [{ name: "Wednesday" }], score: 1 },
+                            D: { options: [{ name: "Thursday" }], score: 1 },
+                            E: { options: [{ name: "Friday" }], score: 1 },
+                            F: { options: [{ name: "Saturday" }], score: 1 },
+                            G: { options: [{ name: "Sunday" }], score: 1 }
+                        },
+                        calculatedScore: 0,
+                        multiSelect: true
+                    },
+                    {
+                        name: "How much time do you spend doing moderate-intensity activities at work on a typical day ?",
+                        option: {
+                            A: { options: [{ name: "Hours" }], score: 2 },
+                            B: { options: [{ name: "Minutes" }], score: 2 }
+                        },
+                        calculatedScore: 0,
+                        multiSelect: true
+                    }
+                ]
+            },
+            {
+                sectionName: null,
                 question: [{
-                        name: "How often do you consume Dal & Pulses ?",
+                        name: "Do you walk or use a cycle for at least 10 mins continuously to and from places ?",
                         options: {
                             option: [{
-                                    option: "Never",
-                                    score: 1,
+                                    option: "Yes",
+                                    score: 2,
                                     isSelected: false,
                                     nextQuestionKey: null
                                 }, {
-                                    option: "Once a week",
+                                    option: "No",
                                     score: 2,
                                     isSelected: false,
                                     // nextQuestionKey: 1394848
-                                }, {
-                                    option: "2 to 3 times a week",
-                                    score: 3,
-                                    isSelected: false
-                                }, {
-                                    option: "Everyday",
-                                    score: 4,
-                                    isSelected: false
                                 }],
                             calculatedScore: 0,
                             multiSelect: false
                         },
-                        subQuestions: [{
-                                subname: "Which Dals & Pulses do you consume ?",
+                        subQuestions: [
+                            {
+                                name: "In a typical week, on how many days do you walk or cycle to and from places ?",
                                 option: {
-                                    A: [{ name: "Rajma or Kidney Beans", isSelected: false }],
-                                    B: [{ name: "Chickpeas", isSelected: false }, { name: "Chana", isSelected: false }, { name: "Chole or Kala Chana", isSelected: false }],
-                                    C: [{ name: "Hare Mung", isSelected: false }, { name: "Toor Dal", isSelected: false }, { name: "Urad Dal", isSelected: false }, { name: "Masoor Dal" }],
-                                    D: [{ name: "Til", isSelected: false }, { name: "Sesame Seeds", isSelected: false }]
+                                    A: { options: [{ name: "Monday" }], score: 1 },
+                                    B: { options: [{ name: "Tuesday" }], score: 1 },
+                                    C: { options: [{ name: "Wednesday" }], score: 1 },
+                                    D: { options: [{ name: "Thursday" }], score: 1 },
+                                    E: { options: [{ name: "Friday" }], score: 1 },
+                                    F: { options: [{ name: "Saturday" }], score: 1 },
+                                    G: { options: [{ name: "Sunday" }], score: 1 }
                                 },
-                                nutrient: {
-                                    A: { name: "Iron", value: 1 },
-                                    B: { name: "Iron", value: 1 },
-                                    C: { name: "Protein | Fiber | Iron", value: 1 },
-                                    D: { name: "Fat | Iron | Calcium", value: 1 }
-                                },
-                                score: 0,
+                                calculatedScore: 0,
                                 multiSelect: true
-                            }]
+                            },
+                            {
+                                name: "How much time do you spend walking or cycling to and from places on a typical day ?",
+                                option: {
+                                    A: { options: [{ name: "Hours" }], score: 2 },
+                                    B: { options: [{ name: "Minutes" }], score: 2 }
+                                },
+                                calculatedScore: 0,
+                                multiSelect: true
+                            }
+                        ]
+                    }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                        name: "Do you do any vigorous-intensity sports, fitness or recreational (leisure) activities that cause large increases in breathing or heart rate like [running or football] for at least 10 minutes continuously ?",
+                        options: {
+                            option: [{
+                                    option: "Yes",
+                                    score: 2,
+                                    isSelected: false,
+                                    nextQuestionKey: null
+                                }, {
+                                    option: "No",
+                                    score: 2,
+                                    isSelected: false,
+                                    // nextQuestionKey: 1394848
+                                }],
+                            calculatedScore: 0,
+                            multiSelect: false
+                        },
+                        subQuestions: [
+                            {
+                                name: "In a typical week, on how many days do you do vigorous intensity sports, fitness or recreational (leisure) activities ?",
+                                option: {
+                                    A: { options: [{ name: "Monday" }], score: 1 },
+                                    B: { options: [{ name: "Tuesday" }], score: 1 },
+                                    C: { options: [{ name: "Wednesday" }], score: 1 },
+                                    D: { options: [{ name: "Thursday" }], score: 1 },
+                                    E: { options: [{ name: "Friday" }], score: 1 },
+                                    F: { options: [{ name: "Saturday" }], score: 1 },
+                                    G: { options: [{ name: "Sunday" }], score: 1 }
+                                },
+                                calculatedScore: 0,
+                                multiSelect: true
+                            },
+                            {
+                                name: "How much time do you spend doing vigorous-intensity sports, fitness or recreational activities on a typical day ?",
+                                option: {
+                                    A: { options: [{ name: "Hours" }], score: 2 },
+                                    B: { options: [{ name: "Minutes" }], score: 2 }
+                                },
+                                calculatedScore: 0,
+                                multiSelect: true
+                            }
+                        ]
+                    }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                        name: "Do you do any moderate-intensity sports, fitness or recreational (leisure) activities that cause a small increase in breathing or heart rate such as brisk walking, [cycling, swimming, yoga] for at least 10 minutes continuously ?",
+                        options: {
+                            option: [{
+                                    option: "Yes",
+                                    score: 2,
+                                    isSelected: false,
+                                    nextQuestionKey: null
+                                }, {
+                                    option: "No",
+                                    score: 2,
+                                    isSelected: false,
+                                    // nextQuestionKey: 1394848
+                                }],
+                            calculatedScore: 0,
+                            multiSelect: false
+                        },
+                        subQuestions: [
+                            {
+                                name: "In a typical week, on how many days do you do moderate intensity sports, fitness or recreational (leisure) activities ?",
+                                option: {
+                                    A: { options: [{ name: "Monday" }], score: 1 },
+                                    B: { options: [{ name: "Tuesday" }], score: 1 },
+                                    C: { options: [{ name: "Wednesday" }], score: 1 },
+                                    D: { options: [{ name: "Thursday" }], score: 1 },
+                                    E: { options: [{ name: "Friday" }], score: 1 },
+                                    F: { options: [{ name: "Saturday" }], score: 1 },
+                                    G: { options: [{ name: "Sunday" }], score: 1 }
+                                },
+                                calculatedScore: 0,
+                                multiSelect: true
+                            },
+                            {
+                                name: "How much time do you spend doing moderate-intensity sports, fitness or recreational (leisure) activities on a typical day ?",
+                                option: {
+                                    A: { options: [{ name: "Hours" }], score: 2 },
+                                    B: { options: [{ name: "Minutes" }], score: 2 }
+                                },
+                                calculatedScore: 0,
+                                multiSelect: true
+                            }
+                        ]
+                    }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                        name: "How much time do you usually spend sitting or reclining on a typical day ?",
+                        options: {
+                            option: [{
+                                    option: "Hours",
+                                    score: 2,
+                                    isSelected: false,
+                                    nextQuestionKey: null
+                                }, {
+                                    option: "Minutes",
+                                    score: 2,
+                                    isSelected: false,
+                                    // nextQuestionKey: 1394848
+                                }],
+                            calculatedScore: 0,
+                            multiSelect: false
+                        },
+                        subQuestions: null
                     }]
             }
         ]

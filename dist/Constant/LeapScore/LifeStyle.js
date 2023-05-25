@@ -36,10 +36,10 @@ exports.lifeStyle = [
                         subQuestions: [{
                                 name: "Which Green Leafy Vegetables do you consume ?",
                                 option: {
-                                    A: { options: [{ name: Food_1.getFood.spinach.name, isSelected: false }, { name: "Basil", isSelected: false }, { name: Food_1.getFood.carrots.name, isSelected: false }, { name: Food_1.getFood.brusselSprouts.name, isSelected: false }], score: 1 },
-                                    B: { options: [{ name: Food_1.getFood.lettuce.name, isSelected: false }, { name: "Asparagus", isSelected: false }, { name: "Beet root", isSelected: false }], score: 1 },
-                                    C: { options: [{ name: `${Food_1.getFood.cabbage.name}-White | Green | Purple`, isSelected: false }, { name: Food_1.getFood.broccoli, isSelected: false }, { name: "Radish", isSelected: false }], score: 1 },
-                                    D: { options: [{ name: Food_1.getFood.sweetPotatoes, isSelected: false }, { name: Food_1.getFood.redBellPappers, isSelected: false }, { name: "Potatoes", isSelected: false }], score: 1 }
+                                    A: { options: [{ name: Food_1.food.spinach.name, isSelected: false }, { name: "Basil", isSelected: false }, { name: Food_1.food.carrots.name, isSelected: false }, { name: Food_1.food.brusselSprouts.name, isSelected: false }], score: 1 },
+                                    B: { options: [{ name: Food_1.food.lettuce.name, isSelected: false }, { name: Food_1.food.asparagus.name, isSelected: false }, { name: "Beet root", isSelected: false }], score: 1 },
+                                    C: { options: [{ name: `${Food_1.food.cabbage.name}-White | Green | Purple`, isSelected: false }, { name: Food_1.food.broccoli, isSelected: false }, { name: "Radish", isSelected: false }], score: 1 },
+                                    D: { options: [{ name: Food_1.food.sweetPotatoes, isSelected: false }, { name: Food_1.food.redBellPappers, isSelected: false }, { name: Food_1.food.potatoes.name, isSelected: false }], score: 1 }
                                 },
                                 calculatedScore: 0,
                                 multiSelect: true
@@ -75,12 +75,12 @@ exports.lifeStyle = [
                     }
                 },
                 subQuestions: [{
-                        subname: "Which fruit do you consume ?",
+                        name: "Which fruit do you consume ?",
                         option: {
-                            A: { options: [{ name: "Fruits like Tomatoes / Amla / Oranges / Lemons", isSelected: false }, { name: "Basil", isSelected: false }, { name: "Carrots", isSelected: false }, { name: "Brussel Sprouts", isSelected: false }], score: 1 },
-                            B: { options: [{ name: "Seasonal Fruits - Grapes", isSelected: false }, { name: "Mangoes", isSelected: false }, { name: "Strawberries, Pomegranate, Figs", isSelected: false }], score: 1 },
-                            C: { options: [{ name: "Berries - Banana, Watermelon, BlueBerries", isSelected: false }], score: 1 },
-                            D: { options: [{ name: "Musk Melons", isSelected: false }, { name: "Honeydew", isSelected: false }, { name: "Papaya", isSelected: false }], score: 1 }
+                            A: { options: [{ name: `Fruits like ${Food_1.food.tomatoes} / Amla / ${Food_1.food.oranges} / Lemon`, isSelected: false }, { name: "Basil", isSelected: false }, { name: Food_1.food.carrots.name, isSelected: false }, { name: Food_1.food.brusselSprouts, isSelected: false }], score: 1 },
+                            B: { options: [{ name: `Seasonal Fruits - ${Food_1.food.grapes.name}`, isSelected: false }, { name: Food_1.food.mangose.name, isSelected: false }, { name: `${Food_1.food.strawberries}, Pomegranate, Figs`, isSelected: false }], score: 1 },
+                            C: { options: [{ name: `Berries - ${Food_1.food.bananas.name}, ${Food_1.food.watermelon}, BlueBerries`, isSelected: false }], score: 1 },
+                            D: { options: [{ name: Food_1.food.muskMelon, isSelected: false }, { name: "Honeydew", isSelected: false }, { name: Food_1.food.papaya, isSelected: false }], score: 1 }
                         },
                         nutrient: {
                             A: { name: "Vitamin C | Fiber | Sugar", value: 1 },
@@ -120,7 +120,7 @@ exports.lifeStyle = [
                             multiSelect: false
                         },
                         subQuestions: [{
-                                subname: "Which of the following you consume reqularly ?",
+                                name: "Which of the following you consume reqularly ?",
                                 option: {
                                     A: { options: [{ name: "wheat", isSelected: false }, { name: "Rice", isSelected: false }], score: 1 },
                                     B: { options: [{ name: "Oats", isSelected: false }, { name: "All Bran Wheat Flakes", isSelected: false }, { name: "Museli", isSelected: false }], score: 1 },
@@ -172,13 +172,13 @@ exports.lifeStyle = [
                             multiSelect: false
                         },
                         subQuestions: [{
-                                subname: "Which type of nuts do you consume regularly ?",
+                                name: "Which type of nuts do you consume regularly ?",
                                 option: {
-                                    A: { options: [{ name: "Almonds", isSelected: false }], score: 1 },
-                                    B: { options: [{ name: "Pistachios", isSelected: false }], score: 1 },
+                                    A: { options: [{ name: Food_1.food.almonds.name, isSelected: false }], score: 1 },
+                                    B: { options: [{ name: Food_1.food.pistachio.name, isSelected: false }], score: 1 },
                                     C: { options: [{ name: "Raisins", isSelected: false }], score: 1 },
-                                    D: { options: [{ name: "Cashews", isSelected: false }], score: 1 },
-                                    E: { options: [{ name: "Walnuts", isSelected: false }], score: 1 },
+                                    D: { options: [{ name: Food_1.food.cashews.name, isSelected: false }], score: 1 },
+                                    E: { options: [{ name: Food_1.food.walnuts.name, isSelected: false }], score: 1 },
                                     F: { options: [{ name: "Dates", isSelected: false }], score: 1 }
                                 },
                                 nutrient: {
@@ -218,12 +218,12 @@ exports.lifeStyle = [
                             multiSelect: false
                         },
                         subQuestions: [{
-                                subname: "Which type of Seeds do you consume regularly ?",
+                                name: "Which type of Seeds do you consume regularly ?",
                                 option: {
-                                    A: [{ name: "Flax Seeds", isSelected: false }],
-                                    B: [{ name: "Sunflower Seeds", isSelected: false }],
-                                    C: [{ name: "chia Seeds", isSelected: false }],
-                                    D: [{ name: "Pumpkin Seeds", isSelected: false }]
+                                    A: { options: [{ name: Food_1.food.flaxSeeds.name, isSelected: false }], score: 1 },
+                                    B: { options: [{ name: Food_1.food.sunflowerSeeds.name, isSelected: false }], score: 1 },
+                                    C: { options: [{ name: Food_1.food.chiaSeeds.name, isSelected: false }], score: 1 },
+                                    D: { options: [{ name: Food_1.food.pumpkinSeeds.name, isSelected: false }], score: 1 }
                                 },
                                 nutrient: {
                                     A: { name: "Fats | protein | Fiber", value: 1 },
@@ -271,12 +271,12 @@ exports.lifeStyle = [
                             multiSelect: false
                         },
                         subQuestions: [{
-                                subname: "Which Dairy Products do you consume ?",
+                                name: "Which Dairy Products do you consume ?",
                                 option: {
-                                    A: [{ name: "Paneer", isSelected: false }],
-                                    B: [{ name: "Milk", isSelected: false }],
-                                    C: [{ name: "Yogurt", isSelected: false }],
-                                    D: [{ name: "Cheese", isSelected: false }]
+                                    A: { options: [{ name: Food_1.food.paneer.name, isSelected: false }], score: 1 },
+                                    B: { options: [{ name: Food_1.food.milk.name, isSelected: false }], score: 1 },
+                                    C: { options: [{ name: Food_1.food.yogurt.name, isSelected: false }], score: 1 },
+                                    D: { options: [{ name: Food_1.food.cheese.name, isSelected: false }], score: 1 }
                                 },
                                 nutrient: {
                                     A: { name: "Calcium | Amino Acids", value: 1 },
@@ -317,12 +317,12 @@ exports.lifeStyle = [
                             multiSelect: false
                         },
                         subQuestions: [{
-                                subname: "Which Dals & Pulses do you consume ?",
+                                name: "Which Dals & Pulses do you consume ?",
                                 option: {
-                                    A: [{ name: "Rajma or Kidney Beans", isSelected: false }],
-                                    B: [{ name: "Chickpeas", isSelected: false }, { name: "Chana", isSelected: false }, { name: "Chole or Kala Chana", isSelected: false }],
-                                    C: [{ name: "Hare Mung", isSelected: false }, { name: "Toor Dal", isSelected: false }, { name: "Urad Dal", isSelected: false }, { name: "Masoor Dal" }],
-                                    D: [{ name: "Til", isSelected: false }, { name: "Sesame Seeds", isSelected: false }]
+                                    A: { options: [{ name: `Rajma or ${Food_1.food.kidneyBeans.name}`, isSelected: false }], score: 1 },
+                                    B: { options: [{ name: Food_1.food.chickpeas.name, isSelected: false }, { name: "Chana", isSelected: false }, { name: "Chole or Kala Chana", isSelected: false }], score: 1 },
+                                    C: { options: [{ name: "Hare Mung", isSelected: false }, { name: "Toor Dal", isSelected: false }, { name: "Urad Dal", isSelected: false }, { name: "Masoor Dal" }], score: 1 },
+                                    D: { options: [{ name: "Til", isSelected: false }, { name: Food_1.food.sesameSeeds, isSelected: false }], score: 1 }
                                 },
                                 nutrient: {
                                     A: { name: "Iron", value: 1 },
@@ -398,12 +398,12 @@ exports.lifeStyle = [
                             multiSelect: false
                         },
                         subQuestions: [{
-                                subname: "Which type of meat do you consume ?",
+                                name: "Which type of meat do you consume ?",
                                 option: {
-                                    A: [{ name: "Meat-Pork", isSelected: false }, { name: "Beef", isSelected: false }, { name: "Lamp", isSelected: false }],
-                                    B: [{ name: "Birds-Chicken", isSelected: false }, { name: "Turkey", isSelected: false }],
-                                    C: [{ name: "Fish-Salmon", isSelected: false }, { name: "Rawas", isSelected: false }, { name: "Bombay Duck", isSelected: false }],
-                                    D: [{ name: "Prawns", isSelected: false }, { name: "Shrimps", isSelected: false }]
+                                    A: { options: [{ name: "Meat-Pork", isSelected: false }, { name: Food_1.food.beef.name, isSelected: false }, { name: "Lamp", isSelected: false }], score: 1 },
+                                    B: { options: [{ name: "Birds-Chicken", isSelected: false }, { name: "Turkey", isSelected: false }], score: 1 },
+                                    C: { options: [{ name: Food_1.food.fishSalmon, isSelected: false }, { name: "Rawas", isSelected: false }, { name: "Bombay Duck", isSelected: false }], score: 1 },
+                                    D: { options: [{ name: "Prawns", isSelected: false }, { name: Food_1.food.shrimps, isSelected: false }], score: 1 }
                                 },
                                 nutrient: {
                                     A: { name: "Essential Amino Acids | Iron", value: 1 },
@@ -444,12 +444,12 @@ exports.lifeStyle = [
                             multiSelect: false
                         },
                         subQuestions: [{
-                                subname: "Which Dairy Products do you consume ?",
+                                name: "Which Dairy Products do you consume ?",
                                 option: {
-                                    A: [{ name: "Paneer", isSelected: false }],
-                                    B: [{ name: "Milk", isSelected: false }],
-                                    C: [{ name: "Yogurt", isSelected: false }],
-                                    D: [{ name: "Cheese", isSelected: false }]
+                                    A: { options: [{ name: Food_1.food.paneer.name, isSelected: false }], score: 1 },
+                                    B: { options: [{ name: Food_1.food.milk.name, isSelected: false }], score: 1 },
+                                    C: { options: [{ name: Food_1.food.yogurt.name, isSelected: false }], score: 1 },
+                                    D: { options: [{ name: Food_1.food.cheese.name, isSelected: false }], score: 1 }
                                 },
                                 nutrient: {
                                     A: { name: "Calcium | Amino Acids", value: 1 },
@@ -490,12 +490,12 @@ exports.lifeStyle = [
                             multiSelect: false
                         },
                         subQuestions: [{
-                                subname: "Which Dals & Pulses do you consume ?",
+                                name: "Which Dals & Pulses do you consume ?",
                                 option: {
-                                    A: [{ name: "Rajma or Kidney Beans", isSelected: false }],
-                                    B: [{ name: "Chickpeas", isSelected: false }, { name: "Chana", isSelected: false }, { name: "Chole or Kala Chana", isSelected: false }],
-                                    C: [{ name: "Hare Mung", isSelected: false }, { name: "Toor Dal", isSelected: false }, { name: "Urad Dal", isSelected: false }, { name: "Masoor Dal" }],
-                                    D: [{ name: "Til", isSelected: false }, { name: "Sesame Seeds", isSelected: false }]
+                                    A: { options: [{ name: `Rajma or ${Food_1.food.kidneyBeans.name}`, isSelected: false }], score: 1 },
+                                    B: { options: [{ name: Food_1.food.chickpeas.name, isSelected: false }, { name: "Chana", isSelected: false }, { name: "Chole or Kala Chana", isSelected: false }], score: 1 },
+                                    C: { options: [{ name: "Hare Mung", isSelected: false }, { name: "Toor Dal", isSelected: false }, { name: "Urad Dal", isSelected: false }, { name: "Masoor Dal" }], score: 1 },
+                                    D: { options: [{ name: "Til", isSelected: false }, { name: Food_1.food.sesameSeeds.name, isSelected: false }], score: 1 }
                                 },
                                 nutrient: {
                                     A: { name: "Iron", value: 1 },
@@ -920,7 +920,7 @@ exports.lifeStyle = [
                         },
                     },
                     {
-                        name: "How often do you consume Chickpeas ?",
+                        name: "How often do you consum food.chickpeas.name?",
                         options: {
                             option: [{
                                     option: "Never",
@@ -1325,7 +1325,7 @@ exports.lifeStyle = [
                                     isSelected: false,
                                     nextQuestionKey: null
                                 }, {
-                                    option: "Sometimes",
+                                    option: "Non-vegetarian",
                                     score: null,
                                     isSelected: false,
                                 }],
@@ -1370,20 +1370,20 @@ exports.lifeStyle = [
                         name: "Which of the following diary products do you consume regularly?",
                         options: {
                             option: [{
-                                    option: "Never",
-                                    score: 4,
+                                    option: "Paneer",
+                                    score: 1,
                                     isSelected: false,
                                     nextQuestionKey: null
                                 }, {
-                                    option: "Sometimes",
-                                    score: 3,
+                                    option: "Milk",
+                                    score: 1,
                                     isSelected: false,
                                 }, {
-                                    option: "Fairly often",
-                                    score: 2,
+                                    option: "Others",
+                                    score: 1,
                                     isSelected: false
                                 }, {
-                                    option: "Very often",
+                                    option: "None",
                                     score: 1,
                                     isSelected: false
                                 }],
@@ -1400,20 +1400,20 @@ exports.lifeStyle = [
                         options: {
                             option: [{
                                     option: "Never",
-                                    score: 4,
+                                    score: 1,
                                     isSelected: false,
                                     nextQuestionKey: null
                                 }, {
                                     option: "Sometimes",
-                                    score: 3,
+                                    score: 2,
                                     isSelected: false,
                                 }, {
-                                    option: "Fairly often",
-                                    score: 2,
+                                    option: "Often",
+                                    score: 3,
                                     isSelected: false
                                 }, {
-                                    option: "Very often",
-                                    score: 1,
+                                    option: "Daily",
+                                    score: 4,
                                     isSelected: false
                                 }],
                             calculatedScore: 0,
@@ -1428,20 +1428,20 @@ exports.lifeStyle = [
                         name: "Which type of nuts do you consume regularly ?",
                         options: {
                             option: [{
-                                    option: "Never",
-                                    score: 4,
+                                    option: "Almonds",
+                                    score: 1,
                                     isSelected: false,
                                     nextQuestionKey: null
                                 }, {
-                                    option: "Sometimes",
-                                    score: 3,
+                                    option: "Pistachios",
+                                    score: 1,
                                     isSelected: false,
                                 }, {
-                                    option: "Fairly often",
-                                    score: 2,
+                                    option: "Others",
+                                    score: 1,
                                     isSelected: false
                                 }, {
-                                    option: "Very often",
+                                    option: "None",
                                     score: 1,
                                     isSelected: false
                                 }],
@@ -1457,20 +1457,20 @@ exports.lifeStyle = [
                         name: "Do you regularly consume any of the following ?",
                         options: {
                             option: [{
-                                    option: "Never",
-                                    score: 4,
+                                    option: Food_1.food.walnuts.name,
+                                    score: 1,
                                     isSelected: false,
                                     nextQuestionKey: null
                                 }, {
-                                    option: "Sometimes",
-                                    score: 3,
+                                    option: `Others like ${Food_1.food.flaxSeeds.name, Food_1.food.sunflowerSeeds.name, Food_1.food.pumpkinSeeds.name}`,
+                                    score: 1,
                                     isSelected: false,
                                 }, {
-                                    option: "Fairly often",
-                                    score: 2,
+                                    option: Food_1.food.chiaSeeds.name,
+                                    score: 1,
                                     isSelected: false
                                 }, {
-                                    option: "Very often",
+                                    option: "None",
                                     score: 1,
                                     isSelected: false
                                 }],
@@ -1480,56 +1480,55 @@ exports.lifeStyle = [
                         subQuestions: null
                     }]
             },
-            {
-                sectionName: null,
-                question: [{
-                        name: "How often do you consume green leafy vegetables ?",
-                        options: {
-                            option: [{
-                                    option: "Never",
-                                    score: 4,
-                                    isSelected: false,
-                                    nextQuestionKey: null
-                                }, {
-                                    option: "Sometimes",
-                                    score: 3,
-                                    isSelected: false,
-                                }, {
-                                    option: "Fairly often",
-                                    score: 2,
-                                    isSelected: false
-                                }, {
-                                    option: "Very often",
-                                    score: 1,
-                                    isSelected: false
-                                }],
-                            calculatedScore: 0,
-                            multiSelect: false
-                        },
-                        subQuestions: null
-                    }]
-            },
+            // {
+            //     sectionName: null,
+            //     question: [{
+            //         name: "How often do you consume green leafy vegetables ?",
+            //         options: {
+            //             option: [{
+            //                 option: "Never",
+            //                 score: 4,
+            //                 isSelected: false,
+            //             }, {
+            //                 option: "Sometimes",
+            //                 score: 3,
+            //                 isSelected: false,
+            //             }, {
+            //                 option: "Fairly often",
+            //                 score: 2,
+            //                 isSelected: false
+            //             }, {
+            //                 option: "Very often",
+            //                 score: 1,
+            //                 isSelected: false
+            //             }],
+            //             calculatedScore: 0,
+            //             multiSelect: false
+            //         },
+            //         subQuestions: null
+            //     }]
+            // },
             {
                 sectionName: null,
                 question: [{
                         name: "How many spoons of sugar do you consume everyday ?",
                         options: {
                             option: [{
-                                    option: "Never",
-                                    score: 4,
+                                    option: "2 spoons",
+                                    score: 3,
                                     isSelected: false,
                                     nextQuestionKey: null
                                 }, {
-                                    option: "Sometimes",
-                                    score: 3,
+                                    option: "4 spoons",
+                                    score: 2,
                                     isSelected: false,
                                 }, {
-                                    option: "Fairly often",
-                                    score: 2,
+                                    option: "6 spoons",
+                                    score: 1,
                                     isSelected: false
                                 }, {
-                                    option: "Very often",
-                                    score: 1,
+                                    option: "none",
+                                    score: 4,
                                     isSelected: false
                                 }],
                             calculatedScore: 0,
@@ -1544,20 +1543,20 @@ exports.lifeStyle = [
                         name: "Which types of meat do you consume ?",
                         options: {
                             option: [{
-                                    option: "Never",
-                                    score: 4,
+                                    option: `Pork/${Food_1.food.beef.name}/lamb`,
+                                    score: 1,
                                     isSelected: false,
                                     nextQuestionKey: null
                                 }, {
-                                    option: "Sometimes",
-                                    score: 3,
+                                    option: `${Food_1.food.chicken.name}/${Food_1.food.salmon.name}/Rawas`,
+                                    score: 1,
                                     isSelected: false,
                                 }, {
-                                    option: "Fairly often",
-                                    score: 2,
+                                    option: `Prawns/${Food_1.food.shrimps.name}`,
+                                    score: 1,
                                     isSelected: false
                                 }, {
-                                    option: "Very often",
+                                    option: "None",
                                     score: 1,
                                     isSelected: false
                                 }],
@@ -1573,20 +1572,20 @@ exports.lifeStyle = [
                         name: "How often do you consumer eggs ?",
                         options: {
                             option: [{
-                                    option: "Never",
+                                    option: "Daily",
                                     score: 4,
                                     isSelected: false,
                                     nextQuestionKey: null
                                 }, {
-                                    option: "Sometimes",
+                                    option: "Often",
                                     score: 3,
                                     isSelected: false,
                                 }, {
-                                    option: "Fairly often",
+                                    option: "Sometimes",
                                     score: 2,
                                     isSelected: false
                                 }, {
-                                    option: "Very often",
+                                    option: "Never",
                                     score: 1,
                                     isSelected: false
                                 }],

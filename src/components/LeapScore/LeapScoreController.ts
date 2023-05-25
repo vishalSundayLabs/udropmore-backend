@@ -1,18 +1,49 @@
 import { anatomy } from "../../Constant/LeapScore/Anatomy"
 import { emotion } from "../../Constant/LeapScore/Emotion"
+import { getCategories } from "../../Constant/LeapScore/LeapCategories"
 import { lifeStyle } from "../../Constant/LeapScore/LifeStyle"
 import { physicalFitness } from "../../Constant/LeapScore/PhysicalFitness"
-import { HTTP_OK } from "../../Constant/Master"
+import { HTTP_BAD_REQUEST, HTTP_OK } from "../../Constant/Master"
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
 
 export const getLeapScoreQuestions = async (req, res) => {
 
+    const query = req.query
+
+    if (!query.category) {
+
+        return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+            success: false,
+            message: "Bad Request! Category must be provide."
+        }))
+
+    }
+
     try {
+
+        let question = null;
+
+        if (query.category.toUpperCase() == getCategories.ANATOMY) {
+            question = anatomy
+        } else if (query.category.toUpperCase() == getCategories.EMOTION) {
+            question = emotion
+        } else if (query.category.toUpperCase() == getCategories.LIFESTYLE) {
+            question = lifeStyle
+        } else if (query.category.toUpperCase() == getCategories.PHYSICAL) {
+            question = physicalFitness
+        } else {
+
+            return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+                success: false,
+                message: "Invalied category! category must be lifestyle,anatomy,emotion,physical."
+            }))
+
+        }
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: "Get All Questions successfully.",
-            result: { lifestyle: lifeStyle, emotion: emotion, anatomy: anatomy, physicalFitness: physicalFitness }
+            result: question
         }))
 
     } catch (error) {

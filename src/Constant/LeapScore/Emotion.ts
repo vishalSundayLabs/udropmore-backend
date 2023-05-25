@@ -1,6 +1,5 @@
-import { getFood } from "./Food"
+import { food } from "./Food"
 import { getCategories } from "./LeapCategories"
-
 export const emotion = [
     {
         category: getCategories.EMOTION,
@@ -9,24 +8,28 @@ export const emotion = [
             {
                 sectionName: null,
                 question: [{
-                    name: "How many hours do you sleep everyday ?",
+                    name: "In the last one month how often have you been upset because of something that happened unexpectedly ?",
                     options: {
                         option: [{
-                            option: "Never",
-                            score: 4,
+                            option: "Very Often",
+                            score: 0,
                             isSelected: false,
                             nextQuestionKey: null
                         }, {
-                            option: "Sometimes",
-                            score: 3,
+                            option: "Fairly Often",
+                            score: 1,
                             isSelected: false,
                         }, {
-                            option: "Fairly often",
+                            option: "Sometimes",
                             score: 2,
                             isSelected: false
                         }, {
-                            option: "Very often",
-                            score: 1,
+                            option: "Almost Never",
+                            score: 3,
+                            isSelected: false
+                        },{
+                            option: "Never",
+                            score: 4,
                             isSelected: false
                         }],
                         calculatedScore: 0,
@@ -38,24 +41,28 @@ export const emotion = [
             {
                 sectionName: null,
                 question: [{
-                    name: "How many glasses of water do you drink everyday ?",
+                    name: "In the last month, how often have you felt that you have not been able to control the important things of your life ?",
                     options: {
                         option: [{
-                            option: "Never",
-                            score: 4,
+                            option: "Very Often",
+                            score: 0,
                             isSelected: false,
                             nextQuestionKey: null
                         }, {
-                            option: "Sometimes",
-                            score: 3,
+                            option: "Fairly Often",
+                            score: 1,
                             isSelected: false,
                         }, {
-                            option: "Fairly often",
+                            option: "Sometimes",
                             score: 2,
                             isSelected: false
                         }, {
-                            option: "Very often",
-                            score: 1,
+                            option: "Almost Never",
+                            score: 3,
+                            isSelected: false
+                        },{
+                            option: "Never",
+                            score: 4,
                             isSelected: false
                         }],
                         calculatedScore: 0,
@@ -67,24 +74,28 @@ export const emotion = [
             {
                 sectionName: null,
                 question: [{
-                    name: "Do you smoke and/ or consume alcohol?",
+                    name: "In the last month, how often have you felt nervous and stressed ?",
                     options: {
                         option: [{
-                            option: "Never",
-                            score: 4,
+                            option: "Very Often",
+                            score: 0,
                             isSelected: false,
                             nextQuestionKey: null
                         }, {
-                            option: "Sometimes",
-                            score: 3,
+                            option: "Fairly Often",
+                            score: 1,
                             isSelected: false,
                         }, {
-                            option: "Fairly often",
+                            option: "Sometimes",
                             score: 2,
                             isSelected: false
                         }, {
-                            option: "Very often",
-                            score: 1,
+                            option: "Almost Never",
+                            score: 3,
+                            isSelected: false
+                        },{
+                            option: "Never",
+                            score: 4,
                             isSelected: false
                         }],
                         calculatedScore: 0,
@@ -96,24 +107,28 @@ export const emotion = [
             {
                 sectionName: null,
                 question: [{
-                    name: "Are you a vegetarian or Non – vegetarian ?",
+                    name: "In the last month, how often have you felt confident about your ability to handle your personal problems ?",
                     options: {
                         option: [{
-                            option: "Never",
+                            option: "Very Often",
                             score: 4,
                             isSelected: false,
                             nextQuestionKey: null
                         }, {
-                            option: "Sometimes",
+                            option: "Fairly Often",
                             score: 3,
                             isSelected: false,
                         }, {
-                            option: "Fairly often",
+                            option: "Sometimes",
                             score: 2,
                             isSelected: false
                         }, {
-                            option: "Very often",
+                            option: "Almost Never",
                             score: 1,
+                            isSelected: false
+                        },{
+                            option: "Never",
+                            score: 0,
                             isSelected: false
                         }],
                         calculatedScore: 0,
@@ -125,24 +140,28 @@ export const emotion = [
             {
                 sectionName: null,
                 question: [{
-                    name: "How often do you have fruits ?",
+                    name: "In the last month, how often have you felt that things were going your way ?",
                     options: {
                         option: [{
-                            option: "Never",
+                            option: "Very Often",
                             score: 4,
                             isSelected: false,
                             nextQuestionKey: null
                         }, {
-                            option: "Sometimes",
+                            option: "Fairly Often",
                             score: 3,
                             isSelected: false,
                         }, {
-                            option: "Fairly often",
+                            option: "Sometimes",
                             score: 2,
                             isSelected: false
                         }, {
-                            option: "Very often",
+                            option: "Almost Never",
                             score: 1,
+                            isSelected: false
+                        },{
+                            option: "Never",
+                            score: 0,
                             isSelected: false
                         }],
                         calculatedScore: 0,
@@ -154,24 +173,28 @@ export const emotion = [
             {
                 sectionName: null,
                 question: [{
-                    name: "Which of the following diary products do you consume regularly?",
+                    name: "In the last month, how often have you found that you could not cope with all the things that you had to do ?",
                     options: {
                         option: [{
-                            option: "Never",
-                            score: 4,
+                            option: "Very Often",
+                            score: 0,
                             isSelected: false,
                             nextQuestionKey: null
                         }, {
-                            option: "Sometimes",
-                            score: 3,
+                            option: "Fairly Often",
+                            score: 1,
                             isSelected: false,
                         }, {
-                            option: "Fairly often",
+                            option: "Sometimes",
                             score: 2,
                             isSelected: false
                         }, {
-                            option: "Very often",
-                            score: 1,
+                            option: "Almost Never",
+                            score: 3,
+                            isSelected: false
+                        },{
+                            option: "Never",
+                            score: 4,
                             isSelected: false
                         }],
                         calculatedScore: 0,
@@ -183,24 +206,28 @@ export const emotion = [
             {
                 sectionName: null,
                 question: [{
-                    name: "Do you consume Dal/pulses in every meal ?",
+                    name: "In the last month, how often have you been able to control irritations in your life ?",
                     options: {
                         option: [{
-                            option: "Never",
+                            option: "Very Often",
                             score: 4,
                             isSelected: false,
                             nextQuestionKey: null
                         }, {
-                            option: "Sometimes",
+                            option: "Fairly Often",
                             score: 3,
                             isSelected: false,
                         }, {
-                            option: "Fairly often",
+                            option: "Sometimes",
                             score: 2,
                             isSelected: false
                         }, {
-                            option: "Very often",
+                            option: "Almost Never",
                             score: 1,
+                            isSelected: false
+                        },{
+                            option: "Never",
+                            score: 0,
                             isSelected: false
                         }],
                         calculatedScore: 0,
@@ -212,24 +239,28 @@ export const emotion = [
             {
                 sectionName: null,
                 question: [{
-                    name: "Which type of nuts do you consume regularly ?",
+                    name: "In the last month, how often have you felt that you were on top of things ?",
                     options: {
                         option: [{
-                            option: "Never",
+                            option: "Very Often",
                             score: 4,
                             isSelected: false,
                             nextQuestionKey: null
                         }, {
-                            option: "Sometimes",
+                            option: "Fairly Often",
                             score: 3,
                             isSelected: false,
                         }, {
-                            option: "Fairly often",
+                            option: "Sometimes",
                             score: 2,
                             isSelected: false
                         }, {
-                            option: "Very often",
+                            option: "Almost Never",
                             score: 1,
+                            isSelected: false
+                        },{
+                            option: "Never",
+                            score: 0,
                             isSelected: false
                         }],
                         calculatedScore: 0,
@@ -241,24 +272,28 @@ export const emotion = [
             {
                 sectionName: null,
                 question: [{
-                    name: "Do you regularly consume any of the following ?",
+                    name: "In the last month, how often have you been angered because of the things that were outside of your control ?",
                     options: {
                         option: [{
-                            option: "Never",
-                            score: 4,
+                            option: "Very Often",
+                            score: 0,
                             isSelected: false,
                             nextQuestionKey: null
                         }, {
-                            option: "Sometimes",
-                            score: 3,
+                            option: "Fairly Often",
+                            score: 1,
                             isSelected: false,
                         }, {
-                            option: "Fairly often",
+                            option: "Sometimes",
                             score: 2,
                             isSelected: false
                         }, {
-                            option: "Very often",
-                            score: 1,
+                            option: "Almost Never",
+                            score: 3,
+                            isSelected: false
+                        },{
+                            option: "Never",
+                            score: 4,
                             isSelected: false
                         }],
                         calculatedScore: 0,
@@ -270,111 +305,28 @@ export const emotion = [
             {
                 sectionName: null,
                 question: [{
-                    name: "How often do you consume green leafy vegetables ?",
+                    name: "In the last month, how often have you felt difficulties were pilling up so high that you could not overcome them ?",
                     options: {
                         option: [{
-                            option: "Never",
-                            score: 4,
+                            option: "Very Often",
+                            score: 0,
                             isSelected: false,
                             nextQuestionKey: null
                         }, {
-                            option: "Sometimes",
-                            score: 3,
+                            option: "Fairly Often",
+                            score: 1,
                             isSelected: false,
                         }, {
-                            option: "Fairly often",
+                            option: "Sometimes",
                             score: 2,
                             isSelected: false
                         }, {
-                            option: "Very often",
-                            score: 1,
+                            option: "Almost Never",
+                            score: 3,
                             isSelected: false
-                        }],
-                        calculatedScore: 0,
-                        multiSelect: false
-                    },
-                    subQuestions: null
-                }]
-            },
-            {
-                sectionName: null,
-                question: [{
-                    name: "How many spoons of sugar do you consume everyday ?",
-                    options: {
-                        option: [{
+                        },{
                             option: "Never",
                             score: 4,
-                            isSelected: false,
-                            nextQuestionKey: null
-                        }, {
-                            option: "Sometimes",
-                            score: 3,
-                            isSelected: false,
-                        }, {
-                            option: "Fairly often",
-                            score: 2,
-                            isSelected: false
-                        }, {
-                            option: "Very often",
-                            score: 1,
-                            isSelected: false
-                        }],
-                        calculatedScore: 0,
-                        multiSelect: false
-                    },
-                    subQuestions: null
-                }]
-            },
-            {
-                sectionName: null,
-                question: [{
-                    name: "Which types of meat do you consume ?",
-                    options: {
-                        option: [{
-                            option: "Never",
-                            score: 4,
-                            isSelected: false,
-                            nextQuestionKey: null
-                        }, {
-                            option: "Sometimes",
-                            score: 3,
-                            isSelected: false,
-                        }, {
-                            option: "Fairly often",
-                            score: 2,
-                            isSelected: false
-                        }, {
-                            option: "Very often",
-                            score: 1,
-                            isSelected: false
-                        }],
-                        calculatedScore: 0,
-                        multiSelect: false
-                    },
-                    subQuestions: null
-                }]
-            },
-            {
-                sectionName: null,
-                question: [{
-                    name: "How often do you consumer eggs ?",
-                    options: {
-                        option: [{
-                            option: "Never",
-                            score: 4,
-                            isSelected: false,
-                            nextQuestionKey: null
-                        }, {
-                            option: "Sometimes",
-                            score: 3,
-                            isSelected: false,
-                        }, {
-                            option: "Fairly often",
-                            score: 2,
-                            isSelected: false
-                        }, {
-                            option: "Very often",
-                            score: 1,
                             isSelected: false
                         }],
                         calculatedScore: 0,

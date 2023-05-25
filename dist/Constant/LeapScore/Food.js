@@ -1,14 +1,15 @@
 "use strict";
+// import { NutrientGroups } from "./NutrientGroup"
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getFood = void 0;
-exports.getFood = {
+exports.food = void 0;
+exports.food = {
     carrots: {
         name: "Carrots",
         size: {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin A", "Beta-carotene", "Threonine", "Methionine", "Cystine"]
+        // macro: [NutrientGroups.vitaminA.name, NutrientGroups.betaCarotene.name, NutrientGroups.threonine.name, NutrientGroups.methionine.name, NutrientGroups.cystine.name]
     },
     guava: {
         name: "Guava",
@@ -16,7 +17,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin C", "Lycopene"]
+        // macro: [NutrientGroups.vitaminC.name, NutrientGroups.lycopene.name]
     },
     kiwi: {
         name: "Kiwi",
@@ -24,7 +25,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin C", "Vitamin E", "Vitamin K"]
+        // macro: [NutrientGroups.vitaminC.name, NutrientGroups.vitaminE.name, NutrientGroups.vitaminK.name]
     },
     bellPappers: {
         name: "Bell Peppers",
@@ -32,7 +33,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin C"]
+        // macro: [NutrientGroups.vitaminC.name]
     },
     strawberries: {
         name: "Strawberries",
@@ -40,7 +41,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin C"]
+        // macro: [NutrientGroups.vitaminC.name]
     },
     oranges: {
         name: "Oranges",
@@ -48,7 +49,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin C", "Vitamin B9 Folate"]
+        // macro: [NutrientGroups.vitaminC.name, NutrientGroups.vitaminB9Folate.name]
     },
     sweetPotatoes: {
         name: "Sweet Potatoes",
@@ -56,7 +57,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin A", "Beta-carotene", "Vitamin B3 Niacin", "Vitamin B5 Pantothenic", "Vitamin B9 Folate", "Copper", "Isoleucine", "Threonine", "Lysine", "Methionine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
+        // macro: [NutrientGroups.vitaminA.name, NutrientGroups.betaCarotene.name, NutrientGroups.vitaminB3Niacin.name, NutrientGroups.vitaminB5Pantothenic.name, NutrientGroups.vitaminB9Folate.name, NutrientGroups.copper.name, NutrientGroups.isoleucine.name, NutrientGroups.threonine.name, NutrientGroups.lysine.name, NutrientGroups.methionine.name, NutrientGroups.valine.name, NutrientGroups.phenylalanine.name, NutrientGroups.tyrosine.name, NutrientGroups.histidine.name]
     },
     spinach: {
         name: "Spinach",
@@ -64,7 +65,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin A", "Beta-carotene", "Vitamin B2 Riboflavin", "Vitamin B3 Niacin", "Vitamin B9 Folate", "Vitamin E", "Magnesium", "Zinc", "Iron", "Calcium", "Potassium", "Isoleucine", "Lysine", "Methionine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
+        // macro: [NutrientGroups.vitaminA.name, NutrientGroups.betaCarotene.name, NutrientGroups.vitaminB2Riboflavin.name, NutrientGroups.vitaminB3Niacin.name, NutrientGroups.vitaminB9Folate.name, NutrientGroups.vitaminE.name, NutrientGroups.magnesium.name, NutrientGroups.zinc.name, NutrientGroups.iron.name, NutrientGroups.calcium.name, NutrientGroups.potassium.name, NutrientGroups.isoleucine.name, NutrientGroups.lysine.name, NutrientGroups.methionine.name, NutrientGroups.valine.name, NutrientGroups.phenylalanine.name, NutrientGroups.tyrosine.name, NutrientGroups.histidine.name]
     },
     muskMelon: {
         name: "Musk Melon",
@@ -72,7 +73,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin A", "Beta-carotene"]
+        // macro: [NutrientGroups.vitaminA.name, NutrientGroups.betaCarotene.name]
     },
     lettuce: {
         name: "Lettuce",
@@ -80,7 +81,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin A", "Beta-carotene", "Vitamin B9 Folate", "Vitamin K"]
+        // macro: [NutrientGroups.vitaminA.name, NutrientGroups.betaCarotene.name, NutrientGroups.vitaminB9Folate.name, NutrientGroups.vitaminK.name]
     },
     flaxSeeds: {
         name: "Flax Seeds",
@@ -88,7 +89,7 @@ exports.getFood = {
             value: 1,
             unit: "Handfull"
         },
-        macro: ["Vitamin B1 Thiamin", "Magnesium", "Selenium", "Trytophan", "Isoleucine", "Valine", "Phenylalanine", "Histidine"]
+        // macro: [NutrientGroups.vitaminB1Thiamin.name, NutrientGroups.magnesium.name, NutrientGroups.selenium.name, NutrientGroups.trytophan.name, NutrientGroups.isoleucine.name, NutrientGroups.valine.name, NutrientGroups.phenylalanine.name, NutrientGroups.histidine.name]
     },
     greenPeas: {
         name: "Green Peas",
@@ -96,7 +97,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin B1 Thiamin", "Vitamin B3 Niacin", "Choline", "Threonine", "Lysine", "Methionine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
+        // macro: [NutrientGroups.vitaminB1Thiamin.name, NutrientGroups.vitaminB3Niacin.name, NutrientGroups.choline.name, NutrientGroups.threonine.name, NutrientGroups.lysine.name, NutrientGroups.methionine.name, NutrientGroups.valine.name, NutrientGroups.phenylalanine.name, NutrientGroups.tyrosine.name, NutrientGroups.histidine.name]
     },
     paneer: {
         name: "Paneer",
@@ -104,7 +105,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin B1 Thiamin", "Vitamin B2 Riboflavin", "Vitamin B6", "Vitamin B12", "Selenium", "Zinc", "Calcium", "Copper", "Phosphorus", "Trytophan", "Leucine", "Isoleucine", "Threonine", "Lysine", "Methionine", "Cystine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
+        // macro: [NutrientGroups.vitaminB1Thiamin.name, NutrientGroups.vitaminB2Riboflavin.name, NutrientGroups.vitaminB6.name, NutrientGroups.vitaminB12.name, NutrientGroups.selenium.name, NutrientGroups.zinc.name, NutrientGroups.calcium.name, NutrientGroups.copper.name, NutrientGroups.phosphorus.name, NutrientGroups.trytophan.name, NutrientGroups.leucine.name, NutrientGroups.isoleucine.name, NutrientGroups.threonine.name, NutrientGroups.lysine.name, NutrientGroups.methionine.name, NutrientGroups.cystine.name, NutrientGroups.valine.name, NutrientGroups.phenylalanine.name, NutrientGroups.tyrosine.name, NutrientGroups.histidine.name]
     },
     brownRice: {
         name: "Brown Rice",
@@ -112,7 +113,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin B1 Thiamin", "Vitamin B3 Niacin", "Magnesium", "Selenium", "Phosphorus", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
+        // macro: [NutrientGroups.vitaminB1Thiamin.name, NutrientGroups.vitaminB3Niacin.name, NutrientGroups.magnesium.name, NutrientGroups.selenium.name, NutrientGroups.phosphorus.name, NutrientGroups.valine.name, NutrientGroups.phenylalanine.name, NutrientGroups.tyrosine.name, NutrientGroups.histidine.name]
     },
     asparagus: {
         name: "Asparagus",
@@ -120,7 +121,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin B1 Thiamin", "Vitamin B9 Folate", "Vitamin K"]
+        // macro: [NutrientGroups.vitaminB1Thiamin.name, NutrientGroups.vitaminB9Folate.name, NutrientGroups.vitaminK.name]
     },
     milk: {
         name: "Milk",
@@ -128,7 +129,7 @@ exports.getFood = {
             value: 1,
             unit: "Glass"
         },
-        macro: ["Vitamin B2 Riboflavin", "Vitamin B5 Pantothenic", "Vitamin B12", "Choline", "Zinc", "Iodine", "Potassium", "Phosphorus", "Trytophan", "Leucine", "Isoleucine", "Threonine", "Lysine", "Methionine", "Cystine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
+        // macro: [NutrientGroups.vitaminB2Riboflavin.name, NutrientGroups.vitaminB5Pantothenic.name, NutrientGroups.vitaminB12.name, NutrientGroups.choline.name, NutrientGroups.zinc.name, NutrientGroups.iodine.name, NutrientGroups.potassium.name, NutrientGroups.phosphorus.name, NutrientGroups.trytophan.name, NutrientGroups.leucine.name, NutrientGroups.isoleucine.name, NutrientGroups.threonine.name, NutrientGroups.lysine.name, NutrientGroups.methionine.name, NutrientGroups.cystine.name, NutrientGroups.valine.name, NutrientGroups.phenylalanine.name, NutrientGroups.tyrosine.name, NutrientGroups.histidine.name]
     },
     mushrooms: {
         name: "Mushrooms",
@@ -136,7 +137,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin B2 Riboflavin", "Vitamin B3 Niacin", "Vitamin B5 Pantothenic", "Iron", "Copper", "Potassium"]
+        // macro: [NutrientGroups.vitaminB2Riboflavin.name, NutrientGroups.vitaminB3Niacin.name, NutrientGroups.vitaminB5Pantothenic.name, NutrientGroups.iron.name, NutrientGroups.copper.name, NutrientGroups.potassium.name]
     },
     almonds: {
         name: "Almonds",
@@ -144,7 +145,7 @@ exports.getFood = {
             value: 1,
             unit: "Handful"
         },
-        macro: ["Vitamin B2 Riboflavin", "Vitamin B5 Pantothenic", "Vitamin E", "Magnesium", "Calcium", "Leucine", "Phenylalanine", "Histidine"]
+        // macro: [NutrientGroups.vitaminB2Riboflavin.name, NutrientGroups.vitaminB5Pantothenic.name, NutrientGroups.vitaminE.name, NutrientGroups.magnesium.name, NutrientGroups.calcium.name, NutrientGroups.leucine.name, NutrientGroups.phenylalanine.name, NutrientGroups.histidine.name]
     },
     peanuts: {
         name: "Peanuts",
@@ -152,7 +153,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin B3 Niacin", "Vitamin E", "Trytophan", "Leucine", "Isoleucine", "Tyrosine"]
+        // macro: [NutrientGroups.vitaminB3Niacin.name, NutrientGroups.vitaminE.name, NutrientGroups.trytophan.name, NutrientGroups.leucine.name, NutrientGroups.isoleucine.name, NutrientGroups.tyrosine.name]
     },
     sunflowerSeeds: {
         name: "Sunflower Seeds",
@@ -160,7 +161,7 @@ exports.getFood = {
             value: 1,
             unit: "Handful"
         },
-        macro: ["Vitamin B5 Pantothenic", "Vitamin B6", "Vitamin E", "Selenium", "Isoleucine", "Threonine", "Methionine", "Cystine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
+        // macro: [NutrientGroups.vitaminB5Pantothenic.name, NutrientGroups.vitaminB6.name, NutrientGroups.vitaminE.name, NutrientGroups.selenium.name, NutrientGroups.isoleucine.name, NutrientGroups.threonine.name, NutrientGroups.methionine.name, NutrientGroups.cystine.name, NutrientGroups.valine.name, NutrientGroups.phenylalanine.name, NutrientGroups.tyrosine.name, NutrientGroups.histidine.name]
     },
     lentils: {
         name: "Lentils",
@@ -168,7 +169,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin B5 Pantothenic", "Vitamin B9 Folate", "Zinc", "Potassium", "Phosphorus", "Isoleucine", "Threonine", "Methionine", "Cystine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
+        // macro: [NutrientGroups.vitaminB5Pantothenic.name, NutrientGroups.vitaminB9Folate.name, NutrientGroups.zinc.name, NutrientGroups.potassium.name, NutrientGroups.phosphorus.name, NutrientGroups.isoleucine.name, NutrientGroups.threonine.name, NutrientGroups.methionine.name, NutrientGroups.cystine.name, NutrientGroups.valine.name, NutrientGroups.phenylalanine.name, NutrientGroups.tyrosine.name, NutrientGroups.histidine.name]
     },
     potatoes: {
         name: "Potatoes",
@@ -176,7 +177,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin A", "Beta-carotene", "Vitamin B3 Niacin", "Vitamin B5 Pantothenic", "Vitamin B6", "Vitamin B9 Folate", "Copper", "Potassium", "Isoleucine", "Threonine", "Lysine", "Methionine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
+        // macro: [NutrientGroups.vitaminA.name, NutrientGroups.betaCarotene.name, NutrientGroups.vitaminB3Niacin.name, NutrientGroups.vitaminB5Pantothenic.name, NutrientGroups.vitaminB6.name, NutrientGroups.vitaminB9Folate.name, NutrientGroups.copper.name, NutrientGroups.potassium.name, NutrientGroups.isoleucine.name, NutrientGroups.threonine.name, NutrientGroups.lysine.name, NutrientGroups.methionine.name, NutrientGroups.valine.name, NutrientGroups.phenylalanine.name, NutrientGroups.tyrosine.name, NutrientGroups.histidine.name]
     },
     bananas: {
         name: "Bananas",
@@ -184,7 +185,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin B6", "Magnesium", "Potassium"]
+        // macro: [NutrientGroups.vitaminB6.name, NutrientGroups.magnesium.name, NutrientGroups.potassium.name]
     },
     pistachio: {
         name: "Pistachio",
@@ -192,7 +193,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin B6", "Trytophan", "Leucine", "Isoleucine", "Valine", "Phenylalanine", "Tyrosine", "Histidine",]
+        // macro: [NutrientGroups.vitaminB6.name, NutrientGroups.trytophan.name, NutrientGroups.leucine.name, NutrientGroups.isoleucine.name, NutrientGroups.valine.name, NutrientGroups.phenylalanine.name, NutrientGroups.tyrosine.name, NutrientGroups.histidine.name,]
     },
     edamame: {
         name: "Edamame",
@@ -200,7 +201,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin B9 Folate", "Trytophan", "Threonine", "Lysine", "Methionine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
+        // macro: [NutrientGroups.vitaminB9Folate.name, NutrientGroups.trytophan.name, NutrientGroups.threonine.name, NutrientGroups.lysine.name, NutrientGroups.methionine.name, NutrientGroups.valine.name, NutrientGroups.phenylalanine.name, NutrientGroups.tyrosine.name, NutrientGroups.histidine.name]
     },
     brocolli: {
         name: "Brocolli",
@@ -208,7 +209,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin A", "Beta-carotene", "Vitamin B9 Folate",]
+        // macro: [NutrientGroups.vitaminA.name, NutrientGroups.betaCarotene.name, NutrientGroups.vitaminB9Folate.name,]
     },
     mangose: {
         name: "Mangoes",
@@ -216,7 +217,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: []
+        // macro: []
     },
     allBranWheatFlaks: {
         name: "All Bran Wheat Flaks",
@@ -224,7 +225,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin B12", "Iron"]
+        // macro: [NutrientGroups.vitaminB12.name, NutrientGroups.iron.name]
     },
     broccoli: {
         name: "Broccoli",
@@ -232,7 +233,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin C", "Choline", "Vitamin E", "Vitamin K", "Phenylalanine"]
+        // macro: [NutrientGroups.vitaminC.name, NutrientGroups.choline.name, NutrientGroups.vitaminE.name, NutrientGroups.vitaminK.name, NutrientGroups.phenylalanine.name]
     },
     cabbage: {
         name: "Cabbage",
@@ -240,7 +241,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin K"]
+        // macro: [NutrientGroups.vitaminK.name]
     },
     brusselSprouts: {
         name: "Brussel Sprouts",
@@ -248,7 +249,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin K"]
+        // macro: [NutrientGroups.vitaminK.name]
     },
     ladyFinger: {
         name: "Lady Finger",
@@ -256,7 +257,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin K", "Calcium", "Tyrosine"]
+        // macro: [NutrientGroups.vitaminK.name, NutrientGroups.calcium.name, NutrientGroups.tyrosine.name]
     },
     cookedSpinach: {
         name: "Cooked Spinach",
@@ -264,7 +265,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Magnesium", "Zinc"]
+        // macro: [NutrientGroups.magnesium.name, NutrientGroups.zinc.name]
     },
     pumpkinSeeds: {
         name: "Pumpkin Seeds",
@@ -272,7 +273,7 @@ exports.getFood = {
             value: 1,
             unit: "Handful"
         },
-        macro: ["Magnesium", "Zinc", "Iron", "Phosphorus", "Trytophan", "Leucine", "Isoleucine", "Threonine", "Lysine", "Methionine", "Cystine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
+        // macro: [NutrientGroups.magnesium.name, NutrientGroups.zinc.name, NutrientGroups.iron.name, NutrientGroups.phosphorus.name, NutrientGroups.trytophan.name, NutrientGroups.leucine.name, NutrientGroups.isoleucine.name, NutrientGroups.threonine.name, NutrientGroups.lysine.name, NutrientGroups.methionine.name, NutrientGroups.cystine.name, NutrientGroups.valine.name, NutrientGroups.phenylalanine.name, NutrientGroups.tyrosine.name, NutrientGroups.histidine.name]
     },
     quinoa: {
         name: "Quinoa",
@@ -280,7 +281,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Magnesium", "Iron", "Phosphorus", "Isoleucine", "Threonine", "Lysine", "Methionine", "Cystine", "Phenylalanine", "Histidine"]
+        // macro: [NutrientGroups.magnesium.name, NutrientGroups.iron.name, NutrientGroups.phosphorus.name, NutrientGroups.isoleucine.name, NutrientGroups.threonine.name, NutrientGroups.lysine.name, NutrientGroups.methionine.name, NutrientGroups.cystine.name, NutrientGroups.phenylalanine.name, NutrientGroups.histidine.name]
     },
     yogurt: {
         name: "Yogurt",
@@ -288,7 +289,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Magnesium", "Zinc", "Calcium", "Leucine", "Isoleucine", "Threonine", "Lysine", "Methionine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
+        // macro: [NutrientGroups.magnesium.name, NutrientGroups.zinc.name, NutrientGroups.calcium.name, NutrientGroups.leucine.name, NutrientGroups.isoleucine.name, NutrientGroups.threonine.name, NutrientGroups.lysine.name, NutrientGroups.methionine.name, NutrientGroups.valine.name, NutrientGroups.phenylalanine.name, NutrientGroups.tyrosine.name, NutrientGroups.histidine.name]
     },
     cashews: {
         name: "Cashews",
@@ -296,7 +297,7 @@ exports.getFood = {
             value: 1,
             unit: "Handful"
         },
-        macro: ["Magnesium", "Zinc", "Copper", "Trytophan", "Cystine", "Valine", "Tyrosine", "Histidine"]
+        // macro: [NutrientGroups.magnesium.name, NutrientGroups.zinc.name, NutrientGroups.copper.name, NutrientGroups.trytophan.name, NutrientGroups.cystine.name, NutrientGroups.valine.name, NutrientGroups.tyrosine.name, NutrientGroups.histidine.name]
     },
     brazilNuts: {
         name: "Brazil Nuts",
@@ -304,7 +305,7 @@ exports.getFood = {
             value: 1,
             unit: "Handful"
         },
-        macro: ["Selenium"]
+        // macro: [NutrientGroups.selenium.name]
     },
     oatmeal: {
         name: "Oatmeal",
@@ -312,7 +313,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Selenium", "Zinc", "Trytophan", "Isoleucine", "Threonine", "Lysine", "Methionine", "Cystine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
+        // macro: [NutrientGroups.selenium.name, NutrientGroups.zinc.name, NutrientGroups.trytophan.name, NutrientGroups.isoleucine.name, NutrientGroups.threonine.name, NutrientGroups.lysine.name, NutrientGroups.methionine.name, NutrientGroups.cystine.name, NutrientGroups.valine.name, NutrientGroups.phenylalanine.name, NutrientGroups.tyrosine.name, NutrientGroups.histidine.name]
     },
     chiaSeeds: {
         name: "Chia Seeds",
@@ -320,7 +321,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Selenium", "Iron", "Calcium", "Methionine", "Cystine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
+        // macro: [NutrientGroups.selenium.name, NutrientGroups.iron.name, NutrientGroups.calcium.name, NutrientGroups.methionine.name, NutrientGroups.cystine.name, NutrientGroups.valine.name, NutrientGroups.phenylalanine.name, NutrientGroups.tyrosine.name, NutrientGroups.histidine.name]
     },
     chickpeas: {
         name: "Chickpeas",
@@ -328,7 +329,7 @@ exports.getFood = {
             value: 1,
             unit: "Handful"
         },
-        macro: ["Zinc", "Copper"]
+        // macro: [NutrientGroups.zinc.name, NutrientGroups.copper.name]
     },
     cerealKalloggsSmartStartStrong: {
         name: "Cereal Kalloggs Smart Start Strong",
@@ -336,7 +337,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Zinc"]
+        // macro: [NutrientGroups.zinc.name]
     },
     apricots: {
         name: "Apricots",
@@ -344,7 +345,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin A", "Beta-carotene", "Iron",]
+        // macro: [NutrientGroups.vitaminA.name, NutrientGroups.betaCarotene.name, NutrientGroups.iron.name,]
     },
     tomatoes: {
         name: "Tomatoes",
@@ -352,7 +353,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin C", "Lycopene", "Potassium"]
+        // macro: [NutrientGroups.vitaminC.name, NutrientGroups.lycopene.name, NutrientGroups.potassium.name]
     },
     watermelon: {
         name: "Watermelon",
@@ -360,7 +361,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Lycopene"]
+        // macro: [NutrientGroups.lycopene.name]
     },
     grapefruit: {
         name: "Grapefruit",
@@ -368,7 +369,15 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Lycopene"]
+        // macro: [NutrientGroups.lycopene.name]
+    },
+    grapes: {
+        name: "Grapes",
+        size: {
+            value: 1,
+            unit: "Cup"
+        },
+        // macro: [NutrientGroups.lycopene.name]
     },
     papaya: {
         name: "Papaya",
@@ -376,7 +385,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin C", "Lycopene"]
+        // macro: [NutrientGroups.vitaminC.name, NutrientGroups.lycopene.name]
     },
     sesameSeeds: {
         name: "Sesame Seeds",
@@ -384,7 +393,7 @@ exports.getFood = {
             value: 1,
             unit: "Handful"
         },
-        macro: ["Iron", "Calcium", "Copper", "Methionine", "Cystine", "Tyrosine"]
+        // macro: [NutrientGroups.iron.name, NutrientGroups.calcium.name, NutrientGroups.copper.name, NutrientGroups.methionine.name, NutrientGroups.cystine.name, NutrientGroups.tyrosine.name]
     },
     kale: {
         name: "Kale",
@@ -392,7 +401,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Calcium"]
+        // macro: [NutrientGroups.calcium.name]
     },
     iodisedSalt: {
         name: "Iodised Salt",
@@ -400,7 +409,7 @@ exports.getFood = {
             value: 1,
             unit: "g"
         },
-        macro: ["Iodine"]
+        // macro: [NutrientGroups.iodine.name]
     },
     bakedPotatoWithPeel: {
         name: "Baked Potato With Peel",
@@ -408,7 +417,7 @@ exports.getFood = {
             value: null,
             unit: null
         },
-        macro: ["Iodine"]
+        // macro: [NutrientGroups.iodine.name]
     },
     hempSeeds: {
         name: "Hemp Seeds",
@@ -416,7 +425,7 @@ exports.getFood = {
             value: 1,
             unit: "Handful"
         },
-        macro: ["Magnesium", "Iron", "Phosphorus", "Isoleucine", "Threonine", "Methionine", "Cystine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
+        // macro: [NutrientGroups.magnesium.name, NutrientGroups.iron.name, NutrientGroups.phosphorus.name, NutrientGroups.isoleucine.name, NutrientGroups.threonine.name, NutrientGroups.methionine.name, NutrientGroups.cystine.name, NutrientGroups.valine.name, NutrientGroups.phenylalanine.name, NutrientGroups.tyrosine.name, NutrientGroups.histidine.name]
     },
     cheese: {
         name: "Cheese",
@@ -424,7 +433,7 @@ exports.getFood = {
             value: null,
             unit: null
         },
-        macro: ["Trytophan"]
+        // macro: [NutrientGroups.trytophan.name]
     },
     kidneyBeans: {
         name: "Kidney Beans",
@@ -432,7 +441,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Threonine", "Methionine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
+        // macro: [NutrientGroups.threonine.name, NutrientGroups.methionine.name, NutrientGroups.valine.name, NutrientGroups.phenylalanine.name, NutrientGroups.tyrosine.name, NutrientGroups.histidine.name]
     },
     redBellPappers: {
         name: "Red Bell Pappers",
@@ -440,7 +449,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin A", "Beta-carotene"]
+        // macro: [NutrientGroups.vitaminA.name, NutrientGroups.betaCarotene.name]
     },
     driedApricots: {
         name: "Dried Apricots",
@@ -448,7 +457,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin A", "Beta-carotene"]
+        // macro: [NutrientGroups.vitaminA.name, NutrientGroups.betaCarotene.name]
     },
     porkChops: {
         name: "Pork Chops",
@@ -456,7 +465,7 @@ exports.getFood = {
             value: 1,
             unit: "Chop"
         },
-        macro: ["Vitamin B1 Thiamin", "Vitamin B2 Riboflavin", "Vitamin B3 Niacin", "Vitamin B5 Pantothenic", "Vitamin B6", "Choline", "Selenium", "Zinc", "Phosphorus", "Trytophan", "Leucine", "Isoleucine", "Threonine", "Lysine", "Methionine", "Cystine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
+        // macro: [NutrientGroups.vitaminB1Thiamin.name, NutrientGroups.vitaminB2Riboflavin.name, NutrientGroups.vitaminB3Niacin.name, NutrientGroups.vitaminB5Pantothenic.name, NutrientGroups.vitaminB6.name, NutrientGroups.choline.name, NutrientGroups.selenium.name, NutrientGroups.zinc.name, NutrientGroups.phosphorus.name, NutrientGroups.trytophan.name, NutrientGroups.leucine.name, NutrientGroups.isoleucine.name, NutrientGroups.threonine.name, NutrientGroups.lysine.name, NutrientGroups.methionine.name, NutrientGroups.cystine.name, NutrientGroups.valine.name, NutrientGroups.phenylalanine.name, NutrientGroups.tyrosine.name, NutrientGroups.histidine.name]
     },
     fishSalmon: {
         name: "Fish Salmon",
@@ -464,7 +473,7 @@ exports.getFood = {
             value: 1,
             unit: "Fillet"
         },
-        macro: ["Vitamin B1 Thiamin", "Vitamin B2 Riboflavin", "Vitamin B3 Niacin", "Vitamin B5 Pantothenic", "Vitamin B6", "Choline", "Copper",]
+        // macro: [NutrientGroups.vitaminB1Thiamin.name, NutrientGroups.vitaminB2Riboflavin.name, NutrientGroups.vitaminB3Niacin.name, NutrientGroups.vitaminB5Pantothenic.name, NutrientGroups.vitaminB6.name, NutrientGroups.choline.name, NutrientGroups.copper.name,]
     },
     mussels: {
         name: "Mussels",
@@ -472,7 +481,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin B1 Thiamin"]
+        // macro: [NutrientGroups.vitaminB1Thiamin.name]
     },
     beef: {
         name: "Beef",
@@ -480,7 +489,7 @@ exports.getFood = {
             value: 1,
             unit: "Steak"
         },
-        macro: ["Vitamin B2 Riboflavin", "Vitamin B3 Niacin", "Vitamin B5 Pantothenic", "Vitamin B6", "Vitamin B12", "Choline", "Selenium", "Zinc", "Iron", "Phosphorus", "Trytophan", "Leucine", "Isoleucine", "Threonine", "Lysine", "Methionine", "Cystine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
+        // macro: [NutrientGroups.vitaminB2Riboflavin.name, NutrientGroups.vitaminB3Niacin.name, NutrientGroups.vitaminB5Pantothenic.name, NutrientGroups.vitaminB6.name, NutrientGroups.vitaminB12.name, NutrientGroups.choline.name, NutrientGroups.selenium.name, NutrientGroups.zinc.name, NutrientGroups.iron.name, NutrientGroups.phosphorus.name, NutrientGroups.trytophan.name, NutrientGroups.leucine.name, NutrientGroups.isoleucine.name, NutrientGroups.threonine.name, NutrientGroups.lysine.name, NutrientGroups.methionine.name, NutrientGroups.cystine.name, NutrientGroups.valine.name, NutrientGroups.phenylalanine.name, NutrientGroups.tyrosine.name, NutrientGroups.histidine.name]
     },
     leanRoastHam: {
         name: "Lean Roast Ham",
@@ -488,7 +497,7 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Vitamin B2 Riboflavin"]
+        // macro: [NutrientGroups.vitaminB2Riboflavin.name]
     },
     eggs: {
         name: "Eggs",
@@ -496,7 +505,7 @@ exports.getFood = {
             value: 1,
             unit: "Large"
         },
-        macro: ["Vitamin B2 Riboflavin", "Vitamin B12", "Choline", "Trytophan", "Leucine", "Threonine", "Lysine", "Methionine", "Cystine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
+        // macro: [NutrientGroups.vitaminB2Riboflavin.name, NutrientGroups.vitaminB12.name, NutrientGroups.choline.name, NutrientGroups.trytophan.name, NutrientGroups.leucine.name, NutrientGroups.threonine.name, NutrientGroups.lysine.name, NutrientGroups.methionine.name, NutrientGroups.cystine.name, NutrientGroups.valine.name, NutrientGroups.phenylalanine.name, NutrientGroups.tyrosine.name, NutrientGroups.histidine.name]
     },
     chickenBreast: {
         name: "Chicken Breast",
@@ -504,7 +513,7 @@ exports.getFood = {
             value: 200,
             unit: "g"
         },
-        macro: ["Vitamin B3 Niacin", "Vitamin B5 Pantothenic", "Vitamin B6", "Choline", "Selenium", "Phosphorus", "Isoleucine", "Threonine", "Lysine", "Methionine", "Cystine", "Valine", "Phenylalanine", "Tyrosine", "Histidine"]
+        // macro: [NutrientGroups.vitaminB3Niacin.name, NutrientGroups.vitaminB5Pantothenic.name, NutrientGroups.vitaminB6.name, NutrientGroups.choline.name, NutrientGroups.selenium.name, NutrientGroups.phosphorus.name, NutrientGroups.isoleucine.name, NutrientGroups.threonine.name, NutrientGroups.lysine.name, NutrientGroups.methionine.name, NutrientGroups.cystine.name, NutrientGroups.valine.name, NutrientGroups.phenylalanine.name, NutrientGroups.tyrosine.name, NutrientGroups.histidine.name]
     },
     crab: {
         name: "Crab",
@@ -512,7 +521,7 @@ exports.getFood = {
             value: 1,
             unit: "Crab Leg"
         },
-        macro: ["Vitamin B12", "Lysine", "Methionine"]
+        // macro: [NutrientGroups.vitaminB12.name, NutrientGroups.lysine.name, NutrientGroups.methionine.name]
     },
     clams: {
         name: "Clams",
@@ -520,7 +529,7 @@ exports.getFood = {
             value: 75,
             unit: "g"
         },
-        macro: ["Vitamin B12", "Zinc"]
+        // macro: [NutrientGroups.vitaminB12.name, NutrientGroups.zinc.name]
     },
     shrimps: {
         name: "Shrimps",
@@ -528,7 +537,7 @@ exports.getFood = {
             value: 12,
             unit: "Large"
         },
-        macro: ["Choline", "Vitamin E", "Selenium", "Iodine", "Methionine", "Phenylalanine"]
+        // macro: [NutrientGroups.choline.name, NutrientGroups.vitaminE.name, NutrientGroups.selenium.name, NutrientGroups.iodine.name, NutrientGroups.methionine.name, NutrientGroups.phenylalanine.name]
     },
     walnuts: {
         name: "Walnuts",
@@ -536,7 +545,7 @@ exports.getFood = {
             value: 1,
             unit: "Handful"
         },
-        macro: ["Magnesium"]
+        // macro: [NutrientGroups.magnesium.name]
     },
     oysters: {
         name: "Oysters",
@@ -544,7 +553,7 @@ exports.getFood = {
             value: 6,
             unit: "units"
         },
-        macro: ["Selenium", "Zinc",]
+        // macro: [NutrientGroups.selenium.name, NutrientGroups.zinc.name,]
     },
     chicken: {
         name: "Chicken",
@@ -552,7 +561,7 @@ exports.getFood = {
             value: 175,
             unit: "g"
         },
-        macro: ["Zinc", "Trytophan", "Leucine"]
+        // macro: [NutrientGroups.zinc.name, NutrientGroups.trytophan.name, NutrientGroups.leucine.name]
     },
     seaweed: {
         name: "Seaweed",
@@ -560,7 +569,7 @@ exports.getFood = {
             value: 1,
             unit: "g"
         },
-        macro: ["Iodine"]
+        // macro: [NutrientGroups.iodine.name]
     },
     salmon: {
         name: "Salmon",
@@ -568,7 +577,7 @@ exports.getFood = {
             value: 1,
             unit: "Fillet"
         },
-        macro: ["Potassium", "Tyrosine", "Histidine"]
+        // macro: [NutrientGroups.potassium.name, NutrientGroups.tyrosine.name, NutrientGroups.histidine.name]
     },
     millets: {
         name: "Millets",
@@ -577,6 +586,6 @@ exports.getFood = {
             value: 1,
             unit: "Cup"
         },
-        macro: ["Valine", "Tyrosine"]
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
     }
 };

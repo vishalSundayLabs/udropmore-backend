@@ -1,4 +1,3 @@
-import { getFood } from "./Food"
 import { getCategories } from "./LeapCategories"
 
 export const anatomy = [

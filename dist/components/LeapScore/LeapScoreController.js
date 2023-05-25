@@ -12,16 +12,43 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getLeapScoreQuestions = void 0;
 const Anatomy_1 = require("../../Constant/LeapScore/Anatomy");
 const Emotion_1 = require("../../Constant/LeapScore/Emotion");
+const LeapCategories_1 = require("../../Constant/LeapScore/LeapCategories");
 const LifeStyle_1 = require("../../Constant/LeapScore/LifeStyle");
 const PhysicalFitness_1 = require("../../Constant/LeapScore/PhysicalFitness");
 const Master_1 = require("../../Constant/Master");
 const ResponseClass_1 = require("../../utils/ResponseClass");
 const getLeapScoreQuestions = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const query = req.query;
+    if (!query.category) {
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: "Bad Request! Category must be provide."
+        }));
+    }
     try {
+        let question = null;
+        if (query.category.toUpperCase() == LeapCategories_1.getCategories.ANATOMY) {
+            question = Anatomy_1.anatomy;
+        }
+        else if (query.category.toUpperCase() == LeapCategories_1.getCategories.EMOTION) {
+            question = Emotion_1.emotion;
+        }
+        else if (query.category.toUpperCase() == LeapCategories_1.getCategories.LIFESTYLE) {
+            question = LifeStyle_1.lifeStyle;
+        }
+        else if (query.category.toUpperCase() == LeapCategories_1.getCategories.PHYSICAL) {
+            question = PhysicalFitness_1.physicalFitness;
+        }
+        else {
+            return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+                success: false,
+                message: "Invalied category! category must be lifestyle,anatomy,emotion,physical."
+            }));
+        }
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "Get All Questions successfully.",
-            result: { lifestyle: LifeStyle_1.lifeStyle, emotion: Emotion_1.emotion, anatomy: Anatomy_1.anatomy, physicalFitness: PhysicalFitness_1.physicalFitness }
+            result: question
         }));
     }
     catch (error) {
