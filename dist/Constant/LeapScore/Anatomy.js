@@ -16,12 +16,10 @@ exports.anatomy = [
                                     option: "Never",
                                     score: 1,
                                     isSelected: false,
-                                    nextQuestionKey: null
                                 }, {
                                     option: "Once a week",
                                     score: 2,
                                     isSelected: false,
-                                    // nextQuestionKey: 1394848
                                 }, {
                                     option: "2 to 3 times a week",
                                     score: 3,
@@ -62,12 +60,10 @@ exports.anatomy = [
                                     option: "Never",
                                     score: 1,
                                     isSelected: false,
-                                    nextQuestionKey: null
                                 }, {
                                     option: "Once a week",
                                     score: 2,
                                     isSelected: false,
-                                    // nextQuestionKey: 1394848
                                 }, {
                                     option: "2 to 3 times a week",
                                     score: 3,

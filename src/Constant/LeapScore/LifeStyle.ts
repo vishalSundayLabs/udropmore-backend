@@ -53,12 +53,11 @@ export const lifeStyle = [
                             option: "Never",
                             score: 1,
                             isSelected: false,
-                            nextQuestionKey: null
                         }, {
                             option: "Once a week",
                             score: 2,
                             isSelected: false,
-                            // nextQuestionKey: 1394848
+
                         }, {
                             option: "2 to 3 times a week",
                             score: 3,
@@ -99,12 +98,11 @@ export const lifeStyle = [
                             option: "Never",
                             score: 1,
                             isSelected: false,
-                            nextQuestionKey: null
                         }, {
                             option: "Once a week",
                             score: 2,
                             isSelected: false,
-                            // nextQuestionKey: 1394848
+
                         }, {
                             option: "2 to 3 times a week",
                             score: 3,
@@ -151,12 +149,11 @@ export const lifeStyle = [
                             option: "Never",
                             score: 1,
                             isSelected: false,
-                            nextQuestionKey: null
                         }, {
                             option: "Once a week",
                             score: 2,
                             isSelected: false,
-                            // nextQuestionKey: 1394848
+
                         }, {
                             option: "2 to 3 times a week",
                             score: 3,
@@ -197,12 +194,11 @@ export const lifeStyle = [
                             option: "Never",
                             score: 1,
                             isSelected: false,
-                            nextQuestionKey: null
                         }, {
                             option: "Once a week",
                             score: 2,
                             isSelected: false,
-                            // nextQuestionKey: 1394848
+
                         }, {
                             option: "2 to 3 times a week",
                             score: 3,
@@ -251,12 +247,11 @@ export const lifeStyle = [
                             option: "Never",
                             score: 1,
                             isSelected: false,
-                            nextQuestionKey: null
                         }, {
                             option: "Once a week",
                             score: 2,
                             isSelected: false,
-                            // nextQuestionKey: 1394848
+
                         }, {
                             option: "2 to 3 times a week",
                             score: 3,
@@ -297,12 +292,11 @@ export const lifeStyle = [
                             option: "Never",
                             score: 1,
                             isSelected: false,
-                            nextQuestionKey: null
                         }, {
                             option: "Once a week",
                             score: 2,
                             isSelected: false,
-                            // nextQuestionKey: 1394848
+
                         }, {
                             option: "2 to 3 times a week",
                             score: 3,
@@ -349,12 +343,11 @@ export const lifeStyle = [
                             option: "Never",
                             score: 1,
                             isSelected: false,
-                            nextQuestionKey: null
                         }, {
                             option: "Once a week",
                             score: 2,
                             isSelected: false,
-                            // nextQuestionKey: 1394848
+
                         }, {
                             option: "2 to 3 times a week",
                             score: 3,
@@ -378,12 +371,11 @@ export const lifeStyle = [
                             option: "Never",
                             score: 1,
                             isSelected: false,
-                            nextQuestionKey: null
                         }, {
                             option: "Once a week",
                             score: 2,
                             isSelected: false,
-                            // nextQuestionKey: 1394848
+
                         }, {
                             option: "2 to 3 times a week",
                             score: 3,
@@ -424,12 +416,11 @@ export const lifeStyle = [
                             option: "Never",
                             score: 1,
                             isSelected: false,
-                            nextQuestionKey: null
                         }, {
                             option: "Once a week",
                             score: 2,
                             isSelected: false,
-                            // nextQuestionKey: 1394848
+
                         }, {
                             option: "2 to 3 times a week",
                             score: 3,
@@ -470,12 +461,11 @@ export const lifeStyle = [
                             option: "Never",
                             score: 1,
                             isSelected: false,
-                            nextQuestionKey: null
                         }, {
                             option: "Once a week",
                             score: 2,
                             isSelected: false,
-                            // nextQuestionKey: 1394848
+
                         }, {
                             option: "2 to 3 times a week",
                             score: 3,
@@ -523,12 +513,11 @@ export const lifeStyle = [
                                 option: "Never",
                                 score: 1,
                                 isSelected: false,
-                                nextQuestionKey: null
                             }, {
                                 option: "Once a week",
                                 score: 2,
                                 isSelected: false,
-                                // nextQuestionKey: 1394848
+
                             }, {
                                 option: "2 to 3 times a week",
                                 score: 3,
@@ -549,12 +538,11 @@ export const lifeStyle = [
                                 option: "Never",
                                 score: 1,
                                 isSelected: false,
-                                nextQuestionKey: null
                             }, {
                                 option: "Once a week",
                                 score: 2,
                                 isSelected: false,
-                                // nextQuestionKey: 1394848
+
                             }, {
                                 option: "2 to 3 times a week",
                                 score: 3,
@@ -586,12 +574,11 @@ export const lifeStyle = [
                                 option: "Never",
                                 score: 1,
                                 isSelected: false,
-                                nextQuestionKey: null
                             }, {
                                 option: "Once a week",
                                 score: 2,
                                 isSelected: false,
-                                // nextQuestionKey: 1394848
+
                             }, {
                                 option: "2 to 3 times a week",
                                 score: 3,
@@ -612,12 +599,11 @@ export const lifeStyle = [
                                 option: "Never",
                                 score: 1,
                                 isSelected: false,
-                                nextQuestionKey: null
                             }, {
                                 option: "Once a week",
                                 score: 2,
                                 isSelected: false,
-                                // nextQuestionKey: 1394848
+
                             }, {
                                 option: "2 to 3 times a week",
                                 score: 3,
@@ -638,12 +624,11 @@ export const lifeStyle = [
                                 option: "Never",
                                 score: 1,
                                 isSelected: false,
-                                nextQuestionKey: null
                             }, {
                                 option: "Once a week",
                                 score: 2,
                                 isSelected: false,
-                                // nextQuestionKey: 1394848
+
                             }, {
                                 option: "2 to 3 times a week",
                                 score: 3,
@@ -664,12 +649,11 @@ export const lifeStyle = [
                                 option: "Never",
                                 score: 1,
                                 isSelected: false,
-                                nextQuestionKey: null
                             }, {
                                 option: "Once a week",
                                 score: 2,
                                 isSelected: false,
-                                // nextQuestionKey: 1394848
+
                             }, {
                                 option: "2 to 3 times a week",
                                 score: 3,
@@ -701,12 +685,11 @@ export const lifeStyle = [
                                 option: "Never",
                                 score: 1,
                                 isSelected: false,
-                                nextQuestionKey: null
                             }, {
                                 option: "Once a week",
                                 score: 2,
                                 isSelected: false,
-                                // nextQuestionKey: 1394848
+
                             }, {
                                 option: "2 to 3 times a week",
                                 score: 3,
@@ -727,12 +710,11 @@ export const lifeStyle = [
                                 option: "Never",
                                 score: 1,
                                 isSelected: false,
-                                nextQuestionKey: null
                             }, {
                                 option: "Once a week",
                                 score: 2,
                                 isSelected: false,
-                                // nextQuestionKey: 1394848
+
                             }, {
                                 option: "2 to 3 times a week",
                                 score: 3,
@@ -753,12 +735,11 @@ export const lifeStyle = [
                                 option: "Never",
                                 score: 1,
                                 isSelected: false,
-                                nextQuestionKey: null
                             }, {
                                 option: "Once a week",
                                 score: 2,
                                 isSelected: false,
-                                // nextQuestionKey: 1394848
+
                             }, {
                                 option: "2 to 3 times a week",
                                 score: 3,
@@ -779,12 +760,11 @@ export const lifeStyle = [
                                 option: "Never",
                                 score: 1,
                                 isSelected: false,
-                                nextQuestionKey: null
                             }, {
                                 option: "Once a week",
                                 score: 2,
                                 isSelected: false,
-                                // nextQuestionKey: 1394848
+
                             }, {
                                 option: "2 to 3 times a week",
                                 score: 3,
@@ -805,12 +785,11 @@ export const lifeStyle = [
                                 option: "Never",
                                 score: 1,
                                 isSelected: false,
-                                nextQuestionKey: null
                             }, {
                                 option: "Once a week",
                                 score: 2,
                                 isSelected: false,
-                                // nextQuestionKey: 1394848
+
                             }, {
                                 option: "2 to 3 times a week",
                                 score: 3,
@@ -836,12 +815,11 @@ export const lifeStyle = [
                                 option: "Never",
                                 score: 1,
                                 isSelected: false,
-                                nextQuestionKey: null
                             }, {
                                 option: "Once a week",
                                 score: 2,
                                 isSelected: false,
-                                // nextQuestionKey: 1394848
+
                             }, {
                                 option: "2 to 3 times a week",
                                 score: 3,
@@ -862,12 +840,11 @@ export const lifeStyle = [
                                 option: "Never",
                                 score: 1,
                                 isSelected: false,
-                                nextQuestionKey: null
                             }, {
                                 option: "Once a week",
                                 score: 2,
                                 isSelected: false,
-                                // nextQuestionKey: 1394848
+
                             }, {
                                 option: "2 to 3 times a week",
                                 score: 3,
@@ -899,12 +876,11 @@ export const lifeStyle = [
                                 option: "Never",
                                 score: 1,
                                 isSelected: false,
-                                nextQuestionKey: null
                             }, {
                                 option: "Once a week",
                                 score: 2,
                                 isSelected: false,
-                                // nextQuestionKey: 1394848
+
                             }, {
                                 option: "2 to 3 times a week",
                                 score: 3,
@@ -925,12 +901,11 @@ export const lifeStyle = [
                                 option: "Never",
                                 score: 1,
                                 isSelected: false,
-                                nextQuestionKey: null
                             }, {
                                 option: "Once a week",
                                 score: 2,
                                 isSelected: false,
-                                // nextQuestionKey: 1394848
+
                             }, {
                                 option: "2 to 3 times a week",
                                 score: 3,
@@ -951,12 +926,11 @@ export const lifeStyle = [
                                 option: "Never",
                                 score: 1,
                                 isSelected: false,
-                                nextQuestionKey: null
                             }, {
                                 option: "Once a week",
                                 score: 2,
                                 isSelected: false,
-                                // nextQuestionKey: 1394848
+
                             }, {
                                 option: "2 to 3 times a week",
                                 score: 3,
@@ -977,12 +951,11 @@ export const lifeStyle = [
                                 option: "Never",
                                 score: 1,
                                 isSelected: false,
-                                nextQuestionKey: null
                             }, {
                                 option: "Once a week",
                                 score: 2,
                                 isSelected: false,
-                                // nextQuestionKey: 1394848
+
                             }, {
                                 option: "2 to 3 times a week",
                                 score: 3,
@@ -1003,12 +976,11 @@ export const lifeStyle = [
                                 option: "Never",
                                 score: 1,
                                 isSelected: false,
-                                nextQuestionKey: null
                             }, {
                                 option: "Once a week",
                                 score: 2,
                                 isSelected: false,
-                                // nextQuestionKey: 1394848
+
                             }, {
                                 option: "2 to 3 times a week",
                                 score: 3,
@@ -1030,12 +1002,11 @@ export const lifeStyle = [
                                 option: "Never",
                                 score: 1,
                                 isSelected: false,
-                                nextQuestionKey: null
                             }, {
                                 option: "Once a week",
                                 score: 2,
                                 isSelected: false,
-                                // nextQuestionKey: 1394848
+
                             }, {
                                 option: "2 to 3 times a week",
                                 score: 3,
@@ -1056,12 +1027,11 @@ export const lifeStyle = [
                                 option: "Never",
                                 score: 1,
                                 isSelected: false,
-                                nextQuestionKey: null
                             }, {
                                 option: "Once a week",
                                 score: 2,
                                 isSelected: false,
-                                // nextQuestionKey: 1394848
+
                             }, {
                                 option: "2 to 3 times a week",
                                 score: 3,
@@ -1093,12 +1063,11 @@ export const lifeStyle = [
                                 option: "Never",
                                 score: 1,
                                 isSelected: false,
-                                nextQuestionKey: null
                             }, {
                                 option: "Once a week",
                                 score: 2,
                                 isSelected: false,
-                                // nextQuestionKey: 1394848
+
                             }, {
                                 option: "2 to 3 times a week",
                                 score: 3,
@@ -1119,12 +1088,11 @@ export const lifeStyle = [
                                 option: "Never",
                                 score: 1,
                                 isSelected: false,
-                                nextQuestionKey: null
                             }, {
                                 option: "Once a week",
                                 score: 2,
                                 isSelected: false,
-                                // nextQuestionKey: 1394848
+
                             }, {
                                 option: "2 to 3 times a week",
                                 score: 3,
@@ -1145,12 +1113,11 @@ export const lifeStyle = [
                                 option: "Never",
                                 score: 1,
                                 isSelected: false,
-                                nextQuestionKey: null
                             }, {
                                 option: "Once a week",
                                 score: 2,
                                 isSelected: false,
-                                // nextQuestionKey: 1394848
+
                             }, {
                                 option: "2 to 3 times a week",
                                 score: 3,
@@ -1171,12 +1138,11 @@ export const lifeStyle = [
                                 option: "Never",
                                 score: 1,
                                 isSelected: false,
-                                nextQuestionKey: null
                             }, {
                                 option: "Once a week",
                                 score: 2,
                                 isSelected: false,
-                                // nextQuestionKey: 1394848
+
                             }, {
                                 option: "2 to 3 times a week",
                                 score: 3,
@@ -1198,12 +1164,11 @@ export const lifeStyle = [
                                 option: "Never",
                                 score: 1,
                                 isSelected: false,
-                                nextQuestionKey: null
                             }, {
                                 option: "Once a week",
                                 score: 2,
                                 isSelected: false,
-                                // nextQuestionKey: 1394848
+
                             }, {
                                 option: "2 to 3 times a week",
                                 score: 3,
@@ -1235,7 +1200,6 @@ export const lifeStyle = [
                             option: "<7 hours",
                             score: 2,
                             isSelected: false,
-                            nextQuestionKey: null
                         }, {
                             option: "7 hours",
                             score: 4,
@@ -1273,7 +1237,6 @@ export const lifeStyle = [
                             option: "< 8 glasses per day",
                             score: 1,
                             isSelected: false,
-                            nextQuestionKey: null
                         }, {
                             option: "8 - 10 glasses per day",
                             score: 3,
@@ -1302,7 +1265,6 @@ export const lifeStyle = [
                             option: "Yes",
                             score: 1,
                             isSelected: false,
-                            nextQuestionKey: null
                         }, {
                             option: "No",
                             score: 4,
@@ -1323,7 +1285,6 @@ export const lifeStyle = [
                             option: "Vegetarian",
                             score: null,
                             isSelected: false,
-                            nextQuestionKey: null
                         }, {
                             option: "Non-vegetarian",
                             score: null,
@@ -1344,7 +1305,6 @@ export const lifeStyle = [
                             option: "Daily",
                             score: 4,
                             isSelected: false,
-                            nextQuestionKey: null
                         }, {
                             option: "Sometimes",
                             score: 2,
@@ -1373,7 +1333,6 @@ export const lifeStyle = [
                             option: "Paneer",
                             score: 1,
                             isSelected: false,
-                            nextQuestionKey: null
                         }, {
                             option: "Milk",
                             score: 1,
@@ -1402,7 +1361,6 @@ export const lifeStyle = [
                             option: "Never",
                             score: 1,
                             isSelected: false,
-                            nextQuestionKey: null
                         }, {
                             option: "Sometimes",
                             score: 2,
@@ -1431,7 +1389,6 @@ export const lifeStyle = [
                             option: "Almonds",
                             score: 1,
                             isSelected: false,
-                            nextQuestionKey: null
                         }, {
                             option: "Pistachios",
                             score: 1,
@@ -1460,9 +1417,8 @@ export const lifeStyle = [
                             option: food.walnuts.name,
                             score: 1,
                             isSelected: false,
-                            nextQuestionKey: null
                         }, {
-                            option: `Others like ${food.flaxSeeds.name,food.sunflowerSeeds.name,food.pumpkinSeeds.name}`,
+                            option: `Others like ${food.flaxSeeds.name, food.sunflowerSeeds.name, food.pumpkinSeeds.name}`,
                             score: 1,
                             isSelected: false,
                         }, {
@@ -1517,7 +1473,6 @@ export const lifeStyle = [
                             option: "2 spoons",
                             score: 3,
                             isSelected: false,
-                            nextQuestionKey: null
                         }, {
                             option: "4 spoons",
                             score: 2,
@@ -1546,7 +1501,6 @@ export const lifeStyle = [
                             option: `Pork/${food.beef.name}/lamb`,
                             score: 1,
                             isSelected: false,
-                            nextQuestionKey: null
                         }, {
                             option: `${food.chicken.name}/${food.salmon.name}/Rawas`,
                             score: 1,
@@ -1575,7 +1529,6 @@ export const lifeStyle = [
                             option: "Daily",
                             score: 4,
                             isSelected: false,
-                            nextQuestionKey: null
                         }, {
                             option: "Often",
                             score: 3,

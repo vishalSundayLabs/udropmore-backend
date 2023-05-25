@@ -15,8 +15,7 @@ exports.emotion = [
                             option: [{
                                     option: "Very Often",
                                     score: 0,
-                                    isSelected: false,
-                                    nextQuestionKey: null
+                                    isSelected: false
                                 }, {
                                     option: "Fairly Often",
                                     score: 1,
@@ -48,8 +47,7 @@ exports.emotion = [
                             option: [{
                                     option: "Very Often",
                                     score: 0,
-                                    isSelected: false,
-                                    nextQuestionKey: null
+                                    isSelected: false
                                 }, {
                                     option: "Fairly Often",
                                     score: 1,
@@ -81,8 +79,7 @@ exports.emotion = [
                             option: [{
                                     option: "Very Often",
                                     score: 0,
-                                    isSelected: false,
-                                    nextQuestionKey: null
+                                    isSelected: false
                                 }, {
                                     option: "Fairly Often",
                                     score: 1,
@@ -114,8 +111,7 @@ exports.emotion = [
                             option: [{
                                     option: "Very Often",
                                     score: 4,
-                                    isSelected: false,
-                                    nextQuestionKey: null
+                                    isSelected: false
                                 }, {
                                     option: "Fairly Often",
                                     score: 3,
@@ -147,8 +143,7 @@ exports.emotion = [
                             option: [{
                                     option: "Very Often",
                                     score: 4,
-                                    isSelected: false,
-                                    nextQuestionKey: null
+                                    isSelected: false
                                 }, {
                                     option: "Fairly Often",
                                     score: 3,
@@ -180,8 +175,7 @@ exports.emotion = [
                             option: [{
                                     option: "Very Often",
                                     score: 0,
-                                    isSelected: false,
-                                    nextQuestionKey: null
+                                    isSelected: false
                                 }, {
                                     option: "Fairly Often",
                                     score: 1,
@@ -213,8 +207,7 @@ exports.emotion = [
                             option: [{
                                     option: "Very Often",
                                     score: 4,
-                                    isSelected: false,
-                                    nextQuestionKey: null
+                                    isSelected: false
                                 }, {
                                     option: "Fairly Often",
                                     score: 3,
@@ -246,8 +239,7 @@ exports.emotion = [
                             option: [{
                                     option: "Very Often",
                                     score: 4,
-                                    isSelected: false,
-                                    nextQuestionKey: null
+                                    isSelected: false
                                 }, {
                                     option: "Fairly Often",
                                     score: 3,
@@ -279,8 +271,7 @@ exports.emotion = [
                             option: [{
                                     option: "Very Often",
                                     score: 0,
-                                    isSelected: false,
-                                    nextQuestionKey: null
+                                    isSelected: false
                                 }, {
                                     option: "Fairly Often",
                                     score: 1,
@@ -312,8 +303,7 @@ exports.emotion = [
                             option: [{
                                     option: "Very Often",
                                     score: 0,
-                                    isSelected: false,
-                                    nextQuestionKey: null
+                                    isSelected: false
                                 }, {
                                     option: "Fairly Often",
                                     score: 1,
