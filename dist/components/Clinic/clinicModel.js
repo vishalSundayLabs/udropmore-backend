@@ -32,10 +32,12 @@ const clinicSchema = new mongoose.Schema({
         default: false
     },
     createdBy: {
-        type: mongoose.SchemaTypes.ObjectId
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: "User"
     },
     updatedBy: {
-        type: mongoose.SchemaTypes.ObjectId
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: "User"
     }
 }, { timestamps: true });
 exports.ClinicModel = mongoose.model('clinics', clinicSchema);

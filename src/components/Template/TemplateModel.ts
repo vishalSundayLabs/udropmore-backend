@@ -12,11 +12,11 @@ const standardSupplementsSchema = new mongoose.Schema({
     },
     createdBy: {
         type: mongoose.SchemaTypes.ObjectId,
-        refs: "User"
+        ref: "User"
     },
     updatedBy: {
         type: mongoose.SchemaTypes.ObjectId,
-        refs: "User"
+        ref: "User"
     }
 }, { timestamps: true })
 

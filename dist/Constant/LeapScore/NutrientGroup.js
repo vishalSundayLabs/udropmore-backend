@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NutrientGroups = void 0;
 const Food_1 = require("./Food");
-console.log(Food_1.food);
 exports.NutrientGroups = {
     vitaminC: {
         name: "Vitamin C",
@@ -26,6 +25,14 @@ exports.NutrientGroups = {
             {
                 food: Food_1.food.oranges,
                 dv: "106%"
+            },
+            {
+                food: Food_1.food.lemons,
+                dv: "125%"
+            },
+            {
+                food: Food_1.food.blueBerries,
+                dv: "16%"
             }
         ],
         nonVeg: [
@@ -40,6 +47,22 @@ exports.NutrientGroups = {
             {
                 food: Food_1.food.tomatoes,
                 dv: "61%"
+            },
+            {
+                food: Food_1.food.radish,
+                dv: "19%"
+            },
+            {
+                food: Food_1.food.amla,
+                dv: "46%"
+            },
+            {
+                food: Food_1.food.pomegranate,
+                dv: "20%"
+            },
+            {
+                food: Food_1.food.honeydew,
+                dv: "34%"
             }
         ]
     },
@@ -79,6 +102,10 @@ exports.NutrientGroups = {
             {
                 food: Food_1.food.driedApricots,
                 dv: "20%"
+            },
+            {
+                food: Food_1.food.basil,
+                dv: "29%"
             }
         ]
     },
@@ -276,6 +303,10 @@ exports.NutrientGroups = {
             {
                 food: Food_1.food.lentils,
                 dv: "25%"
+            },
+            {
+                food: Food_1.food.pomegranate,
+                dv: "13%"
             }
         ],
         nonVeg: [
@@ -380,6 +411,22 @@ exports.NutrientGroups = {
             {
                 food: Food_1.food.oranges,
                 dv: "14%"
+            },
+            {
+                food: Food_1.food.beetRoot,
+                dv: "34%"
+            },
+            {
+                food: Food_1.food.hareMung,
+                dv: "80%"
+            },
+            {
+                food: Food_1.food.rice,
+                dv: "23%"
+            },
+            {
+                food: Food_1.food.muesli,
+                dv: "154%"
             }
         ]
     },
@@ -397,6 +444,10 @@ exports.NutrientGroups = {
             {
                 food: Food_1.food.milk,
                 dv: "108%"
+            },
+            {
+                food: Food_1.food.muesli,
+                dv: "386%"
             }
         ],
         nonVeg: [
@@ -423,6 +474,22 @@ exports.NutrientGroups = {
             {
                 food: Food_1.food.clams,
                 dv: "3502%"
+            },
+            {
+                food: Food_1.food.lamp,
+                dv: "269%"
+            },
+            {
+                food: Food_1.food.rawas,
+                dv: "58%"
+            },
+            {
+                food: Food_1.food.surmai,
+                dv: "300%"
+            },
+            {
+                food: Food_1.food.promfret,
+                dv: "23%"
             }
         ]
     },
@@ -501,6 +568,10 @@ exports.NutrientGroups = {
             {
                 food: Food_1.food.shrimps,
                 dv: "12%"
+            },
+            {
+                food: Food_1.food.muesli,
+                dv: "56%"
             }
         ]
     },
@@ -745,6 +816,18 @@ exports.NutrientGroups = {
             {
                 food: Food_1.food.pumpkinSeeds,
                 dv: "14%"
+            },
+            {
+                food: Food_1.food.oats,
+                dv: "41%"
+            },
+            {
+                food: Food_1.food.jowar,
+                dv: "33%"
+            },
+            {
+                food: Food_1.food.muesli,
+                dv: "39%"
             }
         ],
         nonVeg: [
@@ -767,6 +850,18 @@ exports.NutrientGroups = {
             {
                 food: Food_1.food.hempSeeds,
                 dv: "13%"
+            },
+            {
+                food: Food_1.food.toorDal,
+                dv: "42%"
+            },
+            {
+                food: Food_1.food.uradDal,
+                dv: "43%"
+            },
+            {
+                food: Food_1.food.masoorDal,
+                dv: "33%"
             }
         ]
     },
@@ -875,6 +970,10 @@ exports.NutrientGroups = {
             {
                 food: Food_1.food.fishSalmon,
                 dv: "61%"
+            },
+            {
+                food: Food_1.food.raisins,
+                dv: "30%"
             }
         ]
     },
@@ -946,6 +1045,10 @@ exports.NutrientGroups = {
             {
                 food: Food_1.food.tomatoes,
                 dv: "11%"
+            },
+            {
+                food: Food_1.food.raisins,
+                dv: "16%"
             }
         ]
     },
@@ -1960,6 +2063,51 @@ exports.NutrientGroups = {
             {
                 food: Food_1.food.quinoa,
                 dv: "34%"
+            },
+            {
+                food: Food_1.food.lamp,
+                dv: "303%"
+            }
+        ]
+    },
+    prebiotic: {
+        name: "Prebiotic",
+        veg: [
+            {
+                food: Food_1.food.figs,
+                dv: null
+            }
+        ],
+        nonVeg: null
+    },
+    dha: {
+        name: "DHA",
+        veg: [
+            {
+                food: Food_1.food.walnuts,
+                dv: null
+            },
+            {
+                food: Food_1.food.chiaSeeds,
+                dv: null
+            }
+        ],
+        nonVeg: [
+            {
+                food: Food_1.food.rawas,
+                dv: "200%"
+            },
+            {
+                food: Food_1.food.prawns,
+                dv: "100%"
+            },
+            {
+                food: Food_1.food.rawas,
+                dv: "150%"
+            },
+            {
+                food: Food_1.food.promfret,
+                dv: "75%"
             }
         ]
     }

@@ -1,6 +1,6 @@
 import { anatomy } from "../../Constant/LeapScore/Anatomy"
 import { emotion } from "../../Constant/LeapScore/Emotion"
-import { getCategories } from "../../Constant/LeapScore/LeapCategories"
+import { getLeapCategories } from "../../Constant/LeapScore/LeapCategories"
 import { lifeStyle } from "../../Constant/LeapScore/LifeStyle"
 import { physicalFitness } from "../../Constant/LeapScore/PhysicalFitness"
 import { HTTP_BAD_REQUEST, HTTP_OK } from "../../Constant/Master"
@@ -23,13 +23,13 @@ export const getLeapScoreQuestions = async (req, res) => {
 
         let question = null;
 
-        if (query.category.toUpperCase() == getCategories.ANATOMY) {
+        if (query.category.toUpperCase() == getLeapCategories.ANATOMY) {
             question = anatomy
-        } else if (query.category.toUpperCase() == getCategories.EMOTION) {
+        } else if (query.category.toUpperCase() == getLeapCategories.EMOTION) {
             question = emotion
-        } else if (query.category.toUpperCase() == getCategories.LIFESTYLE) {
+        } else if (query.category.toUpperCase() == getLeapCategories.LIFESTYLE) {
             question = lifeStyle
-        } else if (query.category.toUpperCase() == getCategories.PHYSICAL) {
+        } else if (query.category.toUpperCase() == getLeapCategories.PHYSICAL) {
             question = physicalFitness
         } else {
 

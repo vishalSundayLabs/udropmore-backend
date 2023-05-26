@@ -1,8 +1,8 @@
-import { getCategories } from "./LeapCategories"
+import { getLeapCategories } from "./LeapCategories"
 
 export const physicalFitness = [
     {
-        category: getCategories.PHYSICAL,
+        category: getLeapCategories.PHYSICAL,
         subCategory:null,
         section: [
             {

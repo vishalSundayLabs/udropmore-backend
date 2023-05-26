@@ -585,5 +585,311 @@ export const food = {
             unit: "Cup"
         },
         // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    basil: {
+        name: "Basil",
+        value: false,
+        size: {
+            value: 100,
+            unit: "g"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    beetRoot: {
+        name: "Beet Root",
+        value: false,
+        size: {
+            value: 1,
+            unit: "Cup"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    radish: {
+        name: "Radish",
+        value: false,
+        size: {
+            value: 1,
+            unit: "Cup"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    amla: {
+        name: "Amla",
+        value: false,
+        size: {
+            value: 1,
+            unit: "Cup"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    lemons: {
+        name: "Lemons",
+        value: false,
+        size: {
+            value: 1,
+            unit: "Cup"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    pomegranate: {
+        name: "Pomegranate",
+        value: false,
+        size: {
+            value: 1,
+            unit: "Cup"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    figs: {
+        name: "Figs",
+        value: false,
+        size: {
+            value: 3,
+            unit: "pcs"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    blueBerries: {
+        name: "Blue Berries",
+        value: false,
+        size: {
+            value: 1,
+            unit: "Cup"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    honeydew: {
+        name: "Honeydew",
+        value: false,
+        size: {
+            value: 1,
+            unit: "Cup"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    raisins: {
+        name: "Raisins",
+        value: false,
+        size: {
+            value: 100,
+            unit: "g"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    dates: {
+        name: "Dates",
+        value: false,
+        size: {
+            value: 1,
+            unit: "Handful"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    rajma: {
+        name: "Rajma",
+        value: false,
+        size: {
+            value: 1,
+            unit: "Cup"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    hareMung: {
+        name: "Hare Mung",
+        value: false,
+        size: {
+            value: 1,
+            unit: "Cup"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    til: {
+        name: "Til",
+        value: false,
+        size: {
+            value: 1,
+            unit: "Handful"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    chana: {
+        name: "Chana",
+        value: false,
+        size: {
+            value: 1,
+            unit: "Handful"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    toorDal: {
+        name: "Toor Dal",
+        value: false,
+        size: {
+            value: 100,
+            unit: "g"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    uradDal: {
+        name: "Urad Dal",
+        value: false,
+        size: {
+            value: 100,
+            unit: "g"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    masoorDal: {
+        name: "Masoor Dal",
+        value: false,
+        size: {
+            value: 100,
+            unit: "g"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    meatPork: {
+        name: "Meat-Pork",
+        value: false,
+        size: {
+            value: 1,
+            unit: "Chop"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    lamp: {
+        name: "Lamp",
+        value: false,
+        size: {
+            value: 1,
+            unit: "Large"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    birdsChicken: {
+        name: "Birds-Chicken",
+        value: false,
+        size: {
+            value: 200,
+            unit: "g"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    rawas: {
+        name: "Rawas",
+        value: false,
+        size: {
+            value: 1,
+            unit: "Fillet"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    bombayDuck: {
+        name: "Bombay Duck",
+        value: false,
+        size: {
+            value: 1,
+            unit: "Fillet"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    prawns: {
+        name: "Prawns",
+        value: false,
+        size: {
+            value: 100,
+            unit: "g"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    chole: {
+        name: "Chole",
+        value: false,
+        size: {
+            value: 100,
+            unit: "g"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    kalaChana: {
+        name: "Kala Chana",
+        value: false,
+        size: {
+            value: 100,
+            unit: "g"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    tahini: {
+        name: "Tahini",
+        value: false,
+        size: {
+            value: 1,
+            unit: "Handful"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    wheat: {
+        name: "Wheat",
+        value: false,
+        size: {
+            value: 100,
+            unit: "g"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    oats: {
+        name: "Oats",
+        value: false,
+        size: {
+            value: 1,
+            unit: "Cup"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    rice: {
+        name: "Rice",
+        value: false,
+        size: {
+            value: 1,
+            unit: "Cup"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    }, 
+    jowar: {
+        name: "Jowar",
+        value: false,
+        size: {
+            value: 100,
+            unit: "g"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    muesli: {
+        name: "Muesli",
+        value: false,
+        size: {
+            value: 1,
+            unit: "Cup"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    surmai:{
+        name: "Surmai",
+        value: false,
+        size: {
+            value: 1,
+            unit: "Cup"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
+    },
+    promfret:{
+        name: "Promfret",
+        value: false,
+        size: {
+            value: 1,
+            unit: "Cup"
+        },
+        // macro: [NutrientGroups.valine.name, NutrientGroups.tyrosine.name]
     }
 }

@@ -4,7 +4,7 @@ exports.physicalFitness = void 0;
 const LeapCategories_1 = require("./LeapCategories");
 exports.physicalFitness = [
     {
-        category: LeapCategories_1.getCategories.PHYSICAL,
+        category: LeapCategories_1.getLeapCategories.PHYSICAL,
         subCategory: null,
         section: [
             {

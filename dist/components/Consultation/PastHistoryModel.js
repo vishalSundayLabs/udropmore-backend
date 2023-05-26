@@ -378,11 +378,11 @@ const pastHistorySchema = new mongoose.Schema({
     },
     createdBy: {
         type: mongoose.SchemaTypes.ObjectId,
-        refs: "User"
+        ref: "User"
     },
     updatedBy: {
         type: mongoose.SchemaTypes.ObjectId,
-        refs: "User"
+        ref: "User"
     },
     isDeleted: {
         type: Boolean,

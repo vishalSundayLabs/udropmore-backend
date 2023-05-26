@@ -1,8 +1,8 @@
 import { food } from "./Food"
-import { getCategories } from "./LeapCategories"
+import { getLeapCategories } from "./LeapCategories"
 export const emotion = [
     {
-        category: getCategories.EMOTION,
+        category: getLeapCategories.EMOTION,
         subCategory: null,
         section: [
             {

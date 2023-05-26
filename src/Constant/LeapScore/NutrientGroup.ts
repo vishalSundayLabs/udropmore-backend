@@ -1,5 +1,4 @@
 import { food } from "./Food"
-console.log(food)
 export const NutrientGroups = {
     vitaminC: {
         name: "Vitamin C",
@@ -23,6 +22,14 @@ export const NutrientGroups = {
             {
                 food: food.oranges,
                 dv: "106%"
+            },
+            {
+                food: food.lemons,
+                dv: "125%"
+            },
+            {
+                food: food.blueBerries,
+                dv: "16%"
             }
         ],
         nonVeg: [
@@ -37,6 +44,22 @@ export const NutrientGroups = {
             {
                 food: food.tomatoes,
                 dv: "61%"
+            },
+            {
+                food: food.radish,
+                dv: "19%"
+            },
+            {
+                food: food.amla,
+                dv: "46%"
+            },
+            {
+                food: food.pomegranate,
+                dv: "20%"
+            },
+            {
+                food: food.honeydew,
+                dv: "34%"
             }
         ]
 
@@ -77,6 +100,10 @@ export const NutrientGroups = {
             {
                 food: food.driedApricots,
                 dv: "20%"
+            },
+            {
+                food: food.basil,
+                dv: "29%"
             }
         ]
     },
@@ -274,6 +301,10 @@ export const NutrientGroups = {
             {
                 food: food.lentils,
                 dv: "25%"
+            },
+            {
+                food: food.pomegranate,
+                dv: "13%"
             }
         ],
         nonVeg: [
@@ -378,6 +409,22 @@ export const NutrientGroups = {
             {
                 food: food.oranges,
                 dv: "14%"
+            },
+            {
+                food: food.beetRoot,
+                dv: "34%"
+            },
+            {
+                food: food.hareMung,
+                dv: "80%"
+            },
+            {
+                food: food.rice,
+                dv: "23%"
+            },
+            {
+                food: food.muesli,
+                dv: "154%"
             }
         ]
     },
@@ -395,6 +442,10 @@ export const NutrientGroups = {
             {
                 food: food.milk,
                 dv: "108%"
+            },
+            {
+                food: food.muesli,
+                dv: "386%"
             }
         ],
         nonVeg: [
@@ -421,6 +472,22 @@ export const NutrientGroups = {
             {
                 food: food.clams,
                 dv: "3502%"
+            },
+            {
+                food: food.lamp,
+                dv: "269%"
+            },
+            {
+                food: food.rawas,
+                dv: "58%"
+            },
+            {
+                food: food.surmai,
+                dv: "300%"
+            },
+            {
+                food: food.promfret,
+                dv: "23%"
             }
         ]
     },
@@ -499,6 +566,10 @@ export const NutrientGroups = {
             {
                 food: food.shrimps,
                 dv: "12%"
+            },
+            {
+                food: food.muesli,
+                dv: "56%"
             }
         ]
     },
@@ -743,6 +814,18 @@ export const NutrientGroups = {
             {
                 food: food.pumpkinSeeds,
                 dv: "14%"
+            },
+            {
+                food: food.oats,
+                dv: "41%"
+            },
+            {
+                food: food.jowar,
+                dv: "33%"
+            },
+            {
+                food: food.muesli,
+                dv: "39%"
             }
         ],
         nonVeg: [
@@ -765,6 +848,18 @@ export const NutrientGroups = {
             {
                 food: food.hempSeeds,
                 dv: "13%"
+            },
+            {
+                food: food.toorDal,
+                dv: "42%"
+            },
+            {
+                food: food.uradDal,
+                dv: "43%"
+            },
+            {
+                food: food.masoorDal,
+                dv: "33%"
             }
         ]
     },
@@ -874,6 +969,10 @@ export const NutrientGroups = {
             {
                 food: food.fishSalmon,
                 dv: "61%"
+            },
+            {
+                food: food.raisins,
+                dv: "30%"
             }
         ]
     },
@@ -945,6 +1044,10 @@ export const NutrientGroups = {
             {
                 food: food.tomatoes,
                 dv: "11%"
+            },
+            {
+                food: food.raisins,
+                dv: "16%"
             }
         ]
     },
@@ -1961,6 +2064,51 @@ export const NutrientGroups = {
             {
                 food: food.quinoa,
                 dv: "34%"
+            },
+            {
+                food:food.lamp,
+                dv:"303%"
+            }
+        ]
+    },
+    prebiotic: {
+        name: "Prebiotic",
+        veg: [
+            {
+                food: food.figs,
+                dv: null
+            }
+        ],
+        nonVeg: null
+    },
+    dha: {
+        name: "DHA",
+        veg: [
+            {
+                food: food.walnuts,
+                dv: null
+            },
+            {
+                food: food.chiaSeeds,
+                dv: null
+            }
+        ],
+        nonVeg: [
+            {
+                food: food.rawas,
+                dv: "200%"
+            },
+            {
+                food: food.prawns,
+                dv: "100%"
+            },
+            {
+                food: food.rawas,
+                dv: "150%"
+            },
+            {
+                food: food.promfret,
+                dv: "75%"
             }
         ]
     }

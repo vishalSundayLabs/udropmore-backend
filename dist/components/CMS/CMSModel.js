@@ -37,11 +37,11 @@ const leapContentSchema = new mongoose.Schema({
     weeks: [Number],
     createdBy: {
         type: mongoose.SchemaTypes.ObjectId,
-        refs: "User"
+        ref: "User"
     },
     updatedBy: {
         type: mongoose.SchemaTypes.ObjectId,
-        refs: "User"
+        ref: "User"
     },
     isDeleted: {
         type: Boolean,

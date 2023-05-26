@@ -11,15 +11,15 @@ const AppointmentSchema = new mongoose.Schema({
     },
     motherId: {
         type: mongoose.SchemaTypes.ObjectId,
-        refs: 'User'
+        ref: 'User'
     },
     doctorId: {
         type: mongoose.SchemaTypes.ObjectId,
-        refs: "User"
+        ref: "User"
     },
     clinicId: {
         type: mongoose.SchemaTypes.ObjectId,
-        refs: "clinics"
+        ref: "clinics"
     },
     status: {
         type: String,
@@ -35,10 +35,11 @@ const AppointmentSchema = new mongoose.Schema({
     },
     createdBy: {
         type: mongoose.SchemaTypes.ObjectId,
-        refs: 'User'
+        ref: 'User'
     },
     updatedBy: {
-        type: mongoose.SchemaTypes.ObjectId
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: "User"
     },
     isDeleted: {
         type: Boolean,

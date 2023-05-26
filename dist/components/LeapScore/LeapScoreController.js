@@ -27,16 +27,16 @@ const getLeapScoreQuestions = (req, res) => __awaiter(void 0, void 0, void 0, fu
     }
     try {
         let question = null;
-        if (query.category.toUpperCase() == LeapCategories_1.getCategories.ANATOMY) {
+        if (query.category.toUpperCase() == LeapCategories_1.getLeapCategories.ANATOMY) {
             question = Anatomy_1.anatomy;
         }
-        else if (query.category.toUpperCase() == LeapCategories_1.getCategories.EMOTION) {
+        else if (query.category.toUpperCase() == LeapCategories_1.getLeapCategories.EMOTION) {
             question = Emotion_1.emotion;
         }
-        else if (query.category.toUpperCase() == LeapCategories_1.getCategories.LIFESTYLE) {
+        else if (query.category.toUpperCase() == LeapCategories_1.getLeapCategories.LIFESTYLE) {
             question = LifeStyle_1.lifeStyle;
         }
-        else if (query.category.toUpperCase() == LeapCategories_1.getCategories.PHYSICAL) {
+        else if (query.category.toUpperCase() == LeapCategories_1.getLeapCategories.PHYSICAL) {
             question = PhysicalFitness_1.physicalFitness;
         }
         else {

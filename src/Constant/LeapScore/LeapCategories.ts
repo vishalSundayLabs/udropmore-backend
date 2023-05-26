@@ -1,4 +1,4 @@
-export const getCategories = {
+export const getLeapCategories = {
     LIFESTYLE: "LIFESTYLE",
     EMOTION: "EMOTION",
     PHYSICAL: "PHYSICAL",

@@ -5,7 +5,7 @@ const Food_1 = require("./Food");
 const LeapCategories_1 = require("./LeapCategories");
 exports.lifeStyle = [
     {
-        category: LeapCategories_1.getCategories.LIFESTYLE,
+        category: LeapCategories_1.getLeapCategories.LIFESTYLE,
         subCategory: "Food Diversity",
         section: [
             {
@@ -30,55 +30,57 @@ exports.lifeStyle = [
                                     score: 4,
                                     isSelected: false
                                 }],
-                            cacalculatedScore: 0,
-                            multiSelect: false
+                            calculatedScore: 0,
+                            multiSelect: false,
+                            answeredDate: null,
                         },
                         subQuestions: [{
                                 name: "Which Green Leafy Vegetables do you consume ?",
                                 option: {
-                                    A: { options: [{ name: Food_1.food.spinach.name, isSelected: false }, { name: "Basil", isSelected: false }, { name: Food_1.food.carrots.name, isSelected: false }, { name: Food_1.food.brusselSprouts.name, isSelected: false }], score: 1 },
-                                    B: { options: [{ name: Food_1.food.lettuce.name, isSelected: false }, { name: Food_1.food.asparagus.name, isSelected: false }, { name: "Beet root", isSelected: false }], score: 1 },
-                                    C: { options: [{ name: `${Food_1.food.cabbage.name}-White | Green | Purple`, isSelected: false }, { name: Food_1.food.broccoli, isSelected: false }, { name: "Radish", isSelected: false }], score: 1 },
+                                    A: { options: [{ name: Food_1.food.spinach.name, isSelected: false }, { name: Food_1.food.basil.name, isSelected: false }, { name: Food_1.food.carrots.name, isSelected: false }, { name: Food_1.food.brusselSprouts.name, isSelected: false }], score: 1 },
+                                    B: { options: [{ name: Food_1.food.lettuce.name, isSelected: false }, { name: Food_1.food.asparagus.name, isSelected: false }, { name: Food_1.food.beetRoot.name, isSelected: false }], score: 1 },
+                                    C: { options: [{ name: `${Food_1.food.cabbage.name}-White | Green | Purple`, isSelected: false }, { name: Food_1.food.broccoli, isSelected: false }, { name: Food_1.food.radish.name, isSelected: false }], score: 1 },
                                     D: { options: [{ name: Food_1.food.sweetPotatoes.name, isSelected: false }, { name: Food_1.food.redBellPappers.name, isSelected: false }, { name: Food_1.food.potatoes.name, isSelected: false }], score: 1 }
                                 },
                                 calculatedScore: 0,
-                                multiSelect: true
+                                multiSelect: true,
+                                answeredDate: null,
                             }]
                     }]
             },
             {
                 sectionName: "Fruits",
-                question: {
-                    name: "How often do you consume fruits ?",
-                    options: {
-                        option: [{
-                                option: "Never",
-                                score: 1,
-                                isSelected: false,
-                            }, {
-                                option: "Once a week",
-                                score: 2,
-                                isSelected: false,
-                            }, {
-                                option: "2 to 3 times a week",
-                                score: 3,
-                                isSelected: false
-                            }, {
-                                option: "Everyday",
-                                score: 4,
-                                isSelected: false
-                            }],
-                        calculatedScore: 0,
-                        multiSelect: false
-                    }
-                },
+                question: [{
+                        name: "How often do you consume fruits ?",
+                        options: {
+                            option: [{
+                                    option: "Never",
+                                    score: 1,
+                                    isSelected: false,
+                                }, {
+                                    option: "Once a week",
+                                    score: 2,
+                                    isSelected: false,
+                                }, {
+                                    option: "2 to 3 times a week",
+                                    score: 3,
+                                    isSelected: false
+                                }, {
+                                    option: "Everyday",
+                                    score: 4,
+                                    isSelected: false
+                                }],
+                            calculatedScore: 0,
+                            multiSelect: false
+                        }
+                    }],
                 subQuestions: [{
                         name: "Which fruit do you consume ?",
                         option: {
-                            A: { options: [{ name: `Fruits like ${Food_1.food.tomatoes.name} / Amla / ${Food_1.food.oranges.name} / Lemon`, isSelected: false }, { name: "Basil", isSelected: false }, { name: Food_1.food.carrots.name, isSelected: false }, { name: Food_1.food.brusselSprouts.name, isSelected: false }], score: 1 },
-                            B: { options: [{ name: `Seasonal Fruits - ${Food_1.food.grapes.name}`, isSelected: false }, { name: Food_1.food.mangose.name, isSelected: false }, { name: `${Food_1.food.strawberries.name}, Pomegranate, Figs`, isSelected: false }], score: 1 },
-                            C: { options: [{ name: `Berries - ${Food_1.food.bananas.name}, ${Food_1.food.watermelon.name}, BlueBerries`, isSelected: false }], score: 1 },
-                            D: { options: [{ name: Food_1.food.muskMelon.name, isSelected: false }, { name: "Honeydew", isSelected: false }, { name: Food_1.food.papaya.name, isSelected: false }], score: 1 }
+                            A: { options: [{ name: `Fruits like ${Food_1.food.tomatoes.name} / ${Food_1.food.amla.name} / ${Food_1.food.oranges.name} / ${Food_1.food.lemons.name}`, isSelected: false }, { name: Food_1.food.basil.name, isSelected: false }, { name: Food_1.food.carrots.name, isSelected: false }, { name: Food_1.food.brusselSprouts.name, isSelected: false }], score: 1 },
+                            B: { options: [{ name: `Seasonal Fruits - ${Food_1.food.grapes.name}`, isSelected: false }, { name: Food_1.food.mangose.name, isSelected: false }, { name: `${Food_1.food.strawberries.name},${Food_1.food.pomegranate.name}, ${Food_1.food.figs.name}`, isSelected: false }], score: 1 },
+                            C: { options: [{ name: `Berries - ${Food_1.food.bananas.name}, ${Food_1.food.watermelon.name}, ${Food_1.food.blueBerries.name}`, isSelected: false }], score: 1 },
+                            D: { options: [{ name: Food_1.food.muskMelon.name, isSelected: false }, { name: Food_1.food.honeydew.name, isSelected: false }, { name: Food_1.food.papaya.name, isSelected: false }], score: 1 }
                         },
                         nutrient: {
                             A: { name: "Vitamin C | Fiber | Sugar", value: 1 },
@@ -118,9 +120,9 @@ exports.lifeStyle = [
                         subQuestions: [{
                                 name: "Which of the following you consume reqularly ?",
                                 option: {
-                                    A: { options: [{ name: "wheat", isSelected: false }, { name: "Rice", isSelected: false }], score: 1 },
-                                    B: { options: [{ name: "Oats", isSelected: false }, { name: Food_1.food.allBranWheatFlaks.name, isSelected: false }, { name: "Museli", isSelected: false }], score: 1 },
-                                    C: { options: [{ name: Food_1.food.millets.name, isSelected: false }, { name: "Jowar", isSelected: false }], score: 1 },
+                                    A: { options: [{ name: Food_1.food.wheat.name, isSelected: false }, { name: Food_1.food.rice.name, isSelected: false }], score: 1 },
+                                    B: { options: [{ name: Food_1.food.oats.name, isSelected: false }, { name: Food_1.food.allBranWheatFlaks.name, isSelected: false }, { name: Food_1.food.muesli.name, isSelected: false }], score: 1 },
+                                    C: { options: [{ name: Food_1.food.millets.name, isSelected: false }, { name: Food_1.food.jowar.name, isSelected: false }], score: 1 },
                                     D: { options: [{ name: Food_1.food.quinoa.name, isSelected: false }], score: 1 }
                                 },
                                 nutrient: {
@@ -137,7 +139,7 @@ exports.lifeStyle = [
         ]
     },
     {
-        category: LeapCategories_1.getCategories.LIFESTYLE,
+        category: LeapCategories_1.getLeapCategories.LIFESTYLE,
         subCategory: "Micro Nutrient Dense Foods",
         section: [
             {
@@ -170,10 +172,10 @@ exports.lifeStyle = [
                                 option: {
                                     A: { options: [{ name: Food_1.food.almonds.name, isSelected: false }], score: 1 },
                                     B: { options: [{ name: Food_1.food.pistachio.name, isSelected: false }], score: 1 },
-                                    C: { options: [{ name: "Raisins", isSelected: false }], score: 1 },
+                                    C: { options: [{ name: Food_1.food.raisins.name, isSelected: false }], score: 1 },
                                     D: { options: [{ name: Food_1.food.cashews.name, isSelected: false }], score: 1 },
                                     E: { options: [{ name: Food_1.food.walnuts.name, isSelected: false }], score: 1 },
-                                    F: { options: [{ name: "Dates", isSelected: false }], score: 1 }
+                                    F: { options: [{ name: Food_1.food.dates.name, isSelected: false }], score: 1 }
                                 },
                                 nutrient: {
                                     A: { name: "Vitamin E", value: 1 },
@@ -232,7 +234,7 @@ exports.lifeStyle = [
         ]
     },
     {
-        category: LeapCategories_1.getCategories.LIFESTYLE,
+        category: LeapCategories_1.getLeapCategories.LIFESTYLE,
         subCategory: "Protein",
         section: [
             {
@@ -307,10 +309,10 @@ exports.lifeStyle = [
                         subQuestions: [{
                                 name: "Which Dals & Pulses do you consume ?",
                                 option: {
-                                    A: { options: [{ name: `Rajma or ${Food_1.food.kidneyBeans.name}`, isSelected: false }], score: 1 },
-                                    B: { options: [{ name: Food_1.food.chickpeas.name, isSelected: false }, { name: "Chana", isSelected: false }, { name: "Chole or Kala Chana", isSelected: false }], score: 1 },
-                                    C: { options: [{ name: "Hare Mung", isSelected: false }, { name: "Toor Dal", isSelected: false }, { name: "Urad Dal", isSelected: false }, { name: "Masoor Dal" }], score: 1 },
-                                    D: { options: [{ name: "Til", isSelected: false }, { name: Food_1.food.sesameSeeds.name, isSelected: false }], score: 1 }
+                                    A: { options: [{ name: `${Food_1.food.rajma.name} or ${Food_1.food.kidneyBeans.name}`, isSelected: false }], score: 1 },
+                                    B: { options: [{ name: Food_1.food.chickpeas.name, isSelected: false }, { name: Food_1.food.chana.name, isSelected: false }, { name: `${Food_1.food.chole.name} or ${Food_1.food.kalaChana.name}`, isSelected: false }], score: 1 },
+                                    C: { options: [{ name: Food_1.food.hareMung.name, isSelected: false }, { name: Food_1.food.toorDal.name, isSelected: false }, { name: Food_1.food.uradDal.name, isSelected: false }, { name: Food_1.food.masoorDal.name }], score: 1 },
+                                    D: { options: [{ name: Food_1.food.til.name, isSelected: false }, { name: Food_1.food.sesameSeeds.name, isSelected: false }], score: 1 }
                                 },
                                 nutrient: {
                                     A: { name: "Iron", value: 1 },
@@ -326,7 +328,7 @@ exports.lifeStyle = [
         ]
     },
     {
-        category: LeapCategories_1.getCategories.LIFESTYLE,
+        category: LeapCategories_1.getLeapCategories.LIFESTYLE,
         subCategory: "Protein - Non Veg",
         section: [
             {
@@ -384,10 +386,10 @@ exports.lifeStyle = [
                         subQuestions: [{
                                 name: "Which type of meat do you consume ?",
                                 option: {
-                                    A: { options: [{ name: "Meat-Pork", isSelected: false }, { name: Food_1.food.beef.name, isSelected: false }, { name: "Lamp", isSelected: false }], score: 1 },
-                                    B: { options: [{ name: "Birds-Chicken", isSelected: false }, { name: "Turkey", isSelected: false }], score: 1 },
-                                    C: { options: [{ name: Food_1.food.fishSalmon, isSelected: false }, { name: "Rawas", isSelected: false }, { name: "Bombay Duck", isSelected: false }], score: 1 },
-                                    D: { options: [{ name: "Prawns", isSelected: false }, { name: Food_1.food.shrimps, isSelected: false }], score: 1 }
+                                    A: { options: [{ name: Food_1.food.meatPork.name, isSelected: false }, { name: Food_1.food.beef.name, isSelected: false }, { name: Food_1.food.lamp.name, isSelected: false }], score: 1 },
+                                    B: { options: [{ name: Food_1.food.birdsChicken.name, isSelected: false }, { name: "Turkey", isSelected: false }], score: 1 },
+                                    C: { options: [{ name: Food_1.food.fishSalmon.name, isSelected: false }, { name: Food_1.food.rawas.name, isSelected: false }, { name: Food_1.food.bombayDuck.name, isSelected: false }], score: 1 },
+                                    D: { options: [{ name: Food_1.food.prawns.name, isSelected: false }, { name: Food_1.food.shrimps, isSelected: false }], score: 1 }
                                 },
                                 nutrient: {
                                     A: { name: "Essential Amino Acids | Iron", value: 1 },
@@ -472,10 +474,10 @@ exports.lifeStyle = [
                         subQuestions: [{
                                 name: "Which Dals & Pulses do you consume ?",
                                 option: {
-                                    A: { options: [{ name: `Rajma or ${Food_1.food.kidneyBeans.name}`, isSelected: false }], score: 1 },
-                                    B: { options: [{ name: Food_1.food.chickpeas.name, isSelected: false }, { name: "Chana", isSelected: false }, { name: "Chole or Kala Chana", isSelected: false }], score: 1 },
-                                    C: { options: [{ name: "Hare Mung", isSelected: false }, { name: "Toor Dal", isSelected: false }, { name: "Urad Dal", isSelected: false }, { name: "Masoor Dal" }], score: 1 },
-                                    D: { options: [{ name: "Til", isSelected: false }, { name: Food_1.food.sesameSeeds.name, isSelected: false }], score: 1 }
+                                    A: { options: [{ name: `${Food_1.food.rajma.name} or ${Food_1.food.kidneyBeans.name}`, isSelected: false }], score: 1 },
+                                    B: { options: [{ name: Food_1.food.chickpeas.name, isSelected: false }, { name: Food_1.food.chana.name, isSelected: false }, { name: `${Food_1.food.chole.name} or ${Food_1.food.kalaChana.name}`, isSelected: false }], score: 1 },
+                                    C: { options: [{ name: Food_1.food.hareMung.name, isSelected: false }, { name: Food_1.food.toorDal.name, isSelected: false }, { name: Food_1.food.uradDal.name, isSelected: false }, { name: Food_1.food.masoorDal.name }], score: 1 },
+                                    D: { options: [{ name: Food_1.food.til.name, isSelected: false }, { name: Food_1.food.sesameSeeds.name, isSelected: false }], score: 1 }
                                 },
                                 nutrient: {
                                     A: { name: "Iron", value: 1 },
@@ -491,7 +493,7 @@ exports.lifeStyle = [
         ]
     },
     {
-        category: LeapCategories_1.getCategories.LIFESTYLE,
+        category: LeapCategories_1.getLeapCategories.LIFESTYLE,
         subCategory: "DHA",
         section: [
             {
@@ -550,7 +552,7 @@ exports.lifeStyle = [
         ]
     },
     {
-        category: LeapCategories_1.getCategories.LIFESTYLE,
+        category: LeapCategories_1.getLeapCategories.LIFESTYLE,
         subCategory: "DHA - Non Veg",
         section: [
             {
@@ -657,7 +659,7 @@ exports.lifeStyle = [
         ]
     },
     {
-        category: LeapCategories_1.getCategories.LIFESTYLE,
+        category: LeapCategories_1.getLeapCategories.LIFESTYLE,
         subCategory: "Good Fats",
         section: [
             {
@@ -841,7 +843,7 @@ exports.lifeStyle = [
         ]
     },
     {
-        category: LeapCategories_1.getCategories.LIFESTYLE,
+        category: LeapCategories_1.getLeapCategories.LIFESTYLE,
         subCategory: "High Fibre Foods",
         section: [
             {
@@ -1021,7 +1023,7 @@ exports.lifeStyle = [
         ]
     },
     {
-        category: LeapCategories_1.getCategories.LIFESTYLE,
+        category: LeapCategories_1.getLeapCategories.LIFESTYLE,
         subCategory: "Healthy Carbs",
         section: [
             {
@@ -1153,7 +1155,7 @@ exports.lifeStyle = [
         ]
     },
     {
-        category: LeapCategories_1.getCategories.LIFESTYLE,
+        category: LeapCategories_1.getLeapCategories.LIFESTYLE,
         subCategory: null,
         section: [
             {

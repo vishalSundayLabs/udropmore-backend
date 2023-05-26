@@ -4,7 +4,7 @@ exports.emotion = void 0;
 const LeapCategories_1 = require("./LeapCategories");
 exports.emotion = [
     {
-        category: LeapCategories_1.getCategories.EMOTION,
+        category: LeapCategories_1.getLeapCategories.EMOTION,
         subCategory: null,
         section: [
             {
