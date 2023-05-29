@@ -72,24 +72,24 @@ exports.lifeStyle = [
                                 }],
                             calculatedScore: 0,
                             multiSelect: false
-                        }
-                    }],
-                subQuestions: [{
-                        name: "Which fruit do you consume ?",
-                        option: {
-                            A: { options: [{ name: `Fruits like ${Food_1.food.tomatoes.name} / ${Food_1.food.amla.name} / ${Food_1.food.oranges.name} / ${Food_1.food.lemons.name}`, isSelected: false }, { name: Food_1.food.basil.name, isSelected: false }, { name: Food_1.food.carrots.name, isSelected: false }, { name: Food_1.food.brusselSprouts.name, isSelected: false }], score: 1 },
-                            B: { options: [{ name: `Seasonal Fruits - ${Food_1.food.grapes.name}`, isSelected: false }, { name: Food_1.food.mangose.name, isSelected: false }, { name: `${Food_1.food.strawberries.name},${Food_1.food.pomegranate.name}, ${Food_1.food.figs.name}`, isSelected: false }], score: 1 },
-                            C: { options: [{ name: `Berries - ${Food_1.food.bananas.name}, ${Food_1.food.watermelon.name}, ${Food_1.food.blueBerries.name}`, isSelected: false }], score: 1 },
-                            D: { options: [{ name: Food_1.food.muskMelon.name, isSelected: false }, { name: Food_1.food.honeydew.name, isSelected: false }, { name: Food_1.food.papaya.name, isSelected: false }], score: 1 }
                         },
-                        nutrient: {
-                            A: { name: "Vitamin C | Fiber | Sugar", value: 1 },
-                            B: { name: "Seasonal Fruits", value: 1 },
-                            C: { name: "Fiber | Sugar", value: 1 },
-                            D: { name: "Fiber | Sugar | Potassium", value: 1 }
-                        },
-                        score: 0,
-                        multiSelect: true
+                        subQuestions: [{
+                                name: "Which fruit do you consume ?",
+                                option: {
+                                    A: { options: [{ name: `Fruits like ${Food_1.food.tomatoes.name} / ${Food_1.food.amla.name} / ${Food_1.food.oranges.name} / ${Food_1.food.lemons.name}`, isSelected: false }, { name: Food_1.food.basil.name, isSelected: false }, { name: Food_1.food.carrots.name, isSelected: false }, { name: Food_1.food.brusselSprouts.name, isSelected: false }], score: 1 },
+                                    B: { options: [{ name: `Seasonal Fruits - ${Food_1.food.grapes.name}`, isSelected: false }, { name: Food_1.food.mangose.name, isSelected: false }, { name: `${Food_1.food.strawberries.name},${Food_1.food.pomegranate.name}, ${Food_1.food.figs.name}`, isSelected: false }], score: 1 },
+                                    C: { options: [{ name: `Berries - ${Food_1.food.bananas.name}, ${Food_1.food.watermelon.name}, ${Food_1.food.blueBerries.name}`, isSelected: false }], score: 1 },
+                                    D: { options: [{ name: Food_1.food.muskMelon.name, isSelected: false }, { name: Food_1.food.honeydew.name, isSelected: false }, { name: Food_1.food.papaya.name, isSelected: false }], score: 1 }
+                                },
+                                nutrient: {
+                                    A: { name: "Vitamin C | Fiber | Sugar", value: 1 },
+                                    B: { name: "Seasonal Fruits", value: 1 },
+                                    C: { name: "Fiber | Sugar", value: 1 },
+                                    D: { name: "Fiber | Sugar | Potassium", value: 1 }
+                                },
+                                score: 0,
+                                multiSelect: true
+                            }]
                     }]
             },
             {

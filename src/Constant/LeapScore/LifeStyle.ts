@@ -37,7 +37,7 @@ export const lifeStyle = [
                         option: {
                             A: { options: [{ name: food.spinach.name, isSelected: false }, { name: food.basil.name, isSelected: false }, { name: food.carrots.name, isSelected: false }, { name: food.brusselSprouts.name, isSelected: false }], score: 1 },
                             B: { options: [{ name: food.lettuce.name, isSelected: false }, { name: food.asparagus.name, isSelected: false }, { name: food.beetRoot.name, isSelected: false }], score: 1 },
-                            C: { options: [{ name: `${food.cabbage.name}-White | Green | Purple`, isSelected: false }, { name: food.broccoli, isSelected: false }, { name:food.radish.name, isSelected: false }], score: 1 },
+                            C: { options: [{ name: `${food.cabbage.name}-White | Green | Purple`, isSelected: false }, { name: food.broccoli, isSelected: false }, { name: food.radish.name, isSelected: false }], score: 1 },
                             D: { options: [{ name: food.sweetPotatoes.name, isSelected: false }, { name: food.redBellPappers.name, isSelected: false }, { name: food.potatoes.name, isSelected: false }], score: 1 }
                         },
                         calculatedScore: 0,
@@ -71,24 +71,24 @@ export const lifeStyle = [
                         }],
                         calculatedScore: 0,
                         multiSelect: false
-                    }
-                }],
-                subQuestions: [{
-                    name: "Which fruit do you consume ?",
-                    option: {
-                        A: { options: [{ name: `Fruits like ${food.tomatoes.name} / ${food.amla.name} / ${food.oranges.name} / ${food.lemons.name}`, isSelected: false }, { name: food.basil.name, isSelected: false }, { name: food.carrots.name, isSelected: false }, { name: food.brusselSprouts.name, isSelected: false }], score: 1 },
-                        B: { options: [{ name: `Seasonal Fruits - ${food.grapes.name}`, isSelected: false }, { name: food.mangose.name, isSelected: false }, { name: `${food.strawberries.name},${food.pomegranate.name}, ${food.figs.name}`, isSelected: false }], score: 1 },
-                        C: { options: [{ name: `Berries - ${food.bananas.name}, ${food.watermelon.name}, ${food.blueBerries.name}`, isSelected: false }], score: 1 },
-                        D: { options: [{ name: food.muskMelon.name, isSelected: false }, { name: food.honeydew.name, isSelected: false }, { name: food.papaya.name, isSelected: false }], score: 1 }
                     },
-                    nutrient: {
-                        A: { name: "Vitamin C | Fiber | Sugar", value: 1 },
-                        B: { name: "Seasonal Fruits", value: 1 },
-                        C: { name: "Fiber | Sugar", value: 1 },
-                        D: { name: "Fiber | Sugar | Potassium", value: 1 }
-                    },
-                    score: 0,
-                    multiSelect: true
+                    subQuestions: [{
+                        name: "Which fruit do you consume ?",
+                        option: {
+                            A: { options: [{ name: `Fruits like ${food.tomatoes.name} / ${food.amla.name} / ${food.oranges.name} / ${food.lemons.name}`, isSelected: false }, { name: food.basil.name, isSelected: false }, { name: food.carrots.name, isSelected: false }, { name: food.brusselSprouts.name, isSelected: false }], score: 1 },
+                            B: { options: [{ name: `Seasonal Fruits - ${food.grapes.name}`, isSelected: false }, { name: food.mangose.name, isSelected: false }, { name: `${food.strawberries.name},${food.pomegranate.name}, ${food.figs.name}`, isSelected: false }], score: 1 },
+                            C: { options: [{ name: `Berries - ${food.bananas.name}, ${food.watermelon.name}, ${food.blueBerries.name}`, isSelected: false }], score: 1 },
+                            D: { options: [{ name: food.muskMelon.name, isSelected: false }, { name: food.honeydew.name, isSelected: false }, { name: food.papaya.name, isSelected: false }], score: 1 }
+                        },
+                        nutrient: {
+                            A: { name: "Vitamin C | Fiber | Sugar", value: 1 },
+                            B: { name: "Seasonal Fruits", value: 1 },
+                            C: { name: "Fiber | Sugar", value: 1 },
+                            D: { name: "Fiber | Sugar | Potassium", value: 1 }
+                        },
+                        score: 0,
+                        multiSelect: true
+                    }]
                 }]
             },
             {
@@ -120,7 +120,7 @@ export const lifeStyle = [
                     subQuestions: [{
                         name: "Which of the following you consume reqularly ?",
                         option: {
-                            A: { options: [{ name:food.wheat.name, isSelected: false }, { name: food.rice.name, isSelected: false }], score: 1 },
+                            A: { options: [{ name: food.wheat.name, isSelected: false }, { name: food.rice.name, isSelected: false }], score: 1 },
                             B: { options: [{ name: food.oats.name, isSelected: false }, { name: food.allBranWheatFlaks.name, isSelected: false }, { name: food.muesli.name, isSelected: false }], score: 1 },
                             C: { options: [{ name: food.millets.name, isSelected: false }, { name: food.jowar.name, isSelected: false }], score: 1 },
                             D: { options: [{ name: food.quinoa.name, isSelected: false }], score: 1 }

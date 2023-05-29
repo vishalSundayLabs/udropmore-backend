@@ -53,7 +53,6 @@ if (config.NODE_ENV === "development") {
 
 app.use(router);
 
-
 DB.connect()
   .then((result) => {
     app.listen(app.get("port"), () => {

@@ -3,7 +3,7 @@ import { getLeapCategories } from "./LeapCategories"
 export const physicalFitness = [
     {
         category: getLeapCategories.PHYSICAL,
-        subCategory:null,
+        subCategory: null,
         section: [
             {
                 sectionName: null,
@@ -25,13 +25,13 @@ export const physicalFitness = [
                     subQuestions: [{
                         name: "In a typical week, how many days do you do vigourous activities at work ?",
                         option: {
-                            A: { options: [{ name: "Monday" }], score: 1 },
-                            B: { options: [{ name: "Tuesday" }], score: 1 },
-                            C: { options: [{ name: "Wednesday" }], score: 1 },
-                            D: { options: [{ name: "Thursday" }], score: 1 },
-                            E: { options: [{ name: "Friday" }], score: 1 },
-                            F: { options: [{ name: "Saturday" }], score: 1 },
-                            G: { options: [{ name: "Sunday" }], score: 1 }
+                            A: { options: [{ name: "Monday", isSelected: false }], score: 1 },
+                            B: { options: [{ name: "Tuesday", isSelected: false }], score: 1 },
+                            C: { options: [{ name: "Wednesday", isSelected: false }], score: 1 },
+                            D: { options: [{ name: "Thursday", isSelected: false }], score: 1 },
+                            E: { options: [{ name: "Friday", isSelected: false }], score: 1 },
+                            F: { options: [{ name: "Saturday", isSelected: false }], score: 1 },
+                            G: { options: [{ name: "Sunday", isSelected: false }], score: 1 }
                         },
                         calculatedScore: 0,
                         multiSelect: true
@@ -39,8 +39,8 @@ export const physicalFitness = [
                     {
                         name: "How much time do you spend doing vigorous activities at work in a typical day ?",
                         option: {
-                            A: { options: [{ name: "Hours" }], score: 2 },
-                            B: { options: [{ name: "Minutes" }], score: 2 }
+                            A: { options: [{ name: "Hours", isSelected: false }], score: 2 },
+                            B: { options: [{ name: "Minutes", isSelected: false }], score: 2 }
                         },
                         calculatedScore: 0,
                         multiSelect: true
@@ -72,13 +72,13 @@ export const physicalFitness = [
                     {
                         name: "In a typical week, on how many days do you do moderateintensity activities as part of your work ?",
                         option: {
-                            A: { options: [{ name: "Monday" }], score: 1 },
-                            B: { options: [{ name: "Tuesday" }], score: 1 },
-                            C: { options: [{ name: "Wednesday" }], score: 1 },
-                            D: { options: [{ name: "Thursday" }], score: 1 },
-                            E: { options: [{ name: "Friday" }], score: 1 },
-                            F: { options: [{ name: "Saturday" }], score: 1 },
-                            G: { options: [{ name: "Sunday" }], score: 1 }
+                            A: { options: [{ name: "Monday", isSelected: false }], score: 1 },
+                            B: { options: [{ name: "Tuesday", isSelected: false }], score: 1 },
+                            C: { options: [{ name: "Wednesday", isSelected: false }], score: 1 },
+                            D: { options: [{ name: "Thursday", isSelected: false }], score: 1 },
+                            E: { options: [{ name: "Friday", isSelected: false }], score: 1 },
+                            F: { options: [{ name: "Saturday", isSelected: false }], score: 1 },
+                            G: { options: [{ name: "Sunday", isSelected: false }], score: 1 }
                         },
                         calculatedScore: 0,
                         multiSelect: true
@@ -86,8 +86,8 @@ export const physicalFitness = [
                     {
                         name: "How much time do you spend doing moderate-intensity activities at work on a typical day ?",
                         option: {
-                            A: { options: [{ name: "Hours" }], score: 2 },
-                            B: { options: [{ name: "Minutes" }], score: 2 }
+                            A: { options: [{ name: "Hours", isSelected: false }], score: 2 },
+                            B: { options: [{ name: "Minutes", isSelected: false }], score: 2 }
                         },
                         calculatedScore: 0,
                         multiSelect: true
@@ -117,13 +117,13 @@ export const physicalFitness = [
                         {
                             name: "In a typical week, on how many days do you walk or cycle to and from places ?",
                             option: {
-                                A: { options: [{ name: "Monday" }], score: 1 },
-                                B: { options: [{ name: "Tuesday" }], score: 1 },
-                                C: { options: [{ name: "Wednesday" }], score: 1 },
-                                D: { options: [{ name: "Thursday" }], score: 1 },
-                                E: { options: [{ name: "Friday" }], score: 1 },
-                                F: { options: [{ name: "Saturday" }], score: 1 },
-                                G: { options: [{ name: "Sunday" }], score: 1 }
+                                A: { options: [{ name: "Monday", isSelected: false }], score: 1 },
+                                B: { options: [{ name: "Tuesday", isSelected: false }], score: 1 },
+                                C: { options: [{ name: "Wednesday", isSelected: false }], score: 1 },
+                                D: { options: [{ name: "Thursday", isSelected: false }], score: 1 },
+                                E: { options: [{ name: "Friday", isSelected: false }], score: 1 },
+                                F: { options: [{ name: "Saturday", isSelected: false }], score: 1 },
+                                G: { options: [{ name: "Sunday", isSelected: false }], score: 1 }
                             },
                             calculatedScore: 0,
                             multiSelect: true
@@ -131,8 +131,8 @@ export const physicalFitness = [
                         {
                             name: "How much time do you spend walking or cycling to and from places on a typical day ?",
                             option: {
-                                A: { options: [{ name: "Hours" }], score: 2 },
-                                B: { options: [{ name: "Minutes" }], score: 2 }
+                                A: { options: [{ name: "Hours", isSelected: false }], score: 2 },
+                                B: { options: [{ name: "Minutes", isSelected: false }], score: 2 }
                             },
                             calculatedScore: 0,
                             multiSelect: true
@@ -163,13 +163,13 @@ export const physicalFitness = [
                         {
                             name: "In a typical week, on how many days do you do vigorous intensity sports, fitness or recreational (leisure) activities ?",
                             option: {
-                                A: { options: [{ name: "Monday" }], score: 1 },
-                                B: { options: [{ name: "Tuesday" }], score: 1 },
-                                C: { options: [{ name: "Wednesday" }], score: 1 },
-                                D: { options: [{ name: "Thursday" }], score: 1 },
-                                E: { options: [{ name: "Friday" }], score: 1 },
-                                F: { options: [{ name: "Saturday" }], score: 1 },
-                                G: { options: [{ name: "Sunday" }], score: 1 }
+                                A: { options: [{ name: "Monday", isSelected: false }], score: 1 },
+                                B: { options: [{ name: "Tuesday", isSelected: false }], score: 1 },
+                                C: { options: [{ name: "Wednesday", isSelected: false }], score: 1 },
+                                D: { options: [{ name: "Thursday", isSelected: false }], score: 1 },
+                                E: { options: [{ name: "Friday", isSelected: false }], score: 1 },
+                                F: { options: [{ name: "Saturday", isSelected: false }], score: 1 },
+                                G: { options: [{ name: "Sunday", isSelected: false }], score: 1 }
                             },
                             calculatedScore: 0,
                             multiSelect: true
@@ -177,8 +177,8 @@ export const physicalFitness = [
                         {
                             name: "How much time do you spend doing vigorous-intensity sports, fitness or recreational activities on a typical day ?",
                             option: {
-                                A: { options: [{ name: "Hours" }], score: 2 },
-                                B: { options: [{ name: "Minutes" }], score: 2 }
+                                A: { options: [{ name: "Hours", isSelected: false }], score: 2 },
+                                B: { options: [{ name: "Minutes", isSelected: false }], score: 2 }
                             },
                             calculatedScore: 0,
                             multiSelect: true
@@ -209,13 +209,13 @@ export const physicalFitness = [
                         {
                             name: "In a typical week, on how many days do you do moderate intensity sports, fitness or recreational (leisure) activities ?",
                             option: {
-                                A: { options: [{ name: "Monday" }], score: 1 },
-                                B: { options: [{ name: "Tuesday" }], score: 1 },
-                                C: { options: [{ name: "Wednesday" }], score: 1 },
-                                D: { options: [{ name: "Thursday" }], score: 1 },
-                                E: { options: [{ name: "Friday" }], score: 1 },
-                                F: { options: [{ name: "Saturday" }], score: 1 },
-                                G: { options: [{ name: "Sunday" }], score: 1 }
+                                A: { options: [{ name: "Monday", isSelected: false }], score: 1 },
+                                B: { options: [{ name: "Tuesday", isSelected: false }], score: 1 },
+                                C: { options: [{ name: "Wednesday", isSelected: false }], score: 1 },
+                                D: { options: [{ name: "Thursday", isSelected: false }], score: 1 },
+                                E: { options: [{ name: "Friday", isSelected: false }], score: 1 },
+                                F: { options: [{ name: "Saturday", isSelected: false }], score: 1 },
+                                G: { options: [{ name: "Sunday", isSelected: false }], score: 1 }
                             },
                             calculatedScore: 0,
                             multiSelect: true
@@ -223,8 +223,8 @@ export const physicalFitness = [
                         {
                             name: "How much time do you spend doing moderate-intensity sports, fitness or recreational (leisure) activities on a typical day ?",
                             option: {
-                                A: { options: [{ name: "Hours" }], score: 2 },
-                                B: { options: [{ name: "Minutes" }], score: 2 }
+                                A: { options: [{ name: "Hours", isSelected: false }], score: 2 },
+                                B: { options: [{ name: "Minutes", isSelected: false }], score: 2 }
                             },
                             calculatedScore: 0,
                             multiSelect: true

@@ -5,14 +5,6 @@ const LeapScoreQuestionnaireSchema = new mongoose.Schema({
         type: mongoose.SchemaTypes.ObjectId,
         ref: "User"
     },
-    doctorId: {
-        type: mongoose.SchemaTypes.ObjectId,
-        ref: "User"
-    },
-    clinicId: {
-        type: mongoose.SchemaTypes.ObjectId,
-        ref: "User"
-    },
     pregnancyWeek: {
         type: Number,
         default: null
@@ -20,46 +12,48 @@ const LeapScoreQuestionnaireSchema = new mongoose.Schema({
     details: {
         emotion: {
             answers: { type: Object, default: null },
-            score: 100,
+            score: { type: Number, default: 0 },
             status: {
                 type: String,
                 enum: ["PENDING", "EXPIRED", "COMPLETED", null],
-                default: null
+                default: "PENDING"
             }
         },
         anatomy: {
-            answers: {},
-            score: 100,
+            answers: { type: Object, default: null },
             status: {
                 type: String,
                 enum: ["PENDING", "EXPIRED", "COMPLETED", null],
-                default: null
-            }
+                default: "PENDING"
+            },
+            nextLeap: { type: Number, default: null }
         },
-        lifeStyle: {
-            answers: {},
-            score: 100,
+        lifestyle: {
+            answers: { type: Object, default: null },
+            score: { type: Number, default: 0 },
             status: {
                 type: String,
                 enum: ["PENDING", "EXPIRED", "COMPLETED", null],
-                default: null
-            }
+                default: "PENDING"
+            },
+            nextLeap: { type: Number, default: null }
         },
-        physicalFitness: {
-            answers: {},
-            score: 100,
+        physical: {
+            answers: { type: Object, default: null },
+            score: { type: Number, default: 0 },
             status: {
                 type: String,
                 enum: ["PENDING", "EXPIRED", "COMPLETED", null],
-                default: null
-            }
+                default: "PENDING"
+            },
+            nextLeap: { type: Number, default: null }
         }
 
     },
     status: {
         type: String,
         enum: ["PENDING", "EXPIRED", "COMPLETED", null],
-        default: null
+        default: "PENDING"
     },
     createdBy: {
         type: mongoose.SchemaTypes.ObjectId,

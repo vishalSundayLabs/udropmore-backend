@@ -1,8 +1,10 @@
 import { Router } from 'express';
-import { getLeapScoreQuestions } from './LeapScoreController';
+import { createLeapScoreQuestions, getLeapScoreQuestions, updateLeapScoreQuestionnairDetails } from './LeapScoreController';
 
 const router = Router()
 
-router.get("/questions",getLeapScoreQuestions)
+router.post("/create", createLeapScoreQuestions)
+router.get("/questions/:motherId", getLeapScoreQuestions)
+router.put("/questions/:motherId", updateLeapScoreQuestionnairDetails)
 
 export default router;
