@@ -39,8 +39,8 @@ export const physicalFitness = [
                     {
                         name: "How much time do you spend doing vigorous activities at work in a typical day ?",
                         option: {
-                            A: { options: [{ name: "Hours", isSelected: false }], score: 2 },
-                            B: { options: [{ name: "Minutes", isSelected: false }], score: 2 }
+                            A: { options: [{ type: "inputBox", value: null }], score: 2 },
+                            B: { options: [{ type: "inputBox", value: null }], score: 2 }
                         },
                         calculatedScore: 0,
                         multiSelect: true
@@ -66,33 +66,33 @@ export const physicalFitness = [
                         }],
                         calculatedScore: 0,
                         multiSelect: false
-                    }
-                },
-                subQuestions: [
-                    {
-                        name: "In a typical week, on how many days do you do moderateintensity activities as part of your work ?",
-                        option: {
-                            A: { options: [{ name: "Monday", isSelected: false }], score: 1 },
-                            B: { options: [{ name: "Tuesday", isSelected: false }], score: 1 },
-                            C: { options: [{ name: "Wednesday", isSelected: false }], score: 1 },
-                            D: { options: [{ name: "Thursday", isSelected: false }], score: 1 },
-                            E: { options: [{ name: "Friday", isSelected: false }], score: 1 },
-                            F: { options: [{ name: "Saturday", isSelected: false }], score: 1 },
-                            G: { options: [{ name: "Sunday", isSelected: false }], score: 1 }
-                        },
-                        calculatedScore: 0,
-                        multiSelect: true
                     },
-                    {
-                        name: "How much time do you spend doing moderate-intensity activities at work on a typical day ?",
-                        option: {
-                            A: { options: [{ name: "Hours", isSelected: false }], score: 2 },
-                            B: { options: [{ name: "Minutes", isSelected: false }], score: 2 }
+                    subQuestions: [
+                        {
+                            name: "In a typical week, on how many days do you do moderateintensity activities as part of your work ?",
+                            option: {
+                                A: { options: [{ name: "Monday", isSelected: false }], score: 1 },
+                                B: { options: [{ name: "Tuesday", isSelected: false }], score: 1 },
+                                C: { options: [{ name: "Wednesday", isSelected: false }], score: 1 },
+                                D: { options: [{ name: "Thursday", isSelected: false }], score: 1 },
+                                E: { options: [{ name: "Friday", isSelected: false }], score: 1 },
+                                F: { options: [{ name: "Saturday", isSelected: false }], score: 1 },
+                                G: { options: [{ name: "Sunday", isSelected: false }], score: 1 }
+                            },
+                            calculatedScore: 0,
+                            multiSelect: true
                         },
-                        calculatedScore: 0,
-                        multiSelect: true
-                    }
-                ]
+                        {
+                            name: "How much time do you spend doing moderate-intensity activities at work on a typical day ?",
+                            option: {
+                                A: { options: [{ type: "inputBox", value: null }], score: 2 },
+                                B: { options: [{ type: "inputBox", value: null }], score: 2 }
+                            },
+                            calculatedScore: 0,
+                            multiSelect: true
+                        }
+                    ]
+                }
             },
             {
                 sectionName: null,
@@ -131,8 +131,8 @@ export const physicalFitness = [
                         {
                             name: "How much time do you spend walking or cycling to and from places on a typical day ?",
                             option: {
-                                A: { options: [{ name: "Hours", isSelected: false }], score: 2 },
-                                B: { options: [{ name: "Minutes", isSelected: false }], score: 2 }
+                                A: { options: [{ type: "inputBox", value: null }], score: 2 },
+                                B: { options: [{ type: "inputBox", value: null }], score: 2 }
                             },
                             calculatedScore: 0,
                             multiSelect: true
@@ -177,8 +177,8 @@ export const physicalFitness = [
                         {
                             name: "How much time do you spend doing vigorous-intensity sports, fitness or recreational activities on a typical day ?",
                             option: {
-                                A: { options: [{ name: "Hours", isSelected: false }], score: 2 },
-                                B: { options: [{ name: "Minutes", isSelected: false }], score: 2 }
+                                A: { options: [{ type: "inputBox", value: null }], score: 2 },
+                                B: { options: [{ type: "inputBox", value: null }], score: 2 }
                             },
                             calculatedScore: 0,
                             multiSelect: true
@@ -194,13 +194,11 @@ export const physicalFitness = [
                         option: [{
                             option: "Yes",
                             score: 2,
-                            isSelected: false,
-                            nextQuestionKey: null
+                            isSelected: false
                         }, {
                             option: "No",
                             score: 2,
-                            isSelected: false,
-                            // nextQuestionKey: 1394848
+                            isSelected: false
                         }],
                         calculatedScore: 0,
                         multiSelect: false
@@ -223,8 +221,8 @@ export const physicalFitness = [
                         {
                             name: "How much time do you spend doing moderate-intensity sports, fitness or recreational (leisure) activities on a typical day ?",
                             option: {
-                                A: { options: [{ name: "Hours", isSelected: false }], score: 2 },
-                                B: { options: [{ name: "Minutes", isSelected: false }], score: 2 }
+                                A: { options: [{ type: "inputBox", value: null }], score: 2 },
+                                B: { options: [{ type: "inputBox", value: null }], score: 2 }
                             },
                             calculatedScore: 0,
                             multiSelect: true
@@ -238,15 +236,11 @@ export const physicalFitness = [
                     name: "How much time do you usually spend sitting or reclining on a typical day ?",
                     options: {
                         option: [{
-                            option: "Hours",
-                            score: 2,
-                            isSelected: false,
-                            nextQuestionKey: null
+                            option: [{ type: "inputBox", value: null }],
+                            score: 2
                         }, {
-                            option: "Minutes",
-                            score: 2,
-                            isSelected: false,
-                            // nextQuestionKey: 1394848
+                            option: [{ type: "inputBox", value: null }],
+                            score: 2
                         }],
                         calculatedScore: 0,
                         multiSelect: false

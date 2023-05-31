@@ -37,7 +37,7 @@ export const lifeStyle = [
                         option: {
                             A: { options: [{ name: food.spinach.name, isSelected: false }, { name: food.basil.name, isSelected: false }, { name: food.carrots.name, isSelected: false }, { name: food.brusselSprouts.name, isSelected: false }], score: 1 },
                             B: { options: [{ name: food.lettuce.name, isSelected: false }, { name: food.asparagus.name, isSelected: false }, { name: food.beetRoot.name, isSelected: false }], score: 1 },
-                            C: { options: [{ name: `${food.cabbage.name}-White | Green | Purple`, isSelected: false }, { name: food.broccoli, isSelected: false }, { name: food.radish.name, isSelected: false }], score: 1 },
+                            C: { options: [{ name: `${food.cabbage.name}-White | Green | Purple`, isSelected: false }, { name: food.broccoli.name, isSelected: false }, { name: food.radish.name, isSelected: false }], score: 1 },
                             D: { options: [{ name: food.sweetPotatoes.name, isSelected: false }, { name: food.redBellPappers.name, isSelected: false }, { name: food.potatoes.name, isSelected: false }], score: 1 }
                         },
                         calculatedScore: 0,
