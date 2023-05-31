@@ -773,3 +773,6 @@ const updateLeapScoreQuestionnairDetails = (req, res) => __awaiter(void 0, void 
     }
 });
 exports.updateLeapScoreQuestionnairDetails = updateLeapScoreQuestionnairDetails;
+// const calculateLeapScoreAndSetStatus = (data) => {
+//     const finalScore = 
+// }

@@ -792,3 +792,8 @@ export const updateLeapScoreQuestionnairDetails = async (req, res) => {
     }
 
 }
+
+
+// const calculateLeapScoreAndSetStatus = (data) => {
+//     const finalScore = 
+// }

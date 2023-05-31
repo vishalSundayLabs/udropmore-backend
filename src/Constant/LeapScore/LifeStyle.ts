@@ -759,7 +759,7 @@ export const lifeStyle = [
                             A: { options: [{ name: food.meatPork.name, isSelected: false }, { name: food.beef.name, isSelected: false }, { name: food.lamp.name, isSelected: false }], score: 1 },
                             B: { options: [{ name: food.birdsChicken.name, isSelected: false }, { name: "Turkey", isSelected: false }], score: 1 },
                             C: { options: [{ name: food.fishSalmon.name, isSelected: false }, { name: food.rawas.name, isSelected: false }, { name: food.bombayDuck.name, isSelected: false }], score: 1 },
-                            D: { options: [{ name: food.prawns.name, isSelected: false }, { name: food.shrimps, isSelected: false }], score: 1 }
+                            D: { options: [{ name: food.prawns.name, isSelected: false }, { name: food.shrimps.name, isSelected: false }], score: 1 }
                         },
                         nutrient: {
                             A: { name: "Essential Amino Acids | Iron", value: 1 },
