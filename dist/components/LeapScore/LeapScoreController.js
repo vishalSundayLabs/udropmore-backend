@@ -727,6 +727,7 @@ const getLeapScoreQuestions = (req, res) => __awaiter(void 0, void 0, void 0, fu
             success: true,
             message: `Get All Questions ${query.category} successfully.`,
             result: question,
+            score: 0,
             leapScoreStatus: savedQuestions.status ? savedQuestions.status : "PENDING",
             nextLeapScore: QuestionnaireSchedule_1.LeapScoreQuestionnaireSchedule[query.category.toUpperCase()][nextLeapIndex + 1]
         });
@@ -754,19 +755,12 @@ const updateLeapScoreQuestionnairDetails = (req, res) => __awaiter(void 0, void 
         const savedQuestions = yield LeapScoreModel_1.default.findOne({ userId: params.motherId, pregnancyWeek: query.week, isDeleted: false });
         savedQuestions.details[query.category.toLowerCase()].answers = body.answers;
         const calculatedValues = yield calculateLeapScoreAndSetStatus(savedQuestions.details[query.category.toLowerCase()].answers);
+        console.log("line", calculatedValues);
         savedQuestions.details[query.category.toLowerCase()].score = calculatedValues.finalScore;
         savedQuestions.details[query.category.toLowerCase()].status = calculatedValues.leapScoreStatus;
         savedQuestions.status = yield checkFinalLeapScoreStatus(savedQuestions.details);
         yield savedQuestions.save();
         const nextLeapIndex = QuestionnaireSchedule_1.LeapScoreQuestionnaireSchedule[query.category.toUpperCase()].indexOf(Number(query.week));
-        console.log({
-            success: true,
-            message: `Update Questions of ${query.category} successfully.`,
-            result: savedQuestions.details[query.category.toLowerCase()].answers,
-            score: savedQuestions.details[query.category.toLowerCase()].score,
-            leapScoreStatus: savedQuestions.status,
-            nextLeapScore: QuestionnaireSchedule_1.LeapScoreQuestionnaireSchedule[query.category.toUpperCase()][nextLeapIndex + 1]
-        });
         return res.status(Master_1.HTTP_OK).send({
             success: true,
             message: `Update Questions of ${query.category} successfully.`,

@@ -730,6 +730,7 @@ export const getLeapScoreQuestions = async (req, res) => {
             success: true,
             message: `Get All Questions ${query.category} successfully.`,
             result: question,
+            score: 0,
             leapScoreStatus: savedQuestions.status ? savedQuestions.status : "PENDING",
             nextLeapScore: LeapScoreQuestionnaireSchedule[query.category.toUpperCase()][nextLeapIndex + 1]
         })
@@ -768,7 +769,7 @@ export const updateLeapScoreQuestionnairDetails = async (req, res) => {
         savedQuestions.details[query.category.toLowerCase()].answers = body.answers
 
         const calculatedValues = await calculateLeapScoreAndSetStatus(savedQuestions.details[query.category.toLowerCase()].answers)
-
+        console.log("line", calculatedValues)
         savedQuestions.details[query.category.toLowerCase()].score = calculatedValues.finalScore
 
         savedQuestions.details[query.category.toLowerCase()].status = calculatedValues.leapScoreStatus
@@ -778,14 +779,7 @@ export const updateLeapScoreQuestionnairDetails = async (req, res) => {
         await savedQuestions.save()
 
         const nextLeapIndex = LeapScoreQuestionnaireSchedule[query.category.toUpperCase()].indexOf(Number(query.week))
-        console.log({
-            success: true,
-            message: `Update Questions of ${query.category} successfully.`,
-            result: savedQuestions.details[query.category.toLowerCase()].answers,
-            score: savedQuestions.details[query.category.toLowerCase()].score,
-            leapScoreStatus: savedQuestions.status,
-            nextLeapScore: LeapScoreQuestionnaireSchedule[query.category.toUpperCase()][nextLeapIndex + 1]
-        })
+
         return res.status(HTTP_OK).send({
             success: true,
             message: `Update Questions of ${query.category} successfully.`,
@@ -810,6 +804,7 @@ export const updateLeapScoreQuestionnairDetails = async (req, res) => {
 
 
 const calculateLeapScoreAndSetStatus = (data) => {
+
     let questionScore = 0;
     let totalQuestions = 0;
     let subQuestionScore = 0;
