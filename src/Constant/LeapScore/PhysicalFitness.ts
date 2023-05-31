@@ -50,7 +50,7 @@ export const physicalFitness = [
             },
             {
                 sectionName: null,
-                question: {
+                question: [{
                     name: "Does your work involve moderate-intensity activity, that causes small increases in breathing or heart rate such as carrying light loads for at least 10 minutes continuously ?",
                     options: {
                         option: [{
@@ -90,7 +90,7 @@ export const physicalFitness = [
                             multiSelect: false
                         }
                     ]
-                }
+                }]
             },
             {
                 sectionName: null,

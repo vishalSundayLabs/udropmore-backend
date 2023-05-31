@@ -52,47 +52,47 @@ exports.physicalFitness = [
             },
             {
                 sectionName: null,
-                question: {
-                    name: "Does your work involve moderate-intensity activity, that causes small increases in breathing or heart rate such as carrying light loads for at least 10 minutes continuously ?",
-                    options: {
-                        option: [{
-                                option: "Yes",
-                                score: 2,
-                                isSelected: false
-                            }, {
-                                option: "No",
-                                score: 2,
-                                isSelected: false
-                            }],
-                        calculatedScore: 0,
-                        multiSelect: false
-                    },
-                    subQuestions: [
-                        {
-                            name: "In a typical week, on how many days do you do moderateintensity activities as part of your work ?",
-                            option: {
-                                A: { options: [{ name: "Monday", isSelected: false }], score: 1 },
-                                B: { options: [{ name: "Tuesday", isSelected: false }], score: 1 },
-                                C: { options: [{ name: "Wednesday", isSelected: false }], score: 1 },
-                                D: { options: [{ name: "Thursday", isSelected: false }], score: 1 },
-                                E: { options: [{ name: "Friday", isSelected: false }], score: 1 },
-                                F: { options: [{ name: "Saturday", isSelected: false }], score: 1 },
-                                G: { options: [{ name: "Sunday", isSelected: false }], score: 1 }
-                            },
-                            calculatedScore: 0,
-                            multiSelect: true
-                        },
-                        {
-                            name: "How much time do you spend doing moderate-intensity activities at work on a typical day ?",
-                            option: {
-                                A: { options: [{ name: "Hours", type: "inputBox", value: null }], score: 2 },
-                                B: { options: [{ name: "Minutes", type: "inputBox", value: null }], score: 2 }
-                            },
+                question: [{
+                        name: "Does your work involve moderate-intensity activity, that causes small increases in breathing or heart rate such as carrying light loads for at least 10 minutes continuously ?",
+                        options: {
+                            option: [{
+                                    option: "Yes",
+                                    score: 2,
+                                    isSelected: false
+                                }, {
+                                    option: "No",
+                                    score: 2,
+                                    isSelected: false
+                                }],
                             calculatedScore: 0,
                             multiSelect: false
-                        }
-                    ]
-                }
+                        },
+                        subQuestions: [
+                            {
+                                name: "In a typical week, on how many days do you do moderateintensity activities as part of your work ?",
+                                option: {
+                                    A: { options: [{ name: "Monday", isSelected: false }], score: 1 },
+                                    B: { options: [{ name: "Tuesday", isSelected: false }], score: 1 },
+                                    C: { options: [{ name: "Wednesday", isSelected: false }], score: 1 },
+                                    D: { options: [{ name: "Thursday", isSelected: false }], score: 1 },
+                                    E: { options: [{ name: "Friday", isSelected: false }], score: 1 },
+                                    F: { options: [{ name: "Saturday", isSelected: false }], score: 1 },
+                                    G: { options: [{ name: "Sunday", isSelected: false }], score: 1 }
+                                },
+                                calculatedScore: 0,
+                                multiSelect: true
+                            },
+                            {
+                                name: "How much time do you spend doing moderate-intensity activities at work on a typical day ?",
+                                option: {
+                                    A: { options: [{ name: "Hours", type: "inputBox", value: null }], score: 2 },
+                                    B: { options: [{ name: "Minutes", type: "inputBox", value: null }], score: 2 }
+                                },
+                                calculatedScore: 0,
+                                multiSelect: false
+                            }
+                        ]
+                    }]
             },
             {
                 sectionName: null,
