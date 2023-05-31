@@ -4,6 +4,369 @@ import { getLeapCategories } from "./LeapCategories"
 export const lifeStyle = [
     {
         category: getLeapCategories.LIFESTYLE,
+        subCategory: null,
+        section: [
+            {
+                sectionName: null,
+                question: [{
+                    name: "How many hours do you sleep everyday ?",
+                    options: {
+                        option: [{
+                            option: "<7 hours",
+                            score: 2,
+                            isSelected: false,
+                        }, {
+                            option: "7 hours",
+                            score: 4,
+                            isSelected: false,
+                        }, {
+                            option: "8 hours",
+                            score: 4,
+                            isSelected: false
+                        }, {
+                            option: "9 hours",
+                            score: 3,
+                            isSelected: false
+                        }, {
+                            option: "10 hours",
+                            score: 3,
+                            isSelected: false
+                        }, {
+                            option: "More than 10 hours",
+                            score: 1,
+                            isSelected: false
+                        }
+                        ],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: null
+                }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                    name: "How many glasses of water do you drink everyday ?",
+                    options: {
+                        option: [{
+                            option: "< 8 glasses per day",
+                            score: 1,
+                            isSelected: false,
+                        }, {
+                            option: "8 - 10 glasses per day",
+                            score: 3,
+                            isSelected: false,
+                        }, {
+                            option: "10 - 12 glasses",
+                            score: 4,
+                            isSelected: false
+                        }, {
+                            option: "> 12 glasses",
+                            score: 2,
+                            isSelected: false
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: null
+                }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                    name: "Do you smoke and/ or consume alcohol?",
+                    options: {
+                        option: [{
+                            option: "Yes",
+                            score: 1,
+                            isSelected: false,
+                        }, {
+                            option: "No",
+                            score: 4,
+                            isSelected: false,
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: null
+                }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                    name: "Are you a vegetarian or Non – vegetarian ?",
+                    options: {
+                        option: [{
+                            option: "Vegetarian",
+                            score: null,
+                            isSelected: false,
+                        }, {
+                            option: "Non-vegetarian",
+                            score: null,
+                            isSelected: false,
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: null
+                }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                    name: "How often do you have fruits ?",
+                    options: {
+                        option: [{
+                            option: "Daily",
+                            score: 4,
+                            isSelected: false,
+                        }, {
+                            option: "Sometimes",
+                            score: 2,
+                            isSelected: false,
+                        }, {
+                            option: "often",
+                            score: 3,
+                            isSelected: false
+                        }, {
+                            option: "Never",
+                            score: 1,
+                            isSelected: false
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: null
+                }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                    name: "Which of the following diary products do you consume regularly?",
+                    options: {
+                        option: [{
+                            option: "Paneer",
+                            score: 1,
+                            isSelected: false,
+                        }, {
+                            option: "Milk",
+                            score: 1,
+                            isSelected: false,
+                        }, {
+                            option: "Others",
+                            score: 1,
+                            isSelected: false
+                        }, {
+                            option: "None",
+                            score: 1,
+                            isSelected: false
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: null
+                }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                    name: "Do you consume Dal/pulses in every meal ?",
+                    options: {
+                        option: [{
+                            option: "Never",
+                            score: 1,
+                            isSelected: false,
+                        }, {
+                            option: "Sometimes",
+                            score: 2,
+                            isSelected: false,
+                        }, {
+                            option: "Often",
+                            score: 3,
+                            isSelected: false
+                        }, {
+                            option: "Daily",
+                            score: 4,
+                            isSelected: false
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: null
+                }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                    name: "Which type of nuts do you consume regularly ?",
+                    options: {
+                        option: [{
+                            option: "Almonds",
+                            score: 1,
+                            isSelected: false,
+                        }, {
+                            option: "Pistachios",
+                            score: 1,
+                            isSelected: false,
+                        }, {
+                            option: "Others",
+                            score: 1,
+                            isSelected: false
+                        }, {
+                            option: "None",
+                            score: 1,
+                            isSelected: false
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: null
+                }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                    name: "Do you regularly consume any of the following ?",
+                    options: {
+                        option: [{
+                            option: food.walnuts.name,
+                            score: 1,
+                            isSelected: false,
+                        }, {
+                            option: `Others like ${food.flaxSeeds.name, food.sunflowerSeeds.name, food.pumpkinSeeds.name}`,
+                            score: 1,
+                            isSelected: false,
+                        }, {
+                            option: food.chiaSeeds.name,
+                            score: 1,
+                            isSelected: false
+                        }, {
+                            option: "None",
+                            score: 1,
+                            isSelected: false
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: null
+                }]
+            },
+            // {
+            //     sectionName: null,
+            //     question: [{
+            //         name: "How often do you consume green leafy vegetables ?",
+            //         options: {
+            //             option: [{
+            //                 option: "Never",
+            //                 score: 4,
+            //                 isSelected: false,
+            //             }, {
+            //                 option: "Sometimes",
+            //                 score: 3,
+            //                 isSelected: false,
+            //             }, {
+            //                 option: "Fairly often",
+            //                 score: 2,
+            //                 isSelected: false
+            //             }, {
+            //                 option: "Very often",
+            //                 score: 1,
+            //                 isSelected: false
+            //             }],
+            //             calculatedScore: 0,
+            //             multiSelect: false
+            //         },
+            //         subQuestions: null
+            //     }]
+            // },
+            {
+                sectionName: null,
+                question: [{
+                    name: "How many spoons of sugar do you consume everyday ?",
+                    options: {
+                        option: [{
+                            option: "2 spoons",
+                            score: 3,
+                            isSelected: false,
+                        }, {
+                            option: "4 spoons",
+                            score: 2,
+                            isSelected: false,
+                        }, {
+                            option: "6 spoons",
+                            score: 1,
+                            isSelected: false
+                        }, {
+                            option: "none",
+                            score: 4,
+                            isSelected: false
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: null
+                }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                    name: "Which types of meat do you consume ?",
+                    options: {
+                        option: [{
+                            option: `Pork/${food.beef.name}/lamb`,
+                            score: 1,
+                            isSelected: false,
+                        }, {
+                            option: `${food.chicken.name}/${food.salmon.name}/Rawas`,
+                            score: 1,
+                            isSelected: false,
+                        }, {
+                            option: `Prawns/${food.shrimps.name}`,
+                            score: 1,
+                            isSelected: false
+                        }, {
+                            option: "None",
+                            score: 1,
+                            isSelected: false
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: null
+                }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                    name: "How often do you consumer eggs ?",
+                    options: {
+                        option: [{
+                            option: "Daily",
+                            score: 4,
+                            isSelected: false,
+                        }, {
+                            option: "Often",
+                            score: 3,
+                            isSelected: false,
+                        }, {
+                            option: "Sometimes",
+                            score: 2,
+                            isSelected: false
+                        }, {
+                            option: "Never",
+                            score: 1,
+                            isSelected: false
+                        }],
+                        calculatedScore: 0,
+                        multiSelect: false
+                    },
+                    subQuestions: null
+                }]
+            }
+        ]
+    },
+    {
+        category: getLeapCategories.LIFESTYLE,
         subCategory: "Food Diversity",
         section: [
             {
@@ -1186,369 +1549,6 @@ export const lifeStyle = [
                     }
 
                 ],
-            }
-        ]
-    },
-    {
-        category: getLeapCategories.LIFESTYLE,
-        subCategory: null,
-        section: [
-            {
-                sectionName: null,
-                question: [{
-                    name: "How many hours do you sleep everyday ?",
-                    options: {
-                        option: [{
-                            option: "<7 hours",
-                            score: 2,
-                            isSelected: false,
-                        }, {
-                            option: "7 hours",
-                            score: 4,
-                            isSelected: false,
-                        }, {
-                            option: "8 hours",
-                            score: 4,
-                            isSelected: false
-                        }, {
-                            option: "9 hours",
-                            score: 3,
-                            isSelected: false
-                        }, {
-                            option: "10 hours",
-                            score: 3,
-                            isSelected: false
-                        }, {
-                            option: "More than 10 hours",
-                            score: 1,
-                            isSelected: false
-                        }
-                        ],
-                        calculatedScore: 0,
-                        multiSelect: false
-                    },
-                    subQuestions: null
-                }]
-            },
-            {
-                sectionName: null,
-                question: [{
-                    name: "How many glasses of water do you drink everyday ?",
-                    options: {
-                        option: [{
-                            option: "< 8 glasses per day",
-                            score: 1,
-                            isSelected: false,
-                        }, {
-                            option: "8 - 10 glasses per day",
-                            score: 3,
-                            isSelected: false,
-                        }, {
-                            option: "10 - 12 glasses",
-                            score: 4,
-                            isSelected: false
-                        }, {
-                            option: "> 12 glasses",
-                            score: 2,
-                            isSelected: false
-                        }],
-                        calculatedScore: 0,
-                        multiSelect: false
-                    },
-                    subQuestions: null
-                }]
-            },
-            {
-                sectionName: null,
-                question: [{
-                    name: "Do you smoke and/ or consume alcohol?",
-                    options: {
-                        option: [{
-                            option: "Yes",
-                            score: 1,
-                            isSelected: false,
-                        }, {
-                            option: "No",
-                            score: 4,
-                            isSelected: false,
-                        }],
-                        calculatedScore: 0,
-                        multiSelect: false
-                    },
-                    subQuestions: null
-                }]
-            },
-            {
-                sectionName: null,
-                question: [{
-                    name: "Are you a vegetarian or Non – vegetarian ?",
-                    options: {
-                        option: [{
-                            option: "Vegetarian",
-                            score: null,
-                            isSelected: false,
-                        }, {
-                            option: "Non-vegetarian",
-                            score: null,
-                            isSelected: false,
-                        }],
-                        calculatedScore: 0,
-                        multiSelect: false
-                    },
-                    subQuestions: null
-                }]
-            },
-            {
-                sectionName: null,
-                question: [{
-                    name: "How often do you have fruits ?",
-                    options: {
-                        option: [{
-                            option: "Daily",
-                            score: 4,
-                            isSelected: false,
-                        }, {
-                            option: "Sometimes",
-                            score: 2,
-                            isSelected: false,
-                        }, {
-                            option: "often",
-                            score: 3,
-                            isSelected: false
-                        }, {
-                            option: "Never",
-                            score: 1,
-                            isSelected: false
-                        }],
-                        calculatedScore: 0,
-                        multiSelect: false
-                    },
-                    subQuestions: null
-                }]
-            },
-            {
-                sectionName: null,
-                question: [{
-                    name: "Which of the following diary products do you consume regularly?",
-                    options: {
-                        option: [{
-                            option: "Paneer",
-                            score: 1,
-                            isSelected: false,
-                        }, {
-                            option: "Milk",
-                            score: 1,
-                            isSelected: false,
-                        }, {
-                            option: "Others",
-                            score: 1,
-                            isSelected: false
-                        }, {
-                            option: "None",
-                            score: 1,
-                            isSelected: false
-                        }],
-                        calculatedScore: 0,
-                        multiSelect: false
-                    },
-                    subQuestions: null
-                }]
-            },
-            {
-                sectionName: null,
-                question: [{
-                    name: "Do you consume Dal/pulses in every meal ?",
-                    options: {
-                        option: [{
-                            option: "Never",
-                            score: 1,
-                            isSelected: false,
-                        }, {
-                            option: "Sometimes",
-                            score: 2,
-                            isSelected: false,
-                        }, {
-                            option: "Often",
-                            score: 3,
-                            isSelected: false
-                        }, {
-                            option: "Daily",
-                            score: 4,
-                            isSelected: false
-                        }],
-                        calculatedScore: 0,
-                        multiSelect: false
-                    },
-                    subQuestions: null
-                }]
-            },
-            {
-                sectionName: null,
-                question: [{
-                    name: "Which type of nuts do you consume regularly ?",
-                    options: {
-                        option: [{
-                            option: "Almonds",
-                            score: 1,
-                            isSelected: false,
-                        }, {
-                            option: "Pistachios",
-                            score: 1,
-                            isSelected: false,
-                        }, {
-                            option: "Others",
-                            score: 1,
-                            isSelected: false
-                        }, {
-                            option: "None",
-                            score: 1,
-                            isSelected: false
-                        }],
-                        calculatedScore: 0,
-                        multiSelect: false
-                    },
-                    subQuestions: null
-                }]
-            },
-            {
-                sectionName: null,
-                question: [{
-                    name: "Do you regularly consume any of the following ?",
-                    options: {
-                        option: [{
-                            option: food.walnuts.name,
-                            score: 1,
-                            isSelected: false,
-                        }, {
-                            option: `Others like ${food.flaxSeeds.name, food.sunflowerSeeds.name, food.pumpkinSeeds.name}`,
-                            score: 1,
-                            isSelected: false,
-                        }, {
-                            option: food.chiaSeeds.name,
-                            score: 1,
-                            isSelected: false
-                        }, {
-                            option: "None",
-                            score: 1,
-                            isSelected: false
-                        }],
-                        calculatedScore: 0,
-                        multiSelect: false
-                    },
-                    subQuestions: null
-                }]
-            },
-            // {
-            //     sectionName: null,
-            //     question: [{
-            //         name: "How often do you consume green leafy vegetables ?",
-            //         options: {
-            //             option: [{
-            //                 option: "Never",
-            //                 score: 4,
-            //                 isSelected: false,
-            //             }, {
-            //                 option: "Sometimes",
-            //                 score: 3,
-            //                 isSelected: false,
-            //             }, {
-            //                 option: "Fairly often",
-            //                 score: 2,
-            //                 isSelected: false
-            //             }, {
-            //                 option: "Very often",
-            //                 score: 1,
-            //                 isSelected: false
-            //             }],
-            //             calculatedScore: 0,
-            //             multiSelect: false
-            //         },
-            //         subQuestions: null
-            //     }]
-            // },
-            {
-                sectionName: null,
-                question: [{
-                    name: "How many spoons of sugar do you consume everyday ?",
-                    options: {
-                        option: [{
-                            option: "2 spoons",
-                            score: 3,
-                            isSelected: false,
-                        }, {
-                            option: "4 spoons",
-                            score: 2,
-                            isSelected: false,
-                        }, {
-                            option: "6 spoons",
-                            score: 1,
-                            isSelected: false
-                        }, {
-                            option: "none",
-                            score: 4,
-                            isSelected: false
-                        }],
-                        calculatedScore: 0,
-                        multiSelect: false
-                    },
-                    subQuestions: null
-                }]
-            },
-            {
-                sectionName: null,
-                question: [{
-                    name: "Which types of meat do you consume ?",
-                    options: {
-                        option: [{
-                            option: `Pork/${food.beef.name}/lamb`,
-                            score: 1,
-                            isSelected: false,
-                        }, {
-                            option: `${food.chicken.name}/${food.salmon.name}/Rawas`,
-                            score: 1,
-                            isSelected: false,
-                        }, {
-                            option: `Prawns/${food.shrimps.name}`,
-                            score: 1,
-                            isSelected: false
-                        }, {
-                            option: "None",
-                            score: 1,
-                            isSelected: false
-                        }],
-                        calculatedScore: 0,
-                        multiSelect: false
-                    },
-                    subQuestions: null
-                }]
-            },
-            {
-                sectionName: null,
-                question: [{
-                    name: "How often do you consumer eggs ?",
-                    options: {
-                        option: [{
-                            option: "Daily",
-                            score: 4,
-                            isSelected: false,
-                        }, {
-                            option: "Often",
-                            score: 3,
-                            isSelected: false,
-                        }, {
-                            option: "Sometimes",
-                            score: 2,
-                            isSelected: false
-                        }, {
-                            option: "Never",
-                            score: 1,
-                            isSelected: false
-                        }],
-                        calculatedScore: 0,
-                        multiSelect: false
-                    },
-                    subQuestions: null
-                }]
             }
         ]
     }

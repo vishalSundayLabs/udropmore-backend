@@ -41,11 +41,11 @@ exports.physicalFitness = [
                             {
                                 name: "How much time do you spend doing vigorous activities at work in a typical day ?",
                                 option: {
-                                    A: { options: [{ type: "inputBox", value: null }], score: 2 },
-                                    B: { options: [{ type: "inputBox", value: null }], score: 2 }
+                                    A: { options: [{ name: "Hours", type: "inputBox", value: null }], score: 2 },
+                                    B: { options: [{ name: "Minutes", type: "inputBox", value: null }], score: 2 }
                                 },
                                 calculatedScore: 0,
-                                multiSelect: true
+                                multiSelect: false
                             }
                         ]
                     }]
@@ -58,13 +58,11 @@ exports.physicalFitness = [
                         option: [{
                                 option: "Yes",
                                 score: 2,
-                                isSelected: false,
-                                nextQuestionKey: null
+                                isSelected: false
                             }, {
                                 option: "No",
                                 score: 2,
-                                isSelected: false,
-                                // nextQuestionKey: 1394848
+                                isSelected: false
                             }],
                         calculatedScore: 0,
                         multiSelect: false
@@ -87,11 +85,11 @@ exports.physicalFitness = [
                         {
                             name: "How much time do you spend doing moderate-intensity activities at work on a typical day ?",
                             option: {
-                                A: { options: [{ type: "inputBox", value: null }], score: 2 },
-                                B: { options: [{ type: "inputBox", value: null }], score: 2 }
+                                A: { options: [{ name: "Hours", type: "inputBox", value: null }], score: 2 },
+                                B: { options: [{ name: "Minutes", type: "inputBox", value: null }], score: 2 }
                             },
                             calculatedScore: 0,
-                            multiSelect: true
+                            multiSelect: false
                         }
                     ]
                 }
@@ -104,13 +102,11 @@ exports.physicalFitness = [
                             option: [{
                                     option: "Yes",
                                     score: 2,
-                                    isSelected: false,
-                                    nextQuestionKey: null
+                                    isSelected: false
                                 }, {
                                     option: "No",
                                     score: 2,
-                                    isSelected: false,
-                                    // nextQuestionKey: 1394848
+                                    isSelected: false
                                 }],
                             calculatedScore: 0,
                             multiSelect: false
@@ -133,11 +129,11 @@ exports.physicalFitness = [
                             {
                                 name: "How much time do you spend walking or cycling to and from places on a typical day ?",
                                 option: {
-                                    A: { options: [{ type: "inputBox", value: null }], score: 2 },
-                                    B: { options: [{ type: "inputBox", value: null }], score: 2 }
+                                    A: { options: [{ name: "Hours", type: "inputBox", value: null }], score: 2 },
+                                    B: { options: [{ name: "Minutes", type: "inputBox", value: null }], score: 2 }
                                 },
                                 calculatedScore: 0,
-                                multiSelect: true
+                                multiSelect: false
                             }
                         ]
                     }]
@@ -150,13 +146,11 @@ exports.physicalFitness = [
                             option: [{
                                     option: "Yes",
                                     score: 2,
-                                    isSelected: false,
-                                    nextQuestionKey: null
+                                    isSelected: false
                                 }, {
                                     option: "No",
                                     score: 2,
-                                    isSelected: false,
-                                    // nextQuestionKey: 1394848
+                                    isSelected: false
                                 }],
                             calculatedScore: 0,
                             multiSelect: false
@@ -179,11 +173,11 @@ exports.physicalFitness = [
                             {
                                 name: "How much time do you spend doing vigorous-intensity sports, fitness or recreational activities on a typical day ?",
                                 option: {
-                                    A: { options: [{ type: "inputBox", value: null }], score: 2 },
-                                    B: { options: [{ type: "inputBox", value: null }], score: 2 }
+                                    A: { options: [{ name: "Hours", type: "inputBox", value: null }], score: 2 },
+                                    B: { options: [{ name: "Minutes", type: "inputBox", value: null }], score: 2 }
                                 },
                                 calculatedScore: 0,
-                                multiSelect: true
+                                multiSelect: false
                             }
                         ]
                     }]
@@ -223,11 +217,11 @@ exports.physicalFitness = [
                             {
                                 name: "How much time do you spend doing moderate-intensity sports, fitness or recreational (leisure) activities on a typical day ?",
                                 option: {
-                                    A: { options: [{ type: "inputBox", value: null }], score: 2 },
-                                    B: { options: [{ type: "inputBox", value: null }], score: 2 }
+                                    A: { options: [{ name: "Hours", type: "inputBox", value: null }], score: 2 },
+                                    B: { options: [{ name: "Minutes", type: "inputBox", value: null }], score: 2 }
                                 },
                                 calculatedScore: 0,
-                                multiSelect: true
+                                multiSelect: false
                             }
                         ]
                     }]
@@ -238,10 +232,14 @@ exports.physicalFitness = [
                         name: "How much time do you usually spend sitting or reclining on a typical day ?",
                         options: {
                             option: [{
-                                    option: [{ type: "inputBox", value: null }],
+                                    option: "Hours",
+                                    value: null,
+                                    type: "inputBox",
                                     score: 2
                                 }, {
-                                    option: [{ type: "inputBox", value: null }],
+                                    option: "Minutes",
+                                    value: null,
+                                    type: "inputBox",
                                     score: 2
                                 }],
                             calculatedScore: 0,
