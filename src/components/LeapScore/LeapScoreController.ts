@@ -730,7 +730,7 @@ export const getLeapScoreQuestions = async (req, res) => {
             success: true,
             message: `Get All Questions ${query.category} successfully.`,
             result: question,
-            score: 0,
+            score:  savedQuestions.details[query.category.toLowerCase()].score ?  savedQuestions.details[query.category.toLowerCase()].answers : 0,
             leapScoreStatus: savedQuestions.status ? savedQuestions.status : "PENDING",
             nextLeapScore: LeapScoreQuestionnaireSchedule[query.category.toUpperCase()][nextLeapIndex + 1]
         })

@@ -727,7 +727,7 @@ const getLeapScoreQuestions = (req, res) => __awaiter(void 0, void 0, void 0, fu
             success: true,
             message: `Get All Questions ${query.category} successfully.`,
             result: question,
-            score: 0,
+            score: savedQuestions.details[query.category.toLowerCase()].score ? savedQuestions.details[query.category.toLowerCase()].answers : 0,
             leapScoreStatus: savedQuestions.status ? savedQuestions.status : "PENDING",
             nextLeapScore: QuestionnaireSchedule_1.LeapScoreQuestionnaireSchedule[query.category.toUpperCase()][nextLeapIndex + 1]
         });
