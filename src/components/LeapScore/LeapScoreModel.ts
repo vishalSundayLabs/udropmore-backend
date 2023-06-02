@@ -25,8 +25,7 @@ const LeapScoreQuestionnaireSchema = new mongoose.Schema({
                 type: String,
                 enum: ["PENDING", "EXPIRED", "COMPLETED", null],
                 default: "PENDING"
-            },
-            nextLeap: { type: Number, default: null }
+            }
         },
         lifestyle: {
             answers: { type: Object, default: null },
@@ -35,8 +34,7 @@ const LeapScoreQuestionnaireSchema = new mongoose.Schema({
                 type: String,
                 enum: ["PENDING", "EXPIRED", "COMPLETED", null],
                 default: "PENDING"
-            },
-            nextLeap: { type: Number, default: null }
+            }
         },
         physical: {
             answers: { type: Object, default: null },
@@ -45,8 +43,7 @@ const LeapScoreQuestionnaireSchema = new mongoose.Schema({
                 type: String,
                 enum: ["PENDING", "EXPIRED", "COMPLETED", null],
                 default: "PENDING"
-            },
-            nextLeap: { type: Number, default: null }
+            }
         }
 
     },

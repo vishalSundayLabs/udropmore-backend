@@ -6,4 +6,5 @@ const router = (0, express_1.Router)();
 router.post("/create", LeapScoreController_1.createLeapScoreQuestions);
 router.get("/questions/:motherId", LeapScoreController_1.getLeapScoreQuestions);
 router.put("/questions/:motherId", LeapScoreController_1.updateLeapScoreQuestionnairDetails);
+router.get("/artical/:motherId", LeapScoreController_1.getArticalBasedOnLeapScoreAndStatus);
 exports.default = router;

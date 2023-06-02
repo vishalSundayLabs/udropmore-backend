@@ -15,26 +15,32 @@ export const lifeStyle = [
                             option: "<7 hours",
                             score: 2,
                             isSelected: false,
+                            articalIndex:1
                         }, {
                             option: "7 hours",
                             score: 4,
                             isSelected: false,
+                            articalIndex:3
                         }, {
                             option: "8 hours",
                             score: 4,
-                            isSelected: false
+                            isSelected: false,
+                            articalIndex:3
                         }, {
                             option: "9 hours",
                             score: 3,
-                            isSelected: false
+                            isSelected: false,
+                            articalIndex:2
                         }, {
                             option: "10 hours",
                             score: 3,
-                            isSelected: false
+                            isSelected: false,
+                            articalIndex:2
                         }, {
                             option: "More than 10 hours",
                             score: 1,
-                            isSelected: false
+                            isSelected: false,
+                            articalIndex:0
                         }
                         ],
                         calculatedScore: 0,
@@ -52,18 +58,22 @@ export const lifeStyle = [
                             option: "< 8 glasses per day",
                             score: 1,
                             isSelected: false,
+                            articalIndex:4
                         }, {
                             option: "8 - 10 glasses per day",
                             score: 3,
                             isSelected: false,
+                            articalIndex:6
                         }, {
                             option: "10 - 12 glasses",
                             score: 4,
-                            isSelected: false
+                            isSelected: false,
+                            articalIndex:7
                         }, {
                             option: "> 12 glasses",
                             score: 2,
-                            isSelected: false
+                            isSelected: false,
+                            articalIndex:5
                         }],
                         calculatedScore: 0,
                         multiSelect: false

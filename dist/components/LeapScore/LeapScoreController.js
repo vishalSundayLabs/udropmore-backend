@@ -9,8 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateLeapScoreQuestionnairDetails = exports.getLeapScoreQuestions = exports.createLeapScoreQuestions = void 0;
+exports.getArticalBasedOnLeapScoreAndStatus = exports.updateLeapScoreQuestionnairDetails = exports.getLeapScoreQuestions = exports.createLeapScoreQuestions = void 0;
 const Anatomy_1 = require("../../Constant/LeapScore/Anatomy");
+const ArticalBasedOnScore_1 = require("../../Constant/LeapScore/ArticalBasedOnScore");
 const Emotion_1 = require("../../Constant/LeapScore/Emotion");
 const LeapCategories_1 = require("../../Constant/LeapScore/LeapCategories");
 const LifeStyle_1 = require("../../Constant/LeapScore/LifeStyle");
@@ -754,8 +755,8 @@ const updateLeapScoreQuestionnairDetails = (req, res) => __awaiter(void 0, void 
     try {
         const savedQuestions = yield LeapScoreModel_1.default.findOne({ userId: params.motherId, pregnancyWeek: query.week, isDeleted: false });
         savedQuestions.details[query.category.toLowerCase()].answers = body.answers;
-        const calculatedValues = yield calculateLeapScoreAndSetStatus(savedQuestions.details[query.category.toLowerCase()].answers);
-        console.log("line", calculatedValues);
+        const calculatedValues = yield calculateLeapScoreAndSetStatus(savedQuestions.details[query.category.toLowerCase()].answers, query.category.toLowerCase());
+        console.log(calculatedValues);
         savedQuestions.details[query.category.toLowerCase()].score = calculatedValues.finalScore;
         savedQuestions.details[query.category.toLowerCase()].status = calculatedValues.leapScoreStatus;
         savedQuestions.status = yield checkFinalLeapScoreStatus(savedQuestions.details);
@@ -779,7 +780,50 @@ const updateLeapScoreQuestionnairDetails = (req, res) => __awaiter(void 0, void 
     }
 });
 exports.updateLeapScoreQuestionnairDetails = updateLeapScoreQuestionnairDetails;
-const calculateLeapScoreAndSetStatus = (data) => {
+const getArticalBasedOnLeapScoreAndStatus = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const params = req.params;
+    const query = req.query;
+    if (!params.motherId || !query.week) {
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: `Bad Request! Mother ID , Week must be provide.`
+        }));
+    }
+    try {
+        const leapScoreQuestionnaire = yield LeapScoreModel_1.default.findOne({ userId: params.motherId, pregnancyWeek: query.week, isDeleted: false });
+        const categoryScore = leapScoreQuestionnaire.details;
+        const articalOfLifestyle = findArticalBasedOnScore(categoryScore.lifestyle.answers, "lifestyle");
+        const articalOfEmotion = findArticalBasedOnScore(categoryScore.emotion.answers, "emotion");
+        const articalOfAnatomy = findArticalBasedOnScore(categoryScore.anatomy.answers, "anatomy");
+        const articalOfPhysical = findArticalBasedOnScore(categoryScore.physical.answers, "physical");
+        return res.status(Master_1.HTTP_OK).send({
+            success: true,
+            message: `Get Artical based on score or status successfully.`,
+            result: {
+                lifestyle: articalOfLifestyle,
+                emotion: articalOfEmotion,
+                anatomy: articalOfAnatomy,
+                physical: articalOfPhysical
+            },
+            score: {
+                lifestyle: categoryScore.lifestyle.score,
+                emotion: categoryScore.emotion.score,
+                anatomy: categoryScore.anatomy.score,
+                physical: categoryScore.physical.score
+            },
+            leapScoreStatus: leapScoreQuestionnaire.status
+        });
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.getArticalBasedOnLeapScoreAndStatus = getArticalBasedOnLeapScoreAndStatus;
+const calculateLeapScoreAndSetStatus = (data, category) => {
     let questionScore = 0;
     let totalQuestions = 0;
     let subQuestionScore = 0;
@@ -791,12 +835,17 @@ const calculateLeapScoreAndSetStatus = (data) => {
                 const questionOptions = section[j].question[k].options.option;
                 const subQuestions = section[j].question[k].subQuestions;
                 totalQuestions++;
+                let isAttempt = false;
                 for (let l = 0; l < questionOptions.length; l++) {
                     const option = questionOptions[l];
                     if (option.isSelected == true || option.value) {
                         questionScore += option.score;
-                        countQuestions++;
+                        isAttempt = true;
                     }
+                }
+                if (isAttempt) {
+                    countQuestions++;
+                    isAttempt = false;
                 }
                 if (subQuestions != null && subQuestions.length > 0) {
                     for (let m = 0; m < subQuestions.length; m++) {
@@ -810,12 +859,15 @@ const calculateLeapScoreAndSetStatus = (data) => {
                                 if (subOption[p].isSelected == true || subOption[p].value) {
                                     isSelected = true;
                                     limitCount = 1;
-                                    break;
+                                    if (subOption[p].value) {
+                                        console.log(subOption[p].value, subQuestions[m].option[subQuestionOptionKey[n]].score);
+                                        subQuestionScore += Number(subOption[p].value) * subQuestions[m].option[subQuestionOptionKey[n]].score;
+                                        subQuestionScore -= subQuestions[m].option[subQuestionOptionKey[n]].score;
+                                    }
                                 }
                             }
                             if (isSelected) {
-                                subQuestionScore +=
-                                    subQuestions[m].option[subQuestionOptionKey[n]].score;
+                                subQuestionScore += subQuestions[m].option[subQuestionOptionKey[n]].score;
                                 isSelected = false;
                             }
                         }
@@ -827,14 +879,78 @@ const calculateLeapScoreAndSetStatus = (data) => {
             }
         }
     }
+    let leapScore = Math.floor((subQuestionScore + questionScore) / totalQuestions);
+    if (category == "physical") {
+        leapScore = (subQuestionScore + questionScore) < 600 ? 1 : 4;
+    }
     return {
         subQuestionScore,
         questionScore,
         totalQuestions,
         countQuestions,
-        finalScore: Math.floor((subQuestionScore + questionScore) / totalQuestions),
+        finalScore: leapScore,
         leapScoreStatus: countQuestions == totalQuestions ? "COMPLETED" : "PENDING"
     };
+};
+const findArticalBasedOnScore = (data, category) => {
+    let artical = [];
+    let totalScoreForemotion = 0;
+    if (data) {
+        for (let i = 0; i < data.length; i++) {
+            const section = data[i].section;
+            for (let j = 0; j < section.length; j++) {
+                for (let k = 0; k < section[j].question.length; k++) {
+                    const questionOptions = section[j].question[k].options.option;
+                    const subQuestions = section[j].question[k].subQuestions;
+                    for (let l = 0; l < questionOptions.length; l++) {
+                        const option = questionOptions[l];
+                        if (option.isSelected == true || option.value) {
+                            if (option.articalIndex) {
+                                const articalData = ArticalBasedOnScore_1.articalBasedOnScore[option.articalIndex];
+                                articalData.data.userData.value = option.option;
+                                artical.push(articalData);
+                            }
+                            totalScoreForemotion += option.score;
+                        }
+                    }
+                    if (subQuestions != null && subQuestions.length > 0) {
+                        for (let m = 0; m < subQuestions.length; m++) {
+                            const subQuestionOptionKey = Object.keys(subQuestions[m].option);
+                            for (let n = 0; n < subQuestionOptionKey.length; n++) {
+                                const subOption = subQuestions[m].option[subQuestionOptionKey[n]].options;
+                                for (let p = 0; p < subOption.length; p++) {
+                                    if (subOption[p].isSelected == true || subOption[p].value) {
+                                        if (subOption[p].articalIndex) {
+                                            const articalData = ArticalBasedOnScore_1.articalBasedOnScore[subOption[p].articalIndex];
+                                            articalData.data.userData.value = subOption[p].option;
+                                            artical.push(articalData);
+                                        }
+                                        if (subOption[p].value) {
+                                            console.log(subOption[p].value, subQuestions[m].option[subQuestionOptionKey[n]].score);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    console.log("line 994", totalScoreForemotion);
+    if (category == "emotion") {
+        artical = [];
+        if (totalScoreForemotion >= 0 && totalScoreForemotion <= 13) {
+            artical.push(ArticalBasedOnScore_1.articalBasedOnScore[12]);
+        }
+        else if (totalScoreForemotion >= 14 && totalScoreForemotion <= 25) {
+            artical.push(ArticalBasedOnScore_1.articalBasedOnScore[13]);
+        }
+        else {
+            artical.push(ArticalBasedOnScore_1.articalBasedOnScore[14]);
+        }
+    }
+    return artical;
 };
 const checkFinalLeapScoreStatus = (data) => {
     const statusPreference = {

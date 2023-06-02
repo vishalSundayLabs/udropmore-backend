@@ -7,7 +7,7 @@
     "no-var-keyword": true,
     "semicolon": [true, "always", "ignore-bound-class-methods"],
     "whitespace": [
-      true,
+      false,
       "check-branch",
       "check-decl",
       "check-operator",
