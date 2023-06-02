@@ -1298,7 +1298,7 @@ export const articalBasedOnScore = [
         },
         subtype: "emotion",
         score: 0,
-        maxScore:13
+        maxScore: 13
     },
     {
         data: {
@@ -1396,7 +1396,7 @@ export const articalBasedOnScore = [
         },
         subtype: "emotion",
         score: 14,
-        maxScore:25
+        maxScore: 25
     },
     {
         data: {
@@ -1494,396 +1494,396 @@ export const articalBasedOnScore = [
         },
         subtype: "emotion",
         score: 26,
-        maxScore:40
-    },
-    //anatomy
-    {
-        data: {
-            metaData: {
-                sequence: null
-            },
-            featureMedia: {
-                images: {
-                    hero: null
-                },
-                image: null,
-                video: null
-            },
-            userData: {
-                scale: "Very Good",
-                value: null
-            },
-            sections: [
-                {
-                    fields: [
-                        {
-                            type: "PARAGRAPH",
-                            value: "Every one of your cells, organs and tissues use water to help with temperature regulation, keeping hydrated and maintaining bodily functions. In addition, water acts as a lubricant and cushions your joints."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "When you're pregnant, you need more water than the average person in order to form amniotic fluid, produce extra blood, build new tissue, carry nutrients, enhance digestion, and flush out wastes and toxins."
-                        }
-                    ],
-                    title: "Why is water important ?"
-                },
-                {
-                    fields: [
-                        {
-                            type: "PARAGRAPH",
-                            value: "Frequent urination is just a normal part of the pregnancy experience. The frequent trips to the bathroom might be annoying but are just how your body responds to the increase of the hormone's progesterone and human chorionic gonadotropin in your body."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "With your body losing fluids daily, it’s just that much more important to maintain proper water intake levels and stay on course to allow for a healthy baby and healthy you!"
-                        }
-                    ],
-                    title: "Water Intake During Pregnancy: Urinary Frequency"
-                },
-                {
-                    fields: [
-                        {
-                            type: "PARAGRAPH",
-                            value: "Space out your glasses of water throughout the day rather than having it all at once."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "Keep a reusable water bottle with you."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "Replace other drinks with water. Have a glass of water instead of a soda or milkshake."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "Drink one glass of water before each meal."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "Eat more foods high in water. Eg Cucumber, Watermelons, etc."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "Some foods and drinks can irritate the bladder, so you can try to stay away from caffeine, carbonation and spicy foods."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "Empty your bladder whenever you feel the need to. Don’t forget, it’s totally normal!"
-                        }
-                    ],
-                    title: "Tips to improve your water intake habits"
-                },
-                {
-                    fields: [
-                        {
-                            type: "PARAGRAPH",
-                            value: `Dehydration takes place when your body needs more water and you are not providing enough. Look out for these signs your body is giving you
-                            a. Thirst: you will feel thirsty and sometimes more hungry as well.
-                            b. Urine color: Pale yellow is the colour that you should aim for. That’s when you are hydrated well. Darker shades of yellow are indicators of dehydration. The number of visits to the bathroom increase during pregnancy. This is because of the higher metabolism. Keep an eye on the color of your urine, rather than frequency
-                            c. Brain fog: Water is an aspect of the functioning of the brain. It is estimated that even being dehydrated by 2%, impairs your cognitive abilities
-                            d. Drier Skin: lower water intake over times may lead of drier skins. Keep an eye.`
-                        }
-                    ],
-                    title: "Keep an eye on Dehydration"
-                }
-            ],
-            title: "Water Intake",
-            description: "Your water intake levels fall within the ideal range and you need to continue to maintain your status. You can always try better ways to improve and understand your water intake’s role in your child’s development.",
-            ideal: "10-12 glasses"
-        },
-        subtype: "anatomy",
-        score: 1
-    },
-    {
-        data: {
-            metaData: {
-                sequence: null
-            },
-            featureMedia: {
-                images: {
-                    hero: null
-                },
-                image: null,
-                video: null
-            },
-            userData: {
-                scale: "Very Good",
-                value: null
-            },
-            sections: [
-                {
-                    fields: [
-                        {
-                            type: "PARAGRAPH",
-                            value: "Every one of your cells, organs and tissues use water to help with temperature regulation, keeping hydrated and maintaining bodily functions. In addition, water acts as a lubricant and cushions your joints."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "When you're pregnant, you need more water than the average person in order to form amniotic fluid, produce extra blood, build new tissue, carry nutrients, enhance digestion, and flush out wastes and toxins."
-                        }
-                    ],
-                    title: "Why is water important ?"
-                },
-                {
-                    fields: [
-                        {
-                            type: "PARAGRAPH",
-                            value: "Frequent urination is just a normal part of the pregnancy experience. The frequent trips to the bathroom might be annoying but are just how your body responds to the increase of the hormone's progesterone and human chorionic gonadotropin in your body."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "With your body losing fluids daily, it’s just that much more important to maintain proper water intake levels and stay on course to allow for a healthy baby and healthy you!"
-                        }
-                    ],
-                    title: "Water Intake During Pregnancy: Urinary Frequency"
-                },
-                {
-                    fields: [
-                        {
-                            type: "PARAGRAPH",
-                            value: "Space out your glasses of water throughout the day rather than having it all at once."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "Keep a reusable water bottle with you."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "Replace other drinks with water. Have a glass of water instead of a soda or milkshake."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "Drink one glass of water before each meal."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "Eat more foods high in water. Eg Cucumber, Watermelons, etc."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "Some foods and drinks can irritate the bladder, so you can try to stay away from caffeine, carbonation and spicy foods."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "Empty your bladder whenever you feel the need to. Don’t forget, it’s totally normal!"
-                        }
-                    ],
-                    title: "Tips to improve your water intake habits"
-                },
-                {
-                    fields: [
-                        {
-                            type: "PARAGRAPH",
-                            value: `Dehydration takes place when your body needs more water and you are not providing enough. Look out for these signs your body is giving you
-                            a. Thirst: you will feel thirsty and sometimes more hungry as well.
-                            b. Urine color: Pale yellow is the colour that you should aim for. That’s when you are hydrated well. Darker shades of yellow are indicators of dehydration. The number of visits to the bathroom increase during pregnancy. This is because of the higher metabolism. Keep an eye on the color of your urine, rather than frequency
-                            c. Brain fog: Water is an aspect of the functioning of the brain. It is estimated that even being dehydrated by 2%, impairs your cognitive abilities
-                            d. Drier Skin: lower water intake over times may lead of drier skins. Keep an eye.`
-                        }
-                    ],
-                    title: "Keep an eye on Dehydration"
-                }
-            ],
-            title: "Water Intake",
-            description: "Your water intake levels fall within the ideal range and you need to continue to maintain your status. You can always try better ways to improve and understand your water intake’s role in your child’s development.",
-            ideal: "10-12 glasses"
-        },
-        subtype: "anatomy",
-        score: 2
-    },
-    {
-        data: {
-            metaData: {
-                sequence: null
-            },
-            featureMedia: {
-                images: {
-                    hero: null
-                },
-                image: null,
-                video: null
-            },
-            userData: {
-                scale: "Very Good",
-                value: null
-            },
-            sections: [
-                {
-                    fields: [
-                        {
-                            type: "PARAGRAPH",
-                            value: "Every one of your cells, organs and tissues use water to help with temperature regulation, keeping hydrated and maintaining bodily functions. In addition, water acts as a lubricant and cushions your joints."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "When you're pregnant, you need more water than the average person in order to form amniotic fluid, produce extra blood, build new tissue, carry nutrients, enhance digestion, and flush out wastes and toxins."
-                        }
-                    ],
-                    title: "Why is water important ?"
-                },
-                {
-                    fields: [
-                        {
-                            type: "PARAGRAPH",
-                            value: "Frequent urination is just a normal part of the pregnancy experience. The frequent trips to the bathroom might be annoying but are just how your body responds to the increase of the hormone's progesterone and human chorionic gonadotropin in your body."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "With your body losing fluids daily, it’s just that much more important to maintain proper water intake levels and stay on course to allow for a healthy baby and healthy you!"
-                        }
-                    ],
-                    title: "Water Intake During Pregnancy: Urinary Frequency"
-                },
-                {
-                    fields: [
-                        {
-                            type: "PARAGRAPH",
-                            value: "Space out your glasses of water throughout the day rather than having it all at once."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "Keep a reusable water bottle with you."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "Replace other drinks with water. Have a glass of water instead of a soda or milkshake."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "Drink one glass of water before each meal."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "Eat more foods high in water. Eg Cucumber, Watermelons, etc."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "Some foods and drinks can irritate the bladder, so you can try to stay away from caffeine, carbonation and spicy foods."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "Empty your bladder whenever you feel the need to. Don’t forget, it’s totally normal!"
-                        }
-                    ],
-                    title: "Tips to improve your water intake habits"
-                },
-                {
-                    fields: [
-                        {
-                            type: "PARAGRAPH",
-                            value: `Dehydration takes place when your body needs more water and you are not providing enough. Look out for these signs your body is giving you
-                            a. Thirst: you will feel thirsty and sometimes more hungry as well.
-                            b. Urine color: Pale yellow is the colour that you should aim for. That’s when you are hydrated well. Darker shades of yellow are indicators of dehydration. The number of visits to the bathroom increase during pregnancy. This is because of the higher metabolism. Keep an eye on the color of your urine, rather than frequency
-                            c. Brain fog: Water is an aspect of the functioning of the brain. It is estimated that even being dehydrated by 2%, impairs your cognitive abilities
-                            d. Drier Skin: lower water intake over times may lead of drier skins. Keep an eye.`
-                        }
-                    ],
-                    title: "Keep an eye on Dehydration"
-                }
-            ],
-            title: "Water Intake",
-            description: "Your water intake levels fall within the ideal range and you need to continue to maintain your status. You can always try better ways to improve and understand your water intake’s role in your child’s development.",
-            ideal: "10-12 glasses"
-        },
-        subtype: "anatomy",
-        score: 3
-    },
-    {
-        data: {
-            metaData: {
-                sequence: null
-            },
-            featureMedia: {
-                images: {
-                    hero: null
-                },
-                image: null,
-                video: null
-            },
-            userData: {
-                scale: "Very Good",
-                value: null
-            },
-            sections: [
-                {
-                    fields: [
-                        {
-                            type: "PARAGRAPH",
-                            value: "Every one of your cells, organs and tissues use water to help with temperature regulation, keeping hydrated and maintaining bodily functions. In addition, water acts as a lubricant and cushions your joints."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "When you're pregnant, you need more water than the average person in order to form amniotic fluid, produce extra blood, build new tissue, carry nutrients, enhance digestion, and flush out wastes and toxins."
-                        }
-                    ],
-                    title: "Why is water important ?"
-                },
-                {
-                    fields: [
-                        {
-                            type: "PARAGRAPH",
-                            value: "Frequent urination is just a normal part of the pregnancy experience. The frequent trips to the bathroom might be annoying but are just how your body responds to the increase of the hormone's progesterone and human chorionic gonadotropin in your body."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "With your body losing fluids daily, it’s just that much more important to maintain proper water intake levels and stay on course to allow for a healthy baby and healthy you!"
-                        }
-                    ],
-                    title: "Water Intake During Pregnancy: Urinary Frequency"
-                },
-                {
-                    fields: [
-                        {
-                            type: "PARAGRAPH",
-                            value: "Space out your glasses of water throughout the day rather than having it all at once."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "Keep a reusable water bottle with you."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "Replace other drinks with water. Have a glass of water instead of a soda or milkshake."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "Drink one glass of water before each meal."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "Eat more foods high in water. Eg Cucumber, Watermelons, etc."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "Some foods and drinks can irritate the bladder, so you can try to stay away from caffeine, carbonation and spicy foods."
-                        },
-                        {
-                            type: "PARAGRAPH",
-                            value: "Empty your bladder whenever you feel the need to. Don’t forget, it’s totally normal!"
-                        }
-                    ],
-                    title: "Tips to improve your water intake habits"
-                },
-                {
-                    fields: [
-                        {
-                            type: "PARAGRAPH",
-                            value: `Dehydration takes place when your body needs more water and you are not providing enough. Look out for these signs your body is giving you
-                            a. Thirst: you will feel thirsty and sometimes more hungry as well.
-                            b. Urine color: Pale yellow is the colour that you should aim for. That’s when you are hydrated well. Darker shades of yellow are indicators of dehydration. The number of visits to the bathroom increase during pregnancy. This is because of the higher metabolism. Keep an eye on the color of your urine, rather than frequency
-                            c. Brain fog: Water is an aspect of the functioning of the brain. It is estimated that even being dehydrated by 2%, impairs your cognitive abilities
-                            d. Drier Skin: lower water intake over times may lead of drier skins. Keep an eye.`
-                        }
-                    ],
-                    title: "Keep an eye on Dehydration"
-                }
-            ],
-            title: "Water Intake",
-            description: "Your water intake levels fall within the ideal range and you need to continue to maintain your status. You can always try better ways to improve and understand your water intake’s role in your child’s development.",
-            ideal: "10-12 glasses"
-        },
-        subtype: "anatomy",
-        score: 4
+        maxScore: 40
     }
 ]
 
+
+export const anatomyArticals = [{
+    data: {
+        metaData: {
+            sequence: null
+        },
+        featureMedia: {
+            images: {
+                hero: null
+            },
+            image: null,
+            video: null
+        },
+        userData: {
+            scale: "Very Good",
+            value: null
+        },
+        sections: [
+            {
+                fields: [
+                    {
+                        type: "PARAGRAPH",
+                        value: "Every one of your cells, organs and tissues use water to help with temperature regulation, keeping hydrated and maintaining bodily functions. In addition, water acts as a lubricant and cushions your joints."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "When you're pregnant, you need more water than the average person in order to form amniotic fluid, produce extra blood, build new tissue, carry nutrients, enhance digestion, and flush out wastes and toxins."
+                    }
+                ],
+                title: "Why is water important ?"
+            },
+            {
+                fields: [
+                    {
+                        type: "PARAGRAPH",
+                        value: "Frequent urination is just a normal part of the pregnancy experience. The frequent trips to the bathroom might be annoying but are just how your body responds to the increase of the hormone's progesterone and human chorionic gonadotropin in your body."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "With your body losing fluids daily, it’s just that much more important to maintain proper water intake levels and stay on course to allow for a healthy baby and healthy you!"
+                    }
+                ],
+                title: "Water Intake During Pregnancy: Urinary Frequency"
+            },
+            {
+                fields: [
+                    {
+                        type: "PARAGRAPH",
+                        value: "Space out your glasses of water throughout the day rather than having it all at once."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "Keep a reusable water bottle with you."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "Replace other drinks with water. Have a glass of water instead of a soda or milkshake."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "Drink one glass of water before each meal."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "Eat more foods high in water. Eg Cucumber, Watermelons, etc."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "Some foods and drinks can irritate the bladder, so you can try to stay away from caffeine, carbonation and spicy foods."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "Empty your bladder whenever you feel the need to. Don’t forget, it’s totally normal!"
+                    }
+                ],
+                title: "Tips to improve your water intake habits"
+            },
+            {
+                fields: [
+                    {
+                        type: "PARAGRAPH",
+                        value: `Dehydration takes place when your body needs more water and you are not providing enough. Look out for these signs your body is giving you
+                            a. Thirst: you will feel thirsty and sometimes more hungry as well.
+                            b. Urine color: Pale yellow is the colour that you should aim for. That’s when you are hydrated well. Darker shades of yellow are indicators of dehydration. The number of visits to the bathroom increase during pregnancy. This is because of the higher metabolism. Keep an eye on the color of your urine, rather than frequency
+                            c. Brain fog: Water is an aspect of the functioning of the brain. It is estimated that even being dehydrated by 2%, impairs your cognitive abilities
+                            d. Drier Skin: lower water intake over times may lead of drier skins. Keep an eye.`
+                    }
+                ],
+                title: "Keep an eye on Dehydration"
+            }
+        ],
+        title: "Water Intake",
+        description: "Your water intake levels fall within the ideal range and you need to continue to maintain your status. You can always try better ways to improve and understand your water intake’s role in your child’s development.",
+        ideal: "10-12 glasses"
+    },
+    subtype: "anatomy",
+    score: 1
+},
+{
+    data: {
+        metaData: {
+            sequence: null
+        },
+        featureMedia: {
+            images: {
+                hero: null
+            },
+            image: null,
+            video: null
+        },
+        userData: {
+            scale: "Very Good",
+            value: null
+        },
+        sections: [
+            {
+                fields: [
+                    {
+                        type: "PARAGRAPH",
+                        value: "Every one of your cells, organs and tissues use water to help with temperature regulation, keeping hydrated and maintaining bodily functions. In addition, water acts as a lubricant and cushions your joints."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "When you're pregnant, you need more water than the average person in order to form amniotic fluid, produce extra blood, build new tissue, carry nutrients, enhance digestion, and flush out wastes and toxins."
+                    }
+                ],
+                title: "Why is water important ?"
+            },
+            {
+                fields: [
+                    {
+                        type: "PARAGRAPH",
+                        value: "Frequent urination is just a normal part of the pregnancy experience. The frequent trips to the bathroom might be annoying but are just how your body responds to the increase of the hormone's progesterone and human chorionic gonadotropin in your body."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "With your body losing fluids daily, it’s just that much more important to maintain proper water intake levels and stay on course to allow for a healthy baby and healthy you!"
+                    }
+                ],
+                title: "Water Intake During Pregnancy: Urinary Frequency"
+            },
+            {
+                fields: [
+                    {
+                        type: "PARAGRAPH",
+                        value: "Space out your glasses of water throughout the day rather than having it all at once."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "Keep a reusable water bottle with you."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "Replace other drinks with water. Have a glass of water instead of a soda or milkshake."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "Drink one glass of water before each meal."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "Eat more foods high in water. Eg Cucumber, Watermelons, etc."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "Some foods and drinks can irritate the bladder, so you can try to stay away from caffeine, carbonation and spicy foods."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "Empty your bladder whenever you feel the need to. Don’t forget, it’s totally normal!"
+                    }
+                ],
+                title: "Tips to improve your water intake habits"
+            },
+            {
+                fields: [
+                    {
+                        type: "PARAGRAPH",
+                        value: `Dehydration takes place when your body needs more water and you are not providing enough. Look out for these signs your body is giving you
+                            a. Thirst: you will feel thirsty and sometimes more hungry as well.
+                            b. Urine color: Pale yellow is the colour that you should aim for. That’s when you are hydrated well. Darker shades of yellow are indicators of dehydration. The number of visits to the bathroom increase during pregnancy. This is because of the higher metabolism. Keep an eye on the color of your urine, rather than frequency
+                            c. Brain fog: Water is an aspect of the functioning of the brain. It is estimated that even being dehydrated by 2%, impairs your cognitive abilities
+                            d. Drier Skin: lower water intake over times may lead of drier skins. Keep an eye.`
+                    }
+                ],
+                title: "Keep an eye on Dehydration"
+            }
+        ],
+        title: "Water Intake",
+        description: "Your water intake levels fall within the ideal range and you need to continue to maintain your status. You can always try better ways to improve and understand your water intake’s role in your child’s development.",
+        ideal: "10-12 glasses"
+    },
+    subtype: "anatomy",
+    score: 2
+},
+{
+    data: {
+        metaData: {
+            sequence: null
+        },
+        featureMedia: {
+            images: {
+                hero: null
+            },
+            image: null,
+            video: null
+        },
+        userData: {
+            scale: "Very Good",
+            value: null
+        },
+        sections: [
+            {
+                fields: [
+                    {
+                        type: "PARAGRAPH",
+                        value: "Every one of your cells, organs and tissues use water to help with temperature regulation, keeping hydrated and maintaining bodily functions. In addition, water acts as a lubricant and cushions your joints."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "When you're pregnant, you need more water than the average person in order to form amniotic fluid, produce extra blood, build new tissue, carry nutrients, enhance digestion, and flush out wastes and toxins."
+                    }
+                ],
+                title: "Why is water important ?"
+            },
+            {
+                fields: [
+                    {
+                        type: "PARAGRAPH",
+                        value: "Frequent urination is just a normal part of the pregnancy experience. The frequent trips to the bathroom might be annoying but are just how your body responds to the increase of the hormone's progesterone and human chorionic gonadotropin in your body."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "With your body losing fluids daily, it’s just that much more important to maintain proper water intake levels and stay on course to allow for a healthy baby and healthy you!"
+                    }
+                ],
+                title: "Water Intake During Pregnancy: Urinary Frequency"
+            },
+            {
+                fields: [
+                    {
+                        type: "PARAGRAPH",
+                        value: "Space out your glasses of water throughout the day rather than having it all at once."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "Keep a reusable water bottle with you."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "Replace other drinks with water. Have a glass of water instead of a soda or milkshake."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "Drink one glass of water before each meal."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "Eat more foods high in water. Eg Cucumber, Watermelons, etc."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "Some foods and drinks can irritate the bladder, so you can try to stay away from caffeine, carbonation and spicy foods."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "Empty your bladder whenever you feel the need to. Don’t forget, it’s totally normal!"
+                    }
+                ],
+                title: "Tips to improve your water intake habits"
+            },
+            {
+                fields: [
+                    {
+                        type: "PARAGRAPH",
+                        value: `Dehydration takes place when your body needs more water and you are not providing enough. Look out for these signs your body is giving you
+                            a. Thirst: you will feel thirsty and sometimes more hungry as well.
+                            b. Urine color: Pale yellow is the colour that you should aim for. That’s when you are hydrated well. Darker shades of yellow are indicators of dehydration. The number of visits to the bathroom increase during pregnancy. This is because of the higher metabolism. Keep an eye on the color of your urine, rather than frequency
+                            c. Brain fog: Water is an aspect of the functioning of the brain. It is estimated that even being dehydrated by 2%, impairs your cognitive abilities
+                            d. Drier Skin: lower water intake over times may lead of drier skins. Keep an eye.`
+                    }
+                ],
+                title: "Keep an eye on Dehydration"
+            }
+        ],
+        title: "Water Intake",
+        description: "Your water intake levels fall within the ideal range and you need to continue to maintain your status. You can always try better ways to improve and understand your water intake’s role in your child’s development.",
+        ideal: "10-12 glasses"
+    },
+    subtype: "anatomy",
+    score: 3
+},
+{
+    data: {
+        metaData: {
+            sequence: null
+        },
+        featureMedia: {
+            images: {
+                hero: null
+            },
+            image: null,
+            video: null
+        },
+        userData: {
+            scale: "Very Good",
+            value: null
+        },
+        sections: [
+            {
+                fields: [
+                    {
+                        type: "PARAGRAPH",
+                        value: "Every one of your cells, organs and tissues use water to help with temperature regulation, keeping hydrated and maintaining bodily functions. In addition, water acts as a lubricant and cushions your joints."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "When you're pregnant, you need more water than the average person in order to form amniotic fluid, produce extra blood, build new tissue, carry nutrients, enhance digestion, and flush out wastes and toxins."
+                    }
+                ],
+                title: "Why is water important ?"
+            },
+            {
+                fields: [
+                    {
+                        type: "PARAGRAPH",
+                        value: "Frequent urination is just a normal part of the pregnancy experience. The frequent trips to the bathroom might be annoying but are just how your body responds to the increase of the hormone's progesterone and human chorionic gonadotropin in your body."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "With your body losing fluids daily, it’s just that much more important to maintain proper water intake levels and stay on course to allow for a healthy baby and healthy you!"
+                    }
+                ],
+                title: "Water Intake During Pregnancy: Urinary Frequency"
+            },
+            {
+                fields: [
+                    {
+                        type: "PARAGRAPH",
+                        value: "Space out your glasses of water throughout the day rather than having it all at once."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "Keep a reusable water bottle with you."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "Replace other drinks with water. Have a glass of water instead of a soda or milkshake."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "Drink one glass of water before each meal."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "Eat more foods high in water. Eg Cucumber, Watermelons, etc."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "Some foods and drinks can irritate the bladder, so you can try to stay away from caffeine, carbonation and spicy foods."
+                    },
+                    {
+                        type: "PARAGRAPH",
+                        value: "Empty your bladder whenever you feel the need to. Don’t forget, it’s totally normal!"
+                    }
+                ],
+                title: "Tips to improve your water intake habits"
+            },
+            {
+                fields: [
+                    {
+                        type: "PARAGRAPH",
+                        value: `Dehydration takes place when your body needs more water and you are not providing enough. Look out for these signs your body is giving you
+                            a. Thirst: you will feel thirsty and sometimes more hungry as well.
+                            b. Urine color: Pale yellow is the colour that you should aim for. That’s when you are hydrated well. Darker shades of yellow are indicators of dehydration. The number of visits to the bathroom increase during pregnancy. This is because of the higher metabolism. Keep an eye on the color of your urine, rather than frequency
+                            c. Brain fog: Water is an aspect of the functioning of the brain. It is estimated that even being dehydrated by 2%, impairs your cognitive abilities
+                            d. Drier Skin: lower water intake over times may lead of drier skins. Keep an eye.`
+                    }
+                ],
+                title: "Keep an eye on Dehydration"
+            }
+        ],
+        title: "Water Intake",
+        description: "Your water intake levels fall within the ideal range and you need to continue to maintain your status. You can always try better ways to improve and understand your water intake’s role in your child’s development.",
+        ideal: "10-12 glasses"
+    },
+    subtype: "anatomy",
+    score: 4
+}]

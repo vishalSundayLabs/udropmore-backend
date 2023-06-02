@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.articalBasedOnScore = void 0;
+exports.anatomyArticals = exports.articalBasedOnScore = void 0;
 exports.articalBasedOnScore = [
     {
         data: {
@@ -1498,9 +1498,9 @@ exports.articalBasedOnScore = [
         subtype: "emotion",
         score: 26,
         maxScore: 40
-    },
-    //anatomy
-    {
+    }
+];
+exports.anatomyArticals = [{
         data: {
             metaData: {
                 sequence: null
@@ -1887,5 +1887,4 @@ exports.articalBasedOnScore = [
         },
         subtype: "anatomy",
         score: 4
-    }
-];
+    }];

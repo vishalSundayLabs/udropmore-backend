@@ -1,6 +1,6 @@
 import { query } from "express"
 import { anatomy } from "../../Constant/LeapScore/Anatomy"
-import { articalBasedOnScore } from "../../Constant/LeapScore/ArticalBasedOnScore"
+import { anatomyArticals, articalBasedOnScore } from "../../Constant/LeapScore/ArticalBasedOnScore"
 import { emotion } from "../../Constant/LeapScore/Emotion"
 import { getLeapCategories } from "../../Constant/LeapScore/LeapCategories"
 import { lifeStyle } from "../../Constant/LeapScore/LifeStyle"
@@ -823,10 +823,25 @@ export const getArticalBasedOnLeapScoreAndStatus = async (req, res) => {
         const leapScoreQuestionnaire = await LeapScoreModel.findOne({ userId: params.motherId, pregnancyWeek: query.week, isDeleted: false })
 
         const categoryScore = leapScoreQuestionnaire.details
-        const articalOfLifestyle = findArticalBasedOnScore(categoryScore.lifestyle.answers, "lifestyle")
-        const articalOfEmotion = findArticalBasedOnScore(categoryScore.emotion.answers, "emotion")
-        const articalOfAnatomy = findArticalBasedOnScore(categoryScore.anatomy.answers, "anatomy")
-        const articalOfPhysical = findArticalBasedOnScore(categoryScore.physical.answers, "physical")
+
+        if (query.height && query.weight) {
+            categoryScore.anatomy.score = (parseFloat(query.weight) / (Math.pow((parseFloat(query.height) * 0.0254), 2))).toFixed(1)
+            await leapScoreQuestionnaire.save()
+        }
+
+        let articalOfLifestyle = []
+        let articalOfEmotion = []
+        let articalOfPhysical = []
+        let articalOfAnatomy = []
+
+        if (leapScoreQuestionnaire.status == "COMPLETED") {
+        articalOfLifestyle = findArticalBasedOnScore(categoryScore.lifestyle.answers, "lifestyle")
+        articalOfEmotion = findArticalBasedOnScore(categoryScore.emotion.answers, "emotion")
+        articalOfAnatomy = getArticalForAnatomy(categoryScore.anatomy.score)
+        articalOfPhysical = findArticalBasedOnScore(categoryScore.physical.answers, "physical")
+        }
+
+
 
         return res.status(HTTP_OK).send({
             success: true,
@@ -840,7 +855,7 @@ export const getArticalBasedOnLeapScoreAndStatus = async (req, res) => {
             score: {
                 lifestyle: categoryScore.lifestyle.score,
                 emotion: categoryScore.emotion.score,
-                anatomy: categoryScore.anatomy.score,
+                anatomy: getAnatomyScoreByBMI(categoryScore.anatomy.score),
                 physical: categoryScore.physical.score
             },
             leapScoreStatus: leapScoreQuestionnaire.status
@@ -991,7 +1006,7 @@ const findArticalBasedOnScore = (data, category) => {
             }
         }
     }
-    console.log("line 994", totalScoreForemotion)
+
     if (category == "emotion") {
         artical = []
         if (totalScoreForemotion >= 0 && totalScoreForemotion <= 13) {
@@ -1018,4 +1033,30 @@ const checkFinalLeapScoreStatus = (data) => {
     const maxValue = Math.max(Number(statusPreference[data.emotion.status ? data.emotion.status : "PENDING"]), Number(statusPreference[data.anatomy.status ? data.anatomy.status : "PENDING"]), Number(statusPreference[data.lifestyle.status ? data.lifestyle.status : "PENDING"]), Number(statusPreference[data.physical.status ? data.physical.status : "PENDING"]))
 
     return statusPreference[maxValue]
+}
+
+const getAnatomyScoreByBMI = (bmi) => {
+
+    if (bmi < 18.5) {
+        return 1;
+    } else if (bmi >= 18.5 && bmi < 23) {
+        return 4
+    } else if (bmi >= 23 && bmi < 25) {
+        return 2
+    } else {
+        return 1
+    }
+
+}
+
+const getArticalForAnatomy = (score) => {
+    if (score < 18.5) {
+        return [anatomyArticals[0]];
+    } else if (score >= 18.5 && score < 23) {
+        return [anatomyArticals[1]];
+    } else if (score >= 23 && score < 25) {
+        return [anatomyArticals[2]];
+    } else {
+        return [anatomyArticals[3]];
+    }
 }
