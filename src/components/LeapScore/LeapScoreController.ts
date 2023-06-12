@@ -211,7 +211,6 @@ export const getArticalBasedOnLeapScoreAndStatus = async (req, res) => {
             nextLeapScore: LeapScoreQuestionnaireSchedule["LIFESTYLE"][nextLeapIndex + 1]
         })
 
-
     } catch (error) {
 
         let response = new ResponseError({
@@ -220,7 +219,7 @@ export const getArticalBasedOnLeapScoreAndStatus = async (req, res) => {
         });
 
         return res.status(500).json(response);
-
+        
     }
 }
 
