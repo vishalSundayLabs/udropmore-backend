@@ -69,8 +69,8 @@ const getLeapScoreQuestions = (req, res) => __awaiter(void 0, void 0, void 0, fu
             success: true,
             message: `Get All Questions ${query.category} successfully.`,
             result: question,
-            score: savedQuestions.details[query.category.toLowerCase()].score ? savedQuestions.details[query.category.toLowerCase()].score : 0,
-            leapScoreStatus: savedQuestions.status ? savedQuestions.status : "PENDING",
+            score: savedQuestions ? savedQuestions.details[query.category.toLowerCase()].score ? savedQuestions.details[query.category.toLowerCase()].score : 0 : 0,
+            leapScoreStatus: savedQuestions ? savedQuestions.status ? savedQuestions.status : "PENDING" : "PENDING",
             nextLeapScore: QuestionnaireSchedule_1.LeapScoreQuestionnaireSchedule[query.category.toUpperCase()][nextLeapIndex + 1]
         });
     }

@@ -72,8 +72,8 @@ export const getLeapScoreQuestions = async (req, res) => {
             success: true,
             message: `Get All Questions ${query.category} successfully.`,
             result: question,
-            score: savedQuestions.details[query.category.toLowerCase()].score ? savedQuestions.details[query.category.toLowerCase()].score : 0,
-            leapScoreStatus: savedQuestions.status ? savedQuestions.status : "PENDING",
+            score: savedQuestions ? savedQuestions.details[query.category.toLowerCase()].score ? savedQuestions.details[query.category.toLowerCase()].score : 0 : 0,
+            leapScoreStatus: savedQuestions ? savedQuestions.status ? savedQuestions.status : "PENDING" : "PENDING",
             nextLeapScore: LeapScoreQuestionnaireSchedule[query.category.toUpperCase()][nextLeapIndex + 1]
         })
 
@@ -162,7 +162,7 @@ export const getArticalBasedOnLeapScoreAndStatus = async (req, res) => {
 
         const leapScoreQuestionnaire = await LeapScoreModel.findOne({ userId: params.motherId, pregnancyWeek: query.week, isDeleted: false })
 
-        if(!leapScoreQuestionnaire) {
+        if (!leapScoreQuestionnaire) {
 
             return res.status(HTTP_NOT_FOUND).send(new ResponseSuccess({
                 success: false,
@@ -219,7 +219,7 @@ export const getArticalBasedOnLeapScoreAndStatus = async (req, res) => {
         });
 
         return res.status(500).json(response);
-        
+
     }
 }
 
