@@ -1,6 +1,6 @@
 import { bodyTraverse } from "../../helpers/bodyTraverse"
 import { pagination } from "../../helpers/pagination"
-import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_OK } from "../../Constant/Master"
+import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_NOT_FOUND, HTTP_OK } from "../../Constant/Master"
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
 import UserModel from "../Users/UserModel"
 import { ClinicModel } from "./clinicModel"
@@ -243,6 +243,41 @@ export const getAllDoctorOfClinic = async (req, res) => {
             success: true,
             message: "find all doctors of this clinic successfully.",
             result: doctors
+        }))
+
+    } catch (error) {
+
+        let response = new ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+
+        return res.status(500).json(response);
+
+    }
+
+}
+
+export const getClinicById = async (req, res) => {
+
+    const params = req.params
+
+    try {
+
+        const clinicData = await ClinicModel.findOne({ _id: params.clinicId, isDeleted: false })
+
+        if (!clinicData) {
+            return res.status(HTTP_NOT_FOUND).send(new ResponseSuccess({
+                success: true,
+                message: "Clinic Not Found!",
+                result: null
+            }))
+        }
+
+        return res.status(HTTP_OK).send(new ResponseSuccess({
+            success: true,
+            message: "find Clinic by Id successfully.",
+            result: clinicData
         }))
 
     } catch (error) {

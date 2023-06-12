@@ -6,669 +6,9 @@ import { getLeapCategories } from "../../Constant/LeapScore/LeapCategories"
 import { lifeStyle } from "../../Constant/LeapScore/LifeStyle"
 import { physicalFitness } from "../../Constant/LeapScore/PhysicalFitness"
 import { LeapScoreQuestionnaireSchedule } from "../../Constant/LeapScore/QuestionnaireSchedule"
-import { HTTP_BAD_REQUEST, HTTP_OK } from "../../Constant/Master"
+import { HTTP_BAD_REQUEST, HTTP_NOT_FOUND, HTTP_OK } from "../../Constant/Master"
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
 import LeapScoreModel from "./LeapScoreModel"
-
-
-const data = {
-    userId: "6469d966f99bc2081c22d6c3",
-    pregnancyWeek: 6,
-    details: {
-        physical: {
-            answers: [
-                {
-                    "category": "PHYSICAL",
-                    "subCategory": null,
-                    "section": [
-                        {
-                            "sectionName": null,
-                            "question": [
-                                {
-                                    "name": "Does your work involve vigorous-intensity activity that causes large increases in breathing or heart rate like [carrying or lifting heavy loads, digging/ grinding etc] for at least 10 minutes continuously?",
-                                    "options": {
-                                        "option": [
-                                            {
-                                                "option": "Yes",
-                                                "score": 2,
-                                                "isSelected": true
-                                            },
-                                            {
-                                                "option": "No",
-                                                "score": 2,
-                                                "isSelected": true
-                                            }
-                                        ],
-                                        "cacalculatedScore": 0,
-                                        "multiSelect": false
-                                    },
-                                    "subQuestions": [
-                                        {
-                                            "name": "In a typical week, how many days do you do vigourous activities at work ?",
-                                            "option": {
-                                                "A": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Monday",
-                                                            "isSelected": true
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                },
-                                                "B": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Tuesday",
-                                                            "isSelected": true
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                },
-                                                "C": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Wednesday",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                },
-                                                "D": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Thursday",
-                                                            "isSelected": true
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                },
-                                                "E": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Friday",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                },
-                                                "F": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Saturday",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                },
-                                                "G": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Sunday",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                }
-                                            },
-                                            "calculatedScore": 0,
-                                            "multiSelect": true
-                                        },
-                                        {
-                                            "name": "How much time do you spend doing vigorous activities at work in a typical day ?",
-                                            "option": {
-                                                "A": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Hours",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 2
-                                                },
-                                                "B": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Minutes",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 2
-                                                }
-                                            },
-                                            "calculatedScore": 0,
-                                            "multiSelect": true
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "sectionName": null,
-                            "question": {
-                                "name": "Does your work involve moderate-intensity activity, that causes small increases in breathing or heart rate such as carrying light loads for at least 10 minutes continuously ?",
-                                "options": {
-                                    "option": [
-                                        {
-                                            "option": "Yes",
-                                            "score": 2,
-                                            "isSelected": false,
-                                            "nextQuestionKey": null
-                                        },
-                                        {
-                                            "option": "No",
-                                            "score": 2,
-                                            "isSelected": false
-                                        }
-                                    ],
-                                    "calculatedScore": 0,
-                                    "multiSelect": false
-                                }
-                            },
-                            "subQuestions": [
-                                {
-                                    "name": "In a typical week, on how many days do you do moderateintensity activities as part of your work ?",
-                                    "option": {
-                                        "A": {
-                                            "options": [
-                                                {
-                                                    "name": "Monday",
-                                                    "isSelected": false
-                                                }
-                                            ],
-                                            "score": 1
-                                        },
-                                        "B": {
-                                            "options": [
-                                                {
-                                                    "name": "Tuesday",
-                                                    "isSelected": false
-                                                }
-                                            ],
-                                            "score": 1
-                                        },
-                                        "C": {
-                                            "options": [
-                                                {
-                                                    "name": "Wednesday",
-                                                    "isSelected": false
-                                                }
-                                            ],
-                                            "score": 1
-                                        },
-                                        "D": {
-                                            "options": [
-                                                {
-                                                    "name": "Thursday",
-                                                    "isSelected": false
-                                                }
-                                            ],
-                                            "score": 1
-                                        },
-                                        "E": {
-                                            "options": [
-                                                {
-                                                    "name": "Friday",
-                                                    "isSelected": false
-                                                }
-                                            ],
-                                            "score": 1
-                                        },
-                                        "F": {
-                                            "options": [
-                                                {
-                                                    "name": "Saturday",
-                                                    "isSelected": false
-                                                }
-                                            ],
-                                            "score": 1
-                                        },
-                                        "G": {
-                                            "options": [
-                                                {
-                                                    "name": "Sunday",
-                                                    "isSelected": false
-                                                }
-                                            ],
-                                            "score": 1
-                                        }
-                                    },
-                                    "calculatedScore": 0,
-                                    "multiSelect": true
-                                },
-                                {
-                                    "name": "How much time do you spend doing moderate-intensity activities at work on a typical day ?",
-                                    "option": {
-                                        "A": {
-                                            "options": [
-                                                {
-                                                    "name": "Hours",
-                                                    "isSelected": false
-                                                }
-                                            ],
-                                            "score": 2
-                                        },
-                                        "B": {
-                                            "options": [
-                                                {
-                                                    "name": "Minutes",
-                                                    "isSelected": false
-                                                }
-                                            ],
-                                            "score": 2
-                                        }
-                                    },
-                                    "calculatedScore": 0,
-                                    "multiSelect": true
-                                }
-                            ]
-                        },
-                        {
-                            "sectionName": null,
-                            "question": [
-                                {
-                                    "name": "Do you walk or use a cycle for at least 10 mins continuously to and from places ?",
-                                    "options": {
-                                        "option": [
-                                            {
-                                                "option": "Yes",
-                                                "score": 2,
-                                                "isSelected": false,
-                                                "nextQuestionKey": null
-                                            },
-                                            {
-                                                "option": "No",
-                                                "score": 2,
-                                                "isSelected": false
-                                            }
-                                        ],
-                                        "calculatedScore": 0,
-                                        "multiSelect": false
-                                    },
-                                    "subQuestions": [
-                                        {
-                                            "name": "In a typical week, on how many days do you walk or cycle to and from places ?",
-                                            "option": {
-                                                "A": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Monday",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                },
-                                                "B": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Tuesday",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                },
-                                                "C": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Wednesday",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                },
-                                                "D": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Thursday",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                },
-                                                "E": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Friday",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                },
-                                                "F": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Saturday",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                },
-                                                "G": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Sunday",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                }
-                                            },
-                                            "calculatedScore": 0,
-                                            "multiSelect": true
-                                        },
-                                        {
-                                            "name": "How much time do you spend walking or cycling to and from places on a typical day ?",
-                                            "option": {
-                                                "A": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Hours",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 2
-                                                },
-                                                "B": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Minutes",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 2
-                                                }
-                                            },
-                                            "calculatedScore": 0,
-                                            "multiSelect": true
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "sectionName": null,
-                            "question": [
-                                {
-                                    "name": "Do you do any vigorous-intensity sports, fitness or recreational (leisure) activities that cause large increases in breathing or heart rate like [running or football] for at least 10 minutes continuously ?",
-                                    "options": {
-                                        "option": [
-                                            {
-                                                "option": "Yes",
-                                                "score": 2,
-                                                "isSelected": false,
-                                                "nextQuestionKey": null
-                                            },
-                                            {
-                                                "option": "No",
-                                                "score": 2,
-                                                "isSelected": false
-                                            }
-                                        ],
-                                        "calculatedScore": 0,
-                                        "multiSelect": false
-                                    },
-                                    "subQuestions": [
-                                        {
-                                            "name": "In a typical week, on how many days do you do vigorous intensity sports, fitness or recreational (leisure) activities ?",
-                                            "option": {
-                                                "A": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Monday",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                },
-                                                "B": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Tuesday",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                },
-                                                "C": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Wednesday",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                },
-                                                "D": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Thursday",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                },
-                                                "E": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Friday",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                },
-                                                "F": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Saturday",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                },
-                                                "G": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Sunday",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                }
-                                            },
-                                            "calculatedScore": 0,
-                                            "multiSelect": true
-                                        },
-                                        {
-                                            "name": "How much time do you spend doing vigorous-intensity sports, fitness or recreational activities on a typical day ?",
-                                            "option": {
-                                                "A": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Hours",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 2
-                                                },
-                                                "B": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Minutes",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 2
-                                                }
-                                            },
-                                            "calculatedScore": 0,
-                                            "multiSelect": true
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "sectionName": null,
-                            "question": [
-                                {
-                                    "name": "Do you do any moderate-intensity sports, fitness or recreational (leisure) activities that cause a small increase in breathing or heart rate such as brisk walking, [cycling, swimming, yoga] for at least 10 minutes continuously ?",
-                                    "options": {
-                                        "option": [
-                                            {
-                                                "option": "Yes",
-                                                "score": 2,
-                                                "isSelected": false,
-                                                "nextQuestionKey": null
-                                            },
-                                            {
-                                                "option": "No",
-                                                "score": 2,
-                                                "isSelected": false
-                                            }
-                                        ],
-                                        "calculatedScore": 0,
-                                        "multiSelect": false
-                                    },
-                                    "subQuestions": [
-                                        {
-                                            "name": "In a typical week, on how many days do you do moderate intensity sports, fitness or recreational (leisure) activities ?",
-                                            "option": {
-                                                "A": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Monday",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                },
-                                                "B": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Tuesday",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                },
-                                                "C": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Wednesday",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                },
-                                                "D": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Thursday",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                },
-                                                "E": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Friday",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                },
-                                                "F": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Saturday",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                },
-                                                "G": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Sunday",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 1
-                                                }
-                                            },
-                                            "calculatedScore": 0,
-                                            "multiSelect": true
-                                        },
-                                        {
-                                            "name": "How much time do you spend doing moderate-intensity sports, fitness or recreational (leisure) activities on a typical day ?",
-                                            "option": {
-                                                "A": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Hours",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 2
-                                                },
-                                                "B": {
-                                                    "options": [
-                                                        {
-                                                            "name": "Minutes",
-                                                            "isSelected": false
-                                                        }
-                                                    ],
-                                                    "score": 2
-                                                }
-                                            },
-                                            "calculatedScore": 0,
-                                            "multiSelect": true
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "sectionName": null,
-                            "question": [
-                                {
-                                    "name": "How much time do you usually spend sitting or reclining on a typical day ?",
-                                    "options": {
-                                        "option": [
-                                            {
-                                                "option": "Hours",
-                                                "score": 2,
-                                                "isSelected": false,
-                                                "nextQuestionKey": null
-                                            },
-                                            {
-                                                "option": "Minutes",
-                                                "score": 2,
-                                                "isSelected": false
-                                            }
-                                        ],
-                                        "calculatedScore": 0,
-                                        "multiSelect": false
-                                    },
-                                    "subQuestions": null
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        }
-    }
-}
-export const createLeapScoreQuestions = async (req, res) => {
-    try {
-        LeapScoreModel.create(data)
-
-        console.log("done")
-    } catch (error) {
-        console.log(error.message)
-    }
-}
 
 export const getLeapScoreQuestions = async (req, res) => {
 
@@ -835,10 +175,10 @@ export const getArticalBasedOnLeapScoreAndStatus = async (req, res) => {
         let articalOfAnatomy = []
 
         if (leapScoreQuestionnaire.status == "COMPLETED") {
-        articalOfLifestyle = findArticalBasedOnScore(categoryScore.lifestyle.answers, "lifestyle")
-        articalOfEmotion = findArticalBasedOnScore(categoryScore.emotion.answers, "emotion")
-        articalOfAnatomy = getArticalForAnatomy(categoryScore.anatomy.score)
-        articalOfPhysical = findArticalBasedOnScore(categoryScore.physical.answers, "physical")
+            articalOfLifestyle = findArticalBasedOnScore(categoryScore.lifestyle.answers, "lifestyle")
+            articalOfEmotion = findArticalBasedOnScore(categoryScore.emotion.answers, "emotion")
+            articalOfAnatomy = getArticalForAnatomy(categoryScore.anatomy.score)
+            articalOfPhysical = findArticalBasedOnScore(categoryScore.physical.answers, "physical")
         }
 
 
@@ -861,6 +201,60 @@ export const getArticalBasedOnLeapScoreAndStatus = async (req, res) => {
             leapScoreStatus: leapScoreQuestionnaire.status
         })
 
+
+    } catch (error) {
+
+        let response = new ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+
+        return res.status(500).json(response);
+
+    }
+}
+
+export const getAllLeapScore = async (req, res) => {
+    const params = req.params
+
+    if (!params.motherId) {
+
+        return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+            success: false,
+            message: `Bad Request! Mother ID  must be provide.`
+        }))
+
+    }
+
+    try {
+        const leapScore = await LeapScoreModel.find({ userId: params.motherId })
+        
+        if(!leapScore) {
+
+            return res.status(HTTP_NOT_FOUND).send(new ResponseSuccess({
+                success: false,
+                message: `Leap score not found!`
+            }))
+
+        }
+
+        const leapScoreList = leapScore.map((item) => {
+            return {
+                week: item.pregnancyWeek,
+                score: {
+                    emotion: item.details.emotion.score,
+                    anatomy: item.details.anatomy.score,
+                    lifeStyle: item.details.lifestyle.score,
+                    physical: item.details.physical.score
+                }
+            }
+        })
+
+        return res.status(HTTP_OK).send({
+            success: true,
+            message: `Get all week leap score successfully.`,
+            result: leapScoreList
+         })
 
     } catch (error) {
 

@@ -279,32 +279,55 @@ const userDetailsSchema = new mongoose.Schema({
                 dateOfDelivery: { type: Date, default: null },
                 weekOfDelivery: { type: Number, default: null },
                 typeOfDelivery: {
-                    vaginal: {
-                        name: { type: String, default: "Vaginal" },
-                        type: {
+                    normal: {
+                        name: { type: String, default: "Normal" },
+                        type:{
                             type: String,
-                            enum: ["Spontaneous", "Induced", null],
+                            enum: ["Term", "Pre term", null],
                             default: null
+                        },
+                        term:{
+                            name:{ type: String, default: "Term" },
+                            type:{
+                                type: String,
+                                enum: ["FTND Full Term Vaginal Delivery","FTVD Full Term Voccum Delivery","FTFD Full Term Forceps Delivery", null],
+                                default: null
+                            }
+                        },
+                        preTerm:{
+                            name:{ type: String, default: "Pre term" },
+                            type:{
+                                type: String,
+                                enum: ["INDUCED", "Spontaneoues","Pre term vaginal","Pre term forceps", null],
+                                default: null
+                            }
                         }
+                
                     },
                     cesareanSection: {
                         name: { type: String, default: "Cesarean section" },
                         type: {
                             type: String,
-                            enum: ["Emergency", "Elective", null],
+                            enum: ["Term", "Pre term", null],
                             default: null
                         },
+                        term:{
+                            name:{ type: String, default: "Term" },
+                            type:{
+                                type: String,
+                                enum: ["Emergency","Elective", null],
+                                default: null
+                            }
+                        },
+                        preTerm:{
+                            name:{ type: String, default: "Pre term" },
+                            type:{
+                                type: String,
+                                enum: ["Emergency","Elective", null],
+                                default: null
+                            }
+                        },
                         indications: [Object]
-                        /*
-                         Example Format : 
-                         indications: [
-                            { failureToProgress: false },
-                            { breechPresentation: false },
-                            { foetalDistress: false },
-                            { preEclampsia: false },
-                            { cpd: false }
-                        ]
-                        */
                     }
                 },
                 description: {

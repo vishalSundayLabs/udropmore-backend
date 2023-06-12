@@ -22,6 +22,7 @@ const LeapScoreQuestionnaireSchema = new mongoose.Schema({
         },
         anatomy: {
             answers: { type: Object, default: null },
+            score: { type: Number, default: 0 },
             status: {
                 type: String,
                 enum: ["PENDING", "EXPIRED", "COMPLETED", null],

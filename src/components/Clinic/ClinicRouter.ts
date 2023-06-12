@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { isAdmin } from '../../middleware/isAdmin';
 import { verifyToken } from '../../middleware/tokenVerify';
-import { createClinic, deleteClinic, getAllClinic, getAllDoctorOfClinic, getClinicByLatitudeAndLongitude, updateClinic } from './clinicController'
+import { createClinic, deleteClinic, getAllClinic, getAllDoctorOfClinic, getClinicById, getClinicByLatitudeAndLongitude, updateClinic } from './clinicController'
 
 const router = Router()
 //create new clinic
@@ -16,5 +16,7 @@ router.delete('/delete/:id', verifyToken, isAdmin, deleteClinic)
 router.post('/clinics', verifyToken, getClinicByLatitudeAndLongitude)
 //find all doctor of a clinic
 router.post('/doctors', verifyToken, getAllDoctorOfClinic)
+//find clinic by id 
+router.get('/details/:clinicId', verifyToken, getClinicById)
 
 export default router;

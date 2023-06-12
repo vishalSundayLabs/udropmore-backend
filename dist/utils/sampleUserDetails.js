@@ -231,13 +231,29 @@ exports.sampleUserDetails = {
                     dateOfDelivery: null,
                     weekOfDelivery: null,
                     typeOfDelivery: {
-                        vaginal: {
-                            name: "Vaginal",
+                        normal: {
+                            name: "Normal",
                             type: null,
+                            term: {
+                                name: "Term",
+                                type: null
+                            },
+                            preTerm: {
+                                name: "Pre term",
+                                type: null
+                            }
                         },
                         cesareanSection: {
                             name: "Cesarean section",
                             type: null,
+                            term: {
+                                name: "Term",
+                                type: null
+                            },
+                            preTerm: {
+                                name: "Pre term",
+                                type: null
+                            },
                             indications: [
                                 {
                                     name: "Failure to progress",

@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllDoctorOfClinic = exports.getClinicByLatitudeAndLongitude = exports.getAllClinic = exports.deleteClinic = exports.updateClinic = exports.createClinic = void 0;
+exports.getClinicById = exports.getAllDoctorOfClinic = exports.getClinicByLatitudeAndLongitude = exports.getAllClinic = exports.deleteClinic = exports.updateClinic = exports.createClinic = void 0;
 const bodyTraverse_1 = require("../../helpers/bodyTraverse");
 const pagination_1 = require("../../helpers/pagination");
 const Master_1 = require("../../Constant/Master");
@@ -189,3 +189,29 @@ const getAllDoctorOfClinic = (req, res) => __awaiter(void 0, void 0, void 0, fun
     }
 });
 exports.getAllDoctorOfClinic = getAllDoctorOfClinic;
+const getClinicById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const params = req.params;
+    try {
+        const clinicData = yield clinicModel_1.ClinicModel.findOne({ _id: params.clinicId, isDeleted: false });
+        if (!clinicData) {
+            return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseSuccess({
+                success: true,
+                message: "Clinic Not Found!",
+                result: null
+            }));
+        }
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "find Clinic by Id successfully.",
+            result: clinicData
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.getClinicById = getClinicById;

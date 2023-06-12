@@ -17,4 +17,6 @@ router.delete('/delete/:id', tokenVerify_1.verifyToken, isAdmin_1.isAdmin, clini
 router.post('/clinics', tokenVerify_1.verifyToken, clinicController_1.getClinicByLatitudeAndLongitude);
 //find all doctor of a clinic
 router.post('/doctors', tokenVerify_1.verifyToken, clinicController_1.getAllDoctorOfClinic);
+//find clinic by id 
+router.get('/details/:clinicId', tokenVerify_1.verifyToken, clinicController_1.getClinicById);
 exports.default = router;

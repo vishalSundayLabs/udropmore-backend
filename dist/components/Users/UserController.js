@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getDayOrTimeFromDate = exports.makeSlotsFormat = exports.getDoctorOfMotherById = exports.getPatientOfDoctorById = exports.mapMotherWithDoctor = exports.getAllUsers = exports.getSlots = exports.deleteUser = exports.userUpdate = exports.updateMother = exports.createUser = exports.getUserById = exports.getUser = void 0;
+exports.getDayOrTimeFromDate = exports.makeSlotsFormat = exports.userLogout = exports.getDoctorOfMotherById = exports.getPatientOfDoctorById = exports.mapMotherWithDoctor = exports.getAllUsers = exports.getSlots = exports.deleteUser = exports.userUpdate = exports.updateMother = exports.createUser = exports.getUserById = exports.getUser = void 0;
 // models
 const UserModel_1 = require("./UserModel");
 // classes
@@ -464,6 +464,40 @@ const getDoctorOfMotherById = (req, res) => __awaiter(void 0, void 0, void 0, fu
     }
 });
 exports.getDoctorOfMotherById = getDoctorOfMotherById;
+const userLogout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const user = yield UserModel_1.default.findOne({ _id: req.userId, userType: req.userType });
+        if (!user) {
+            return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseSuccess({
+                success: true,
+                message: "User not found!",
+                result: null
+            }));
+        }
+        if (!user.jwtToken) {
+            return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+                success: true,
+                message: "User already logout!",
+                result: null
+            }));
+        }
+        user.jwtToken = null;
+        yield user.save();
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "User logout successfully!",
+            result: null
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.userLogout = userLogout;
 const makeSlotsFormat = (slots, slotType) => {
     const slotsTime = slotType == 'INPERSON' ? +process.env.INPERSON_SLOT_TIME : slotType == "VIDEOCALL" ? +process.env.VIDEOCALL_SLOT_TIME : +process.env.INPERSON_SLOT_TIME;
     const newSlots = [];

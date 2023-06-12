@@ -1,3 +1,4 @@
+import UserModel from "../components/Users/UserModel"
 import { HTTP_BAD_REQUEST, HTTP_UNAUTHORIZED } from "../Constant/Master"
 import { ResponseError } from "../utils/ResponseClass"
 const jwt = require("jsonwebtoken")
@@ -28,7 +29,7 @@ export const verifyToken = (req, res, next) => {
 
     }
 
-    jwt.verify(token, process.env.JWTSECRET, (error, decoded) => {
+    jwt.verify(token, process.env.JWTSECRET, async (error, decoded) => {
 
         if (error) {
 
@@ -43,6 +44,18 @@ export const verifyToken = (req, res, next) => {
         req.userId = decoded.userId
         req.platform = decoded.platform
         req.userType = decoded.userType
+
+        const user = await UserModel.findOne({ _id: decoded.userId, userType: decoded.userType, isDeleted: false })
+
+        if (!user || user.jwtToken != token) {
+
+            return res.status(HTTP_UNAUTHORIZED).send(new ResponseError({
+                success: false,
+                message: "Unauthorized Token",
+                error: error
+            }))
+
+        }
 
         next()
 

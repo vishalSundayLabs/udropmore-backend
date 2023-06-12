@@ -48,46 +48,7 @@ const pastHistorySchema = new mongoose.Schema({
                 }
             },
             riskFactor: [Object],
-            /*
-            Example Format : riskFactor: [
-                { rxInfertility: false },
-                { peHtn: false },
-                { rhIncom: false },
-                { boh: false },
-                { gdmDm: false },
-                { hydramnios: false },
-                { fgr: false },
-                { cpd: false },
-                { obesity: false },
-                { thyroidDysfunction: false },
-                { iuiIvf: false },
-                { incompOs: false },
-                { oligohydramnolsPlacenta: false },
-                { prevCsMyomectomy: false },
-            ]
-            */
             complaints: [Object],
-            /*
-            Example Format : complaints: [
-                { skinChanges: false },
-                { bleedingGums: false },
-                { dizziness: false },
-                { backache: false },
-                { legPain: false },
-                { breathlessness: false },
-                { fatigue: false },
-                { pvBleeding: false },
-                { nausea: false },
-                { vommiting: false },
-                { pvSpotting: false },
-                { heartburnIndigestion: false },
-                { opvWhiteDischarge: false },
-                { swellingOrFluidRetention: false },
-                { weakness: false },
-                { abdominalPain: false },
-                { headaches: false },
-            ]
-            */
             currentMenstrualHistory: {
                 durationOfCycleDays: {
                     type: Number,
@@ -179,32 +140,54 @@ const pastHistorySchema = new mongoose.Schema({
                     dateOfDelivery: { type: Date, default: null },
                     weekOfDelivery: { type: Number, default: null },
                     typeOfDelivery: {
-                        vaginal: {
-                            name: { type: String, default: "Vaginal" },
+                        normal: {
+                            name: { type: String, default: "Normal" },
                             type: {
                                 type: String,
-                                enum: ["Spontaneous", "Induced", null],
+                                enum: ["Term", "Pre term", null],
                                 default: null
+                            },
+                            term: {
+                                name: { type: String, default: "Term" },
+                                type: {
+                                    type: String,
+                                    enum: ["FTND Full Term Vaginal Delivery", "FTVD Full Term Voccum Delivery", "FTFD Full Term Forceps Delivery", null],
+                                    default: null
+                                }
+                            },
+                            preTerm: {
+                                name: { type: String, default: "Pre term" },
+                                type: {
+                                    type: String,
+                                    enum: ["INDUCED", "Spontaneoues", "Pre term vaginal", "Pre term forceps", null],
+                                    default: null
+                                }
                             }
                         },
                         cesareanSection: {
                             name: { type: String, default: "Cesarean section" },
                             type: {
                                 type: String,
-                                enum: ["Emergency", "Elective", null],
+                                enum: ["Term", "Pre term", null],
                                 default: null
                             },
+                            term: {
+                                name: { type: String, default: "Term" },
+                                type: {
+                                    type: String,
+                                    enum: ["Emergency", "Elective", null],
+                                    default: null
+                                }
+                            },
+                            preTerm: {
+                                name: { type: String, default: "Pre term" },
+                                type: {
+                                    type: String,
+                                    enum: ["Emergency", "Elective", null],
+                                    default: null
+                                }
+                            },
                             indications: [Object]
-                            /*
-                             Example Format :
-                             indications: [
-                                { failureToProgress: false },
-                                { breechPresentation: false },
-                                { foetalDistress: false },
-                                { preEclampsia: false },
-                                { cpd: false }
-                            ]
-                            */
                         }
                     },
                     description: {
@@ -235,18 +218,6 @@ const pastHistorySchema = new mongoose.Schema({
                     },
                     operativeProcedure: {
                         procedureName: [Object],
-                        /*
-                        Example Format :
-                        procedureName: [
-                            { appendix: false },
-                            { lscs: false },
-                            { dAndESurgery: false },
-                            { cervicalStitch: false },
-                            { myonectomy: false },
-                            { mtp: false },
-                            { laparohupteroscopy: false }
-                        ]
-                        */
                         complicationsInTheProcedure: {
                             value: {
                                 type: String,
@@ -264,15 +235,6 @@ const pastHistorySchema = new mongoose.Schema({
                                 enum: ["Yes", "No", null], default: null
                             },
                             types: [Object]
-                            /*
-                             Example Fromat :
-                             types: [
-                                { epidural: false },
-                                { sa: false },
-                                { ga: false },
-                                { la: false },
-                            ]
-                            */
                         }
                     },
                     ancComplications: {
@@ -281,20 +243,6 @@ const pastHistorySchema = new mongoose.Schema({
                             enum: ["Yes", "No", null], default: null
                         },
                         types: [Object]
-                        /*
-                        Example Format :
-                        types: [
-                            { cervicalCirclage: false },
-                            { hypothyroidism: false },
-                            { htn: false },
-                            { aph: false },
-                            { gdm: false },
-                            { dm: false },
-                            { pretermLabour: false },
-                            { eclamapsia: false },
-                            { threatered: false }
-                        ]
-                        */
                     },
                     duringAndAfterDeliveryComplications: {
                         value: {
@@ -302,31 +250,12 @@ const pastHistorySchema = new mongoose.Schema({
                             enum: ["Yes", "No", null], default: null
                         },
                         types: [Object]
-                        /*
-                        Example Format :
-                         types: [
-                            { neonatalResurication: false },
-                            { pph: false },
-                            { postpartumPreEclamapsia: false },
-                            { neonatalHypoglycaemia: false },
-                        ]
-                        */
                     }
                 }]
         },
         fhAndPastDisease: {
             pastDiseasesHistory: {
                 pastDiseases: [Object],
-                /*
-                Example Format :
-                   pastDiseases: [
-                    { renalDisease: false },
-                    { jaundice: false },
-                    { heartDisease: false },
-                    { typhoidFever: false },
-                    { none: false }
-                ]
-                */
                 opreativeProcedure: {
                     value: {
                         type: String,
@@ -354,16 +283,6 @@ const pastHistorySchema = new mongoose.Schema({
                 },
             },
             allergies: [Object],
-            /*
-            Example Format :
-              allergies: [
-                { pollenAllergies: false },
-                { latexAllergy: false },
-                { foodAllergy: false },
-                { dust: false },
-                { drugs: false }
-            ]
-            */
             familyDiseaseHistory: {
                 maternal: [String],
                 paternal: [String],

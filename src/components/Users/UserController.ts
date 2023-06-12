@@ -559,7 +559,7 @@ export const getPatientOfDoctorById = async (req, res) => {
     const patientDetails = []
     for (let i = 0; i < patients.length; i++) {
       const patient = await UserDetailsModel.findOne({ userId: patients[i]._id, isDeleted: false }).exec()
-      patientDetails.push({...patient._doc,...patients[i]._doc})
+      patientDetails.push({ ...patient._doc, ...patients[i]._doc })
     }
 
     return res.status(HTTP_OK).send(new ResponseSuccess({
@@ -636,6 +636,50 @@ export const getDoctorOfMotherById = async (req, res) => {
 
 }
 
+export const userLogout = async (req, res) => {
+
+  try {
+
+    const user = await UserModel.findOne({ _id: req.userId, userType: req.userType })
+
+    if (!user) {
+
+      return res.status(HTTP_NOT_FOUND).send(new ResponseSuccess({
+        success: true,
+        message: "User not found!",
+        result: null
+      }))
+
+    }
+
+    if (!user.jwtToken) {
+      return res.status(HTTP_OK).send(new ResponseSuccess({
+        success: true,
+        message: "User already logout!",
+        result: null
+      }))
+    }
+
+    user.jwtToken = null
+    await user.save()
+    
+    return res.status(HTTP_OK).send(new ResponseSuccess({
+      success: true,
+      message: "User logout successfully!",
+      result: null
+    }))
+
+  } catch (error) {
+
+    let response = new ResponseError({
+      message: "Something went wrong",
+      error: error.message,
+    });
+
+    return res.status(500).json(response);
+
+  }
+}
 
 export const makeSlotsFormat = (slots, slotType) => {
 
@@ -698,5 +742,6 @@ export const getDayOrTimeFromDate = (date) => {
   }
 
 }
+
 
 
