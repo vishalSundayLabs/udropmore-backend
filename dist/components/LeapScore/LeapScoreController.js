@@ -132,6 +132,12 @@ const getArticalBasedOnLeapScoreAndStatus = (req, res) => __awaiter(void 0, void
     }
     try {
         const leapScoreQuestionnaire = yield LeapScoreModel_1.default.findOne({ userId: params.motherId, pregnancyWeek: query.week, isDeleted: false });
+        if (!leapScoreQuestionnaire) {
+            return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseSuccess({
+                success: false,
+                message: `Leap Questions not found for ${query.week}th week or may be User not found!`
+            }));
+        }
         const categoryScore = leapScoreQuestionnaire.details;
         if (query.height && query.weight) {
             categoryScore.anatomy.score = (parseFloat(query.weight) / (Math.pow((parseFloat(query.height) * 0.0254), 2))).toFixed(1);
@@ -147,6 +153,7 @@ const getArticalBasedOnLeapScoreAndStatus = (req, res) => __awaiter(void 0, void
             articalOfAnatomy = getArticalForAnatomy(categoryScore.anatomy.score);
             articalOfPhysical = findArticalBasedOnScore(categoryScore.physical.answers, "physical");
         }
+        const nextLeapIndex = QuestionnaireSchedule_1.LeapScoreQuestionnaireSchedule["LIFESTYLE"].indexOf(Number(query.week));
         return res.status(Master_1.HTTP_OK).send({
             success: true,
             message: `Get Artical based on score or status successfully.`,
@@ -162,7 +169,8 @@ const getArticalBasedOnLeapScoreAndStatus = (req, res) => __awaiter(void 0, void
                 anatomy: getAnatomyScoreByBMI(categoryScore.anatomy.score),
                 physical: categoryScore.physical.score
             },
-            leapScoreStatus: leapScoreQuestionnaire.status
+            leapScoreStatus: leapScoreQuestionnaire.status,
+            nextLeapScore: QuestionnaireSchedule_1.LeapScoreQuestionnaireSchedule["LIFESTYLE"][nextLeapIndex + 1]
         });
     }
     catch (error) {

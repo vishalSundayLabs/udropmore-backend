@@ -4,6 +4,7 @@ import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
 import { getDayOrTimeFromDate, makeSlotsFormat } from "../Users/UserController"
 import UserModel from "../Users/UserModel"
 import AppointmentModel from "./AppointmentModel"
+import UserDetailsModel from "../UserDetails/UserDetailsModel"
 
 export const createAppointment = async (req, res) => {
 
@@ -136,6 +137,7 @@ export const getAllAppointmentsOfADay = async (req, res) => {
             }
 
             const mother = await UserModel.findOne({ _id: item.motherId, isDeleted: false })
+            const motherDetails = await UserDetailsModel.findOne({ userId: item.motherId, isDeleted: false })
 
             if (!mother) {
                 continue
@@ -143,7 +145,7 @@ export const getAllAppointmentsOfADay = async (req, res) => {
 
             const { day, time } = getDayOrTimeFromDate(item.appointmentDateAndTime)
 
-            patientList.push({ appointmentId: item._id, motherId: item.motherId, name: mother.firstName, phoneNumber: mother.phoneNumber, appointmentTime: time, appointmentType: item.appointmentType, appointmentStatus: item.status })
+            patientList.push({ appointmentId: item._id, motherId: item.motherId, name: mother.firstName, phoneNumber: mother.phoneNumber, pregnancyWeek: motherDetails ? motherDetails.pregnancyWeek : null, appointmentTime: time, appointmentType: item.appointmentType, appointmentStatus: item.status })
 
         }
 

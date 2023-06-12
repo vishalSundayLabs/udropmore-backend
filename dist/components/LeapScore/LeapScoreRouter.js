@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
+const tokenVerify_1 = require("../../middleware/tokenVerify");
 const LeapScoreController_1 = require("./LeapScoreController");
 const router = (0, express_1.Router)();
-router.get("/questions/:motherId", LeapScoreController_1.getLeapScoreQuestions);
-router.put("/questions/:motherId", LeapScoreController_1.updateLeapScoreQuestionnairDetails);
-router.get("/artical/:motherId", LeapScoreController_1.getArticalBasedOnLeapScoreAndStatus);
-router.get("/all/score/:motherId", LeapScoreController_1.getAllLeapScore);
+router.get("/questions/:motherId", tokenVerify_1.verifyToken, LeapScoreController_1.getLeapScoreQuestions);
+router.put("/questions/:motherId", tokenVerify_1.verifyToken, LeapScoreController_1.updateLeapScoreQuestionnairDetails);
+router.get("/artical/:motherId", tokenVerify_1.verifyToken, LeapScoreController_1.getArticalBasedOnLeapScoreAndStatus);
+router.get("/all/score/:motherId", tokenVerify_1.verifyToken, LeapScoreController_1.getAllLeapScore);
 exports.default = router;

@@ -162,6 +162,15 @@ export const getArticalBasedOnLeapScoreAndStatus = async (req, res) => {
 
         const leapScoreQuestionnaire = await LeapScoreModel.findOne({ userId: params.motherId, pregnancyWeek: query.week, isDeleted: false })
 
+        if(!leapScoreQuestionnaire) {
+
+            return res.status(HTTP_NOT_FOUND).send(new ResponseSuccess({
+                success: false,
+                message: `Leap Questions not found for ${query.week}th week or may be User not found!`
+            }))
+
+        }
+
         const categoryScore = leapScoreQuestionnaire.details
 
         if (query.height && query.weight) {
@@ -181,7 +190,7 @@ export const getArticalBasedOnLeapScoreAndStatus = async (req, res) => {
             articalOfPhysical = findArticalBasedOnScore(categoryScore.physical.answers, "physical")
         }
 
-
+        const nextLeapIndex = LeapScoreQuestionnaireSchedule["LIFESTYLE"].indexOf(Number(query.week))
 
         return res.status(HTTP_OK).send({
             success: true,
@@ -198,7 +207,8 @@ export const getArticalBasedOnLeapScoreAndStatus = async (req, res) => {
                 anatomy: getAnatomyScoreByBMI(categoryScore.anatomy.score),
                 physical: categoryScore.physical.score
             },
-            leapScoreStatus: leapScoreQuestionnaire.status
+            leapScoreStatus: leapScoreQuestionnaire.status,
+            nextLeapScore: LeapScoreQuestionnaireSchedule["LIFESTYLE"][nextLeapIndex + 1]
         })
 
 
@@ -228,8 +238,8 @@ export const getAllLeapScore = async (req, res) => {
 
     try {
         const leapScore = await LeapScoreModel.find({ userId: params.motherId })
-        
-        if(!leapScore) {
+
+        if (!leapScore) {
 
             return res.status(HTTP_NOT_FOUND).send(new ResponseSuccess({
                 success: false,
@@ -254,7 +264,7 @@ export const getAllLeapScore = async (req, res) => {
             success: true,
             message: `Get all week leap score successfully.`,
             result: leapScoreList
-         })
+        })
 
     } catch (error) {
 

@@ -263,34 +263,6 @@ exports.lifeStyle = [
                         subQuestions: null
                     }]
             },
-            // {
-            //     sectionName: null,
-            //     question: [{
-            //         name: "How often do you consume green leafy vegetables ?",
-            //         options: {
-            //             option: [{
-            //                 option: "Never",
-            //                 score: 4,
-            //                 isSelected: false,
-            //             }, {
-            //                 option: "Sometimes",
-            //                 score: 3,
-            //                 isSelected: false,
-            //             }, {
-            //                 option: "Fairly often",
-            //                 score: 2,
-            //                 isSelected: false
-            //             }, {
-            //                 option: "Very often",
-            //                 score: 1,
-            //                 isSelected: false
-            //             }],
-            //             calculatedScore: 0,
-            //             multiSelect: false
-            //         },
-            //         subQuestions: null
-            //     }]
-            // },
             {
                 sectionName: null,
                 question: [{
@@ -449,9 +421,9 @@ exports.lifeStyle = [
                         subQuestions: [{
                                 name: "Which fruit do you consume ?",
                                 option: {
-                                    A: { options: [{ name: `Fruits like ${Food_1.food.tomatoes.name} / ${Food_1.food.amla.name} / ${Food_1.food.oranges.name} / ${Food_1.food.lemons.name}`, isSelected: false }, { name: Food_1.food.basil.name, isSelected: false }, { name: Food_1.food.carrots.name, isSelected: false }, { name: Food_1.food.brusselSprouts.name, isSelected: false }], score: 1 },
-                                    B: { options: [{ name: `Seasonal Fruits - ${Food_1.food.grapes.name}`, isSelected: false }, { name: Food_1.food.mangose.name, isSelected: false }, { name: `${Food_1.food.strawberries.name},${Food_1.food.pomegranate.name}, ${Food_1.food.figs.name}`, isSelected: false }], score: 1 },
-                                    C: { options: [{ name: `Berries - ${Food_1.food.bananas.name}, ${Food_1.food.watermelon.name}, ${Food_1.food.blueBerries.name}`, isSelected: false }], score: 1 },
+                                    A: { header: "Fruits like", options: [{ name: `${Food_1.food.tomatoes.name} / ${Food_1.food.amla.name} / ${Food_1.food.oranges.name} / ${Food_1.food.lemons.name}`, isSelected: false }, { name: Food_1.food.basil.name, isSelected: false }, { name: Food_1.food.carrots.name, isSelected: false }, { name: Food_1.food.brusselSprouts.name, isSelected: false }], score: 1 },
+                                    B: { header: "Seasonal Fruits ", options: [{ name: `${Food_1.food.grapes.name}`, isSelected: false }, { name: Food_1.food.mangose.name, isSelected: false }, { name: `${Food_1.food.strawberries.name},${Food_1.food.pomegranate.name}, ${Food_1.food.figs.name}`, isSelected: false }], score: 1 },
+                                    C: { header: "Berries", options: [{ name: `${Food_1.food.bananas.name}, ${Food_1.food.watermelon.name}, ${Food_1.food.blueBerries.name}`, isSelected: false }], score: 1 },
                                     D: { options: [{ name: Food_1.food.muskMelon.name, isSelected: false }, { name: Food_1.food.honeydew.name, isSelected: false }, { name: Food_1.food.papaya.name, isSelected: false }], score: 1 }
                                 },
                                 nutrient: {
@@ -1247,7 +1219,7 @@ exports.lifeStyle = [
                         },
                     },
                     {
-                        name: "How often do you consum food.chickpeas.name?",
+                        name: `How often do you consum ${Food_1.food.chickpeas.name}?`,
                         options: {
                             option: [{
                                     option: "Never",

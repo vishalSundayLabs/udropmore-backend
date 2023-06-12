@@ -16,6 +16,7 @@ const ResponseClass_1 = require("../../utils/ResponseClass");
 const UserController_1 = require("../Users/UserController");
 const UserModel_1 = require("../Users/UserModel");
 const AppointmentModel_1 = require("./AppointmentModel");
+const UserDetailsModel_1 = require("../UserDetails/UserDetailsModel");
 const createAppointment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     const reqData = {
@@ -104,11 +105,12 @@ const getAllAppointmentsOfADay = (req, res) => __awaiter(void 0, void 0, void 0,
                 patientMap.set(motherId, patientMap.get(motherId) + 1);
             }
             const mother = yield UserModel_1.default.findOne({ _id: item.motherId, isDeleted: false });
+            const motherDetails = yield UserDetailsModel_1.default.findOne({ userId: item.motherId, isDeleted: false });
             if (!mother) {
                 continue;
             }
             const { day, time } = (0, UserController_1.getDayOrTimeFromDate)(item.appointmentDateAndTime);
-            patientList.push({ appointmentId: item._id, motherId: item.motherId, name: mother.firstName, phoneNumber: mother.phoneNumber, appointmentTime: time, appointmentType: item.appointmentType, appointmentStatus: item.status });
+            patientList.push({ appointmentId: item._id, motherId: item.motherId, name: mother.firstName, phoneNumber: mother.phoneNumber, pregnancyWeek: motherDetails ? motherDetails.pregnancyWeek : null, appointmentTime: time, appointmentType: item.appointmentType, appointmentStatus: item.status });
         }
         let newPatient = 0;
         for (let [key, val] of patientMap) {

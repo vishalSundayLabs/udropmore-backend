@@ -15,32 +15,32 @@ export const lifeStyle = [
                             option: "<7 hours",
                             score: 2,
                             isSelected: false,
-                            articalIndex:1
+                            articalIndex: 1
                         }, {
                             option: "7 hours",
                             score: 4,
                             isSelected: false,
-                            articalIndex:3
+                            articalIndex: 3
                         }, {
                             option: "8 hours",
                             score: 4,
                             isSelected: false,
-                            articalIndex:3
+                            articalIndex: 3
                         }, {
                             option: "9 hours",
                             score: 3,
                             isSelected: false,
-                            articalIndex:2
+                            articalIndex: 2
                         }, {
                             option: "10 hours",
                             score: 3,
                             isSelected: false,
-                            articalIndex:2
+                            articalIndex: 2
                         }, {
                             option: "More than 10 hours",
                             score: 1,
                             isSelected: false,
-                            articalIndex:0
+                            articalIndex: 0
                         }
                         ],
                         calculatedScore: 0,
@@ -58,22 +58,22 @@ export const lifeStyle = [
                             option: "< 8 glasses per day",
                             score: 1,
                             isSelected: false,
-                            articalIndex:4
+                            articalIndex: 4
                         }, {
                             option: "8 - 10 glasses per day",
                             score: 3,
                             isSelected: false,
-                            articalIndex:6
+                            articalIndex: 6
                         }, {
                             option: "10 - 12 glasses",
                             score: 4,
                             isSelected: false,
-                            articalIndex:7
+                            articalIndex: 7
                         }, {
                             option: "> 12 glasses",
                             score: 2,
                             isSelected: false,
-                            articalIndex:5
+                            articalIndex: 5
                         }],
                         calculatedScore: 0,
                         multiSelect: false
@@ -261,34 +261,6 @@ export const lifeStyle = [
                     subQuestions: null
                 }]
             },
-            // {
-            //     sectionName: null,
-            //     question: [{
-            //         name: "How often do you consume green leafy vegetables ?",
-            //         options: {
-            //             option: [{
-            //                 option: "Never",
-            //                 score: 4,
-            //                 isSelected: false,
-            //             }, {
-            //                 option: "Sometimes",
-            //                 score: 3,
-            //                 isSelected: false,
-            //             }, {
-            //                 option: "Fairly often",
-            //                 score: 2,
-            //                 isSelected: false
-            //             }, {
-            //                 option: "Very often",
-            //                 score: 1,
-            //                 isSelected: false
-            //             }],
-            //             calculatedScore: 0,
-            //             multiSelect: false
-            //         },
-            //         subQuestions: null
-            //     }]
-            // },
             {
                 sectionName: null,
                 question: [{
@@ -448,9 +420,9 @@ export const lifeStyle = [
                     subQuestions: [{
                         name: "Which fruit do you consume ?",
                         option: {
-                            A: { options: [{ name: `Fruits like ${food.tomatoes.name} / ${food.amla.name} / ${food.oranges.name} / ${food.lemons.name}`, isSelected: false }, { name: food.basil.name, isSelected: false }, { name: food.carrots.name, isSelected: false }, { name: food.brusselSprouts.name, isSelected: false }], score: 1 },
-                            B: { options: [{ name: `Seasonal Fruits - ${food.grapes.name}`, isSelected: false }, { name: food.mangose.name, isSelected: false }, { name: `${food.strawberries.name},${food.pomegranate.name}, ${food.figs.name}`, isSelected: false }], score: 1 },
-                            C: { options: [{ name: `Berries - ${food.bananas.name}, ${food.watermelon.name}, ${food.blueBerries.name}`, isSelected: false }], score: 1 },
+                            A: { header: "Fruits like", options: [{ name: `${food.tomatoes.name} / ${food.amla.name} / ${food.oranges.name} / ${food.lemons.name}`, isSelected: false }, { name: food.basil.name, isSelected: false }, { name: food.carrots.name, isSelected: false }, { name: food.brusselSprouts.name, isSelected: false }], score: 1 },
+                            B: { header: "Seasonal Fruits ", options: [{ name: `${food.grapes.name}`, isSelected: false }, { name: food.mangose.name, isSelected: false }, { name: `${food.strawberries.name},${food.pomegranate.name}, ${food.figs.name}`, isSelected: false }], score: 1 },
+                            C: { header: "Berries", options: [{ name: `${food.bananas.name}, ${food.watermelon.name}, ${food.blueBerries.name}`, isSelected: false }], score: 1 },
                             D: { options: [{ name: food.muskMelon.name, isSelected: false }, { name: food.honeydew.name, isSelected: false }, { name: food.papaya.name, isSelected: false }], score: 1 }
                         },
                         nutrient: {
@@ -1270,7 +1242,7 @@ export const lifeStyle = [
                         },
                     },
                     {
-                        name: "How often do you consum food.chickpeas.name?",
+                        name: `How often do you consum ${food.chickpeas.name}?`,
                         options: {
                             option: [{
                                 option: "Never",
