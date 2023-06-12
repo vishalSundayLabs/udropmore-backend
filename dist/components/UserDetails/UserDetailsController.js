@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getCurrentMedications = exports.getPastHistoryMasterConstant = exports.getWeightByBmi = exports.getUserDetailsbyId = exports.updateUserDetails = exports.createUserDetails = void 0;
+exports.deleteBookmarkedArticles = exports.updateBookmarkedArticles = exports.getBookmarkedArticles = exports.getCurrentMedications = exports.getPastHistoryMasterConstant = exports.getWeightByBmi = exports.getUserDetailsbyId = exports.updateUserDetails = exports.createUserDetails = void 0;
 const bodyTraverse_1 = require("../../helpers/bodyTraverse");
 const Master_1 = require("../../Constant/Master");
 const ResponseClass_1 = require("../../utils/ResponseClass");
@@ -252,3 +252,85 @@ const getCurrentMedications = (req, res) => __awaiter(void 0, void 0, void 0, fu
     }
 });
 exports.getCurrentMedications = getCurrentMedications;
+//articles related controllers
+const getBookmarkedArticles = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const params = req.params;
+    try {
+        const bookmarkedData = yield UserDetailsModel_1.default.findOne({ userId: params.motherId, isDeleted: false }).select({ bookmarkedArticles: true });
+        if (bookmarkedData.bookmarkedArticles.length == 0) {
+            return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseSuccess({
+                success: true,
+                message: "Bookmark articles not found!"
+            }));
+        }
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "Bookmark articles get successfully",
+            result: bookmarkedData.bookmarkedArticles
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.getBookmarkedArticles = getBookmarkedArticles;
+const updateBookmarkedArticles = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const params = req.params;
+    const body = req.body;
+    if (!body.articleData) {
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: "Bad Request! Data must be provide for update."
+        }));
+    }
+    try {
+        const bookmarkedData = yield UserDetailsModel_1.default.findOne({ userId: params.motherId, isDeleted: false });
+        bookmarkedData.bookmarkedArticles.push(body.articleData);
+        yield bookmarkedData.save();
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "Bookmark articles save successfully",
+            result: bookmarkedData.bookmarkedArticles
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.updateBookmarkedArticles = updateBookmarkedArticles;
+const deleteBookmarkedArticles = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const params = req.params;
+    const body = req.body;
+    try {
+        let bookmarkedData = yield UserDetailsModel_1.default.findOne({ userId: params.motherId, isDeleted: false }, { bookmarkedArticles: true });
+        if (bookmarkedData.bookmarkedArticles.length == 0) {
+            return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseSuccess({
+                success: true,
+                message: "Bookmark articles not found!"
+            }));
+        }
+        bookmarkedData.bookmarkedArticles = bookmarkedData.bookmarkedArticles.filter((item, index) => index != body.articleIndex);
+        yield bookmarkedData.save();
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "Bookmark articles delete successfully",
+            result: bookmarkedData.bookmarkedArticles
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.deleteBookmarkedArticles = deleteBookmarkedArticles;

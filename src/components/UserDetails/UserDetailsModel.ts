@@ -549,6 +549,7 @@ const userDetailsSchema = new mongoose.Schema({
 
         }
     ],
+    bookmarkedArticles:[],
     isDraft: { type: Boolean, default: false },
     createdBy: {
         type: mongoose.SchemaTypes.ObjectId,

@@ -181,9 +181,9 @@ export const getUserDetailsbyId = async (req, res) => {
         // }
 
         // userDetails.pastHisory = pastHistoryData.pastHistory ? pastHistoryData.pastHistory : []
-       
+
         //not deploy
- 
+
         const currentWeek = calculateCurrentWeekAndDays(userDetails.lastMenstrualDate)
 
         userDetails.pregnancyWeek = currentWeek.week
@@ -329,4 +329,119 @@ export const getCurrentMedications = async (req, res) => {
 
     }
 
+}
+
+//articles related controllers
+
+export const getBookmarkedArticles = async (req, res) => {
+
+    const params = req.params
+
+    try {
+
+        const bookmarkedData = await UserDetailsModel.findOne({ userId: params.motherId, isDeleted: false }).select({ bookmarkedArticles: true })
+
+        if (bookmarkedData.bookmarkedArticles.length == 0) {
+
+            return res.status(HTTP_NOT_FOUND).send(new ResponseSuccess({
+                success: true,
+                message: "Bookmark articles not found!"
+            }))
+
+        }
+
+        return res.status(HTTP_OK).send(new ResponseSuccess({
+            success: true,
+            message: "Bookmark articles get successfully",
+            result: bookmarkedData.bookmarkedArticles
+        }))
+
+    } catch (error) {
+
+        let response = new ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+
+        return res.status(500).json(response);
+
+    }
+}
+
+export const updateBookmarkedArticles = async (req, res) => {
+
+    const params = req.params
+    const body = req.body
+
+    if (!body.articleData) {
+        return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+            success: false,
+            message: "Bad Request! Data must be provide for update."
+        }))
+    }
+
+    try {
+
+        const bookmarkedData = await UserDetailsModel.findOne({ userId: params.motherId, isDeleted: false })
+
+        bookmarkedData.bookmarkedArticles.push(body.articleData)
+
+        await bookmarkedData.save()
+
+        return res.status(HTTP_OK).send(new ResponseSuccess({
+            success: true,
+            message: "Bookmark articles save successfully",
+            result: bookmarkedData.bookmarkedArticles
+        }))
+
+    } catch (error) {
+
+        let response = new ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+
+        return res.status(500).json(response);
+
+    }
+}
+
+export const deleteBookmarkedArticles = async (req, res) => {
+
+    const params = req.params
+    const body = req.body
+
+    try {
+
+        let bookmarkedData = await UserDetailsModel.findOne({ userId: params.motherId, isDeleted: false }, { bookmarkedArticles: true })
+
+        if (bookmarkedData.bookmarkedArticles.length==0) {
+
+            return res.status(HTTP_NOT_FOUND).send(new ResponseSuccess({
+                success: true,
+                message: "Bookmark articles not found!"
+            }))
+
+        }
+
+        bookmarkedData.bookmarkedArticles = bookmarkedData.bookmarkedArticles.filter((item, index) => index != body.articleIndex)
+
+        await bookmarkedData.save()
+
+        return res.status(HTTP_OK).send(new ResponseSuccess({
+            success: true,
+            message: "Bookmark articles delete successfully",
+            result: bookmarkedData.bookmarkedArticles
+        }))
+
+    } catch (error) {
+
+        let response = new ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+
+        return res.status(500).json(response);
+
+    }
 }

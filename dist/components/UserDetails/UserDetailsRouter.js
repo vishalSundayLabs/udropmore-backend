@@ -10,4 +10,7 @@ router.get('/getuser/details/:motherId', tokenVerify_1.verifyToken, UserDetailsC
 router.get('/:motherId/weights', tokenVerify_1.verifyToken, UserDetailsController_1.getWeightByBmi);
 router.get("/pastHistoryMaster", UserDetailsController_1.getPastHistoryMasterConstant);
 router.get("/currentMedications/details/:motherId", tokenVerify_1.verifyToken, UserDetailsController_1.getCurrentMedications);
+router.get("/get/bookmarked/articles/:motherId", tokenVerify_1.verifyToken, UserDetailsController_1.getBookmarkedArticles);
+router.put("/add/bookmarked/articles/:motherId", tokenVerify_1.verifyToken, UserDetailsController_1.updateBookmarkedArticles);
+router.delete("/delete/bookmarked/articles/:motherId", tokenVerify_1.verifyToken, UserDetailsController_1.deleteBookmarkedArticles);
 exports.default = router;
