@@ -160,8 +160,6 @@ export const getUserDetailsbyId = async (req, res) => {
 
         const userDetails = await UserDetailsModel.findOne({ userId: params.motherId, isDeleted: false })
 
-        const user = await UserModel.findOne({ _id: userDetails.userId, isActive: true, isDeleted: false })
-
         if (!userDetails) {
 
             return res.status(HTTP_NOT_FOUND).send(new ResponseError({
@@ -170,6 +168,9 @@ export const getUserDetailsbyId = async (req, res) => {
             }))
 
         }
+
+        const user = await UserModel.findOne({ _id: userDetails.userId, isActive: true, isDeleted: false })
+
         //this is not deployed yet
         // const pastHistoryData = await PastHistoryModel.findOne({ userId: params.motherId, isDeleted: false })
 
