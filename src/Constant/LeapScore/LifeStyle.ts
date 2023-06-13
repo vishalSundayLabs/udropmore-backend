@@ -738,9 +738,9 @@ export const lifeStyle = [
                     subQuestions: [{
                         name: "Which type of meat do you consume ?",
                         option: {
-                            A: { options: [{ header: "Meat", name: food.meatPork.name, isSelected: false }, { name: food.beef.name, isSelected: false }, { name: food.lamp.name, isSelected: false }], score: 1 },
-                            B: { options: [{ header: "Birds", name: food.birdsChicken.name, isSelected: false }, { name: "Turkey", isSelected: false }], score: 1 },
-                            C: { options: [{ header: "Fish", name: food.fishSalmon.name, isSelected: false }, { name: food.rawas.name, isSelected: false }, { name: food.bombayDuck.name, isSelected: false }], score: 1 },
+                            A: { header: "Meat", options: [{ name: food.meatPork.name, isSelected: false }, { name: food.beef.name, isSelected: false }, { name: food.lamp.name, isSelected: false }], score: 1 },
+                            B: { header: "Birds", options: [{ name: food.birdsChicken.name, isSelected: false }, { name: "Turkey", isSelected: false }], score: 1 },
+                            C: { header: "Fish", options: [{ name: food.fishSalmon.name, isSelected: false }, { name: food.rawas.name, isSelected: false }, { name: food.bombayDuck.name, isSelected: false }], score: 1 },
                             D: { options: [{ name: food.prawns.name, isSelected: false }, { name: food.shrimps.name, isSelected: false }], score: 1 }
                         },
                         nutrient: {

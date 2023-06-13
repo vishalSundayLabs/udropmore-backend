@@ -193,7 +193,7 @@ export const getUserDetailsbyId = async (req, res) => {
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: "get User details successfully.",
-            result: { userDetails, firstName: user.firstName, lastName: user.lastName, email: user.email }
+            result: { userDetails, firstName: user.firstName, lastName: user.lastName, email: user.email, mappedDoctorId: user.mappedDoctor, mappedClinicId: user.mappedClinic }
         }))
 
     } catch (error) {
@@ -477,7 +477,7 @@ export const searchLeapContent = async (req, res) => {
         }
 
         weeklyContent = await weeklyContent.filter((item) => {
-            if (item.data.title!=null && item.data.title.toLowerCase().match(query.title.toLowerCase())) {
+            if (item.data.title != null && item.data.title.toLowerCase().match(query.title.toLowerCase())) {
                 return item
             }
         })
