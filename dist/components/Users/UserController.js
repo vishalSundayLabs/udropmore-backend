@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getDayOrTimeFromDate = exports.makeSlotsFormat = exports.getDoctorOfMotherById = exports.getPatientOfDoctorById = exports.mapMotherWithDoctor = exports.getAllUsers = exports.getSlots = exports.deleteUser = exports.userUpdate = exports.updateMother = exports.createUser = exports.getUserById = exports.getUser = void 0;
+exports.getDayOrTimeFromDate = exports.makeSlotsFormat = exports.createDoctorByMother = exports.getDoctorOfMotherById = exports.getPatientOfDoctorById = exports.mapMotherWithDoctor = exports.getAllUsers = exports.getSlots = exports.deleteUser = exports.userUpdate = exports.updateMother = exports.createUser = exports.getUserById = exports.getUser = void 0;
 // models
 const UserModel_1 = require("./UserModel");
 // classes
@@ -464,6 +464,49 @@ const getDoctorOfMotherById = (req, res) => __awaiter(void 0, void 0, void 0, fu
     }
 });
 exports.getDoctorOfMotherById = getDoctorOfMotherById;
+const createDoctorByMother = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const body = req.body;
+    if (!body.phoneNumber || !body.userType || !body.platform || !body.firstName) {
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: "Bad request! ,first name  , phone number , userType , platform must be provide!"
+        }));
+    }
+    const reqData = {
+        firstName: body.firstName,
+        lastName: body.lastName,
+        middleName: body.middleName,
+        email: body.email,
+        phoneNumber: body.phoneNumber,
+        userType: body.userType,
+        platform: body.platform,
+        status: body.status
+    };
+    try {
+        const oldUser = yield UserModel_1.default.findOne({ phoneNumber: body.phoneNumber, isActive: true, isDeleted: false });
+        if (oldUser) {
+            return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseSuccess({
+                success: false,
+                message: "This phone number is already register!",
+                result: oldUser
+            }));
+        }
+        const user = yield UserModel_1.default.create(reqData);
+        return res.status(Master_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: 'User created successfully!',
+            result: user
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.createDoctorByMother = createDoctorByMother;
 const makeSlotsFormat = (slots, slotType) => {
     const slotsTime = slotType == 'INPERSON' ? +process.env.INPERSON_SLOT_TIME : slotType == "VIDEOCALL" ? +process.env.VIDEOCALL_SLOT_TIME : +process.env.INPERSON_SLOT_TIME;
     const newSlots = [];

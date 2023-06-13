@@ -28,6 +28,7 @@ const CurrentObservastionModel_1 = require("./CurrentObservastionModel");
 const NextAntenatalTestModel_1 = require("./NextAntenatalTestModel");
 const TreatmentModel_1 = require("./TreatmentModel");
 const getWeeklyTestOrAppointmentsByLmp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(req.body);
     const body = req.body;
     if (!body.lmpDate) {
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({

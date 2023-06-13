@@ -6,7 +6,7 @@ const tokenVerify_1 = require("../../middleware/tokenVerify");
 const AwsFileUploader_1 = require("../../utils/AwsFileUploader");
 const ConsultationController_1 = require("./ConsultationController");
 const router = (0, express_1.Router)();
-router.get("/tests/appointment", tokenVerify_1.verifyToken, ConsultationController_1.getWeeklyTestOrAppointmentsByLmp);
+router.post("/tests/appointment", tokenVerify_1.verifyToken, ConsultationController_1.getWeeklyTestOrAppointmentsByLmp);
 //currentObservastion 
 router.post('/currentObservastion/create', tokenVerify_1.verifyToken, ConsultationController_1.createCurrentObservastion);
 router.put('/currentObservastion/update', tokenVerify_1.verifyToken, ConsultationController_1.updateCurrentObservastion);

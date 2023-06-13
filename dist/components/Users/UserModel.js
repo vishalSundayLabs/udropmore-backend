@@ -110,6 +110,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ['ACTIVE', 'INACTIVE']
     },
+    isRecommendedByMother: {
+        type: Boolean,
+        default: false
+    },
     isActive: {
         type: Boolean,
         default: true

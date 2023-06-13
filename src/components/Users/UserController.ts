@@ -137,7 +137,7 @@ export const createUser = async (req, res) => {
     gallary: body.gallary,
     services: body.services,
     availability: body.availability,
-    status: body.status
+    status: body.status 
   }
 
   try {
@@ -621,6 +621,64 @@ export const getDoctorOfMotherById = async (req, res) => {
       success: true,
       message: "get doctor successfully.",
       result: doctor
+    }))
+
+  } catch (error) {
+
+    let response = new ResponseError({
+      message: "Something went wrong",
+      error: error.message,
+    });
+
+    return res.status(500).json(response);
+
+  }
+
+}
+
+export const createDoctorByMother = async (req, res) => {
+
+  const body = req.body
+
+  if (!body.phoneNumber || !body.userType || !body.platform || !body.firstName) {
+
+    return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+      success: false,
+      message: "Bad request! ,first name  , phone number , userType , platform must be provide!"
+    }))
+
+  }
+
+  const reqData = {
+    firstName: body.firstName,
+    lastName: body.lastName,
+    middleName: body.middleName,
+    email: body.email,
+    phoneNumber: body.phoneNumber,
+    userType: body.userType,
+    platform: body.platform,
+    status: body.status 
+  }
+
+  try {
+
+    const oldUser = await UserModel.findOne({ phoneNumber: body.phoneNumber, isActive: true, isDeleted: false })
+
+    if (oldUser) {
+
+      return res.status(HTTP_BAD_REQUEST).send(new ResponseSuccess({
+        success: false,
+        message: "This phone number is already register!",
+        result: oldUser
+      }))
+
+    }
+    const user = await UserModel.create(reqData);
+
+    return res.status(HTTP_CREATED).send(new ResponseSuccess({
+      success: true,
+      message: 'User created successfully!',
+      result: user
     }))
 
   } catch (error) {

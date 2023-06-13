@@ -5,7 +5,7 @@ import { upload } from '../../utils/AwsFileUploader';
 import { createAntenatalTest, createCurrentObservastion, createNextAntenatalTest, createTreatment, getAntenatalTest, getCurrentObservastion, getNextAntenatalTest, getNextConsultationDateAndTests, getTreatment, getWeeklyTestOrAppointmentsByLmp, updateAntenatalTest, updateCurrentObservastion, updateNextAntenatalTest, updateTreatment, uploadAntenatalTest, uploadWeeklyReport } from './ConsultationController';
 const router = Router()
 
-router.get("/tests/appointment", verifyToken, getWeeklyTestOrAppointmentsByLmp)
+router.post("/tests/appointment", verifyToken, getWeeklyTestOrAppointmentsByLmp)
 
 //currentObservastion 
 router.post('/currentObservastion/create', verifyToken, createCurrentObservastion)
