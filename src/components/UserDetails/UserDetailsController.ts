@@ -477,7 +477,7 @@ export const searchLeapContent = async (req, res) => {
         }
 
         weeklyContent = await weeklyContent.filter((item) => {
-            if (item.data.title.toLowerCase().match(query.title.toLowerCase())) {
+            if (item.data.title!=null && item.data.title.toLowerCase().match(query.title.toLowerCase())) {
                 return item
             }
         })

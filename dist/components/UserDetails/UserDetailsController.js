@@ -355,7 +355,7 @@ const searchLeapContent = (req, res) => __awaiter(void 0, void 0, void 0, functi
             }));
         }
         weeklyContent = yield weeklyContent.filter((item) => {
-            if (item.data.title.toLowerCase().match(query.title.toLowerCase())) {
+            if (item.data.title != null && item.data.title.toLowerCase().match(query.title.toLowerCase())) {
                 return item;
             }
         });
