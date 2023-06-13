@@ -155,7 +155,6 @@ export const validateOtp = async (req: Request, res: Response) => {
 
         // create the auth session with token
         await AuthSession.create({ userId: user._id, jwtToken: jwtToken, isActive: true })
-
         
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,

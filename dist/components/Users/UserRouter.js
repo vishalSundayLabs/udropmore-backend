@@ -30,6 +30,4 @@ router.post('/mother/map/doctor', tokenVerify_1.verifyToken, userController.mapM
 router.get('/doctor/:doctorId/mothers', tokenVerify_1.verifyToken, userController.getPatientOfDoctorById);
 //get doctor details of a mother
 router.get('/mother/:motherId/doctor', tokenVerify_1.verifyToken, userController.getDoctorOfMotherById);
-//user logout
-router.put("/logout", tokenVerify_1.verifyToken, userController.userLogout);
 exports.default = router;

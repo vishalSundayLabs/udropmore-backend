@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
+const createPath_1 = require("../../middleware/createPath");
 const tokenVerify_1 = require("../../middleware/tokenVerify");
 const AwsFileUploader_1 = require("../../utils/AwsFileUploader");
 const ConsultationController_1 = require("./ConsultationController");
@@ -29,4 +30,6 @@ router.post("/nextAntenatalTest/details", tokenVerify_1.verifyToken, Consultatio
 //end
 //next consultation 
 router.get("/recommendation", tokenVerify_1.verifyToken, ConsultationController_1.getNextConsultationDateAndTests);
+// upload weekly reports
+router.post('/upload/weekly/report/:type/:week', createPath_1.preprocessMiddlewareForCreatingPath, AwsFileUploader_1.upload.array("file"), ConsultationController_1.uploadWeeklyReport);
 exports.default = router;

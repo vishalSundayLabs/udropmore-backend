@@ -1,7 +1,8 @@
 import { Router } from 'express';
+import { preprocessMiddlewareForCreatingPath } from '../../middleware/createPath';
 import { verifyToken } from '../../middleware/tokenVerify';
 import { upload } from '../../utils/AwsFileUploader';
-import { createAntenatalTest, createCurrentObservastion, createNextAntenatalTest, createTreatment, getAntenatalTest, getCurrentObservastion, getNextAntenatalTest, getNextConsultationDateAndTests, getTreatment, getWeeklyTestOrAppointmentsByLmp, updateAntenatalTest, updateCurrentObservastion, updateNextAntenatalTest, updateTreatment, uploadAntenatalTest } from './ConsultationController';
+import { createAntenatalTest, createCurrentObservastion, createNextAntenatalTest, createTreatment, getAntenatalTest, getCurrentObservastion, getNextAntenatalTest, getNextConsultationDateAndTests, getTreatment, getWeeklyTestOrAppointmentsByLmp, updateAntenatalTest, updateCurrentObservastion, updateNextAntenatalTest, updateTreatment, uploadAntenatalTest, uploadWeeklyReport } from './ConsultationController';
 const router = Router()
 
 router.get("/tests/appointment", verifyToken, getWeeklyTestOrAppointmentsByLmp)
@@ -44,5 +45,9 @@ router.post("/nextAntenatalTest/details", verifyToken, getNextAntenatalTest)
 //next consultation 
 
 router.get("/recommendation", verifyToken, getNextConsultationDateAndTests)
+
+// upload weekly reports
+
+router.post('/upload/weekly/report/:type/:week', preprocessMiddlewareForCreatingPath, upload.array("file"), uploadWeeklyReport)
 
 export default router

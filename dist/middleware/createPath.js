@@ -20,6 +20,9 @@ const preprocessMiddlewareForCreatingPath = (req, res, next) => __awaiter(void 0
         }));
     }
     let path = 'Content/';
+    if (req.params.type == "Weekly") {
+        path = "WeeklyTestReports/";
+    }
     path = path + req.params.week;
     req.processedpath = path;
     next();

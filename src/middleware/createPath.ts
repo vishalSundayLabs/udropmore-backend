@@ -13,6 +13,11 @@ export const preprocessMiddlewareForCreatingPath = async (req, res, next) => {
     }
 
     let path = 'Content/';
+
+    if (req.params.type == "Weekly") {
+        path = "WeeklyTestReports/"
+    }
+
     path = path + req.params.week;
     req.processedpath = path;
     next();

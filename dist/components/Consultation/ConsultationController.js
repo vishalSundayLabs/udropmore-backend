@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getNextConsultationDateAndTests = exports.getNextAntenatalTest = exports.updateNextAntenatalTest = exports.createNextAntenatalTest = exports.getTreatment = exports.updateTreatment = exports.createTreatment = exports.uploadAntenatalTest = exports.getAntenatalTest = exports.updateAntenatalTest = exports.createAntenatalTest = exports.getCurrentObservastion = exports.updateCurrentObservastion = exports.createCurrentObservastion = exports.getWeeklyTestOrAppointmentsByLmp = void 0;
+exports.uploadWeeklyReport = exports.getNextConsultationDateAndTests = exports.getNextAntenatalTest = exports.updateNextAntenatalTest = exports.createNextAntenatalTest = exports.getTreatment = exports.updateTreatment = exports.createTreatment = exports.uploadAntenatalTest = exports.getAntenatalTest = exports.updateAntenatalTest = exports.createAntenatalTest = exports.getCurrentObservastion = exports.updateCurrentObservastion = exports.createCurrentObservastion = exports.getWeeklyTestOrAppointmentsByLmp = void 0;
 const moment = require("moment");
 const DoctorToDoTask_1 = require("../../Constant/DoctorToDoTask");
 const Master_1 = require("../../Constant/Master");
@@ -685,6 +685,31 @@ const getNextConsultationDateAndTests = (req, res) => __awaiter(void 0, void 0, 
 });
 exports.getNextConsultationDateAndTests = getNextConsultationDateAndTests;
 //end
+//upload weekly tests
+const uploadWeeklyReport = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        if (req.files.length == 0) {
+            return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+                success: false,
+                message: "Bad Request! file not upload by you.",
+            }));
+        }
+        const filesUrl = req.files.map((item) => item.location);
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "upload weekly Report successfully .",
+            result: filesUrl
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.uploadWeeklyReport = uploadWeeklyReport;
 //create previous week data
 const findWeeklyTests = (tests, week) => {
     return tests.filter((test) => { var _a; return (_a = test.week.includes(week)) !== null && _a !== void 0 ? _a : test; })[0];

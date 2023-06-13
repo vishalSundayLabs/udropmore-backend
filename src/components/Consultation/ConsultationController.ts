@@ -954,6 +954,41 @@ export const getNextConsultationDateAndTests = async (req, res) => {
     }
 }
 //end
+//upload weekly tests
+
+export const uploadWeeklyReport = async (req, res) => {
+
+    try {
+
+        if (req.files.length == 0) {
+
+            return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+                success: false,
+                message: "Bad Request! file not upload by you.",
+            }))
+
+        }
+
+        const filesUrl = req.files.map((item) => item.location)
+
+        return res.status(HTTP_OK).send(new ResponseSuccess({
+            success: true,
+            message: "upload weekly Report successfully .",
+            result: filesUrl
+        }))
+
+    } catch (error) {
+
+        let response = new ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+
+        return res.status(500).json(response);
+
+    }
+
+}
 
 //create previous week data
 const findWeeklyTests = (tests, week) => {

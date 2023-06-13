@@ -636,51 +636,6 @@ export const getDoctorOfMotherById = async (req, res) => {
 
 }
 
-export const userLogout = async (req, res) => {
-
-  try {
-
-    const user = await UserModel.findOne({ _id: req.userId, userType: req.userType })
-
-    if (!user) {
-
-      return res.status(HTTP_NOT_FOUND).send(new ResponseSuccess({
-        success: true,
-        message: "User not found!",
-        result: null
-      }))
-
-    }
-
-    if (!user.jwtToken) {
-      return res.status(HTTP_OK).send(new ResponseSuccess({
-        success: true,
-        message: "User already logout!",
-        result: null
-      }))
-    }
-
-    user.jwtToken = null
-    await user.save()
-    
-    return res.status(HTTP_OK).send(new ResponseSuccess({
-      success: true,
-      message: "User logout successfully!",
-      result: null
-    }))
-
-  } catch (error) {
-
-    let response = new ResponseError({
-      message: "Something went wrong",
-      error: error.message,
-    });
-
-    return res.status(500).json(response);
-
-  }
-}
-
 export const makeSlotsFormat = (slots, slotType) => {
 
   const slotsTime = slotType == 'INPERSON' ? +process.env.INPERSON_SLOT_TIME : slotType == "VIDEOCALL" ? +process.env.VIDEOCALL_SLOT_TIME : +process.env.INPERSON_SLOT_TIME;

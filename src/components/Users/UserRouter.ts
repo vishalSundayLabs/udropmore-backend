@@ -30,7 +30,5 @@ router.post('/mother/map/doctor', verifyToken, userController.mapMotherWithDocto
 router.get('/doctor/:doctorId/mothers', verifyToken, userController.getPatientOfDoctorById)
 //get doctor details of a mother
 router.get('/mother/:motherId/doctor', verifyToken, userController.getDoctorOfMotherById)
-//user logout
-router.put("/logout", verifyToken, userController.userLogout)
 
 export default router;
