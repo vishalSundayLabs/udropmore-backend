@@ -13,4 +13,5 @@ router.get("/currentMedications/details/:motherId", tokenVerify_1.verifyToken, U
 router.get("/get/bookmarked/articles/:motherId", tokenVerify_1.verifyToken, UserDetailsController_1.getBookmarkedArticles);
 router.put("/add/bookmarked/articles/:motherId", tokenVerify_1.verifyToken, UserDetailsController_1.updateBookmarkedArticles);
 router.delete("/delete/bookmarked/articles/:motherId", tokenVerify_1.verifyToken, UserDetailsController_1.deleteBookmarkedArticles);
+router.get("/leap/content/search", tokenVerify_1.verifyToken, UserDetailsController_1.searchLeapContent);
 exports.default = router;

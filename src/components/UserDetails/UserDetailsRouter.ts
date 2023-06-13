@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { verifyToken } from "../../middleware/tokenVerify";
-import { createUserDetails, deleteBookmarkedArticles, getBookmarkedArticles, getCurrentMedications, getPastHistoryMasterConstant, getUserDetailsbyId, getWeightByBmi, updateBookmarkedArticles, updateUserDetails } from "./UserDetailsController";
+import { createUserDetails, deleteBookmarkedArticles, getBookmarkedArticles, getCurrentMedications, getPastHistoryMasterConstant, getUserDetailsbyId, getWeightByBmi, searchLeapContent, updateBookmarkedArticles, updateUserDetails } from "./UserDetailsController";
 
 const router = Router()
 
@@ -21,5 +21,7 @@ router.get("/get/bookmarked/articles/:motherId", verifyToken, getBookmarkedArtic
 router.put("/add/bookmarked/articles/:motherId", verifyToken, updateBookmarkedArticles)
 
 router.delete("/delete/bookmarked/articles/:motherId", verifyToken, deleteBookmarkedArticles)
+
+router.get("/leap/content/search", verifyToken, searchLeapContent)
 
 export default router;
