@@ -32,4 +32,6 @@ router.post("/nextAntenatalTest/details", tokenVerify_1.verifyToken, Consultatio
 router.get("/recommendation", tokenVerify_1.verifyToken, ConsultationController_1.getNextConsultationDateAndTests);
 // upload weekly reports
 router.post('/upload/weekly/report/:type/:week', createPath_1.preprocessMiddlewareForCreatingPath, AwsFileUploader_1.upload.array("file"), ConsultationController_1.uploadWeeklyReport);
+// LEP Recommendation
+router.post("/LEPRecommendation/:motherId/:category/:week", ConsultationController_1.LEPRecommendation);
 exports.default = router;

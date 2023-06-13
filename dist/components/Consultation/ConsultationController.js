@@ -9,9 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.uploadWeeklyReport = exports.getNextConsultationDateAndTests = exports.getNextAntenatalTest = exports.updateNextAntenatalTest = exports.createNextAntenatalTest = exports.getTreatment = exports.updateTreatment = exports.createTreatment = exports.uploadAntenatalTest = exports.getAntenatalTest = exports.updateAntenatalTest = exports.createAntenatalTest = exports.getCurrentObservastion = exports.updateCurrentObservastion = exports.createCurrentObservastion = exports.getWeeklyTestOrAppointmentsByLmp = void 0;
+exports.LEPRecommendation = exports.uploadWeeklyReport = exports.getNextConsultationDateAndTests = exports.getNextAntenatalTest = exports.updateNextAntenatalTest = exports.createNextAntenatalTest = exports.getTreatment = exports.updateTreatment = exports.createTreatment = exports.uploadAntenatalTest = exports.getAntenatalTest = exports.updateAntenatalTest = exports.createAntenatalTest = exports.getCurrentObservastion = exports.updateCurrentObservastion = exports.createCurrentObservastion = exports.getWeeklyTestOrAppointmentsByLmp = void 0;
 const moment = require("moment");
 const DoctorToDoTask_1 = require("../../Constant/DoctorToDoTask");
+const lifestyle_1 = require("../../Constant/LEPRecommendation/lifestyle");
 const Master_1 = require("../../Constant/Master");
 const MasterAntenatalTest_1 = require("../../Constant/MasterAntenatalTest");
 const bodyTraverse_1 = require("../../helpers/bodyTraverse");
@@ -21,6 +22,7 @@ const sampleCurrentObservastion_1 = require("../../utils/sampleCurrentObservasti
 const sampleNextAntenatalTest_1 = require("../../utils/sampleNextAntenatalTest");
 const sampleTreatment_1 = require("../../utils/sampleTreatment");
 const AppointmentModel_1 = require("../Appointment/AppointmentModel");
+const LeapScoreModel_1 = require("../LeapScore/LeapScoreModel");
 const UserController_1 = require("../Users/UserController");
 const UserModel_1 = require("../Users/UserModel");
 const AntenatalTestModel_1 = require("./AntenatalTestModel");
@@ -711,6 +713,34 @@ const uploadWeeklyReport = (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
 });
 exports.uploadWeeklyReport = uploadWeeklyReport;
+// LEP Recommendation
+const LEPRecommendation = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const params = req.params;
+    if (!params.motherId || !params.category || !params.week) {
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: "Bad Request! Mother Id , category , week must be provide.",
+        }));
+    }
+    try {
+        let leapScoreAnswer = yield LeapScoreModel_1.default.findOne({ userId: params.motherId, pregnancyWeek: params.week }).select({ details: true });
+        console.log(leapScoreAnswer);
+        const LEPRecommendationData = getSelectedAnswer(leapScoreAnswer.details[params.category.toLowerCase()].answers);
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "LEP Recommendation get successfully",
+            result: LEPRecommendationData
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.LEPRecommendation = LEPRecommendation;
 //create previous week data
 const findWeeklyTests = (tests, week) => {
     return tests.filter((test) => { var _a; return (_a = test.week.includes(week)) !== null && _a !== void 0 ? _a : test; })[0];
@@ -761,4 +791,40 @@ const findFollowUpTests = (data, followUpData) => {
         }
     }
     return followUpTests;
+};
+const getSelectedAnswer = (data) => {
+    const listOfLEPRecommendationData = [];
+    for (let i = 0; i < data.length; i++) {
+        const section = data[i].section;
+        for (let j = 0; j < section.length; j++) {
+            for (let k = 0; k < section[j].question.length; k++) {
+                const questionOptions = section[j].question[k].options.option;
+                const subQuestions = section[j].question[k].subQuestions;
+                for (let l = 0; l < questionOptions.length; l++) {
+                    const option = questionOptions[l];
+                    if (option.isSelected == true || option.value) {
+                        const dataList = lifestyle_1.lifeStyleRecommendation[option.recommendationIndex];
+                        if (dataList) {
+                            listOfLEPRecommendationData.push(dataList);
+                        }
+                    }
+                }
+                if (subQuestions != null && subQuestions.length > 0) {
+                    for (let m = 0; m < subQuestions.length; m++) {
+                        const subQuestionOptionKey = Object.keys(subQuestions[m].option);
+                        for (let n = 0; n < subQuestionOptionKey.length; n++) {
+                            const subOption = subQuestions[m].option[subQuestionOptionKey[n]].options;
+                            for (let p = 0; p < subOption.length; p++) {
+                                if (subOption[p].isSelected == true || subOption[p].value) {
+                                    if (subOption[p].value) {
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return listOfLEPRecommendationData;
 };

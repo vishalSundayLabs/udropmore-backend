@@ -17,32 +17,38 @@ exports.lifeStyle = [
                                     option: "<7 hours",
                                     score: 2,
                                     isSelected: false,
-                                    articalIndex: 1
+                                    articalIndex: 1,
+                                    recommendationIndex: 0
                                 }, {
                                     option: "7 hours",
                                     score: 4,
                                     isSelected: false,
-                                    articalIndex: 3
+                                    articalIndex: 3,
+                                    recommendationIndex: 1
                                 }, {
                                     option: "8 hours",
                                     score: 4,
                                     isSelected: false,
-                                    articalIndex: 3
+                                    articalIndex: 3,
+                                    recommendationIndex: 2
                                 }, {
                                     option: "9 hours",
                                     score: 3,
                                     isSelected: false,
-                                    articalIndex: 2
+                                    articalIndex: 2,
+                                    recommendationIndex: 3
                                 }, {
                                     option: "10 hours",
                                     score: 3,
                                     isSelected: false,
-                                    articalIndex: 2
+                                    articalIndex: 2,
+                                    recommendationIndex: 4
                                 }, {
                                     option: "More than 10 hours",
                                     score: 1,
                                     isSelected: false,
-                                    articalIndex: 0
+                                    articalIndex: 0,
+                                    recommendationIndex: 5
                                 }
                             ],
                             calculatedScore: 0,
@@ -60,22 +66,26 @@ exports.lifeStyle = [
                                     option: "< 8 glasses per day",
                                     score: 1,
                                     isSelected: false,
-                                    articalIndex: 4
+                                    articalIndex: 4,
+                                    recommendationIndex: 6
                                 }, {
                                     option: "8 - 10 glasses per day",
                                     score: 3,
                                     isSelected: false,
-                                    articalIndex: 6
+                                    articalIndex: 6,
+                                    recommendationIndex: 7
                                 }, {
-                                    option: "10 - 12 glasses",
+                                    option: "10 - 12 glasses per day",
                                     score: 4,
                                     isSelected: false,
-                                    articalIndex: 7
+                                    articalIndex: 7,
+                                    recommendationIndex: 8
                                 }, {
-                                    option: "> 12 glasses",
+                                    option: "> 12 glasses per day",
                                     score: 2,
                                     isSelected: false,
-                                    articalIndex: 5
+                                    articalIndex: 5,
+                                    recommendationIndex: 9
                                 }],
                             calculatedScore: 0,
                             multiSelect: false
@@ -92,10 +102,12 @@ exports.lifeStyle = [
                                     option: "Yes",
                                     score: 1,
                                     isSelected: false,
+                                    recommendationIndex: 10
                                 }, {
                                     option: "No",
                                     score: 4,
                                     isSelected: false,
+                                    recommendationIndex: 11
                                 }],
                             calculatedScore: 0,
                             multiSelect: false
@@ -112,10 +124,44 @@ exports.lifeStyle = [
                                     option: "Vegetarian",
                                     score: null,
                                     isSelected: false,
+                                    recommendationIndex: 12
                                 }, {
                                     option: "Non-vegetarian",
                                     score: null,
                                     isSelected: false,
+                                    recommendationIndex: 13
+                                }],
+                            calculatedScore: 0,
+                            multiSelect: false
+                        },
+                        subQuestions: null
+                    }]
+            },
+            {
+                sectionName: null,
+                question: [{
+                        name: "How many spoons of sugar do you consume everyday ?",
+                        options: {
+                            option: [{
+                                    option: "2 spoons",
+                                    score: 3,
+                                    isSelected: false,
+                                    recommendationIndex: 15
+                                }, {
+                                    option: "4 spoons",
+                                    score: 2,
+                                    isSelected: false,
+                                    recommendationIndex: 16
+                                }, {
+                                    option: "6 spoons",
+                                    score: 1,
+                                    isSelected: false,
+                                    recommendationIndex: 17
+                                }, {
+                                    option: "none",
+                                    score: 4,
+                                    isSelected: false,
+                                    recommendationIndex: 14
                                 }],
                             calculatedScore: 0,
                             multiSelect: false
@@ -255,34 +301,6 @@ exports.lifeStyle = [
                                 }, {
                                     option: "None",
                                     score: 1,
-                                    isSelected: false
-                                }],
-                            calculatedScore: 0,
-                            multiSelect: false
-                        },
-                        subQuestions: null
-                    }]
-            },
-            {
-                sectionName: null,
-                question: [{
-                        name: "How many spoons of sugar do you consume everyday ?",
-                        options: {
-                            option: [{
-                                    option: "2 spoons",
-                                    score: 3,
-                                    isSelected: false,
-                                }, {
-                                    option: "4 spoons",
-                                    score: 2,
-                                    isSelected: false,
-                                }, {
-                                    option: "6 spoons",
-                                    score: 1,
-                                    isSelected: false
-                                }, {
-                                    option: "none",
-                                    score: 4,
                                     isSelected: false
                                 }],
                             calculatedScore: 0,

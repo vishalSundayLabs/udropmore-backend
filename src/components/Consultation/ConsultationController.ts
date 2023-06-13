@@ -1,6 +1,7 @@
 import dayjs = require("dayjs")
 import moment = require("moment")
 import { toDoTasks } from "../../Constant/DoctorToDoTask"
+import { lifeStyleRecommendation } from "../../Constant/LEPRecommendation/lifestyle"
 import { HTTP_BAD_REQUEST, HTTP_NOT_FOUND, HTTP_OK } from "../../Constant/Master"
 import { masterAntenatalTest } from "../../Constant/MasterAntenatalTest"
 import { bodyTraverse } from "../../helpers/bodyTraverse"
@@ -11,6 +12,7 @@ import { sampleCurrentObservastion } from "../../utils/sampleCurrentObservastion
 import { additionalTests, standardTests } from "../../utils/sampleNextAntenatalTest"
 import { sampleTreatment } from "../../utils/sampleTreatment"
 import AppointmentModel from "../Appointment/AppointmentModel"
+import LeapScoreModel from "../LeapScore/LeapScoreModel"
 import { getDayOrTimeFromDate } from "../Users/UserController"
 import UserModel from "../Users/UserModel"
 import antenatalTestModel from "./AntenatalTestModel"
@@ -990,6 +992,44 @@ export const uploadWeeklyReport = async (req, res) => {
 
 }
 
+// LEP Recommendation
+
+export const LEPRecommendation = async (req, res) => {
+
+    const params = req.params
+
+    if (!params.motherId || !params.category || !params.week) {
+        return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+            success: false,
+            message: "Bad Request! Mother Id , category , week must be provide.",
+        }))
+    }
+
+    try {
+
+        let leapScoreAnswer = await LeapScoreModel.findOne({ userId: params.motherId, pregnancyWeek: params.week }).select({ details: true })
+        console.log(leapScoreAnswer)
+        const LEPRecommendationData = getSelectedAnswer(leapScoreAnswer.details[params.category.toLowerCase()].answers)
+
+        return res.status(HTTP_OK).send(new ResponseSuccess({
+            success: true,
+            message: "LEP Recommendation get successfully",
+            result: LEPRecommendationData
+        }))
+
+    } catch (error) {
+
+        let response = new ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+
+        return res.status(500).json(response);
+
+    }
+
+}
+
 //create previous week data
 const findWeeklyTests = (tests, week) => {
     return tests.filter((test) => test.week.includes(week) ?? test)[0]
@@ -1062,3 +1102,49 @@ const findFollowUpTests = (data, followUpData) => {
 
     return followUpTests
 }
+
+const getSelectedAnswer = (data) => {
+
+    const listOfLEPRecommendationData = []
+
+    for (let i = 0; i < data.length; i++) {
+        const section = data[i].section;
+        for (let j = 0; j < section.length; j++) {
+            for (let k = 0; k < section[j].question.length; k++) {
+                const questionOptions = section[j].question[k].options.option;
+                const subQuestions = section[j].question[k].subQuestions;
+                for (let l = 0; l < questionOptions.length; l++) {
+                    const option = questionOptions[l];
+                    if (option.isSelected == true || option.value) {
+                        const dataList = lifeStyleRecommendation[option.recommendationIndex]
+                        if (dataList) {
+                            listOfLEPRecommendationData.push(dataList)
+                        }
+                    }
+                }
+                if (subQuestions != null && subQuestions.length > 0) {
+                    for (let m = 0; m < subQuestions.length; m++) {
+                        const subQuestionOptionKey = Object.keys(subQuestions[m].option);
+                        for (let n = 0; n < subQuestionOptionKey.length; n++) {
+                            const subOption =
+                                subQuestions[m].option[subQuestionOptionKey[n]].options;
+
+                            for (let p = 0; p < subOption.length; p++) {
+                                if (subOption[p].isSelected == true || subOption[p].value) {
+
+                                    if (subOption[p].value) {
+
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return listOfLEPRecommendationData
+
+};
