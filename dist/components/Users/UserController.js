@@ -466,10 +466,10 @@ const getDoctorOfMotherById = (req, res) => __awaiter(void 0, void 0, void 0, fu
 exports.getDoctorOfMotherById = getDoctorOfMotherById;
 const createDoctorByMother = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
-    if (!body.phoneNumber || !body.userType || !body.platform || !body.firstName) {
+    if (!body.phoneNumber || !body.firstName) {
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
-            message: "Bad request! ,first name  , phone number , userType , platform must be provide!"
+            message: "Bad request! ,first name  , phone number  must be provide!"
         }));
     }
     const reqData = {
@@ -478,9 +478,11 @@ const createDoctorByMother = (req, res) => __awaiter(void 0, void 0, void 0, fun
         middleName: body.middleName,
         email: body.email,
         phoneNumber: body.phoneNumber,
-        userType: body.userType,
-        platform: body.platform,
-        status: body.status
+        userType: "DOCTOR",
+        platform: "DOCTOR",
+        status: body.status,
+        isRecommendedByMother: true,
+        createdBy: req.userId
     };
     try {
         const oldUser = yield UserModel_1.default.findOne({ phoneNumber: body.phoneNumber, isActive: true, isDeleted: false });

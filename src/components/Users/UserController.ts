@@ -137,7 +137,7 @@ export const createUser = async (req, res) => {
     gallary: body.gallary,
     services: body.services,
     availability: body.availability,
-    status: body.status 
+    status: body.status
   }
 
   try {
@@ -640,11 +640,11 @@ export const createDoctorByMother = async (req, res) => {
 
   const body = req.body
 
-  if (!body.phoneNumber || !body.userType || !body.platform || !body.firstName) {
+  if (!body.phoneNumber || !body.firstName) {
 
     return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
       success: false,
-      message: "Bad request! ,first name  , phone number , userType , platform must be provide!"
+      message: "Bad request! ,first name  , phone number  must be provide!"
     }))
 
   }
@@ -655,9 +655,11 @@ export const createDoctorByMother = async (req, res) => {
     middleName: body.middleName,
     email: body.email,
     phoneNumber: body.phoneNumber,
-    userType: body.userType,
-    platform: body.platform,
-    status: body.status 
+    userType: "DOCTOR",
+    platform: "DOCTOR",
+    status: body.status,
+    isRecommendedByMother: true,
+    createdBy: req.userId
   }
 
   try {

@@ -30,5 +30,7 @@ router.post('/mother/map/doctor', verifyToken, userController.mapMotherWithDocto
 router.get('/doctor/:doctorId/mothers', verifyToken, userController.getPatientOfDoctorById)
 //get doctor details of a mother
 router.get('/mother/:motherId/doctor', verifyToken, userController.getDoctorOfMotherById)
+//create doctor by mother
+router.post("/custom/doctor/create/by/mother", verifyToken, userController.createDoctorByMother)
 
 export default router;
