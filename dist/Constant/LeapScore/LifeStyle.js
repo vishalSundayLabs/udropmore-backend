@@ -731,9 +731,9 @@ exports.lifeStyle = [
                         subQuestions: [{
                                 name: "Which type of meat do you consume ?",
                                 option: {
-                                    A: { options: [{ name: Food_1.food.meatPork.name, isSelected: false }, { name: Food_1.food.beef.name, isSelected: false }, { name: Food_1.food.lamp.name, isSelected: false }], score: 1 },
-                                    B: { options: [{ name: Food_1.food.birdsChicken.name, isSelected: false }, { name: "Turkey", isSelected: false }], score: 1 },
-                                    C: { options: [{ name: Food_1.food.fishSalmon.name, isSelected: false }, { name: Food_1.food.rawas.name, isSelected: false }, { name: Food_1.food.bombayDuck.name, isSelected: false }], score: 1 },
+                                    A: { options: [{ header: "Meat", name: Food_1.food.meatPork.name, isSelected: false }, { name: Food_1.food.beef.name, isSelected: false }, { name: Food_1.food.lamp.name, isSelected: false }], score: 1 },
+                                    B: { options: [{ header: "Birds", name: Food_1.food.birdsChicken.name, isSelected: false }, { name: "Turkey", isSelected: false }], score: 1 },
+                                    C: { options: [{ header: "Fish", name: Food_1.food.fishSalmon.name, isSelected: false }, { name: Food_1.food.rawas.name, isSelected: false }, { name: Food_1.food.bombayDuck.name, isSelected: false }], score: 1 },
                                     D: { options: [{ name: Food_1.food.prawns.name, isSelected: false }, { name: Food_1.food.shrimps.name, isSelected: false }], score: 1 }
                                 },
                                 nutrient: {
