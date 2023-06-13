@@ -669,12 +669,13 @@ export const createDoctorByMother = async (req, res) => {
     if (oldUser) {
 
       return res.status(HTTP_BAD_REQUEST).send(new ResponseSuccess({
-        success: false,
+        success: true,
         message: "This phone number is already register!",
-        result: oldUser
+        result: null
       }))
 
     }
+    
     const user = await UserModel.create(reqData);
 
     return res.status(HTTP_CREATED).send(new ResponseSuccess({

@@ -488,9 +488,9 @@ const createDoctorByMother = (req, res) => __awaiter(void 0, void 0, void 0, fun
         const oldUser = yield UserModel_1.default.findOne({ phoneNumber: body.phoneNumber, isActive: true, isDeleted: false });
         if (oldUser) {
             return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseSuccess({
-                success: false,
+                success: true,
                 message: "This phone number is already register!",
-                result: oldUser
+                result: null
             }));
         }
         const user = yield UserModel_1.default.create(reqData);
