@@ -21,7 +21,7 @@ import NextAntenatalTestModel from "./NextAntenatalTestModel"
 import TreatmentModel from "./TreatmentModel"
 
 export const getWeeklyTestOrAppointmentsByLmp = async (req, res) => {
-    console.log(req.body)
+
     const body = req.body
 
     if (!body.lmpDate) {
@@ -37,6 +37,10 @@ export const getWeeklyTestOrAppointmentsByLmp = async (req, res) => {
 
         const lmpDays = getDayOrTimeFromDate(body.lmpDate)
         let task;
+        console.log(lmpDays)
+        if (lmpDays.noOfDays < 60) {
+            task = toDoTasks[0]
+        }
 
         for (let i = 0; i < toDoTasks.length - 1; i++) {
 
@@ -44,7 +48,7 @@ export const getWeeklyTestOrAppointmentsByLmp = async (req, res) => {
             const nextTask = toDoTasks[i + 1]
 
             if (lmpDays.noOfDays >= tasks.daysFromLMP && lmpDays.noOfDays < nextTask.daysFromLMP) {
-                task = tasks
+                task = nextTask
             }
 
         }

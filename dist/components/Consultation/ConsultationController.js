@@ -30,7 +30,6 @@ const CurrentObservastionModel_1 = require("./CurrentObservastionModel");
 const NextAntenatalTestModel_1 = require("./NextAntenatalTestModel");
 const TreatmentModel_1 = require("./TreatmentModel");
 const getWeeklyTestOrAppointmentsByLmp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.body);
     const body = req.body;
     if (!body.lmpDate) {
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
@@ -41,11 +40,15 @@ const getWeeklyTestOrAppointmentsByLmp = (req, res) => __awaiter(void 0, void 0,
     try {
         const lmpDays = (0, UserController_1.getDayOrTimeFromDate)(body.lmpDate);
         let task;
+        console.log(lmpDays);
+        if (lmpDays.noOfDays < 60) {
+            task = DoctorToDoTask_1.toDoTasks[0];
+        }
         for (let i = 0; i < DoctorToDoTask_1.toDoTasks.length - 1; i++) {
             const tasks = DoctorToDoTask_1.toDoTasks[i];
             const nextTask = DoctorToDoTask_1.toDoTasks[i + 1];
             if (lmpDays.noOfDays >= tasks.daysFromLMP && lmpDays.noOfDays < nextTask.daysFromLMP) {
-                task = tasks;
+                task = nextTask;
             }
         }
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({

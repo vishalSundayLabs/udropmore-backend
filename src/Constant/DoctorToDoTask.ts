@@ -147,7 +147,6 @@ export const toDoTasks = [
             },
         ],
     },
-
     {
         daysFromLMP: 213,
         tasks: [
