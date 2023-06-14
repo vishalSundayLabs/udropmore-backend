@@ -31,16 +31,15 @@ const NextAntenatalTestModel_1 = require("./NextAntenatalTestModel");
 const TreatmentModel_1 = require("./TreatmentModel");
 const getWeeklyTestOrAppointmentsByLmp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
-    if (!body.lmpDate) {
+    if (!body.lmpDate || !body.motherId || !body.week) {
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
-            message: "Bad Request! LMP must be provide.",
+            message: "Bad Request! LMP Date , MotherId or Week must be provide.",
         }));
     }
     try {
         const lmpDays = (0, UserController_1.getDayOrTimeFromDate)(body.lmpDate);
         let task;
-        console.log(lmpDays);
         if (lmpDays.noOfDays < 60) {
             task = DoctorToDoTask_1.toDoTasks[0];
         }
@@ -50,6 +49,46 @@ const getWeeklyTestOrAppointmentsByLmp = (req, res) => __awaiter(void 0, void 0,
             if (lmpDays.noOfDays >= tasks.daysFromLMP && lmpDays.noOfDays < nextTask.daysFromLMP) {
                 task = nextTask;
             }
+        }
+        let followUps = yield TreatmentModel_1.default.findOne({ userId: body.motherId });
+        followUps = followUps.treatment.filter((item) => item.week == body.week);
+        console.log(followUps.length > 0, followUps);
+        if (followUps && followUps.length > 0) {
+            let taskTestLists = followUps[0].followUp.testName.filter((test) => {
+                if (test.value) {
+                    return test;
+                }
+            });
+            taskTestLists = taskTestLists.map((item) => {
+                return {
+                    title: item.name,
+                    description: null,
+                    status: DoctorToDoTask_1.toDoTasksStatus.pending,
+                    taskType: DoctorToDoTask_1.toDoTasksTypes.labTests
+                };
+            });
+            if (taskTestLists.length == 0) {
+                taskTestLists = task.tasks;
+                taskTestLists.pop();
+            }
+            if (followUps[0].followUp.followUpDate.value) {
+                taskTestLists.push({
+                    title: DoctorToDoTask_1.toDoTasksTypes.followUpAppointments,
+                    description: null,
+                    status: DoctorToDoTask_1.toDoTasksStatus.pending,
+                    followUpdate: followUps[0].followUp.followUpDate.value,
+                    taskType: DoctorToDoTask_1.toDoTasksTypes.followUpAppointments
+                });
+            }
+            else {
+                taskTestLists.push({
+                    title: DoctorToDoTask_1.toDoTasksTypes.appointments,
+                    description: null,
+                    status: DoctorToDoTask_1.toDoTasksStatus.pending,
+                    taskType: DoctorToDoTask_1.toDoTasksTypes.appointments
+                });
+            }
+            task.tasks = taskTestLists;
         }
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,

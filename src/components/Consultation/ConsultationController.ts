@@ -1,6 +1,6 @@
 import dayjs = require("dayjs")
 import moment = require("moment")
-import { toDoTasks } from "../../Constant/DoctorToDoTask"
+import { toDoTasks, toDoTasksStatus, toDoTasksTypes } from "../../Constant/DoctorToDoTask"
 import { lifeStyleRecommendation } from "../../Constant/LEPRecommendation/lifestyle"
 import { HTTP_BAD_REQUEST, HTTP_NOT_FOUND, HTTP_OK } from "../../Constant/Master"
 import { masterAntenatalTest } from "../../Constant/MasterAntenatalTest"
@@ -24,11 +24,11 @@ export const getWeeklyTestOrAppointmentsByLmp = async (req, res) => {
 
     const body = req.body
 
-    if (!body.lmpDate) {
+    if (!body.lmpDate || !body.motherId || !body.week) {
 
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
             success: false,
-            message: "Bad Request! LMP must be provide.",
+            message: "Bad Request! LMP Date , MotherId or Week must be provide.",
         }))
 
     }
@@ -37,7 +37,6 @@ export const getWeeklyTestOrAppointmentsByLmp = async (req, res) => {
 
         const lmpDays = getDayOrTimeFromDate(body.lmpDate)
         let task;
-        console.log(lmpDays)
         if (lmpDays.noOfDays < 60) {
             task = toDoTasks[0]
         }
@@ -51,6 +50,51 @@ export const getWeeklyTestOrAppointmentsByLmp = async (req, res) => {
                 task = nextTask
             }
 
+        }
+
+        let followUps = await TreatmentModel.findOne({ userId: body.motherId })
+        followUps = followUps.treatment.filter((item) => item.week == body.week)
+  
+        if (followUps && followUps.length > 0) {
+            let taskTestLists = followUps[0].followUp.testName.filter((test) => {
+                if (test.value) {
+                    return test
+                }
+            })
+
+            taskTestLists = taskTestLists.map((item) => {
+                return {
+                    title: item.name,
+                    description: null,
+                    status: toDoTasksStatus.pending,
+                    taskType: toDoTasksTypes.labTests
+                }
+            })
+
+            if (taskTestLists.length == 0) {
+                taskTestLists = task.tasks
+                taskTestLists.pop()
+            }
+
+            if (followUps[0].followUp.followUpDate.value) {
+                taskTestLists.push({
+                    title: toDoTasksTypes.followUpAppointments,
+                    description: null,
+                    status: toDoTasksStatus.pending,
+                    followUpdate: followUps[0].followUp.followUpDate.value,
+                    taskType: toDoTasksTypes.followUpAppointments
+                })
+            } else {
+                taskTestLists.push({
+                    title: toDoTasksTypes.appointments,
+                    description: null,
+                    status: toDoTasksStatus.pending,
+                    taskType: toDoTasksTypes.appointments
+                })
+            }
+
+
+            task.tasks = taskTestLists
         }
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
