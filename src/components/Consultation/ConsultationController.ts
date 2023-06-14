@@ -54,7 +54,7 @@ export const getWeeklyTestOrAppointmentsByLmp = async (req, res) => {
 
         let followUps = await TreatmentModel.findOne({ userId: body.motherId })
         followUps = followUps.treatment.filter((item) => item.week == body.week)
-  
+
         if (followUps && followUps.length > 0) {
             let taskTestLists = followUps[0].followUp.testName.filter((test) => {
                 if (test.value) {
@@ -66,6 +66,7 @@ export const getWeeklyTestOrAppointmentsByLmp = async (req, res) => {
                 return {
                     title: item.name,
                     description: null,
+                    testUrl: null,
                     status: toDoTasksStatus.pending,
                     taskType: toDoTasksTypes.labTests
                 }

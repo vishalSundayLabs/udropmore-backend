@@ -52,7 +52,6 @@ const getWeeklyTestOrAppointmentsByLmp = (req, res) => __awaiter(void 0, void 0,
         }
         let followUps = yield TreatmentModel_1.default.findOne({ userId: body.motherId });
         followUps = followUps.treatment.filter((item) => item.week == body.week);
-        console.log(followUps.length > 0, followUps);
         if (followUps && followUps.length > 0) {
             let taskTestLists = followUps[0].followUp.testName.filter((test) => {
                 if (test.value) {
@@ -63,6 +62,7 @@ const getWeeklyTestOrAppointmentsByLmp = (req, res) => __awaiter(void 0, void 0,
                 return {
                     title: item.name,
                     description: null,
+                    testUrl: null,
                     status: DoctorToDoTask_1.toDoTasksStatus.pending,
                     taskType: DoctorToDoTask_1.toDoTasksTypes.labTests
                 };

@@ -20,6 +20,7 @@ export const toDoTasks = [
                     'The initial blood screening test checks for Blood type, Rh factor, hCG levels, STI, Immunity to diseases, Vitamin D deficiency, Blood sugar levels, Genetic risks, for sickle cell anemia, spinal muscular dystrophy(SMA), cystic fibrosis, thalassemia, hemoglobinopathy, and other possible diseases ',
                 status: toDoTasksStatus.pending,
                 taskType: toDoTasksTypes.labTests,
+                testUrl:null
             },
             {
                 title: 'Ultrasound',
@@ -27,12 +28,14 @@ export const toDoTasks = [
                     'The first ultrasound is done to check the estimated due date, detect the fetal heartbeat, rule out ectopic or tubal pregnancies, detect the number of fetuses ',
                 status: toDoTasksStatus.pending,
                 taskType: toDoTasksTypes.labTests,
+                testUrl:null
             },
             {
                 title: 'Urine tests',
                 description: 'A urine test checks for blood sugar levels, protein levels, UTIs',
                 status: toDoTasksStatus.pending,
                 taskType: toDoTasksTypes.labTests,
+                testUrl:null
             },
             {
                 title: 'Appointment',
@@ -49,6 +52,7 @@ export const toDoTasks = [
                 description: 'It checks for chromosomal disorders and also detects Rh blood type',
                 status: toDoTasksStatus.pending,
                 taskType: toDoTasksTypes.labTests,
+                testUrl:null
             },
             {
                 title: 'Nuchal translucency screening',
@@ -56,12 +60,14 @@ export const toDoTasks = [
                     'It is performed between 11 and 13 weeks of pregnancy to determine the risk of Down syndrome',
                 status: toDoTasksStatus.pending,
                 taskType: toDoTasksTypes.labTests,
+                testUrl:null
             },
             {
                 title: 'Chorionic villus sampling (CVS)',
                 description: 'It is done to detect birth defects',
                 status: toDoTasksStatus.pending,
                 taskType: toDoTasksTypes.labTests,
+                testUrl:null
             },
             {
                 title: 'Appointment',
@@ -78,12 +84,14 @@ export const toDoTasks = [
                 description: 'It is performed to check for Chromosomal conditions and Neural tube defects',
                 status: toDoTasksStatus.pending,
                 taskType: toDoTasksTypes.labTests,
+                testUrl:null
             },
             {
                 title: 'Quad screen',
                 description: 'It is performed to check for Chromosomal conditions and Neural tube defects',
                 status: toDoTasksStatus.pending,
                 taskType: toDoTasksTypes.labTests,
+                testUrl:null
             },
             {
                 title: 'Appointment',
@@ -100,6 +108,7 @@ export const toDoTasks = [
                 description: 'It checks for Anemia and blood oxygen levels, Maternal Rh antibodies',
                 status: toDoTasksStatus.pending,
                 taskType: toDoTasksTypes.labTests,
+                testUrl:null
             },
             {
                 title: 'Level 2 ultrasound',
@@ -107,6 +116,7 @@ export const toDoTasks = [
                     'It is done anytime between 18 and 20 weeks to see how the fetus is developing',
                 status: toDoTasksStatus.pending,
                 taskType: toDoTasksTypes.labTests,
+                testUrl:null
             },
             {
                 title: 'Appointment',
@@ -123,12 +133,14 @@ export const toDoTasks = [
                 description: 'This is performed to determine your risk of gestational diabetes',
                 status: toDoTasksStatus.pending,
                 taskType: toDoTasksTypes.labTests,
+                testUrl:null
             },
             {
                 title: 'Glucose tolerance test',
                 description: 'It is done in between 26 and 28 weeks to detect gestational diabetes',
                 status: toDoTasksStatus.pending,
                 taskType: toDoTasksTypes.labTests,
+                testUrl:null
             },
             {
                 title: 'Appointment',
@@ -176,6 +188,7 @@ export const toDoTasks = [
                     'It determines the risk of some possible complications and also decides if it is the time for delivery.',
                 status: toDoTasksStatus.pending,
                 taskType: toDoTasksTypes.labTests,
+                testUrl:null
             },
             {
                 title: 'Appointment',
@@ -202,6 +215,7 @@ export const toDoTasks = [
                 description: 'It is usually done to screen for group B streptococcus bacteria',
                 status: toDoTasksStatus.pending,
                 taskType: toDoTasksTypes.labTests,
+                testUrl:null
             },
             {
                 title: 'Appointment',
