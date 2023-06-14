@@ -361,10 +361,10 @@ export const cancelAppointmentByMother = async (req, res) => {
 
     const body = req.body
 
-    if (!body.motherId || !body.doctorId || !body.clinicId || !body.appointmentId || !body.appointmentType || !body.appointmentStatus || !body.reason) {
+    if (!body.motherId || !body.doctorId || !body.clinicId || !body.appointmentId || !body.appointmentType || !body.reason) {
 
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
-            message: "Bad Request! Mother id , doctor id , clinic id , appointment id,  appointment type , appintmentStatus or reason must be provide."
+            message: "Bad Request! Mother id , doctor id , clinic id , appointment id,  appointment type  or reason must be provide."
         }))
 
     }
