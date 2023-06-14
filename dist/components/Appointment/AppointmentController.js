@@ -277,7 +277,7 @@ const cancelAppointmentByMother = (req, res) => __awaiter(void 0, void 0, void 0
                 message: "Appointment not found!"
             }));
         }
-        appointments.status = body.appointmentStatus;
+        appointments.status = "CANCELLED";
         appointments.reason = body.reason;
         yield appointments.save();
         return res.status(Master_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({

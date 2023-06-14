@@ -382,7 +382,7 @@ export const cancelAppointmentByMother = async (req, res) => {
 
         }
 
-        appointments.status = body.appointmentStatus
+        appointments.status = "CANCELLED"
         appointments.reason = body.reason
         await appointments.save()
 
