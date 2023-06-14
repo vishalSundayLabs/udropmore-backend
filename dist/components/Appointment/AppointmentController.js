@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.appointmentBookValidations = exports.updateAppointmentStatusByDoctorOfASlot = exports.rescheduleAppointmentByDoctorOfASlot = exports.rescheduleAppointment = exports.updateAppointment = exports.getAllAppointmentOfMother = exports.getAllAppointmentsOfADay = exports.getAllAppointments = exports.createAppointment = void 0;
+exports.appointmentBookValidations = exports.updateAppointmentStatusByDoctorOfASlot = exports.rescheduleAppointmentByDoctorOfASlot = exports.cancelAppointmentByMother = exports.rescheduleAppointment = exports.updateAppointment = exports.getAllAppointmentOfMother = exports.getAllAppointmentsOfADay = exports.getAllAppointments = exports.createAppointment = void 0;
 const pagination_1 = require("../../helpers/pagination");
 const Master_1 = require("../../Constant/Master");
 const ResponseClass_1 = require("../../utils/ResponseClass");
@@ -262,6 +262,39 @@ const rescheduleAppointment = (req, res) => __awaiter(void 0, void 0, void 0, fu
     }
 });
 exports.rescheduleAppointment = rescheduleAppointment;
+const cancelAppointmentByMother = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const body = req.body;
+    if (!body.motherId || !body.doctorId || !body.clinicId || !body.appointmentId || !body.appointmentType || !body.appointmentStatus || !body.reason) {
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            message: "Bad Request! Mother id , doctor id , clinic id , appointment id,  appointment type , appintmentStatus or reason must be provide."
+        }));
+    }
+    try {
+        const appointments = yield AppointmentModel_1.default.findOne({ _id: body.appointmentId, motherId: body.motherId, doctorId: body.doctorId, clinicId: body.clinicId, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false });
+        if (!appointments) {
+            return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
+                success: false,
+                message: "Appointment not found!"
+            }));
+        }
+        appointments.status = body.appointmentStatus;
+        appointments.reason = body.reason;
+        yield appointments.save();
+        return res.status(Master_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: `${body.appointmentStatus} Appointments successfully.`,
+            result: appointments
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.cancelAppointmentByMother = cancelAppointmentByMother;
 const rescheduleAppointmentByDoctorOfASlot = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     if (!body.doctorId || !body.clinicId || !body.date || !body.appointmentType || !body.reason) {

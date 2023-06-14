@@ -357,6 +357,55 @@ export const rescheduleAppointment = async (req, res) => {
 
 }
 
+export const cancelAppointmentByMother = async (req, res) => {
+
+    const body = req.body
+
+    if (!body.motherId || !body.doctorId || !body.clinicId || !body.appointmentId || !body.appointmentType || !body.appointmentStatus || !body.reason) {
+
+        return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+            message: "Bad Request! Mother id , doctor id , clinic id , appointment id,  appointment type , appintmentStatus or reason must be provide."
+        }))
+
+    }
+
+    try {
+
+        const appointments = await AppointmentModel.findOne({ _id: body.appointmentId, motherId: body.motherId, doctorId: body.doctorId, clinicId: body.clinicId, appointmentType: body.appointmentType, status: { $ne: "CANCELLED" }, isDeleted: false })
+
+        if (!appointments) {
+
+            return res.status(HTTP_NOT_FOUND).send(new ResponseError({
+                success: false,
+                message: "Appointment not found!"
+            }))
+
+        }
+
+        appointments.status = body.appointmentStatus
+        appointments.reason = body.reason
+        await appointments.save()
+
+        return res.status(HTTP_CREATED).send(new ResponseSuccess({
+            success: true,
+            message: `${body.appointmentStatus} Appointments successfully.`,
+            result: appointments
+        }))
+
+
+    } catch (error) {
+
+        let response = new ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+
+        return res.status(500).json(response);
+
+    }
+
+}
+
 export const rescheduleAppointmentByDoctorOfASlot = async (req, res) => {
 
     const body = req.body

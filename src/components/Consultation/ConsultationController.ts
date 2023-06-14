@@ -2,6 +2,7 @@ import dayjs = require("dayjs")
 import moment = require("moment")
 import { toDoTasks, toDoTasksStatus, toDoTasksTypes } from "../../Constant/DoctorToDoTask"
 import { lifeStyleRecommendation } from "../../Constant/LEPRecommendation/lifestyle"
+import { phases } from "../../Constant/LEPRecommendation/Phases"
 import { HTTP_BAD_REQUEST, HTTP_NOT_FOUND, HTTP_OK } from "../../Constant/Master"
 import { masterAntenatalTest } from "../../Constant/MasterAntenatalTest"
 import { bodyTraverse } from "../../helpers/bodyTraverse"
@@ -57,7 +58,7 @@ export const getWeeklyTestOrAppointmentsByLmp = async (req, res) => {
         if (followUps) {
             followUps = followUps.treatment.filter((item) => item.week == body.week)
         }
-        
+
         if (followUps && followUps.length > 0) {
             let taskTestLists = followUps[0].followUp.testName.filter((test) => {
                 if (test.value) {
@@ -96,8 +97,6 @@ export const getWeeklyTestOrAppointmentsByLmp = async (req, res) => {
                     taskType: toDoTasksTypes.appointments
                 })
             }
-
-
             task.tasks = taskTestLists
         }
 
@@ -1066,7 +1065,7 @@ export const LEPRecommendation = async (req, res) => {
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: "LEP Recommendation get successfully",
-            result: LEPRecommendationData
+            result: [...LEPRecommendationData,...phases]
         }))
 
     } catch (error) {

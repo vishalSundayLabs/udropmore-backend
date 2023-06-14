@@ -13,6 +13,7 @@ exports.LEPRecommendation = exports.uploadWeeklyReport = exports.getNextConsulta
 const moment = require("moment");
 const DoctorToDoTask_1 = require("../../Constant/DoctorToDoTask");
 const lifestyle_1 = require("../../Constant/LEPRecommendation/lifestyle");
+const Phases_1 = require("../../Constant/LEPRecommendation/Phases");
 const Master_1 = require("../../Constant/Master");
 const MasterAntenatalTest_1 = require("../../Constant/MasterAntenatalTest");
 const bodyTraverse_1 = require("../../helpers/bodyTraverse");
@@ -773,7 +774,7 @@ const LEPRecommendation = (req, res) => __awaiter(void 0, void 0, void 0, functi
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: "LEP Recommendation get successfully",
-            result: LEPRecommendationData
+            result: [...LEPRecommendationData, ...Phases_1.phases]
         }));
     }
     catch (error) {

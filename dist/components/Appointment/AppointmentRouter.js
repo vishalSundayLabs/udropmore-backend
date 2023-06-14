@@ -11,5 +11,6 @@ router.post('/reschedule', tokenVerify_1.verifyToken, AppointmentController_1.re
 router.post('/getAllAppointments', tokenVerify_1.verifyToken, AppointmentController_1.getAllAppointmentsOfADay);
 router.post('/getappointments/mother', tokenVerify_1.verifyToken, AppointmentController_1.getAllAppointmentOfMother);
 router.put('/slot/cancel', tokenVerify_1.verifyToken, AppointmentController_1.updateAppointmentStatusByDoctorOfASlot);
+router.put("/cancel/by/mother", tokenVerify_1.verifyToken, AppointmentController_1.cancelAppointmentByMother);
 router.put('/slot/reschedule', tokenVerify_1.verifyToken, AppointmentController_1.rescheduleAppointmentByDoctorOfASlot);
 exports.default = router;
