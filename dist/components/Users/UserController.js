@@ -242,7 +242,7 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const query = req.query;
     const { limit, skips } = (0, pagination_1.pagination)(query);
     try {
-        const doctor = yield UserModel_1.default.findOne({ _id: body.doctor }).skip(skips).limit(limit);
+        const doctor = yield UserModel_1.default.findOne({ _id: body.doctor, isDeleted: false, isActive: true }).skip(skips).limit(limit);
         if (!doctor) {
             return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
                 success: false,
@@ -284,7 +284,7 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 }
             }
         }
-        if (!finalSlot[0]) {
+        if (finalSlot.length == 0) {
             return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
                 success: false,
                 message: "Slots Not Available."

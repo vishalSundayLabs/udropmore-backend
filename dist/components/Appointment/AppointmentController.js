@@ -218,7 +218,7 @@ const rescheduleAppointment = (req, res) => __awaiter(void 0, void 0, void 0, fu
     if (!body.appointmentId || !body.newDate) {
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
-            message: "Bad Request! , appointment id and new date must be provide."
+            message: "Bad Request! appointment id and new date must be provide."
         }));
     }
     try {

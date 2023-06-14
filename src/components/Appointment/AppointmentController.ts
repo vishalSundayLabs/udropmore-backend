@@ -296,7 +296,7 @@ export const rescheduleAppointment = async (req, res) => {
 
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
             success: false,
-            message: "Bad Request! , appointment id and new date must be provide."
+            message: "Bad Request! appointment id and new date must be provide."
         }))
 
     }

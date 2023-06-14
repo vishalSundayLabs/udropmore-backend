@@ -319,7 +319,7 @@ export const getSlots = async (req, res) => {
 
   try {
 
-    const doctor = await UserModel.findOne({ _id: body.doctor }).skip(skips).limit(limit)
+    const doctor = await UserModel.findOne({ _id: body.doctor, isDeleted: false, isActive: true }).skip(skips).limit(limit)
 
     if (!doctor) {
 
@@ -384,7 +384,7 @@ export const getSlots = async (req, res) => {
 
     }
 
-    if (!finalSlot[0]) {
+    if (finalSlot.length == 0) {
 
       return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
         success: false,
@@ -675,7 +675,7 @@ export const createDoctorByMother = async (req, res) => {
       }))
 
     }
-    
+
     const user = await UserModel.create(reqData);
 
     return res.status(HTTP_CREATED).send(new ResponseSuccess({
