@@ -17,6 +17,7 @@ const UserController_1 = require("../Users/UserController");
 const UserModel_1 = require("../Users/UserModel");
 const AppointmentModel_1 = require("./AppointmentModel");
 const UserDetailsModel_1 = require("../UserDetails/UserDetailsModel");
+const calculateCurrentWeekHelper_1 = require("../../helpers/calculateCurrentWeekHelper");
 const createAppointment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     const reqData = {
@@ -110,7 +111,8 @@ const getAllAppointmentsOfADay = (req, res) => __awaiter(void 0, void 0, void 0,
                 continue;
             }
             const { day, time } = (0, UserController_1.getDayOrTimeFromDate)(item.appointmentDateAndTime);
-            patientList.push({ appointmentId: item._id, motherId: item.motherId, name: mother.firstName, phoneNumber: mother.phoneNumber, pregnancyWeek: motherDetails ? motherDetails.pregnancyWeek : null, appointmentTime: time, appointmentType: item.appointmentType, appointmentStatus: item.status });
+            const currentPregnancyWeek = (0, calculateCurrentWeekHelper_1.calculateCurrentWeekAndDays)(motherDetails.lastMenstrualDate);
+            patientList.push({ appointmentId: item._id, motherId: item.motherId, name: mother.firstName, phoneNumber: mother.phoneNumber, pregnancyWeek: currentPregnancyWeek.week ? currentPregnancyWeek.week : null, appointmentTime: time, appointmentType: item.appointmentType, appointmentStatus: item.status });
         }
         let newPatient = 0;
         for (let [key, val] of patientMap) {

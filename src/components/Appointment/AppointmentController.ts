@@ -5,6 +5,7 @@ import { getDayOrTimeFromDate, makeSlotsFormat } from "../Users/UserController"
 import UserModel from "../Users/UserModel"
 import AppointmentModel from "./AppointmentModel"
 import UserDetailsModel from "../UserDetails/UserDetailsModel"
+import { calculateCurrentWeekAndDays } from "../../helpers/calculateCurrentWeekHelper"
 
 export const createAppointment = async (req, res) => {
 
@@ -145,7 +146,9 @@ export const getAllAppointmentsOfADay = async (req, res) => {
 
             const { day, time } = getDayOrTimeFromDate(item.appointmentDateAndTime)
 
-            patientList.push({ appointmentId: item._id, motherId: item.motherId, name: mother.firstName, phoneNumber: mother.phoneNumber, pregnancyWeek: motherDetails ? motherDetails.pregnancyWeek : null, appointmentTime: time, appointmentType: item.appointmentType, appointmentStatus: item.status })
+            const currentPregnancyWeek = calculateCurrentWeekAndDays(motherDetails.lastMenstrualDate)
+
+            patientList.push({ appointmentId: item._id, motherId: item.motherId, name: mother.firstName, phoneNumber: mother.phoneNumber, pregnancyWeek: currentPregnancyWeek.week ? currentPregnancyWeek.week : null, appointmentTime: time, appointmentType: item.appointmentType, appointmentStatus: item.status })
 
         }
 
