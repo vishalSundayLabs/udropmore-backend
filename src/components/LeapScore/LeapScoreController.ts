@@ -213,7 +213,11 @@ export const getArticalBasedOnLeapScoreAndStatus = async (req, res) => {
                 physical: categoryScore.physical.score
             },
             leapScoreStatus: leapScoreQuestionnaire.status,
-            nextLeapScore: diffDays <= 7 ? `After ${diffDays} Days` : `After ${Math.floor(diffDays / 7)} week and ${diffDays % 7} days`
+            nextLeapScore:
+                diffDays <= 7 ?
+                    { value: diffDays, unit: "Days" }
+                    :
+                    { value: LeapScoreQuestionnaireSchedule["LIFESTYLE"][nextLeapIndex + 1], unit: "Week" }
         })
 
     } catch (error) {

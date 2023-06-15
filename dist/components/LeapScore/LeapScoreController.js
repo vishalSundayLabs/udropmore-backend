@@ -175,7 +175,10 @@ const getArticalBasedOnLeapScoreAndStatus = (req, res) => __awaiter(void 0, void
                 physical: categoryScore.physical.score
             },
             leapScoreStatus: leapScoreQuestionnaire.status,
-            nextLeapScore: diffDays <= 7 ? `After ${diffDays} Days` : `After ${Math.floor(diffDays / 7)} week and ${diffDays % 7} days`
+            nextLeapScore: diffDays <= 7 ?
+                { value: diffDays, unit: "Days" }
+                :
+                    { value: QuestionnaireSchedule_1.LeapScoreQuestionnaireSchedule["LIFESTYLE"][nextLeapIndex + 1], unit: "Week" }
         });
     }
     catch (error) {
