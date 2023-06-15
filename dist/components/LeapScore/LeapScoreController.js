@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAllLeapScore = exports.getArticalBasedOnLeapScoreAndStatus = exports.updateLeapScoreQuestionnairDetails = exports.getLeapScoreQuestions = void 0;
+const moment = require("moment");
 const Anatomy_1 = require("../../Constant/LeapScore/Anatomy");
 const ArticalBasedOnScore_1 = require("../../Constant/LeapScore/ArticalBasedOnScore");
 const Emotion_1 = require("../../Constant/LeapScore/Emotion");
@@ -154,6 +155,10 @@ const getArticalBasedOnLeapScoreAndStatus = (req, res) => __awaiter(void 0, void
             articalOfPhysical = findArticalBasedOnScore(categoryScore.physical.answers, "physical");
         }
         const nextLeapIndex = QuestionnaireSchedule_1.LeapScoreQuestionnaireSchedule["LIFESTYLE"].indexOf(Number(query.week));
+        const nextLeapScoreDiff = QuestionnaireSchedule_1.LeapScoreQuestionnaireSchedule["LIFESTYLE"][nextLeapIndex + 1] - Number(query.week);
+        const nextLeapScoreDate = new Date(moment(new Date()).add(nextLeapScoreDiff, 'weeks').format('YYYY-MM-DD'));
+        const currentDate = new Date();
+        const diffDays = moment(nextLeapScoreDate).diff(new Date(), 'days');
         return res.status(Master_1.HTTP_OK).send({
             success: true,
             message: `Get Artical based on score or status successfully.`,
@@ -170,7 +175,7 @@ const getArticalBasedOnLeapScoreAndStatus = (req, res) => __awaiter(void 0, void
                 physical: categoryScore.physical.score
             },
             leapScoreStatus: leapScoreQuestionnaire.status,
-            nextLeapScore: QuestionnaireSchedule_1.LeapScoreQuestionnaireSchedule["LIFESTYLE"][nextLeapIndex + 1]
+            nextLeapScore: diffDays <= 7 ? `After ${diffDays} Days` : `After ${Math.floor(diffDays / 7)} week and ${diffDays % 7} days`
         });
     }
     catch (error) {
