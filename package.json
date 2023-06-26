@@ -1,7 +1,7 @@
 {
-  "name": "onicares-app-backend",
+  "name": "udropmore-app-backend",
   "version": "1.0.0",
-  "description": "Onicares backend",
+  "description": "udropmore backend",
   "main": "index.js",
   "scripts": {
     "build": "rm -rf dist && tsc --noStrictGenericChecks",

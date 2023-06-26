@@ -7,104 +7,10 @@ import IUser, { IAvailability, IRequestWithUser } from "./UserInterface";
 // classes
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass";
 import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_NOT_FOUND, HTTP_OK } from "../../Constant/Master";
-import AppointmentModel from "../Appointment/AppointmentModel";
-import { ClinicModel } from "../Clinic/clinicModel";
 import { bodyTraverse } from "../../helpers/bodyTraverse";
 import { pagination } from "../../helpers/pagination";
-import UserDetailsModel from "../UserDetails/UserDetailsModel";
-import CurrentObservastionModel from "../Consultation/CurrentObservastionModel";
-import antenatalTestModel from "../Consultation/AntenatalTestModel";
-import TreatmentModel from "../Consultation/TreatmentModel";
-import NextAntenatalTestModel from "../Consultation/NextAntenatalTestModel";
-import { sampleCurrentObservastion } from "../../utils/sampleCurrentObservastion";
-import { sampleAntentalTest } from "../../utils/sampleAntenatalTest";
-import { sampleTreatment } from "../../utils/sampleTreatment";
-import { sampleNextAntenatalTest } from "../../utils/sampleNextAntenatalTest";
-import PastHistoryModel from "../Consultation/PastHistoryModel";
-import { samplePastHistory } from "../../utils/samplePastHostory";
 
-export let getUser = async (req: IRequestWithUser, res: Response) => {
 
-  try {
-
-    let uid: string = req.userId;
-
-    let userInfo: IUser = await UserModel.findOne({ _id: uid, isDeleted: false });
-
-    if (!userInfo) {
-
-      return res.status(404).json({
-        success: false,
-        message: "User does not exist.",
-        error: "User does not exist.",
-      });
-
-    }
-
-    return res.status(200).json(new ResponseSuccess({
-      success: true,
-      message: "Success",
-      result: userInfo
-    }));
-
-  } catch (error) {
-
-    let response = new ResponseError({
-      message: "Something went wrong",
-      error: error.message,
-    });
-
-    return res.status(500).json(response);
-
-  }
-
-};
-
-export const getUserById = async (req, res) => {
-
-  const params = req.params
-
-  if (!params.id) {
-
-    return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
-      success: false,
-      message: "Bad request! User Id must be provide!"
-    }))
-
-  }
-
-  try {
-
-    const user = await UserModel.findOne({ _id: params.id, isDeleted: false })
-
-    if (!user) {
-
-      return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
-        success: false,
-        message: "User Id does not exist."
-      }))
-
-    }
-
-    return res.status(HTTP_BAD_REQUEST).send(new ResponseSuccess({
-      success: true,
-      message: "get User successfully.",
-      result: user
-    }))
-
-  } catch (error) {
-
-    let response = new ResponseError({
-      message: "Something went wrong",
-      error: error.message,
-    });
-
-    return res.status(500).json(response);
-
-  }
-
-}
-//this controller use only admin
 export const createUser = async (req, res) => {
 
   const body = req.body
@@ -124,20 +30,7 @@ export const createUser = async (req, res) => {
     middleName: body.middleName,
     email: body.email,
     phoneNumber: body.phoneNumber,
-    userType: body.userType,
-    platform: body.platform,
-    registrationDetails: body.registrationDetails,
-    degree: body.degree,
-    speciality: body.speciality,
-    awards: body.awards,
-    experience: body.experience,
-    consultationFeeDetails: body.consultationFeeDetails,
-    clinic: body.clinic,
-    memberships: body.memberships,
-    gallary: body.gallary,
-    services: body.services,
-    availability: body.availability,
-    status: body.status
+    userType: body.userType
   }
 
   try {
@@ -174,62 +67,23 @@ export const createUser = async (req, res) => {
 
 }
 
-export const updateMother = async (req, res) => {
+export const userUpdate = async (req, res) => {
 
+  const params = req.params
   const body = req.body
 
-  if (!body.phoneNumber) {
+  if (!params.userId) {
 
     return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
       success: false,
-      message: "Bad Request! Phone number must be provide."
+      message: "Bad request! User ID must be provide!"
     }))
 
   }
 
   try {
 
-    const mother = await UserModel.findOne({ phoneNumber: body.phoneNumber, isDeleted: false, userType: "MOTHER" })
-
-    if (!mother) {
-
-      return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
-        success: false,
-        message: "Bad Request! Invalid Mobile Number!"
-      }))
-
-    }
-
-    bodyTraverse(mother, body)
-
-    mother.updatedBy = req.userId;
-    await mother.save()
-
-    return res.status(HTTP_OK).send(new ResponseSuccess({
-      success: true,
-      message: "User Update successfully",
-      result: mother
-    }))
-
-  } catch (error) {
-
-    let response = new ResponseError({
-      message: "Something went wrong",
-      error: error.message,
-    });
-
-    return res.status(500).json(response);
-  }
-}
-
-export const userUpdate = async (req, res) => {
-
-  const userId = req.params.id
-  const body = req.body
-
-  try {
-
-    const user = await UserModel.findOne({ _id: userId, isDeleted: false })
+    const user = await UserModel.findOne({ _id: params.userId, isDeleted: false })
 
     if (!user) {
 
@@ -263,425 +117,18 @@ export const userUpdate = async (req, res) => {
 
 }
 
-export const deleteUser = async (req, res) => {
+export const getUserList = async (req, res) => {
 
-  const userId = req.params.id
-
-  if (!userId) {
-
-    return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
-      success: false,
-      message: "Bad Request! , user id required!"
-    }))
-
-  }
+  const { limit, skips } = pagination(req.query)
 
   try {
 
-    const user = await UserModel.findOne({ _id: userId, isDeleted: false });
-
-    if (!user) {
-
-      return res.status(HTTP_OK).send(new ResponseSuccess({
-        success: false,
-        message: "user already deleted ."
-      }))
-
-    }
-
-    user.isDeleted = true
-    await user.save()
-
-    return res.status(HTTP_OK).send(new ResponseSuccess({
-      success: true,
-      message: "User deleted successfully."
-    }))
-
-  } catch (error) {
-
-    let response = new ResponseError({
-      message: "Something went wrong",
-      error: error.message,
-    });
-
-    return res.status(500).json(response);
-
-  }
-
-}
-
-export const getSlots = async (req, res) => {
-
-  const body = req.body
-  const query = req.query
-
-  const { limit, skips } = pagination(query)
-
-  try {
-
-    const doctor = await UserModel.findOne({ _id: body.doctor, isDeleted: false, isActive: true }).skip(skips).limit(limit)
-
-    if (!doctor) {
-
-      return res.status(HTTP_OK).send(new ResponseSuccess({
-        success: false,
-        message: "Doctor not found!"
-      }))
-
-    }
-
-    let slots = doctor.availability.filter(ele => {
-      if (ele.clinic == body.clinic) return ele;
-    })
-
-    const bodyDate = getDayOrTimeFromDate(body.date)
-    const newSlots = [];
-
-    for (let i = 0; i < slots[0].slots.length; i++) {
-
-      if (slots[0].slots[i].type == body.appointmentType && slots[0].slots[i].day == bodyDate.day) {
-        newSlots.push(slots[0].slots[i])
-      }
-
-    }
-
-    const finalSlot = makeSlotsFormat(newSlots, body.appointmentType)
-
-    let BookedSlot = [];
-
-    if (body.appointmentType == "INPERSON") {
-
-      BookedSlot = await AppointmentModel.find({ clinicId: body.clinic, doctorId: body.doctor, appointmentDateAndTime: { $gte: new Date(bodyDate.fullDate), $lt: new Date(bodyDate.nextDate) }, appointmentType: { $ne: "INPERSON" }, status: { $ne: "CANCELLED" }, isDeleted: false });
-
-    } else {
-
-      BookedSlot = await AppointmentModel.find({ clinicId: body.clinic, doctorId: body.doctor, appointmentDateAndTime: { $gte: new Date(bodyDate.fullDate), $lt: new Date(bodyDate.nextDate) }, status: { $ne: "CANCELLED" }, isDeleted: false });
-
-    }
-
-    if (BookedSlot.length > 0) {
-
-      for (let j = 0; j < BookedSlot.length; j++) {
-
-        let bookedSlotIndex = -1
-        const bookedSlot = getDayOrTimeFromDate(BookedSlot[j].appointmentDateAndTime)
-
-        for (let i = 0; i < finalSlot.length; i++) {
-          const singleSlot = finalSlot[i]
-
-          if (singleSlot.day == bookedSlot.day && singleSlot.time == bookedSlot.time) {
-            bookedSlotIndex = i;
-            break;
-          }
-
-        }
-
-        if (bookedSlotIndex != -1) {
-          finalSlot[bookedSlotIndex].status = "BOOKED"
-        }
-
-      }
-
-    }
-
-    if (finalSlot.length == 0) {
-
-      return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
-        success: false,
-        message: "Slots Not Available."
-      }))
-
-    }
-
-    return res.status(HTTP_OK).send(new ResponseSuccess({
-      success: true,
-      message: "get all slots successfully.",
-      result: finalSlot
-    }))
-
-  } catch (error) {
-
-    let response = new ResponseError({
-      message: "Something went wrong",
-      error: error.message,
-    });
-
-    return res.status(500).json(response);
-
-  }
-
-}
-
-export const getAllUsers = async (req, res) => {
-
-  const body = req.body;
-  const query = req.query
-  let findReqData;
-
-  if (body.userType) {
-    findReqData = { userType: body.userType, isDeleted: false }
-  }
-
-  const { limit, skips } = pagination(query)
-
-  try {
-
-    const users = await UserModel.find(findReqData).skip(skips).limit(limit)
-
-    return res.status(HTTP_OK).send(new ResponseSuccess({
-      success: true,
-      message: "all users fetch successfully.",
-      result: users
-    }))
-
-  } catch (error) {
-
-    let response = new ResponseError({
-      message: "Something went wrong",
-      error: error.message,
-    });
-    return res.status(500).json(response);
-
-  }
-
-}
-
-export const mapMotherWithDoctor = async (req, res) => {
-
-  const body = req.body
-
-  if (!body.motherId || !body.mappedDoctor || !body.mappedClinic) {
-
-    return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
-      success: false,
-      message: "Bad Request! Mother id , doctor id or clinic id must be provide."
-    }))
-
-  }
-
-  try {
-
-    const mother = await UserModel.findOne({ _id: body.motherId, isDeleted: false, userType: "MOTHER" })
-
-    if (!mother) {
-
-      return res.status(HTTP_NOT_FOUND).send(new ResponseError({
-        success: false,
-        message: "Bad Request! user not found!"
-      }))
-
-    }
-
-    const doctor = await UserModel.findOne({ _id: body.mappedDoctor, isDeleted: false, userType: "DOCTOR" })
-
-    if (!doctor) {
-
-      return res.status(HTTP_NOT_FOUND).send(new ResponseError({
-        success: false,
-        message: "Bad Request! Doctor not found!"
-      }))
-
-    }
-
-    if (body.mappedDoctor) mother.mappedDoctor = body.mappedDoctor
-
-    const clinic = await ClinicModel.findOne({ _id: body.mappedClinic, isDeleted: false })
-
-    if (!clinic) {
-
-      return res.status(HTTP_NOT_FOUND).send(new ResponseError({
-        success: false,
-        message: "Bad Request! Clinic not found!"
-      }))
-
-    }
-
-    if (body.mappedClinic) mother.mappedClinic = body.mappedClinic
-
-    mother.updatedBy = req.userId;
-
-    await mother.save()
-
-    samplePastHistory.userId = mother._id
-    samplePastHistory.doctorId = doctor._id
-
-    sampleCurrentObservastion.userId = mother._id
-    sampleCurrentObservastion.doctorId = doctor._id
-
-    sampleAntentalTest.userId = mother._id
-    sampleAntentalTest.doctorId = doctor._id
-
-    sampleTreatment.userId = mother._id
-    sampleTreatment.doctorId = doctor._id
-
-    sampleNextAntenatalTest.userId = mother._id
-    sampleNextAntenatalTest.doctorId = doctor._id
-
-    await PastHistoryModel.create(samplePastHistory)
-    await CurrentObservastionModel.create(sampleCurrentObservastion)
-    await antenatalTestModel.create(sampleAntentalTest)
-    await TreatmentModel.create(sampleTreatment)
-    await NextAntenatalTestModel.create(sampleNextAntenatalTest)
-
-    return res.status(HTTP_OK).send(new ResponseSuccess({
-      success: true,
-      message: "Mother mapped with doctor successfully.",
-      result: mother
-    }))
-
-  } catch (error) {
-
-    let response = new ResponseError({
-      message: "Something went wrong",
-      error: error.message,
-    });
-
-    return res.status(500).json(response);
-  }
-
-}
-
-export const getPatientOfDoctorById = async (req, res) => {
-  const params = req.params
-
-  if (!params.doctorId) {
-
-    return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
-      success: false,
-      message: "Bad request! Doctor Id must be provide!"
-    }))
-
-  }
-
-  try {
-    const patients = await UserModel.find({ mappedDoctor: params.doctorId, userType: "MOTHER", isDeleted: false, isActive: true })
-
-    const patientDetails = []
-    for (let i = 0; i < patients.length; i++) {
-      const patient = await UserDetailsModel.findOne({ userId: patients[i]._id, isDeleted: false }).exec()
-      patientDetails.push({ ...patient._doc, ...patients[i]._doc })
-    }
-
-    return res.status(HTTP_OK).send(new ResponseSuccess({
-      success: true,
-      message: "get all patient of a doctor successfully.",
-      result: patientDetails
-    }))
-
-  } catch (error) {
-
-    let response = new ResponseError({
-      message: "Something went wrong",
-      error: error.message,
-    });
-
-    return res.status(500).json(response);
-
-  }
-
-}
-
-export const getDoctorOfMotherById = async (req, res) => {
-
-  const params = req.params
-
-  if (!params.motherId) {
-
-    return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
-      success: false,
-      message: "Bad request! Mother Id must be provide!"
-    }))
-
-  }
-
-  try {
-    const patient = await UserModel.findOne({ _id: params.motherId, isDeleted: false, isActive: true })
-
-    if (!patient) {
-
-      return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
-        success: false,
-        message: "user does not exist!"
-      }))
-
-    }
-
-    const doctor = await UserModel.findOne({ _id: patient.mappedDoctor, isDeleted: false, isActive: true })
-
-    if (!doctor) {
-
-      return res.status(HTTP_OK).send(new ResponseSuccess({
-        success: false,
-        message: "Right now user not mapped with doctor."
-      }))
-
-    }
-
-    return res.status(HTTP_BAD_REQUEST).send(new ResponseSuccess({
-      success: true,
-      message: "get doctor successfully.",
-      result: doctor
-    }))
-
-  } catch (error) {
-
-    let response = new ResponseError({
-      message: "Something went wrong",
-      error: error.message,
-    });
-
-    return res.status(500).json(response);
-
-  }
-
-}
-
-export const createDoctorByMother = async (req, res) => {
-
-  const body = req.body
-
-  if (!body.phoneNumber || !body.firstName) {
-
-    return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
-      success: false,
-      message: "Bad request! ,first name  , phone number  must be provide!"
-    }))
-
-  }
-
-  const reqData = {
-    firstName: body.firstName,
-    lastName: body.lastName,
-    middleName: body.middleName,
-    email: body.email,
-    phoneNumber: body.phoneNumber,
-    userType: "DOCTOR",
-    platform: "DOCTOR",
-    status: body.status,
-    isRecommendedByMother: true,
-    createdBy: req.userId
-  }
-
-  try {
-
-    const oldUser = await UserModel.findOne({ phoneNumber: body.phoneNumber, isActive: true, isDeleted: false })
-
-    if (oldUser) {
-
-      return res.status(HTTP_BAD_REQUEST).send(new ResponseSuccess({
-        success: true,
-        message: "This phone number is already register!",
-        result: null
-      }))
-
-    }
-
-    const user = await UserModel.create(reqData);
+    const userList = await UserModel.find({ isDeleted: false }).sort({ $natural: -1 }).skip(skips).limit(limit)
 
     return res.status(HTTP_CREATED).send(new ResponseSuccess({
       success: true,
-      message: 'User created successfully!',
-      result: user
+      message: 'Get user list successfully!',
+      result: userList
     }))
 
   } catch (error) {
@@ -697,67 +144,87 @@ export const createDoctorByMother = async (req, res) => {
 
 }
 
-export const makeSlotsFormat = (slots, slotType) => {
+export const getUserWalletBalance = async (req, res) => {
 
-  const slotsTime = slotType == 'INPERSON' ? +process.env.INPERSON_SLOT_TIME : slotType == "VIDEOCALL" ? +process.env.VIDEOCALL_SLOT_TIME : +process.env.INPERSON_SLOT_TIME;
-  const newSlots = [];
+  const params = req.params
 
-  for (let i = 0; i < slots.length; i++) {
+  if (!params.userId) {
 
-    const timeSlots = slots[i].timeSlots;
+    return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+      success: false,
+      message: "Bad request! User ID must be provide!"
+    }))
 
-    for (let j = 0; j < timeSlots.length; j++) {
-
-      let newTime = timeSlots[j].split("-");
-      let startTime = newTime[0];
-      let endTime = newTime[1];
-      let timeDiff = (Math.floor(endTime) - Math.floor(startTime)) * 60;
-      let mintCount: any = 0;
-
-      while (timeDiff != mintCount) {
-
-        if (mintCount % 60 == 0 && mintCount != 0) {
-          startTime++;
-        }
-
-        newSlots.push({
-          day: slots[i].day,
-          time: `${startTime}:${mintCount % 60}`,
-          status: "AVAILABLE",
-        });
-
-        mintCount = mintCount + slotsTime;
-
-      }
-    }
   }
-  return newSlots;
-}
 
-export const getDayOrTimeFromDate = (date) => {
+  try {
 
-  const newDate = new Date(date);
-  const currDate = new Date()
-  const days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"]
-  const dayInNumber = newDate.getDay()
-  const hours = newDate.getHours()
-  const minutes = newDate.getMinutes()
-  const years = newDate.getFullYear()
-  const months = newDate.getMonth()
-  const dates = newDate.getDate()
-  const fullDate = `${years}-${months + 1}-${dates}`
-  const nextDate = `${months + 2 == 13 && dates + 1 == 32 ? years + 1 : years}-${dates + 1 == 32 ? months + 2 == 13 ? 1 : months + 2 : months + 1}-${dates + 1 == 32 ? 1 : dates + 1}`
-  const betweenTwoDateNoOfDays = Math.round(((+currDate) - (+newDate)) / 86400000)
+    const userWalletBalance = await UserModel.find({ _id: params.userId, isDeleted: false }, { firstName: true, email: true, phoneNumber: true, walletBalance: true })
 
-  return {
-    day: days[dayInNumber],
-    time: `${hours}:${minutes}`,
-    fullDate: fullDate,
-    nextDate: nextDate,
-    noOfDays: betweenTwoDateNoOfDays
+    return res.status(HTTP_CREATED).send(new ResponseSuccess({
+      success: true,
+      message: 'Get user list successfully!',
+      result: userWalletBalance
+    }))
+
+  } catch (error) {
+
+    let response = new ResponseError({
+      message: "Something went wrong",
+      error: error.message,
+    });
+
+    return res.status(500).json(response);
+
   }
 
 }
+// export const deleteUser = async (req, res) => {
+
+//   const userId = req.params.id
+
+//   if (!userId) {
+
+//     return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+//       success: false,
+//       message: "Bad Request! , user id required!"
+//     }))
+
+//   }
+
+//   try {
+
+//     const user = await UserModel.findOne({ _id: userId, isDeleted: false });
+
+//     if (!user) {
+
+//       return res.status(HTTP_OK).send(new ResponseSuccess({
+//         success: false,
+//         message: "user already deleted ."
+//       }))
+
+//     }
+
+//     user.isDeleted = true
+//     await user.save()
+
+//     return res.status(HTTP_OK).send(new ResponseSuccess({
+//       success: true,
+//       message: "User deleted successfully."
+//     }))
+
+//   } catch (error) {
+
+//     let response = new ResponseError({
+//       message: "Something went wrong",
+//       error: error.message,
+//     });
+
+//     return res.status(500).json(response);
+
+//   }
+
+// }
 
 
 

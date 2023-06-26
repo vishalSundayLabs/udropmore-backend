@@ -15,10 +15,6 @@ exports.app = express();
 exports.app.set("port", Config_1.default.PORT || 8080);
 exports.app.use(cors());
 exports.app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json({}));
-// app.use(express.json({limit: '13000mb'}));
-// app.use(express.urlencoded({limit: '13000mb'}));
 exports.app.use(bodyParser.json({ limit: '12000mb', type: 'application/json' }));
 exports.app.use(bodyParser.urlencoded({ limit: '12000mb', extended: true, parameterLimit: 50000, type: 'application/x-www-form-urlencoded' }));
 exports.app.get("/", (req, res) => {
@@ -36,6 +32,25 @@ if (Config_1.default.NODE_ENV === "development") {
         next();
     });
 }
+// const products = generateRandomProducts(10);
+// console.log(products);
+// for (let i = 0; i < 9; i++) {
+//     ProductModel.create(products[i])
+//     console.log("line 37 ",i)
+// }
+//user create randomly
+// const user = generateRandomUser()
+// for (let i = 0; i < 10; i++) {
+//   const user = generateRandomUser();
+//   UserModel.create(user)
+//   console.log("user created",user,i)
+// }
+//auction create randmoly
+// for (let i = 0; i < 10; i++) {
+//   const auctions = generateRandomAuction();
+//   AuctionModel.create(auctions)
+//   console.log("auction created",auctions,i)
+// }
 exports.app.use(index_1.default);
 DB.connect()
     .then((result) => {

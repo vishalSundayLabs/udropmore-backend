@@ -7,6 +7,12 @@ import * as tracer from "tracer";
 import config from "./config/Config";
 import * as DB from "./helpers/DbHelper";
 import router from "./routers/index";
+import { generateRandomProducts } from "./SeedData/product.seed";
+import ProductModel from "./components/Product/ProductModel";
+import { generateRandomUser } from "./SeedData/user.seed";
+import UserModel from "./components/Users/UserModel";
+import AuctionModel from "./components/Auction/AuctionModel";
+import { generateRandomAuction } from "./SeedData/Auction.seed";
 const bodyParser = require("body-parser");
 
 const logger = tracer.colorConsole();
@@ -18,13 +24,6 @@ app.set("port", config.PORT || 8080);
 app.use(cors());
 
 app.use(express.json());
-
-// app.use(express.urlencoded({ extended: true }));
-
-// app.use(express.json({}));
-
-// app.use(express.json({limit: '13000mb'}));
-// app.use(express.urlencoded({limit: '13000mb'}));
 
 app.use(bodyParser.json({ limit: '12000mb',type:'application/json'}));
 
@@ -57,6 +56,30 @@ if (config.NODE_ENV === "development") {
   });
 
 }
+
+// const products = generateRandomProducts(10);
+// console.log(products);
+
+// for (let i = 0; i < 9; i++) {
+//     ProductModel.create(products[i])
+//     console.log("line 37 ",i)
+// }
+//user create randomly
+// const user = generateRandomUser()
+// for (let i = 0; i < 10; i++) {
+//   const user = generateRandomUser();
+//   UserModel.create(user)
+//   console.log("user created",user,i)
+// }
+//auction create randmoly
+
+// for (let i = 0; i < 10; i++) {
+//   const auctions = generateRandomAuction();
+//   AuctionModel.create(auctions)
+//   console.log("auction created",auctions,i)
+// }
+
+
 
 app.use(router);
 

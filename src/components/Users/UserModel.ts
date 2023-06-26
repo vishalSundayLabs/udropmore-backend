@@ -20,6 +20,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: ""
     },
+    walletBalance: { type: Number, default: 0 },
     email: {
       type: String,
       trim: true,
@@ -34,96 +35,13 @@ const userSchema = new mongoose.Schema(
     },
     userType: {
       type: String,
-      enum: ['DOCTOR', 'MOTHER', 'HOSPITAL_ADMIN', 'NURSES', 'ONI_ADMIN'],
-      default: "MOTHER"
-    },
-    platform: {
-      type: String,
-      enum: ['DOCTOR', 'MOTHER', 'ADMIN'],
-    },
-    registrationDetails: {
-      type: Object,
-      medicalCouncil: String,
-      number: String,
-      year: String
-    },
-    degree: {
-      type: [{
-        name: String,
-        year: String,
-        institute: String
-      }]
-    },
-    speciality: {
-      type: [String],
-    },
-    awards: [{
-      name: String,
-      year: String
-    }],
-    experience: {
-      type: Number
-    },
-    consultationFeeDetails: {
-      type: {
-        inPerson: Number,
-        videoCall: Number,
-        teleCall: Number
-      }
-    },
-    clinic: {
-      type: [mongoose.SchemaTypes.ObjectId],
-      refs: 'clinics'
-    },
-    memberships: {
-      type: [{
-        name: String,
-        year: String
-      }]
-    },
-    gallery: {
-      type: [String]
-    },
-    services: {
-      type: [String]
-    },
-    availability: {
-      type: [{
-        type: Object,
-        clinic: mongoose.SchemaTypes.ObjectId,
-        slots: [{
-          day: String,
-          timeSlots: [String],
-          type: {
-            type: String,
-            enum: ["INPERSON", "VIDEOCALL", "TELECALL"]
-          }
-        }]
-      }],
-    },
-    mappedDoctor: {
-      type: mongoose.SchemaTypes.ObjectId,
-      refs: "User"
-    },
-    mappedClinic: {
-      type: mongoose.SchemaTypes.ObjectId,
-      refs: "User"
+      enum: ['ADMIN', "USER"],
+      default: "USER"
     },
     status: {
       type: String,
-      enum: ['ACTIVE', 'INACTIVE']
-    },
-    isRecommendedByMother: {
-      type: Boolean,
-      default: false
-    },
-    isActive: {
-      type: Boolean,
-      default: true
-    },
-    isExist: {
-      type: Boolean,
-      default: false
+      enum: ['ACTIVE', "INACTIVE"],
+      default: "ACTIVE"
     },
     isDeleted: {
       type: Boolean,
