@@ -1,4 +1,4 @@
-import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_NOT_FOUND } from "../../Constant/Master";
+import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_NOT_FOUND, HTTP_OK } from "../../Constant/Master";
 import { pagination } from "../../helpers/pagination";
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass";
 import OrderModel from "./OrderModel";
@@ -20,7 +20,7 @@ export const getOrderList = async (req, res) => {
 
         }
 
-        return res.status(HTTP_CREATED).send(new ResponseSuccess({
+        return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: 'Get order list successfully!',
             result: orderList
@@ -56,7 +56,7 @@ export const getOrderHistory = async (req, res) => {
 
         const orderHistory = await OrderModel.find({ userId: params.userId, isDeleted: false }).sort({ $natural: -1 })
 
-        return res.status(HTTP_CREATED).send(new ResponseSuccess({
+        return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: 'Get order history successfully!',
             result: orderHistory
@@ -92,7 +92,7 @@ export const getUserCartOrder = async (req, res) => {
 
         const cartOrder = await OrderModel.find({ userId: params.userId, status: { $in: ["PENDING"] }, isDeleted: false }).sort({ $natural: -1 })
 
-        return res.status(HTTP_CREATED).send(new ResponseSuccess({
+        return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: 'Get user cart successfully!',
             result: cartOrder

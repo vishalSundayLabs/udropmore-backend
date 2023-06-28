@@ -9,25 +9,31 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUserCartOrder = exports.getOrderHistory = exports.getOrderList = void 0;
+exports.getTransactionList = exports.deleteTransactionById = exports.getTransactionById = void 0;
 const Master_1 = require("../../Constant/Master");
 const pagination_1 = require("../../helpers/pagination");
 const ResponseClass_1 = require("../../utils/ResponseClass");
-const OrderModel_1 = require("./OrderModel");
-const getOrderList = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { skips, limit } = (0, pagination_1.pagination)(req.query);
+const TransactionModel_1 = require("./TransactionModel");
+const getTransactionById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const params = req.params;
+    if (!params.transactionId) {
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: "Bad request! Transaction ID must be provide!"
+        }));
+    }
     try {
-        const orderList = yield OrderModel_1.default.find({ isDeleted: false }).sort({ $natural: -1 }).skip(skips).limit(limit);
-        if (orderList.length == 0) {
+        const transaction = yield TransactionModel_1.default.findOne({ _id: params.transactionId, isDeleted: false });
+        if (!transaction) {
             return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
                 success: false,
-                message: "order Not found!"
+                message: "Transaction not found!"
             }));
         }
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
-            message: 'Get order list successfully!',
-            result: orderList
+            message: 'Get transaction successfully!',
+            result: transaction
         }));
     }
     catch (error) {
@@ -38,21 +44,27 @@ const getOrderList = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         return res.status(500).json(response);
     }
 });
-exports.getOrderList = getOrderList;
-const getOrderHistory = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getTransactionById = getTransactionById;
+const deleteTransactionById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const params = req.params;
-    if (!params.userId) {
+    if (!params.transactionId) {
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
-            message: "Bad request! User ID must be provide!"
+            message: "Bad request! Transaction ID must be provide!"
         }));
     }
     try {
-        const orderHistory = yield OrderModel_1.default.find({ userId: params.userId, isDeleted: false }).sort({ $natural: -1 });
+        const transaction = yield TransactionModel_1.default.findOneAndUpdate({ _id: params.transactionId }, { $set: { isDeleted: true } });
+        if (!transaction) {
+            return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
+                success: false,
+                message: "Transaction Not found!"
+            }));
+        }
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
-            message: 'Get order history successfully!',
-            result: orderHistory
+            message: 'Delete transaction successfully!',
+            result: transaction
         }));
     }
     catch (error) {
@@ -63,21 +75,15 @@ const getOrderHistory = (req, res) => __awaiter(void 0, void 0, void 0, function
         return res.status(500).json(response);
     }
 });
-exports.getOrderHistory = getOrderHistory;
-const getUserCartOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const params = req.params;
-    if (!params.userId) {
-        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
-            success: false,
-            message: "Bad request! User ID must be provide!"
-        }));
-    }
+exports.deleteTransactionById = deleteTransactionById;
+const getTransactionList = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let { limit, skips } = (0, pagination_1.pagination)(req.query);
     try {
-        const cartOrder = yield OrderModel_1.default.find({ userId: params.userId, status: { $in: ["PENDING"] }, isDeleted: false }).sort({ $natural: -1 });
+        const transactionList = yield TransactionModel_1.default.find({ isDeleted: false }).sort({ $natural: -1 }).skip(skips).limit(limit);
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
-            message: 'Get user cart successfully!',
-            result: cartOrder
+            message: 'Get transaction list successfully!',
+            result: transactionList
         }));
     }
     catch (error) {
@@ -88,4 +94,4 @@ const getUserCartOrder = (req, res) => __awaiter(void 0, void 0, void 0, functio
         return res.status(500).json(response);
     }
 });
-exports.getUserCartOrder = getUserCartOrder;
+exports.getTransactionList = getTransactionList;

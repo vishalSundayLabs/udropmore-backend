@@ -13,6 +13,8 @@ import { generateRandomUser } from "./SeedData/user.seed";
 import UserModel from "./components/Users/UserModel";
 import AuctionModel from "./components/Auction/AuctionModel";
 import { generateRandomAuction } from "./SeedData/Auction.seed";
+import * as cron from "node-cron";
+import { cronJobForChangesStatus } from "./utils/cronjob";
 const bodyParser = require("body-parser");
 
 const logger = tracer.colorConsole();
@@ -57,29 +59,6 @@ if (config.NODE_ENV === "development") {
 
 }
 
-// const products = generateRandomProducts(10);
-// console.log(products);
-
-// for (let i = 0; i < 9; i++) {
-//     ProductModel.create(products[i])
-//     console.log("line 37 ",i)
-// }
-//user create randomly
-// const user = generateRandomUser()
-// for (let i = 0; i < 10; i++) {
-//   const user = generateRandomUser();
-//   UserModel.create(user)
-//   console.log("user created",user,i)
-// }
-//auction create randmoly
-
-// for (let i = 0; i < 10; i++) {
-//   const auctions = generateRandomAuction();
-//   AuctionModel.create(auctions)
-//   console.log("auction created",auctions,i)
-// }
-
-
 
 app.use(router);
 
@@ -88,6 +67,7 @@ DB.connect()
     app.listen(app.get("port"), () => {
       logger.info(` Web App backend listening on port ${app.get("port")}.`);
     });
+    cronJobForChangesStatus()
   })
   .catch((err) => {
     console.log("error in db Connection---> ", err.message);

@@ -9,6 +9,7 @@ const tracer = require("tracer");
 const Config_1 = require("./config/Config");
 const DB = require("./helpers/DbHelper");
 const index_1 = require("./routers/index");
+const cronjob_1 = require("./utils/cronjob");
 const bodyParser = require("body-parser");
 const logger = tracer.colorConsole();
 exports.app = express();
@@ -32,31 +33,13 @@ if (Config_1.default.NODE_ENV === "development") {
         next();
     });
 }
-// const products = generateRandomProducts(10);
-// console.log(products);
-// for (let i = 0; i < 9; i++) {
-//     ProductModel.create(products[i])
-//     console.log("line 37 ",i)
-// }
-//user create randomly
-// const user = generateRandomUser()
-// for (let i = 0; i < 10; i++) {
-//   const user = generateRandomUser();
-//   UserModel.create(user)
-//   console.log("user created",user,i)
-// }
-//auction create randmoly
-// for (let i = 0; i < 10; i++) {
-//   const auctions = generateRandomAuction();
-//   AuctionModel.create(auctions)
-//   console.log("auction created",auctions,i)
-// }
 exports.app.use(index_1.default);
 DB.connect()
     .then((result) => {
     exports.app.listen(exports.app.get("port"), () => {
         logger.info(` Web App backend listening on port ${exports.app.get("port")}.`);
     });
+    (0, cronjob_1.cronJobForChangesStatus)();
 })
     .catch((err) => {
     console.log("error in db Connection---> ", err.message);

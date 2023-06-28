@@ -33,17 +33,9 @@ const AuctionSchema = new mongoose.Schema(
         status: {
             type: String,
             enum: ["SCHEDULED", "ACTIVE", "COMPLETED"],
-            default: "ACTIVE"
+            default: "SCHEDULED"
         },
-        // participants: [{ type: mongoose.SchemaTypes.ObjectId, ref: "User" }],
-        participants: [{
-            userId: {
-                type: mongoose.SchemaTypes.ObjectId,
-                ref: "User"
-            },
-            time: Date
-        }],
-        feed: [{
+       participants: [{
             userId: {
                 type: mongoose.SchemaTypes.ObjectId,
                 ref: "User"

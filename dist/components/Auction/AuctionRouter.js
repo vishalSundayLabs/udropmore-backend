@@ -11,5 +11,6 @@ router.get("/participants/:auctionId", AuctionController_1.getParticipants);
 router.get("/history/:userId", AuctionController_1.getAuctionHistory);
 router.get('/upcomming', AuctionController_1.getLiveAndUpcommingAuction);
 router.put("/participate/:auctionId/:userId", AuctionController_1.addParticipants);
-router.get("/bid/auction", AuctionController_1.getBidInAuction);
+router.get("/bid/:auctionId/:userId", AuctionController_1.bidNow);
+router.get("/polling", AuctionController_1.auctionPolling);
 exports.default = router;

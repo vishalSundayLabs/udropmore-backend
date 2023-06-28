@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { verifyToken } from "../../middleware/tokenVerify";
-import { addParticipants, createAuction, getAuctionById, getAuctionHistory, getauctionList, getBidInAuction, getLiveAndUpcommingAuction, getParticipants, updateAuction } from "./AuctionController";
+import { addParticipants, auctionPolling, bidNow, createAuction, getAuctionById, getAuctionHistory, getauctionList, getLiveAndUpcommingAuction, getParticipants, updateAuction } from "./AuctionController";
 
 const router = Router();
 
@@ -12,6 +12,7 @@ router.get("/participants/:auctionId", getParticipants)
 router.get("/history/:userId", getAuctionHistory)
 router.get('/upcomming', getLiveAndUpcommingAuction)
 router.put("/participate/:auctionId/:userId", addParticipants)
-router.get("/bid/auction", getBidInAuction)
+router.get("/bid/:auctionId/:userId", bidNow)
+router.get("/polling", auctionPolling)
 
 export default router;

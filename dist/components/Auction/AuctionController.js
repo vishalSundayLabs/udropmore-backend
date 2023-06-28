@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getBidInAuction = exports.getLiveAndUpcommingAuction = exports.getAuctionHistory = exports.getParticipants = exports.addParticipants = exports.getauctionList = exports.getAuctionById = exports.updateAuction = exports.createAuction = void 0;
+exports.auctionPolling = exports.bidNow = exports.getLiveAndUpcommingAuction = exports.getAuctionHistory = exports.getParticipants = exports.addParticipants = exports.getauctionList = exports.getAuctionById = exports.updateAuction = exports.createAuction = void 0;
 const moment = require("moment");
 const Master_1 = require("../../Constant/Master");
 const bodyTraverse_1 = require("../../helpers/bodyTraverse");
@@ -17,6 +17,8 @@ const pagination_1 = require("../../helpers/pagination");
 const GenerateRandomArray_1 = require("../../utils/GenerateRandomArray");
 const getDiffrenceBetweenTwoDate_1 = require("../../utils/getDiffrenceBetweenTwoDate");
 const ResponseClass_1 = require("../../utils/ResponseClass");
+const OrderModel_1 = require("../Order/OrderModel");
+const TransactionModel_1 = require("../Transaction/TransactionModel");
 const UserModel_1 = require("../Users/UserModel");
 const AuctionModel_1 = require("./AuctionModel");
 const createAuction = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -111,15 +113,15 @@ const updateAuction = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 });
 exports.updateAuction = updateAuction;
 const getAuctionById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const body = req.body;
-    if (!body.auctionId) {
+    const params = req.params;
+    if (!params.auctionId) {
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
             message: "Bad request! auction ID must be provide!"
         }));
     }
     try {
-        const auction = yield AuctionModel_1.default.findOne({ _id: body.auctionId });
+        const auction = yield AuctionModel_1.default.findOne({ _id: params.auctionId });
         if (!auction) {
             return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
                 success: false,
@@ -200,6 +202,7 @@ const addParticipants = (req, res) => __awaiter(void 0, void 0, void 0, function
         if (!auction.participants.includes(user._id)) {
             auction.participants.push(user._id);
             user.walletBalance -= auction.entryFees;
+            yield TransactionModel_1.default.create({ userId: user._id, amount: auction.entryFees, type: "DEBIT", category: "JOINING_FEES" });
             yield auction.save();
             yield user.save();
         }
@@ -273,11 +276,11 @@ const getLiveAndUpcommingAuction = (req, res) => __awaiter(void 0, void 0, void 
     try {
         const activeAuctions = yield AuctionModel_1.default.find({ isDeleted: false, status: "ACTIVE" }).sort({ endTime: 1 });
         const scheduledAuctions = yield AuctionModel_1.default.find({ isDeleted: false, status: "SCHEDULED" }).sort({ endTime: 1 });
-        const completedAuctions = yield AuctionModel_1.default.find({ isDeleted: false, status: "COMPLETED" }).sort({ endTime: 1 });
+        // const completedAuctions = await AuctionModel.find({ isDeleted: false, status: "COMPLETED" }).sort({ endTime: 1 })
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: 'Get auction history successfully!',
-            result: [...activeAuctions, ...scheduledAuctions, ...completedAuctions]
+            result: [...activeAuctions, ...scheduledAuctions]
         }));
     }
     catch (error) {
@@ -289,6 +292,78 @@ const getLiveAndUpcommingAuction = (req, res) => __awaiter(void 0, void 0, void 
     }
 });
 exports.getLiveAndUpcommingAuction = getLiveAndUpcommingAuction;
-const getBidInAuction = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const bidNow = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const params = req.params;
+    const body = req.body;
+    if (!params.auctionId || !params.userId || !body.bidAmount) {
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: "Bad request! auction ID , user ID , Bid Amount must be provide!"
+        }));
+    }
+    try {
+        const auction = yield AuctionModel_1.default.findOne({ _id: params.auctionId, status: "ACTIVE", isDeleted: false });
+        if (!auction) {
+            return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseSuccess({
+                message: "Auction not found!"
+            }));
+        }
+        if (auction.winners.length < 5) {
+            auction.winners.push({
+                userId: params.userId,
+                bidAmount: params.bidAmount,
+                rank: auction.winners.length
+            });
+            if (auction.winners.length == 1) {
+                yield OrderModel_1.default.create({ userId: params.userId, productId: auction.productId, auctionId: auction._id, status: "PENDING", amount: params.bidAmount });
+            }
+            else if (auction.winners.length == 2) {
+                yield TransactionModel_1.default.create({ userId: params.userId, amount: 1000, type: "CREDIT", category: "PRIZE_MONEY" });
+            }
+            else if (auction.winners.length == 3) {
+                yield TransactionModel_1.default.create({ userId: params.userId, amount: 750, type: "CREDIT", category: "PRIZE_MONEY" });
+            }
+            else if (auction.winners.length == 4) {
+                yield TransactionModel_1.default.create({ userId: params.userId, amount: 500, type: "CREDIT", category: "PRIZE_MONEY" });
+            }
+            else {
+                yield TransactionModel_1.default.create({ userId: params.userId, amount: 250, type: "CREDIT", category: "PRIZE_MONEY" });
+                auction.status = "COMPLETED";
+            }
+        }
+        yield auction.save();
+        if (auction.winners.length > 5) {
+            return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+                success: false,
+                message: "Auction already completed."
+            }));
+        }
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
 });
-exports.getBidInAuction = getBidInAuction;
+exports.bidNow = bidNow;
+const auctionPolling = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const activeAuctions = yield AuctionModel_1.default.find({ isDeleted: false, status: "ACTIVE" }).sort({ endTime: 1 });
+        const scheduledAuctions = yield AuctionModel_1.default.find({ isDeleted: false, status: "SCHEDULED" }).sort({ endTime: 1 });
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: false,
+            message: "Get auction successfully.",
+            result: [...activeAuctions, ...scheduledAuctions]
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.auctionPolling = auctionPolling;

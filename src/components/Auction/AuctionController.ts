@@ -5,6 +5,8 @@ import { pagination } from "../../helpers/pagination"
 import { generateRandomArray } from "../../utils/GenerateRandomArray"
 import { getDateDifferenceInSeconds } from "../../utils/getDiffrenceBetweenTwoDate"
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
+import OrderModel from "../Order/OrderModel"
+import TransactionModel from "../Transaction/TransactionModel"
 import UserModel from "../Users/UserModel"
 import AuctionModel from "./AuctionModel"
 
@@ -126,9 +128,9 @@ export const updateAuction = async (req, res) => {
 
 export const getAuctionById = async (req, res) => {
 
-    const body = req.body
+    const params = req.params
 
-    if (!body.auctionId) {
+    if (!params.auctionId) {
 
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
             success: false,
@@ -139,7 +141,7 @@ export const getAuctionById = async (req, res) => {
 
     try {
 
-        const auction = await AuctionModel.findOne({ _id: body.auctionId })
+        const auction = await AuctionModel.findOne({ _id: params.auctionId })
 
         if (!auction) {
 
@@ -250,6 +252,7 @@ export const addParticipants = async (req, res) => {
 
             auction.participants.push(user._id)
             user.walletBalance -= auction.entryFees
+            await TransactionModel.create({ userId: user._id, amount: auction.entryFees, type: "DEBIT", category: "JOINING_FEES" })
             await auction.save()
             await user.save()
 
@@ -348,13 +351,13 @@ export const getLiveAndUpcommingAuction = async (req, res) => {
 
         const activeAuctions = await AuctionModel.find({ isDeleted: false, status: "ACTIVE" }).sort({ endTime: 1 })
         const scheduledAuctions = await AuctionModel.find({ isDeleted: false, status: "SCHEDULED" }).sort({ endTime: 1 })
-        const completedAuctions = await AuctionModel.find({ isDeleted: false, status: "COMPLETED" }).sort({ endTime: 1 })
+        // const completedAuctions = await AuctionModel.find({ isDeleted: false, status: "COMPLETED" }).sort({ endTime: 1 })
 
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: 'Get auction history successfully!',
-            result: [...activeAuctions, ...scheduledAuctions, ...completedAuctions]
+            result: [...activeAuctions, ...scheduledAuctions]
         }))
 
     } catch (error) {
@@ -369,6 +372,94 @@ export const getLiveAndUpcommingAuction = async (req, res) => {
     }
 }
 
-export const getBidInAuction = async (req, res) => {
+export const bidNow = async (req, res) => {
+    const params = req.params
+    const body = req.body
 
+    if (!params.auctionId || !params.userId || !body.bidAmount) {
+        return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+            success: false,
+            message: "Bad request! auction ID , user ID , Bid Amount must be provide!"
+        }))
+    }
+
+    try {
+
+        const auction = await AuctionModel.findOne({ _id: params.auctionId, status: "ACTIVE", isDeleted: false })
+
+        if (!auction) {
+            return res.status(HTTP_BAD_REQUEST).send(new ResponseSuccess({
+                message: "Auction not found!"
+            }))
+        }
+
+        if (auction.winners.length < 5) {
+
+            auction.winners.push({
+                userId: params.userId,
+                bidAmount: params.bidAmount,
+                rank: auction.winners.length
+            })
+
+            if (auction.winners.length == 1) {
+                await OrderModel.create({ userId: params.userId, productId: auction.productId, auctionId: auction._id, status: "PENDING", amount: params.bidAmount })
+            } else if (auction.winners.length == 2) {
+                await TransactionModel.create({ userId: params.userId, amount: 1000, type: "CREDIT", category: "PRIZE_MONEY" })
+            } else if (auction.winners.length == 3) {
+                await TransactionModel.create({ userId: params.userId, amount: 750, type: "CREDIT", category: "PRIZE_MONEY" })
+            } else if (auction.winners.length == 4) {
+                await TransactionModel.create({ userId: params.userId, amount: 500, type: "CREDIT", category: "PRIZE_MONEY" })
+            } else {
+                await TransactionModel.create({ userId: params.userId, amount: 250, type: "CREDIT", category: "PRIZE_MONEY" })
+                auction.status = "COMPLETED"
+            }
+
+        }
+
+        await auction.save()
+
+        if (auction.winners.length > 5) {
+            return res.status(HTTP_OK).send(new ResponseSuccess({
+                success: false,
+                message: "Auction already completed."
+            }))
+        }
+
+
+    } catch (error) {
+
+        let response = new ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+
+        return res.status(500).json(response);
+
+    }
+}
+
+export const auctionPolling = async (req, res) => {
+
+    try {
+
+
+        const activeAuctions = await AuctionModel.find({ isDeleted: false, status: "ACTIVE" }).sort({ endTime: 1 })
+        const scheduledAuctions = await AuctionModel.find({ isDeleted: false, status: "SCHEDULED" }).sort({ endTime: 1 })
+
+        return res.status(HTTP_OK).send(new ResponseSuccess({
+            success: false,
+            message: "Get auction successfully.",
+            result: [...activeAuctions, ...scheduledAuctions]
+        }))
+
+    } catch (error) {
+
+        let response = new ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+
+        return res.status(500).json(response);
+
+    }
 }

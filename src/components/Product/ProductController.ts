@@ -128,7 +128,7 @@ export const getProductById = async (req, res) => {
 
         }
 
-        return res.status(HTTP_CREATED).send(new ResponseSuccess({
+        return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: 'Get product successfully!',
             result: { product, auction }
@@ -149,7 +149,6 @@ export const getProductById = async (req, res) => {
 
 export const deleteProductById = async (req, res) => {
 
-    const body = req.body
     const params = req.params
 
     if (!params.productId) {
@@ -163,7 +162,7 @@ export const deleteProductById = async (req, res) => {
 
     try {
 
-        const product = await ProductModel.deleteOne({ _id: body.productId })
+        const product = await ProductModel.findOneAndUpdate({ _id: params.productId }, { $set: { isDeleted: true } })
 
         if (!product) {
 
@@ -174,7 +173,7 @@ export const deleteProductById = async (req, res) => {
 
         }
 
-        return res.status(HTTP_CREATED).send(new ResponseSuccess({
+        return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: 'Delete product successfully!',
             result: product
@@ -210,7 +209,7 @@ export const getProductList = async (req, res) => {
 
         }
 
-        return res.status(HTTP_CREATED).send(new ResponseSuccess({
+        return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
             message: 'Get product list successfully!',
             result: productList

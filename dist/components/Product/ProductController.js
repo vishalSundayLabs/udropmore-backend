@@ -101,7 +101,7 @@ const getProductById = (req, res) => __awaiter(void 0, void 0, void 0, function*
                 message: "Product Not found!"
             }));
         }
-        return res.status(Master_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: 'Get product successfully!',
             result: { product, auction }
@@ -117,7 +117,6 @@ const getProductById = (req, res) => __awaiter(void 0, void 0, void 0, function*
 });
 exports.getProductById = getProductById;
 const deleteProductById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const body = req.body;
     const params = req.params;
     if (!params.productId) {
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
@@ -126,14 +125,14 @@ const deleteProductById = (req, res) => __awaiter(void 0, void 0, void 0, functi
         }));
     }
     try {
-        const product = yield ProductModel_1.default.deleteOne({ _id: body.productId });
+        const product = yield ProductModel_1.default.findOneAndUpdate({ _id: params.productId }, { $set: { isDeleted: true } });
         if (!product) {
             return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
                 success: false,
                 message: "Product Not found!"
             }));
         }
-        return res.status(Master_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: 'Delete product successfully!',
             result: product
@@ -158,7 +157,7 @@ const getProductList = (req, res) => __awaiter(void 0, void 0, void 0, function*
                 message: "Product Not found!"
             }));
         }
-        return res.status(Master_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: 'Get product list successfully!',
             result: productList
