@@ -18,6 +18,7 @@ const pagination_1 = require("../../helpers/pagination");
 const GenerateRandomArray_1 = require("../../utils/GenerateRandomArray");
 const getDiffrenceBetweenTwoDate_1 = require("../../utils/getDiffrenceBetweenTwoDate");
 const ResponseClass_1 = require("../../utils/ResponseClass");
+const TimezoneConverter_1 = require("../../utils/TimezoneConverter");
 const OrderModel_1 = require("../Order/OrderModel");
 const TransactionModel_1 = require("../Transaction/TransactionModel");
 const UserModel_1 = require("../Users/UserModel");
@@ -33,8 +34,8 @@ const createAuction = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     const reqData = {
         productId: body.productId,
         types: body.types,
-        startTime: new Date(body.startTime),
-        endTime: new Date(body.endTime),
+        startTime: new Date((0, TimezoneConverter_1.getISTmsTime)(body.startTime)),
+        endTime: new Date((0, TimezoneConverter_1.getISTmsTime)(body.endTime)),
         minDropInterval: body.minDropInterval,
         maxDropInterval: body.maxDropInterval,
         lowestDropPrice: body.lowestDropPrice,

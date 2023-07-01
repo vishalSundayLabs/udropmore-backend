@@ -6,6 +6,7 @@ import { pagination } from "../../helpers/pagination"
 import { generateRandomArray } from "../../utils/GenerateRandomArray"
 import { getDateDifferenceInSeconds } from "../../utils/getDiffrenceBetweenTwoDate"
 import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass"
+import { getISTmsTime } from "../../utils/TimezoneConverter"
 import OrderModel from "../Order/OrderModel"
 import TransactionModel from "../Transaction/TransactionModel"
 import UserModel from "../Users/UserModel"
@@ -27,8 +28,8 @@ export const createAuction = async (req, res) => {
     const reqData = {
         productId: body.productId,
         types: body.types,
-        startTime: new Date(body.startTime),
-        endTime: new Date(body.endTime),
+        startTime: new Date(getISTmsTime(body.startTime)),
+        endTime: new Date(getISTmsTime(body.endTime)),
         minDropInterval: body.minDropInterval,
         maxDropInterval: body.maxDropInterval,
         lowestDropPrice: body.lowestDropPrice,
