@@ -159,7 +159,7 @@ export const getUserWalletBalance = async (req, res) => {
 
   try {
 
-    const userWalletBalance = await UserModel.find({ _id: params.userId, isDeleted: false }, { firstName: true, email: true, phoneNumber: true, walletBalance: true })
+    const userWalletBalance = await UserModel.findOne({ _id: params.userId, isDeleted: false }, { firstName: true, email: true, phoneNumber: true, walletBalance: true })
 
     return res.status(HTTP_CREATED).send(new ResponseSuccess({
       success: true,

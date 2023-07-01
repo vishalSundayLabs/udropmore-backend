@@ -18,14 +18,17 @@ const OrderSchema = new mongoose.Schema({
         ref: "auction"
     },
     paymentId: {
-        type: mongoose.SchemaTypes.ObjectId
+        type: mongoose.SchemaTypes.ObjectId,
     },
     status: {
         type: String,
         enum: ["PENDING", "SUCCESS", "FAILED", "RETURNED", "SHIPPING"],
         default: "ACTIVE"
     },
-    amount: Number,
+    amount: {
+        type: Number,
+        default: 0
+    },
     isActive: {
         type: Boolean,
         default: true

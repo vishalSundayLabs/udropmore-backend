@@ -5,7 +5,7 @@ import OrderModel from "./OrderModel";
 
 export const getOrderList = async (req, res) => {
 
-    const {skips, limit} = pagination(req.query)
+    const { skips, limit } = pagination(req.query)
 
     try {
 
@@ -52,9 +52,11 @@ export const getOrderHistory = async (req, res) => {
 
     }
 
+    let { limit, skips } = pagination(req.query)
+
     try {
 
-        const orderHistory = await OrderModel.find({ userId: params.userId, isDeleted: false }).sort({ $natural: -1 })
+        const orderHistory = await OrderModel.find({ userId: params.userId, isDeleted: false }).sort({ $natural: -1 }).skip(skips).limit(limit)
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
@@ -109,3 +111,4 @@ export const getUserCartOrder = async (req, res) => {
 
     }
 }
+

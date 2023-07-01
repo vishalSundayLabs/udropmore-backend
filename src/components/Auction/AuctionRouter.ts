@@ -12,7 +12,7 @@ router.get("/participants/:auctionId", getParticipants)
 router.get("/history/:userId", getAuctionHistory)
 router.get('/upcomming', getLiveAndUpcommingAuction)
 router.put("/participate/:auctionId/:userId", addParticipants)
-router.get("/bid/:auctionId/:userId", bidNow)
+router.put("/bid/:auctionId/:userId", bidNow)
 router.get("/polling", auctionPolling)
 
 export default router;

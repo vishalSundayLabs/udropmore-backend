@@ -94,7 +94,7 @@ const getProductById = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
     try {
         const product = yield ProductModel_1.default.findOne({ _id: params.productId, isDeleted: false });
-        const auction = yield AuctionModel_1.default.findOne({ productId: params.productId });
+        const auction = yield AuctionModel_1.default.find({ productId: params.productId });
         if (!product) {
             return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
                 success: false,

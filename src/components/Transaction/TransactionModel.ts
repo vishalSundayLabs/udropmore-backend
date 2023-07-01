@@ -7,8 +7,8 @@ import * as mongoose from "mongoose";
 const transactionSchema = new mongoose.Schema(
     {
         userId: {
-            type: String,
-            require: ["Product name missing", true]
+            type: mongoose.SchemaTypes.ObjectId,
+            ref: "User"
         },
         amount:{
             type:Number,

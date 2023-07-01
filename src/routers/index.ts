@@ -9,6 +9,8 @@ import authRouter from "../components/Auth/AuthRouter";
 import productRouter from "../components/Product/ProductRouter"
 import auctionRouter from "../components/Auction/AuctionRouter"
 import orderRouter from "../components/Order/OrderRouter"
+import transactionRouter from "../components/Transaction/TransactionRouter"
+
 const router = Router();
 
 router.use("/v1/users", userRouter);
@@ -20,5 +22,7 @@ router.use("/v1/product", productRouter)
 router.use("/v1/auction", auctionRouter)
 
 router.use("/v1/order", orderRouter)
+
+router.use("/v1/transaction", transactionRouter)
 
 export default router;

@@ -16,16 +16,11 @@ export const sendWaOtp = async (phoneNumber, text) => {
     const data = client.messages
         .create(reqData)
         .then(async (message) => {
-
             return message;
-
         })
         .catch((err) => {
-
             const errs = err.message
-
             return { message: errs }
-
         })
 
     return data;

@@ -1,4 +1,5 @@
 import moment = require("moment")
+import config from "../../config/Config"
 import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_NOT_FOUND, HTTP_OK } from "../../Constant/Master"
 import { bodyTraverse } from "../../helpers/bodyTraverse"
 import { pagination } from "../../helpers/pagination"
@@ -221,7 +222,8 @@ export const addParticipants = async (req, res) => {
 
     try {
 
-        const user = await UserModel.findOne({ _id: params.userId })
+        const user = await UserModel.findOne({ _id: params.userId, isDeleted: false })
+
         if (!user) {
             return res.status(HTTP_BAD_REQUEST).send(new ResponseSuccess({
                 message: "Invalid user Id"
@@ -242,25 +244,27 @@ export const addParticipants = async (req, res) => {
             }))
         }
 
-        if (auction.participants.includes(user._id)) {
+        const dublecateUser = auction.participants.filter(ele => ele.userId == params.userId);
+        console.log("line 252", dublecateUser)
+        if (dublecateUser && dublecateUser.length > 0) {
             return res.status(HTTP_OK).send(new ResponseSuccess({
                 message: "You are already participate in this auction."
             }))
         }
 
         if (!auction.participants.includes(user._id)) {
-
-            auction.participants.push(user._id)
-            user.walletBalance -= auction.entryFees
+            const securityFees = auction.types == "COOL_DROP" ? config.COOLDROP_SECURITY_FEES : auction.types == "MEGA_DROP" ? config.MEGADROP_SECURITY_FEES : config.DASHDROP_SECURITY_FEES
+            auction.participants.push({ userId: user._id, time: new Date() })
+            user.walletBalance -= auction.entryFees + securityFees
+            await TransactionModel.create({ userId: user._id, amount: securityFees, type: "DEBIT", category: "SECURITY_DEPOSIT" })
             await TransactionModel.create({ userId: user._id, amount: auction.entryFees, type: "DEBIT", category: "JOINING_FEES" })
             await auction.save()
             await user.save()
-
         }
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
-            message: 'Get auction list successfully!',
+            message: 'You are participate successfully in this auction!',
             result: auction
         }))
 
@@ -376,6 +380,7 @@ export const bidNow = async (req, res) => {
     const params = req.params
     const body = req.body
 
+    console.log(body, params)
     if (!params.auctionId || !params.userId || !body.bidAmount) {
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
             success: false,
@@ -385,7 +390,7 @@ export const bidNow = async (req, res) => {
 
     try {
 
-        const auction = await AuctionModel.findOne({ _id: params.auctionId, status: "ACTIVE", isDeleted: false })
+        const auction = await AuctionModel.findOne({ _id: params.auctionId, isDeleted: false })
 
         if (!auction) {
             return res.status(HTTP_BAD_REQUEST).send(new ResponseSuccess({
@@ -393,16 +398,22 @@ export const bidNow = async (req, res) => {
             }))
         }
 
+        if (auction.status != "ACTIVE") {
+            return res.status(HTTP_BAD_REQUEST).send(new ResponseSuccess({
+                message: "Auction not active yet!"
+            }))
+        }
+
         if (auction.winners.length < 5) {
 
             auction.winners.push({
                 userId: params.userId,
-                bidAmount: params.bidAmount,
-                rank: auction.winners.length
+                bidAmount: body.bidAmount,
+                rank: auction.winners.length + 1
             })
 
             if (auction.winners.length == 1) {
-                await OrderModel.create({ userId: params.userId, productId: auction.productId, auctionId: auction._id, status: "PENDING", amount: params.bidAmount })
+                await OrderModel.create({ userId: params.userId, productId: auction.productId, auctionId: auction._id, status: "PENDING", amount: body.bidAmount })
             } else if (auction.winners.length == 2) {
                 await TransactionModel.create({ userId: params.userId, amount: 1000, type: "CREDIT", category: "PRIZE_MONEY" })
             } else if (auction.winners.length == 3) {
@@ -414,6 +425,13 @@ export const bidNow = async (req, res) => {
                 auction.status = "COMPLETED"
             }
 
+            auction.bidders.push({
+                userId: params.userId,
+                bidAmount: body.bidAmount,
+                rank: auction.winners.length,
+                time: new Date()
+            })
+
         }
 
         await auction.save()
@@ -424,6 +442,13 @@ export const bidNow = async (req, res) => {
                 message: "Auction already completed."
             }))
         }
+
+        const message = auction.length <= 5 ? `In Bidding you are ${auction.length}th winner.` : `Bidding completed successfully.`
+
+        return res.status(HTTP_OK).send(new ResponseSuccess({
+            success: false,
+            message: message
+        }))
 
 
     } catch (error) {

@@ -121,7 +121,7 @@ const getUserWalletBalance = (req, res) => __awaiter(void 0, void 0, void 0, fun
         }));
     }
     try {
-        const userWalletBalance = yield UserModel_1.default.find({ _id: params.userId, isDeleted: false }, { firstName: true, email: true, phoneNumber: true, walletBalance: true });
+        const userWalletBalance = yield UserModel_1.default.findOne({ _id: params.userId, isDeleted: false }, { firstName: true, email: true, phoneNumber: true, walletBalance: true });
         return res.status(Master_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: 'Get user list successfully!',

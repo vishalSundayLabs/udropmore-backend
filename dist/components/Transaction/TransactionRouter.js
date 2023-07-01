@@ -6,4 +6,5 @@ const router = (0, express_1.Router)();
 router.get("/list", TransactionController_1.getTransactionList);
 router.get("/id/:transaction", TransactionController_1.getTransactionById);
 router.delete("/id/:transaction", TransactionController_1.deleteTransactionById);
+router.get("/list/user/:userId", TransactionController_1.getTransactionListOfUser);
 exports.default = router;

@@ -117,7 +117,7 @@ export const getProductById = async (req, res) => {
     try {
 
         const product = await ProductModel.findOne({ _id: params.productId, isDeleted: false })
-        const auction = await AuctionModel.findOne({ productId: params.productId })
+        const auction = await AuctionModel.find({ productId: params.productId })
 
         if (!product) {
 

@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.auctionPolling = exports.bidNow = exports.getLiveAndUpcommingAuction = exports.getAuctionHistory = exports.getParticipants = exports.addParticipants = exports.getauctionList = exports.getAuctionById = exports.updateAuction = exports.createAuction = void 0;
 const moment = require("moment");
+const Config_1 = require("../../config/Config");
 const Master_1 = require("../../Constant/Master");
 const bodyTraverse_1 = require("../../helpers/bodyTraverse");
 const pagination_1 = require("../../helpers/pagination");
@@ -177,7 +178,7 @@ const addParticipants = (req, res) => __awaiter(void 0, void 0, void 0, function
         }));
     }
     try {
-        const user = yield UserModel_1.default.findOne({ _id: params.userId });
+        const user = yield UserModel_1.default.findOne({ _id: params.userId, isDeleted: false });
         if (!user) {
             return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseSuccess({
                 message: "Invalid user Id"
@@ -194,21 +195,25 @@ const addParticipants = (req, res) => __awaiter(void 0, void 0, void 0, function
                 message: "Insufficient Wallet Balance ! please Recharge"
             }));
         }
-        if (auction.participants.includes(user._id)) {
+        const dublecateUser = auction.participants.filter(ele => ele.userId == params.userId);
+        console.log("line 252", dublecateUser);
+        if (dublecateUser && dublecateUser.length > 0) {
             return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
                 message: "You are already participate in this auction."
             }));
         }
         if (!auction.participants.includes(user._id)) {
-            auction.participants.push(user._id);
-            user.walletBalance -= auction.entryFees;
+            const securityFees = auction.types == "COOL_DROP" ? Config_1.default.COOLDROP_SECURITY_FEES : auction.types == "MEGA_DROP" ? Config_1.default.MEGADROP_SECURITY_FEES : Config_1.default.DASHDROP_SECURITY_FEES;
+            auction.participants.push({ userId: user._id, time: new Date() });
+            user.walletBalance -= auction.entryFees + securityFees;
+            yield TransactionModel_1.default.create({ userId: user._id, amount: securityFees, type: "DEBIT", category: "SECURITY_DEPOSIT" });
             yield TransactionModel_1.default.create({ userId: user._id, amount: auction.entryFees, type: "DEBIT", category: "JOINING_FEES" });
             yield auction.save();
             yield user.save();
         }
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
-            message: 'Get auction list successfully!',
+            message: 'You are participate successfully in this auction!',
             result: auction
         }));
     }
@@ -295,6 +300,7 @@ exports.getLiveAndUpcommingAuction = getLiveAndUpcommingAuction;
 const bidNow = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const params = req.params;
     const body = req.body;
+    console.log(body, params);
     if (!params.auctionId || !params.userId || !body.bidAmount) {
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
@@ -302,20 +308,25 @@ const bidNow = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         }));
     }
     try {
-        const auction = yield AuctionModel_1.default.findOne({ _id: params.auctionId, status: "ACTIVE", isDeleted: false });
+        const auction = yield AuctionModel_1.default.findOne({ _id: params.auctionId, isDeleted: false });
         if (!auction) {
             return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseSuccess({
                 message: "Auction not found!"
             }));
         }
+        if (auction.status != "ACTIVE") {
+            return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseSuccess({
+                message: "Auction not active yet!"
+            }));
+        }
         if (auction.winners.length < 5) {
             auction.winners.push({
                 userId: params.userId,
-                bidAmount: params.bidAmount,
-                rank: auction.winners.length
+                bidAmount: body.bidAmount,
+                rank: auction.winners.length + 1
             });
             if (auction.winners.length == 1) {
-                yield OrderModel_1.default.create({ userId: params.userId, productId: auction.productId, auctionId: auction._id, status: "PENDING", amount: params.bidAmount });
+                yield OrderModel_1.default.create({ userId: params.userId, productId: auction.productId, auctionId: auction._id, status: "PENDING", amount: body.bidAmount });
             }
             else if (auction.winners.length == 2) {
                 yield TransactionModel_1.default.create({ userId: params.userId, amount: 1000, type: "CREDIT", category: "PRIZE_MONEY" });
@@ -330,6 +341,12 @@ const bidNow = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 yield TransactionModel_1.default.create({ userId: params.userId, amount: 250, type: "CREDIT", category: "PRIZE_MONEY" });
                 auction.status = "COMPLETED";
             }
+            auction.bidders.push({
+                userId: params.userId,
+                bidAmount: body.bidAmount,
+                rank: auction.winners.length,
+                time: new Date()
+            });
         }
         yield auction.save();
         if (auction.winners.length > 5) {
@@ -338,6 +355,11 @@ const bidNow = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 message: "Auction already completed."
             }));
         }
+        const message = auction.length <= 5 ? `In Bidding you are ${auction.length}th winner.` : `Bidding completed successfully.`;
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: false,
+            message: message
+        }));
     }
     catch (error) {
         let response = new ResponseClass_1.ResponseError({

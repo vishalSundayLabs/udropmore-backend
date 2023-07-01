@@ -120,3 +120,40 @@ export const getTransactionList = async (req, res) => {
     }
 
 }
+
+export const getTransactionListOfUser = async (req, res) => {
+
+    let { limit, skips } = pagination(req.query)
+    const params = req.params
+
+    if (!params.userId) {
+
+        return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+            success: false,
+            message: "Bad request! user ID must be provide!"
+        }))
+
+    }
+
+    try {
+
+        const transactionList = await TransactionModel.find({ userId: params.userId, isDeleted: false }).sort({ $natural: -1 }).skip(skips).limit(limit)
+
+        return res.status(HTTP_OK).send(new ResponseSuccess({
+            success: true,
+            message: 'Get transaction list of user successfully!',
+            result: transactionList
+        }))
+
+    } catch (error) {
+
+        let response = new ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+
+        return res.status(500).json(response);
+
+    }
+
+}

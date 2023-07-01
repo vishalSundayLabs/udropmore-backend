@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTransactionList = exports.deleteTransactionById = exports.getTransactionById = void 0;
+exports.getTransactionListOfUser = exports.getTransactionList = exports.deleteTransactionById = exports.getTransactionById = void 0;
 const Master_1 = require("../../Constant/Master");
 const pagination_1 = require("../../helpers/pagination");
 const ResponseClass_1 = require("../../utils/ResponseClass");
@@ -95,3 +95,29 @@ const getTransactionList = (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
 });
 exports.getTransactionList = getTransactionList;
+const getTransactionListOfUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let { limit, skips } = (0, pagination_1.pagination)(req.query);
+    const params = req.params;
+    if (!params.userId) {
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: "Bad request! user ID must be provide!"
+        }));
+    }
+    try {
+        const transactionList = yield TransactionModel_1.default.find({ userId: params.userId, isDeleted: false }).sort({ $natural: -1 }).skip(skips).limit(limit);
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: 'Get transaction list of user successfully!',
+            result: transactionList
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.getTransactionListOfUser = getTransactionListOfUser;
