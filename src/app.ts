@@ -14,6 +14,7 @@ import UserModel from "./components/Users/UserModel";
 import AuctionModel from "./components/Auction/AuctionModel";
 import { generateRandomAuction } from "./SeedData/Auction.seed";
 import * as cron from "node-cron";
+const fileUpload = require('express-fileupload');
 import { cronJobForChangesStatus } from "./utils/cronjob";
 const bodyParser = require("body-parser");
 
@@ -27,13 +28,15 @@ app.use(cors());
 
 app.use(express.json());
 
-app.use(bodyParser.json({ limit: '12000mb',type:'application/json'}));
-
-app.use(bodyParser.urlencoded({ limit: '12000mb', extended: true, parameterLimit: 50000,type:'application/x-www-form-urlencoded' }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.send("Web App Backend Running ...");
 });
+
+app.use(fileUpload({
+  useTempFiles: true
+}));
 
 if (config.NODE_ENV === "development") {
 
@@ -58,8 +61,6 @@ if (config.NODE_ENV === "development") {
   });
 
 }
-
-
 app.use(router);
 
 DB.connect()

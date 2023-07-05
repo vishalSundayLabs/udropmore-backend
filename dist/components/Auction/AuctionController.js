@@ -44,8 +44,6 @@ const createAuction = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         status: body.status,
         minDropPrice: body.minDropPrice,
         maxDropPrice: body.maxDropPrice,
-        winners: body.winners,
-        participants: body.participants,
         priceDrop: []
     };
     try {
@@ -70,7 +68,6 @@ const createAuction = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         });
         console.log(sum, "line 62");
         const auction = yield AuctionModel_1.default.create(reqData);
-        console.log("line 59", reqData.priceDrop);
         return res.status(Master_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: 'auction created successfully!',
@@ -280,8 +277,8 @@ const getAuctionHistory = (req, res) => __awaiter(void 0, void 0, void 0, functi
 exports.getAuctionHistory = getAuctionHistory;
 const getLiveAndUpcommingAuction = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const activeAuctions = yield AuctionModel_1.default.find({ isDeleted: false, status: "ACTIVE" }).sort({ endTime: 1 });
-        const scheduledAuctions = yield AuctionModel_1.default.find({ isDeleted: false, status: "SCHEDULED" }).sort({ endTime: 1 });
+        const activeAuctions = yield AuctionModel_1.default.find({ isDeleted: false, status: "ACTIVE" }).sort({ endTime: 1 }).populate("productId");
+        const scheduledAuctions = yield AuctionModel_1.default.find({ isDeleted: false, status: "SCHEDULED" }).sort({ endTime: 1 }).populate("productId");
         // const completedAuctions = await AuctionModel.find({ isDeleted: false, status: "COMPLETED" }).sort({ endTime: 1 })
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
@@ -301,7 +298,6 @@ exports.getLiveAndUpcommingAuction = getLiveAndUpcommingAuction;
 const bidNow = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const params = req.params;
     const body = req.body;
-    console.log(body, params);
     if (!params.auctionId || !params.userId || !body.bidAmount) {
         return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
             success: false,
@@ -310,9 +306,15 @@ const bidNow = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
     try {
         const auction = yield AuctionModel_1.default.findOne({ _id: params.auctionId, isDeleted: false });
+        const user = yield UserModel_1.default.findOne({ _id: params.userId, isDeleted: false });
         if (!auction) {
             return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseSuccess({
                 message: "Auction not found!"
+            }));
+        }
+        if (!user) {
+            return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseSuccess({
+                message: "Invalid user Id"
             }));
         }
         if (auction.status != "ACTIVE") {
@@ -331,23 +333,28 @@ const bidNow = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             }
             else if (auction.winners.length == 2) {
                 yield TransactionModel_1.default.create({ userId: params.userId, amount: 1000, type: "CREDIT", category: "PRIZE_MONEY" });
+                user.walletBalance += 1000;
             }
             else if (auction.winners.length == 3) {
                 yield TransactionModel_1.default.create({ userId: params.userId, amount: 750, type: "CREDIT", category: "PRIZE_MONEY" });
+                user.walletBalance += 750;
             }
             else if (auction.winners.length == 4) {
                 yield TransactionModel_1.default.create({ userId: params.userId, amount: 500, type: "CREDIT", category: "PRIZE_MONEY" });
+                user.walletBalance += 500;
             }
             else {
                 yield TransactionModel_1.default.create({ userId: params.userId, amount: 250, type: "CREDIT", category: "PRIZE_MONEY" });
+                user.walletBalance += 250;
                 auction.status = "COMPLETED";
             }
             auction.bidders.push({
                 userId: params.userId,
-                bidAmount: body.bidAmount,
+                biddingAmount: body.bidAmount,
                 rank: auction.winners.length,
                 time: new Date()
             });
+            yield user.save();
         }
         yield auction.save();
         if (auction.winners.length > 5) {
@@ -373,8 +380,8 @@ const bidNow = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.bidNow = bidNow;
 const auctionPolling = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const activeAuctions = yield AuctionModel_1.default.find({ isDeleted: false, status: "ACTIVE" }).sort({ endTime: 1 });
-        const scheduledAuctions = yield AuctionModel_1.default.find({ isDeleted: false, status: "SCHEDULED" }).sort({ endTime: 1 });
+        const activeAuctions = yield AuctionModel_1.default.find({ isDeleted: false, status: "ACTIVE" }).sort({ endTime: 1 }).populate("productId");
+        const scheduledAuctions = yield AuctionModel_1.default.find({ isDeleted: false, status: "SCHEDULED" }).sort({ endTime: 1 }).populate("productId");
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: false,
             message: "Get auction successfully.",

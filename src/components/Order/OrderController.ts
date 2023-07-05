@@ -89,10 +89,11 @@ export const getUserCartOrder = async (req, res) => {
         }))
 
     }
+    let { limit, skips } = pagination(req.query)
 
     try {
 
-        const cartOrder = await OrderModel.find({ userId: params.userId, status: { $in: ["PENDING"] }, isDeleted: false }).sort({ $natural: -1 })
+        const cartOrder = await OrderModel.find({ userId: params.userId, status: { $in: ["PENDING"] }, isDeleted: false }).sort({ $natural: -1 }).skip(skips).limit(limit)
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,

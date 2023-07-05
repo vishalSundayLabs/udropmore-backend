@@ -18,6 +18,12 @@ const userSchema = new mongoose.Schema({
         default: ""
     },
     walletBalance: { type: Number, default: 0 },
+    profileImg: {
+        type: String,
+        default: () => {
+            return `/profile/avtar${Math.floor(Math.random() * (25 - 0) + 0)}.png`;
+        }
+    },
     email: {
         type: String,
         trim: true,
@@ -35,6 +41,7 @@ const userSchema = new mongoose.Schema({
         enum: ['ADMIN', "USER"],
         default: "USER"
     },
+    address: String,
     status: {
         type: String,
         enum: ['ACTIVE', "INACTIVE"],

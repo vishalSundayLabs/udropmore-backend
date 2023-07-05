@@ -12,10 +12,9 @@ const router = Router();
 router.put('/update/:userId', userController.userUpdate)
 //create new user
 router.post('/createuser', userController.createUser)
-//delete user
-// router.delete('/delete/:id', userController.deleteUser)
-//user list
 router.get("/list", userController.getUserList)
+//user list
+router.get("/:userId",userController.getUserById)
 router.get("/wallet/balance/:userId", userController.getUserWalletBalance)
 
 export default router;

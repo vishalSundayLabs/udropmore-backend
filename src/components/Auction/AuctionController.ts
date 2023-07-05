@@ -38,13 +38,10 @@ export const createAuction = async (req, res) => {
         status: body.status,
         minDropPrice: body.minDropPrice,
         maxDropPrice: body.maxDropPrice,
-        winners: body.winners,
-        participants: body.participants,
         priceDrop: []
     }
 
     try {
-
 
         const targetPrice = reqData.dropStartPrice - reqData.lowestDropPrice
         const dropPrice = generateRandomArray(targetPrice, body.minDropPrice, body.maxDropPrice)
@@ -67,7 +64,7 @@ export const createAuction = async (req, res) => {
         })
         console.log(sum, "line 62")
         const auction = await AuctionModel.create(reqData)
-        console.log("line 59", reqData.priceDrop)
+        
         return res.status(HTTP_CREATED).send(new ResponseSuccess({
             success: true,
             message: 'auction created successfully!',
@@ -354,8 +351,8 @@ export const getLiveAndUpcommingAuction = async (req, res) => {
 
     try {
 
-        const activeAuctions = await AuctionModel.find({ isDeleted: false, status: "ACTIVE" }).sort({ endTime: 1 })
-        const scheduledAuctions = await AuctionModel.find({ isDeleted: false, status: "SCHEDULED" }).sort({ endTime: 1 })
+        const activeAuctions = await AuctionModel.find({ isDeleted: false, status: "ACTIVE" }).sort({ endTime: 1 }).populate("productId")
+        const scheduledAuctions = await AuctionModel.find({ isDeleted: false, status: "SCHEDULED" }).sort({ endTime: 1 }).populate("productId")
         // const completedAuctions = await AuctionModel.find({ isDeleted: false, status: "COMPLETED" }).sort({ endTime: 1 })
 
 
@@ -381,7 +378,6 @@ export const bidNow = async (req, res) => {
     const params = req.params
     const body = req.body
 
-    console.log(body, params)
     if (!params.auctionId || !params.userId || !body.bidAmount) {
         return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
             success: false,
@@ -392,10 +388,17 @@ export const bidNow = async (req, res) => {
     try {
 
         const auction = await AuctionModel.findOne({ _id: params.auctionId, isDeleted: false })
+        const user = await UserModel.findOne({ _id: params.userId, isDeleted: false })
 
         if (!auction) {
             return res.status(HTTP_BAD_REQUEST).send(new ResponseSuccess({
                 message: "Auction not found!"
+            }))
+        }
+
+        if (!user) {
+            return res.status(HTTP_BAD_REQUEST).send(new ResponseSuccess({
+                message: "Invalid user Id"
             }))
         }
 
@@ -417,22 +420,26 @@ export const bidNow = async (req, res) => {
                 await OrderModel.create({ userId: params.userId, productId: auction.productId, auctionId: auction._id, status: "PENDING", amount: body.bidAmount })
             } else if (auction.winners.length == 2) {
                 await TransactionModel.create({ userId: params.userId, amount: 1000, type: "CREDIT", category: "PRIZE_MONEY" })
+                user.walletBalance += 1000
             } else if (auction.winners.length == 3) {
                 await TransactionModel.create({ userId: params.userId, amount: 750, type: "CREDIT", category: "PRIZE_MONEY" })
+                user.walletBalance += 750
             } else if (auction.winners.length == 4) {
                 await TransactionModel.create({ userId: params.userId, amount: 500, type: "CREDIT", category: "PRIZE_MONEY" })
+                user.walletBalance += 500
             } else {
                 await TransactionModel.create({ userId: params.userId, amount: 250, type: "CREDIT", category: "PRIZE_MONEY" })
+                user.walletBalance += 250
                 auction.status = "COMPLETED"
             }
 
             auction.bidders.push({
                 userId: params.userId,
-                bidAmount: body.bidAmount,
+                biddingAmount: body.bidAmount,
                 rank: auction.winners.length,
                 time: new Date()
             })
-
+           await user.save()
         }
 
         await auction.save()
@@ -469,8 +476,8 @@ export const auctionPolling = async (req, res) => {
     try {
 
 
-        const activeAuctions = await AuctionModel.find({ isDeleted: false, status: "ACTIVE" }).sort({ endTime: 1 })
-        const scheduledAuctions = await AuctionModel.find({ isDeleted: false, status: "SCHEDULED" }).sort({ endTime: 1 })
+        const activeAuctions = await AuctionModel.find({ isDeleted: false, status: "ACTIVE" }).sort({ endTime: 1 }).populate("productId")
+        const scheduledAuctions = await AuctionModel.find({ isDeleted: false, status: "SCHEDULED" }).sort({ endTime: 1 }).populate("productId")
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: false,

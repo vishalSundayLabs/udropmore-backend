@@ -4,5 +4,6 @@ const express_1 = require("express");
 const OrderController_1 = require("./OrderController");
 const router = (0, express_1.Router)();
 router.get("/list", OrderController_1.getOrderList);
-router.get("/history/:userId", OrderController_1.getUserCartOrder);
+router.get("/history/:userId", OrderController_1.getOrderHistory);
+router.get("/cart/:userId", OrderController_1.getUserCartOrder);
 exports.default = router;

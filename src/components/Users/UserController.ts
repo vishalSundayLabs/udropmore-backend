@@ -144,6 +144,42 @@ export const getUserList = async (req, res) => {
 
 }
 
+export const getUserById = async (req, res) => {
+
+  const params = req.params
+
+  if (!params.userId) {
+
+    return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+      success: false,
+      message: "Bad request! User ID must be provide!"
+    }))
+
+  }
+
+  try {
+
+    const user = await UserModel.findOne({ _id: params.userId, isDeleted: false }, { jwtToken: false, isDeleted: false, createdBy: false, updatedBy: false })
+
+    return res.status(HTTP_CREATED).send(new ResponseSuccess({
+      success: true,
+      message: 'Get user details successfully!',
+      result: user
+    }))
+
+  } catch (error) {
+
+    let response = new ResponseError({
+      message: "Something went wrong",
+      error: error.message,
+    });
+
+    return res.status(500).json(response);
+
+  }
+
+}
+
 export const getUserWalletBalance = async (req, res) => {
 
   const params = req.params
@@ -179,6 +215,7 @@ export const getUserWalletBalance = async (req, res) => {
   }
 
 }
+
 // export const deleteUser = async (req, res) => {
 
 //   const userId = req.params.id

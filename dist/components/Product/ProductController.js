@@ -24,13 +24,21 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             message: "Bad request! ,product name  , description , market price must be provide!"
         }));
     }
+    console.log(body.homePageImageUrl);
     const reqData = {
         name: body.name,
         description: body.description,
         marketPrice: body.marketPrice,
-        features: body.features,
-        status: body.status,
+        features: {
+            feature1: body.feature1,
+            feature2: body.feature2,
+            feature3: body.feature3,
+            feature4: body.feature4
+        },
+        status: "ACTIVE",
         quantity: body.quantity,
+        homePageImageUrl: body.homePageImageUrl,
+        productPageImageUrl: body.productPageImageUrl,
         createdBy: req.userId
     };
     try {
@@ -68,6 +76,12 @@ const updateProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             }));
         }
         (0, bodyTraverse_1.bodyTraverse)(product, body);
+        product.features = {
+            feature1: body.feature1,
+            feature2: body.feature2,
+            feature3: body.feature3,
+            feature4: body.feature4
+        };
         yield product.save();
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,

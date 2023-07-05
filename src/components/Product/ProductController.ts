@@ -17,14 +17,21 @@ export const createProduct = async (req, res) => {
         }))
 
     }
-
+console.log(body.homePageImageUrl)
     const reqData = {
         name: body.name,
         description: body.description,
         marketPrice: body.marketPrice,
-        features: body.features,
-        status: body.status,
+        features: {
+            feature1: body.feature1,
+            feature2: body.feature2,
+            feature3: body.feature3,
+            feature4: body.feature4
+        },
+        status: "ACTIVE",
         quantity: body.quantity,
+        homePageImageUrl: body.homePageImageUrl,
+        productPageImageUrl: body.productPageImageUrl,
         createdBy: req.userId
     }
 
@@ -79,6 +86,13 @@ export const updateProduct = async (req, res) => {
         }
 
         bodyTraverse(product, body)
+
+        product.features = {
+            feature1: body.feature1,
+            feature2: body.feature2,
+            feature3: body.feature3,
+            feature4: body.feature4
+        }
 
         await product.save()
 

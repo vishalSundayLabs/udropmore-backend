@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUserWalletBalance = exports.getUserList = exports.userUpdate = exports.createUser = void 0;
+exports.getUserWalletBalance = exports.getUserById = exports.getUserList = exports.userUpdate = exports.createUser = void 0;
 // models
 const UserModel_1 = require("./UserModel");
 // classes
@@ -112,6 +112,31 @@ const getUserList = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.getUserList = getUserList;
+const getUserById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const params = req.params;
+    if (!params.userId) {
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: "Bad request! User ID must be provide!"
+        }));
+    }
+    try {
+        const user = yield UserModel_1.default.findOne({ _id: params.userId, isDeleted: false }, { jwtToken: false, isDeleted: false, createdBy: false, updatedBy: false });
+        return res.status(Master_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: 'Get user details successfully!',
+            result: user
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.getUserById = getUserById;
 const getUserWalletBalance = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const params = req.params;
     if (!params.userId) {

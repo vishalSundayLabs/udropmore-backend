@@ -73,8 +73,9 @@ const getUserCartOrder = (req, res) => __awaiter(void 0, void 0, void 0, functio
             message: "Bad request! User ID must be provide!"
         }));
     }
+    let { limit, skips } = (0, pagination_1.pagination)(req.query);
     try {
-        const cartOrder = yield OrderModel_1.default.find({ userId: params.userId, status: { $in: ["PENDING"] }, isDeleted: false }).sort({ $natural: -1 });
+        const cartOrder = yield OrderModel_1.default.find({ userId: params.userId, status: { $in: ["PENDING"] }, isDeleted: false }).sort({ $natural: -1 }).skip(skips).limit(limit);
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: 'Get user cart successfully!',

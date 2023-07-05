@@ -9,6 +9,7 @@ const tracer = require("tracer");
 const Config_1 = require("./config/Config");
 const DB = require("./helpers/DbHelper");
 const index_1 = require("./routers/index");
+const fileUpload = require('express-fileupload');
 const cronjob_1 = require("./utils/cronjob");
 const bodyParser = require("body-parser");
 const logger = tracer.colorConsole();
@@ -16,11 +17,13 @@ exports.app = express();
 exports.app.set("port", Config_1.default.PORT || 8080);
 exports.app.use(cors());
 exports.app.use(express.json());
-exports.app.use(bodyParser.json({ limit: '12000mb', type: 'application/json' }));
-exports.app.use(bodyParser.urlencoded({ limit: '12000mb', extended: true, parameterLimit: 50000, type: 'application/x-www-form-urlencoded' }));
+exports.app.use(bodyParser.urlencoded({ extended: true }));
 exports.app.get("/", (req, res) => {
     res.send("Web App Backend Running ...");
 });
+exports.app.use(fileUpload({
+    useTempFiles: true
+}));
 if (Config_1.default.NODE_ENV === "development") {
     exports.app.use(express.text());
     exports.app.use((req, res, next) => {

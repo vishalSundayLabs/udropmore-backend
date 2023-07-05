@@ -15,12 +15,14 @@ const ProductSchema = new mongoose.Schema(
             type: String,
             require: ["Market Price missing", true]
         },
-        features: [{
-            iconImage: String,
-            title: String
-        }],
-        homePageImageUrl:String,
-        productPageImageUrl:String,
+        features: {
+            feature1: String,
+            feature2: String,
+            feature3: String,
+            feature4: String
+        },
+        homePageImageUrl: String,
+        productPageImageUrl: String,
         status: {
             type: String,
             enum: ["ACTIVE", "INACTIVE"],
