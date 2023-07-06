@@ -41,6 +41,11 @@ const userSchema = new mongoose.Schema({
         enum: ['ADMIN', "USER"],
         default: "USER"
     },
+    loyaltyLevel: {
+        type: String,
+        enum: ["COPPER", "SELVIR", "BRONZE", "GOLD", "PLATINUM"],
+        default: "COPPER"
+    },
     address: String,
     status: {
         type: String,
