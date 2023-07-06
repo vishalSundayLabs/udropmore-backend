@@ -30,41 +30,36 @@ export const createAuction = async (req, res) => {
         types: body.types,
         startTime: new Date(getISTmsTime(body.startTime)),
         endTime: new Date(getISTmsTime(body.endTime)),
-        minDropInterval: body.minDropInterval,
-        maxDropInterval: body.maxDropInterval,
         lowestDropPrice: body.lowestDropPrice,
         entryFees: body.entryFees,
         dropStartPrice: body.dropStartPrice,
-        status: body.status,
-        minDropPrice: body.minDropPrice,
-        maxDropPrice: body.maxDropPrice,
-        priceDrop: []
+        status: "SCHEDULED"
     }
 
     try {
 
-        const targetPrice = reqData.dropStartPrice - reqData.lowestDropPrice
-        const dropPrice = generateRandomArray(targetPrice, body.minDropPrice, body.maxDropPrice)
-        const targetTime = getDateDifferenceInSeconds(reqData.endTime, reqData.startTime)
-        console.log("line 46", reqData.startTime, reqData.endTime, targetTime)
-        const dropTime = generateRandomArray(targetTime, body.minDropInterval, body.maxDropInterval, dropPrice.length)
-        console.log("line 48 time", targetTime, dropTime.length)
-        console.log("line 49 time", targetPrice, dropPrice.length)
-        let sum = 0
-        let secondSum = reqData.startTime.getSeconds()
-        reqData.priceDrop = dropPrice.map((item, index) => {
-            sum += item
-            secondSum += dropTime[index]
-            const newDate = moment(reqData.startTime).add(secondSum, "seconds")
-            return {
-                timeStamp: newDate,
-                dropAmount: item,
-                newDropPrice: reqData.dropStartPrice - sum
-            }
-        })
-        console.log(sum, "line 62")
+        // const targetPrice = reqData.dropStartPrice - reqData.lowestDropPrice
+        // const dropPrice = generateRandomArray(targetPrice, body.minDropPrice, body.maxDropPrice)
+        // const targetTime = getDateDifferenceInSeconds(reqData.endTime, reqData.startTime)
+        // console.log("line 46", reqData.startTime, reqData.endTime, targetTime)
+        // const dropTime = generateRandomArray(targetTime, body.minDropInterval, body.maxDropInterval, dropPrice.length)
+        // console.log("line 48 time", targetTime, dropTime.length)
+        // console.log("line 49 time", targetPrice, dropPrice.length)
+        // let sum = 0
+        // let secondSum = reqData.startTime.getSeconds()
+        // reqData.priceDrop = dropPrice.map((item, index) => {
+        //     sum += item
+        //     secondSum += dropTime[index]
+        //     const newDate = moment(reqData.startTime).add(secondSum, "seconds")
+        //     return {
+        //         timeStamp: newDate,
+        //         dropAmount: item,
+        //         newDropPrice: reqData.dropStartPrice - sum
+        //     }
+        // })
+        // console.log(sum, "line 62")
         const auction = await AuctionModel.create(reqData)
-        
+
         return res.status(HTTP_CREATED).send(new ResponseSuccess({
             success: true,
             message: 'auction created successfully!',
@@ -176,7 +171,7 @@ export const getauctionList = async (req, res) => {
 
     try {
 
-        const auctionList = await AuctionModel.find({ isDeleted: false }).skip(skips).limit(limit)
+        const auctionList = await AuctionModel.find({ isDeleted: false }).sort({ $natural: -1 }).skip(skips).limit(limit)
 
         if (auctionList.length == 0) {
 
@@ -439,7 +434,7 @@ export const bidNow = async (req, res) => {
                 rank: auction.winners.length,
                 time: new Date()
             })
-           await user.save()
+            await user.save()
         }
 
         await auction.save()

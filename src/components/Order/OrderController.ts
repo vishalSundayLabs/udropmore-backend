@@ -9,7 +9,7 @@ export const getOrderList = async (req, res) => {
 
     try {
 
-        const orderList = await OrderModel.find({ isDeleted: false }).sort({ $natural: -1 }).skip(skips).limit(limit)
+        const orderList = await OrderModel.find({ isDeleted: false }).populate("userId","_id phoneNumber").populate("auctionId","_id types").populate("productId","_id name").sort({ $natural: -1 }).skip(skips).limit(limit)
 
         if (orderList.length == 0) {
 
@@ -56,7 +56,7 @@ export const getOrderHistory = async (req, res) => {
 
     try {
 
-        const orderHistory = await OrderModel.find({ userId: params.userId, isDeleted: false }).sort({ $natural: -1 }).skip(skips).limit(limit)
+        const orderHistory = await OrderModel.find({ userId: params.userId, isDeleted: false }).populate("productId", "name _id productPageImageUrl").sort({ $natural: -1 }).skip(skips).limit(limit)
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
@@ -93,7 +93,7 @@ export const getUserCartOrder = async (req, res) => {
 
     try {
 
-        const cartOrder = await OrderModel.find({ userId: params.userId, status: { $in: ["PENDING"] }, isDeleted: false }).sort({ $natural: -1 }).skip(skips).limit(limit)
+        const cartOrder = await OrderModel.find({ userId: params.userId, status: { $in: ["PENDING"] }, isDeleted: false }).populate("productId", "name _id").sort({ $natural: -1 }).skip(skips).limit(limit)
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,

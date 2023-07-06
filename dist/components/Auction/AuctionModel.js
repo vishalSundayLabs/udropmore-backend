@@ -16,9 +16,8 @@ const AuctionSchema = new mongoose.Schema({
     },
     startTime: Date,
     endTime: Date,
-    minDropInterval: Number,
-    maxDropInterval: Number,
     entryFees: Number,
+    dropStartPrice: Number,
     winners: [{
             userId: {
                 type: mongoose.SchemaTypes.ObjectId,
@@ -27,7 +26,6 @@ const AuctionSchema = new mongoose.Schema({
             bidAmount: Number,
             rank: Number
         }],
-    dropStartPrice: Number,
     lowestDropPrice: Number,
     status: {
         type: String,
@@ -49,13 +47,6 @@ const AuctionSchema = new mongoose.Schema({
             biddingAmount: Number,
             rank: Number,
             time: Date
-        }],
-    minDropPrice: Number,
-    maxDropPrice: Number,
-    priceDrop: [{
-            timeStamp: Date,
-            dropAmount: Number,
-            newDropPrice: Number
         }],
     isActive: {
         type: Boolean,

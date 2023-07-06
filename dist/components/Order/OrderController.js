@@ -17,7 +17,7 @@ const OrderModel_1 = require("./OrderModel");
 const getOrderList = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { skips, limit } = (0, pagination_1.pagination)(req.query);
     try {
-        const orderList = yield OrderModel_1.default.find({ isDeleted: false }).sort({ $natural: -1 }).skip(skips).limit(limit);
+        const orderList = yield OrderModel_1.default.find({ isDeleted: false }).populate("userId", "_id phoneNumber").populate("auctionId", "_id types").populate("productId", "_id name").sort({ $natural: -1 }).skip(skips).limit(limit);
         if (orderList.length == 0) {
             return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
                 success: false,
@@ -49,7 +49,7 @@ const getOrderHistory = (req, res) => __awaiter(void 0, void 0, void 0, function
     }
     let { limit, skips } = (0, pagination_1.pagination)(req.query);
     try {
-        const orderHistory = yield OrderModel_1.default.find({ userId: params.userId, isDeleted: false }).sort({ $natural: -1 }).skip(skips).limit(limit);
+        const orderHistory = yield OrderModel_1.default.find({ userId: params.userId, isDeleted: false }).populate("productId", "name _id productPageImageUrl").sort({ $natural: -1 }).skip(skips).limit(limit);
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: 'Get order history successfully!',
@@ -75,7 +75,7 @@ const getUserCartOrder = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
     let { limit, skips } = (0, pagination_1.pagination)(req.query);
     try {
-        const cartOrder = yield OrderModel_1.default.find({ userId: params.userId, status: { $in: ["PENDING"] }, isDeleted: false }).sort({ $natural: -1 }).skip(skips).limit(limit);
+        const cartOrder = yield OrderModel_1.default.find({ userId: params.userId, status: { $in: ["PENDING"] }, isDeleted: false }).populate("productId", "name _id").sort({ $natural: -1 }).skip(skips).limit(limit);
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
             message: 'Get user cart successfully!',

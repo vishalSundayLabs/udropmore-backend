@@ -10,13 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.auctionPolling = exports.bidNow = exports.getLiveAndUpcommingAuction = exports.getAuctionHistory = exports.getParticipants = exports.addParticipants = exports.getauctionList = exports.getAuctionById = exports.updateAuction = exports.createAuction = void 0;
-const moment = require("moment");
 const Config_1 = require("../../config/Config");
 const Master_1 = require("../../Constant/Master");
 const bodyTraverse_1 = require("../../helpers/bodyTraverse");
 const pagination_1 = require("../../helpers/pagination");
-const GenerateRandomArray_1 = require("../../utils/GenerateRandomArray");
-const getDiffrenceBetweenTwoDate_1 = require("../../utils/getDiffrenceBetweenTwoDate");
 const ResponseClass_1 = require("../../utils/ResponseClass");
 const TimezoneConverter_1 = require("../../utils/TimezoneConverter");
 const OrderModel_1 = require("../Order/OrderModel");
@@ -36,37 +33,32 @@ const createAuction = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         types: body.types,
         startTime: new Date((0, TimezoneConverter_1.getISTmsTime)(body.startTime)),
         endTime: new Date((0, TimezoneConverter_1.getISTmsTime)(body.endTime)),
-        minDropInterval: body.minDropInterval,
-        maxDropInterval: body.maxDropInterval,
         lowestDropPrice: body.lowestDropPrice,
         entryFees: body.entryFees,
         dropStartPrice: body.dropStartPrice,
-        status: body.status,
-        minDropPrice: body.minDropPrice,
-        maxDropPrice: body.maxDropPrice,
-        priceDrop: []
+        status: "SCHEDULED"
     };
     try {
-        const targetPrice = reqData.dropStartPrice - reqData.lowestDropPrice;
-        const dropPrice = (0, GenerateRandomArray_1.generateRandomArray)(targetPrice, body.minDropPrice, body.maxDropPrice);
-        const targetTime = (0, getDiffrenceBetweenTwoDate_1.getDateDifferenceInSeconds)(reqData.endTime, reqData.startTime);
-        console.log("line 46", reqData.startTime, reqData.endTime, targetTime);
-        const dropTime = (0, GenerateRandomArray_1.generateRandomArray)(targetTime, body.minDropInterval, body.maxDropInterval, dropPrice.length);
-        console.log("line 48 time", targetTime, dropTime.length);
-        console.log("line 49 time", targetPrice, dropPrice.length);
-        let sum = 0;
-        let secondSum = reqData.startTime.getSeconds();
-        reqData.priceDrop = dropPrice.map((item, index) => {
-            sum += item;
-            secondSum += dropTime[index];
-            const newDate = moment(reqData.startTime).add(secondSum, "seconds");
-            return {
-                timeStamp: newDate,
-                dropAmount: item,
-                newDropPrice: reqData.dropStartPrice - sum
-            };
-        });
-        console.log(sum, "line 62");
+        // const targetPrice = reqData.dropStartPrice - reqData.lowestDropPrice
+        // const dropPrice = generateRandomArray(targetPrice, body.minDropPrice, body.maxDropPrice)
+        // const targetTime = getDateDifferenceInSeconds(reqData.endTime, reqData.startTime)
+        // console.log("line 46", reqData.startTime, reqData.endTime, targetTime)
+        // const dropTime = generateRandomArray(targetTime, body.minDropInterval, body.maxDropInterval, dropPrice.length)
+        // console.log("line 48 time", targetTime, dropTime.length)
+        // console.log("line 49 time", targetPrice, dropPrice.length)
+        // let sum = 0
+        // let secondSum = reqData.startTime.getSeconds()
+        // reqData.priceDrop = dropPrice.map((item, index) => {
+        //     sum += item
+        //     secondSum += dropTime[index]
+        //     const newDate = moment(reqData.startTime).add(secondSum, "seconds")
+        //     return {
+        //         timeStamp: newDate,
+        //         dropAmount: item,
+        //         newDropPrice: reqData.dropStartPrice - sum
+        //     }
+        // })
+        // console.log(sum, "line 62")
         const auction = yield AuctionModel_1.default.create(reqData);
         return res.status(Master_1.HTTP_CREATED).send(new ResponseClass_1.ResponseSuccess({
             success: true,
@@ -145,7 +137,7 @@ exports.getAuctionById = getAuctionById;
 const getauctionList = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { limit, skips } = (0, pagination_1.pagination)(req.query);
     try {
-        const auctionList = yield AuctionModel_1.default.find({ isDeleted: false }).skip(skips).limit(limit);
+        const auctionList = yield AuctionModel_1.default.find({ isDeleted: false }).sort({ $natural: -1 }).skip(skips).limit(limit);
         if (auctionList.length == 0) {
             return res.status(Master_1.HTTP_NOT_FOUND).send(new ResponseClass_1.ResponseError({
                 success: false,

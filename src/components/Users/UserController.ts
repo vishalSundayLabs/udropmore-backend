@@ -9,6 +9,7 @@ import { ResponseError, ResponseSuccess } from "../../utils/ResponseClass";
 import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_NOT_FOUND, HTTP_OK } from "../../Constant/Master";
 import { bodyTraverse } from "../../helpers/bodyTraverse";
 import { pagination } from "../../helpers/pagination";
+import TransactionModel from "../Transaction/TransactionModel";
 
 
 export const createUser = async (req, res) => {
@@ -216,6 +217,56 @@ export const getUserWalletBalance = async (req, res) => {
 
 }
 
+export const addMoneyInWallet = async (req, res) => {
+
+  const params = req.params
+  const body = req.body
+
+  if (!params.userId) {
+
+    return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+      success: false,
+      message: "Bad request! User ID must be provide!"
+    }))
+
+  }
+
+  try {
+
+    const user = await UserModel.findOne({ _id: params.userId, isDeleted: false })
+
+    if (!user) {
+
+      return res.status(HTTP_BAD_REQUEST).send(new ResponseError({
+        success: false,
+        message: "user does not exist!"
+      }))
+
+    }
+
+
+    user.walletBalance = parseInt(body.walletBalance) + parseInt(user.walletBalance)
+    user.updatedBy = req.userId
+
+    await user.save()
+    await TransactionModel.create({ userId: user._id, amount: body.walletBalance, type: "CREDIT", category: "WALLET_RECHARGE" })
+
+    return res.status(HTTP_OK).send(new ResponseSuccess({
+      success: true,
+      message: "Money add in wallet  successfully",
+      result: user
+    }))
+
+  } catch (error) {
+
+    let response = new ResponseError({
+      message: "Something went wrong",
+      error: error.message,
+    });
+
+    return res.status(500).json(response);
+  }
+}
 // export const deleteUser = async (req, res) => {
 
 //   const userId = req.params.id

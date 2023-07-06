@@ -16,5 +16,6 @@ router.get("/list", userController.getUserList)
 //user list
 router.get("/:userId",userController.getUserById)
 router.get("/wallet/balance/:userId", userController.getUserWalletBalance)
+router.put('/add/money/:userId', userController.addMoneyInWallet)
 
 export default router;

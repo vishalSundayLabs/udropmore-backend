@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUserWalletBalance = exports.getUserById = exports.getUserList = exports.userUpdate = exports.createUser = void 0;
+exports.addMoneyInWallet = exports.getUserWalletBalance = exports.getUserById = exports.getUserList = exports.userUpdate = exports.createUser = void 0;
 // models
 const UserModel_1 = require("./UserModel");
 // classes
@@ -17,6 +17,7 @@ const ResponseClass_1 = require("../../utils/ResponseClass");
 const Master_1 = require("../../Constant/Master");
 const bodyTraverse_1 = require("../../helpers/bodyTraverse");
 const pagination_1 = require("../../helpers/pagination");
+const TransactionModel_1 = require("../Transaction/TransactionModel");
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     if (!body.phoneNumber || !body.userType || !body.platform || !body.firstName) {
@@ -162,6 +163,42 @@ const getUserWalletBalance = (req, res) => __awaiter(void 0, void 0, void 0, fun
     }
 });
 exports.getUserWalletBalance = getUserWalletBalance;
+const addMoneyInWallet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const params = req.params;
+    const body = req.body;
+    if (!params.userId) {
+        return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+            success: false,
+            message: "Bad request! User ID must be provide!"
+        }));
+    }
+    try {
+        const user = yield UserModel_1.default.findOne({ _id: params.userId, isDeleted: false });
+        if (!user) {
+            return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseError({
+                success: false,
+                message: "user does not exist!"
+            }));
+        }
+        user.walletBalance = parseInt(body.walletBalance) + parseInt(user.walletBalance);
+        user.updatedBy = req.userId;
+        yield user.save();
+        yield TransactionModel_1.default.create({ userId: user._id, amount: body.walletBalance, type: "CREDIT", category: "WALLET_RECHARGE" });
+        return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+            success: true,
+            message: "Money add in wallet  successfully",
+            result: user
+        }));
+    }
+    catch (error) {
+        let response = new ResponseClass_1.ResponseError({
+            message: "Something went wrong",
+            error: error.message,
+        });
+        return res.status(500).json(response);
+    }
+});
+exports.addMoneyInWallet = addMoneyInWallet;
 // export const deleteUser = async (req, res) => {
 //   const userId = req.params.id
 //   if (!userId) {
