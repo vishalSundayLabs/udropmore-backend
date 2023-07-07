@@ -236,14 +236,18 @@ export const addParticipants = async (req, res) => {
         if (dublecateUser && dublecateUser.length > 0) {
             return res.status(HTTP_OK).send(new ResponseSuccess({
                 message: "You have already participated in this auction!",
-                isParticipated: true
+                result: {
+                    isParticipated: true
+                }
             }))
         }
 
         if (user.walletBalance < auction.entryFees) {
             return res.status(HTTP_OK).send(new ResponseSuccess({
                 message: "Insufficient Wallet Balance! Please Recharge!",
-                insufficientBalance: true
+                result: {
+                    insufficientBalance: true
+                }
             }))
         }
 
