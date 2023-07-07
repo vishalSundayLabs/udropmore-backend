@@ -219,7 +219,7 @@ export const addParticipants = async (req, res) => {
 
         if (!user) {
             return res.status(HTTP_BAD_REQUEST).send(new ResponseSuccess({
-                message: "Invalid user Id"
+                message: "Invalid User Id"
             }))
         }
 
@@ -231,17 +231,19 @@ export const addParticipants = async (req, res) => {
             }))
         }
 
-        if (user.walletBalance < auction.entryFees) {
-            return res.status(HTTP_OK).send(new ResponseSuccess({
-                message: "Insufficient Wallet Balance ! Please Recharge"
-            }))
-        }
-
         const dublecateUser = auction.participants.filter(ele => ele.userId == params.userId);
         console.log("line 252", dublecateUser)
         if (dublecateUser && dublecateUser.length > 0) {
             return res.status(HTTP_OK).send(new ResponseSuccess({
-                message: "You are already participate in this auction."
+                message: "You have already participated in this auction!",
+                isParticipated: true
+            }))
+        }
+
+        if (user.walletBalance < auction.entryFees) {
+            return res.status(HTTP_OK).send(new ResponseSuccess({
+                message: "Insufficient Wallet Balance! Please Recharge!",
+                insufficientBalance: true
             }))
         }
 
@@ -257,7 +259,7 @@ export const addParticipants = async (req, res) => {
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: true,
-            message: 'You are participate successfully in this auction!',
+            message: 'You have successfully participated in this auction!',
             result: auction
         }))
 
