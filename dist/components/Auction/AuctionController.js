@@ -171,7 +171,7 @@ const addParticipants = (req, res) => __awaiter(void 0, void 0, void 0, function
         const user = yield UserModel_1.default.findOne({ _id: params.userId, isDeleted: false });
         if (!user) {
             return res.status(Master_1.HTTP_BAD_REQUEST).send(new ResponseClass_1.ResponseSuccess({
-                message: "Invalid user Id"
+                message: "Invalid User Id"
             }));
         }
         const auction = yield AuctionModel_1.default.findOne({ _id: params.auctionId, isDeleted: false });
@@ -180,16 +180,18 @@ const addParticipants = (req, res) => __awaiter(void 0, void 0, void 0, function
                 message: "Auction not found!"
             }));
         }
-        if (user.walletBalance < auction.entryFees) {
-            return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
-                message: "Insufficient Wallet Balance ! Please Recharge"
-            }));
-        }
         const dublecateUser = auction.participants.filter(ele => ele.userId == params.userId);
         console.log("line 252", dublecateUser);
         if (dublecateUser && dublecateUser.length > 0) {
             return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
-                message: "You are already participate in this auction."
+                message: "You have already participated in this auction!",
+                isParticipated: true
+            }));
+        }
+        if (user.walletBalance < auction.entryFees) {
+            return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
+                message: "Insufficient Wallet Balance! Please Recharge!",
+                insufficientBalance: true
             }));
         }
         if (!auction.participants.includes(user._id)) {
@@ -203,7 +205,7 @@ const addParticipants = (req, res) => __awaiter(void 0, void 0, void 0, function
         }
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
-            message: 'You are participate successfully in this auction!',
+            message: 'You have successfully participated in this auction!',
             result: auction
         }));
     }
