@@ -233,7 +233,7 @@ export const addParticipants = async (req, res) => {
 
         if (user.walletBalance < auction.entryFees) {
             return res.status(HTTP_OK).send(new ResponseSuccess({
-                message: "Insufficient Wallet Balance ! please Recharge"
+                message: "Insufficient Wallet Balance ! Please Recharge"
             }))
         }
 
@@ -446,7 +446,7 @@ export const bidNow = async (req, res) => {
             }))
         }
 
-        const message = auction.length <= 5 ? `In Bidding you are ${auction.length}th winner.` : `Bidding completed successfully.`
+        const message = auction.winners.length <= 5 ? `In Bidding you are ${auction.winners.length}th winner.` : `Bidding completed successfully.`
 
         return res.status(HTTP_OK).send(new ResponseSuccess({
             success: false,

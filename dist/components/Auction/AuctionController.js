@@ -182,7 +182,7 @@ const addParticipants = (req, res) => __awaiter(void 0, void 0, void 0, function
         }
         if (user.walletBalance < auction.entryFees) {
             return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
-                message: "Insufficient Wallet Balance ! please Recharge"
+                message: "Insufficient Wallet Balance ! Please Recharge"
             }));
         }
         const dublecateUser = auction.participants.filter(ele => ele.userId == params.userId);
@@ -355,7 +355,7 @@ const bidNow = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 message: "Auction already completed."
             }));
         }
-        const message = auction.length <= 5 ? `In Bidding you are ${auction.length}th winner.` : `Bidding completed successfully.`;
+        const message = auction.winners.length <= 5 ? `In Bidding you are ${auction.winners.length}th winner.` : `Bidding completed successfully.`;
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: false,
             message: message
