@@ -185,13 +185,17 @@ const addParticipants = (req, res) => __awaiter(void 0, void 0, void 0, function
         if (dublecateUser && dublecateUser.length > 0) {
             return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
                 message: "You have already participated in this auction!",
-                isParticipated: true
+                result: {
+                    isParticipated: true
+                }
             }));
         }
         if (user.walletBalance < auction.entryFees) {
             return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
                 message: "Insufficient Wallet Balance! Please Recharge!",
-                insufficientBalance: true
+                result: {
+                    insufficientBalance: true
+                }
             }));
         }
         if (!auction.participants.includes(user._id)) {
