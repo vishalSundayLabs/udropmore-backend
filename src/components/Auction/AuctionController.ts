@@ -24,7 +24,9 @@ export const createAuction = async (req, res) => {
         }))
 
     }
+
     console.log(moment(body.startTime).tz("Asia/Kolkata"))
+    
     const reqData = {
         productId: body.productId,
         types: body.types,
