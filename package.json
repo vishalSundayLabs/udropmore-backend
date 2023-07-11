@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "rm -rf dist && tsc --noStrictGenericChecks",
-    "start": "NODE_ENV=production node dist/app.js node dist/app.js",
+    "start": "NODE_ENV=production node dist/app.js",
     "dev": "nodemon --config nodemon.json",
     "test": "NODE_ENV=testing mocha --recursive --exit --timeout 25000 -r ts-node/register test/**/*.test.ts",
     "test-dev": "NODE_ENV=testing nodemon  --watch . --ext ts --exec  \"mocha --recursive --exit --timeout 25000 -r ts-node/register test/**/*.test.ts\""

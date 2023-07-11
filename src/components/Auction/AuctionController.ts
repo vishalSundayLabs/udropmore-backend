@@ -29,7 +29,7 @@ export const createAuction = async (req, res) => {
         productId: body.productId,
         types: body.types,
         startTime: moment(body.startTime).tz("Asia/Kolkata"),
-        endTime: new Date(getISTmsTime(body.endTime)),
+        endTime: moment(body.endTime).tz("Asia/Kolkata"),
         lowestDropPrice: body.lowestDropPrice,
         entryFees: body.entryFees,
         dropStartPrice: body.dropStartPrice,

@@ -16,7 +16,6 @@ const Master_1 = require("../../Constant/Master");
 const bodyTraverse_1 = require("../../helpers/bodyTraverse");
 const pagination_1 = require("../../helpers/pagination");
 const ResponseClass_1 = require("../../utils/ResponseClass");
-const TimezoneConverter_1 = require("../../utils/TimezoneConverter");
 const OrderModel_1 = require("../Order/OrderModel");
 const TransactionModel_1 = require("../Transaction/TransactionModel");
 const UserModel_1 = require("../Users/UserModel");
@@ -34,7 +33,7 @@ const createAuction = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         productId: body.productId,
         types: body.types,
         startTime: moment(body.startTime).tz("Asia/Kolkata"),
-        endTime: new Date((0, TimezoneConverter_1.getISTmsTime)(body.endTime)),
+        endTime: moment(body.endTime).tz("Asia/Kolkata"),
         lowestDropPrice: body.lowestDropPrice,
         entryFees: body.entryFees,
         dropStartPrice: body.dropStartPrice,
