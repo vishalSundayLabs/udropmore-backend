@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.auctionPolling = exports.bidNow = exports.getLiveAndUpcommingAuction = exports.getAuctionHistory = exports.getParticipants = exports.addParticipants = exports.getauctionList = exports.getAuctionById = exports.updateAuction = exports.createAuction = void 0;
+const moment = require("moment-timezone");
 const Config_1 = require("../../config/Config");
 const Master_1 = require("../../Constant/Master");
 const bodyTraverse_1 = require("../../helpers/bodyTraverse");
@@ -28,10 +29,11 @@ const createAuction = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             message: "Bad request! Product ID must be provide!"
         }));
     }
+    console.log(moment(body.startTime).tz("Asia/Kolkata"));
     const reqData = {
         productId: body.productId,
         types: body.types,
-        startTime: new Date((0, TimezoneConverter_1.getISTmsTime)(body.startTime)),
+        startTime: moment(body.startTime).tz("Asia/Kolkata"),
         endTime: new Date((0, TimezoneConverter_1.getISTmsTime)(body.endTime)),
         lowestDropPrice: body.lowestDropPrice,
         entryFees: body.entryFees,

@@ -1,4 +1,4 @@
-import moment = require("moment")
+import * as  moment from "moment-timezone"
 import config from "../../config/Config"
 import { HTTP_BAD_REQUEST, HTTP_CREATED, HTTP_NOT_FOUND, HTTP_OK } from "../../Constant/Master"
 import { bodyTraverse } from "../../helpers/bodyTraverse"
@@ -24,11 +24,11 @@ export const createAuction = async (req, res) => {
         }))
 
     }
-
+    console.log(moment(body.startTime).tz("Asia/Kolkata"))
     const reqData = {
         productId: body.productId,
         types: body.types,
-        startTime: new Date(getISTmsTime(body.startTime)),
+        startTime: moment(body.startTime).tz("Asia/Kolkata"),
         endTime: new Date(getISTmsTime(body.endTime)),
         lowestDropPrice: body.lowestDropPrice,
         entryFees: body.entryFees,
