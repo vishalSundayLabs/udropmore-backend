@@ -358,8 +358,8 @@ export const getLiveAndUpcommingAuction = async (req, res) => {
 
     try {
 
-        const activeAuctions = await AuctionModel.find({ isDeleted: false, status: "ACTIVE" }).sort({ endTime: 1 }).populate("productId")
-        const scheduledAuctions = await AuctionModel.find({ isDeleted: false, status: "SCHEDULED" }).sort({ endTime: 1 }).populate("productId")
+        const activeAuctions = await AuctionModel.find({ isDeleted: false, status: "ACTIVE" }).sort({ endTim: 1 }).populate("productId")
+        const scheduledAuctions = await AuctionModel.find({ isDeleted: false, status: "SCHEDULED" }).sort({ startTime: 1 }).populate("productId")
         // const completedAuctions = await AuctionModel.find({ isDeleted: false, status: "COMPLETED" }).sort({ endTime: 1 })
 
 

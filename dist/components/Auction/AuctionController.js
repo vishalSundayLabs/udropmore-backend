@@ -279,8 +279,8 @@ const getAuctionHistory = (req, res) => __awaiter(void 0, void 0, void 0, functi
 exports.getAuctionHistory = getAuctionHistory;
 const getLiveAndUpcommingAuction = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const activeAuctions = yield AuctionModel_1.default.find({ isDeleted: false, status: "ACTIVE" }).sort({ endTime: 1 }).populate("productId");
-        const scheduledAuctions = yield AuctionModel_1.default.find({ isDeleted: false, status: "SCHEDULED" }).sort({ endTime: 1 }).populate("productId");
+        const activeAuctions = yield AuctionModel_1.default.find({ isDeleted: false, status: "ACTIVE" }).sort({ endTim: 1 }).populate("productId");
+        const scheduledAuctions = yield AuctionModel_1.default.find({ isDeleted: false, status: "SCHEDULED" }).sort({ startTime: 1 }).populate("productId");
         // const completedAuctions = await AuctionModel.find({ isDeleted: false, status: "COMPLETED" }).sort({ endTime: 1 })
         return res.status(Master_1.HTTP_OK).send(new ResponseClass_1.ResponseSuccess({
             success: true,
