@@ -7,9 +7,6 @@ import config from "../config/Config";
 import { getISTmsTime } from "./TimezoneConverter";
 
 export const cronJobForChangesStatus = () => {
-
-
-
   cron.schedule("*/1 * * * *", async () => {
     // try {
     //   const auction = await AuctionModel.find({ status: "ACTIVE", isDeleted: false })
