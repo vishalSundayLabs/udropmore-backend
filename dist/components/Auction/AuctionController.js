@@ -39,7 +39,7 @@ const createAuction = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         dropStartPrice: body.dropStartPrice,
         status: "SCHEDULED"
     };
-    console.log("line 39", reqData.startTime, body.startTime, reqData.endTime, body.endTime);
+    console.log("line 39 in auction", reqData.startTime, body.startTime, reqData.endTime, body.endTime);
     try {
         // const targetPrice = reqData.dropStartPrice - reqData.lowestDropPrice
         // const dropPrice = generateRandomArray(targetPrice, body.minDropPrice, body.maxDropPrice)
