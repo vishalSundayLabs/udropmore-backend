@@ -25,13 +25,13 @@ export const createAuction = async (req, res) => {
 
     }
 
-    console.log(moment(body.startTime).tz("Asia/Kolkata"))
+    console.log(moment(body.startTime))
     
     const reqData = {
         productId: body.productId,
         types: body.types,
-        startTime: moment(body.startTime).tz("Asia/Kolkata"),
-        endTime: moment(body.endTime).tz("Asia/Kolkata"),
+        startTime: moment(body.startTime),
+        endTime: moment(body.endTime),
         lowestDropPrice: body.lowestDropPrice,
         entryFees: body.entryFees,
         dropStartPrice: body.dropStartPrice,
