@@ -36,6 +36,8 @@ export const createAuction = async (req, res) => {
         status: "SCHEDULED"
     }
 
+    console.log("line 39", reqData.startTime, body.startTime, reqData.endTime, body.endTime)
+
     try {
 
         // const targetPrice = reqData.dropStartPrice - reqData.lowestDropPrice
