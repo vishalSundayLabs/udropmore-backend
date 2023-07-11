@@ -28,12 +28,12 @@ const createAuction = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             message: "Bad request! Product ID must be provide!"
         }));
     }
-    console.log(moment(body.startTime));
+    console.log(moment(body.startTime).tz("Asia/Kolkata"));
     const reqData = {
         productId: body.productId,
         types: body.types,
-        startTime: moment(body.startTime),
-        endTime: moment(body.endTime),
+        startTime: moment(body.startTime).tz("Asia/Kolkata"),
+        endTime: moment(body.endTime).tz("Asia/Kolkata"),
         lowestDropPrice: body.lowestDropPrice,
         entryFees: body.entryFees,
         dropStartPrice: body.dropStartPrice,
