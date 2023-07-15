@@ -17,6 +17,8 @@ exports.config = {
     COOLDROP_SECURITY_FEES: +process.env.COOL_DROP_SECURITY_FEES,
     MEGADROP_SECURITY_FEES: +process.env.MEGA_DROP_SECURITY_FEES,
     DASHDROP_SECURITY_FEES: +process.env.DASH_DROP_SECURITY_FEES,
-    TIME_TO_BUY: +process.env.TIME_TO_BUY
+    TIME_TO_BUY: +process.env.TIME_TO_BUY,
+    ACCOUNT_SID: process.env.ACCOUNT_SID,
+    AUTH_TOKEN: process.env.AUTH_TOKEN
 };
 exports.default = exports.config;
