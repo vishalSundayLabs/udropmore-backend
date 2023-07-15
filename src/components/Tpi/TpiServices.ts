@@ -23,7 +23,6 @@ export const sendWaOtp = async (phoneNumber, text) => {
             const errs = err.message
             return { message: errs }
         })
-console.log("line 26 tpi se",accountSid,authToken,data)
     return data;
 
 }

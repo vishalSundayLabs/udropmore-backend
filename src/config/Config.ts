@@ -15,8 +15,9 @@ type env = {
   MEGADROP_SECURITY_FEES: Number;
   DASHDROP_SECURITY_FEES: Number;
   TIME_TO_BUY: Number;
-  ACCOUNT_SID:String;
-  AUTH_TOKEN:String;
+  ACCOUNT_SID: String;
+  AUTH_TOKEN: String;
+  DEV_OTP: String;
 }
 
 
@@ -37,8 +38,9 @@ export const config: env = {
   MEGADROP_SECURITY_FEES: +process.env.MEGA_DROP_SECURITY_FEES,
   DASHDROP_SECURITY_FEES: +process.env.DASH_DROP_SECURITY_FEES,
   TIME_TO_BUY: +process.env.TIME_TO_BUY,
-  ACCOUNT_SID:process.env.ACCOUNT_SID,
-  AUTH_TOKEN :process.env.AUTH_TOKEN
+  ACCOUNT_SID: process.env.ACCOUNT_SID,
+  AUTH_TOKEN: process.env.AUTH_TOKEN,
+  DEV_OTP: process.env.DEV_OTP
 }
 
 export default config;

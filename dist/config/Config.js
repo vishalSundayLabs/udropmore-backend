@@ -19,6 +19,7 @@ exports.config = {
     DASHDROP_SECURITY_FEES: +process.env.DASH_DROP_SECURITY_FEES,
     TIME_TO_BUY: +process.env.TIME_TO_BUY,
     ACCOUNT_SID: process.env.ACCOUNT_SID,
-    AUTH_TOKEN: process.env.AUTH_TOKEN
+    AUTH_TOKEN: process.env.AUTH_TOKEN,
+    DEV_OTP: process.env.DEV_OTP
 };
 exports.default = exports.config;
