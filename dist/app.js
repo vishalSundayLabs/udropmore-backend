@@ -11,6 +11,7 @@ const DB = require("./helpers/DbHelper");
 const index_1 = require("./routers/index");
 const fileUpload = require('express-fileupload');
 const cronjob_1 = require("./utils/cronjob");
+const TimezoneConverter_1 = require("./utils/TimezoneConverter");
 const bodyParser = require("body-parser");
 const logger = tracer.colorConsole();
 exports.app = express();
@@ -37,6 +38,7 @@ if (Config_1.default.NODE_ENV === "development") {
     });
 }
 exports.app.use(index_1.default);
+console.log("date ", (0, TimezoneConverter_1.getISTmsTime)("2023-07-13T22:00:00.000+00:00"), (0, TimezoneConverter_1.getISTmsTime)(), new Date("2023-07-13T22:00:00.000+00:00"), new Date(1689265800000), new Date(1689188454000));
 DB.connect()
     .then((result) => {
     exports.app.listen(exports.app.get("port"), () => {

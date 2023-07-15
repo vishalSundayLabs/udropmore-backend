@@ -17,8 +17,8 @@ const client = require('twilio')(accountSid, authToken);
 const sendWaOtp = (phoneNumber, text) => __awaiter(void 0, void 0, void 0, function* () {
     const reqData = {
         body: text,
-        from: 'whatsapp:+14155238886',
-        to: `whatsapp:+91${phoneNumber}`
+        from: '+16187063663',
+        to: `+91${phoneNumber}`
     };
     const data = client.messages
         .create(reqData)

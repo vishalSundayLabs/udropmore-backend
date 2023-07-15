@@ -9,8 +9,8 @@ export const sendWaOtp = async (phoneNumber, text) => {
 
     const reqData = {
         body: text,
-        from: 'whatsapp:+14155238886',
-        to: `whatsapp:+91${phoneNumber}`
+        from: '+16187063663',
+        to: `+91${phoneNumber}`
     }
 
     const data = client.messages

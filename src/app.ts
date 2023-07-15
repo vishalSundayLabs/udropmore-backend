@@ -16,6 +16,7 @@ import { generateRandomAuction } from "./SeedData/Auction.seed";
 import * as cron from "node-cron";
 const fileUpload = require('express-fileupload');
 import { cronJobForChangesStatus } from "./utils/cronjob";
+import { getISTmsTime } from "./utils/TimezoneConverter";
 const bodyParser = require("body-parser");
 
 const logger = tracer.colorConsole();
@@ -62,7 +63,7 @@ if (config.NODE_ENV === "development") {
 
 }
 app.use(router);
-
+console.log("date ", getISTmsTime("2023-07-13T22:00:00.000+00:00"), getISTmsTime(),new Date("2023-07-13T22:00:00.000+00:00"), new Date(1689265800000), new Date(1689188454000))
 DB.connect()
   .then((result) => {
     app.listen(app.get("port"), () => {
