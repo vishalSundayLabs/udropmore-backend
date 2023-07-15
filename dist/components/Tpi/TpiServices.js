@@ -30,6 +30,7 @@ const sendWaOtp = (phoneNumber, text) => __awaiter(void 0, void 0, void 0, funct
         const errs = err.message;
         return { message: errs };
     });
+    console.log("line 26 tpi se", accountSid, authToken, data);
     return data;
 });
 exports.sendWaOtp = sendWaOtp;
