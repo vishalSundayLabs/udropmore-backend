@@ -1,8 +1,9 @@
 import TpiModel from "./TpiResponseModel";
-
+import config from "../../config/Config";
 //twilio 
-const accountSid = process.env.ACCOUNT_SID;
-const authToken = process.env.AUTH_TOKEN;
+const accountSid = config.ACCOUNT_SID
+const authToken = config.AUTH_TOKEN;
+
 const client = require('twilio')(accountSid, authToken);
 
 export const sendWaOtp = async (phoneNumber, text) => {

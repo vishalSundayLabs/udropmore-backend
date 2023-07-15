@@ -10,9 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sendWaOtp = void 0;
+const Config_1 = require("../../config/Config");
 //twilio 
-const accountSid = process.env.ACCOUNT_SID;
-const authToken = process.env.AUTH_TOKEN;
+const accountSid = Config_1.default.ACCOUNT_SID;
+const authToken = Config_1.default.AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
 const sendWaOtp = (phoneNumber, text) => __awaiter(void 0, void 0, void 0, function* () {
     const reqData = {
