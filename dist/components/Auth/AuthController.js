@@ -24,7 +24,7 @@ const sendOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     try {
         const otp = (0, CreateOtp_1.createOtp)();
-        const text = `Dear customer, use this One Time Password (${otp}) to log in to your Udropmore account. This OTP will be valid for the next 30 Sec.`;
+        const text = `Dear customer, use this One Time Password (${otp}) to log in to your Udropmore account. This OTP will be valid for the next 5 Mins.`;
         //create otp 
         yield OtpModel_1.default.create({ phoneNumber: body.phoneNumber, otp: otp });
         //send otp
@@ -117,7 +117,7 @@ const logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.logout = logout;
 const isExpiredOtp = (otpCreationTime) => {
-    const expiryTime = process.env.OTP_EXPIRY || 1200;
+    const expiryTime = process.env.OTP_EXPIRY || 300;
     const otpCreationTimeFormatted = new Date(otpCreationTime);
     const TotalPastSeconds = Math.floor(otpCreationTimeFormatted.getHours() * 60 * 60 + otpCreationTimeFormatted.getMinutes() * 60 + otpCreationTimeFormatted.getSeconds());
     const currTime = new Date();

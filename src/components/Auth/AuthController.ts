@@ -20,7 +20,7 @@ export const sendOtp = async (req: Request, res: Response) => {
 
         const otp = createOtp()
 
-        const text = `Dear customer, use this One Time Password (${otp}) to log in to your Udropmore account. This OTP will be valid for the next 30 Sec.`
+        const text = `Dear customer, use this One Time Password (${otp}) to log in to your Udropmore account. This OTP will be valid for the next 5 Mins.`
         //create otp 
         await OtpModel.create({ phoneNumber: body.phoneNumber, otp: otp });
         //send otp
@@ -149,7 +149,7 @@ export const logout = async (req, res) => {
 
 const isExpiredOtp = (otpCreationTime) => {
 
-    const expiryTime = process.env.OTP_EXPIRY || 1200
+    const expiryTime = process.env.OTP_EXPIRY || 300
 
     const otpCreationTimeFormatted = new Date(otpCreationTime);
 
